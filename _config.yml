@@ -88,8 +88,8 @@ remote_theme: hydecorp/hydejack@v9
 # ----------------------------------------------------------------------------------------
  
 # Sidebar image and theme color of the site.
-accent_image:          /assets/img/blog/pink_sky_2.jpeg
-accent_color:          rgb(180, 99, 194)
+accent_image:          /assets/img/blog/pink_sky_3.jpeg
+accent_color:          rgb(166, 76, 181)
 
 # This is used for the `theme-color` meta tag,
 # which changes the background color of the browser UI in certain browsers.
