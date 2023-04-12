@@ -8,7 +8,7 @@ description: >
 sitemap: false
 ---
 
-# Flutter UI
+# Flutter
 
 ## Flutter Layout
 
