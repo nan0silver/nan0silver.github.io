@@ -1,12 +1,14 @@
 ---
 layout: post
 title: Introducing Hydejack 9
+image: 
+  path: /assets/img/blog/jeremy-bishop@0,5x.jpg
 description: >
-  test test
+  final test file
 sitemap: false
 ---
 
-# 플러터 UI
+# Flutter UI
 
 ## Flutter Layout
 
