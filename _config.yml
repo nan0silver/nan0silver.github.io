@@ -57,8 +57,6 @@ menu:
   #   url:               /docs/
   - title:             About
     url:               /about/
-  - title:             Testing
-    url:               /testing/
   - title:             Flutter
     url:               /flutter/
   - title:             Algorithm
