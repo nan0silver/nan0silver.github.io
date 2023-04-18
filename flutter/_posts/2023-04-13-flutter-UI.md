@@ -1,4 +1,12 @@
-# 플러터 UI
+---
+layout: post
+title: flutter 02 - flutter UI
+description: >
+  Flutte 개발 전 알아야 된 UI관련 설명과 생명주기에 관한 내용을 담고 있다.
+sitemap: false
+---
+
+# Flutter UI
 
 ## Flutter Layout
 
@@ -23,15 +31,15 @@
     - 예시
         - <figure>
             <image src="https://flutter-ko.dev/assets/ui/layout/lakes-icons-9e75d63c8af0fc5ddf026c71b3e85687548ec29f2f1e06f8e78c546969a21127.png">
-        </figure>
+        
 
 
         - <figure>
             <image src = "https://flutter-ko.dev/assets/ui/layout/sample-flutter-layout-46c76f6ab08f94fa4204469dbcf6548a968052af102ae5a1ae3c78bc24e0d915.png">
-        </figure>
+        
 
         - 위의 스크린샷에 해당하는 위젯을 구현하기 위한 위젯 트리이다.
-<br></br>
+<br>
 
 - Material apps vs Non-Material apps
     - Material apps
@@ -46,7 +54,7 @@
 - Stateful Widget의 생명주기
     - stateless widget은 한 번 만들어지면 갱신할 수 없어 생명주기가 없다.
     - stateful widget은 10단계의 생명주기가 있다. 
-    <br></br>
+    <br>
     1. createState()함수
         - 상태를 생성하는 함수
         - 다른 생명주기 함수들이 포함된 State 클래스를 반환
