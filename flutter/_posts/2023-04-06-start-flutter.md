@@ -2,7 +2,7 @@
 layout: post
 title: flutter 01 - start flutter 
 description: >
-  Flutter와 Dart언어에 대한 기본 정보를 설명합니다.
+  Flutter와 Dart언어에 대한 기본 정보를 설명한다.
 sitemap: false
 ---
 
