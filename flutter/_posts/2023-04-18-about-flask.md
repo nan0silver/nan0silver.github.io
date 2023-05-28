@@ -12,7 +12,7 @@ sitemap: false
 - 가장 유명한 Django(장고)보다 가볍고 필요한 기능만 최대한 라이트한 개발을 할 수 있다.
 
 
-# Flask 서버와 Flutter 통신
+## Flask 서버와 Flutter 통신
 
 - Dio
   - A powerful Http client for Dart
