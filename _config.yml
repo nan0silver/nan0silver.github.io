@@ -61,7 +61,8 @@ menu:
     url:               /flutter/
   - title:             Algorithm
     url:               /algorithm/
-
+  - title:             Diary
+    url:               /devdiary/
 
 
 # Add links to the footer.
