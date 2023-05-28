@@ -1,8 +1,8 @@
 ---
 layout: post
-title: flutter 02 - flutter UI
+title: flutter 03 - flutter UI
 description: >
-  Flutte 개발 전 알아야 된 UI관련 설명과 생명주기에 관한 내용을 담고 있다.
+  Flutter 개발 전 알아야 된 UI관련 설명과 생명주기에 관한 내용을 담고 있다.
 sitemap: false
 ---
 
