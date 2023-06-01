@@ -30,24 +30,51 @@ sitemap: false
                 - 리스트 구현가능, 입력된 위젯이 화면을 벗어나게 되면 스크롤 가능해짐
     - 예시
         - <figure>
-            <image src="https://flutter-ko.dev/assets/ui/layout/lakes-icons-9e75d63c8af0fc5ddf026c71b3e85687548ec29f2f1e06f8e78c546969a21127.png">
-        
+            <image src="/Users/nahyun/Documents/Git/gitBlog/nan0silver.github.io/assets/img/blog/lakes-icons-visual.png">
 
 
         - <figure>
-            <image src = "https://flutter-ko.dev/assets/ui/layout/sample-flutter-layout-46c76f6ab08f94fa4204469dbcf6548a968052af102ae5a1ae3c78bc24e0d915.png">
+            <image src = "/Users/nahyun/Documents/Git/gitBlog/nan0silver.github.io/assets/img/blog/sample-flutter-layout.png">
         
 
         - 위의 스크린샷에 해당하는 위젯을 구현하기 위한 위젯 트리이다.
 <br>
 
-- Material apps vs Non-Material apps
+- ❗️Material apps vs Non-Material apps
     - Material apps
-        - 플랫 디자인으 장점을 살리면서도 빛에 따른 종이의 그림자 효과를 이요해 입체감을 살리는 디자인방식을 가진 앱
+        - 플랫 디자인의 장점을 살리면서도 빛에 따른 종이의 그림자 효과를 이요해 입체감을 살리는 디자인방식을 가진 앱
         - 구글에서 사용하고 있는 플랫 디자인 지침
             - 앱마다 다른 디자인을 통일시키기 위함
         - <strong>Scaffold 위젯</strong>
             - 기본적인 material design의 시각적인 레이아웃 구조를 실행한다.
+
+- Scafflod 위젯 vs Container
+    - Scafflod
+        - 기본적으로 appbar, body라는 2개의 옵션을 가짐
+        - <figure>
+            <image src = "/Users/nahyun/Documents/Git/gitBlog/nan0silver.github.io/assets/img/blog/flutter-scaffold.webp">
+    
+    - Container
+        - Scafflod의 body부분에 들어가는 부속품
+        - 봉지라고 생각하면 됨
+        - <span style="color:red">한 개의 자식</span>을 가지는 레이아웃 위젯
+        - Container의 생성자는 아래와 같다.
+        - <pre><code>Container({
+            Key key,
+            this.alignment,
+            this.padding,
+            Color color,
+            Decoration decoration,
+            this.foregroundDecoration,
+            double width,
+            double height,
+            BoxConstraints constraints,
+            this.margin,
+            this.transform,
+            this.child,
+            })</pre></code>
+        - 
+
 
 ## Widget의 생명주기
 
