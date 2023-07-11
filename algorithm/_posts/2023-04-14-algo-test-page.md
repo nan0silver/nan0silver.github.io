@@ -6,10 +6,6 @@ description: >
 sitemap: false
 ---
 
-## Algorithm
+## [Algo] Graph Search Algorithm
 
-# JAVA
-
-- 이것도 역시
-    - 테스트 페이지 입니다.
-    - 나와랏!
+#
