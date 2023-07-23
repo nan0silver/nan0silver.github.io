@@ -13,17 +13,30 @@ redirect_from:
 <!--author-->
 
 <h3>🔹Vita🔹</h3>
-2023.04 ~ 2023.05	숙명여자대학교 인공지능공학부 제3회 IPS (프로젝트 대회) 멘토 <br>
 
-2021.05.08		숙명여자대학교 교내 알고리즘 경진대회 (SMUPC) 은상	<br>
+2023.04 ~ 2023.05	　숙명여자대학교 인공지능공학부 제3회 IPS (프로젝트 대회) 멘토 <br>
 
-2019.01 ~ 2019.12	숙명여자대학교 IT공학전공 밴드 동아리 'Hello World' 부회장 <br>
+2021.05.08 　　　　　 숙명여자대학교 교내 알고리즘 경진대회 (SMUPC) 은상	<br>
 
-2019.01 ~ 2019.12	숙명여자대학교 IT공학전공 제4대 학생회 'FOR IT!' 행사기획부원 <br>
+2019.01 ~ 2019.12　　숙명여자대학교 IT공학전공 밴드 동아리 'Hello World' 부회장 <br>
 
-2018.08 ~ 2019.12	숙명여자대학교 IT공학전공 밴드 동아리 'Hello World' 소속 <br>
+2019.01 ~ 2019.12　　숙명여자대학교 IT공학전공 제4대 학생회 'FOR IT!' 행사기획부원 <br>
 
-2018.03 ~ 2018.12	숙명여자대학교 IT공학전공 제3대 학생회 'IT다' 소속 <br>
+2018.08 ~ 2019.12　　숙명여자대학교 IT공학전공 밴드 동아리 'Hello World' 소속 <br>
+
+2018.03 ~ 2018.12　　숙명여자대학교 IT공학전공 제3대 학생회 'IT다' 소속 <br><br>
+
+<h3>🔶Publication🔶</h3>
+<h4>2022.10.	</h4>
+<span style="background-color:#DDDDDD">Nahyun Eun, Soobin Ou, Mijin Kim, Chaewon Yoo, Jongwoo Lee</span><br>
+<strong>"Speech-Recognizing KIOSK Mobile Application for the Visually Impaired"</strong><br>
+In Proceedings of the 14th International Conference on Education Technology and Computers (ICETC 2022, Barcelona)
+ACM International Conference Proceedings Series (SCOPUS)<br>
+
+<h4>2022.06.	</h4>
+<span style="background-color:#DDDDDD">은나현, 이종우</span><br>
+<strong>"Hello my Plant : 실내 식물 이미지 인식 및 관리 앱 구현"</strong><br>
+2022년 한국컴퓨터종합학술대회 (KCC 2022) 논문집
 
 [blog]: /
 [portfolio]: https://hydejack.com/examples/
