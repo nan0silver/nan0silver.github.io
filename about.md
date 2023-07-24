@@ -27,16 +27,22 @@ redirect_from:
 2018.03 ~ 2018.12　　숙명여자대학교 IT공학전공 제3대 학생회 'IT다' 소속 <br><br>
 
 <h3>🔶Publication🔶</h3>
+
+<h4>2023.09.	</h4>
+Nahyun Eun, Jongwoo Lee<br>
+<strong>"Design of Automatic Online Lecture Video Commentator for Visually impaired students supporting Diagram Commentary"</strong><br>
+<br>
+
 <h4>2022.10.	</h4>
-<span style="background-color:#DDDDDD">Nahyun Eun, Soobin Ou, Mijin Kim, Chaewon Yoo, Jongwoo Lee</span><br>
+Nahyun Eun, Soobin Ou, Mijin Kim, Chaewon Yoo, Jongwoo Lee<br>
 <strong>"Speech-Recognizing KIOSK Mobile Application for the Visually Impaired"</strong><br>
-In Proceedings of the 14th International Conference on Education Technology and Computers (ICETC 2022, Barcelona)
-ACM International Conference Proceedings Series (SCOPUS)<br>
+<span style="background-color:#DDDDDD">In Proceedings of the 14th International Conference on Education Technology and Computers (ICETC 2022, Barcelona)
+ACM International Conference Proceedings Series (SCOPUS)</span><br>
 
 <h4>2022.06.	</h4>
-<span style="background-color:#DDDDDD">은나현, 이종우</span><br>
+은나현, 이종우<br>
 <strong>"Hello my Plant : 실내 식물 이미지 인식 및 관리 앱 구현"</strong><br>
-2022년 한국컴퓨터종합학술대회 (KCC 2022) 논문집
+<span style="background-color:#DDDDDD">2022년 한국컴퓨터종합학술대회 (KCC 2022) 논문집</span>
 
 [blog]: /
 [portfolio]: https://hydejack.com/examples/
