@@ -12,7 +12,6 @@ sitemap: false
 - flutter앱을 개발하는 도중, http통신관련 코드를 짜면서 Uri.parse()함수를 여러 번 접하게 되었다.
 - 주소 관련 변수명을 url로 쓰고 있어 이 둘의 의미가 혼동되어 정확하게 알아보고자 하였다.
 
-<참고> https://www.elancer.co.kr/blog/view?seq=74
 
 ## URI (Uniform Resource Identifier)
 
