@@ -30,11 +30,11 @@ sitemap: false
                 - 리스트 구현가능, 입력된 위젯이 화면을 벗어나게 되면 스크롤 가능해짐
     - 예시
         - <figure>
-            <image src="/Users/nahyun/Documents/Git/gitBlog/nan0silver.github.io/assets/img/blog/lakes-icons-visual.png">
+            <image src="/assets/img/blog/lakes-icons-visual.png">
 
 
         - <figure>
-            <image src = "/Users/nahyun/Documents/Git/gitBlog/nan0silver.github.io/assets/img/blog/sample-flutter-layout.png">
+            <image src = "/assets/img/blog/sample-flutter-layout.png">
         
 
         - 위의 스크린샷에 해당하는 위젯을 구현하기 위한 위젯 트리이다.
@@ -52,7 +52,7 @@ sitemap: false
     - Scafflod
         - 기본적으로 appbar, body라는 2개의 옵션을 가짐
         - <figure>
-            <image src = "/Users/nahyun/Documents/Git/gitBlog/nan0silver.github.io/assets/img/blog/flutter-scaffold.webp">
+            <image src = "/assets/img/blog/flutter-scaffold.webp">
     
     - Container
         - Scafflod의 body부분에 들어가는 부속품
