@@ -29,12 +29,12 @@ sitemap: false
             - ListView 위젯
                 - 리스트 구현가능, 입력된 위젯이 화면을 벗어나게 되면 스크롤 가능해짐
     - 예시
-        - <figure>
-            <image src="assets/img/blog/lakes-icons-visual.png">
+
+        ![Full-width image](/assets/img/blog/lakes-icons-visual.png)
 
 
-        - <figure>
-            <image src = "assets/img/blog/sample-flutter-layout.png">
+        ![Full-width image](/assets/img/blog/sample-flutter-layout.png)
+            
         
 
         - 위의 스크린샷에 해당하는 위젯을 구현하기 위한 위젯 트리이다.
@@ -51,8 +51,8 @@ sitemap: false
 - Scafflod 위젯 vs Container
     - Scafflod
         - 기본적으로 appbar, body라는 2개의 옵션을 가짐
-        - <figure>
-            <image src = "assets/img/blog/flutter-scaffold.webp">
+            ![Full-width image](/assets/img/blog/flutter-scaffold.webp)
+            
     
     - Container
         - Scafflod의 body부분에 들어가는 부속품
