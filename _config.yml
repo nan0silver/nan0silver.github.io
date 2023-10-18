@@ -59,6 +59,8 @@ menu:
     url:               /about/
   - title:             Flutter
     url:               /flutter/
+  - title:             DeapLearning
+    url:               /deeplearning/
   - title:             Algorithm
     url:               /algorithm/
   - title:             DevDiary
