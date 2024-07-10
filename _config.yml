@@ -63,8 +63,8 @@ menu:
     url:               /deeplearning/
   - title:             Algorithm
     url:               /algorithm/
-  - title:             DevDiary
-    url:               /devdiary/
+  #- title:             DevDiary
+  #  url:               /devdiary/
 
 
 # Add links to the footer.
