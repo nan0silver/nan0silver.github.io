@@ -14,6 +14,8 @@ redirect_from:
 
 <h3>🔹Vita🔹</h3>
 
+2022.04 ~ 2024.12	　숙명여자대학교 인공지능공학부 Python, OS 강의 조교 <br>
+
 2023.04 ~ 2023.05	　숙명여자대학교 인공지능공학부 제3회 IPS (프로젝트 대회) 멘토 <br>
 
 2021.05.08 　　　　　 숙명여자대학교 교내 알고리즘 경진대회 (SMUPC) 은상	<br>
@@ -28,9 +30,10 @@ redirect_from:
 
 <h3>🔶Publication🔶</h3>
 
-<h4>2023.09.	</h4>
+<h4>2024.02.	</h4>
 Nahyun Eun, Jongwoo Lee<br>
 <strong>"Design of Automatic Online Lecture Video Commentator for Visually impaired students supporting Diagram Commentary"</strong><br>
+<span style="background-color:#DDDDDD">In Proceedings of Information Systems for Intelligent Systems. ISBM 2023. Smart Innovation, Systems and Technologies, vol 379. Springer, Singapore. (SCOPUS)</span><br>
 <br>
 
 <h4>2022.10.	</h4>
