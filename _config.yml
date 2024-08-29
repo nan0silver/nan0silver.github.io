@@ -61,8 +61,8 @@ menu:
     url:               /flutter/
   - title:             Algorithm
     url:               /algorithm/
-  - title:              JAVA
-    url:                /java/
+  - title:             JAVA
+    url:               /java/
   #- title:             DevDiary
   #  url:               /devdiary/
 
