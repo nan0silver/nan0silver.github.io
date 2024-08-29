@@ -59,10 +59,10 @@ menu:
     url:               /about/
   - title:             Flutter
     url:               /flutter/
-  - title:             DeepLearning
-    url:               /deeplearning/
   - title:             Algorithm
     url:               /algorithm/
+  - title:              JAVA
+    url:                /java/
   #- title:             DevDiary
   #  url:               /devdiary/
 
