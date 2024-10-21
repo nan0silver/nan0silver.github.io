@@ -1,3 +1,5 @@
+$gh-pages-compat: true; // or false depending on its purpose
+
 .dl-table {
   a {
     @supports ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {
