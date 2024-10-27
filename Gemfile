@@ -60,11 +60,47 @@
 
 
 
+# source "https://rubygems.org"
+
+# # gem 'jekyll', '~> 4.0'  # 이 라인은 삭제 또는 주석 처리
+
+# gem "jekyll-theme-hydejack", "~> 9.2"
+
+# gem "kramdown-math-katex"
+# gem "duktape"
+# gem "webrick"
+
+# group :jekyll_plugins do
+#   gem "jekyll-default-layout"
+#   gem "jekyll-feed"
+#   gem "jekyll-optional-front-matter"
+#   gem "jekyll-paginate"
+#   gem "jekyll-readme-index"
+#   gem "jekyll-redirect-from"
+#   gem "jekyll-relative-links"
+#   gem "jekyll-seo-tag"
+#   gem "jekyll-sitemap"
+#   gem "jekyll-titles-from-headings"
+#   gem "jekyll-include-cache"
+#   gem "jekyll-last-modified-at"
+#   gem "jekyll-compose"
+# end
+
+# gem 'wdm' if Gem.win_platform?
+# gem "tzinfo-data" if Gem.win_platform?
+
+# gem 'github-pages', group: :jekyll_plugins
+# gem 'faraday-retry'
+# gem 'jekyll-sass-converter'
+
 source "https://rubygems.org"
+gem 'jekyll', '= 3.10.0'
+
 
 # gem 'jekyll', '~> 4.0'  # 이 라인은 삭제 또는 주석 처리
 
-gem "jekyll-theme-hydejack", "~> 9.1"
+gem "jekyll-theme-hydejack", "~> 9.x" # 원격 테마(remote_theme)를 사용 중이라면 제거 가능
+#gem "jekyll-theme-hydejack", "~> 9.1"
 
 gem "kramdown-math-katex"
 gem "duktape"
@@ -84,9 +120,10 @@ group :jekyll_plugins do
   gem "jekyll-include-cache"
   gem "jekyll-last-modified-at"
   gem "jekyll-compose"
+  gem 'github-pages' # GitHub Pages 호환성을 위해 사용 중이라면
 end
 
 gem 'wdm' if Gem.win_platform?
 gem "tzinfo-data" if Gem.win_platform?
-
-gem 'github-pages', group: :jekyll_plugins
+gem 'faraday-retry'
+gem "jekyll-sass-converter"

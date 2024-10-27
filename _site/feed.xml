@@ -1,596 +1,1292 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-04-10T02:20:01+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Starter Kit</title><subtitle>Hydejack is a boutique Jekyll theme for hackers, nerds, and academics, with a focus on personal sites that are meant to impress.
-</subtitle><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><entry><title type="html">Introducing Hydejack 9</title><link href="http://localhost:4000/example/2020-07-03-introducing-hydejack-9/" rel="alternate" type="text/html" title="Introducing Hydejack 9" /><published>2020-07-03T00:00:00+09:00</published><updated>2023-04-09T21:45:59+09:00</updated><id>http://localhost:4000/example/introducing-hydejack-9</id><content type="html" xml:base="http://localhost:4000/example/2020-07-03-introducing-hydejack-9/"><![CDATA[<p class="lead">Version 9 is the most complete version of Hydejack yet.</p>
-
-<p><a href="#linking-in-style">Modernized</a> <a href="#whats-in-the-cards">design</a>, <a href="#ready-for-the-big-screen">big headlines</a>, big new features: <a href="#built-in-search">Built-In Search</a>, <a href="#sticky-table-of-contents">Sticky Table of Contents</a>, and <a href="#auto-hiding-navbar">Auto-Hiding Navbar</a>. That <a href="#and-much-more">and more</a> is Hydejack 9.</p>
-
-<ul class="large-only" id="markdown-toc">
-  <li><a href="#linking-in-style" id="markdown-toc-linking-in-style">Linking in Style</a></li>
-  <li><a href="#ready-for-the-big-screen" id="markdown-toc-ready-for-the-big-screen">Ready for the Big Screen</a></li>
-  <li><a href="#whats-in-the-cards" id="markdown-toc-whats-in-the-cards">What’s in the Cards?</a></li>
-  <li><a href="#built-in-search" id="markdown-toc-built-in-search">Built-In Search</a></li>
-  <li><a href="#auto-hiding-navbar" id="markdown-toc-auto-hiding-navbar">Auto-Hiding Navbar</a></li>
-  <li><a href="#sticky-table-of-contents" id="markdown-toc-sticky-table-of-contents">Sticky Table of Contents</a></li>
-  <li><a href="#and-much-more" id="markdown-toc-and-much-more">…and much more</a></li>
-  <li><a href="#even-more-to-come" id="markdown-toc-even-more-to-come">Even More to Come</a></li>
-  <li><a href="#get-it-now" id="markdown-toc-get-it-now">Get It Now</a></li>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-10-27T23:19:56+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">NANO BLOG</title><subtitle>Hydejack is a boutique Jekyll theme for hackers, nerds, and academics, with a focus on personal sites that are meant to impress.
+</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[AWS] AWS 기초</title><link href="http://localhost:4000/java/2024-09-02-AWS/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+09:00</published><updated>2024-10-21T14:22:45+09:00</updated><id>http://localhost:4000/java/AWS</id><content type="html" xml:base="http://localhost:4000/java/2024-09-02-AWS/"><![CDATA[<ul>
+  <li>AWS의 주요 서비스를 실무에서 어떻게 활용하는가</li>
+  <li>내가 만든 백엔드 포트폴리오를 AWS 주요 인프라에 배포</li>
+  <li>내가 지원할 회사에서 쓰는 서비스를 곁들인</li>
 </ul>
 
-<h2 id="linking-in-style">Linking in Style</h2>
-
-<p>Ever since the introduction of Dark Mode, link styles have been a bit of an issue. Specifically, finding an accent color that worked on both light and dark backgrounds was the problem. With Hydejack 9, the <a href="#linking-in-style">link style</a> has been revamped so that legibility is no longer tied to the choice of accent_color, giving you much more freedom in creating a unique design flavor for your site.</p>
-
-<h2 id="ready-for-the-big-screen">Ready for the Big Screen</h2>
-
-<p>The theme on which Hydejack is based was designed for a different era of the web. Hydejack has inherited many of its limitations, but over time I’ve made adjustments, such as centering the content column for better reading ergonomics.</p>
-
-<p>With version 9, Hydejack takes full advantage of large displays. Whether it’s design indulgences such as oversized headlines, or quality of life improvements such as a floating table of contents, Hydejack now finds use for all that extra screen real estate<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.</p>
-
-<h2 id="whats-in-the-cards">What’s in the Cards?</h2>
-
-<p>Hydejack 9 now lets you use content cards for both projects and posts. 
-The cards have been redesigned with a new hover style and drop shadows and they retain their unique transition-to-next-page animations, which now also work on the <code class="language-plaintext highlighter-rouge">blog</code> layout. The new <code class="language-plaintext highlighter-rouge">grid</code> layout lets you do that.</p>
-
-<p>Good images are key to making the most out of content cards. For that reason, a <a href="/docs/basics/#adding-images">chapter on images</a> has been added to the documentation.</p>
-
-<h2 id="built-in-search">Built-In Search</h2>
-
-<p>Hydejack now has Built-In Search. It even works offline. I’ve been prototyping many approaches and eventually settled on a fully client-side, off-the-main thread solution that perfectly fits the use case of personal sites and shows surprisingly good results<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>.</p>
-
-<p>The new search UI is custom made for Hydejack and shows beautiful previews of your posts and pages, right on top of your regular content.</p>
-
-<p>Together with the Auto-Hiding Navbar, your entire content library is now only a couple of keystrokes away.</p>
-
-<h2 id="auto-hiding-navbar">Auto-Hiding Navbar</h2>
-
-<p>A navbar that’s there when you need it, and disappears when you don’t. Simple as that.</p>
-
-<h2 id="sticky-table-of-contents">Sticky Table of Contents</h2>
-
-<p>Already a staple on so many sites on the web, this pattern is now also available in Hydejack. 
-What’s unique about it is that it simply picks up the table of contents already created by kramdown’s <code class="language-plaintext highlighter-rouge">{:toc}</code> tag and transparently upgrades it to a fully dynamic version.</p>
-
-<h2 id="and-much-more">…and much more</h2>
-
-<p>Other noteworthy changes include:</p>
+<p>목차</p>
 <ul>
-  <li>Support for Jekyll 4</li>
-  <li>Choice between MathJax and KaTeX for math rendering</li>
-  <li>Use of <code class="language-plaintext highlighter-rouge">jekyll-include-cache</code> for drastically improved page building speeds</li>
-  <li>New variables configuration file — adjust content width, sidebar width, font size, etc…</li>
-  <li>…and the option to disable grouping projects by year.</li>
+  <li>S3 &amp; Cloudfront 소개</li>
+  <li>실무 활용 사례 part1
+    <ul>
+      <li>이미지 리사이징</li>
+      <li>권한 관리</li>
+    </ul>
+  </li>
+  <li>내가 지원한 회사 채용공고 뜯어보기</li>
+  <li>실무 활용 사례 part2
+    <ul>
+      <li>CPA</li>
+      <li>Glue &amp; Athena 를 통한 Data Lake 구축</li>
+    </ul>
+  </li>
 </ul>
 
-<p>Read the the <a href="/CHANGELOG/" class="heading flip-title">CHANGELOG</a> for the full scope of features and improvements made in Hydejack 9.
-Maybe just glance at it to confirm that it is indeed a pretty long list.</p>
+<p>수업 목표</p>
+<ul>
+  <li>AWS가 무엇인지 설명할 수 있다</li>
+  <li>S3의 주요 기능 및 활용 방안을 설명할 수 있다.</li>
+  <li>지원하고 싶은 회사의 지원 공고 뜯어보기</li>
+</ul>
 
-<h2 id="even-more-to-come">Even More to Come</h2>
+<h1 id="aws">AWS</h1>
+<ul>
+  <li>Amazon Web Service</li>
+  <li>클라우드 컴퓨팅 플랫폼</li>
+  <li>AWS 계정 만들어보기</li>
+  <li>AWS Cloud Practitioner Essentials (Korean)
+    <ul>
+      <li>Cloud Practitioner 자격증 있음
+        <ul>
+          <li>공부하는 것 추천함 (따는건 비쌈)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>큰 회사에서는 AWS 자격증이 크게 상관없겠지만, 작은 회사에서는 AWS역량이 필수적</li>
+</ul>
 
-<p>New features for 9.1 are already lined up. Code block headers and code line highlights for even better technical blogging, as well as download buttons on the resume page for PDF, vCard, and Resume JSON are just around the corner.</p>
+<h2 id="클라우드-컴퓨팅">클라우드 컴퓨팅</h2>
+<ul>
+  <li>인터넷을 통해 IT리소스(서버, 스토리지, 데이터베이스, 네트워킹 등)를 제공하고 관리하는 서비스</li>
+  <li>특징
+    <ol>
+      <li>확장성 (Scalability)
+        <ul>
+          <li>사용자가 필요에 따라 리소스를 쉽게 확장, 축소 가능</li>
+          <li>블랙 프라이데이에는 몇 배의 트래픽이 몰림. 이때마다 하드웨어를 사용하는건 비효율적, 이때만 자원을 사용하고 끝나면 반납할 수 있음</li>
+        </ul>
+      </li>
+      <li>유연성 (Flexibility)
+        <ul>
+          <li>다양한 IT 환경에 맞춰 손쉽게 맞춤화 가능</li>
+          <li>자바스크립트로 백엔드 많이 사용</li>
+        </ul>
+      </li>
+      <li>비용 효율성 (Cost Efficiency)
+        <ul>
+          <li>초기 자본 투자 없이, 사용한 만큼 지불하는 비용 구조</li>
+        </ul>
+      </li>
+      <li>가용성
+        <ul>
+          <li>높은 가용성과 자동 백업, 복구 기능으로 서비스 중간 최소화</li>
+          <li>람다 서비스를 처음 띄울 때 서울 4개의 구역에 띄워놓을 수 있음. 한 개의 구역에 오류가 나도 다른 구역에서는 잘 쓸 수 있음.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
 
-<h2 id="get-it-now">Get It Now</h2>
-<p>The Free Version of Hydejack is now availabe on <a href="https://rubygems.org/gems/jekyll-theme-hydejack">RubyGems</a>
-and for the first time also on <a href="https://github.com/hydecorp/hydejack/packages">GitHub Packages</a>. 
-The source code is available on <a href="https://github.com/hydecorp/hydejack">GitHub</a> as always.</p>
-
-<p>The PRO Version is scheduled to release on July 7th on Gumroad. Pre-Orders are open now:</p>
-
-<div class="gumroad-product-embed" data-gumroad-product-id="nuOluY"><a href="https://gumroad.com/l/nuOluY">Loading…</a></div>
-
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p>If you are a fan of the old two-column layout, or don’t like modern design tropes such as mega headlines, Hydejack lets you revert these changes on a case-by-case basis via configuration options. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-    </li>
-    <li id="fn:2" role="doc-endnote">
-
-      <p>Search was mainly tested for English and German. Please let me know about issues in other languages. 
-  While I’ve tried to find a multi-language solution, most showed drastically worse  results for the English base case.
-  If you’re technically inclined, you can adopt the code located in <code class="language-plaintext highlighter-rouge">_includes/js/search-worker.js</code> to your needs. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-    </li>
-  </ol>
-</div>]]></content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><category term="example" /><summary type="html"><![CDATA[Version 9 is the most complete version of Hydejack yet. Modernized design, big headlines, and big new features.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/blog/jeremy-bishop@0,5x.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/blog/jeremy-bishop@0,5x.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Example Content III</title><link href="http://localhost:4000/example/2018-06-01-example-content-iii/" rel="alternate" type="text/html" title="Example Content III" /><published>2018-06-01T00:00:00+09:00</published><updated>2023-04-09T21:45:59+09:00</updated><id>http://localhost:4000/example/example-content-iii</id><content type="html" xml:base="http://localhost:4000/example/2018-06-01-example-content-iii/"><![CDATA[<p>Hydejack offers a few additional features to markup your markdown.
-Don’t worry, these are merely CSS classes added with kramdown’s <code class="language-plaintext highlighter-rouge">{:...}</code> syntax,
-so that your content remains compatible with other Jekyll themes.</p>
-
-<h2 id="large-tables">Large Tables</h2>
-
-<table class="scroll-table">
-  <thead>
-    <tr>
-      <th>Default aligned</th>
-      <th style="text-align: left">Left aligned</th>
-      <th style="text-align: center">Center aligned</th>
-      <th style="text-align: right">Right aligned</th>
-      <th>Default aligned</th>
-      <th style="text-align: left">Left aligned</th>
-      <th style="text-align: center">Center aligned</th>
-      <th style="text-align: right">Right aligned</th>
-      <th>Default aligned</th>
-      <th style="text-align: left">Left aligned</th>
-      <th style="text-align: center">Center aligned</th>
-      <th style="text-align: right">Right aligned</th>
-      <th>Default aligned</th>
-      <th style="text-align: left">Left aligned</th>
-      <th style="text-align: center">Center aligned</th>
-      <th style="text-align: right">Right aligned</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>First body part</td>
-      <td style="text-align: left">Second cell</td>
-      <td style="text-align: center">Third cell</td>
-      <td style="text-align: right">fourth cell</td>
-      <td>First body part</td>
-      <td style="text-align: left">Second cell</td>
-      <td style="text-align: center">Third cell</td>
-      <td style="text-align: right">fourth cell</td>
-      <td>First body part</td>
-      <td style="text-align: left">Second cell</td>
-      <td style="text-align: center">Third cell</td>
-      <td style="text-align: right">fourth cell</td>
-      <td>First body part</td>
-      <td style="text-align: left">Second cell</td>
-      <td style="text-align: center">Third cell</td>
-      <td style="text-align: right">fourth cell</td>
-    </tr>
-    <tr>
-      <td>Second line</td>
-      <td style="text-align: left">foo</td>
-      <td style="text-align: center"><strong>strong</strong></td>
-      <td style="text-align: right">baz</td>
-      <td>Second line</td>
-      <td style="text-align: left">foo</td>
-      <td style="text-align: center"><strong>strong</strong></td>
-      <td style="text-align: right">baz</td>
-      <td>Second line</td>
-      <td style="text-align: left">foo</td>
-      <td style="text-align: center"><strong>strong</strong></td>
-      <td style="text-align: right">baz</td>
-      <td>Second line</td>
-      <td style="text-align: left">foo</td>
-      <td style="text-align: center"><strong>strong</strong></td>
-      <td style="text-align: right">baz</td>
-    </tr>
-    <tr>
-      <td>Third line</td>
-      <td style="text-align: left">quux</td>
-      <td style="text-align: center">baz</td>
-      <td style="text-align: right">bar</td>
-      <td>Third line</td>
-      <td style="text-align: left">quux</td>
-      <td style="text-align: center">baz</td>
-      <td style="text-align: right">bar</td>
-      <td>Third line</td>
-      <td style="text-align: left">quux</td>
-      <td style="text-align: center">baz</td>
-      <td style="text-align: right">bar</td>
-      <td>Third line</td>
-      <td style="text-align: left">quux</td>
-      <td style="text-align: center">baz</td>
-      <td style="text-align: right">bar</td>
-    </tr>
-    <tr>
-      <td>Second body</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-      <td>Second body</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-      <td>Second body</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-      <td>Second body</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-    </tr>
-    <tr>
-      <td>2 line</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-      <td>2 line</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-      <td>2 line</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-      <td>2 line</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-    </tr>
-    <tr>
-      <td>Footer row</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-      <td>Footer row</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-      <td>Footer row</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-      <td>Footer row</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="code-blocks">Code blocks</h2>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Example can be run directly in your JavaScript console</span>
-
-<span class="c1">// Create a function that takes two arguments and returns the sum of those</span>
-<span class="c1">// arguments</span>
-<span class="kd">var</span> <span class="nx">adder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Function</span><span class="p">(</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">b</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">return a + b</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="c1">// Call the function</span>
-<span class="nf">adder</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
-<span class="c1">// &gt; 8</span>
-</code></pre></div></div>
-
-<h2 id="math">Math</h2>
-<p>Lorem ipsum \(f(x) = x^2\).</p>
-
-\[\begin{aligned}
-  \phi(x,y) &amp;= \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right) \\[2em]
-            &amp;= \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j)            \\[2em]
-            &amp;= (x_1, \ldots, x_n)
-               \left(\begin{array}{ccc}
-                 \phi(e_1, e_1)  &amp; \cdots &amp; \phi(e_1, e_n) \\
-                 \vdots          &amp; \ddots &amp; \vdots         \\
-                 \phi(e_n, e_1)  &amp; \cdots &amp; \phi(e_n, e_n)
-               \end{array}\right)
-               \left(\begin{array}{c}
-                 y_1    \\
-                 \vdots \\
-                 y_n
-               \end{array}\right)
-\end{aligned}\]
-
-<h2 id="message-boxes">Message boxes</h2>
-<p class="message"><strong>NOTE</strong>: You can add a message box.</p>
-
-<h2 id="large-text">Large text</h2>
-<p class="lead">You can add large text.</p>
-
-<h2 id="large-images">Large images</h2>
-<p><img src="https://via.placeholder.com/800x100" alt="Full-width image" class="lead" width="800" height="100" /></p>
-
-<h2 id="captions-to-images">Captions to images</h2>
-<p class="figure"><img src="https://via.placeholder.com/800x100" alt="Full-width image" class="lead" width="800" height="100" />
-A caption to an image.</p>
-
-<h2 id="large-quotes">Large quotes</h2>
-<blockquote class="lead">
-  <p>You can make a quote “pop out”.</p>
-</blockquote>
-
-<h2 id="faded-text">Faded text</h2>
-<p class="faded">I’m faded, faded, faded.</p>]]></content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><category term="example" /><summary type="html"><![CDATA[A page showing Hydejack-specific markdown content.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/blog/example-content-iii.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/blog/example-content-iii.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Example Content II</title><link href="http://localhost:4000/example/2017-11-23-example-content-ii/" rel="alternate" type="text/html" title="Example Content II" /><published>2017-11-23T00:00:00+09:00</published><updated>2023-04-09T21:45:59+09:00</updated><id>http://localhost:4000/example/example-content-ii</id><content type="html" xml:base="http://localhost:4000/example/2017-11-23-example-content-ii/"><![CDATA[<p>There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.</p>
-
-<p>There should be whitespace between paragraphs.</p>
-
-<p>Text can be <strong>bold</strong>, <em>italic</em>, or <del>strikethrough</del>.</p>
-
-<p><a href="another-page">Link to another page</a>.</p>
-
-<ul class="large-only" id="markdown-toc">
-  <li><a href="#header-2" id="markdown-toc-header-2">Header 2</a>    <ul>
-      <li><a href="#header-3" id="markdown-toc-header-3">Header 3</a>        <ul>
-          <li><a href="#header-4" id="markdown-toc-header-4">Header 4</a>            <ul>
-              <li><a href="#header-5" id="markdown-toc-header-5">Header 5</a>                <ul>
-                  <li><a href="#header-6" id="markdown-toc-header-6">Header 6</a></li>
-                </ul>
-              </li>
+<h2 id="s3">S3</h2>
+<ul>
+  <li>Simple Storage Service</li>
+  <li>AWS 최초의 서비스</li>
+  <li>클라우드 파일 저장소</li>
+  <li>AWS 사용하고 있는 회사라면 99%의 확률로 활용하고 있음</li>
+  <li>기본 개념
+    <ul>
+      <li>버킷 (Bucket)
+        <ul>
+          <li>S3에서 데이터를 저장하는 컨테이너</li>
+          <li>모든 S3객체는 반드시 하나의 버킷에 속해 있음</li>
+          <li>S3 스토리지의 최상위 계층이며, 사용자가 데이터를 저장하고 관리할 수 있는 폴더와 비슷
+            <ul>
+              <li>컴퓨터에서 C드라이브와 비슷한 느낌</li>
+            </ul>
+          </li>
+          <li>각 버킷은 고유한 이름을 가짐(전세걔 유일)</li>
+          <li>데이터 저장 위치(region), 권한 설정, 버전 관리, 수명 주기 정책 등 관리 가능</li>
+        </ul>
+      </li>
+      <li>Key
+        <ul>
+          <li>S3버킷 내 객체(파일)를 고유하게 식별하는 문자열</li>
+          <li>버킷 내 키는 객체의 “경로”로 생각 가능</li>
+          <li>디렉토리 구조를 흉내낼 수 있도록 설계됨
+            <ul>
+              <li>그냥 전체가 하나의 키임</li>
             </ul>
           </li>
         </ul>
       </li>
-      <li><a href="#theres-a-horizontal-rule-below-this" id="markdown-toc-theres-a-horizontal-rule-below-this">There’s a horizontal rule below this.</a></li>
-      <li><a href="#here-is-an-unordered-list" id="markdown-toc-here-is-an-unordered-list">Here is an unordered list:</a></li>
-      <li><a href="#and-an-ordered-list" id="markdown-toc-and-an-ordered-list">And an ordered list:</a></li>
-      <li><a href="#and-a-nested-list" id="markdown-toc-and-a-nested-list">And a nested list:</a></li>
-      <li><a href="#small-image" id="markdown-toc-small-image">Small image</a></li>
-      <li><a href="#large-image" id="markdown-toc-large-image">Large image</a></li>
-      <li><a href="#definition-lists" id="markdown-toc-definition-lists">Definition lists</a></li>
     </ul>
   </li>
-</ul>
-
-<h2 id="header-2">Header 2</h2>
-
-<p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.</p>
-
-<h3 id="header-3">Header 3</h3>
-
-<blockquote>
-  <p>This is a blockquote following a header.</p>
-
-  <p>When something is important enough, you do it even if the odds are not in your favor.</p>
-</blockquote>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Javascript code with syntax highlighting.</span>
-<span class="kd">var</span> <span class="nx">fun</span> <span class="o">=</span> <span class="kd">function</span> <span class="nf">lang</span><span class="p">(</span><span class="nx">l</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">dateformat</span><span class="p">.</span><span class="nx">i18n</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./lang/</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">l</span><span class="p">)</span>
-  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ruby code with syntax highlighting</span>
-<span class="no">GitHubPages</span><span class="o">::</span><span class="no">Dependencies</span><span class="p">.</span><span class="nf">gems</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">gem</span><span class="p">,</span> <span class="n">version</span><span class="o">|</span>
-  <span class="n">s</span><span class="p">.</span><span class="nf">add_dependency</span><span class="p">(</span><span class="n">gem</span><span class="p">,</span> <span class="s2">"= </span><span class="si">#{</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<h4 id="header-4">Header 4</h4>
-
-<ul>
-  <li>This is an unordered list following a header.</li>
-  <li>This is an unordered list following a header.</li>
-  <li>This is an unordered list following a header.</li>
-</ul>
-
-<h5 id="header-5">Header 5</h5>
-
-<ol>
-  <li>This is an ordered list following a header.</li>
-  <li>This is an ordered list following a header.</li>
-  <li>This is an ordered list following a header.</li>
-</ol>
-
-<h6 id="header-6">Header 6</h6>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">head1</th>
-      <th style="text-align: left">head two</th>
-      <th style="text-align: left">three</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good swedish fish</td>
-      <td style="text-align: left">nice</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">out of stock</td>
-      <td style="text-align: left">good and plenty</td>
-      <td style="text-align: left">nice</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good <code class="language-plaintext highlighter-rouge">oreos</code></td>
-      <td style="text-align: left">hmm</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good <code class="language-plaintext highlighter-rouge">zoute</code> drop</td>
-      <td style="text-align: left">yumm</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="theres-a-horizontal-rule-below-this">There’s a horizontal rule below this.</h3>
-
-<hr />
-
-<h3 id="here-is-an-unordered-list">Here is an unordered list:</h3>
-
-<ul>
-  <li>Item foo</li>
-  <li>Item bar</li>
-  <li>Item baz</li>
-  <li>Item zip</li>
-</ul>
-
-<h3 id="and-an-ordered-list">And an ordered list:</h3>
-
-<ol>
-  <li>Item one</li>
-  <li>Item two</li>
-  <li>Item three</li>
-  <li>Item four</li>
-</ol>
-
-<h3 id="and-a-nested-list">And a nested list:</h3>
-
-<ul>
-  <li>level 1 item
+  <li>사용 방법
     <ul>
-      <li>level 2 item</li>
-      <li>level 2 item
+      <li>AWS Console</li>
+      <li>AWS Cli</li>
+      <li>FTP 프로그램
         <ul>
-          <li>level 3 item</li>
-          <li>level 3 item</li>
+          <li>file transfer protocol</li>
+          <li>사이버덕, 파일질라</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>level 1 item
+</ul>
+
+<h2 id="cloudfront">Cloudfront</h2>
+<ul>
+  <li>AWS CDN 서비스
     <ul>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
+      <li>Contents Delivery Network</li>
+      <li>인터넷 사용자에게 웹 콘텐츠를 빠르고 효율적으로 제공하기 위해 설계된 분산형 서버 네트워크</li>
     </ul>
   </li>
-  <li>level 1 item
+  <li>S3를 비롯한 AWS의 다른 서비스와 연동이 쉬움</li>
+  <li>AWS를 사용하는 회사라면 99% 사용</li>
+  <li>S3는 저장에 특화, Cloudfront는 전송에 특화
     <ul>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
+      <li>S3는 직접 접근으로 주로 내부 사용자나 제한된 사용자들에게 제공을 많이함</li>
+      <li>하지만 Cloudfront는 CDN을 통해 접근하기때문에 속도도 빠르고 캐싱도 됨</li>
     </ul>
   </li>
-  <li>level 1 item</li>
+  <li>S3 1GB당 약 0.117$, Cloudfront 1GB당 0.095$</li>
+  <li>CloudFront는 약정 계약이 가능</li>
 </ul>
 
-<h3 id="small-image">Small image</h3>
-
-<p><img src="https://assets-cdn.github.com/images/icons/emoji/octocat.png" alt="" /></p>
-
-<h3 id="large-image">Large image</h3>
-
-<p><img src="https://guides.github.com/activities/hello-world/branching.png" alt="" /></p>
-
-<h3 id="definition-lists">Definition lists</h3>
-
-<dl>
-  <dt>Name</dt>
-  <dd>Godzilla</dd>
-  <dt>Born</dt>
-  <dd>1952</dd>
-  <dt>Birthplace</dt>
-  <dd>Japan</dd>
-  <dt>Color</dt>
-  <dd>Green</dd>
-</dl>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this. Or is it?
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The final element.
-</code></pre></div></div>]]></content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><category term="example" /><summary type="html"><![CDATA[A page showing how regular markdown content is styled in Hydejack.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/blog/example-content-ii.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/blog/example-content-ii.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Example Content</title><link href="http://localhost:4000/example/2012-02-07-example-content/" rel="alternate" type="text/html" title="Example Content" /><published>2012-02-07T00:00:00+09:00</published><updated>2023-04-09T21:45:59+09:00</updated><id>http://localhost:4000/example/example-content</id><content type="html" xml:base="http://localhost:4000/example/2012-02-07-example-content/"><![CDATA[<p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. <em>Aenean eu leo quam.</em> Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-
-<blockquote>
-  <p>Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-</blockquote>
-
-<p>Etiam porta <strong>sem malesuada magna</strong> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-
-<h2 id="inline-html-elements">Inline <abbr title="HyperText Markup Language">HTML</abbr> elements</h2>
-
-<p><abbr title="HyperText Markup Language">HTML</abbr> defines a long list of available inline tags, a complete list of which can be found on the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">Mozilla Developer Network</a>.</p>
-
+<h2 id="이미지-리사이즈">이미지 리사이즈</h2>
 <ul>
-  <li><strong>To bold text</strong>, use <code class="language-plaintext highlighter-rouge">**To bold text**</code>.</li>
-  <li><em>To italicize text</em>, use <code class="language-plaintext highlighter-rouge">*To italicize text*</code>.</li>
-  <li>Abbreviations, like <abbr title="HyperText Markup Language">HTML</abbr> should be defined like this <code class="language-plaintext highlighter-rouge">*[HTML]: HyperText Markup Language</code>.</li>
-  <li>Citations, like <cite>— Mark otto</cite>, should use <code class="language-plaintext highlighter-rouge">&lt;cite&gt;</code>.</li>
-  <li><del>Deleted</del> text should use <code class="language-plaintext highlighter-rouge">~~deleted~~</code> and <ins>inserted</ins> text should use <code class="language-plaintext highlighter-rouge">&lt;ins&gt;</code>.</li>
-  <li>Superscript <sup>text</sup> uses <code class="language-plaintext highlighter-rouge">&lt;sup&gt;</code> and subscript <sub>text</sub> uses <code class="language-plaintext highlighter-rouge">&lt;sub&gt;</code>.</li>
+  <li>대역폭 및 비용 감소할 수 있음</li>
+  <li>첫 번째 AWS 활용 포트폴리오
+    <ol>
+      <li>S3에 이미지가 업로드 되면 자동적으로 원하는 크기로 리사이징하여 저장하는 방법</li>
+      <li>원하는 사이즈의 이미지를 실시간으로 생성하는 방법
+        <ul>
+          <li>본인이 자신있는 프로그래밍 언어를 선택하여 AWS Lambda 기능을 활용해서 작성</li>
+          <li>‘aws cloudfront 이미지 리사이징’ 구글 검색</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
 </ul>
 
-<p>Most of these elements are styled by browsers with few modifications on our part.</p>
-
-<h2 id="heading-2">Heading 2</h2>
-<p>Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-
-<h3 id="heading-3">Heading 3</h3>
-<p>Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor.</p>
-
-<h4 id="heading-4">Heading 4</h4>
-<p>Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor.</p>
-
-<h5 id="heading-5">Heading 5</h5>
-<p>Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor.</p>
-
-<h6 id="heading-6">Heading 6</h6>
-<p>Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor.</p>
-
-<h2 id="code">Code</h2>
-
-<p>Cum sociis natoque penatibus et magnis dis <code class="language-plaintext highlighter-rouge">code element</code> montes, nascetur ridiculus mus.</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Example can be run directly in your JavaScript console</span>
-
-<span class="c1">// Create a function that takes two arguments and returns the sum of those</span>
-<span class="c1">// arguments</span>
-<span class="kd">var</span> <span class="nx">adder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Function</span><span class="p">(</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">b</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">return a + b</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="c1">// Call the function</span>
-<span class="nf">adder</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
-<span class="c1">// &gt; 8</span>
-</code></pre></div></div>
-
-<h2 id="lists">Lists</h2>
-
-<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-
+<h2 id="실무-활용-사례--보안">실무 활용 사례 -보안</h2>
 <ul>
-  <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-  <li>Donec id elit non mi porta gravida at eget metus.</li>
-  <li>Nulla vitae elit libero, a pharetra augue.</li>
+  <li>민감정보 보호 방법
+    <ul>
+      <li>Signed URL
+        <ul>
+          <li>특정 사용자에게만 접근 권한을 부여하기 위해 URL에 만료 시간과 암호화된 서명을 포함한 URL</li>
+        </ul>
+      </li>
+      <li>Signed Cookie
+        <ul>
+          <li>특정 조건을 만족하는 사용자만 CloudFront를 통해 콘텐츠에 접근할 수 있도록 설정하는 보안 메커니즘</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
-<p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
+<h2 id="s3-hosting--cloudfront">S3 hosting &amp; CloudFront</h2>
+<ul>
+  <li>S3는 서버사이트 스크립팅(PHP, Python등)이 필요없는 정적 웹사이트에 최적</li>
+  <li>설정이 간단하고 관리가 쉬움</li>
+  <li>서버 관리가 필요 없으며 AWS에서 모든 인프라를 관리</li>
+  <li>CPA
+    <ul>
+      <li>Cost Per Action</li>
+      <li>광고주와 퍼블리셔를 연결하는 플랫폼이라면
+        <ul>
+          <li>이 모델에서 광고주는 특정 행동을 기준으로 퍼블리셔 비용 지불</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
+<h2 id="ec2-elastic-compute-cloud">EC2 (Elastic Compute Cloud)</h2>
+<ul>
+  <li>개발자가 클라우드 컴퓨팅 작업을 할 수 있도록 설계된 서비스</li>
+  <li>가상화된 서버를 하나의 인스턴스 형태로 제공하며, 컴퓨팅 요구사항에 맞게 용량 조절 가능</li>
+</ul>
+
+<h2 id="idc">IDC</h2>
+<ul>
+  <li>Internet Data Center</li>
+  <li>물리적 인프라를 제공하는 시설</li>
+</ul>
+
+<h2 id="리전-region">리전 (Region)</h2>
+<ul>
+  <li>물리적으로 분리된 지리적 위치</li>
+  <li>각 리전은 여러 개의 데이터 센터(Availability Zone, AZ)로 구성되어 있음</li>
+  <li>리전 간 데이터 전송은 네트워크 지연 시간(latency)이 발생할 수 있음</li>
+  <li>각 리전은 법적, 규제 요구 사항을 충족하도록 설계됨</li>
+</ul>
+
+<h2 id="availability-zone">Availability Zone</h2>
+<ul>
+  <li>리전 내에서 독립적으로 운영되는 데이터 센터</li>
+  <li>각 AZ는 하나 이상의 데이터 센터로 구성되어 있음</li>
+  <li>VPC (가상 사설 네트워크)
+    <ul>
+      <li>Virtual Private Cloud</li>
+      <li>네트워크
+        <ul>
+          <li>2개 이상의 컴퓨터나 장치가 서로 데이터를 주고 받을 수 있도록 연결된 시스템</li>
+        </ul>
+      </li>
+      <li>사설
+        <ul>
+          <li>공개되지 않은, 외부와 분리되느 특정 사용자나 조직만 접근할 수 있는</li>
+        </ul>
+      </li>
+      <li>가상
+        <ul>
+          <li>물리적인 하드웨어 장비나 네트워크 인프라 없이, 소프트웨어를 통해 논리적으로 격리</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="주요-용어">주요 용어</h2>
+<h3 id="a대학교-캠퍼스를-예시로-했을-때">A대학교 캠퍼스를 예시로 했을 때</h3>
+<ul>
+  <li>퍼블릭 서브넷
+    <ul>
+      <li>Public Subnet
+        <ul>
+          <li>public : 인터넷과 직접 연결되어있다.</li>
+          <li>subnet : sub + network, 하나의 네트워크를 더 작은 단위의 네트워크로 (부분 집합)</li>
+        </ul>
+      </li>
+      <li>중앙 운동장, 도서관, 기념품샵 등등</li>
+    </ul>
+  </li>
+  <li>프라이빗 서브넷
+    <ul>
+      <li>Private Subnet
+        <ul>
+          <li>인터넷과 직접 연결되어있지 않다.</li>
+        </ul>
+      </li>
+      <li>교수 연구실, 실험실 (아무나 못들어가는)</li>
+    </ul>
+  </li>
+  <li>라우팅 / 라우팅 테이블
+    <ul>
+      <li>Routing Table
+        <ul>
+          <li>라우팅 : 경로, 네트워크 내에서 데이터가 이동할 경로를 결정</li>
+        </ul>
+      </li>
+      <li>캠퍼스 내 길 / 길 안내 지도</li>
+    </ul>
+  </li>
+  <li>인터넷 게이트웨이
+    <ul>
+      <li>학교 정문</li>
+    </ul>
+  </li>
+  <li>NAT 게이트웨이
+    <ul>
+      <li>Network Address Translation
+        <ul>
+          <li>Network Address : IP주소 (Internet Protocol)
+            <ul>
+              <li>네트워크 상에서 각 장치를 식별하기 위해 사용되는 고유한 숫자 주소</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>내부 네트워크의 사설 IP 주소를 공용 IP주소로 변환</li>
+      <li>경비실, 차량 차단기, 보안 검사대</li>
+    </ul>
+  </li>
+  <li>네트워크 ACL (Access Control List)
+    <ul>
+      <li>전체 구역 통제 시스템</li>
+      <li>서브넷 단위</li>
+      <li>Stateless, 상태 비기반, 독립적인 제어
+        <ul>
+          <li>들어올 때도 검사하고 나갈때도 검사함</li>
+        </ul>
+      </li>
+      <li>우선순위가 있음</li>
+      <li>차단기의 정책, 비행기 탈 때와 비슷</li>
+    </ul>
+  </li>
+  <li>보안 그룹 (Security Group)
+    <ul>
+      <li>개별 사무실 출입 통제 시스템</li>
+      <li>기본적으로 모든 트래픽은 차단하며 허용 규칙만 있음</li>
+      <li>stateful, 상태 기반 (신분증 제출하고 출입증 받아가는 느낌)</li>
+    </ul>
+  </li>
+  <li>라우팅 테이블에 인터넷 게이트웨이랑 <strong>퍼블릭 서브넷</strong>이 연결
+    <ul>
+      <li>반대로 생각하면 퍼블릭 서브넷과 프라이빗 서브넷을 구분짓는 중요한 요소가 됨</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="주의-사항">주의 사항</h2>
+<ul>
+  <li>AWS에서 처음으로 제공해주는 VPC는 가급적으로 사용하지 말자</li>
+  <li>람다를 private 서브에 올리고 nat를 사용하는 것을 추천
+    <ul>
+      <li>람다는 실행할 때마다 ip가 바뀜, 문제가 될 수 있음</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="http://localhost:4000/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+09:00</published><updated>2024-08-29T23:50:48+09:00</updated><id>http://localhost:4000/java/stringbuilder</id><content type="html" xml:base="http://localhost:4000/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
 <ol>
-  <li>Vestibulum id ligula porta felis euismod semper.</li>
-  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-  <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
+  <li><a href="#string">String</a></li>
+  <li><a href="#stringbuilder">StringBuilder</a></li>
 </ol>
 
-<p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
+<hr />
 
-<dl>
-  <dt>HyperText Markup Language (<abbr title="HyperText Markup Language">HTML</abbr>)</dt>
-  <dd>The language used to describe and define the content of a Web page</dd>
-  <dt>Cascading Style Sheets (<abbr title="Cascading Style Sheets">CSS</abbr>)</dt>
-  <dd>Used to describe the appearance of Web content</dd>
-  <dt>JavaScript (<abbr title="JavaScript">JS</abbr>)</dt>
-  <dd>The programming language used to build advanced Web sites and applications</dd>
-</dl>
+<h2 id="string">String</h2>
+<ul>
+  <li>반복적으로 String을 연결하거나, 수정해야 할 경우, 보통은 아래와 같은 경우로 string을 사용한다.</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">java
+  public class Main{
+  public static void main(String[] args) {
+      String java = "자바";
+      java += "공부";
+      System.out.println(java);
+  }
+  }</code></p>
+  </li>
+  <li>하지만 string은 불변(immutable)객체이므로, “자바”메모리에 “공부”가 추가되는 것이 아니라, 새로운 메모리에 “자바공부”가 저장됨</li>
+  <li>문자열이 수정될 때마다 새로운 메모리를 할당받기 때문에 성능저하가 일어날 수 있음</li>
+</ul>
 
-<p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+<h2 id="stringbuilder">StringBuilder</h2>
+<ul>
+  <li>StringBuilder는 mutable sequence of characters.</li>
+  <li>문자열이 변경될 때마다 새로운 메모리를 할당받지 않고, 버퍼를 통해 문자열을 관리하다 toStirng()을 통해 Stirng 객체를 생성</li>
+  <li>StringBuilder가 효율적인 경우
+    <ul>
+      <li>문자열의 반복적인 연결</li>
+      <li>문자열의 잦은 수정</li>
+      <li>대량의 문자열을 처리할 때</li>
+    </ul>
+  </li>
+  <li>단점
+    <ul>
+      <li>StringBuilder는 thread-safe하지 않아 멀티쓰레드 환경에서 좋지 않다.</li>
+      <li>멀티쓰레스 환경에서는 StringBuffer를 추천
+        <ul>
+          <li>StringBuffer는 StringBuilder와 동일한 API를 사용하지만 각각의 메소드에 대해 동기화를 보장하기 때문</li>
+          <li>String보다는 빠르고 StirngBuilder보다는 느림</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Code Challenge] 서로소 집합과 유니온 파인드</title><link href="http://localhost:4000/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Code Challenge] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day9</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
+<ol>
+  <li><a href="#서로소-집합">서로소 집합</a></li>
+  <li><a href="#유니온-파인드">유니온 파인드</a>
+  1) <a href="#유니온-파인드union-find의-자료구조">유니온 파인드의 자료구조</a>
+  2) <a href="#유니온-파인드의-예시">유니온 파인드의 예시</a></li>
+</ol>
 
-<h2 id="images">Images</h2>
+<hr />
 
-<p>Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliquam aliquam metus erat, a pulvinar turpis suscipit at.</p>
+<h3 id="트리와-관련된-용어들">트리와 관련된 용어들</h3>
+<ul>
+  <li><img src="/algorithm/image/day9_image.png" alt="Full-width image" /></li>
+  <li>루트 노드, 자식노드, 부모노드, 서브트리, 리프노드, 깊이</li>
+  <li>이 이미지에서 깊이는 5</li>
+  <li>이진트리
+    <ul>
+      <li>자식 노드가 2개씩 있는 트리</li>
+    </ul>
+  </li>
+</ul>
 
-<p><img src="https://via.placeholder.com/800x400" alt="800x400" title="Large example image" /></p>
+<h2 id="서로소-집합">서로소 집합</h2>
+<ul>
+  <li>서로 공통된 원소를 가지고 있지 않은 두 개 이상의 집합</li>
+  <li>분리 집합 (Disjoint Set)이라고도 부름</li>
+  <li>사용 용도
+    <ul>
+      <li>서로 다른 원소들이 같은 집합에 속해있는지, 아닌지 판별할 때 사용</li>
+      <li>사이클이 존재하는지 판별할때 사용</li>
+    </ul>
+  </li>
+  <li>Union-Find 자료구조로 서로소 집합을 표현
+    <ul>
+      <li>유니온 파인드가 다른 고급 알고리즘의 베이스가 됨 (Kruskal Algorithm)</li>
+    </ul>
+  </li>
+</ul>
 
-<p><img src="https://via.placeholder.com/400x200" alt="400x200" title="Medium example image" /></p>
+<h2 id="유니온-파인드">유니온 파인드</h2>
 
-<p><img src="https://via.placeholder.com/200x200" alt="200x200" title="Small example image" /></p>
+<h3 id="유니온-파인드union-find의-자료구조">유니온 파인드(Union-Find)의 자료구조</h3>
+<ul>
+  <li>init, find, merge(union) 함수들의 형태로 보통 이루어짐
+    <ul>
+      <li>함수명 고정 X</li>
+    </ul>
+  </li>
+</ul>
 
-<h2 id="tables">Tables</h2>
+<ol>
+  <li>init
+    <ul>
+      <li>초기화 함수</li>
+      <li>Parent 배열에 대해 자신의 인덱스 값을 가지도록 초기화</li>
+    </ul>
+    <ul>
+      <li>초기에 자신의 부모 노드는 자신이라는 의미
+      - <code class="language-plaintext highlighter-rouge">java
+void init() {
+  for (int i = 1; i &lt;= n; ++i) {
+    parent[i] = i;
+  }
+}
+</code></li>
+    </ul>
+  </li>
+  <li>find
+    <ul>
+      <li>자신의 부모 노드를 찾는 함수</li>
+      <li>재귀 함수로 구현됨</li>
+      <li>자기 자신을 가리키는 인덱스 (루트 노드)를 찾을 때까지 반복</li>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">int</span> <span class="nf">find_parent1</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">return</span> <span class="n">x</span> <span class="o">==</span> <span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">?</span> <span class="n">x</span> <span class="o">:</span> <span class="n">find_parent1</span><span class="o">(</span><span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">]);</span>
+ <span class="o">}</span>
 
-<p>Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+ <span class="kt">int</span> <span class="nf">find_parent2</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">])</span> <span class="k">return</span> <span class="n">x</span><span class="o">;</span>
+   <span class="k">else</span> <span class="k">return</span> <span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">find_parent2</span><span class="o">(</span><span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">]);</span>
+ <span class="o">}</span>
+ <span class="c1">// memoization을 사용하는 2가 더 빠름</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>merge
+    <ul>
+      <li>두 노드를 하나의 집합으로 합치는 함수</li>
+    </ul>
+    <ul>
+      <li>y의 부모 노드는 x
+      - find 함수를 같이 사용
+      - if 문에서 x == y이면?</li>
+      <li>
+        <p>사이클이 발생하는 경우이므로 제외
+      - ```java
+  void merge_parent(int x, int y) {
+    int x = find_parent(x);
+    int y = find_parent(y);</p>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Name</th>
-      <th style="text-align: left">Upvotes</th>
-      <th style="text-align: left">Downvotes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">Alice</td>
-      <td style="text-align: left">10</td>
-      <td style="text-align: left">11</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Bob</td>
-      <td style="text-align: left">4</td>
-      <td style="text-align: left">3</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Charlie</td>
-      <td style="text-align: left">7</td>
-      <td style="text-align: left">9</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td style="text-align: left">Totals</td>
-      <td style="text-align: left">21</td>
-      <td style="text-align: left">23</td>
-    </tr>
-  </tfoot>
-</table>
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (x != y) parent[y] = x;   }   ```
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
 
-<p>Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.</p>]]></content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><category term="example" /><summary type="html"><![CDATA[Howdy! This is an example blog post that shows several types of HTML content supported in this theme.]]></summary></entry></feed>
+<h3 id="유니온-파인드의-예시">유니온 파인드의 예시</h3>
+<ul>
+  <li><img src="/algorithm/image/day9_image-1.jpeg" alt="Full-width image" /></li>
+  <li>최종적으로 오직 루트 노드만이 자기 자신을 가리키게 됨
+    <ul>
+      <li>이러한 특서으로 루트 노드 찾을 수 있음</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9]]></summary></entry><entry><title type="html">[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)</title><link href="http://localhost:4000/java/2024-07-17-day8/" rel="alternate" type="text/html" title="[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)" /><published>2024-07-17T00:00:00+09:00</published><updated>2024-08-29T23:50:48+09:00</updated><id>http://localhost:4000/java/day8</id><content type="html" xml:base="http://localhost:4000/java/2024-07-17-day8/"><![CDATA[<p>목차</p>
+<ol>
+  <li><a href="#1-bufferdreader-inputstreamreader-systemin">BufferReader, InputStreamReader, System.in</a></li>
+  <li><a href="#2-scanner">Scanner</a></li>
+</ol>
+
+<hr />
+
+<h2 id="1-bufferdreader-inputstreamreader-systemin">1. BufferdReader, InputStreamReader, System.in</h2>
+
+<h3 id="systemin">System.in</h3>
+<ul>
+  <li>일반적으로 keyboard 입력을 지칭하는 Standard Input Stream</li>
+</ul>
+
+<h3 id="inputstreamreader">InputStreamReader</h3>
+<ul>
+  <li>byte stream을 character stream으로 변경해주는 역할 수행</li>
+  <li>InputStreamReader 클래스는 생성자의 파라미터로 InputStream 객체를 전달받음
+    <ul>
+      <li>이 InputStream 객체의 종류에 따라 키보드 사용자 입력을 읽어들일수도 있고, 파일 내용을 읽어들일 수도 있음</li>
+    </ul>
+  </li>
+  <li>사용법
+    <ul>
+      <li>InputstreamReader (InputStream in)</li>
+      <li>InputstreamReader (InputStream in, String charsetName)</li>
+      <li>InputstreamReader (InputStream in, Charset cs)</li>
+      <li>InputstreamReader (InputStream in, CharsetDecoder dec)</li>
+    </ul>
+  </li>
+  <li>생성자의 파라미터로 charset 정보를 전달받아 읽어들이는 stream의 charset을 지정할 수도 있음</li>
+</ul>
+
+<h3 id="bufferedreader">BufferedReader</h3>
+<ul>
+  <li>효율적으로 문자를 읽어들이기 위해 버퍼링을 해줌
+    <ul>
+      <li>버퍼링 (Buffering)
+        <ul>
+          <li>효율적인 데이터 처리를 위해 중간 저장공간(Buffer)을 사용하는 것 (주로 입출력에서 사용)</li>
+          <li>디스크 접근은 시간이 오래걸리기 때문에 한번에 데이터를 저장하여 시간을 줄이고, 필요할 때마다 데이터를 읽음</li>
+          <li>I/O작업은 시간이 많이 걸리기 때문에 버퍼링으로 접근횟수를 줄여 효율적으로 데이터 사용이 가능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>기본 버퍼 사이즈를 그대로 이용할 수도, 생성자를 이용해 버퍼 사이즈를 지정할 수도 있음</li>
+  <li>보통 FileReader, InputStreamReader의 read()와 같이 비용이 많이 드는 Reader를 파라미터로 전달받아 사용함</li>
+  <li>만약 BufferedReader없이 FileReader나 InputStreamReader를 사용하면 시스템은 바이트별로 사용자의 입력을 받아서 처리하는 동작을 반복함
+    <ul>
+      <li>시스템에서 IO는 자원소모가 많음</li>
+    </ul>
+  </li>
+  <li>하지만 <strong>BufferReader를 사용하면</strong>, 시스템은 버퍼가 비어있을 때만, 실제 IO를 일으켜서 데이터를 읽어오고, 나머지 경우에는 메모리에 있는 버퍼의 데이터를 읽어서 처리함</li>
+  <li>데이터를 문자열로 받아오기 때문에, 적절히 데이터를 처리 후 사용해야 한다.</li>
+</ul>
+
+<h3 id="bufferdreader-inputstreamreader-systemin를-이용한-예제">BufferdReader, InputStreamReader, System.in를 이용한 예제</h3>
+<ul>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+  <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+  <span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span> 
+    
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserInput</span> <span class="o">{</span>    
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOExceptio</span><span class="o">{</span>
+
+          <span class="c1">//키보드 사용자 입력을 받을 수 있는 객체 생성</span>
+          <span class="nc">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>   
+
+          <span class="c1">// 입력 데이터 읽기 (한 줄)      </span>
+          <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>  
+
+          <span class="c1">// 입력 데이터 출력        </span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>      
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="2-scanner">2. Scanner</h2>
+<ul>
+  <li>Scanner 클래스를 이용하면 1번 방법보다 더 쉽게 사용자 키보드 입력을 받을 수 있음</li>
+  <li>입력받은 데이터를 Scanner클래스 메소드를 사용해 더 쉽게 가공 가능</li>
+  <li>예제
+    <ul>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span> 
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ScannerLoop</span> <span class="o">{</span>    
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>      
+
+          <span class="c1">// Scanner 선언        </span>
+          <span class="nc">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>        
+                
+          <span class="c1">//다음으로 읽어들일 token이 있는지 체크</span>
+          <span class="k">while</span> <span class="o">(</span><span class="n">scanner</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>     
+              <span class="c1">//token별로 입력값을 읽어 String을 리턴</span>
+              <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>  
+              <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>        
+          <span class="o">}</span>         
+                
+          <span class="n">scanner</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>    
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>token(공백)별로 사용자 입력값을 읽어들이는 예제</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 8]]></summary></entry><entry><title type="html">[Code Challenge] 동적 계획법</title><link href="http://localhost:4000/algorithm/2024-07-16-day7/" rel="alternate" type="text/html" title="[Code Challenge] 동적 계획법" /><published>2024-07-16T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day7</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-16-day7/"><![CDATA[<p>목차</p>
+<ol>
+  <li><a href="#dynamic-programming-정의">Dynamic Programming 정의</a></li>
+  <li><a href="#dp의-종류">DP의 종류</a></li>
+  <li><a href="#dp-사용-조건">DP 사용조건</a></li>
+  <li><a href="#dp-유의점">DP 유의점</a></li>
+</ol>
+
+<hr />
+
+<h2 id="동적-계획법-dp-dynamic-programming">동적 계획법 (DP, Dynamic Programming)</h2>
+
+<ul>
+  <li>예시 문제 1
+    <ul>
+      <li>1000원짜리 커피를 500원짜리 동전과 100원짜리 동전만 사용하여 계산하려고 한다.</li>
+      <li>동전을 가장 적게 사용하여 계산하려고 할 때, 필요한 동전의 최소 개수는?</li>
+      <li>(단, 동전은 무수히 많다.)</li>
+      <li>Solution
+        <ul>
+          <li>(500 * 2) VS (500 * 1 + 100 * 5) VS (100 * 10)
+            <ul>
+              <li><strong>그리디 알고리즘으로 해결 가능</strong></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>예시 문제 2
+    <ul>
+      <li>23원짜리 커피를 5원짜리 동전과 2원짜리 동전만 사용하여 계산하려고 한다.</li>
+      <li>동전을 가장 적게 사용하여 계산하려고 할 때, 필요한 동전의 최소 개수는?</li>
+      <li>(단, 동전은 무수히 많다.)</li>
+      <li>Solution
+        <ul>
+          <li><strong><em>그리디 알고리즘으로 해결 불가능</em></strong></li>
+          <li>그리디 알고리즘을 적용할 수 잇는 조건 중 하나인 <strong>최적 부분 구조 조건</strong>을 만족하지 않기 때문
+            <ul>
+              <li>지역적으로 최적이 전역적으로도 최적이 아님</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="dynamic-programming-정의">Dynamic Programming 정의</h3>
+<ul>
+  <li>이전에 계산한 값을 재사용하여, 하나의 문제를 한 번만 풀게 하는 알고리즘 패러다임</li>
+  <li>Divide &amp; Conquer과 비슷하지만, 중간 결과를 저장하여 효율성을 높인다는 점에서 차이</li>
+  <li>이전에 계산해둔 값을 <strong>메모리(배열 등)에 저장해서 반복 작업을 줄이는 기법</strong>이 핵심
+    <ul>
+      <li>하위 문제의 결과를 먼저 저장하고, 이를 나중에 필요할 때 사용</li>
+      <li>Tabulation(botton-up), Memoization(top-down)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="dp의-종류">DP의 종류</h3>
+<ul>
+  <li>Top-Down DP
+    <ul>
+      <li>가장 큰 문제부터 풀기 시작하여, 작은 문제들을 재귀적으로 호출하여 답을 구하는 방식</li>
+      <li>주로 재귀를 통해 해결</li>
+      <li>${\color{yellow}메모이제이션(Memoization)}$을 활용하여 복잡도를 줄임</li>
+      <li>예시
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="kt">int</span> <span class="nf">fibo</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+          <span class="kt">int</span> <span class="o">&amp;</span><span class="n">ret</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+          <span class="k">if</span> <span class="p">(</span><span class="n">ret</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+          <span class="k">return</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">fibo</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibo</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+      <span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Botton-Up DP
+    <ul>
+      <li>작은 문제들을 먼저 풀기 시작하여, 최종적으로 가장 큰 문제들을 해결하는 방식</li>
+      <li>주로 반복문을 통해 해결</li>
+      <li>${\color{yellow}점화식과 기저사례}$(base case)가 필요 -&gt; ${\color{yellow}Tabulation}$</li>
+      <li>예시
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="o">];</span> 
+      <span class="o">}</span> <span class="c1">//점화식</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="dp-사용-조건">DP 사용 조건</h3>
+<ol>
+  <li>겹치는 부분(작은) 문제 (Overlapping Subproblem)
+    <ul>
+      <li>어떠한 문제가 여러 개의 부분(하위) 문제(subproblem)으로 쪼갤 수 있을 대 사용</li>
+    </ul>
+  </li>
+  <li>최적 부분 구조 (Optimal Substructure)
+    <ul>
+      <li>문제의 정답을 작은 문제의 정답에서 구할 수 있을 때 사용</li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>예시
+    <ul>
+      <li>N번째 피보나치 수를 구하는 문제
+        <ul>
+          <li>N-1번째 피보나치 수를 구하는 문제, N-2번째 피보나치 수를 구하는 문제로 쪼갤 수 있음</li>
+          <li>문제의 정답을 하위 문제의 정답의 합으로 구할 수 있음</li>
+          <li>재귀로 풀 때
+            <ul>
+              <li>O(2^N)</li>
+              <li>이미 구했던 값도 다시 계산해야 함
+                <ul>
+                  <li>시간 초과 발생 빛 stack overflow 가능성이 높음</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>반복문으로 풀 때
+            <ul>
+              <li>O(N)</li>
+              <li>기저사례와 점화식으로 구현</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="dp-유의점">DP 유의점</h3>
+<ul>
+  <li>복잡한 문제의 경우, 점화식을 직접 계산해서 구해야 한다.</li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 7]]></summary></entry><entry><title type="html">[Code Challenge] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘</title><link href="http://localhost:4000/algorithm/2024-07-15-day6/" rel="alternate" type="text/html" title="[Code Challenge] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘" /><published>2024-07-15T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day6</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-15-day6/"><![CDATA[<p>목차</p>
+<ol>
+  <li><a href="#너비-우선-탐색-bfs">너비 우선 탐색 BFS</a></li>
+  <li><a href="#다익스트라-dijkstra-알고리즘">다익스트라 Dijkstra 알고리즘</a></li>
+</ol>
+
+<hr />
+
+<h2 id="너비-우선-탐색-bfs">너비 우선 탐색 (BFS)</h2>
+
+<h3 id="bfs-breadth-first-search">BFS (Breadth First Search)</h3>
+<ul>
+  <li>하나의 정점으로부터 시작하여 차례대로 모든 정점들을 한 번씩 방문하는 것</li>
+  <li>루트 노드 (혹은 다른 임의의 노드)에서 시작해서 인접한 노드를 먼저 탐색하는 방법</li>
+  <li>두 노드 사이의 최단 경로 혹은 임의의 경로를 찾고 싶을 때 사용</li>
+</ul>
+
+<h3 id="bfs의-특징">BFS의 특징</h3>
+<ul>
+  <li>재귀적으로 동작하는 DFS와 달리, BFS는 주로 큐(Queue) 사용</li>
+  <li>사이클이 있는 경우, 무한 루프에 빠지지 않도록 방문하는 방문 체크를 해주어야 함</li>
+  <li>물웅덩이에 돌멩이를 하나 던지면, 파동이 전체 방향으로 퍼져나가는 동심원의 형태로 탐색이 진행</li>
+</ul>
+
+<h3 id="bfs의-동작-순서">BFS의 동작 순서</h3>
+<ul>
+  <li><img src="/algorithm/image/day6_image.png" alt="Full-width image" /></li>
+</ul>
+
+<h3 id="bfs의-구현">BFS의 구현</h3>
+<ul>
+  <li>빈 큐 q 및 visited 배열 생성</li>
+  <li>시작 노드 ‘st’를 큐 q에 삽입</li>
+  <li>노드 ‘st’를 방문한 것으로 표시</li>
+  <li>큐 q가 비어있지 않은 동안 다음을 반복 :
+    <ul>
+      <li>큐의 맨 앞에서 요소를 꺼내 ‘now’에 저장</li>
+      <li>큐의 맨 앞의 요소를 제거</li>
+      <li>‘now’의 값을 출력하고 뒤에 공백을 붙임</li>
+      <li>노드 ‘now’의 인접 리스트 v에서 각 이웃 ‘next’에 대해
+        <ul>
+          <li>만약 ‘next’가 아직 방문하지 않은 노드인 경우 :
+            <ul>
+              <li>노드 ‘next’를 방문한 것으로 표시</li>
+              <li>‘next’를 큐 q에 넣음</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><img src="/algorithm/image/day6_image-1.png" alt="Full-width image" /></li>
+</ul>
+
+<h3 id="bfs의-시간복잡도">BFS의 시간복잡도</h3>
+<ul>
+  <li>V : 정점(노드)의 수, E : 간선의 수</li>
+  <li>인접 리스트로 표현된 그래프
+    <ul>
+      <li>O(V+E)</li>
+    </ul>
+  </li>
+  <li>인접 행렬로 표현된 그래프
+    <ul>
+      <li>O(V^2)</li>
+    </ul>
+  </li>
+  <li>DFS와 BFS의 공통점과 차이점
+    <ul>
+      <li>공통점
+        <ul>
+          <li>그래프에서 시작 노드로부터 목적지 노드까지 도달하거니 특정 정보를 찾는 것이 목표</li>
+          <li>방문 기록을 체크해 이미 방문한 노드를 다시 방문하지 않게 하여 무한 루프 방지</li>
+          <li>DFS, BFS 두 방식 모드 조건 내의 모든 노드를 검색한다는 점에서 시간 복잡도는 동일</li>
+        </ul>
+      </li>
+      <li>차이점
+        <ul>
+          <li>DFS는 주로 재귀로 구현하지만, BFS는 큐(queue) 자료구조를 활용하여 구현
+            <ul>
+              <li>일반적으로 DFS보다 BFS가 조금 더 빠르게 동작</li>
+            </ul>
+          </li>
+          <li>동작 순서 상 DFS는 트리를 탐색할 때 자주 사용, BFS는 최단 경로 탐색에서 자주 사용</li>
+        </ul>
+      </li>
+      <li>시간 복잡도
+        <ul>
+          <li>주어진 그래프의 구조와 시작 노드에 따라서 실제 시간 복잡도가 다를 수 있으며,</li>
+          <li>어떤 알고리즘이 더 효율적인지는 그래프의 형태와 알고리즘의 목적에 따라 달라짐</li>
+          <li>일반적으로 어떤 알고리즘을 선택할지는 문제의 특성과 요구사항에 따라 결정</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="다익스트라-dijkstra-알고리즘">다익스트라 (Dijkstra) 알고리즘</h2>
+<ul>
+  <li>그래프 알고리즘</li>
+  <li>알고리즘을 사용하는 경우
+    <ul>
+      <li>BFS 사용 시, 격자모양의 미로에서는 상하좌우 방향의 가중치가 모두 동일
+        <ul>
+          <li>현재 정점에서 이어진 간선들의 가중치가 모두 동일</li>
+        </ul>
+      </li>
+      <li>하지만 가중치가 모두 일정하지 않다면 -&gt; BFS를 사용할 수 없음</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="다익스트라-알고리즘-설명">다익스트라 알고리즘 설명</h3>
+<ul>
+  <li>한 정점에서 다른 모든 정점으로의 최단 경로를 구하는 알고리즘</li>
+  <li>간선의 가중치가 양수일 때만 사용 가능
+    <ul>
+      <li>음수면 다익스트라가 아닌 테이크스트라 알고리즘 사용</li>
+    </ul>
+  </li>
+  <li>BFS와 유사하지만, 일반적인 큐가 아닌 <strong>우선순위 큐(Priority Queue)</strong>를 사용하여 <strong>비용이 가장 작은 간선부터 탐색</strong>한다는 차이점이 있음
+    <ul>
+      <li>우선순위 큐 (Priority Queue)
+        <ul>
+          <li>들어오는 순서에 상관 없이 우선 순위가 높은 데이터가 먼저 나가는 자료구조</li>
+          <li>Heap을 이용해 구현하는 것이 가장 효율적</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>${\color{red}그리디(Greedy) 알고리즘}$
+    <ul>
+      <li>매 단계에서 현재까지의 부분 해(solution)를 최적화하여 최종적으로 전체 문제의 최적 해를 찾아냄</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="다익스트라-알고리즘-동작-순서">다익스트라 알고리즘 동작 순서</h3>
+<ol>
+  <li>출발 노드 선택</li>
+  <li>출발 노드로부터 각 노드까지의 최단 거리 배열 초기화
+    <ul>
+      <li>출발노드 거리는 0, 나머지 노드는 무한대(충분히 큰 값)로 설정</li>
+    </ul>
+  </li>
+  <li>현재 노드 설정
+    <ul>
+      <li>현재까지의 최단 거리가 확정된 노드 중 가장 가까운 노드 선택</li>
+    </ul>
+  </li>
+  <li>이웃 노드 갱신
+    <ul>
+      <li>선택한 노드를 기준으로 해당 노드와 이웃한 노드들 간의 거리 갱신</li>
+    </ul>
+  </li>
+  <li>모든 노드를 확인할 때까지 3,4단계 반복</li>
+</ol>
+
+<ul>
+  <li>핵심 아이디어
+    <ul>
+      <li>각 노드까지의 현재까지 알려진 최단 거리를 계속 갱신하며 출발 노드로부터 최단 경로를 찾는 것</li>
+      <li>비용이 가장 작은 간선부터 이어주기 위해 우선순위 큐를 사용한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="다익스트라-알고리즘-시간-복잡도">다익스트라 알고리즘 시간 복잡도</h3>
+<ul>
+  <li>V : 정점(노드)의 수, E : 간선의 수</li>
+  <li>O(ElogV)</li>
+</ul>
+
+<h3 id="다익스트라-알고리즘의-구현">다익스트라 알고리즘의 구현</h3>
+<ul>
+  <li>문제 예시
+    <ul>
+      <li>방향 그래프가 주어지면 주어진 시작점에서 다른 모든 정점으로의 최단 경로의 비용을 구하여라</li>
+      <li>첫째 줄에 정점의 개수와 간선의 개수가 입력됨</li>
+      <li>둘째 줄에는 시작 정점의 번호가 입력됨</li>
+      <li>셋째 줄부터 간선의 개수만큼의 줄에 걸쳐 (u,v,w)가 주어짐
+        <ul>
+          <li>(u,v,w) -&gt; u에서 v로 가는 양의 가중치 w인 간선 존재</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>구현 예시
+    <ol>
+      <li>출발 노드 선택
+        <ul>
+          <li><img src="/algorithm/image/day6_image-dijkstra-1.png" alt="Full-width image" /></li>
+        </ul>
+      </li>
+      <li>출발 노드로부터 각 노드까지의 최단 거리 배열 초기화
+        <ul>
+          <li><img src="/algorithm/image/day6_image-dijkstra-2.png" alt="Full-width image" /></li>
+        </ul>
+      </li>
+      <li>현재 노드 설정</li>
+      <li>이웃 노드 갱신</li>
+      <li>모든 노드 확인할 때까지 3,4단계 반복
+        <ul>
+          <li><img src="/algorithm/image/day6_image-dijkstra-3.png" alt="Full-width image" /></li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 6]]></summary></entry><entry><title type="html">[Code Challenge] 깊이 우선 탐색</title><link href="http://localhost:4000/algorithm/2024-07-12-day5/" rel="alternate" type="text/html" title="[Code Challenge] 깊이 우선 탐색" /><published>2024-07-12T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day5</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-12-day5/"><![CDATA[<p>목차</p>
+<ol>
+  <li><a href="#dfs란depth-first-search">DFS란?</a></li>
+  <li><a href="#dfs-특징">DFS특징</a></li>
+  <li><a href="#dfs-시간-복잡도">DFS 시간 복잡도</a></li>
+</ol>
+
+<hr />
+
+<h2 id="깊이-우선-탐색-dfs">깊이 우선 탐색 (DFS)</h2>
+
+<h3 id="dfs란depth-first-search">DFS란?(Depth First Search)</h3>
+<ul>
+  <li>특정 정점(노드)에서 시작해서 트리나 그래프에서 한 가지 경로를 최대한 깊게 탐색하고, 해당 경로를 끝까지 탐색한 후 다른 경로로 이동</li>
+  <li>미로를 탐색할 때 한 방향으로 갈 수 있을 때까지 계속 가다가, 더 이상 갈 수 없게 되면 다시 가장 가까운 갈림길로 돌아와서 다른 방향으로 다시 탐색을 진행하는 방법과 유사</li>
+  <li>모든 정점을 방문하고자 하는 경우에 사용</li>
+</ul>
+
+<h3 id="dfs-특징">DFS 특징</h3>
+<ul>
+  <li>일반적으로 재귀 함수 사용
+    <ul>
+      <li>Stack으로도 구현 가능</li>
+    </ul>
+  </li>
+  <li>모든 경우의 수에 대해 탐색을 진행</li>
+  <li>사이클이 있는 경우, 무한 루프에 빠지지 않도록 방문 체크 해줘야함</li>
+  <li>BFS보다 깊은 경로를 빠르게 찾는데 용이</li>
+  <li>진행 순서
+    <ul>
+      <li><img src="/algorithm/image/day5_image.png" alt="Full-width image" /></li>
+    </ul>
+  </li>
+  <li>구현
+    <ul>
+      <li>
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  함수 DFS(now):
+      현재 노드를 방문한 것으로 표시
+      현재 노드를 출력
+
+      모든 이웃노드 'next'에 대해서 반복:
+          만약 'next'를 아직 방문하지 않았다면:
+              DFS(next)
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="dfs-시간-복잡도">DFS 시간 복잡도</h3>
+<ul>
+  <li>V : 정점(노드)의 수, E : 간선의 수</li>
+  <li>인접 리스트로 표현된 그래프
+    <ul>
+      <li>O(V+E)</li>
+      <li><img src="/algorithm/image/day5_image-1.png" alt="Full-width image" /></li>
+    </ul>
+  </li>
+  <li>인접 행렬로 표현된 그래프
+    <ul>
+      <li>O(V^2)</li>
+      <li><img src="/algorithm/image/day5_image-2.png" alt="Full-width image" /></li>
+    </ul>
+  </li>
+  <li>희소 그래프
+    <ul>
+      <li>Sparse Graph</li>
+      <li>그래프 내에 적은 숫자의 간선만을 가지는 그래프</li>
+      <li>인접 행렬보다 인접 리스트 사용이 유리</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 5]]></summary></entry><entry><title type="html">[Code Challenge] 재귀와 정렬</title><link href="http://localhost:4000/algorithm/2024-07-11-day4/" rel="alternate" type="text/html" title="[Code Challenge] 재귀와 정렬" /><published>2024-07-11T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day4</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-11-day4/"><![CDATA[<p>목차</p>
+<ol>
+  <li><a href="#재귀">재귀</a></li>
+  <li><a href="#정렬">정렬</a></li>
+</ol>
+
+<hr />
+
+<h2 id="재귀">재귀</h2>
+
+<ul>
+  <li>재귀 : 자신을 정의할 때, 자기 자신을 참조하는 것</li>
+  <li>재귀 함수 : 함수 내부에서 자기 자신을 호출하는 함수</li>
+  <li>주의할 점
+    <ul>
+      <li>무한 루프에 빠지지 않도록 종료 조건을 잘 설정
+        <ul>
+          <li>종료 조건을 기저 사례 (base case)라고도 함</li>
+        </ul>
+      </li>
+      <li>함수의 파라미터 및 인자 설정에 유의</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="정렬">정렬</h2>
+
+<ul>
+  <li>정렬의 종류
+    <ul>
+      <li>삽입 정렬 (Insertion Sort)
+        <ul>
+          <li>최악 O(n^2)</li>
+        </ul>
+      </li>
+      <li>버블 정렬 (Bubble Sort)
+        <ul>
+          <li>최악 O(n^2)</li>
+        </ul>
+      </li>
+      <li>합병 정렬 (Merge Sort)
+        <ul>
+          <li>최악 O(nlogn)</li>
+        </ul>
+      </li>
+      <li>퀵 정렬 (Quick Sort)
+        <ul>
+          <li>최악 O(n^2)</li>
+          <li>평균 O(nlogn)</li>
+          <li>설명
+            <ul>
+              <li>배열의 요소들 중에서 피벗(Pivot)을 정하여, 피벗의 앞에는 피벗보다 작은 원소들이 오고, 피벗 뒤에는 피벗보다 큰 값이 오도록 배열을 둘로 나눔</li>
+              <li>분할된 두 개의 배열의 크기가 0이나 1이 될 때까지, 분할된 두 배열에 대해 재귀적으로 이 과정을 반복</li>
+              <li>재귀 호출이 한 번 진행될 때마다 최소한 하나의 원소가 최종적인 위치에 있게 되므로, 종료됨이 보장</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>힙 정렬 (Heap Sort)
+        <ul>
+          <li>최악 O(nlogn)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>특정 정렬이 빠르다고 항상 좋은 것은 아님
+    <ul>
+      <li>데이터의 특성, 크기에 따라 적절한 방법 사용해야 함</li>
+    </ul>
+  </li>
+  <li>언어들의 라이브러리 내장 sort 구현
+    <ul>
+      <li>C++
+        <ul>
+          <li>인트로 정렬 (Intro Sort)
+            <ul>
+              <li>퀵 정렬 + 힙 정렬 + 삽입 정렬</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Python
+        <ul>
+          <li>팀 정렬 (Tim Sort)
+            <ul>
+              <li>합병 정렬 + 삽입 정렬</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Java
+        <ul>
+          <li>Java7 이전에는 병합 정렬, 이후에는 팀 정렬</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>코테에선 왠만하면 내장 sort함수를 사용</li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 4]]></summary></entry><entry><title type="html">[Code Challenge] 문자열</title><link href="http://localhost:4000/algorithm/2024-07-10-day3/" rel="alternate" type="text/html" title="[Code Challenge] 문자열" /><published>2024-07-10T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day3</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-10-day3/"><![CDATA[<p>목차</p>
+<ol>
+  <li><a href="#코딩테스트에-자주-나오는-문자열">코딩테스트에 자주 나오는 문자열</a>
+ 1) <a href="#1-회문-palindrome">회문</a>
+ 2) <a href="#2-올바른-괄호-문자열-vps--valid-parenthesis-string">올바른 괄호 문자열</a></li>
+  <li><a href="#분할-정복과-백트래킹">분할 정복과 백트래킹</a>
+ 1) <a href="#분할-정복-divide-and-conquer">분할 정복</a>
+ 2) <a href="#백트래킹">백트레킹</a></li>
+</ol>
+
+<hr />
+
+<h2 id="코딩테스트에-자주-나오는-문자열">코딩테스트에 자주 나오는 문자열</h2>
+
+<h3 id="1-회문-palindrome">1. 회문 (Palindrome)</h3>
+<ul>
+  <li>앞뒤 방향으로 볼 때, 같은 순서의 문자로 구성된 문자열을 의미</li>
+  <li>예시
+    <ul>
+      <li>“소주 만 병만 주소”, “Madam, I’m Adam”, “1234321”</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-올바른-괄호-문자열-vps--valid-parenthesis-string">2. 올바른 괄호 문자열 (VPS = Valid Parenthesis String)</h3>
+<ul>
+  <li>조건
+    <ol>
+      <li>빈 문자열은 올바른 괄호 문자열이다</li>
+      <li>S가 올바른 괄호 문자열이라면, (S)도 올바른 괄호 문자열이다.</li>
+      <li>S, T가 괄호 문자열이라면 ST도 올바른 괄호 문자열이다.</li>
+    </ol>
+  </li>
+  <li>보통은 Stack을 사용해서 해결</li>
+  <li>’)’가 입력될 때마다, 스택에 있는 ‘(‘를 하나씩 지움
+    <ul>
+      <li>이때, 스택(top)이 비어있거나, ‘(‘가 없으면 올바른 괄호 문자열이 아님</li>
+    </ul>
+  </li>
+  <li>모든 문자열을 순회한 뒤, 스택이 비어있으면 올바른 괄호 문자열</li>
+  <li>치환 사용하기
+    <ul>
+      <li>’(‘를 1, ‘)’를 -1로 치환</li>
+      <li>문자열 S를 전부 순회하며 합 계산</li>
+      <li>중간에 합이 음수가 되거나,
+  모든 계산이 끝나고 0이 아니면 올바른 괄호 문자열이 아님</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="분할-정복과-백트래킹">분할 정복과 백트래킹</h2>
+
+<h3 id="분할-정복-divide-and-conquer">분할 정복 (Divide and Conquer)</h3>
+<ul>
+  <li>큰 문자를 작은 문제로 분할하여 작은 문제의 답을 모다 큰 문제의 답을 구함</li>
+  <li>기저 사례(base case)를 잘 설정하여 일정 기준 이상 분할되지 않도록 해야 함</li>
+  <li>보통 재귀로 구현</li>
+  <li>예시
+    <ul>
+      <li>피보나치 수열</li>
+      <li>Z
+        <ul>
+          <li><img src="/algorithm/image/image-2.png" alt="Full-width image" /></li>
+          <li><img src="/algorithm/image/image-1.png" alt="Full-width image" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="백트래킹">백트래킹</h3>
+<ul>
+  <li>답이 될 수 없는 경우는 탐색 대상에서 제외하며 효율적으로 답을 구하는 알고리즘
+    <ul>
+      <li>가지치기(pruning)를 통해 연산량을 유의미하게 줄여줌</li>
+    </ul>
+  </li>
+  <li>가지치기를 사용하기 위해서는 현재 상태에서 도달할 수 있는 상태가 모두 답이 될 수 없음을 보여야 함</li>
+  <li>정확한 시간 복잡도 측정 어려움</li>
+  <li>보통 재귀로 구현</li>
+  <li>많이 연습해봐야 익힐 수 있음</li>
+  <li>예시
+    <ul>
+      <li>스도쿠
+        <ul>
+          <li>대입해보고 현재 상태에서 스도쿠를 완성할 수 없다면, 분기점으로 다시 돌아옴</li>
+        </ul>
+      </li>
+      <li>Nqueen</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 3]]></summary></entry><entry><title type="html">[Code Challenge] 유클리드 호제법</title><link href="http://localhost:4000/algorithm/2024-07-09-day2/" rel="alternate" type="text/html" title="[Code Challenge] 유클리드 호제법" /><published>2024-07-09T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day2</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-09-day2/"><![CDATA[<p>목차</p>
+<ol>
+  <li><a href="#유클리드-호제법">유클리드 호제법</a></li>
+  <li><a href="#소수-판별법">소수 판별법</a></li>
+</ol>
+
+<hr />
+
+<h2 id="유클리드-호제법">유클리드 호제법</h2>
+
+<ul>
+  <li>두 수가 서로 상대방 수를 나누어 원하는 수를 구하는 것</li>
+  <li>GCD (Greatest Common Divisor) 최대공약수
+    <ul>
+      <li>두 자연수 a, b에 대해서 (a &gt; b) a를 b로 나눈 나머지를 r이라고 하면
+        <ul>
+          <li>a와 b의 최대공약수는 b와 r의 최대공약수와 동일</li>
+        </ul>
+      </li>
+      <li>이 성질에 따라, b를 r로 나눈 나머지 r’를 구하고,</li>
+      <li>다시 r을 r’로 나눈 나머지를 구하는 과정을 반복하여 나머지가 0이 되었을때 나누는 수가 a와 b의 최대공약수</li>
+      <li>예시
+        <ul>
+          <li>1071과 1029의 최대공약수 구하기
+            <ul>
+              <li>1071 % 1029 = 42</li>
+              <li>1029 % 42 = 21</li>
+              <li>42 % 21 = 0</li>
+              <li>21이 1071과 1029의 최대공약수</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>LCM (Least Common Multiple) 최소공배수
+    <ul>
+      <li>LCM(a, b) = a * b / GCD(a, b)</li>
+      <li>어떠한 두 수의 곱은, 그 두 수의 최대공약수와 최소공배수의 곱과 같다</li>
+    </ul>
+  </li>
+  <li>cpp의 gcd, lcm 함수는 c++17부터 지원
+    <ul>
+      <li>numeric 모듈</li>
+      <li>보통 코테에서 c++17 사용</li>
+    </ul>
+  </li>
+  <li>python은 math 모듈의 gcd, lcm 함수
+    <ul>
+      <li>gcd는 python 3.5</li>
+      <li>lcm은 python 3.9</li>
+      <li>보통 코테에서 python 3.8 사용</li>
+    </ul>
+  </li>
+  <li>java는 지원하지 않음</li>
+</ul>
+
+<h2 id="소수-판별법">소수 판별법</h2>
+
+<ul>
+  <li>1은 소수, 합성수 아님</li>
+  <li>에라토스테네스의 체
+    <ul>
+      <li>O(Nlog(logN))
+        <ul>
+          <li>N이 커지면 거의 O(N)</li>
+        </ul>
+      </li>
+      <li><img src="/algorithm/image/image.png" alt="Full-width image" /></li>
+      <li>회귀가 아닌 반복</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 2]]></summary></entry></feed>

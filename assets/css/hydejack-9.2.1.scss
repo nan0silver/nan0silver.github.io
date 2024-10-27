@@ -1,0 +1,17 @@
+@import "variables"; // _variables.scss 파일에서 변수 불러오기
+
+/* hydejack 테마 스타일 */
+.clearfix,
+.sidebar-social::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.navbar, .pagination, .message {
+  color: $primary-color;
+  font-family: $font-stack;
+}
+
+/* 필요에 따라 추가 스타일 작성 */
+// $gh-pages-compat: false !default;
