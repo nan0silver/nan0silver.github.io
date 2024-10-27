@@ -92,8 +92,8 @@ paginate_path:         /:num/
 # ---------------------------------------------------------------------------------------
 
 #theme: jekyll-theme-hydejack
-#remote_theme: hydecorp/hydejack@v9
-remote_theme: hydecorp/hydejack@9.1.6
+remote_theme: hydecorp/hydejack@v9
+#remote_theme: hydecorp/hydejack@9.1.6
 
 
 
@@ -353,7 +353,7 @@ plugins:
 # ---------------------------------------------------------------------------------------
 
 # Where you proof that you own this site (used by jekyll-seo-tag)
-# google_site_verification: <verification-id>
+google_site_verification: nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ
 # -- or --
 # webmaster_verifications:
 #   google:              <verification-id>
