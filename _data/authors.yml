@@ -9,11 +9,13 @@ author1:
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
     <h2> Nahyun Eun </h2>
-    <h3>(M.S. degree program)</h3> 
+    <br>
     <span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> 
-    Dept. of IT Engineering, Sookmyung Women's Univ. (2022.09 ~ 2025.02) <br><br>
-    <span style="background-color:#FFDDFF">B.S. in IT Engineering)</span> Dept. of IT Engineering, Sookmyung Women's Univ. (2018.03 ~ 2022.08) <br><br>
-    <span style="background-color:#DDDDDD">Research Interest)</span> Mobile Software, Deep Learning, Object Detection 
+    Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
+    (2022.09 ~ 2025.02) <br><br>
+    <span style="background-color:#FFDDFF">B.S. in IT Engineering)</span> 
+    Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
+    (2018.03 ~ 2022.08) <br><br>
   
 
   # This photo will be used in the about section
