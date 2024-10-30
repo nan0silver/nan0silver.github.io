@@ -32,6 +32,12 @@ redirect_from:
 
 <h4>2024.02.	</h4>
 Nahyun Eun, Jongwoo Lee<br>
+<strong>"DiagramVoice: Automatic Lecture Video Commentator for Visually Impaired Students Supporting Diagram Commentary "</strong><br>
+<span style="background-color:#DDDDDD">In Proceedings of Ninth International Congress on Information and Communication Technology. ICICT 2024. (SCOPUS)</span><br>
+<br>
+
+<h4>2023.02.	</h4>
+Nahyun Eun, Jongwoo Lee<br>
 <strong>"Design of Automatic Online Lecture Video Commentator for Visually impaired students supporting Diagram Commentary"</strong><br>
 <span style="background-color:#DDDDDD">In Proceedings of Information Systems for Intelligent Systems. ISBM 2023. Smart Innovation, Systems and Technologies, vol 379. Springer, Singapore. (SCOPUS)</span><br>
 <br>
