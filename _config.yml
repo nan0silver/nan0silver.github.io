@@ -27,8 +27,11 @@ title:                 NANO BLOG
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  Hydejack is a boutique Jekyll theme for hackers, nerds, and academics,
-  with a focus on personal sites that are meant to impress.
+  Nahyun’s Development Blog
+
+  Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java. 
+  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
+   Follow along as I dive into the world of coding!
 
 # A shorter description for the sidebar.
 tagline:               Welcome to Nahyun Devlog!
@@ -63,8 +66,10 @@ menu:
     url:               /algorithm/
   - title:             JAVA
     url:               /java/
-  #- title:             DevDiary
-  #  url:               /devdiary/
+  - title:             AWS
+    url:               /aws/
+  - title:             DevDiary
+    url:               /devdiary/
 
 
 # Add links to the footer.
