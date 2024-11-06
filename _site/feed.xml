@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-10-28T17:37:57+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">NANO BLOG</title><subtitle>Hydejack is a boutique Jekyll theme for hackers, nerds, and academics, with a focus on personal sites that are meant to impress.
-</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[AWS] AWS 기초</title><link href="http://localhost:4000/java/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+09:00</published><updated>2024-10-28T00:54:20+09:00</updated><id>http://localhost:4000/java/aws</id><content type="html" xml:base="http://localhost:4000/java/2024-09-02-aws/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-11-06T14:08:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">NANO BLOG</title><subtitle>Nahyun’s Development Blog
+Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
+ Follow along as I dive into the world of coding!
+</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[AWS] AWS 기초</title><link href="http://localhost:4000/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/aws/aws</id><content type="html" xml:base="http://localhost:4000/aws/2024-09-02-aws/"><![CDATA[<ul>
   <li>AWS의 주요 서비스를 실무에서 어떻게 활용하는가</li>
   <li>내가 만든 백엔드 포트폴리오를 AWS 주요 인프라에 배포</li>
   <li>내가 지원할 회사에서 쓰는 서비스를 곁들인</li>
@@ -333,7 +335,7 @@
       <li>람다는 실행할 때마다 ip가 바뀜, 문제가 될 수 있음</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="http://localhost:4000/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+09:00</published><updated>2024-08-29T23:50:48+09:00</updated><id>http://localhost:4000/java/stringbuilder</id><content type="html" xml:base="http://localhost:4000/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="http://localhost:4000/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+09:00</published><updated>2024-08-29T23:50:48+09:00</updated><id>http://localhost:4000/java/stringbuilder</id><content type="html" xml:base="http://localhost:4000/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#string">String</a></li>
   <li><a href="#stringbuilder">StringBuilder</a></li>
@@ -380,7 +382,7 @@
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Code Challenge] 서로소 집합과 유니온 파인드</title><link href="http://localhost:4000/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Code Challenge] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day9</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 서로소 집합과 유니온 파인드</title><link href="http://localhost:4000/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Algorithm] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day9</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#서로소-집합">서로소 집합</a></li>
   <li><a href="#유니온-파인드">유니온 파인드</a>
@@ -496,7 +498,7 @@ void init() {
       <li>이러한 특서으로 루트 노드 찾을 수 있음</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9]]></summary></entry><entry><title type="html">[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)</title><link href="http://localhost:4000/java/2024-07-17-day8/" rel="alternate" type="text/html" title="[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)" /><published>2024-07-17T00:00:00+09:00</published><updated>2024-08-29T23:50:48+09:00</updated><id>http://localhost:4000/java/day8</id><content type="html" xml:base="http://localhost:4000/java/2024-07-17-day8/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9 (유니온 파인드)]]></summary></entry><entry><title type="html">[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)</title><link href="http://localhost:4000/java/2024-07-17-day8/" rel="alternate" type="text/html" title="[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)" /><published>2024-07-17T00:00:00+09:00</published><updated>2024-08-29T23:50:48+09:00</updated><id>http://localhost:4000/java/day8</id><content type="html" xml:base="http://localhost:4000/java/2024-07-17-day8/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#1-bufferdreader-inputstreamreader-systemin">BufferReader, InputStreamReader, System.in</a></li>
   <li><a href="#2-scanner">Scanner</a></li>
@@ -607,7 +609,7 @@ void init() {
       <li>token(공백)별로 사용자 입력값을 읽어들이는 예제</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 8]]></summary></entry><entry><title type="html">[Code Challenge] 동적 계획법</title><link href="http://localhost:4000/algorithm/2024-07-16-day7/" rel="alternate" type="text/html" title="[Code Challenge] 동적 계획법" /><published>2024-07-16T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day7</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-16-day7/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 8]]></summary></entry><entry><title type="html">[Algorithm] 동적 계획법 (DP)</title><link href="http://localhost:4000/algorithm/2024-07-16-day7/" rel="alternate" type="text/html" title="[Algorithm] 동적 계획법 (DP)" /><published>2024-07-16T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day7</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-16-day7/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#dynamic-programming-정의">Dynamic Programming 정의</a></li>
   <li><a href="#dp의-종류">DP의 종류</a></li>
@@ -747,7 +749,7 @@ void init() {
 <h3 id="dp-유의점">DP 유의점</h3>
 <ul>
   <li>복잡한 문제의 경우, 점화식을 직접 계산해서 구해야 한다.</li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 7]]></summary></entry><entry><title type="html">[Code Challenge] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘</title><link href="http://localhost:4000/algorithm/2024-07-15-day6/" rel="alternate" type="text/html" title="[Code Challenge] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘" /><published>2024-07-15T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day6</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-15-day6/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 7 (동적 계획법)]]></summary></entry><entry><title type="html">[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘</title><link href="http://localhost:4000/algorithm/2024-07-15-day6/" rel="alternate" type="text/html" title="[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘" /><published>2024-07-15T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day6</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-15-day6/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#너비-우선-탐색-bfs">너비 우선 탐색 BFS</a></li>
   <li><a href="#다익스트라-dijkstra-알고리즘">다익스트라 Dijkstra 알고리즘</a></li>
@@ -957,7 +959,7 @@ void init() {
       </li>
     </ol>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 6]]></summary></entry><entry><title type="html">[Code Challenge] 깊이 우선 탐색</title><link href="http://localhost:4000/algorithm/2024-07-12-day5/" rel="alternate" type="text/html" title="[Code Challenge] 깊이 우선 탐색" /><published>2024-07-12T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day5</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-12-day5/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 깊이 우선 탐색</title><link href="http://localhost:4000/algorithm/2024-07-12-day5/" rel="alternate" type="text/html" title="[Algorithm] 깊이 우선 탐색" /><published>2024-07-12T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day5</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-12-day5/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#dfs란depth-first-search">DFS란?</a></li>
   <li><a href="#dfs-특징">DFS특징</a></li>
@@ -1028,7 +1030,7 @@ void init() {
       <li>인접 행렬보다 인접 리스트 사용이 유리</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 5]]></summary></entry><entry><title type="html">[Code Challenge] 재귀와 정렬</title><link href="http://localhost:4000/algorithm/2024-07-11-day4/" rel="alternate" type="text/html" title="[Code Challenge] 재귀와 정렬" /><published>2024-07-11T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day4</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-11-day4/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 재귀와 정렬</title><link href="http://localhost:4000/algorithm/2024-07-11-day4/" rel="alternate" type="text/html" title="[Algorithm] 재귀와 정렬" /><published>2024-07-11T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day4</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-11-day4/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#재귀">재귀</a></li>
   <li><a href="#정렬">정렬</a></li>
@@ -1126,7 +1128,7 @@ void init() {
     </ul>
   </li>
   <li>코테에선 왠만하면 내장 sort함수를 사용</li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 4]]></summary></entry><entry><title type="html">[Code Challenge] 문자열</title><link href="http://localhost:4000/algorithm/2024-07-10-day3/" rel="alternate" type="text/html" title="[Code Challenge] 문자열" /><published>2024-07-10T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day3</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-10-day3/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 4 (재귀와 정렬)]]></summary></entry><entry><title type="html">[Algorithm] 문자열</title><link href="http://localhost:4000/algorithm/2024-07-10-day3/" rel="alternate" type="text/html" title="[Algorithm] 문자열" /><published>2024-07-10T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day3</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-10-day3/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#코딩테스트에-자주-나오는-문자열">코딩테스트에 자주 나오는 문자열</a>
  1) <a href="#1-회문-palindrome">회문</a>
@@ -1217,7 +1219,7 @@ void init() {
       <li>Nqueen</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 3]]></summary></entry><entry><title type="html">[Code Challenge] 유클리드 호제법</title><link href="http://localhost:4000/algorithm/2024-07-09-day2/" rel="alternate" type="text/html" title="[Code Challenge] 유클리드 호제법" /><published>2024-07-09T00:00:00+09:00</published><updated>2024-08-29T14:33:40+09:00</updated><id>http://localhost:4000/algorithm/day2</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-09-day2/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 3 (문자열)]]></summary></entry><entry><title type="html">[Algorithm] 유클리드 호제법</title><link href="http://localhost:4000/algorithm/2024-07-09-day2/" rel="alternate" type="text/html" title="[Algorithm] 유클리드 호제법" /><published>2024-07-09T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day2</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-09-day2/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#유클리드-호제법">유클리드 호제법</a></li>
   <li><a href="#소수-판별법">소수 판별법</a></li>
@@ -1289,4 +1291,4 @@ void init() {
       <li>회귀가 아닌 반복</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 2]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 2 (유클리드 호제법)]]></summary></entry></feed>
