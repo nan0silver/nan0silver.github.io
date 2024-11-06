@@ -61,7 +61,7 @@ menu:
   - title:             About
     url:               /about/
   - title:             Flutter
-    url:               /flutter/
+    url:               /flutter/y
   - title:             Algorithm
     url:               /algorithm/
   - title:             JAVA
@@ -319,6 +319,14 @@ collections:
   projects:
     permalink:         /projects/:path/
     output:            true
+
+  aws:
+    output: true
+    permalink: /aws/:path/
+    
+  devdiary:
+    output: true
+    permalink: /devdiary/:path/
 
 
 # File inclusion/exclusion

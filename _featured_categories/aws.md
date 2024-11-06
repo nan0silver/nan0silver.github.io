@@ -6,7 +6,7 @@ layout: list
 title: AWS
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: AWS
+slug: aws
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
@@ -19,3 +19,10 @@ description: >
 # DON'T USE THIS SETTING IN YOUR CATEGORIES!
 sitemap: false
 ---
+
+<h1>AWS Posts</h1>
+
+{% for post in site.aws %}
+  <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+  <p>{{ post.excerpt }}</p>
+{% endfor %}
