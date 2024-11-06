@@ -3,14 +3,14 @@
 layout: list
 
 # The title of the tag's page.
-title: Dev Diary
+title: AWS
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: devdiary
+slug: AWS
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  개발 관련 공부 일지입니다. 
+  AWS 공부 기록입니다.
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
