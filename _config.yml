@@ -22,7 +22,7 @@ lang:  ko-KR, en-US
 encoding:              UTF-8
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 NANO BLOG
+title:                 NAHYUN BLOG
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
