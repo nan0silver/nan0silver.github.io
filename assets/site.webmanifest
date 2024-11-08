@@ -1,7 +1,7 @@
 {
   "lang": "ko-KR, en-US",
-  "name": "NANO BLOG",
-  "short_name": "NANO BLOG",
+  "name": "NAHYUN BLOG",
+  "short_name": "NAHYUN BLOG",
   "description": "Nahyun’s Development BlogHi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples. Follow along as I dive into the world of coding!",
   "start_url": "/?utm_source=homescreen",
   "theme_color": "rgb(116, 41, 128)",
