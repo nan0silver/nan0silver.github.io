@@ -1,20 +1,12 @@
-# Hydejack Starter Kit
+## Nahyun Eun 
 
-A quicker, cleaner way to get started blogging with [Hydejack](https://hydejack.com/).
+### 🥳Welcome to Nahyun Eun’s Development Blog!🥳
 
-## Quick Start
-### Running locally
-1. Clone repository (git users), or [download] and unzip.
-2. Open terminal, `cd` into root directory (where `_config.yml` is located)
-3. Run `bundle install` [^1]
-4. Run `bundle exec jekyll serve`
-5. Open <http://localhost:4000/hydejack-starter-kit/>
+ - Hello! I'm Nahyun Eun, a student from South Korea focusing on backend development with Java. <br>
+    This blog is a space where I organize and share my learning journey in software development. <br>
+    Here, you'll find insights, notes, and practical examples from my studies in backend programming, covering key concepts and real-world applications. <br>
+    Whether you're interested in Java, backend frameworks, or general programming tips, <br>
+    I hope this blog offers valuable resources and inspiration. <br>
+    Join me as I explore the world of coding and software engineering!<br><br>
 
-## What's next?
-* Open files and read the comments
-* Read the [docs](https://hydejack.com/docs/)
-* Buy the [PRO version](https://hydejack.com/download/) to get the project and resume layout, newsletter subscription box, custom forms, and more.
-
-[^1]: Requires Bundler. Install with `gem install bundler`.
-
-[download]: https://github.com/hydecorp/hydejack-starter-kit/archive/master.zip
+### https://nan0silver.github.io/
