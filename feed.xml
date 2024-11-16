@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-11-16T11:29:17+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-11-16T16:15:51+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[TIL] 컴파일 언어와 인터프리터 언어</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 컴파일 언어와 인터프리터 언어" /><published>2024-11-08T00:00:00+00:00</published><updated>2024-11-16T11:28:34+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<h2 id="컴파일-언어-vs-인터프리터-언어">컴파일 언어 VS 인터프리터 언어</h2>
+</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[TIL] 컴파일 언어와 인터프리터 언어</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 컴파일 언어와 인터프리터 언어" /><published>2024-11-08T00:00:00+00:00</published><updated>2024-11-16T16:15:08+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<h2 id="컴파일-언어-vs-인터프리터-언어">컴파일 언어 VS 인터프리터 언어</h2>
 
 <ul>
   <li>
@@ -48,41 +48,55 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 11월 8일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[AWS] AWS 기초</title><link href="https://nan0silver.github.io/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-11-16T11:28:34+00:00</updated><id>https://nan0silver.github.io/aws/aws</id><content type="html" xml:base="https://nan0silver.github.io/aws/2024-09-02-aws/"><![CDATA[<ul>
-  <li>AWS의 주요 서비스를 실무에서 어떻게 활용하는가</li>
-  <li>내가 만든 백엔드 포트폴리오를 AWS 주요 인프라에 배포</li>
-  <li>내가 지원할 회사에서 쓰는 서비스를 곁들인</li>
-</ul>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 11월 8일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[AWS] AWS 기초</title><link href="https://nan0silver.github.io/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-11-16T16:15:08+00:00</updated><id>https://nan0silver.github.io/aws/aws</id><content type="html" xml:base="https://nan0silver.github.io/aws/2024-09-02-aws/"><![CDATA[<p>목차</p>
+<ol>
+  <li><a href="#aws란">AWS란?</a></li>
+  <li><a href="#s3--cloudfront">S3 &amp; Cloudfront</a></li>
+  <li><a href="#aws-솔루션-실무-적용-사례">AWS 솔루션 실무 적용 사례</a></li>
+  <li><a href="#aws-클라우드-인프라의-구성-요소">AWS 클라우드 인프라의 구성 요소</a></li>
+  <li><a href="#aws-네트워크-구성-요소-설명-캠퍼스-예시로-이해하기">AWS 네트워크 구성 요소 설명: 캠퍼스 예시로 이해하기</a></li>
+  <li><a href="#aws-초기-설정-및-구성-시-주의점">AWS 초기 설정 및 구성 시 주의점</a></li>
+</ol>
 
-<p>목차</p>
-<ul>
-  <li>S3 &amp; Cloudfront 소개</li>
-  <li>실무 활용 사례 part1
-    <ul>
-      <li>이미지 리사이징</li>
-      <li>권한 관리</li>
-    </ul>
-  </li>
-  <li>내가 지원한 회사 채용공고 뜯어보기</li>
-  <li>실무 활용 사례 part2
-    <ul>
-      <li>CPA</li>
-      <li>Glue &amp; Athena 를 통한 Data Lake 구축</li>
-    </ul>
-  </li>
-</ul>
+<hr />
 
-<p>수업 목표</p>
-<ul>
-  <li>AWS가 무엇인지 설명할 수 있다</li>
-  <li>S3의 주요 기능 및 활용 방안을 설명할 수 있다.</li>
-  <li>지원하고 싶은 회사의 지원 공고 뜯어보기</li>
-</ul>
+<h2 id="aws에-대한-기초-내용">AWS에 대한 기초 내용</h2>
 
-<h1 id="aws">AWS</h1>
+<h3 id="aws란">AWS란?</h3>
 <ul>
   <li>Amazon Web Service</li>
-  <li>클라우드 컴퓨팅 플랫폼</li>
+  <li>클라우드 컴퓨팅 플랫폼
+    <ul>
+      <li>인터넷을 통해 IT리소스(서버, 스토리지, 데이터베이스, 네트워킹 등)를 제공하고 관리하는 서비스</li>
+      <li>특징
+        <ol>
+          <li>확장성 (Scalability)
+            <ul>
+              <li>사용자가 필요에 따라 리소스를 쉽게 확장, 축소 가능</li>
+              <li>블랙 프라이데이에는 몇 배의 트래픽이 몰림. 이때마다 하드웨어를 사용하는건 비효율적, 이때만 자원을 사용하고 끝나면 반납할 수 있음</li>
+            </ul>
+          </li>
+          <li>유연성 (Flexibility)
+            <ul>
+              <li>다양한 IT 환경에 맞춰 손쉽게 맞춤화 가능</li>
+              <li>자바스크립트로 백엔드 많이 사용</li>
+            </ul>
+          </li>
+          <li>비용 효율성 (Cost Efficiency)
+            <ul>
+              <li>초기 자본 투자 없이, 사용한 만큼 지불하는 비용 구조</li>
+            </ul>
+          </li>
+          <li>가용성
+            <ul>
+              <li>높은 가용성과 자동 백업, 복구 기능으로 서비스 중간 최소화</li>
+              <li>람다 서비스를 처음 띄울 때 서울 4개의 구역에 띄워놓을 수 있음. 한 개의 구역에 오류가 나도 다른 구역에서는 잘 쓸 수 있음.</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
   <li>AWS 계정 만들어보기</li>
   <li>AWS Cloud Practitioner Essentials (Korean)
     <ul>
@@ -96,205 +110,169 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li>큰 회사에서는 AWS 자격증이 크게 상관없겠지만, 작은 회사에서는 AWS역량이 필수적</li>
 </ul>
 
-<h2 id="클라우드-컴퓨팅">클라우드 컴퓨팅</h2>
+<h3 id="s3--cloudfront">S3 &amp; Cloudfront</h3>
 <ul>
-  <li>인터넷을 통해 IT리소스(서버, 스토리지, 데이터베이스, 네트워킹 등)를 제공하고 관리하는 서비스</li>
-  <li>특징
-    <ol>
-      <li>확장성 (Scalability)
-        <ul>
-          <li>사용자가 필요에 따라 리소스를 쉽게 확장, 축소 가능</li>
-          <li>블랙 프라이데이에는 몇 배의 트래픽이 몰림. 이때마다 하드웨어를 사용하는건 비효율적, 이때만 자원을 사용하고 끝나면 반납할 수 있음</li>
-        </ul>
-      </li>
-      <li>유연성 (Flexibility)
-        <ul>
-          <li>다양한 IT 환경에 맞춰 손쉽게 맞춤화 가능</li>
-          <li>자바스크립트로 백엔드 많이 사용</li>
-        </ul>
-      </li>
-      <li>비용 효율성 (Cost Efficiency)
-        <ul>
-          <li>초기 자본 투자 없이, 사용한 만큼 지불하는 비용 구조</li>
-        </ul>
-      </li>
-      <li>가용성
-        <ul>
-          <li>높은 가용성과 자동 백업, 복구 기능으로 서비스 중간 최소화</li>
-          <li>람다 서비스를 처음 띄울 때 서울 4개의 구역에 띄워놓을 수 있음. 한 개의 구역에 오류가 나도 다른 구역에서는 잘 쓸 수 있음.</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-</ul>
-
-<h2 id="s3">S3</h2>
-<ul>
-  <li>Simple Storage Service</li>
-  <li>AWS 최초의 서비스</li>
-  <li>클라우드 파일 저장소</li>
-  <li>AWS 사용하고 있는 회사라면 99%의 확률로 활용하고 있음</li>
-  <li>기본 개념
+  <li>S3
     <ul>
-      <li>버킷 (Bucket)
+      <li>Simple Storage Service</li>
+      <li>AWS 최초의 서비스</li>
+      <li>클라우드 파일 저장소</li>
+      <li>AWS 사용하고 있는 회사라면 99%의 확률로 활용하고 있음</li>
+      <li>S3는 서버사이트 스크립팅(PHP, Python등)이 필요없는 정적 웹사이트에 최적</li>
+      <li>기본 개념
         <ul>
-          <li>S3에서 데이터를 저장하는 컨테이너</li>
-          <li>모든 S3객체는 반드시 하나의 버킷에 속해 있음</li>
-          <li>S3 스토리지의 최상위 계층이며, 사용자가 데이터를 저장하고 관리할 수 있는 폴더와 비슷
+          <li>버킷 (Bucket)
             <ul>
-              <li>컴퓨터에서 C드라이브와 비슷한 느낌</li>
+              <li>S3에서 데이터를 저장하는 컨테이너</li>
+              <li>모든 S3객체는 반드시 하나의 버킷에 속해 있음</li>
+              <li>S3 스토리지의 최상위 계층이며, 사용자가 데이터를 저장하고 관리할 수 있는 폴더와 비슷
+                <ul>
+                  <li>컴퓨터에서 C드라이브와 비슷한 느낌</li>
+                </ul>
+              </li>
+              <li>각 버킷은 고유한 이름을 가짐(전세걔 유일)</li>
+              <li>데이터 저장 위치(region), 권한 설정, 버전 관리, 수명 주기 정책 등 관리 가능</li>
             </ul>
           </li>
-          <li>각 버킷은 고유한 이름을 가짐(전세걔 유일)</li>
-          <li>데이터 저장 위치(region), 권한 설정, 버전 관리, 수명 주기 정책 등 관리 가능</li>
+          <li>Key
+            <ul>
+              <li>S3버킷 내 객체(파일)를 고유하게 식별하는 문자열</li>
+              <li>버킷 내 키는 객체의 “경로”로 생각 가능</li>
+              <li>디렉토리 구조를 흉내낼 수 있도록 설계됨
+                <ul>
+                  <li>그냥 전체가 하나의 키임</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
         </ul>
       </li>
-      <li>Key
+      <li>사용 방법
         <ul>
-          <li>S3버킷 내 객체(파일)를 고유하게 식별하는 문자열</li>
-          <li>버킷 내 키는 객체의 “경로”로 생각 가능</li>
-          <li>디렉토리 구조를 흉내낼 수 있도록 설계됨
+          <li>AWS Console</li>
+          <li>AWS Cli</li>
+          <li>FTP 프로그램
             <ul>
-              <li>그냥 전체가 하나의 키임</li>
+              <li>file transfer protocol</li>
+              <li>사이버덕, 파일질라</li>
             </ul>
           </li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>사용 방법
+  <li>Cloudfront
     <ul>
-      <li>AWS Console</li>
-      <li>AWS Cli</li>
-      <li>FTP 프로그램
+      <li>AWS CDN 서비스
         <ul>
-          <li>file transfer protocol</li>
-          <li>사이버덕, 파일질라</li>
+          <li>Contents Delivery Network</li>
+          <li>인터넷 사용자에게 웹 콘텐츠를 빠르고 효율적으로 제공하기 위해 설계된 분산형 서버 네트워크</li>
         </ul>
       </li>
+      <li>S3를 비롯한 AWS의 다른 서비스와 연동이 쉬움</li>
+      <li>AWS를 사용하는 회사라면 99% 사용</li>
+      <li>S3는 저장에 특화, Cloudfront는 전송에 특화
+        <ul>
+          <li>S3는 직접 접근으로 주로 내부 사용자나 제한된 사용자들에게 제공을 많이함</li>
+          <li>하지만 Cloudfront는 CDN을 통해 접근하기때문에 속도도 빠르고 캐싱도 됨</li>
+        </ul>
+      </li>
+      <li>S3 1GB당 약 0.117$, Cloudfront 1GB당 0.095$</li>
+      <li>CloudFront는 약정 계약이 가능</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="cloudfront">Cloudfront</h2>
-<ul>
-  <li>AWS CDN 서비스
+<h3 id="aws-솔루션-실무-적용-사례">AWS 솔루션 실무 적용 사례</h3>
+
+<ol>
+  <li>이미지 리사이즈
     <ul>
-      <li>Contents Delivery Network</li>
-      <li>인터넷 사용자에게 웹 콘텐츠를 빠르고 효율적으로 제공하기 위해 설계된 분산형 서버 네트워크</li>
+      <li>대역폭 및 비용 감소할 수 있음</li>
+      <li>첫 번째 AWS 활용 포트폴리오
+        <ol>
+          <li>S3에 이미지가 업로드 되면 자동적으로 원하는 크기로 리사이징하여 저장하는 방법</li>
+          <li>원하는 사이즈의 이미지를 실시간으로 생성하는 방법
+            <ul>
+              <li>본인이 자신있는 프로그래밍 언어를 선택하여 AWS Lambda 기능을 활용해서 작성</li>
+              <li>‘aws cloudfront 이미지 리사이징’ 구글 검색</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
     </ul>
   </li>
-  <li>S3를 비롯한 AWS의 다른 서비스와 연동이 쉬움</li>
-  <li>AWS를 사용하는 회사라면 99% 사용</li>
-  <li>S3는 저장에 특화, Cloudfront는 전송에 특화
+  <li>보안
     <ul>
-      <li>S3는 직접 접근으로 주로 내부 사용자나 제한된 사용자들에게 제공을 많이함</li>
-      <li>하지만 Cloudfront는 CDN을 통해 접근하기때문에 속도도 빠르고 캐싱도 됨</li>
-    </ul>
-  </li>
-  <li>S3 1GB당 약 0.117$, Cloudfront 1GB당 0.095$</li>
-  <li>CloudFront는 약정 계약이 가능</li>
-</ul>
-
-<h2 id="이미지-리사이즈">이미지 리사이즈</h2>
-<ul>
-  <li>대역폭 및 비용 감소할 수 있음</li>
-  <li>첫 번째 AWS 활용 포트폴리오
-    <ol>
-      <li>S3에 이미지가 업로드 되면 자동적으로 원하는 크기로 리사이징하여 저장하는 방법</li>
-      <li>원하는 사이즈의 이미지를 실시간으로 생성하는 방법
+      <li>민감정보 보호 방법
         <ul>
-          <li>본인이 자신있는 프로그래밍 언어를 선택하여 AWS Lambda 기능을 활용해서 작성</li>
-          <li>‘aws cloudfront 이미지 리사이징’ 구글 검색</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-</ul>
-
-<h2 id="실무-활용-사례--보안">실무 활용 사례 -보안</h2>
-<ul>
-  <li>민감정보 보호 방법
-    <ul>
-      <li>Signed URL
-        <ul>
-          <li>특정 사용자에게만 접근 권한을 부여하기 위해 URL에 만료 시간과 암호화된 서명을 포함한 URL</li>
-        </ul>
-      </li>
-      <li>Signed Cookie
-        <ul>
-          <li>특정 조건을 만족하는 사용자만 CloudFront를 통해 콘텐츠에 접근할 수 있도록 설정하는 보안 메커니즘</li>
+          <li>Signed URL
+            <ul>
+              <li>특정 사용자에게만 접근 권한을 부여하기 위해 URL에 만료 시간과 암호화된 서명을 포함한 URL</li>
+            </ul>
+          </li>
+          <li>Signed Cookie
+            <ul>
+              <li>특정 조건을 만족하는 사용자만 CloudFront를 통해 콘텐츠에 접근할 수 있도록 설정하는 보안 메커니즘</li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
   </li>
-</ul>
+</ol>
 
-<h2 id="s3-hosting--cloudfront">S3 hosting &amp; CloudFront</h2>
-<ul>
-  <li>S3는 서버사이트 스크립팅(PHP, Python등)이 필요없는 정적 웹사이트에 최적</li>
-  <li>설정이 간단하고 관리가 쉬움</li>
-  <li>서버 관리가 필요 없으며 AWS에서 모든 인프라를 관리</li>
-  <li>CPA
+<h3 id="aws-클라우드-인프라의-구성-요소">AWS 클라우드 인프라의 구성 요소</h3>
+<ol>
+  <li>EC2 (Elastic Compute Cloud)
     <ul>
-      <li>Cost Per Action</li>
-      <li>광고주와 퍼블리셔를 연결하는 플랫폼이라면
+      <li>개발자가 클라우드 컴퓨팅 작업을 할 수 있도록 설계된 서비스</li>
+      <li>가상화된 서버를 하나의 인스턴스 형태로 제공하며, 컴퓨팅 요구사항에 맞게 용량 조절 가능</li>
+    </ul>
+  </li>
+  <li>IDC
+    <ul>
+      <li>Internet Data Center</li>
+      <li>물리적 인프라를 제공하는 시설</li>
+    </ul>
+  </li>
+  <li>리전 (Region)
+    <ul>
+      <li>물리적으로 분리된 지리적 위치</li>
+      <li>각 리전은 여러 개의 데이터 센터(Availability Zone, AZ)로 구성되어 있음</li>
+      <li>리전 간 데이터 전송은 네트워크 지연 시간(latency)이 발생할 수 있음</li>
+      <li>각 리전은 법적, 규제 요구 사항을 충족하도록 설계됨</li>
+    </ul>
+  </li>
+  <li>Availability Zone
+    <ul>
+      <li>리전 내에서 독립적으로 운영되는 데이터 센터</li>
+      <li>각 AZ는 하나 이상의 데이터 센터로 구성되어 있음</li>
+      <li>VPC (가상 사설 네트워크)
         <ul>
-          <li>이 모델에서 광고주는 특정 행동을 기준으로 퍼블리셔 비용 지불</li>
+          <li>Virtual Private Cloud</li>
+          <li>네트워크
+            <ul>
+              <li>2개 이상의 컴퓨터나 장치가 서로 데이터를 주고 받을 수 있도록 연결된 시스템</li>
+            </ul>
+          </li>
+          <li>사설
+            <ul>
+              <li>공개되지 않은, 외부와 분리되느 특정 사용자나 조직만 접근할 수 있는</li>
+            </ul>
+          </li>
+          <li>가상
+            <ul>
+              <li>물리적인 하드웨어 장비나 네트워크 인프라 없이, 소프트웨어를 통해 논리적으로 격리</li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
   </li>
-</ul>
+</ol>
 
-<h2 id="ec2-elastic-compute-cloud">EC2 (Elastic Compute Cloud)</h2>
-<ul>
-  <li>개발자가 클라우드 컴퓨팅 작업을 할 수 있도록 설계된 서비스</li>
-  <li>가상화된 서버를 하나의 인스턴스 형태로 제공하며, 컴퓨팅 요구사항에 맞게 용량 조절 가능</li>
-</ul>
-
-<h2 id="idc">IDC</h2>
-<ul>
-  <li>Internet Data Center</li>
-  <li>물리적 인프라를 제공하는 시설</li>
-</ul>
-
-<h2 id="리전-region">리전 (Region)</h2>
-<ul>
-  <li>물리적으로 분리된 지리적 위치</li>
-  <li>각 리전은 여러 개의 데이터 센터(Availability Zone, AZ)로 구성되어 있음</li>
-  <li>리전 간 데이터 전송은 네트워크 지연 시간(latency)이 발생할 수 있음</li>
-  <li>각 리전은 법적, 규제 요구 사항을 충족하도록 설계됨</li>
-</ul>
-
-<h2 id="availability-zone">Availability Zone</h2>
-<ul>
-  <li>리전 내에서 독립적으로 운영되는 데이터 센터</li>
-  <li>각 AZ는 하나 이상의 데이터 센터로 구성되어 있음</li>
-  <li>VPC (가상 사설 네트워크)
-    <ul>
-      <li>Virtual Private Cloud</li>
-      <li>네트워크
-        <ul>
-          <li>2개 이상의 컴퓨터나 장치가 서로 데이터를 주고 받을 수 있도록 연결된 시스템</li>
-        </ul>
-      </li>
-      <li>사설
-        <ul>
-          <li>공개되지 않은, 외부와 분리되느 특정 사용자나 조직만 접근할 수 있는</li>
-        </ul>
-      </li>
-      <li>가상
-        <ul>
-          <li>물리적인 하드웨어 장비나 네트워크 인프라 없이, 소프트웨어를 통해 논리적으로 격리</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="주요-용어">주요 용어</h2>
-<h3 id="a대학교-캠퍼스를-예시로-했을-때">A대학교 캠퍼스를 예시로 했을 때</h3>
+<h3 id="aws-네트워크-구성-요소-설명-캠퍼스-예시로-이해하기">AWS 네트워크 구성 요소 설명: 캠퍼스 예시로 이해하기</h3>
 <ul>
   <li>퍼블릭 서브넷
     <ul>
@@ -374,7 +352,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   </li>
 </ul>
 
-<h2 id="주의-사항">주의 사항</h2>
+<h3 id="aws-초기-설정-및-구성-시-주의점">AWS 초기 설정 및 구성 시 주의점</h3>
 <ul>
   <li>AWS에서 처음으로 제공해주는 VPC는 가급적으로 사용하지 말자</li>
   <li>람다를 private 서브에 올리고 nat를 사용하는 것을 추천
@@ -382,7 +360,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>람다는 실행할 때마다 ip가 바뀜, 문제가 될 수 있음</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="https://nan0silver.github.io/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+00:00</published><updated>2024-11-16T11:28:34+00:00</updated><id>https://nan0silver.github.io/java/stringbuilder</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="https://nan0silver.github.io/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+00:00</published><updated>2024-11-16T16:15:08+00:00</updated><id>https://nan0silver.github.io/java/stringbuilder</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#string">String</a></li>
   <li><a href="#stringbuilder">StringBuilder</a></li>
@@ -429,7 +407,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 서로소 집합과 유니온 파인드</title><link href="https://nan0silver.github.io/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Algorithm] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+00:00</published><updated>2024-11-16T11:28:34+00:00</updated><id>https://nan0silver.github.io/algorithm/day9</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 서로소 집합과 유니온 파인드</title><link href="https://nan0silver.github.io/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Algorithm] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+00:00</published><updated>2024-11-16T16:15:08+00:00</updated><id>https://nan0silver.github.io/algorithm/day9</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#서로소-집합">서로소 집합</a></li>
   <li><a href="#유니온-파인드">유니온 파인드</a>
@@ -545,7 +523,7 @@ void init() {
       <li>이러한 특서으로 루트 노드 찾을 수 있음</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9 (유니온 파인드)]]></summary></entry><entry><title type="html">[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)</title><link href="https://nan0silver.github.io/java/2024-07-17-day8/" rel="alternate" type="text/html" title="[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)" /><published>2024-07-17T00:00:00+00:00</published><updated>2024-11-16T11:28:34+00:00</updated><id>https://nan0silver.github.io/java/day8</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-07-17-day8/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9 (유니온 파인드)]]></summary></entry><entry><title type="html">[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)</title><link href="https://nan0silver.github.io/java/2024-07-17-day8/" rel="alternate" type="text/html" title="[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)" /><published>2024-07-17T00:00:00+00:00</published><updated>2024-11-16T16:15:08+00:00</updated><id>https://nan0silver.github.io/java/day8</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-07-17-day8/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#1-bufferdreader-inputstreamreader-systemin">BufferReader, InputStreamReader, System.in</a></li>
   <li><a href="#2-scanner">Scanner</a></li>
@@ -656,7 +634,7 @@ void init() {
       <li>token(공백)별로 사용자 입력값을 읽어들이는 예제</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 8]]></summary></entry><entry><title type="html">[Algorithm] 동적 계획법 (DP)</title><link href="https://nan0silver.github.io/algorithm/2024-07-16-day7/" rel="alternate" type="text/html" title="[Algorithm] 동적 계획법 (DP)" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-11-16T11:28:34+00:00</updated><id>https://nan0silver.github.io/algorithm/day7</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-16-day7/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 8]]></summary></entry><entry><title type="html">[Algorithm] 동적 계획법 (DP)</title><link href="https://nan0silver.github.io/algorithm/2024-07-16-day7/" rel="alternate" type="text/html" title="[Algorithm] 동적 계획법 (DP)" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-11-16T16:15:08+00:00</updated><id>https://nan0silver.github.io/algorithm/day7</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-16-day7/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#dynamic-programming-정의">Dynamic Programming 정의</a></li>
   <li><a href="#dp의-종류">DP의 종류</a></li>
@@ -796,7 +774,7 @@ void init() {
 <h3 id="dp-유의점">DP 유의점</h3>
 <ul>
   <li>복잡한 문제의 경우, 점화식을 직접 계산해서 구해야 한다.</li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 7 (동적 계획법)]]></summary></entry><entry><title type="html">[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2024-07-15-day6/" rel="alternate" type="text/html" title="[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘" /><published>2024-07-15T00:00:00+00:00</published><updated>2024-11-16T11:28:34+00:00</updated><id>https://nan0silver.github.io/algorithm/day6</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-15-day6/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 7 (동적 계획법)]]></summary></entry><entry><title type="html">[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2024-07-15-day6/" rel="alternate" type="text/html" title="[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘" /><published>2024-07-15T00:00:00+00:00</published><updated>2024-11-16T16:15:08+00:00</updated><id>https://nan0silver.github.io/algorithm/day6</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-15-day6/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#너비-우선-탐색-bfs">너비 우선 탐색 BFS</a></li>
   <li><a href="#다익스트라-dijkstra-알고리즘">다익스트라 Dijkstra 알고리즘</a></li>
@@ -1006,7 +984,7 @@ void init() {
       </li>
     </ol>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 깊이 우선 탐색</title><link href="https://nan0silver.github.io/algorithm/2024-07-12-day5/" rel="alternate" type="text/html" title="[Algorithm] 깊이 우선 탐색" /><published>2024-07-12T00:00:00+00:00</published><updated>2024-11-16T11:28:34+00:00</updated><id>https://nan0silver.github.io/algorithm/day5</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-12-day5/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 깊이 우선 탐색</title><link href="https://nan0silver.github.io/algorithm/2024-07-12-day5/" rel="alternate" type="text/html" title="[Algorithm] 깊이 우선 탐색" /><published>2024-07-12T00:00:00+00:00</published><updated>2024-11-16T16:15:08+00:00</updated><id>https://nan0silver.github.io/algorithm/day5</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-12-day5/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#dfs란depth-first-search">DFS란?</a></li>
   <li><a href="#dfs-특징">DFS특징</a></li>
@@ -1077,7 +1055,7 @@ void init() {
       <li>인접 행렬보다 인접 리스트 사용이 유리</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 재귀와 정렬</title><link href="https://nan0silver.github.io/algorithm/2024-07-11-day4/" rel="alternate" type="text/html" title="[Algorithm] 재귀와 정렬" /><published>2024-07-11T00:00:00+00:00</published><updated>2024-11-16T11:28:34+00:00</updated><id>https://nan0silver.github.io/algorithm/day4</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-11-day4/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 재귀와 정렬</title><link href="https://nan0silver.github.io/algorithm/2024-07-11-day4/" rel="alternate" type="text/html" title="[Algorithm] 재귀와 정렬" /><published>2024-07-11T00:00:00+00:00</published><updated>2024-11-16T16:15:08+00:00</updated><id>https://nan0silver.github.io/algorithm/day4</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-11-day4/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#재귀">재귀</a></li>
   <li><a href="#정렬">정렬</a></li>
@@ -1175,7 +1153,7 @@ void init() {
     </ul>
   </li>
   <li>코테에선 왠만하면 내장 sort함수를 사용</li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 4 (재귀와 정렬)]]></summary></entry><entry><title type="html">[Algorithm] 문자열</title><link href="https://nan0silver.github.io/algorithm/2024-07-10-day3/" rel="alternate" type="text/html" title="[Algorithm] 문자열" /><published>2024-07-10T00:00:00+00:00</published><updated>2024-11-16T11:28:34+00:00</updated><id>https://nan0silver.github.io/algorithm/day3</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-10-day3/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 4 (재귀와 정렬)]]></summary></entry><entry><title type="html">[Algorithm] 문자열</title><link href="https://nan0silver.github.io/algorithm/2024-07-10-day3/" rel="alternate" type="text/html" title="[Algorithm] 문자열" /><published>2024-07-10T00:00:00+00:00</published><updated>2024-11-16T16:15:08+00:00</updated><id>https://nan0silver.github.io/algorithm/day3</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-10-day3/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#코딩테스트에-자주-나오는-문자열">코딩테스트에 자주 나오는 문자열</a>
  1) <a href="#1-회문-palindrome">회문</a>
