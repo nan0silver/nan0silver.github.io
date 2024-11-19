@@ -2,6 +2,7 @@
   <div class="sidebar-about">
     {% if site.logo %}
       <a class="no-hover" href="{{ '/' | relative_url }}" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
         <img src="{% include_cached smart-url url=site.logo %}" class="avatar" alt="{{ site.short_title | default:site.title }}" width="120" height="120" loading="lazy" />
       </a>
     {% endif %}
