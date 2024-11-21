@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-11-21T08:27:40+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-11-21T12:05:02+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2024-11-21T08:26:54+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
+</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2024-11-21T12:04:19+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
 <ol>
   <li>
     <p><a href="#static-변수">static 변수</a></p>
@@ -53,27 +53,29 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>static 변수의 객체 독립성
         <ul>
           <li>static 변수가 클래스 자체에 속해 있기 때문에, 객체를 생성하지 않아도 해당 클래스 이름만으로 직접 접근 가능</li>
-          <li>
-            <p>예시
-  ```java
-      public class Example {
-          static int staticVar = 10; //static 변수 (클래스 변수)
-          int instanceVar = 20; //인스턴스 변수 (객체 변수)</p>
+          <li>예시
+            <ul>
+              <li>
+                <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+      <span class="kd">static</span> <span class="kt">int</span> <span class="n">staticVar</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">//static 변수 (클래스 변수)</span>
+      <span class="kt">int</span> <span class="n">instanceVar</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span> <span class="c1">//인스턴스 변수 (객체 변수)</span>
 
-            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      public static void main(String[] args) {
-          //static 변수는 클래스 이름으로 접근 가능
-          System.out.println("Static Variable: " + Example.staticVar); //출력: 10
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="c1">//static 변수는 클래스 이름으로 접근 가능</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Static Variable: "</span> <span class="o">+</span> <span class="nc">Example</span><span class="o">.</span><span class="na">staticVar</span><span class="o">);</span> <span class="c1">//출력: 10</span>
 
-          //객체를 생성하지 않아도 static 변수에 접근 가능
-          Example.staticVar = 30;
-          System.out.println("Static Variable: " +Example.staticVar); //출력: 30
+          <span class="c1">//객체를 생성하지 않아도 static 변수에 접근 가능</span>
+          <span class="nc">Example</span><span class="o">.</span><span class="na">staticVar</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Static Variable: "</span> <span class="o">+</span><span class="nc">Example</span><span class="o">.</span><span class="na">staticVar</span><span class="o">);</span> <span class="c1">//출력: 30</span>
 
-          //객체를 생성해야 인스턴스 변수에 접근 가능
-          Example obj1 = new Example();
-          System.out.println("Instance Variable: " + obj1.instanceVar); //출력: 20
-      }
-  }
-</code></pre></div>            </div>
+          <span class="c1">//객체를 생성해야 인스턴스 변수에 접근 가능</span>
+          <span class="nc">Example</span> <span class="n">obj1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Example</span><span class="o">();</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Instance Variable: "</span> <span class="o">+</span> <span class="n">obj1</span><span class="o">.</span><span class="na">instanceVar</span><span class="o">);</span> <span class="c1">//출력: 20</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>                </div>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>
@@ -192,16 +194,18 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   </li>
   <li>예제
     <ul>
-      <li>```java
-  public class Example {
-      public static void main(String[] args) {
-          int x = 1; // x는 main 메서드의 지역 변수
-          if (x &lt; 10) {
-              int y = 20; // y는 if 블록의 지역 변수
-          }
-          //y는 if블록 밖에서 사용할 수 없음
-          }
-  }</li>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// x는 main 메서드의 지역 변수</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">)</span> <span class="o">{</span>
+              <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span> <span class="c1">// y는 if 블록의 지역 변수</span>
+          <span class="o">}</span>
+          <span class="c1">//y는 if블록 밖에서 사용할 수 없음</span>
+          <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
     </ul>
   </li>
 </ul>
@@ -238,27 +242,27 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li>예제
     <ul>
       <li>
-        <p>```java
-  public class Example{
-      public static void main(String[] args) {
-          String str = “Hello”; //str은 String객체를 참조하는 레퍼런스 변수
-          System.out.println(str.length()); //참조된 객체의 메서드 호출 가능</p>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span><span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span> <span class="c1">//str은 String객체를 참조하는 레퍼런스 변수</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">());</span> <span class="c1">//참조된 객체의 메서드 호출 가능</span>
 
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      str = null; //str이 아무 객체도 참조하지 않음
-      //System.out.println(str.length()); //NullPointerException 발생
-  }   }
+          <span class="n">str</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">//str이 아무 객체도 참조하지 않음</span>
+          <span class="c1">//System.out.println(str.length()); //NullPointerException 발생</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
 </code></pre></div>        </div>
       </li>
       <li>
-        <p>```java
-  public class Example {
-      public static void main(String[] args) {
-          int[] numbers = {1,2,3};
-          int[] ref = numbers; //같은 객체 참조
-          ref[0] = 100; //참조를 통해 객체 수정
-          System.out.println(numbers[0]); //출력: 100
-      }
-  }</p>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">};</span>
+          <span class="kt">int</span><span class="o">[]</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">;</span> <span class="c1">//같은 객체 참조</span>
+          <span class="n">ref</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">//참조를 통해 객체 수정</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span> <span class="c1">//출력: 100</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
       </li>
     </ul>
   </li>
@@ -372,7 +376,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td>초기화되지 않은 경우 null 값을 가질 수 있음</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[TIL] 컴파일 언어와 인터프리터 언어</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 컴파일 언어와 인터프리터 언어" /><published>2024-11-08T00:00:00+00:00</published><updated>2024-11-21T08:26:54+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<h2 id="컴파일-언어-vs-인터프리터-언어">컴파일 언어 VS 인터프리터 언어</h2>
+</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[TIL] 컴파일 언어와 인터프리터 언어</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 컴파일 언어와 인터프리터 언어" /><published>2024-11-08T00:00:00+00:00</published><updated>2024-11-21T12:04:19+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<h2 id="컴파일-언어-vs-인터프리터-언어">컴파일 언어 VS 인터프리터 언어</h2>
 
 <ul>
   <li>
@@ -419,7 +423,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 11월 8일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[AWS] AWS 기초</title><link href="https://nan0silver.github.io/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-11-21T08:26:54+00:00</updated><id>https://nan0silver.github.io/aws/aws</id><content type="html" xml:base="https://nan0silver.github.io/aws/2024-09-02-aws/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 11월 8일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[AWS] AWS 기초</title><link href="https://nan0silver.github.io/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-11-21T12:04:19+00:00</updated><id>https://nan0silver.github.io/aws/aws</id><content type="html" xml:base="https://nan0silver.github.io/aws/2024-09-02-aws/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#aws란">AWS란?</a></li>
   <li><a href="#s3--cloudfront">S3 &amp; Cloudfront</a></li>
@@ -731,7 +735,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>람다는 실행할 때마다 ip가 바뀜, 문제가 될 수 있음</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="https://nan0silver.github.io/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+00:00</published><updated>2024-11-21T08:26:54+00:00</updated><id>https://nan0silver.github.io/java/stringbuilder</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="https://nan0silver.github.io/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+00:00</published><updated>2024-11-21T12:04:19+00:00</updated><id>https://nan0silver.github.io/java/stringbuilder</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#string">String</a></li>
   <li><a href="#stringbuilder">StringBuilder</a></li>
@@ -778,7 +782,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 서로소 집합과 유니온 파인드</title><link href="https://nan0silver.github.io/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Algorithm] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+00:00</published><updated>2024-11-21T08:26:54+00:00</updated><id>https://nan0silver.github.io/algorithm/day9</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 서로소 집합과 유니온 파인드</title><link href="https://nan0silver.github.io/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Algorithm] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+00:00</published><updated>2024-11-21T12:04:19+00:00</updated><id>https://nan0silver.github.io/algorithm/day9</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#서로소-집합">서로소 집합</a></li>
   <li><a href="#유니온-파인드">유니온 파인드</a>
@@ -894,7 +898,7 @@ void init() {
       <li>이러한 특서으로 루트 노드 찾을 수 있음</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9 (유니온 파인드)]]></summary></entry><entry><title type="html">[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)</title><link href="https://nan0silver.github.io/java/2024-07-17-day8/" rel="alternate" type="text/html" title="[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)" /><published>2024-07-17T00:00:00+00:00</published><updated>2024-11-21T08:26:54+00:00</updated><id>https://nan0silver.github.io/java/day8</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-07-17-day8/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9 (유니온 파인드)]]></summary></entry><entry><title type="html">[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)</title><link href="https://nan0silver.github.io/java/2024-07-17-day8/" rel="alternate" type="text/html" title="[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)" /><published>2024-07-17T00:00:00+00:00</published><updated>2024-11-21T12:04:19+00:00</updated><id>https://nan0silver.github.io/java/day8</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-07-17-day8/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#1-bufferdreader-inputstreamreader-systemin">BufferReader, InputStreamReader, System.in</a></li>
   <li><a href="#2-scanner">Scanner</a></li>
@@ -1005,7 +1009,7 @@ void init() {
       <li>token(공백)별로 사용자 입력값을 읽어들이는 예제</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 8]]></summary></entry><entry><title type="html">[Algorithm] 동적 계획법 (DP)</title><link href="https://nan0silver.github.io/algorithm/2024-07-16-day7/" rel="alternate" type="text/html" title="[Algorithm] 동적 계획법 (DP)" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-11-21T08:26:54+00:00</updated><id>https://nan0silver.github.io/algorithm/day7</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-16-day7/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 8]]></summary></entry><entry><title type="html">[Algorithm] 동적 계획법 (DP)</title><link href="https://nan0silver.github.io/algorithm/2024-07-16-day7/" rel="alternate" type="text/html" title="[Algorithm] 동적 계획법 (DP)" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-11-21T12:04:19+00:00</updated><id>https://nan0silver.github.io/algorithm/day7</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-16-day7/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#dynamic-programming-정의">Dynamic Programming 정의</a></li>
   <li><a href="#dp의-종류">DP의 종류</a></li>
@@ -1145,7 +1149,7 @@ void init() {
 <h3 id="dp-유의점">DP 유의점</h3>
 <ul>
   <li>복잡한 문제의 경우, 점화식을 직접 계산해서 구해야 한다.</li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 7 (동적 계획법)]]></summary></entry><entry><title type="html">[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2024-07-15-day6/" rel="alternate" type="text/html" title="[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘" /><published>2024-07-15T00:00:00+00:00</published><updated>2024-11-21T08:26:54+00:00</updated><id>https://nan0silver.github.io/algorithm/day6</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-15-day6/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 7 (동적 계획법)]]></summary></entry><entry><title type="html">[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2024-07-15-day6/" rel="alternate" type="text/html" title="[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘" /><published>2024-07-15T00:00:00+00:00</published><updated>2024-11-21T12:04:19+00:00</updated><id>https://nan0silver.github.io/algorithm/day6</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-15-day6/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#너비-우선-탐색-bfs">너비 우선 탐색 BFS</a></li>
   <li><a href="#다익스트라-dijkstra-알고리즘">다익스트라 Dijkstra 알고리즘</a></li>
@@ -1355,7 +1359,7 @@ void init() {
       </li>
     </ol>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 깊이 우선 탐색</title><link href="https://nan0silver.github.io/algorithm/2024-07-12-day5/" rel="alternate" type="text/html" title="[Algorithm] 깊이 우선 탐색" /><published>2024-07-12T00:00:00+00:00</published><updated>2024-11-21T08:26:54+00:00</updated><id>https://nan0silver.github.io/algorithm/day5</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-12-day5/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 깊이 우선 탐색</title><link href="https://nan0silver.github.io/algorithm/2024-07-12-day5/" rel="alternate" type="text/html" title="[Algorithm] 깊이 우선 탐색" /><published>2024-07-12T00:00:00+00:00</published><updated>2024-11-21T12:04:19+00:00</updated><id>https://nan0silver.github.io/algorithm/day5</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-12-day5/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#dfs란depth-first-search">DFS란?</a></li>
   <li><a href="#dfs-특징">DFS특징</a></li>
@@ -1426,7 +1430,7 @@ void init() {
       <li>인접 행렬보다 인접 리스트 사용이 유리</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 재귀와 정렬</title><link href="https://nan0silver.github.io/algorithm/2024-07-11-day4/" rel="alternate" type="text/html" title="[Algorithm] 재귀와 정렬" /><published>2024-07-11T00:00:00+00:00</published><updated>2024-11-21T08:26:54+00:00</updated><id>https://nan0silver.github.io/algorithm/day4</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-11-day4/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 재귀와 정렬</title><link href="https://nan0silver.github.io/algorithm/2024-07-11-day4/" rel="alternate" type="text/html" title="[Algorithm] 재귀와 정렬" /><published>2024-07-11T00:00:00+00:00</published><updated>2024-11-21T12:04:19+00:00</updated><id>https://nan0silver.github.io/algorithm/day4</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-11-day4/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#재귀">재귀</a></li>
   <li><a href="#정렬">정렬</a></li>
