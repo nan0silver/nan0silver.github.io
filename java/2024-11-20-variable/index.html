@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[AWS] AWS 기초 | NAHYUN BLOG</title>
+<title>[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[AWS] AWS 기초" />
+<meta property="og:title" content="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" />
 <meta name="author" content="Nahyun Eun" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="AWS의 기본 내용에 대해 알아본다." />
-<meta property="og:description" content="AWS의 기본 내용에 대해 알아본다." />
-<link rel="canonical" href="https://nan0silver.github.io/aws/2024-09-02-aws/" />
-<meta property="og:url" content="https://nan0silver.github.io/aws/2024-09-02-aws/" />
+<meta name="description" content="static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다." />
+<meta property="og:description" content="static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다." />
+<link rel="canonical" href="https://nan0silver.github.io/java/2024-11-20-variable/" />
+<meta property="og:url" content="https://nan0silver.github.io/java/2024-11-20-variable/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-09-02T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-11-20T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[AWS] AWS 기초" />
+<meta property="twitter:title" content="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2024-11-21T08:26:54+00:00","datePublished":"2024-09-02T00:00:00+00:00","description":"AWS의 기본 내용에 대해 알아본다.","headline":"[AWS] AWS 기초","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/aws/2024-09-02-aws/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.png"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/aws/2024-09-02-aws/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2024-11-21T08:26:54+00:00","datePublished":"2024-11-20T00:00:00+00:00","description":"static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.","headline":"[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2024-11-20-variable/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.png"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/java/2024-11-20-variable/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/aws/2024-09-02-aws/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/java/2024-11-20-variable/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/aws/">aws</a>
+          <a href="/java/">java</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2024-09-02-aws</span>
+          <span>2024-11-20-variable</span>
         
       </li>
     
@@ -222,18 +222,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-aws-aws" class="page post mb6" role="article">
+<article id="post-java-variable" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [AWS] AWS 기초
+        [JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2024-09-02T00:00:00+00:00">02 Sep 2024</time> in <a href="/aws/" class="flip-title">AWS</a> 
+        <time datetime="2024-11-20T00:00:00+00:00">20 Nov 2024</time> in <a href="/java/" class="flip-title">JAVA</a> 
       </span>
       
         
@@ -261,7 +261,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      AWS의 기본 내용에 대해 알아본다.
+      static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.
 
     </p>
   
@@ -272,317 +272,376 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   
     <p>목차</p>
 <ol>
-  <li><a href="#aws란">AWS란?</a></li>
-  <li><a href="#s3--cloudfront">S3 &amp; Cloudfront</a></li>
-  <li><a href="#aws-솔루션-실무-적용-사례">AWS 솔루션 실무 적용 사례</a></li>
-  <li><a href="#aws-클라우드-인프라의-구성-요소">AWS 클라우드 인프라의 구성 요소</a></li>
-  <li><a href="#aws-네트워크-구성-요소-설명-캠퍼스-예시로-이해하기">AWS 네트워크 구성 요소 설명: 캠퍼스 예시로 이해하기</a></li>
-  <li><a href="#aws-초기-설정-및-구성-시-주의점">AWS 초기 설정 및 구성 시 주의점</a></li>
+  <li>
+    <p><a href="#static-변수">static 변수</a></p>
+
+    <p>1-1. <a href="#method-area">Method Area</a></p>
+  </li>
+  <li>
+    <p><a href="#지역변수--레퍼런스-변수">지역변수 &amp; 레퍼런스 변수</a></p>
+
+    <p>2-1. <a href="#지역변수-local-variable">지역 변수</a></p>
+
+    <p>2-2. <a href="#레퍼런스-변수-reference-variable">레퍼런스 변수</a></p>
+  </li>
+  <li>
+    <p><a href="#java-변수-비교-static-지역-변수-레퍼런스-변수의-특징과-차이점">JAVA 변수들의 특징 및 차이점 요약</a></p>
+
+    <p>3-1. <a href="#static-변수와-지역-변수-비교">static 변수와 지역 변수 비교</a></p>
+
+    <p>3-2. <a href="#static-변수와-레퍼런스-변수-비교">static 변수와 레퍼런스 변수 비교</a></p>
+
+    <p>3-3. <a href="#지역-변수와-레퍼런스-변수-비교">지역 변수와 레퍼런스 변수 비교</a></p>
+  </li>
 </ol>
 
 <hr />
 
-<h2 id="aws에-대한-기초-내용">AWS에 대한 기초 내용</h2>
-
-<h3 id="aws란">AWS란?</h3>
+<h2 id="static-변수">static 변수</h2>
 <ul>
-  <li>Amazon Web Service</li>
-  <li>클라우드 컴퓨팅 플랫폼
+  <li>인스턴스가 아닌 클래스에 귀속</li>
+  <li>인스턴스가 여러 개 생성되도 static 변수는 딱 하나
     <ul>
-      <li>인터넷을 통해 IT리소스(서버, 스토리지, 데이터베이스, 네트워킹 등)를 제공하고 관리하는 서비스</li>
-      <li>특징
+      <li>클래스가 메모리에 로드될 때 한 번 생성됨</li>
+      <li>객체가 아닌 클래스 자체에 저장되기 때문에 모든 객체가 동일한 메모리 위치를 공유함</li>
+    </ul>
+  </li>
+  <li>특징
+    <ul>
+      <li>수명
+        <ul>
+          <li>클래스가 메모리에 로드될 때 생성되고, 프로그램이 종료될 때까지 유지됨</li>
+          <li>일반적인 지역변수와 달리 블록을 벗어나도 소멸되지 않음</li>
+        </ul>
+      </li>
+      <li>메모리 위치
+        <ul>
+          <li>static 변수는 Method Area에 저장됨</li>
+        </ul>
+      </li>
+      <li>static 변수의 객체 독립성
+        <ul>
+          <li>static 변수가 클래스 자체에 속해 있기 때문에, 객체를 생성하지 않아도 해당 클래스 이름만으로 직접 접근 가능</li>
+          <li>
+            <p>예시
+  ```java
+      public class Example {
+          static int staticVar = 10; //static 변수 (클래스 변수)
+          int instanceVar = 20; //인스턴스 변수 (객체 변수)</p>
+
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      public static void main(String[] args) {
+          //static 변수는 클래스 이름으로 접근 가능
+          System.out.println("Static Variable: " + Example.staticVar); //출력: 10
+
+          //객체를 생성하지 않아도 static 변수에 접근 가능
+          Example.staticVar = 30;
+          System.out.println("Static Variable: " +Example.staticVar); //출력: 30
+
+          //객체를 생성해야 인스턴스 변수에 접근 가능
+          Example obj1 = new Example();
+          System.out.println("Instance Variable: " + obj1.instanceVar); //출력: 20
+      }
+  }
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>static 변수 사용 시점
+    <ul>
+      <li>공유 데이터가 필요할 때
+        <ul>
+          <li>모든 객체에서 동일한 값 공유해아 할 때 사용</li>
+          <li>예: 총 객체 갯수, 공통 설정값 등</li>
+        </ul>
+      </li>
+      <li>객체와 무관하게 동작해야할 때
+        <ul>
+          <li>클래스 자체의 정보를 나타내거나, 객체 없이 사용 가능한 값을 저장할 때</li>
+          <li>예: 수학 상수 Math.PI, System.out.println()의 out도 static</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestClass</span><span class="o">{</span>
+      <span class="kd">static</span> <span class="kt">int</span> <span class="n">number</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span><span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="o">[]</span><span class="n">arg</span><span class="o">){</span>
+          <span class="nc">TestClass</span> <span class="n">class1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TestClass</span><span class="o">();</span>
+          <span class="nc">TestClass</span> <span class="n">class2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TestClass</span><span class="o">();</span>
+
+          <span class="n">class1</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+          <span class="n">class2</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"class1의 number: "</span> <span class="o">+</span> <span class="n">class1</span><span class="o">.</span><span class="na">number</span><span class="o">);</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"class2의 number: "</span> <span class="o">+</span> <span class="n">class2</span><span class="o">.</span><span class="na">number</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="c1">// class1의 number: 5</span>
+  <span class="c1">// class2의 number: 5</span>
+</code></pre></div>    </div>
+  </li>
+  <li>마지막에 number에 5가 저장되어있기 때문에 5가 두번 출력</li>
+</ul>
+
+<h3 id="method-area">Method Area</h3>
+<ul>
+  <li>JVM(Java Virtual Machine)의 메모리 구조 중 하나</li>
+  <li>클래스 수준의 정보를 저장하는 영역
+    <ul>
+      <li>저장되는 데이터 종류
         <ol>
-          <li>확장성 (Scalability)
+          <li>클래스 정보
             <ul>
-              <li>사용자가 필요에 따라 리소스를 쉽게 확장, 축소 가능</li>
-              <li>블랙 프라이데이에는 몇 배의 트래픽이 몰림. 이때마다 하드웨어를 사용하는건 비효율적, 이때만 자원을 사용하고 끝나면 반납할 수 있음</li>
+              <li>클래스의 이름, 부모 클래스, 접근 제어자 등의 메타데이터</li>
             </ul>
           </li>
-          <li>유연성 (Flexibility)
+          <li>클래스 변수 (static 변수)
             <ul>
-              <li>다양한 IT 환경에 맞춰 손쉽게 맞춤화 가능</li>
-              <li>자바스크립트로 백엔드 많이 사용</li>
+              <li>클래스가 로드될 때 메모리에 할당되며 모든 객체에서 공유됨</li>
             </ul>
           </li>
-          <li>비용 효율성 (Cost Efficiency)
+          <li>메서드 정보
             <ul>
-              <li>초기 자본 투자 없이, 사용한 만큼 지불하는 비용 구조</li>
+              <li>메서드의 이름, 리턴 타입, 매개변수 타입 등</li>
+              <li>메서드의 바이트코드 포함</li>
             </ul>
           </li>
-          <li>가용성
+          <li>상수 (Constant Pool)
             <ul>
-              <li>높은 가용성과 자동 백업, 복구 기능으로 서비스 중간 최소화</li>
-              <li>람다 서비스를 처음 띄울 때 서울 4개의 구역에 띄워놓을 수 있음. 한 개의 구역에 오류가 나도 다른 구역에서는 잘 쓸 수 있음.</li>
+              <li>컴파일 시 생성된 상수(문자열, 숫자 리터럴 등)와 참조(메서드 참조, 클래스 참조)가 저장됨</li>
+            </ul>
+          </li>
+          <li>런타임 상수 풀(Runtime Constant Pool)
+            <ul>
+              <li>런타임 중에 동적으로 생성된 상수와 참조.</li>
             </ul>
           </li>
         </ol>
       </li>
     </ul>
   </li>
-  <li>AWS 계정 만들어보기</li>
-  <li>AWS Cloud Practitioner Essentials (Korean)
+  <li>특징
     <ul>
-      <li>Cloud Practitioner 자격증 있음
-        <ul>
-          <li>공부하는 것 추천함 (따는건 비쌈)</li>
-        </ul>
-      </li>
+      <li>JVM내에서 유일 : 모든 스레드가 공유</li>
+      <li>수명 : JVM이 종료될 때까지 유지</li>
+      <li>Garbage Collection 대상 아님 : 클래스 정보는 명시적으로 제거되지 않음</li>
     </ul>
   </li>
-  <li>큰 회사에서는 AWS 자격증이 크게 상관없겠지만, 작은 회사에서는 AWS역량이 필수적</li>
 </ul>
 
-<h3 id="s3--cloudfront">S3 &amp; Cloudfront</h3>
+<h2 id="지역변수--레퍼런스-변수">지역변수 &amp; 레퍼런스 변수</h2>
+<h3 id="지역변수-local-variable">지역변수 (Local Variable)</h3>
 <ul>
-  <li>S3
+  <li>특정 블록이나 함수 안에서만 선언되고 사용가능한 변수</li>
+  <li>해당 블록이나 함수가 실행을 마치면 메모리에서 삭제되며, 외부에서 접근 불가능</li>
+  <li>특징
     <ul>
-      <li>Simple Storage Service</li>
-      <li>AWS 최초의 서비스</li>
-      <li>클라우드 파일 저장소</li>
-      <li>AWS 사용하고 있는 회사라면 99%의 확률로 활용하고 있음</li>
-      <li>S3는 서버사이트 스크립팅(PHP, Python등)이 필요없는 정적 웹사이트에 최적</li>
-      <li>기본 개념
+      <li>유효 범위 (Scope)
         <ul>
-          <li>버킷 (Bucket)
-            <ul>
-              <li>S3에서 데이터를 저장하는 컨테이너</li>
-              <li>모든 S3객체는 반드시 하나의 버킷에 속해 있음</li>
-              <li>S3 스토리지의 최상위 계층이며, 사용자가 데이터를 저장하고 관리할 수 있는 폴더와 비슷
-                <ul>
-                  <li>컴퓨터에서 C드라이브와 비슷한 느낌</li>
-                </ul>
-              </li>
-              <li>각 버킷은 고유한 이름을 가짐(전세걔 유일)</li>
-              <li>데이터 저장 위치(region), 권한 설정, 버전 관리, 수명 주기 정책 등 관리 가능</li>
-            </ul>
-          </li>
-          <li>Key
-            <ul>
-              <li>S3버킷 내 객체(파일)를 고유하게 식별하는 문자열</li>
-              <li>버킷 내 키는 객체의 “경로”로 생각 가능</li>
-              <li>디렉토리 구조를 흉내낼 수 있도록 설계됨
-                <ul>
-                  <li>그냥 전체가 하나의 키임</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
+          <li>변수가 선언된 블록(중괄호 {}로 감싸진 영역) 내에서만 유효</li>
         </ul>
       </li>
-      <li>사용 방법
+      <li>초기화 필요
         <ul>
-          <li>AWS Console</li>
-          <li>AWS Cli</li>
-          <li>FTP 프로그램
-            <ul>
-              <li>file transfer protocol</li>
-              <li>사이버덕, 파일질라</li>
-            </ul>
-          </li>
+          <li>지역변수는 자동으로 초기화 되지 않음</li>
+        </ul>
+      </li>
+      <li>메모리 관리
+        <ul>
+          <li>지역변수는 함수 호출시 생성되고, 함수 종료 시 자동으로 소멸됨</li>
+          <li>일반적으로 스택 메모리 사용</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>Cloudfront
+  <li>예제
     <ul>
-      <li>AWS CDN 서비스
-        <ul>
-          <li>Contents Delivery Network</li>
-          <li>인터넷 사용자에게 웹 콘텐츠를 빠르고 효율적으로 제공하기 위해 설계된 분산형 서버 네트워크</li>
-        </ul>
-      </li>
-      <li>S3를 비롯한 AWS의 다른 서비스와 연동이 쉬움</li>
-      <li>AWS를 사용하는 회사라면 99% 사용</li>
-      <li>S3는 저장에 특화, Cloudfront는 전송에 특화
-        <ul>
-          <li>S3는 직접 접근으로 주로 내부 사용자나 제한된 사용자들에게 제공을 많이함</li>
-          <li>하지만 Cloudfront는 CDN을 통해 접근하기때문에 속도도 빠르고 캐싱도 됨</li>
-        </ul>
-      </li>
-      <li>S3 1GB당 약 0.117$, Cloudfront 1GB당 0.095$</li>
-      <li>CloudFront는 약정 계약이 가능</li>
+      <li>```java
+  public class Example {
+      public static void main(String[] args) {
+          int x = 1; // x는 main 메서드의 지역 변수
+          if (x &lt; 10) {
+              int y = 20; // y는 if 블록의 지역 변수
+          }
+          //y는 if블록 밖에서 사용할 수 없음
+          }
+  }</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="aws-솔루션-실무-적용-사례">AWS 솔루션 실무 적용 사례</h3>
-
-<ol>
-  <li>이미지 리사이즈
-    <ul>
-      <li>대역폭 및 비용 감소할 수 있음</li>
-      <li>첫 번째 AWS 활용 포트폴리오
-        <ol>
-          <li>S3에 이미지가 업로드 되면 자동적으로 원하는 크기로 리사이징하여 저장하는 방법</li>
-          <li>원하는 사이즈의 이미지를 실시간으로 생성하는 방법
-            <ul>
-              <li>본인이 자신있는 프로그래밍 언어를 선택하여 AWS Lambda 기능을 활용해서 작성</li>
-              <li>‘aws cloudfront 이미지 리사이징’ 구글 검색</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ul>
-  </li>
-  <li>보안
-    <ul>
-      <li>민감정보 보호 방법
-        <ul>
-          <li>Signed URL
-            <ul>
-              <li>특정 사용자에게만 접근 권한을 부여하기 위해 URL에 만료 시간과 암호화된 서명을 포함한 URL</li>
-            </ul>
-          </li>
-          <li>Signed Cookie
-            <ul>
-              <li>특정 조건을 만족하는 사용자만 CloudFront를 통해 콘텐츠에 접근할 수 있도록 설정하는 보안 메커니즘</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<h3 id="aws-클라우드-인프라의-구성-요소">AWS 클라우드 인프라의 구성 요소</h3>
-<ol>
-  <li>EC2 (Elastic Compute Cloud)
-    <ul>
-      <li>개발자가 클라우드 컴퓨팅 작업을 할 수 있도록 설계된 서비스</li>
-      <li>가상화된 서버를 하나의 인스턴스 형태로 제공하며, 컴퓨팅 요구사항에 맞게 용량 조절 가능</li>
-    </ul>
-  </li>
-  <li>IDC
-    <ul>
-      <li>Internet Data Center</li>
-      <li>물리적 인프라를 제공하는 시설</li>
-    </ul>
-  </li>
-  <li>리전 (Region)
-    <ul>
-      <li>물리적으로 분리된 지리적 위치</li>
-      <li>각 리전은 여러 개의 데이터 센터(Availability Zone, AZ)로 구성되어 있음</li>
-      <li>리전 간 데이터 전송은 네트워크 지연 시간(latency)이 발생할 수 있음</li>
-      <li>각 리전은 법적, 규제 요구 사항을 충족하도록 설계됨</li>
-    </ul>
-  </li>
-  <li>Availability Zone
-    <ul>
-      <li>리전 내에서 독립적으로 운영되는 데이터 센터</li>
-      <li>각 AZ는 하나 이상의 데이터 센터로 구성되어 있음</li>
-      <li>VPC (가상 사설 네트워크)
-        <ul>
-          <li>Virtual Private Cloud</li>
-          <li>네트워크
-            <ul>
-              <li>2개 이상의 컴퓨터나 장치가 서로 데이터를 주고 받을 수 있도록 연결된 시스템</li>
-            </ul>
-          </li>
-          <li>사설
-            <ul>
-              <li>공개되지 않은, 외부와 분리되느 특정 사용자나 조직만 접근할 수 있는</li>
-            </ul>
-          </li>
-          <li>가상
-            <ul>
-              <li>물리적인 하드웨어 장비나 네트워크 인프라 없이, 소프트웨어를 통해 논리적으로 격리</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<h3 id="aws-네트워크-구성-요소-설명-캠퍼스-예시로-이해하기">AWS 네트워크 구성 요소 설명: 캠퍼스 예시로 이해하기</h3>
+<h3 id="레퍼런스-변수-reference-variable">레퍼런스 변수 (Reference Variable)</h3>
 <ul>
-  <li>퍼블릭 서브넷
+  <li>객체의 메모리 주소를 저장한는 변수, 즉 객체를 참조하는 데 사용됨</li>
+  <li>실제 객체 데이터를 직접 저장하지 않고 객체가 메모리에 위치한 주소만 저장</li>
+  <li>특징
     <ul>
-      <li>Public Subnet
+      <li>객체와 연결
         <ul>
-          <li>public : 인터넷과 직접 연결되어있다.</li>
-          <li>subnet : sub + network, 하나의 네트워크를 더 작은 단위의 네트워크로 (부분 집합)</li>
+          <li>레퍼런스 변수는 new키워드 등을 통해 생성된 객체를 가리킴</li>
         </ul>
       </li>
-      <li>중앙 운동장, 도서관, 기념품샵 등등</li>
-    </ul>
-  </li>
-  <li>프라이빗 서브넷
-    <ul>
-      <li>Private Subnet
+      <li>동적 메모리 사용
         <ul>
-          <li>인터넷과 직접 연결되어있지 않다.</li>
+          <li>레퍼런스 변수가 가리키는 객체는 힙(Heap)메모리에 저장됨</li>
         </ul>
       </li>
-      <li>교수 연구실, 실험실 (아무나 못들어가는)</li>
-    </ul>
-  </li>
-  <li>라우팅 / 라우팅 테이블
-    <ul>
-      <li>Routing Table
+      <li>null값 가능
         <ul>
-          <li>라우팅 : 경로, 네트워크 내에서 데이터가 이동할 경로를 결정</li>
+          <li>초기화되지 않은 레퍼런스 변수는 null값을 가질 수 있음</li>
+          <li>null값을 참조하려면 NullPointerException이 발생</li>
         </ul>
       </li>
-      <li>캠퍼스 내 길 / 길 안내 지도</li>
-    </ul>
-  </li>
-  <li>인터넷 게이트웨이
-    <ul>
-      <li>학교 정문</li>
-    </ul>
-  </li>
-  <li>NAT 게이트웨이
-    <ul>
-      <li>Network Address Translation
+      <li>두 레퍼런스 변수가 동일한 객체를 가리킬 수 있음
         <ul>
-          <li>Network Address : IP주소 (Internet Protocol)
-            <ul>
-              <li>네트워크 상에서 각 장치를 식별하기 위해 사용되는 고유한 숫자 주소</li>
-            </ul>
-          </li>
+          <li>한 레퍼런스 변수를 통해 객체를 수정하면 다른 레퍼런스 변수도 수정됨</li>
         </ul>
       </li>
-      <li>내부 네트워크의 사설 IP 주소를 공용 IP주소로 변환</li>
-      <li>경비실, 차량 차단기, 보안 검사대</li>
     </ul>
   </li>
-  <li>네트워크 ACL (Access Control List)
+  <li>예제
     <ul>
-      <li>전체 구역 통제 시스템</li>
-      <li>서브넷 단위</li>
-      <li>Stateless, 상태 비기반, 독립적인 제어
-        <ul>
-          <li>들어올 때도 검사하고 나갈때도 검사함</li>
-        </ul>
+      <li>
+        <p>```java
+  public class Example{
+      public static void main(String[] args) {
+          String str = “Hello”; //str은 String객체를 참조하는 레퍼런스 변수
+          System.out.println(str.length()); //참조된 객체의 메서드 호출 가능</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      str = null; //str이 아무 객체도 참조하지 않음
+      //System.out.println(str.length()); //NullPointerException 발생
+  }   }
+</code></pre></div>        </div>
       </li>
-      <li>우선순위가 있음</li>
-      <li>차단기의 정책, 비행기 탈 때와 비슷</li>
-    </ul>
-  </li>
-  <li>보안 그룹 (Security Group)
-    <ul>
-      <li>개별 사무실 출입 통제 시스템</li>
-      <li>기본적으로 모든 트래픽은 차단하며 허용 규칙만 있음</li>
-      <li>stateful, 상태 기반 (신분증 제출하고 출입증 받아가는 느낌)</li>
-    </ul>
-  </li>
-  <li>라우팅 테이블에 인터넷 게이트웨이랑 <strong>퍼블릭 서브넷</strong>이 연결
-    <ul>
-      <li>반대로 생각하면 퍼블릭 서브넷과 프라이빗 서브넷을 구분짓는 중요한 요소가 됨</li>
+      <li>
+        <p>```java
+  public class Example {
+      public static void main(String[] args) {
+          int[] numbers = {1,2,3};
+          int[] ref = numbers; //같은 객체 참조
+          ref[0] = 100; //참조를 통해 객체 수정
+          System.out.println(numbers[0]); //출력: 100
+      }
+  }</p>
+      </li>
     </ul>
   </li>
 </ul>
 
-<h3 id="aws-초기-설정-및-구성-시-주의점">AWS 초기 설정 및 구성 시 주의점</h3>
-<ul>
-  <li>AWS에서 처음으로 제공해주는 VPC는 가급적으로 사용하지 말자</li>
-  <li>람다를 private 서브에 올리고 nat를 사용하는 것을 추천
-    <ul>
-      <li>람다는 실행할 때마다 ip가 바뀜, 문제가 될 수 있음</li>
-    </ul>
-  </li>
-</ul>
+<h2 id="java-변수-비교-static-지역-변수-레퍼런스-변수의-특징과-차이점">Java 변수 비교: static, 지역 변수, 레퍼런스 변수의 특징과 차이점</h2>
+<h3 id="static-변수와-지역-변수-비교">static 변수와 지역 변수 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>특징</strong></th>
+      <th><strong>static 변수</strong></th>
+      <th><strong>지역 변수</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>범위(Scope)</strong></td>
+      <td>클래스 전체에서 접근 가능 (전역적)</td>
+      <td>선언된 블록(예: 함수) 내에서만 유효</td>
+    </tr>
+    <tr>
+      <td><strong>수명(Lifetime)</strong></td>
+      <td>프로그램 종료 시까지 유지</td>
+      <td>블록 실행이 끝나면 소멸</td>
+    </tr>
+    <tr>
+      <td><strong>공유</strong></td>
+      <td>모든 객체가 같은 값을 공유</td>
+      <td>각 함수 호출마다 독립적으로 생성</td>
+    </tr>
+    <tr>
+      <td><strong>메모리 위치</strong></td>
+      <td>메서드 영역(Method Area)</td>
+      <td>스택(Stack) 메모리</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="static-변수와-레퍼런스-변수-비교">static 변수와 레퍼런스 변수 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>특징</strong></th>
+      <th><strong>static 변수</strong></th>
+      <th><strong>레퍼런스 변수</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>저장 내용</strong></td>
+      <td>클래스 수준에서 공유되는 데이터</td>
+      <td>객체의 메모리 주소를 저장</td>
+    </tr>
+    <tr>
+      <td><strong>초기화 여부</strong></td>
+      <td>명시적 초기화가 없으면 기본값으로 초기화됨</td>
+      <td>초기화되지 않으면 null 값을 가짐</td>
+    </tr>
+    <tr>
+      <td><strong>수명</strong></td>
+      <td>클래스 로드부터 프로그램 종료까지 유지</td>
+      <td>변수의 유효 범위 내에서만 사용 가능</td>
+    </tr>
+    <tr>
+      <td><strong>클래스 의존성</strong></td>
+      <td>클래스와 연결 (객체와 무관)</td>
+      <td>객체를 가리킴 (객체가 없으면 의미 없음)</td>
+    </tr>
+    <tr>
+      <td><strong>메모리 위치</strong></td>
+      <td>메서드 영역(Method Area)</td>
+      <td>스택(지역 변수일 때) 또는 힙(객체를 참조할 때)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="지역-변수와-레퍼런스-변수-비교">지역 변수와 레퍼런스 변수 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>특징</strong></th>
+      <th><strong>지역 변수</strong></th>
+      <th><strong>레퍼런스 변수</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>저장 내용</strong></td>
+      <td>값 자체</td>
+      <td>객체의 메모리 주소</td>
+    </tr>
+    <tr>
+      <td><strong>유효 범위</strong></td>
+      <td>선언된 블록 내</td>
+      <td>객체가 참조되는 동안</td>
+    </tr>
+    <tr>
+      <td><strong>메모리 위치</strong></td>
+      <td>스택 메모리</td>
+      <td>힙 메모리에 저장된 객체를 참조</td>
+    </tr>
+    <tr>
+      <td><strong>초기화 필요성</strong></td>
+      <td>명시적 초기화 필요</td>
+      <td>초기화되지 않은 경우 null 값을 가질 수 있음</td>
+    </tr>
+  </tbody>
+</table>
 
   
 </article>
@@ -723,7 +782,7 @@ Dept. of IT Engineering, Sookmyung Women’s University, Seoul, South Korea <br 
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/java/2024-11-20-variable/" class="flip-title"><span>[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</span></a>  <time class="faded fine" datetime="2024-11-20T00:00:00+00:00">20 Nov 2024</time></li>                        <li class="h4">  <a href="/devdiary/2024-11-08-til/" class="flip-title"><span>[TIL] 컴파일 언어와 인터프리터 언어</span></a>  <time class="faded fine" datetime="2024-11-08T00:00:00+00:00">08 Nov 2024</time></li>                        <li class="h4">  <a href="/java/2024-08-29-stringbuilder/" class="flip-title"><span>[JAVA] StringBuilder</span></a>  <time class="faded fine" datetime="2024-08-29T00:00:00+00:00">29 Aug 2024</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/devdiary/2024-11-08-til/" class="flip-title"><span>[TIL] 컴파일 언어와 인터프리터 언어</span></a>  <time class="faded fine" datetime="2024-11-08T00:00:00+00:00">08 Nov 2024</time></li>                        <li class="h4">  <a href="/aws/2024-09-02-aws/" class="flip-title"><span>[AWS] AWS 기초</span></a>  <time class="faded fine" datetime="2024-09-02T00:00:00+00:00">02 Sep 2024</time></li>                        <li class="h4">  <a href="/java/2024-08-29-stringbuilder/" class="flip-title"><span>[JAVA] StringBuilder</span></a>  <time class="faded fine" datetime="2024-08-29T00:00:00+00:00">29 Aug 2024</time></li>            </ul></aside>
 
   
 
