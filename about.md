@@ -12,6 +12,23 @@ redirect_from:
 
 <!--author-->
 
+<h3>🩷Introduction🩷</h3>
+
+Hello! I'm Nahyun Eun, a student from South Korea focusing on backend development with Java. <br>
+This blog is a space where I organize and share my learning journey in software development. <br>
+Here, you'll find insights, notes, and practical examples from my studies in backend programming, covering key concepts and real-world applications. <br>
+Whether you're interested in Java, backend frameworks, or general programming tips, <br>
+I hope this blog offers valuable resources and inspiration. <br>
+Join me as I explore the world of coding and software engineering!<br><br>
+
+<span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> 
+Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
+(2022.09 ~ 2025.02) <br>
+<span style="background-color:#FFDDFF">B.S. in IT Engineering)</span> 
+Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
+(2018.03 ~ 2022.08) <br><br>
+
+
 <h3>🔹Vita🔹</h3>
 
 2022.04 ~ 2024.12	　숙명여자대학교 인공지능공학부 Python, OS 강의 조교 <br>
