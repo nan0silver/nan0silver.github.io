@@ -21,10 +21,15 @@ Whether you're interested in Java, backend frameworks, or general programming ti
 I hope this blog offers valuable resources and inspiration. <br>
 Join me as I explore the world of coding and software engineering!<br><br>
 
-<span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> 
+안녕하세요👋 백엔드 개발자를 꿈꾸며 공부하고 있는 은나현입니다.
+저는 java를 이용한 백엔드 개발과 모바일 앱을 관련해서 공부하고 있습니다.
+AI와 Bitcoin에도 관심이 많으며 여러 분야로 공부하고 있습니다.
+블로그에 와주셔서 감사합니다🤗<br>
+
+<span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> <br>
 Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 (2022.09 ~ 2025.02) <br>
-<span style="background-color:#FFDDFF">B.S. in IT Engineering)</span> 
+<span style="background-color:#FFDDFF">B.S. in IT Engineering)</span> <br>
 Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 (2018.03 ~ 2022.08) <br><br>
 
