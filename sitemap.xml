@@ -4,6 +4,19 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>https://nan0silver.github.io/devdiary/2024-12-02-til/</loc>
+        
+        <lastmod>2024-12-02T00:00:00+00:00</lastmod>
+        
+        
+        <changefreq>weekly</changefreq>
+        
+        
+        <priority>0.5</priority>
+        
+    </url>
+    
+    <url>
         <loc>https://nan0silver.github.io/java/2024-11-20-variable/</loc>
         
         <lastmod>2024-11-20T00:00:00+00:00</lastmod>
