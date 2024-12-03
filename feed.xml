@@ -1,7 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-12-02T08:42:57+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-12-03T06:28:06+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[TIL] 스프링 콘셉트</title><link href="https://nan0silver.github.io/devdiary/2024-12-02-til/" rel="alternate" type="text/html" title="[TIL] 스프링 콘셉트" /><published>2024-12-02T00:00:00+00:00</published><updated>2024-12-02T08:42:10+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-02-til/"><![CDATA[<h2 id="스프링-콘셉트">스프링 콘셉트</h2>
+</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[TIL] 스프링 속 맵핑 (Mapping)</title><link href="https://nan0silver.github.io/devdiary/2024-12-03-til/" rel="alternate" type="text/html" title="[TIL] 스프링 속 맵핑 (Mapping)" /><published>2024-12-03T00:00:00+00:00</published><updated>2024-12-03T06:27:25+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-03-til/"><![CDATA[<h2 id="맵핑-mapping">맵핑 (Mapping)</h2>
+
+<ul>
+  <li>Mapping
+    <ul>
+      <li>클라이언트로 부터 요청이 들어오는 URL과 컨트롤러 메서드를 연결하는 작업</li>
+      <li>Mapping 애너테이션을 사용해 클라이언트의 요청이 URL로 들어올 때 해당 URL에 맞는 컨트롤러가 있는지 확인하고 해당 컨트롤러를 매핑하여 요청을 처리</li>
+    </ul>
+  </li>
+  <li>@RequestMapping
+    <ul>
+      <li>클라이언트가 특정 URL로 요청을 보낼 때, 이 요청을 처리할 컨트롤러 메서드를 정의하는 것</li>
+      <li>Get, Post, Put, Delete, Patch등의 URL을 다 포함하고 있으며, 옵션을 통해 종류를 지정할 수 있음
+        <ul>
+          <li>
+            <p>```java
+  @Controller
+  public class ProductController {
+      @RequestMapping(“/products”, method = RequestMethod.GET)
+      public String listProducts() {
+          return “product-list”;
+      }</p>
+
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  @RequestMapping("/products", method = RequestMethod.POST)
+  public String addProducts() {
+      return "product-added";
+  }   }
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>HTTP 메서드에 특화된 매핑
+    <ul>
+      <li>@GetMapping
+        <ul>
+          <li>GET 요청만 받는 애노테이션</li>
+          <li>@RequestMapping(method = RequestMethod.GET)</li>
+        </ul>
+      </li>
+      <li>@PostMapping
+        <ul>
+          <li>POST 요청만 받는 애노테이션</li>
+          <li>@RequestMapping(method = RequestMethod.POST)</li>
+        </ul>
+      </li>
+      <li>@PutMapping
+        <ul>
+          <li>PUT 요청만 받는 애노테이션</li>
+          <li>@RequestMapping(method = RequestMethod.PUT)</li>
+        </ul>
+      </li>
+      <li>@DeleteMapping
+        <ul>
+          <li>DELETE 요청만 받는 애노테이션</li>
+          <li>@RequestMapping(method = RequestMethod.DELETE)</li>
+        </ul>
+      </li>
+      <li>@PatchtMapping
+        <ul>
+          <li>PATCT 요청만 받는 애노테이션</li>
+          <li>@RequestMapping(method = RequestMethod.PATCH)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 3일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[TIL] 스프링 콘셉트</title><link href="https://nan0silver.github.io/devdiary/2024-12-02-til/" rel="alternate" type="text/html" title="[TIL] 스프링 콘셉트" /><published>2024-12-02T00:00:00+00:00</published><updated>2024-12-03T06:27:25+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-02-til/"><![CDATA[<h2 id="스프링-콘셉트">스프링 콘셉트</h2>
 <ul>
   <li>IoC
     <ul>
@@ -66,7 +133,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 2일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2024-12-02T08:42:10+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 2일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2024-12-03T06:27:25+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
 <ol>
   <li>
     <p><a href="#static-변수">static 변수</a></p>
@@ -441,7 +508,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td>초기화되지 않은 경우 null 값을 가질 수 있음</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[TIL] 컴파일 언어와 인터프리터 언어</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 컴파일 언어와 인터프리터 언어" /><published>2024-11-08T00:00:00+00:00</published><updated>2024-12-02T08:42:10+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<h2 id="컴파일-언어-vs-인터프리터-언어">컴파일 언어 VS 인터프리터 언어</h2>
+</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[TIL] 컴파일 언어와 인터프리터 언어</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 컴파일 언어와 인터프리터 언어" /><published>2024-11-08T00:00:00+00:00</published><updated>2024-12-03T06:27:25+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<h2 id="컴파일-언어-vs-인터프리터-언어">컴파일 언어 VS 인터프리터 언어</h2>
 
 <ul>
   <li>
@@ -488,7 +555,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 11월 8일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[AWS] AWS 기초</title><link href="https://nan0silver.github.io/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-12-02T08:42:10+00:00</updated><id>https://nan0silver.github.io/aws/aws</id><content type="html" xml:base="https://nan0silver.github.io/aws/2024-09-02-aws/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 11월 8일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[AWS] AWS 기초</title><link href="https://nan0silver.github.io/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-12-03T06:27:25+00:00</updated><id>https://nan0silver.github.io/aws/aws</id><content type="html" xml:base="https://nan0silver.github.io/aws/2024-09-02-aws/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#aws란">AWS란?</a></li>
   <li><a href="#s3--cloudfront">S3 &amp; Cloudfront</a></li>
@@ -800,7 +867,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>람다는 실행할 때마다 ip가 바뀜, 문제가 될 수 있음</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="https://nan0silver.github.io/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+00:00</published><updated>2024-12-02T08:42:10+00:00</updated><id>https://nan0silver.github.io/java/stringbuilder</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="https://nan0silver.github.io/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+00:00</published><updated>2024-12-03T06:27:25+00:00</updated><id>https://nan0silver.github.io/java/stringbuilder</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#string">String</a></li>
   <li><a href="#stringbuilder">StringBuilder</a></li>
@@ -847,7 +914,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 서로소 집합과 유니온 파인드</title><link href="https://nan0silver.github.io/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Algorithm] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+00:00</published><updated>2024-12-02T08:42:10+00:00</updated><id>https://nan0silver.github.io/algorithm/day9</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 서로소 집합과 유니온 파인드</title><link href="https://nan0silver.github.io/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Algorithm] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+00:00</published><updated>2024-12-03T06:27:25+00:00</updated><id>https://nan0silver.github.io/algorithm/day9</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#서로소-집합">서로소 집합</a></li>
   <li><a href="#유니온-파인드">유니온 파인드</a>
@@ -963,7 +1030,7 @@ void init() {
       <li>이러한 특서으로 루트 노드 찾을 수 있음</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9 (유니온 파인드)]]></summary></entry><entry><title type="html">[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)</title><link href="https://nan0silver.github.io/java/2024-07-17-day8/" rel="alternate" type="text/html" title="[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)" /><published>2024-07-17T00:00:00+00:00</published><updated>2024-12-02T08:42:10+00:00</updated><id>https://nan0silver.github.io/java/day8</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-07-17-day8/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9 (유니온 파인드)]]></summary></entry><entry><title type="html">[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)</title><link href="https://nan0silver.github.io/java/2024-07-17-day8/" rel="alternate" type="text/html" title="[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)" /><published>2024-07-17T00:00:00+00:00</published><updated>2024-12-03T06:27:25+00:00</updated><id>https://nan0silver.github.io/java/day8</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-07-17-day8/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#1-bufferdreader-inputstreamreader-systemin">BufferReader, InputStreamReader, System.in</a></li>
   <li><a href="#2-scanner">Scanner</a></li>
@@ -1074,7 +1141,7 @@ void init() {
       <li>token(공백)별로 사용자 입력값을 읽어들이는 예제</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 8]]></summary></entry><entry><title type="html">[Algorithm] 동적 계획법 (DP)</title><link href="https://nan0silver.github.io/algorithm/2024-07-16-day7/" rel="alternate" type="text/html" title="[Algorithm] 동적 계획법 (DP)" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-12-02T08:42:10+00:00</updated><id>https://nan0silver.github.io/algorithm/day7</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-16-day7/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 8]]></summary></entry><entry><title type="html">[Algorithm] 동적 계획법 (DP)</title><link href="https://nan0silver.github.io/algorithm/2024-07-16-day7/" rel="alternate" type="text/html" title="[Algorithm] 동적 계획법 (DP)" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-12-03T06:27:25+00:00</updated><id>https://nan0silver.github.io/algorithm/day7</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-16-day7/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#dynamic-programming-정의">Dynamic Programming 정의</a></li>
   <li><a href="#dp의-종류">DP의 종류</a></li>
@@ -1214,7 +1281,7 @@ void init() {
 <h3 id="dp-유의점">DP 유의점</h3>
 <ul>
   <li>복잡한 문제의 경우, 점화식을 직접 계산해서 구해야 한다.</li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 7 (동적 계획법)]]></summary></entry><entry><title type="html">[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2024-07-15-day6/" rel="alternate" type="text/html" title="[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘" /><published>2024-07-15T00:00:00+00:00</published><updated>2024-12-02T08:42:10+00:00</updated><id>https://nan0silver.github.io/algorithm/day6</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-15-day6/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 7 (동적 계획법)]]></summary></entry><entry><title type="html">[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2024-07-15-day6/" rel="alternate" type="text/html" title="[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘" /><published>2024-07-15T00:00:00+00:00</published><updated>2024-12-03T06:27:25+00:00</updated><id>https://nan0silver.github.io/algorithm/day6</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-15-day6/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#너비-우선-탐색-bfs">너비 우선 탐색 BFS</a></li>
   <li><a href="#다익스트라-dijkstra-알고리즘">다익스트라 Dijkstra 알고리즘</a></li>
@@ -1424,75 +1491,4 @@ void init() {
       </li>
     </ol>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 깊이 우선 탐색</title><link href="https://nan0silver.github.io/algorithm/2024-07-12-day5/" rel="alternate" type="text/html" title="[Algorithm] 깊이 우선 탐색" /><published>2024-07-12T00:00:00+00:00</published><updated>2024-12-02T08:42:10+00:00</updated><id>https://nan0silver.github.io/algorithm/day5</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-12-day5/"><![CDATA[<p>목차</p>
-<ol>
-  <li><a href="#dfs란depth-first-search">DFS란?</a></li>
-  <li><a href="#dfs-특징">DFS특징</a></li>
-  <li><a href="#dfs-시간-복잡도">DFS 시간 복잡도</a></li>
-</ol>
-
-<hr />
-
-<h2 id="깊이-우선-탐색-dfs">깊이 우선 탐색 (DFS)</h2>
-
-<h3 id="dfs란depth-first-search">DFS란?(Depth First Search)</h3>
-<ul>
-  <li>특정 정점(노드)에서 시작해서 트리나 그래프에서 한 가지 경로를 최대한 깊게 탐색하고, 해당 경로를 끝까지 탐색한 후 다른 경로로 이동</li>
-  <li>미로를 탐색할 때 한 방향으로 갈 수 있을 때까지 계속 가다가, 더 이상 갈 수 없게 되면 다시 가장 가까운 갈림길로 돌아와서 다른 방향으로 다시 탐색을 진행하는 방법과 유사</li>
-  <li>모든 정점을 방문하고자 하는 경우에 사용</li>
-</ul>
-
-<h3 id="dfs-특징">DFS 특징</h3>
-<ul>
-  <li>일반적으로 재귀 함수 사용
-    <ul>
-      <li>Stack으로도 구현 가능</li>
-    </ul>
-  </li>
-  <li>모든 경우의 수에 대해 탐색을 진행</li>
-  <li>사이클이 있는 경우, 무한 루프에 빠지지 않도록 방문 체크 해줘야함</li>
-  <li>BFS보다 깊은 경로를 빠르게 찾는데 용이</li>
-  <li>진행 순서
-    <ul>
-      <li><img src="/algorithm/image/day5_image.png" alt="Full-width image" /></li>
-    </ul>
-  </li>
-  <li>구현
-    <ul>
-      <li>
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  함수 DFS(now):
-      현재 노드를 방문한 것으로 표시
-      현재 노드를 출력
-
-      모든 이웃노드 'next'에 대해서 반복:
-          만약 'next'를 아직 방문하지 않았다면:
-              DFS(next)
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="dfs-시간-복잡도">DFS 시간 복잡도</h3>
-<ul>
-  <li>V : 정점(노드)의 수, E : 간선의 수</li>
-  <li>인접 리스트로 표현된 그래프
-    <ul>
-      <li>O(V+E)</li>
-      <li><img src="/algorithm/image/day5_image-1.png" alt="Full-width image" /></li>
-    </ul>
-  </li>
-  <li>인접 행렬로 표현된 그래프
-    <ul>
-      <li>O(V^2)</li>
-      <li><img src="/algorithm/image/day5_image-2.png" alt="Full-width image" /></li>
-    </ul>
-  </li>
-  <li>희소 그래프
-    <ul>
-      <li>Sparse Graph</li>
-      <li>그래프 내에 적은 숫자의 간선만을 가지는 그래프</li>
-      <li>인접 행렬보다 인접 리스트 사용이 유리</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)]]></summary></entry></feed>
