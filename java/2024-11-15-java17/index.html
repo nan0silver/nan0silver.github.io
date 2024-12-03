@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[JAVA] JAVA version 17의 주요 변화" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2024-12-03T07:15:41+00:00","datePublished":"2024-11-15T00:00:00+00:00","description":"JAVA 17버전의 주요 변화 사항을 알아본다.","headline":"[JAVA] JAVA version 17의 주요 변화","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2024-11-15-java17/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/java/2024-11-15-java17/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2024-12-03T07:18:42+00:00","datePublished":"2024-11-15T00:00:00+00:00","description":"JAVA 17버전의 주요 변화 사항을 알아본다.","headline":"[JAVA] JAVA version 17의 주요 변화","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2024-11-15-java17/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/java/2024-11-15-java17/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2024-12-03T07:16:21+00:00',
+    INDEX_KEY: 'index--2024-12-03T07:19:26+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 03 Dec 2024">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2024-12-03T07:15:41+00:00">2024-12-03</time>
+              <time datetime="2024-12-03T07:18:42+00:00">2024-12-03</time>
             </span>
           
         
@@ -272,8 +272,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   
     <p>목차</p>
 <ol>
-  <li><a href="#string">String</a></li>
-  <li><a href="#stringbuilder">StringBuilder</a></li>
+  <li><a href="#텍스트-블록">텍스트 블록</a></li>
+  <li><a href="#formatted-메서드">formatted() 메서드</a></li>
+  <li><a href="#레코드">레코드</a></li>
+  <li><a href="#패턴-매칭">패턴 매칭</a></li>
+  <li><a href="#자료형에-맞는-case-처리">case문 개선</a></li>
 </ol>
 
 <hr />
@@ -346,16 +349,20 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <ul>
   <li>switch-case문에서 자료형에 맞게 case 처리 가능</li>
   <li>예시
-  <code class="language-plaintext highlighter-rouge">java
-      static double getIntegerValue(Object object) {
-          return switch (object) {
-              case Double d -&gt; d.intValue();
-              case Float f -&gt; f.intValue();
-              case String s -&gt; Integer.parseInt(s);
-              default -&gt; 0d;
-          };
-      }
-     </code></li>
+    <ul>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">static</span> <span class="kt">double</span> <span class="nf">getIntegerValue</span><span class="o">(</span><span class="nc">Object</span> <span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">case</span> <span class="nc">Double</span> <span class="n">d</span> <span class="o">-&gt;</span> <span class="n">d</span><span class="o">.</span><span class="na">intValue</span><span class="o">();</span>
+          <span class="k">case</span> <span class="nc">Float</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">.</span><span class="na">intValue</span><span class="o">();</span>
+          <span class="k">case</span> <span class="nc">String</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+          <span class="k">default</span> <span class="o">-&gt;</span> <span class="mi">0</span><span class="n">d</span><span class="o">;</span>
+      <span class="o">};</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
 </ul>
 
   
