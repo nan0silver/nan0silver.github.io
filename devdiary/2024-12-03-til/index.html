@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[TIL] 스프링 속 맵핑 (Mapping)" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2024-12-03T07:05:53+00:00","datePublished":"2024-12-03T00:00:00+00:00","description":"2024년 12월 3일 하루 공부 내용 정리","headline":"[TIL] 스프링 속 맵핑 (Mapping)","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/devdiary/2024-12-03-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/devdiary/2024-12-03-til/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2024-12-03T07:07:33+00:00","datePublished":"2024-12-03T00:00:00+00:00","description":"2024년 12월 3일 하루 공부 내용 정리","headline":"[TIL] 스프링 속 맵핑 (Mapping)","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/devdiary/2024-12-03-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/devdiary/2024-12-03-til/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2024-12-03T07:06:37+00:00',
+    INDEX_KEY: 'index--2024-12-03T07:08:16+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -277,18 +277,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>Get, Post, Put, Delete, Patch등의 URL을 다 포함하고 있으며, 옵션을 통해 종류를 지정할 수 있음
         <ul>
           <li>
-            <p>```java
-  @Controller
-  public class ProductController {
-      @RequestMapping(“/products”, method = RequestMethod.GET)
-      public String listProducts() {
-          return “product-list”;
-      }</p>
+            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nd">@Controller</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProductController</span> <span class="o">{</span>
+      <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/products"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">listProducts</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="s">"product-list"</span><span class="o">;</span>
+      <span class="o">}</span>
 
-            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  @RequestMapping("/products", method = RequestMethod.POST)
-  public String addProducts() {
-      return "product-added";
-  }   }
+      <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/products"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
+      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">addProducts</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="s">"product-added"</span><span class="o">;</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
 </code></pre></div>            </div>
           </li>
         </ul>
