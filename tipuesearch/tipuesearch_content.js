@@ -14,6 +14,11 @@ var tipuesearch = {"pages": [{
     "tags": "java",
     "url": "/java/2024-11-20-variable/"
   },{
+    "title": "[JAVA] JAVA version 17의 주요 변화",
+    "text": "목차 String StringBuilder 텍스트 블록 이전 버전에서는 여러 줄의 텍스트를 작성할때 \\n을 추가해야해서 가독성이 좋지 않은 부분이 개선되었다. 예시 String example11 = \"SELETE * FROM \\\"product\\\"\\n\" + \"WHERE \\\"country\\\" = \\\"KOREA\\\"\\n\" + \"ORDER BY \\\"name\\\";\\n\"; String example17 = \"\"\" SELECT * FROM \"product\" WHERE \"country\" = \"KOREA\" ORDER BY \"name; \"\"\"; //가독성이 훨씬 좋아졌다 formatted() 메서드 값을 파싱하는 데 더 편하게 해주는 formatted() 메서드 제공 예시 String example17 = \"\"\" { \"id\": %d, \"name\": %s } \"\"\".formatted(1, \"nahyun\"); 레코드 데이터 전달을 위한 객체를 더 빠르고 간편하게 만들기 위한 기능 getter를 자동으로 만들어 주기 때문에 애너테이션이나 메서드로 게터를 정의하지 않아도 됨 예시 record Item(String name, int price) { //파라미터가 private final로 정의된다 } Item product1 = new Item(\"product1\", 2500); product1.price(); //2500 패턴 매칭 타입 확인을 위해 사용하던 instanceof 키워드를 개선 이전에는 instanceof 키워드와 형변환 코드를 조합해야 했지만 이제는 바로 형변환 가능 자료형에 맞는 case 처리 switch-case문에서 자료형에 맞게 case 처리 가능 예시 java static double getIntegerValue(Object object) { return switch (object) { case Double d -&gt; d.intValue(); case Float f -&gt; f.intValue(); case String s -&gt; Integer.parseInt(s); default -&gt; 0d; }; }",
+    "tags": "java",
+    "url": "/java/2024-11-15-java17/"
+  },{
     "title": "[TIL] 컴파일 언어와 인터프리터 언어",
     "text": "컴파일 언어 VS 인터프리터 언어 항상 접할때마다 헷갈려서 정리하기로 했다. 컴파일 언어 한번에 통째 번역 컴파일 타임 사용 코드를 기계어로 바꾸는 시간 이 과정을 거쳐 소스코드는 기계어가 되어 실행가능한 상태가 됨 대표적인 예 C, C++, 러스트, JAVA, Go 인터프리터 언어보다 20~100배 이상 빠름 개발 편의성이 떨어져 개발 과정이 힘듬 인터프리터 언어 스크립트 언어 번역과 실행이 동시에 이루어짐 별도의 실행파일이 필요하지 않고, 빌드 시간이 없음 런타임 사용 프로그램을 실행할 때 한 줄씩 읽고 해석한 뒤 실행 모두 실행하는 속도는 컴파일 언어보다 느림 대표적인 예 Python, Ruby python은 C++로 만들어져 있음 컴파일 언어는 빠르지만 개발 편의성이 떨어져 인터프리터 언어를 만드는데 사용되기도 함",
     "tags": "devdiary",
