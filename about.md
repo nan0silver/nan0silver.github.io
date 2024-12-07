@@ -21,14 +21,15 @@ Whether you're interested in Java, backend frameworks, or general programming ti
 I hope this blog offers valuable resources and inspiration. <br>
 Join me as I explore the world of coding and software engineering!<br>
 
-안녕하세요👋 백엔드 개발자를 꿈꾸며 공부하고 있는 은나현입니다.
-저는 java를 이용한 백엔드 개발과 모바일 앱을 관련해서 공부하고 있습니다.
-AI와 Bitcoin에도 관심이 많으며 여러 분야로 공부하고 있습니다.
+안녕하세요👋 <br>
+저는 백엔드 개발자를 꿈꾸며 공부하고 있는 은나현입니다.<br>
+JAVA와 PYTHON를 이용한 백엔드 개발과 모바일 앱을 관련해서 공부하고 있습니다.<br>
+AI와 Bitcoin에도 관심이 많으며 여러 분야로 공부하고 있습니다.<br>
 블로그에 와주셔서 감사합니다🤗<br><br>
 
 <span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> <br>
 Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
-(2022.09 ~ 2025.02) <br>
+(2022.09 ~ 2025.02) <br><br>
 <span style="background-color:#FFDDFF">B.S. in IT Engineering)</span> <br>
 Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 (2018.03 ~ 2022.08) <br><br>
@@ -50,27 +51,27 @@ Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 
 <h4>2024.02.	</h4>
 Nahyun Eun, Jongwoo Lee<br>
-<strong>"DiagramVoice: Automatic Lecture Video Commentator for Visually Impaired Students Supporting Diagram Commentary "</strong>[Link](https://doi.org/10.1007/978-981-97-3559-4_31)<br>
+<strong>"DiagramVoice: Automatic Lecture Video Commentator for Visually Impaired Students Supporting Diagram Commentary "</strong> [Link](https://doi.org/10.1007/978-981-97-3559-4_31)<br>
 <span style="background-color:#DDDDDD">In Proceedings of Ninth International Congress on Information and Communication Technology. ICICT 2024. (SCOPUS)</span><br>
 논문 출판 및 국제 학술 대회 Oral 발표<br>
 
 <h4>2023.02.	</h4>
 Nahyun Eun, Jongwoo Lee<br>
-<strong>"Design of Automatic Online Lecture Video Commentator for Visually impaired students supporting Diagram Commentary"</strong>[Link](https://doi.org/10.1007/978-981-99-8612-5_40)<br>
+<strong>"Design of Automatic Online Lecture Video Commentator for Visually impaired students supporting Diagram Commentary"</strong> [Link](https://doi.org/10.1007/978-981-99-8612-5_40)<br>
 <span style="background-color:#DDDDDD">In Proceedings of Information Systems for Intelligent Systems. ISBM 2023. Smart Innovation, Systems and Technologies, vol 379. Springer, Singapore. (SCOPUS)</span><br>
 논문 출판 및 국제 학술 대회 Oral 발표<br>
 
 <h4>2022.10.	</h4>
 Nahyun Eun, Soobin Ou, Mijin Kim, Chaewon Yoo, Jongwoo Lee<br>
-<strong>"Speech-Recognizing KIOSK Mobile Application for the Visually Impaired"</strong>[Link](https://doi.org/10.1145/3572549.3572641)<br>
+<strong>"Speech-Recognizing KIOSK Mobile Application for the Visually Impaired"</strong> [Link](https://doi.org/10.1145/3572549.3572641)<br>
 <span style="background-color:#DDDDDD">In Proceedings of the 14th International Conference on Education Technology and Computers (ICETC 2022, Barcelona)
 ACM International Conference Proceedings Series (SCOPUS)</span><br>
 논문 출판 및 국제 학술 대회 Poster 발표<br>
 
 <h4>2022.06.	</h4>
 은나현, 이종우<br>
-<strong>"Hello my Plant : 실내 식물 이미지 인식 및 관리 앱 구현"</strong>[Link](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11113801)<br>
-<span style="background-color:#DDDDDD">2022년 한국컴퓨터종합학술대회 (KCC 2022) 논문집</span>
+<strong>"Hello my Plant : 실내 식물 이미지 인식 및 관리 앱 구현"</strong> [Link](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11113801)<br>
+<span style="background-color:#DDDDDD">2022년 한국컴퓨터종합학술대회 (KCC 2022) 논문집</span><br>
 논문 출판 및 국내 학술 대회 Poster 발표<br>
 
 [blog]: /
