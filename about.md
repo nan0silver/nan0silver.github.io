@@ -27,6 +27,7 @@ Whether you're interested in Java, backend frameworks, or general programming ti
 I hope this blog offers valuable resources and inspiration. <br>
 Join me as I explore the world of coding and software engineering!<br><br>
 
+
 <span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> <br>
 Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 (2022.09 ~ 2025.02) <br><br>
