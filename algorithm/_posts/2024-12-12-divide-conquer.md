@@ -2,17 +2,17 @@
 layout: post
 title: Algorithm - Divide and conquer
 description: >
- 분할정복 알고리즘에 대한 설명읿니다.
+ 분할정복 알고리즘에 대한 설명입니다.
 sitemap: false
 ---
 
-# [Algorithm] 서로소 집합과 유니온 파인드
+# [Algorithm] 분할정복 알고리즘 (Divide and conquer)
 
 목차
 1. [분할정복 알고리즘](#분할정복-알고리즘-divide-and-conquer-algorithm)
 
     1) [설계 방법](#설계-방법)
-    
+
     2) [특징 및 장단점](#특징-및-장단점)
 
 ---
