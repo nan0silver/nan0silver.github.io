@@ -41,7 +41,7 @@ sitemap: false
     ```
 - k가 n개 이하일 때 정렬이 가능하다.
     - k가 너무 큰 경우 각 자리수마다 counting sort를 수행하는 방법을 사용할 수 있다. - radix sort
-- 시간 복잡도 : $O(n)$
+- 시간 복잡도 : $$O(n)$$
 - 장점 
     - stable하다
 - 단점
