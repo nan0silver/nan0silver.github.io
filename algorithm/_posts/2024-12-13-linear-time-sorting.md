@@ -58,10 +58,10 @@ sitemap: false
             //StableSort = counting sort
     }
     ```
-- 시간 복잡도 : $d*O(n)$
+- 시간 복잡도 : $$d*O(n)$$
 - Radix Sort의 핵심은 stable한 것이다.
 - counting sort때문에 in-place하진 않다.
-- 자릿수의 최대 값은 $logn$이다. 따라서 radix sort가 merge sort보다 빠를 수 있다.
+- 자릿수의 최대 값은 $$logn$$이다. 따라서 radix sort가 merge sort보다 빠를 수 있다.
 - 한계
     - 길이가 다른 문자열같은 digit이 정확하지 않으면 사용할 수 없다.
    
@@ -87,8 +87,8 @@ sitemap: false
             return RandomizedSelect(A, p+1, r, k);
         ```
 - 시간 복잡도
-    - worst case : $O(n^2)$
-    - best, average case : $O(n)$
+    - worst case : $$O(n^2)$$
+    - best, average case : $$O(n)$$
   
   
 ### Worst-Case Linear-Time Selection
@@ -101,15 +101,15 @@ sitemap: false
     - Select()를 재귀적으로 사용해 n/5개의 중간값 x를 찾는다.
         - $n/5 + n/25 + n/125 + ... < n$
     - x를 중심으로 partition을 진행한다.
-- 시간 복잡도 : $O(n)$
-- Quick sort에서도 해당 알고리즘을 이용해 worst case의 시간복잡도를 $O(nlogn)$으로 만들 수 있다.
+- 시간 복잡도 : $$O(n)$$
+- Quick sort에서도 해당 알고리즘을 이용해 worst case의 시간복잡도를 $$O(nlogn)$$으로 만들 수 있다.
     - 하지만 이 경우 pivot value를 찾는 과정에서 캐쉬가 한번 뒤집혀져 quick sort의 장점 중 하나인 cache friendly 장점이 사라진다.
     - 차라리 merge sort나 heap sort를 사용한다.
   
 ### 그외 
 
 - Insertion sort
-    - $O(n^2)$ 
+    - $$O(n^2)$$ 
 - Merge sort, Heap sort, Quick sort
     - comparison sort
-    - all comparison sorts are $\Omega(nlogn)$
+    - all comparison sorts are $$\Omega(nlogn)$$
