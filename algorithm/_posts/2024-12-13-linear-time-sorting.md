@@ -97,9 +97,9 @@ sitemap: false
 - Randomized selection에서 pivot value를 고르는데 추가로 $\Theta(n)$시간을 써 업그레이드한 방법
 - 알고리즘
     - n개의 element들을 5개씩 묶어 그룹을 만든다.
-    - 각 그룹의 중간값을 찾는다. -> $O(const)$
+    - 각 그룹의 중간값을 찾는다. -> $$O(const)$$
     - Select()를 재귀적으로 사용해 n/5개의 중간값 x를 찾는다.
-        - $n/5 + n/25 + n/125 + ... < n$
+        - $$n/5 + n/25 + n/125 + ... < n$$
     - x를 중심으로 partition을 진행한다.
 - 시간 복잡도 : $$O(n)$$
 - Quick sort에서도 해당 알고리즘을 이용해 worst case의 시간복잡도를 $$O(nlogn)$$으로 만들 수 있다.
