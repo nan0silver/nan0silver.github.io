@@ -68,6 +68,8 @@ menu:
     url:               /java/
   - title:             AWS
     url:               /aws/
+  - title:             AI
+    url:               /ai/
   - title:             DevDiary
     url:               /devdiary/
 
@@ -327,6 +329,10 @@ collections:
   devdiary:
     output: true
     permalink: /devdiary/:path/
+
+  ai:
+    output: true
+    permalink: /ai/:path/
 
 
 # File inclusion/exclusion
