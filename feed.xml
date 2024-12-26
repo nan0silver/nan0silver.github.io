@@ -1,7 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-12-24T01:55:51+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-12-26T02:56:53+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] Set</title><link href="https://nan0silver.github.io/java/2024-12-08-set/" rel="alternate" type="text/html" title="[JAVA] Set" /><published>2024-12-08T00:00:00+00:00</published><updated>2024-12-24T01:52:15+00:00</updated><id>https://nan0silver.github.io/java/set</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-12-08-set/"><![CDATA[<p>목차</p>
+</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 서로소 집합과 유니온 파인드</title><link href="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/" rel="alternate" type="text/html" title="[Algorithm] 서로소 집합과 유니온 파인드" /><published>2024-12-12T00:00:00+00:00</published><updated>2024-12-26T02:56:08+00:00</updated><id>https://nan0silver.github.io/algorithm/divide-conquer</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/"><![CDATA[<p>목차</p>
+<ol>
+  <li>
+    <p><a href="#분할정복-알고리즘-divide-and-conquer-algorithm">분할정복 알고리즘</a></p>
+
+    <p>1) <a href="#설계-방법">설계 방법</a></p>
+
+    <p>2) <a href="#특징-및-장단점">특징 및 장단점</a></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="분할정복-알고리즘-divide-and-conquer-algorithm">분할정복 알고리즘 (Divide and conquer algorithm)</h2>
+
+<ul>
+  <li>
+    <p>그대로 해결할 수 없는 문제를 작은 문제로 분할하여 문제를 해결하는 방법.</p>
+  </li>
+  <li>
+    <p>대표적인 예로는 정렬 알고리즘 중에서 퀵 정렬이나 합병 정렬과 이진 탐색, 선택 문제, 고속 푸리에 변환(FFT) 문제들이 있음.</p>
+  </li>
+</ul>
+
+<h3 id="설계-방법"><strong>설계 방법</strong></h3>
+
+<p><strong>1) Divide</strong></p>
+
+<p>∙  원래 문제가 분할하여 비슷한 유형의 더 작은 하위 문제로 분할이 가능할 때 까지 나눈다.</p>
+
+<p><strong>2) Conquer</strong></p>
+
+<p>∙  각 하위 문제를 재귀적으로 해결한다. 하위 문제의 규모가 나눌 수 없는 단위가 되면 탈출 조건을 설정하고 해결한다.</p>
+
+<p><strong>3) Combine</strong></p>
+
+<p>∙  Conquer한 문제들을 통합하여 원래 문제의 답을 얻어 해결한다.</p>
+
+<p>🖋 Divide를 제대로 나누면 Conquer과정은 자동으로 쉬워진다. 그래서 Divide를 잘 설계하는 것이 중요!</p>
+
+<p>🖋 분할정복 알고리즘은 재귀 알고리즘이 많이 사용되는데, 이 부분에서 분할정복 알고리즘의 효율성을 깎아내릴 수 있다.</p>
+
+<h3 id="특징-및-장단점"><strong>특징 및 장단점</strong></h3>
+
+<p>∙  분할된 작은 문제는 원래 문제와 성격이 동일하다  -&gt; 입력 크기만 작아짐</p>
+
+<p>∙  분할된 문제는 서로 독립적이다(중복 제거 X) -&gt; 순환적 분할  및 결과 결합 가능</p>
+
+<p>∙  분할정복은 Top-down방식으로 재귀 호출의 장단점과 똑같다고 보면 된다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>장점</th>
+      <th>단점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>∙  Top-down 재귀방식으로 구현하기 때문에 코드가 직관적이다.</td>
+      <td>∙  재귀함수 호출로 오버헤드가 발생할 수 있다</td>
+    </tr>
+    <tr>
+      <td>∙  문제를 나누어 해결한다는 특징상 병렬적으로 문제를 해결할 수 있다.</td>
+      <td>∙  스택에 다량의 데이터가 보관되는 경우 오버플로우가 발생할 수 있다.</td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[분할정복 알고리즘에 대한 설명읿니다.]]></summary></entry><entry><title type="html">[JAVA] Set</title><link href="https://nan0silver.github.io/java/2024-12-08-set/" rel="alternate" type="text/html" title="[JAVA] Set" /><published>2024-12-08T00:00:00+00:00</published><updated>2024-12-26T02:56:08+00:00</updated><id>https://nan0silver.github.io/java/set</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-12-08-set/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#텍스트-블록">텍스트 블록</a></li>
   <li><a href="#formatted-메서드">formatted() 메서드</a></li>
@@ -106,7 +173,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>LinkedHashSet의 성능은 HashSet보다 약간 느림</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA의 Set의 사용법을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.12.03</title><link href="https://nan0silver.github.io/devdiary/2024-12-03-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.03" /><published>2024-12-03T00:00:00+00:00</published><updated>2024-12-24T01:52:15+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-03-til/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA의 Set의 사용법을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.12.03</title><link href="https://nan0silver.github.io/devdiary/2024-12-03-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.03" /><published>2024-12-03T00:00:00+00:00</published><updated>2024-12-26T02:56:08+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-03-til/"><![CDATA[<p>목차</p>
 <ul>
   <li><a href="#맵핑-mapping">Mapping</a></li>
 </ul>
@@ -180,7 +247,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 3일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[TIL] 2024.12.02</title><link href="https://nan0silver.github.io/devdiary/2024-12-02-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.02" /><published>2024-12-02T00:00:00+00:00</published><updated>2024-12-24T01:52:15+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-02-til/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 3일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[TIL] 2024.12.02</title><link href="https://nan0silver.github.io/devdiary/2024-12-02-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.02" /><published>2024-12-02T00:00:00+00:00</published><updated>2024-12-26T02:56:08+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-02-til/"><![CDATA[<p>목차</p>
 <ul>
   <li><a href="#스프링-콘셉트">스프링 콘셉트</a></li>
 </ul>
@@ -253,7 +320,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 2일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2024-12-24T01:52:15+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 2일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2024-12-26T02:56:08+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
 <ol>
   <li>
     <p><a href="#static-변수">static 변수</a></p>
@@ -628,7 +695,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td>초기화되지 않은 경우 null 값을 가질 수 있음</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] JAVA version 17의 주요 변화</title><link href="https://nan0silver.github.io/java/2024-11-15-java17/" rel="alternate" type="text/html" title="[JAVA] JAVA version 17의 주요 변화" /><published>2024-11-15T00:00:00+00:00</published><updated>2024-12-24T01:52:15+00:00</updated><id>https://nan0silver.github.io/java/java17</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-15-java17/"><![CDATA[<p>목차</p>
+</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] JAVA version 17의 주요 변화</title><link href="https://nan0silver.github.io/java/2024-11-15-java17/" rel="alternate" type="text/html" title="[JAVA] JAVA version 17의 주요 변화" /><published>2024-11-15T00:00:00+00:00</published><updated>2024-12-26T02:56:08+00:00</updated><id>https://nan0silver.github.io/java/java17</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-15-java17/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#텍스트-블록">텍스트 블록</a></li>
   <li><a href="#formatted-메서드">formatted() 메서드</a></li>
@@ -721,7 +788,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA 17버전의 주요 변화 사항을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.11.08</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 2024.11.08" /><published>2024-11-08T00:00:00+00:00</published><updated>2024-12-24T01:52:15+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA 17버전의 주요 변화 사항을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.11.08</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 2024.11.08" /><published>2024-11-08T00:00:00+00:00</published><updated>2024-12-26T02:56:08+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<p>목차</p>
 <ul>
   <li><a href="#컴파일-언어-vs-인터프리터-언어">컴파일 언어와 인터프리터 언어</a></li>
 </ul>
@@ -775,7 +842,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 11월 8일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[AWS] AWS 기초</title><link href="https://nan0silver.github.io/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-12-24T01:52:15+00:00</updated><id>https://nan0silver.github.io/aws/aws</id><content type="html" xml:base="https://nan0silver.github.io/aws/2024-09-02-aws/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 11월 8일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[AWS] AWS 기초</title><link href="https://nan0silver.github.io/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-12-26T02:56:08+00:00</updated><id>https://nan0silver.github.io/aws/aws</id><content type="html" xml:base="https://nan0silver.github.io/aws/2024-09-02-aws/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#aws란">AWS란?</a></li>
   <li><a href="#s3--cloudfront">S3 &amp; Cloudfront</a></li>
@@ -1087,7 +1154,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>람다는 실행할 때마다 ip가 바뀜, 문제가 될 수 있음</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="https://nan0silver.github.io/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+00:00</published><updated>2024-12-24T01:52:15+00:00</updated><id>https://nan0silver.github.io/java/stringbuilder</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="https://nan0silver.github.io/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+00:00</published><updated>2024-12-26T02:56:08+00:00</updated><id>https://nan0silver.github.io/java/stringbuilder</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#string">String</a></li>
   <li><a href="#stringbuilder">StringBuilder</a></li>
@@ -1134,12 +1201,18 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 서로소 집합과 유니온 파인드</title><link href="https://nan0silver.github.io/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Algorithm] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+00:00</published><updated>2024-12-24T01:52:15+00:00</updated><id>https://nan0silver.github.io/algorithm/day9</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 서로소 집합과 유니온 파인드</title><link href="https://nan0silver.github.io/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Algorithm] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+00:00</published><updated>2024-12-26T02:56:08+00:00</updated><id>https://nan0silver.github.io/algorithm/day9</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
 <ol>
-  <li><a href="#서로소-집합">서로소 집합</a></li>
-  <li><a href="#유니온-파인드">유니온 파인드</a>
-  1) <a href="#유니온-파인드union-find의-자료구조">유니온 파인드의 자료구조</a>
-  2) <a href="#유니온-파인드의-예시">유니온 파인드의 예시</a></li>
+  <li>
+    <p><a href="#서로소-집합">서로소 집합</a></p>
+  </li>
+  <li>
+    <p><a href="#유니온-파인드">유니온 파인드</a></p>
+
+    <p>1) <a href="#유니온-파인드union-find의-자료구조">유니온 파인드의 자료구조</a></p>
+
+    <p>2) <a href="#유니온-파인드의-예시">유니온 파인드의 예시</a></p>
+  </li>
 </ol>
 
 <hr />
@@ -1250,115 +1323,4 @@ void init() {
       <li>이러한 특서으로 루트 노드 찾을 수 있음</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9 (유니온 파인드)]]></summary></entry><entry><title type="html">[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)</title><link href="https://nan0silver.github.io/java/2024-07-17-day8/" rel="alternate" type="text/html" title="[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)" /><published>2024-07-17T00:00:00+00:00</published><updated>2024-12-24T01:52:15+00:00</updated><id>https://nan0silver.github.io/java/day8</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-07-17-day8/"><![CDATA[<p>목차</p>
-<ol>
-  <li><a href="#1-bufferdreader-inputstreamreader-systemin">BufferReader, InputStreamReader, System.in</a></li>
-  <li><a href="#2-scanner">Scanner</a></li>
-</ol>
-
-<hr />
-
-<h2 id="1-bufferdreader-inputstreamreader-systemin">1. BufferdReader, InputStreamReader, System.in</h2>
-
-<h3 id="systemin">System.in</h3>
-<ul>
-  <li>일반적으로 keyboard 입력을 지칭하는 Standard Input Stream</li>
-</ul>
-
-<h3 id="inputstreamreader">InputStreamReader</h3>
-<ul>
-  <li>byte stream을 character stream으로 변경해주는 역할 수행</li>
-  <li>InputStreamReader 클래스는 생성자의 파라미터로 InputStream 객체를 전달받음
-    <ul>
-      <li>이 InputStream 객체의 종류에 따라 키보드 사용자 입력을 읽어들일수도 있고, 파일 내용을 읽어들일 수도 있음</li>
-    </ul>
-  </li>
-  <li>사용법
-    <ul>
-      <li>InputstreamReader (InputStream in)</li>
-      <li>InputstreamReader (InputStream in, String charsetName)</li>
-      <li>InputstreamReader (InputStream in, Charset cs)</li>
-      <li>InputstreamReader (InputStream in, CharsetDecoder dec)</li>
-    </ul>
-  </li>
-  <li>생성자의 파라미터로 charset 정보를 전달받아 읽어들이는 stream의 charset을 지정할 수도 있음</li>
-</ul>
-
-<h3 id="bufferedreader">BufferedReader</h3>
-<ul>
-  <li>효율적으로 문자를 읽어들이기 위해 버퍼링을 해줌
-    <ul>
-      <li>버퍼링 (Buffering)
-        <ul>
-          <li>효율적인 데이터 처리를 위해 중간 저장공간(Buffer)을 사용하는 것 (주로 입출력에서 사용)</li>
-          <li>디스크 접근은 시간이 오래걸리기 때문에 한번에 데이터를 저장하여 시간을 줄이고, 필요할 때마다 데이터를 읽음</li>
-          <li>I/O작업은 시간이 많이 걸리기 때문에 버퍼링으로 접근횟수를 줄여 효율적으로 데이터 사용이 가능</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>기본 버퍼 사이즈를 그대로 이용할 수도, 생성자를 이용해 버퍼 사이즈를 지정할 수도 있음</li>
-  <li>보통 FileReader, InputStreamReader의 read()와 같이 비용이 많이 드는 Reader를 파라미터로 전달받아 사용함</li>
-  <li>만약 BufferedReader없이 FileReader나 InputStreamReader를 사용하면 시스템은 바이트별로 사용자의 입력을 받아서 처리하는 동작을 반복함
-    <ul>
-      <li>시스템에서 IO는 자원소모가 많음</li>
-    </ul>
-  </li>
-  <li>하지만 <strong>BufferReader를 사용하면</strong>, 시스템은 버퍼가 비어있을 때만, 실제 IO를 일으켜서 데이터를 읽어오고, 나머지 경우에는 메모리에 있는 버퍼의 데이터를 읽어서 처리함</li>
-  <li>데이터를 문자열로 받아오기 때문에, 적절히 데이터를 처리 후 사용해야 한다.</li>
-</ul>
-
-<h3 id="bufferdreader-inputstreamreader-systemin를-이용한-예제">BufferdReader, InputStreamReader, System.in를 이용한 예제</h3>
-<ul>
-  <li>
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
-  <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-  <span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span> 
-    
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserInput</span> <span class="o">{</span>    
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOExceptio</span><span class="o">{</span>
-
-          <span class="c1">//키보드 사용자 입력을 받을 수 있는 객체 생성</span>
-          <span class="nc">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>   
-
-          <span class="c1">// 입력 데이터 읽기 (한 줄)      </span>
-          <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>  
-
-          <span class="c1">// 입력 데이터 출력        </span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>      
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="2-scanner">2. Scanner</h2>
-<ul>
-  <li>Scanner 클래스를 이용하면 1번 방법보다 더 쉽게 사용자 키보드 입력을 받을 수 있음</li>
-  <li>입력받은 데이터를 Scanner클래스 메소드를 사용해 더 쉽게 가공 가능</li>
-  <li>예제
-    <ul>
-      <li>
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span> 
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ScannerLoop</span> <span class="o">{</span>    
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>      
-
-          <span class="c1">// Scanner 선언        </span>
-          <span class="nc">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>        
-                
-          <span class="c1">//다음으로 읽어들일 token이 있는지 체크</span>
-          <span class="k">while</span> <span class="o">(</span><span class="n">scanner</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>     
-              <span class="c1">//token별로 입력값을 읽어 String을 리턴</span>
-              <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>  
-              <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>        
-          <span class="o">}</span>         
-                
-          <span class="n">scanner</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>    
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>        </div>
-      </li>
-      <li>token(공백)별로 사용자 입력값을 읽어들이는 예제</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 8]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9 (유니온 파인드)]]></summary></entry></feed>
