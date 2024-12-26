@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-12-26T03:13:33+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-12-26T03:21:14+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] Linear Time Sorting Algorithm</title><link href="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/" rel="alternate" type="text/html" title="[Algorithm] Linear Time Sorting Algorithm" /><published>2024-12-13T00:00:00+00:00</published><updated>2024-12-26T03:12:46+00:00</updated><id>https://nan0silver.github.io/algorithm/linear-time-sorting</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"><![CDATA[<p>목차</p>
+</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] Linear Time Sorting Algorithm</title><link href="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/" rel="alternate" type="text/html" title="[Algorithm] Linear Time Sorting Algorithm" /><published>2024-12-13T00:00:00+00:00</published><updated>2024-12-26T03:20:28+00:00</updated><id>https://nan0silver.github.io/algorithm/linear-time-sorting</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#counting-sort">Counting Sort</a></li>
   <li><a href="#radix-sort">Radix Sort</a></li>
@@ -43,7 +43,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>k가 너무 큰 경우 각 자리수마다 counting sort를 수행하는 방법을 사용할 수 있다. - radix sort</li>
     </ul>
   </li>
-  <li>시간 복잡도 : $O(n)$</li>
+  <li>시간 복잡도 : \(O(n)\)</li>
   <li>장점
     <ul>
       <li>stable하다</li>
@@ -149,7 +149,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>all comparison sorts are $\Omega(nlogn)$</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 분할정복 알고리즘 (Divide and conquer)</title><link href="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/" rel="alternate" type="text/html" title="[Algorithm] 분할정복 알고리즘 (Divide and conquer)" /><published>2024-12-12T00:00:00+00:00</published><updated>2024-12-26T03:12:46+00:00</updated><id>https://nan0silver.github.io/algorithm/divide-conquer</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 분할정복 알고리즘 (Divide and conquer)</title><link href="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/" rel="alternate" type="text/html" title="[Algorithm] 분할정복 알고리즘 (Divide and conquer)" /><published>2024-12-12T00:00:00+00:00</published><updated>2024-12-26T03:20:28+00:00</updated><id>https://nan0silver.github.io/algorithm/divide-conquer</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/"><![CDATA[<p>목차</p>
 <ol>
   <li>
     <p><a href="#분할정복-알고리즘-divide-and-conquer-algorithm">분할정복 알고리즘</a></p>
@@ -216,7 +216,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td>∙  스택에 다량의 데이터가 보관되는 경우 오버플로우가 발생할 수 있다.</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[분할정복 알고리즘에 대한 설명입니다.]]></summary></entry><entry><title type="html">[JAVA] Set</title><link href="https://nan0silver.github.io/java/2024-12-08-set/" rel="alternate" type="text/html" title="[JAVA] Set" /><published>2024-12-08T00:00:00+00:00</published><updated>2024-12-26T03:12:46+00:00</updated><id>https://nan0silver.github.io/java/set</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-12-08-set/"><![CDATA[<p>목차</p>
+</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[분할정복 알고리즘에 대한 설명입니다.]]></summary></entry><entry><title type="html">[JAVA] Set</title><link href="https://nan0silver.github.io/java/2024-12-08-set/" rel="alternate" type="text/html" title="[JAVA] Set" /><published>2024-12-08T00:00:00+00:00</published><updated>2024-12-26T03:20:28+00:00</updated><id>https://nan0silver.github.io/java/set</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-12-08-set/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#텍스트-블록">텍스트 블록</a></li>
   <li><a href="#formatted-메서드">formatted() 메서드</a></li>
@@ -321,7 +321,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>LinkedHashSet의 성능은 HashSet보다 약간 느림</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA의 Set의 사용법을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.12.03</title><link href="https://nan0silver.github.io/devdiary/2024-12-03-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.03" /><published>2024-12-03T00:00:00+00:00</published><updated>2024-12-26T03:12:46+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-03-til/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA의 Set의 사용법을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.12.03</title><link href="https://nan0silver.github.io/devdiary/2024-12-03-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.03" /><published>2024-12-03T00:00:00+00:00</published><updated>2024-12-26T03:20:28+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-03-til/"><![CDATA[<p>목차</p>
 <ul>
   <li><a href="#맵핑-mapping">Mapping</a></li>
 </ul>
@@ -395,7 +395,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 3일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[TIL] 2024.12.02</title><link href="https://nan0silver.github.io/devdiary/2024-12-02-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.02" /><published>2024-12-02T00:00:00+00:00</published><updated>2024-12-26T03:12:46+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-02-til/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 3일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[TIL] 2024.12.02</title><link href="https://nan0silver.github.io/devdiary/2024-12-02-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.02" /><published>2024-12-02T00:00:00+00:00</published><updated>2024-12-26T03:20:28+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-02-til/"><![CDATA[<p>목차</p>
 <ul>
   <li><a href="#스프링-콘셉트">스프링 콘셉트</a></li>
 </ul>
@@ -468,7 +468,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 2일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2024-12-26T03:12:46+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 2일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2024-12-26T03:20:28+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
 <ol>
   <li>
     <p><a href="#static-변수">static 변수</a></p>
@@ -843,7 +843,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td>초기화되지 않은 경우 null 값을 가질 수 있음</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] JAVA version 17의 주요 변화</title><link href="https://nan0silver.github.io/java/2024-11-15-java17/" rel="alternate" type="text/html" title="[JAVA] JAVA version 17의 주요 변화" /><published>2024-11-15T00:00:00+00:00</published><updated>2024-12-26T03:12:46+00:00</updated><id>https://nan0silver.github.io/java/java17</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-15-java17/"><![CDATA[<p>목차</p>
+</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] JAVA version 17의 주요 변화</title><link href="https://nan0silver.github.io/java/2024-11-15-java17/" rel="alternate" type="text/html" title="[JAVA] JAVA version 17의 주요 변화" /><published>2024-11-15T00:00:00+00:00</published><updated>2024-12-26T03:20:28+00:00</updated><id>https://nan0silver.github.io/java/java17</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-15-java17/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#텍스트-블록">텍스트 블록</a></li>
   <li><a href="#formatted-메서드">formatted() 메서드</a></li>
@@ -936,7 +936,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA 17버전의 주요 변화 사항을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.11.08</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 2024.11.08" /><published>2024-11-08T00:00:00+00:00</published><updated>2024-12-26T03:12:46+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA 17버전의 주요 변화 사항을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.11.08</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 2024.11.08" /><published>2024-11-08T00:00:00+00:00</published><updated>2024-12-26T03:20:28+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<p>목차</p>
 <ul>
   <li><a href="#컴파일-언어-vs-인터프리터-언어">컴파일 언어와 인터프리터 언어</a></li>
 </ul>
@@ -990,7 +990,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 11월 8일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[AWS] AWS 기초</title><link href="https://nan0silver.github.io/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-12-26T03:12:46+00:00</updated><id>https://nan0silver.github.io/aws/aws</id><content type="html" xml:base="https://nan0silver.github.io/aws/2024-09-02-aws/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 11월 8일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[AWS] AWS 기초</title><link href="https://nan0silver.github.io/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-12-26T03:20:28+00:00</updated><id>https://nan0silver.github.io/aws/aws</id><content type="html" xml:base="https://nan0silver.github.io/aws/2024-09-02-aws/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#aws란">AWS란?</a></li>
   <li><a href="#s3--cloudfront">S3 &amp; Cloudfront</a></li>
@@ -1302,7 +1302,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>람다는 실행할 때마다 ip가 바뀜, 문제가 될 수 있음</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="https://nan0silver.github.io/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+00:00</published><updated>2024-12-26T03:12:46+00:00</updated><id>https://nan0silver.github.io/java/stringbuilder</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="https://nan0silver.github.io/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+00:00</published><updated>2024-12-26T03:20:28+00:00</updated><id>https://nan0silver.github.io/java/stringbuilder</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#string">String</a></li>
   <li><a href="#stringbuilder">StringBuilder</a></li>
