@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[Algorithm] Linear Time Sorting Algorithm" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2024-12-26T03:20:28+00:00","datePublished":"2024-12-13T00:00:00+00:00","description":"선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.","headline":"[Algorithm] Linear Time Sorting Algorithm","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2024-12-26T03:23:10+00:00","datePublished":"2024-12-13T00:00:00+00:00","description":"선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.","headline":"[Algorithm] Linear Time Sorting Algorithm","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2024-12-26T03:21:14+00:00',
+    INDEX_KEY: 'index--2024-12-26T03:23:56+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 26 Dec 2024">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2024-12-26T03:20:28+00:00">2024-12-26</time>
+              <time datetime="2024-12-26T03:23:10+00:00">2024-12-26</time>
             </span>
           
         
@@ -337,10 +337,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
-  <li>시간 복잡도 : $d*O(n)$</li>
+  <li>시간 복잡도 : \(d*O(n)\)</li>
   <li>Radix Sort의 핵심은 stable한 것이다.</li>
   <li>counting sort때문에 in-place하진 않다.</li>
-  <li>자릿수의 최대 값은 $logn$이다. 따라서 radix sort가 merge sort보다 빠를 수 있다.</li>
+  <li>자릿수의 최대 값은 \(logn\)이다. 따라서 radix sort가 merge sort보다 빠를 수 있다.</li>
   <li>한계
     <ul>
       <li>길이가 다른 문자열같은 digit이 정확하지 않으면 사용할 수 없다.</li>
@@ -372,8 +372,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
      </code></li>
   <li>시간 복잡도
     <ul>
-      <li>worst case : $O(n^2)$</li>
-      <li>best, average case : $O(n)$</li>
+      <li>worst case : \(O(n^2)\)</li>
+      <li>best, average case : \(O(n)\)</li>
     </ul>
   </li>
 </ul>
@@ -395,8 +395,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>x를 중심으로 partition을 진행한다.</li>
     </ul>
   </li>
-  <li>시간 복잡도 : $O(n)$</li>
-  <li>Quick sort에서도 해당 알고리즘을 이용해 worst case의 시간복잡도를 $O(nlogn)$으로 만들 수 있다.
+  <li>시간 복잡도 : \(O(n)\)</li>
+  <li>Quick sort에서도 해당 알고리즘을 이용해 worst case의 시간복잡도를 \(O(nlogn)\)으로 만들 수 있다.
     <ul>
       <li>하지만 이 경우 pivot value를 찾는 과정에서 캐쉬가 한번 뒤집혀져 quick sort의 장점 중 하나인 cache friendly 장점이 사라진다.</li>
       <li>차라리 merge sort나 heap sort를 사용한다.</li>
@@ -409,13 +409,15 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <ul>
   <li>Insertion sort
     <ul>
-      <li>$O(n^2)$</li>
+      <li>
+\[O(n^2)\]
+      </li>
     </ul>
   </li>
   <li>Merge sort, Heap sort, Quick sort
     <ul>
       <li>comparison sort</li>
-      <li>all comparison sorts are $\Omega(nlogn)$</li>
+      <li>all comparison sorts are \(\Omega(nlogn)\)</li>
     </ul>
   </li>
 </ul>
