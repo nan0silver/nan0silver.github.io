@@ -10,7 +10,7 @@ slug: ai
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  ai 공부 기록입니다.
+  AI 관련 공부 기록입니다.
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
