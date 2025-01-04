@@ -7,7 +7,7 @@ description: >
 sitemap: false
 ---
 
-# [TIL] 2024.12.02
+# [Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)
 
 목차
 
