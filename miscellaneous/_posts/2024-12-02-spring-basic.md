@@ -9,8 +9,6 @@ sitemap: false
 
 # [Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)
 
-목차
-
 - [스프링 콘셉트](#스프링-콘셉트)
 
 ---
