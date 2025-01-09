@@ -59,17 +59,17 @@ menu:
   #   url:               /docs/
   - title: About
     url: /about/
-  - title: Flutter
+  - title: Flutter (5)
     url: /flutter/
-  - title: Algorithm
+  - title: Algorithm (10)
     url: /algorithm/
-  - title: JAVA
+  - title: JAVA (5)
     url: /java/
-  - title: AWS
+  - title: AWS (1)
     url: /aws/
-  - title: AI
+  - title: AI (2)
     url: /ai/
-  - title: Miscellaneous
+  - title: Miscellaneous (4)
     url: /miscellaneous/
 
 # Add links to the footer.
