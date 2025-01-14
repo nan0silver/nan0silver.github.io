@@ -2,7 +2,7 @@
 layout: post
 title: Responsive VS Reactive (프론트엔트 개발자 관점)
 description: >
-  웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.
+  프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.
 sitemap: false
 ---
 
