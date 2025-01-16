@@ -32,9 +32,9 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[AI] 생성형 AI와 LLM | NAHYUN BLOG</title>
+<title>[AI] RAG (Retrieval-Augmented Generation) 이란? | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[AI] 생성형 AI와 LLM" />
+<meta property="og:title" content="[AI] RAG (Retrieval-Augmented Generation) 이란?" />
 <meta name="author" content="Nahyun Eun" />
 <meta property="og:locale" content="ko_KR, en_US" />
 <meta name="description" content="RAG (Retrieval-Augmented Generation)에 대해 알아보자." />
@@ -45,10 +45,10 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-01-15T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[AI] 생성형 AI와 LLM" />
+<meta property="twitter:title" content="[AI] RAG (Retrieval-Augmented Generation) 이란?" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2025-01-16T08:15:44+00:00","datePublished":"2025-01-15T00:00:00+00:00","description":"RAG (Retrieval-Augmented Generation)에 대해 알아보자.","headline":"[AI] 생성형 AI와 LLM","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/ai/2025-01-15-rag/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/ai/2025-01-15-rag/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2025-01-16T08:19:23+00:00","datePublished":"2025-01-15T00:00:00+00:00","description":"RAG (Retrieval-Augmented Generation)에 대해 알아보자.","headline":"[AI] RAG (Retrieval-Augmented Generation) 이란?","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/ai/2025-01-15-rag/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/ai/2025-01-15-rag/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-01-16T08:16:31+00:00',
+    INDEX_KEY: 'index--2025-01-16T08:20:07+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -226,14 +226,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   <header>
     <h1 class="post-title flip-project-title">
       
-        [AI] 생성형 AI와 LLM
+        [AI] RAG (Retrieval-Augmented Generation) 이란?
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-15T00:00:00+00:00">15 Jan 2025</time> in <a href="/ai/" class="flip-title">AI</a> on <span>Rag</span>, <span>Retrieval-augmented generation</span>, <span>Ai</span>, <span>인공지능</span>
+        <time datetime="2025-01-15T00:00:00+00:00">15 Jan 2025</time> in <a href="/ai/" class="flip-title">AI</a> 
       </span>
       
         
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 16 Jan 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-01-16T08:15:44+00:00">2025-01-16</time>
+              <time datetime="2025-01-16T08:19:23+00:00">2025-01-16</time>
             </span>
           
         
@@ -274,19 +274,19 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 <ol>
   <li>
-    <p><a href="#llm-large-language-model">LLM</a></p>
+    <p><a href="#rag-retrieval-augmented-generation">RAG</a></p>
   </li>
   <li>
-    <p><a href="#생성형-ai-generative-ai">생성형 AI</a></p>
+    <p><a href="#rag의-작동-방식">RAG의 작동 방식</a></p>
   </li>
   <li>
-    <p><a href="#gpt-genertive-pre-trained-transformer">GPT</a></p>
+    <p><a href="#rag의-장점">RAG의 장점</a></p>
   </li>
   <li>
-    <p><a href="#prompt-engineering">Prompt Engineering</a></p>
+    <p><a href="#rag의-활용-분야">RAG의 활용 분야</a></p>
   </li>
   <li>
-    <p><a href="#rtf-framework">RTF Framework</a></p>
+    <p><a href="#결론">결론</a></p>
   </li>
 </ol>
 
