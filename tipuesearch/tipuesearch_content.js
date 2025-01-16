@@ -1,6 +1,6 @@
 var tipuesearch = {"pages": [{
-    "title": "[AI] Linear Time Sorting Algorithm",
-    "text": "GPT (Genertive Pre-trained Transformer) Pre-training Fine-tuning 생성 능력 ChatGPT 맥락을 파악하는 능력이 뛰어남 문제점 환각(Hallucinate) 실제 데이터나 사실을 반영하지 않고 비현실적이거나 오류를 포함하 내용을 만들어내는 경우가 있다",
+    "title": "[AI] 생성형 AI와 LLM",
+    "text": "GPT (Genertive Pre-trained Transformer) OpenAI가 개발한 대형 언어 모델로, 사전 학습된 트렌스포머 구조를 기반으로 한 생성형 AI기술 트렌스포머 구조 Google의 논문 “Attention is All You Need”에서 소개된 딥러닝 모델 구조 Pre-training Fine-tuning 생성 능력 ChatGPT 맥락을 파악하는 능력이 뛰어남 환각(Hallucinate) 실제 데이터나 사실을 반영하지 않고 비현실적이거나 오류를 포함하 내용을 만들어내는 경우가 있다 해결 방법 파인 튜닝 프롬프트 엔지니어링 크로스체킹 Prompt Engineering 어떻게 질문을 하느냐에 따라 결과가 달라질 수 있음 필요성 내가 원하는 바를 정확히 주면 줄수록 정확한 대답을 얻을 수 있음 언제나 고급 모델을 쓸수는 없음 (너무 비쌈) Zero-shot Prompting 작업에 대한 지시만 포함하는 프롬프트 방식 One-shot Prompting 작업 예시를 하나 제공하여 AI가 이를 참고로 결과를 생성하도록 하는 방식 Few-shot Prompting 작업 예시를 여러 개 제공하는 방식 복잡한 작업 수행에서 사용 Chain of Thought (CoT) 모델이 단계적으로 사고 과정을 출력하도록 유도 Zero-shot CoT Tree of Thoughts (ToT) 가능한 대안을 모두 도출하고 그 중 촤선의 답변을 선택하도록 하는 방식 “모든 옵션을 평가하고 가장 좋은 대안을 제시하세요” ReAct 결과물을 생성(Reaction)하고 피드백(Reasoning)을 통해 개선해나가는 방식 “예제를 짜고 정상적으로 작동하는지 검증하시오” RTF Framework Role, Task, Format를 명확히 정의해 프롬프트를 설계하는 방법론 Role-based Prompting AI의 역할을 명확히 지정하여 특정 관점이나 전문성으로 답 얻을 수 있음 Task 특정 작업을 지시 프롬프트의 핵심 Format AI의 응답 형식을 지정 (JSON, 엑셀 등) 면접할때 사용 가능 당신은 백엔드 면접관입니다. 주니어 개발자 면접을 진행할 때 어떤 질문을 묻겠습니까? 학습자의 수준에 맞춘 접근 가능",
     "tags": "ai",
     "url": "/ai/2025-01-16-basic/"
   },{
