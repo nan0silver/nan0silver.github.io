@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-16T08:20:07+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-17T00:42:44+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[AI] 생성형 AI와 LLM</title><link href="https://nan0silver.github.io/ai/2025-01-16-basic/" rel="alternate" type="text/html" title="[AI] 생성형 AI와 LLM" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-16T08:19:23+00:00</updated><id>https://nan0silver.github.io/ai/basic</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-16-basic/"><![CDATA[<p>목차</p>
-
-<ol>
+</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[AI] 생성형 AI와 LLM</title><link href="https://nan0silver.github.io/ai/2025-01-16-basic/" rel="alternate" type="text/html" title="[AI] 생성형 AI와 LLM" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-17T00:41:56+00:00</updated><id>https://nan0silver.github.io/ai/basic</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-16-basic/"><![CDATA[<ol>
   <li>
     <p><a href="#llm-large-language-model">LLM</a></p>
   </li>
@@ -163,25 +161,13 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     </ul>
   </li>
   <li>학습자의 수준에 맞춘 접근 가능</li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[생성형 AI와 LLM에 대해 알아보자.]]></summary></entry><entry><title type="html">[AI] RAG (Retrieval-Augmented Generation) 이란?</title><link href="https://nan0silver.github.io/ai/2025-01-15-rag/" rel="alternate" type="text/html" title="[AI] RAG (Retrieval-Augmented Generation) 이란?" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-01-16T08:19:23+00:00</updated><id>https://nan0silver.github.io/ai/rag</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-15-rag/"><![CDATA[<p>목차</p>
-
-<ol>
-  <li>
-    <p><a href="#rag-retrieval-augmented-generation">RAG</a></p>
-  </li>
-  <li>
-    <p><a href="#rag의-작동-방식">RAG의 작동 방식</a></p>
-  </li>
-  <li>
-    <p><a href="#rag의-장점">RAG의 장점</a></p>
-  </li>
-  <li>
-    <p><a href="#rag의-활용-분야">RAG의 활용 분야</a></p>
-  </li>
-  <li>
-    <p><a href="#결론">결론</a></p>
-  </li>
-</ol>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[생성형 AI와 LLM에 대해 알아보자.]]></summary></entry><entry><title type="html">[AI] RAG (Retrieval-Augmented Generation) 이란?</title><link href="https://nan0silver.github.io/ai/2025-01-15-rag/" rel="alternate" type="text/html" title="[AI] RAG (Retrieval-Augmented Generation) 이란?" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-01-17T00:41:56+00:00</updated><id>https://nan0silver.github.io/ai/rag</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-15-rag/"><![CDATA[<ul>
+  <li><a href="#rag-retrieval-augmented-generation">RAG</a></li>
+  <li><a href="#rag의-작동-방식">RAG의 작동 방식</a></li>
+  <li><a href="#rag의-장점">RAG의 장점</a></li>
+  <li><a href="#rag의-활용-분야">RAG의 활용 분야</a></li>
+  <li><a href="#결론">결론</a></li>
+</ul>
 
 <hr />
 
@@ -199,13 +185,15 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
     <p><strong>검색 (Retrieval)</strong></p>
 
     <ul>
-      <li>사용자의 질문이나 요청이 들어오면, RAG 시스템은 미리 구축된 외부 지식 베이스에서 관련 정보를 검색합니다. 이 지식 베이스는 문서, 웹 페이지, 데이터베이스 등 다양한 형태를 가질 수 있습니다. 검색 과정에서는 질문의 의미를 파악하고, 지식 베이스 내의 정보와 유사성을 비교하여 가장 관련성이 높은 정보를 추출합니다.</li>
+      <li>사용자의 질문이나 요청이 들어오면, RAG 시스템은 미리 구축된 외부 지식 베이스에서 관련 정보를 검색합니다. 이 지식 베이스는 문서, 웹 페이지, 데이터베이스 등 다양한 형태를 가질 수 있습니다.</li>
+      <li>검색 과정에서는 질문의 의미를 파악하고, 지식 베이스 내의 정보와 유사성을 비교하여 가장 관련성이 높은 정보를 추출합니다.</li>
     </ul>
   </li>
   <li>
     <p><strong>생성 (Generation)</strong></p>
     <ul>
-      <li>검색된 관련 정보는 원래의 질문 또는 요청과 함께 언어 모델에 입력됩니다. 언어 모델은 이 정보를 바탕으로 답변을 생성합니다. 이때, 단순히 검색된 정보를 나열하는 것이 아니라, 검색된 정보를 바탕으로 새로운 문장을 구성하거나, 질문에 대한 답변을 논리적으로 도출하는 등 더욱 풍부하고 맥락에 맞는 답변을 생성할 수 있습니다.</li>
+      <li>검색된 관련 정보는 원래의 질문 또는 요청과 함께 언어 모델에 입력됩니다. 언어 모델은 이 정보를 바탕으로 답변을 생성합니다.</li>
+      <li>이때, 단순히 검색된 정보를 나열하는 것이 아니라, 검색된 정보를 바탕으로 새로운 문장을 구성하거나, 질문에 대한 답변을 논리적으로 도출하는 등 더욱 풍부하고 맥락에 맞는 답변을 생성할 수 있습니다.</li>
     </ul>
   </li>
 </ol>
@@ -262,7 +250,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
 
 <h2 id="결론">결론</h2>
 
-<p>RAG (Retrieval-Augmented Generation)은 언어 모델의 잠재력을 한 단계 더 끌어올리는 중요한 기술입니다. 외부 지식 소스를 활용하여 답변의 정확성, 최신성, 신뢰성을 높임으로써, 인공지능이 더욱 유용하고 신뢰할 수 있는 도구로 발전하는 데 기여할 것입니다. 마치 숙련된 개발자가 끊임없이 새로운 정보를 습득하고 활용하여 문제를 해결하는 것처럼, RAG는 인공지능이 더욱 똑똑하게 정보를 처리하고 활용할 수 있도록 돕는 핵심적인 기술입니다.</p>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[RAG (Retrieval-Augmented Generation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] Linear Time Sorting Algorithm</title><link href="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/" rel="alternate" type="text/html" title="[Algorithm] Linear Time Sorting Algorithm" /><published>2024-12-13T00:00:00+00:00</published><updated>2025-01-16T08:19:23+00:00</updated><id>https://nan0silver.github.io/algorithm/linear-time-sorting</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"><![CDATA[<p>목차</p>
+<p>RAG (Retrieval-Augmented Generation)은 언어 모델의 잠재력을 한 단계 더 끌어올리는 중요한 기술입니다. 외부 지식 소스를 활용하여 답변의 정확성, 최신성, 신뢰성을 높임으로써, 인공지능이 더욱 유용하고 신뢰할 수 있는 도구로 발전하는 데 기여할 것입니다. 마치 숙련된 개발자가 끊임없이 새로운 정보를 습득하고 활용하여 문제를 해결하는 것처럼, RAG는 인공지능이 더욱 똑똑하게 정보를 처리하고 활용할 수 있도록 돕는 핵심적인 기술입니다.</p>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[RAG (Retrieval-Augmented Generation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] Linear Time Sorting Algorithm</title><link href="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/" rel="alternate" type="text/html" title="[Algorithm] Linear Time Sorting Algorithm" /><published>2024-12-13T00:00:00+00:00</published><updated>2025-01-17T00:41:56+00:00</updated><id>https://nan0silver.github.io/algorithm/linear-time-sorting</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#counting-sort">Counting Sort</a></li>
   <li><a href="#radix-sort">Radix Sort</a></li>
@@ -414,7 +402,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <li>all comparison sorts are \(\Omega(nlogn)\)</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 분할정복 알고리즘 (Divide and conquer)</title><link href="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/" rel="alternate" type="text/html" title="[Algorithm] 분할정복 알고리즘 (Divide and conquer)" /><published>2024-12-12T00:00:00+00:00</published><updated>2025-01-16T08:19:23+00:00</updated><id>https://nan0silver.github.io/algorithm/divide-conquer</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 분할정복 알고리즘 (Divide and conquer)</title><link href="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/" rel="alternate" type="text/html" title="[Algorithm] 분할정복 알고리즘 (Divide and conquer)" /><published>2024-12-12T00:00:00+00:00</published><updated>2025-01-17T00:41:56+00:00</updated><id>https://nan0silver.github.io/algorithm/divide-conquer</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/"><![CDATA[<p>목차</p>
 <ol>
   <li>
     <p><a href="#분할정복-알고리즘-divide-and-conquer-algorithm">분할정복 알고리즘</a></p>
@@ -481,7 +469,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <td>∙  스택에 다량의 데이터가 보관되는 경우 오버플로우가 발생할 수 있다.</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[분할정복 알고리즘에 대한 설명입니다.]]></summary></entry><entry><title type="html">[JAVA] Set</title><link href="https://nan0silver.github.io/java/2024-12-08-set/" rel="alternate" type="text/html" title="[JAVA] Set" /><published>2024-12-08T00:00:00+00:00</published><updated>2025-01-16T08:19:23+00:00</updated><id>https://nan0silver.github.io/java/set</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-12-08-set/"><![CDATA[<p>목차</p>
+</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[분할정복 알고리즘에 대한 설명입니다.]]></summary></entry><entry><title type="html">[JAVA] Set</title><link href="https://nan0silver.github.io/java/2024-12-08-set/" rel="alternate" type="text/html" title="[JAVA] Set" /><published>2024-12-08T00:00:00+00:00</published><updated>2025-01-17T00:41:56+00:00</updated><id>https://nan0silver.github.io/java/set</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-12-08-set/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#텍스트-블록">텍스트 블록</a></li>
   <li><a href="#formatted-메서드">formatted() 메서드</a></li>
@@ -586,7 +574,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <li>LinkedHashSet의 성능은 HashSet보다 약간 느림</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA의 Set의 사용법을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.12.03</title><link href="https://nan0silver.github.io/devdiary/2024-12-03-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.03" /><published>2024-12-03T00:00:00+00:00</published><updated>2025-01-16T08:19:23+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-03-til/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA의 Set의 사용법을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.12.03</title><link href="https://nan0silver.github.io/devdiary/2024-12-03-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.03" /><published>2024-12-03T00:00:00+00:00</published><updated>2025-01-17T00:41:56+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-03-til/"><![CDATA[<p>목차</p>
 <ul>
   <li><a href="#맵핑-mapping">Mapping</a></li>
 </ul>
@@ -660,7 +648,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 3일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[TIL] 2024.12.02</title><link href="https://nan0silver.github.io/devdiary/2024-12-02-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.02" /><published>2024-12-02T00:00:00+00:00</published><updated>2025-01-16T08:19:23+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-02-til/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 3일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[TIL] 2024.12.02</title><link href="https://nan0silver.github.io/devdiary/2024-12-02-til/" rel="alternate" type="text/html" title="[TIL] 2024.12.02" /><published>2024-12-02T00:00:00+00:00</published><updated>2025-01-17T00:41:56+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-12-02-til/"><![CDATA[<p>목차</p>
 <ul>
   <li><a href="#스프링-콘셉트">스프링 콘셉트</a></li>
 </ul>
@@ -733,7 +721,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 2일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2025-01-16T08:19:23+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="devdiary" /><summary type="html"><![CDATA[2024년 12월 2일 하루 공부 내용 정리]]></summary></entry><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2025-01-17T00:41:56+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
 <ol>
   <li>
     <p><a href="#static-변수">static 변수</a></p>
@@ -1108,7 +1096,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <td>초기화되지 않은 경우 null 값을 가질 수 있음</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] JAVA version 17의 주요 변화</title><link href="https://nan0silver.github.io/java/2024-11-15-java17/" rel="alternate" type="text/html" title="[JAVA] JAVA version 17의 주요 변화" /><published>2024-11-15T00:00:00+00:00</published><updated>2025-01-16T08:19:23+00:00</updated><id>https://nan0silver.github.io/java/java17</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-15-java17/"><![CDATA[<p>목차</p>
+</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] JAVA version 17의 주요 변화</title><link href="https://nan0silver.github.io/java/2024-11-15-java17/" rel="alternate" type="text/html" title="[JAVA] JAVA version 17의 주요 변화" /><published>2024-11-15T00:00:00+00:00</published><updated>2025-01-17T00:41:56+00:00</updated><id>https://nan0silver.github.io/java/java17</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-15-java17/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#텍스트-블록">텍스트 블록</a></li>
   <li><a href="#formatted-메서드">formatted() 메서드</a></li>
@@ -1201,7 +1189,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA 17버전의 주요 변화 사항을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.11.08</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 2024.11.08" /><published>2024-11-08T00:00:00+00:00</published><updated>2025-01-16T08:19:23+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA 17버전의 주요 변화 사항을 알아본다.]]></summary></entry><entry><title type="html">[TIL] 2024.11.08</title><link href="https://nan0silver.github.io/devdiary/2024-11-08-til/" rel="alternate" type="text/html" title="[TIL] 2024.11.08" /><published>2024-11-08T00:00:00+00:00</published><updated>2025-01-17T00:41:56+00:00</updated><id>https://nan0silver.github.io/devdiary/til</id><content type="html" xml:base="https://nan0silver.github.io/devdiary/2024-11-08-til/"><![CDATA[<p>목차</p>
 <ul>
   <li><a href="#컴파일-언어-vs-인터프리터-언어">컴파일 언어와 인터프리터 언어</a></li>
 </ul>
