@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2025-01-21T02:38:49+00:00","datePublished":"2024-11-20T00:00:00+00:00","description":"static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.","headline":"[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2024-11-20-variable/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/java/2024-11-20-variable/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2025-01-21T02:44:13+00:00","datePublished":"2024-11-20T00:00:00+00:00","description":"static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.","headline":"[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2024-11-20-variable/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/java/2024-11-20-variable/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-01-21T02:39:34+00:00',
+    INDEX_KEY: 'index--2025-01-21T02:44:56+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 21 Jan 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-01-21T02:38:49+00:00">2025-01-21</time>
+              <time datetime="2025-01-21T02:44:13+00:00">2025-01-21</time>
             </span>
           
         
@@ -271,33 +271,32 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p>목차</p>
-<ol>
-  <li>
-    <p><a href="#static-변수">static 변수</a></p>
 
-    <p>1-1. <a href="#method-area">Method Area</a></p>
+<ul>
+  <li><a href="#static-변수">static 변수</a>
+    <ul>
+      <li><a href="#method-area">Method Area</a></li>
+    </ul>
   </li>
-  <li>
-    <p><a href="#지역변수--레퍼런스-변수">지역변수 &amp; 레퍼런스 변수</a></p>
-
-    <p>2-1. <a href="#지역변수-local-variable">지역 변수</a></p>
-
-    <p>2-2. <a href="#레퍼런스-변수-reference-variable">레퍼런스 변수</a></p>
+  <li><a href="#지역변수--레퍼런스-변수">지역변수 &amp; 레퍼런스 변수</a>
+    <ul>
+      <li><a href="#지역변수-local-variable">지역 변수</a></li>
+      <li><a href="#레퍼런스-변수-reference-variable">레퍼런스 변수</a></li>
+    </ul>
   </li>
-  <li>
-    <p><a href="#java-변수-비교-static-지역-변수-레퍼런스-변수의-특징과-차이점">JAVA 변수들의 특징 및 차이점 요약</a></p>
-
-    <p>3-1. <a href="#static-변수와-지역-변수-비교">static 변수와 지역 변수 비교</a></p>
-
-    <p>3-2. <a href="#static-변수와-레퍼런스-변수-비교">static 변수와 레퍼런스 변수 비교</a></p>
-
-    <p>3-3. <a href="#지역-변수와-레퍼런스-변수-비교">지역 변수와 레퍼런스 변수 비교</a></p>
+  <li><a href="#java-변수-비교-static-지역-변수-레퍼런스-변수의-특징과-차이점">JAVA 변수들의 특징 및 차이점 요약</a>
+    <ul>
+      <li><a href="#static-변수와-지역-변수-비교">static 변수와 지역 변수 비교</a></li>
+      <li><a href="#static-변수와-레퍼런스-변수-비교">static 변수와 레퍼런스 변수 비교</a></li>
+      <li><a href="#지역-변수와-레퍼런스-변수-비교">지역 변수와 레퍼런스 변수 비교</a></li>
+    </ul>
   </li>
-</ol>
+</ul>
 
 <hr />
 
 <h2 id="static-변수">static 변수</h2>
+
 <ul>
   <li>인스턴스가 아닌 클래스에 귀속</li>
   <li>인스턴스가 여러 개 생성되도 static 변수는 딱 하나
@@ -306,7 +305,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>객체가 아닌 클래스 자체에 저장되기 때문에 모든 객체가 동일한 메모리 위치를 공유함</li>
     </ul>
   </li>
-  <li>특징
+  <li>
+    <p>특징</p>
+
     <ul>
       <li>수명
         <ul>
@@ -319,10 +320,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <li>static 변수는 Method Area에 저장됨</li>
         </ul>
       </li>
-      <li>static 변수의 객체 독립성
+      <li>
+        <p>static 변수의 객체 독립성</p>
+
         <ul>
           <li>static 변수가 클래스 자체에 속해 있기 때문에, 객체를 생성하지 않아도 해당 클래스 이름만으로 직접 접근 가능</li>
-          <li>예시
+          <li>
+            <p>예시</p>
+
             <ul>
               <li>
                 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
@@ -350,7 +355,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       </li>
     </ul>
   </li>
-  <li>static 변수 사용 시점
+  <li>
+    <p>static 변수 사용 시점</p>
+
     <ul>
       <li>공유 데이터가 필요할 때
         <ul>
@@ -391,6 +398,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 </ul>
 
 <h3 id="method-area">Method Area</h3>
+
 <ul>
   <li>JVM(Java Virtual Machine)의 메모리 구조 중 하나</li>
   <li>클래스 수준의 정보를 저장하는 영역
@@ -437,7 +445,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 </ul>
 
 <h2 id="지역변수--레퍼런스-변수">지역변수 &amp; 레퍼런스 변수</h2>
+
 <h3 id="지역변수-local-variable">지역변수 (Local Variable)</h3>
+
 <ul>
   <li>특정 블록이나 함수 안에서만 선언되고 사용가능한 변수</li>
   <li>해당 블록이나 함수가 실행을 마치면 메모리에서 삭제되며, 외부에서 접근 불가능</li>
@@ -480,6 +490,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 </ul>
 
 <h3 id="레퍼런스-변수-reference-variable">레퍼런스 변수 (Reference Variable)</h3>
+
 <ul>
   <li>객체의 메모리 주소를 저장한는 변수, 즉 객체를 참조하는 데 사용됨</li>
   <li>실제 객체 데이터를 직접 저장하지 않고 객체가 메모리에 위치한 주소만 저장</li>
@@ -508,7 +519,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       </li>
     </ul>
   </li>
-  <li>예제
+  <li>
+    <p>예제</p>
+
     <ul>
       <li>
         <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span><span class="o">{</span>
@@ -538,6 +551,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 </ul>
 
 <h2 id="java-변수-비교-static-지역-변수-레퍼런스-변수의-특징과-차이점">Java 변수 비교: static, 지역 변수, 레퍼런스 변수의 특징과 차이점</h2>
+
 <h3 id="static-변수와-지역-변수-비교">static 변수와 지역 변수 비교</h3>
 
 <table>
