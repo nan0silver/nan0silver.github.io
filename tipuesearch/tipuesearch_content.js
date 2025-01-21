@@ -109,6 +109,11 @@ var tipuesearch = {"pages": [{
     "tags": "algorithm",
     "url": "/algorithm/2024-07-08-day1/"
   },{
+    "title": "[HTML] CSS 문법",
+    "text": "CSS란? CSS 문법 기초 CSS 적용 방법 CSS 프로퍼티 값의 단위 CSS란? CSS : Cascading Style Sheets 웹 페이지의 시각적 표현을 담당하는 스타일 언어 다양한 디바이스의 화면 크기에 대응하는 반응형 디자인 구현 내용과 디자인의 분리로 유지보수성 향 HTML VS CSS HTML 웹페이지 구조와 콘텐츠 정의 CSS HTML 요소의 스타일과 레이아웃 지정 CSS 문법 기초 선택자 (Selector) 스타일을 적용할 HTML 요소 지정 /* 요소 선택자 */ p { color: blue; } /* 클래스 선택자 */ .highlight { background-color: yellow; } /* ID 선택자 */ #header { font-size: 24px; } /* 전체 선택자 */ * { margin: 0; padding: 0; } ``` 속성 (Property) 변경하고자 하는 스타일의 종류 값 (Value) 속성에 적용할 구체적인 스타일 값 선언 (Declaration) 속성과 값의 쌍 규칙 (Rule) 선택자와 선언 블록의 조합 선택자 { 속성: 값; 속성: 값; } /* 구체적인 예시 */ h1 { color: blue; font-size: 18px; } CSS 적용 방법 인라인 스타일 HTML 요소 내부에 직접 스타일 적용 내부 스타일시트 head 섹션 내 style 태그에 CSS 작성 외부 스타일시트 별도의 .css파일에 스타일 정의 HTML 문서의 head 섹션에서 링크로 연결 CSS 프로퍼티 값의 단위 크기 단위 px : 픽셀 단위, 절대값 % : 백분율 단위, 상대값 em : 요소에 지정된 사이즈에 상대적인 배수 단위 rem : 최상위 요소(html)의 사이즈 기준 배수 단위 Viewport 단위 : vh, vw, vmin, vmax",
+    "tags": "miscellaneous",
+    "url": "/miscellaneous/2024-01-18-css/"
+  },{
     "title": "[파이썬을 이용한 딥러닝/강화학습 주식투자] Chap 01 금융 데이터 분석",
     "text": "1. 금융 데이터 분석 1.1 금융데이터란? 금융데이터 주식, 채권, 펀드 등의 금융 상품 및 이와 관련있는 모든 정보 주식 종목 및 시장 데이터, 재무제포 관련 데이터, 환율 데이터 등이 있다. 1.2 금융 데이터 분석의 필요성 주식 투자자는 크게 개인, 기관, 외국인 등이 있다. 보통 개인은 기관, 외국인보다 수익률이 좋지 않다. 이유로는 정보의 비대칭성 개인들이 적은 종목의 단기투자에 집중함 많은 종목의 데이터를 분석하고, 판단하려면 프로그래밍 언어와 머신 러닝을 이용해야한다. 1.3 금융 데이터 분석 방법 기본적 분석 기술적 분석 정서 분석 1. 기본적 분석 (fundamental analysis) 기업의 가치, 산업, 경제를 평가하는 분석 방법 재무제표를 분석해 회사의 수익성, 안정성, 성장성 등 판단 대표적 분석 지표 PER (Price Earning Ratio) PBR (Price Book-value Ratio) ROE (Return On Equity) PBR/PER 산업분석 KB금융지주 경영연구소 등의 발표자료 참고 경기분석 Business Cycle, GDP, 금리, 환율, 경기종합지수 등 참고 2. 기술적 분석 (technical analysis) 차트 분석. 과거의 경험으로 미래를 예측하고자 하는 분석 방법 주로 차트의 OHLCV, 보조지표, 패턴을 분석 OHLC(open-high-low-close)및 거래량(volume)",
     "tags": "deeplearning",
