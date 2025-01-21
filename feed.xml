@@ -1,7 +1,159 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-21T07:28:30+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-21T08:00:07+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[HTML] CSS 문법</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-18-css/" rel="alternate" type="text/html" title="[HTML] CSS 문법" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-01-21T07:27:45+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-18-css/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[HTML] CSS Float</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/" rel="alternate" type="text/html" title="[HTML] CSS Float" /><published>2025-01-19T00:00:00+00:00</published><updated>2025-01-21T07:59:17+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-float</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/"><![CDATA[<ul>
+  <li><a href="#css-float이란">CSS Float란</a></li>
+  <li><a href="#clearfix">Clearfix</a></li>
+  <li><a href="#clear-속성">Clear 속성</a></li>
+  <li><a href="#clearfix-vs-clear-속성">Clearfix VS Clear</a></li>
+  <li><a href="#float-사용-시-주의사항">Float 사용시 주의사항</a></li>
+  <li><a href="#결론">결론</a></li>
+</ul>
+
+<hr />
+
+<h2 id="css-float이란">CSS Float이란?</h2>
+
+<ul>
+  <li>
+    <p><strong>Float의 기본 개념</strong></p>
+
+    <ul>
+      <li>요소가 normal flow에서 벗어나 부모 요소의 왼쪽 또는 오른쪽으로 이동한다.</li>
+      <li>텍스트와 inline 요소들이 float된 요소 주변을 감싼다.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Float의 사용</strong></p>
+    <ul>
+      <li>전통적으로 다단 레이아웃을 만드는 데 사용된다.</li>
+      <li>이미지나 다른 요소를 텍스트 흐름 내에 배치하는 데 유용</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="clearfix">Clearfix</h2>
+
+<ul>
+  <li>Float의 문제점
+    <ul>
+      <li><strong>부모 요소 높이 붕괴</strong> float된 요소는 부모 요소의 높이에 영향을 주지 않아 부모 요소가 높이를 잃을 수 있다.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Clearfix</strong></p>
+
+    <ul>
+      <li>이 문제를 해결하기 위해 clearfix 기법이 사용된다.</li>
+      <li><code class="language-plaintext highlighter-rouge">overflow: auto</code> 또는 <code class="language-plaintext highlighter-rouge">overflow: hidden</code>을 부모 요소에 적용한다.</li>
+      <li>가상 요소 (<code class="language-plaintext highlighter-rouge">::after</code>)를 사용하여 float를 해제한다.</li>
+    </ul>
+  </li>
+  <li><strong>Clearfix 방법:</strong>
+    <ul>
+      <li><strong>CSS를 이용한 Clearfix:</strong>
+        <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.clearfix</span><span class="nd">::after</span> <span class="p">{</span>
+  <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+  <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>부모 요소에 <code class="language-plaintext highlighter-rouge">clearfix</code> 클래스를 추가하여 float 문제를 해결한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="clear-속성">Clear 속성</h2>
+
+<ul>
+  <li><strong>핵심 문제</strong>: 특정 요소가 바로 앞에 있는 float 요소의 영향을 받아 원하는 위치에 배치되지 않을 수 있다.</li>
+  <li><strong>clear 속성의 역할</strong>:
+    <ul>
+      <li>특정 요소가 이전의 float 요소 아래로 내려가도록 강제하여 float의 영향을 방지한다.</li>
+      <li>float 요소 다음에 나오는 요소에 주로 사용된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>사용 예시 (clear 속성):</strong></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.element</span> <span class="p">{</span>
+  <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">clear: both</code>: 왼쪽과 오른쪽의 float 요소로부터 벗어남.</li>
+  <li>특정 요소 자체의 위치를 조정하기 위한 용도로 사용된다.</li>
+</ul>
+
+<hr />
+
+<h2 id="clearfix-vs-clear-속성">Clearfix VS Clear 속성</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>개념</strong></th>
+      <th><strong>Clearfix</strong></th>
+      <th><strong>Clear 속성</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>적용 대상</strong></td>
+      <td>부모 요소가 float된 자식 요소를 감싸도록 해결</td>
+      <td>특정 요소가 float 요소의 영향을 받지 않도록 해결</td>
+    </tr>
+    <tr>
+      <td><strong>해결 문제</strong></td>
+      <td>부모 요소 높이 붕괴 문제</td>
+      <td>특정 요소의 위치 문제</td>
+    </tr>
+    <tr>
+      <td><strong>주요 방식</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">overflow</code> 속성, <code class="language-plaintext highlighter-rouge">::after</code> 가상 요소</td>
+      <td><code class="language-plaintext highlighter-rouge">clear: left/right/both</code> 속성</td>
+    </tr>
+    <tr>
+      <td><strong>사용 위치</strong></td>
+      <td>부모 요소</td>
+      <td>float 요소 바로 다음에 나오는 요소</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<ul>
+  <li><strong>부모 요소의 높이 붕괴 문제</strong>를 해결하려면 <strong>Clearfix</strong>를 사용한다.</li>
+  <li><strong>요소가 float의 영향을 받아 잘못된 위치에 있을 때</strong>는 <strong>clear 속성</strong>을 사용한다.</li>
+</ul>
+
+<hr />
+
+<h3 id="float-사용-시-주의사항">Float 사용 시 주의사항</h3>
+
+<ul>
+  <li>Float는 레이아웃의 기본적인 도구이지만, Flexbox나 Grid와 같은 현대적인 레이아웃 기술로 대체될 수 있다.</li>
+  <li>복잡한 레이아웃에서는 유지보수가 어려워질 수 있다.</li>
+  <li><strong>Float의 대안:</strong>
+    <ul>
+      <li><strong>Flexbox:</strong> 1차원 레이아웃에 적합하며, 요소의 정렬 및 간격 조절에 강력하다.</li>
+      <li><strong>CSS Grid:</strong> 2차원 레이아웃에 적합하며, 행과 열을 기반으로 복잡한 레이아웃을 만들 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="결론">결론</h3>
+
+<ul>
+  <li>CSS Float는 여전히 유용한 기술이지만, 현대적인 레이아웃 기술과 함께 이해하고 사용하는 것이 중요</li>
+  <li>프로젝트의 요구 사항에 따라 적절한 레이아웃 기술을 선택해야 함</li>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지 레이아웃을 만들때 사용되는 CSS Float에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS 문법</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-18-css/" rel="alternate" type="text/html" title="[HTML] CSS 문법" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-01-21T07:59:17+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-18-css/"><![CDATA[<ul>
   <li><a href="#css란">CSS란?</a></li>
   <li><a href="#css-문법-기초">CSS 문법 기초</a></li>
   <li><a href="#css-적용-방법">CSS 적용 방법</a></li>
@@ -138,7 +290,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>Viewport 단위 : vh, vw, vmin, vmax</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[HTML] Emmet</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/" rel="alternate" type="text/html" title="[HTML] Emmet" /><published>2025-01-17T00:00:00+00:00</published><updated>2025-01-21T07:27:45+00:00</updated><id>https://nan0silver.github.io/miscellaneous/emmet</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/"><![CDATA[<ol>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[HTML] Emmet</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/" rel="alternate" type="text/html" title="[HTML] Emmet" /><published>2025-01-17T00:00:00+00:00</published><updated>2025-01-21T07:59:17+00:00</updated><id>https://nan0silver.github.io/miscellaneous/emmet</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/"><![CDATA[<ol>
   <li><a href="#emmet이란">Emmet이란?</a></li>
   <li><a href="#emmet의-강력한-단축키---tab">Emmet의 강력한 단축키 !+Tab</a></li>
   <li><a href="#emmet-사용법-굉장히-쉽고-편리함">Emmet 사용법</a></li>
@@ -212,7 +364,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 <h2 id="emmet-어디에서-사용할-수-있나요">Emmet, 어디에서 사용할 수 있나요?</h2>
 
-<p>Emmet은 대부분의 텍스트 에디터와 IDE에서 플러그인 형태로 제공됩니다. Visual Studio Code, Sublime Text, Atom, IntelliJ IDEA 등 유명한 에디터에서는 기본적으로 Emmet을 지원하거나, 간단한 설치만으로 사용할 수 있습니다.</p>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[AI] 생성형 AI와 LLM</title><link href="https://nan0silver.github.io/ai/2025-01-16-basic/" rel="alternate" type="text/html" title="[AI] 생성형 AI와 LLM" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-21T07:27:45+00:00</updated><id>https://nan0silver.github.io/ai/basic</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-16-basic/"><![CDATA[<ul>
+<p>Emmet은 대부분의 텍스트 에디터와 IDE에서 플러그인 형태로 제공됩니다. Visual Studio Code, Sublime Text, Atom, IntelliJ IDEA 등 유명한 에디터에서는 기본적으로 Emmet을 지원하거나, 간단한 설치만으로 사용할 수 있습니다.</p>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[AI] 생성형 AI와 LLM</title><link href="https://nan0silver.github.io/ai/2025-01-16-basic/" rel="alternate" type="text/html" title="[AI] 생성형 AI와 LLM" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-21T07:59:17+00:00</updated><id>https://nan0silver.github.io/ai/basic</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-16-basic/"><![CDATA[<ul>
   <li><a href="#llm-large-language-model">LLM</a></li>
   <li><a href="#생성형-ai-generative-ai">생성형 AI</a></li>
   <li><a href="#gpt-genertive-pre-trained-transformer">GPT</a></li>
@@ -362,7 +514,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     </ul>
   </li>
   <li>학습자의 수준에 맞춘 접근 가능</li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[생성형 AI와 LLM에 대해 알아보자.]]></summary></entry><entry><title type="html">[AI] RAG (Retrieval-Augmented Generation) 이란?</title><link href="https://nan0silver.github.io/ai/2025-01-15-rag/" rel="alternate" type="text/html" title="[AI] RAG (Retrieval-Augmented Generation) 이란?" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-01-21T07:27:45+00:00</updated><id>https://nan0silver.github.io/ai/rag</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-15-rag/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[생성형 AI와 LLM에 대해 알아보자.]]></summary></entry><entry><title type="html">[AI] RAG (Retrieval-Augmented Generation) 이란?</title><link href="https://nan0silver.github.io/ai/2025-01-15-rag/" rel="alternate" type="text/html" title="[AI] RAG (Retrieval-Augmented Generation) 이란?" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-01-21T07:59:17+00:00</updated><id>https://nan0silver.github.io/ai/rag</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-15-rag/"><![CDATA[<ul>
   <li><a href="#rag-retrieval-augmented-generation">RAG</a></li>
   <li><a href="#rag의-작동-방식">RAG의 작동 방식</a></li>
   <li><a href="#rag의-장점">RAG의 장점</a></li>
@@ -451,7 +603,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
 
 <h2 id="결론">결론</h2>
 
-<p>RAG (Retrieval-Augmented Generation)은 언어 모델의 잠재력을 한 단계 더 끌어올리는 중요한 기술입니다. 외부 지식 소스를 활용하여 답변의 정확성, 최신성, 신뢰성을 높임으로써, 인공지능이 더욱 유용하고 신뢰할 수 있는 도구로 발전하는 데 기여할 것입니다. 마치 숙련된 개발자가 끊임없이 새로운 정보를 습득하고 활용하여 문제를 해결하는 것처럼, RAG는 인공지능이 더욱 똑똑하게 정보를 처리하고 활용할 수 있도록 돕는 핵심적인 기술입니다.</p>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[RAG (Retrieval-Augmented Generation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] Linear Time Sorting Algorithm</title><link href="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/" rel="alternate" type="text/html" title="[Algorithm] Linear Time Sorting Algorithm" /><published>2024-12-13T00:00:00+00:00</published><updated>2025-01-21T07:27:45+00:00</updated><id>https://nan0silver.github.io/algorithm/linear-time-sorting</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"><![CDATA[<ol>
+<p>RAG (Retrieval-Augmented Generation)은 언어 모델의 잠재력을 한 단계 더 끌어올리는 중요한 기술입니다. 외부 지식 소스를 활용하여 답변의 정확성, 최신성, 신뢰성을 높임으로써, 인공지능이 더욱 유용하고 신뢰할 수 있는 도구로 발전하는 데 기여할 것입니다. 마치 숙련된 개발자가 끊임없이 새로운 정보를 습득하고 활용하여 문제를 해결하는 것처럼, RAG는 인공지능이 더욱 똑똑하게 정보를 처리하고 활용할 수 있도록 돕는 핵심적인 기술입니다.</p>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[RAG (Retrieval-Augmented Generation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] Linear Time Sorting Algorithm</title><link href="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/" rel="alternate" type="text/html" title="[Algorithm] Linear Time Sorting Algorithm" /><published>2024-12-13T00:00:00+00:00</published><updated>2025-01-21T07:59:17+00:00</updated><id>https://nan0silver.github.io/algorithm/linear-time-sorting</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"><![CDATA[<ol>
   <li><a href="#counting-sort">Counting Sort</a></li>
   <li><a href="#radix-sort">Radix Sort</a></li>
   <li><a href="#order-statistics">Order Statistics</a></li>
@@ -604,7 +756,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <li>all comparison sorts are \(\Omega(nlogn)\)</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 분할정복 알고리즘 (Divide and conquer)</title><link href="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/" rel="alternate" type="text/html" title="[Algorithm] 분할정복 알고리즘 (Divide and conquer)" /><published>2024-12-12T00:00:00+00:00</published><updated>2025-01-21T07:27:45+00:00</updated><id>https://nan0silver.github.io/algorithm/divide-conquer</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 분할정복 알고리즘 (Divide and conquer)</title><link href="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/" rel="alternate" type="text/html" title="[Algorithm] 분할정복 알고리즘 (Divide and conquer)" /><published>2024-12-12T00:00:00+00:00</published><updated>2025-01-21T07:59:17+00:00</updated><id>https://nan0silver.github.io/algorithm/divide-conquer</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/"><![CDATA[<ul>
   <li><a href="#분할정복-알고리즘-divide-and-conquer-algorithm">분할정복 알고리즘</a>
     <ul>
       <li><a href="#설계-방법">설계 방법</a></li>
@@ -669,7 +821,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <td>∙  스택에 다량의 데이터가 보관되는 경우 오버플로우가 발생할 수 있다.</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[분할정복 알고리즘에 대한 설명입니다.]]></summary></entry><entry><title type="html">[JAVA] Set</title><link href="https://nan0silver.github.io/java/2024-12-08-set/" rel="alternate" type="text/html" title="[JAVA] Set" /><published>2024-12-08T00:00:00+00:00</published><updated>2025-01-21T07:27:45+00:00</updated><id>https://nan0silver.github.io/java/set</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-12-08-set/"><![CDATA[<p>목차</p>
+</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[분할정복 알고리즘에 대한 설명입니다.]]></summary></entry><entry><title type="html">[JAVA] Set</title><link href="https://nan0silver.github.io/java/2024-12-08-set/" rel="alternate" type="text/html" title="[JAVA] Set" /><published>2024-12-08T00:00:00+00:00</published><updated>2025-01-21T07:59:17+00:00</updated><id>https://nan0silver.github.io/java/set</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-12-08-set/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#텍스트-블록">텍스트 블록</a></li>
   <li><a href="#formatted-메서드">formatted() 메서드</a></li>
@@ -774,7 +926,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <li>LinkedHashSet의 성능은 HashSet보다 약간 느림</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA의 Set의 사용법을 알아본다.]]></summary></entry><entry><title type="html">[Spring] Spring 매핑 개념과 주요 애너테이션 활용법</title><link href="https://nan0silver.github.io/miscellaneous/2024-12-03-mapping/" rel="alternate" type="text/html" title="[Spring] Spring 매핑 개념과 주요 애너테이션 활용법" /><published>2024-12-03T00:00:00+00:00</published><updated>2025-01-21T07:27:45+00:00</updated><id>https://nan0silver.github.io/miscellaneous/mapping</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2024-12-03-mapping/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA의 Set의 사용법을 알아본다.]]></summary></entry><entry><title type="html">[Spring] Spring 매핑 개념과 주요 애너테이션 활용법</title><link href="https://nan0silver.github.io/miscellaneous/2024-12-03-mapping/" rel="alternate" type="text/html" title="[Spring] Spring 매핑 개념과 주요 애너테이션 활용법" /><published>2024-12-03T00:00:00+00:00</published><updated>2025-01-21T07:59:17+00:00</updated><id>https://nan0silver.github.io/miscellaneous/mapping</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2024-12-03-mapping/"><![CDATA[<ul>
   <li><a href="#맵핑-mapping">Mapping</a></li>
 </ul>
 
@@ -854,7 +1006,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다.]]></summary></entry><entry><title type="html">[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)</title><link href="https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/" rel="alternate" type="text/html" title="[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)" /><published>2024-12-02T00:00:00+00:00</published><updated>2025-01-21T07:27:45+00:00</updated><id>https://nan0silver.github.io/miscellaneous/spring-basic</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다.]]></summary></entry><entry><title type="html">[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)</title><link href="https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/" rel="alternate" type="text/html" title="[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)" /><published>2024-12-02T00:00:00+00:00</published><updated>2025-01-21T07:59:17+00:00</updated><id>https://nan0silver.github.io/miscellaneous/spring-basic</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/"><![CDATA[<ul>
   <li><a href="#스프링-콘셉트">스프링 콘셉트</a></li>
 </ul>
 
@@ -937,391 +1089,4 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.]]></summary></entry><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2025-01-21T07:27:45+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<ul>
-  <li><a href="#static-변수">static 변수</a>
-    <ul>
-      <li><a href="#method-area">Method Area</a></li>
-    </ul>
-  </li>
-  <li><a href="#지역변수--레퍼런스-변수">지역변수 &amp; 레퍼런스 변수</a>
-    <ul>
-      <li><a href="#지역변수-local-variable">지역 변수</a></li>
-      <li><a href="#레퍼런스-변수-reference-variable">레퍼런스 변수</a></li>
-    </ul>
-  </li>
-  <li><a href="#java-변수-비교-static-지역-변수-레퍼런스-변수의-특징과-차이점">JAVA 변수들의 특징 및 차이점 요약</a>
-    <ul>
-      <li><a href="#static-변수와-지역-변수-비교">static 변수와 지역 변수 비교</a></li>
-      <li><a href="#static-변수와-레퍼런스-변수-비교">static 변수와 레퍼런스 변수 비교</a></li>
-      <li><a href="#지역-변수와-레퍼런스-변수-비교">지역 변수와 레퍼런스 변수 비교</a></li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h2 id="static-변수">static 변수</h2>
-
-<ul>
-  <li>인스턴스가 아닌 클래스에 귀속</li>
-  <li>인스턴스가 여러 개 생성되도 static 변수는 딱 하나
-    <ul>
-      <li>클래스가 메모리에 로드될 때 한 번 생성됨</li>
-      <li>객체가 아닌 클래스 자체에 저장되기 때문에 모든 객체가 동일한 메모리 위치를 공유함</li>
-    </ul>
-  </li>
-  <li>
-    <p>특징</p>
-
-    <ul>
-      <li>수명
-        <ul>
-          <li>클래스가 메모리에 로드될 때 생성되고, 프로그램이 종료될 때까지 유지됨</li>
-          <li>일반적인 지역변수와 달리 블록을 벗어나도 소멸되지 않음</li>
-        </ul>
-      </li>
-      <li>메모리 위치
-        <ul>
-          <li>static 변수는 Method Area에 저장됨</li>
-        </ul>
-      </li>
-      <li>
-        <p>static 변수의 객체 독립성</p>
-
-        <ul>
-          <li>static 변수가 클래스 자체에 속해 있기 때문에, 객체를 생성하지 않아도 해당 클래스 이름만으로 직접 접근 가능</li>
-          <li>
-            <p>예시</p>
-
-            <ul>
-              <li>
-                <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
-      <span class="kd">static</span> <span class="kt">int</span> <span class="n">staticVar</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">//static 변수 (클래스 변수)</span>
-      <span class="kt">int</span> <span class="n">instanceVar</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span> <span class="c1">//인스턴스 변수 (객체 변수)</span>
-
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-          <span class="c1">//static 변수는 클래스 이름으로 접근 가능</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Static Variable: "</span> <span class="o">+</span> <span class="nc">Example</span><span class="o">.</span><span class="na">staticVar</span><span class="o">);</span> <span class="c1">//출력: 10</span>
-
-          <span class="c1">//객체를 생성하지 않아도 static 변수에 접근 가능</span>
-          <span class="nc">Example</span><span class="o">.</span><span class="na">staticVar</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Static Variable: "</span> <span class="o">+</span><span class="nc">Example</span><span class="o">.</span><span class="na">staticVar</span><span class="o">);</span> <span class="c1">//출력: 30</span>
-
-          <span class="c1">//객체를 생성해야 인스턴스 변수에 접근 가능</span>
-          <span class="nc">Example</span> <span class="n">obj1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Example</span><span class="o">();</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Instance Variable: "</span> <span class="o">+</span> <span class="n">obj1</span><span class="o">.</span><span class="na">instanceVar</span><span class="o">);</span> <span class="c1">//출력: 20</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>static 변수 사용 시점</p>
-
-    <ul>
-      <li>공유 데이터가 필요할 때
-        <ul>
-          <li>모든 객체에서 동일한 값 공유해아 할 때 사용</li>
-          <li>예: 총 객체 갯수, 공통 설정값 등</li>
-        </ul>
-      </li>
-      <li>객체와 무관하게 동작해야할 때
-        <ul>
-          <li>클래스 자체의 정보를 나타내거나, 객체 없이 사용 가능한 값을 저장할 때</li>
-          <li>예: 수학 상수 Math.PI, System.out.println()의 out도 static</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestClass</span><span class="o">{</span>
-      <span class="kd">static</span> <span class="kt">int</span> <span class="n">number</span><span class="o">;</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span><span class="o">{</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="o">[]</span><span class="n">arg</span><span class="o">){</span>
-          <span class="nc">TestClass</span> <span class="n">class1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TestClass</span><span class="o">();</span>
-          <span class="nc">TestClass</span> <span class="n">class2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TestClass</span><span class="o">();</span>
-
-          <span class="n">class1</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
-          <span class="n">class2</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
-
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"class1의 number: "</span> <span class="o">+</span> <span class="n">class1</span><span class="o">.</span><span class="na">number</span><span class="o">);</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"class2의 number: "</span> <span class="o">+</span> <span class="n">class2</span><span class="o">.</span><span class="na">number</span><span class="o">);</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-  <span class="c1">// class1의 number: 5</span>
-  <span class="c1">// class2의 number: 5</span>
-</code></pre></div>    </div>
-  </li>
-  <li>마지막에 number에 5가 저장되어있기 때문에 5가 두번 출력</li>
-</ul>
-
-<h3 id="method-area">Method Area</h3>
-
-<ul>
-  <li>JVM(Java Virtual Machine)의 메모리 구조 중 하나</li>
-  <li>클래스 수준의 정보를 저장하는 영역
-    <ul>
-      <li>저장되는 데이터 종류
-        <ol>
-          <li>클래스 정보
-            <ul>
-              <li>클래스의 이름, 부모 클래스, 접근 제어자 등의 메타데이터</li>
-            </ul>
-          </li>
-          <li>클래스 변수 (static 변수)
-            <ul>
-              <li>클래스가 로드될 때 메모리에 할당되며 모든 객체에서 공유됨</li>
-            </ul>
-          </li>
-          <li>메서드 정보
-            <ul>
-              <li>메서드의 이름, 리턴 타입, 매개변수 타입 등</li>
-              <li>메서드의 바이트코드 포함</li>
-            </ul>
-          </li>
-          <li>상수 (Constant Pool)
-            <ul>
-              <li>컴파일 시 생성된 상수(문자열, 숫자 리터럴 등)와 참조(메서드 참조, 클래스 참조)가 저장됨</li>
-            </ul>
-          </li>
-          <li>런타임 상수 풀(Runtime Constant Pool)
-            <ul>
-              <li>런타임 중에 동적으로 생성된 상수와 참조.</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ul>
-  </li>
-  <li>특징
-    <ul>
-      <li>JVM내에서 유일 : 모든 스레드가 공유</li>
-      <li>수명 : JVM이 종료될 때까지 유지</li>
-      <li>Garbage Collection 대상 아님 : 클래스 정보는 명시적으로 제거되지 않음</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="지역변수--레퍼런스-변수">지역변수 &amp; 레퍼런스 변수</h2>
-
-<h3 id="지역변수-local-variable">지역변수 (Local Variable)</h3>
-
-<ul>
-  <li>특정 블록이나 함수 안에서만 선언되고 사용가능한 변수</li>
-  <li>해당 블록이나 함수가 실행을 마치면 메모리에서 삭제되며, 외부에서 접근 불가능</li>
-  <li>특징
-    <ul>
-      <li>유효 범위 (Scope)
-        <ul>
-          <li>변수가 선언된 블록(중괄호 {}로 감싸진 영역) 내에서만 유효</li>
-        </ul>
-      </li>
-      <li>초기화 필요
-        <ul>
-          <li>지역변수는 자동으로 초기화 되지 않음</li>
-        </ul>
-      </li>
-      <li>메모리 관리
-        <ul>
-          <li>지역변수는 함수 호출시 생성되고, 함수 종료 시 자동으로 소멸됨</li>
-          <li>일반적으로 스택 메모리 사용</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>예제
-    <ul>
-      <li>
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-          <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// x는 main 메서드의 지역 변수</span>
-          <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">)</span> <span class="o">{</span>
-              <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span> <span class="c1">// y는 if 블록의 지역 변수</span>
-          <span class="o">}</span>
-          <span class="c1">//y는 if블록 밖에서 사용할 수 없음</span>
-          <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="레퍼런스-변수-reference-variable">레퍼런스 변수 (Reference Variable)</h3>
-
-<ul>
-  <li>객체의 메모리 주소를 저장한는 변수, 즉 객체를 참조하는 데 사용됨</li>
-  <li>실제 객체 데이터를 직접 저장하지 않고 객체가 메모리에 위치한 주소만 저장</li>
-  <li>특징
-    <ul>
-      <li>객체와 연결
-        <ul>
-          <li>레퍼런스 변수는 new키워드 등을 통해 생성된 객체를 가리킴</li>
-        </ul>
-      </li>
-      <li>동적 메모리 사용
-        <ul>
-          <li>레퍼런스 변수가 가리키는 객체는 힙(Heap)메모리에 저장됨</li>
-        </ul>
-      </li>
-      <li>null값 가능
-        <ul>
-          <li>초기화되지 않은 레퍼런스 변수는 null값을 가질 수 있음</li>
-          <li>null값을 참조하려면 NullPointerException이 발생</li>
-        </ul>
-      </li>
-      <li>두 레퍼런스 변수가 동일한 객체를 가리킬 수 있음
-        <ul>
-          <li>한 레퍼런스 변수를 통해 객체를 수정하면 다른 레퍼런스 변수도 수정됨</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>예제</p>
-
-    <ul>
-      <li>
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span><span class="o">{</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-          <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span> <span class="c1">//str은 String객체를 참조하는 레퍼런스 변수</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">());</span> <span class="c1">//참조된 객체의 메서드 호출 가능</span>
-
-          <span class="n">str</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">//str이 아무 객체도 참조하지 않음</span>
-          <span class="c1">//System.out.println(str.length()); //NullPointerException 발생</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-          <span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">};</span>
-          <span class="kt">int</span><span class="o">[]</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">;</span> <span class="c1">//같은 객체 참조</span>
-          <span class="n">ref</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">//참조를 통해 객체 수정</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span> <span class="c1">//출력: 100</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="java-변수-비교-static-지역-변수-레퍼런스-변수의-특징과-차이점">Java 변수 비교: static, 지역 변수, 레퍼런스 변수의 특징과 차이점</h2>
-
-<h3 id="static-변수와-지역-변수-비교">static 변수와 지역 변수 비교</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th><strong>특징</strong></th>
-      <th><strong>static 변수</strong></th>
-      <th><strong>지역 변수</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>범위(Scope)</strong></td>
-      <td>클래스 전체에서 접근 가능 (전역적)</td>
-      <td>선언된 블록(예: 함수) 내에서만 유효</td>
-    </tr>
-    <tr>
-      <td><strong>수명(Lifetime)</strong></td>
-      <td>프로그램 종료 시까지 유지</td>
-      <td>블록 실행이 끝나면 소멸</td>
-    </tr>
-    <tr>
-      <td><strong>공유</strong></td>
-      <td>모든 객체가 같은 값을 공유</td>
-      <td>각 함수 호출마다 독립적으로 생성</td>
-    </tr>
-    <tr>
-      <td><strong>메모리 위치</strong></td>
-      <td>메서드 영역(Method Area)</td>
-      <td>스택(Stack) 메모리</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="static-변수와-레퍼런스-변수-비교">static 변수와 레퍼런스 변수 비교</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th><strong>특징</strong></th>
-      <th><strong>static 변수</strong></th>
-      <th><strong>레퍼런스 변수</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>저장 내용</strong></td>
-      <td>클래스 수준에서 공유되는 데이터</td>
-      <td>객체의 메모리 주소를 저장</td>
-    </tr>
-    <tr>
-      <td><strong>초기화 여부</strong></td>
-      <td>명시적 초기화가 없으면 기본값으로 초기화됨</td>
-      <td>초기화되지 않으면 null 값을 가짐</td>
-    </tr>
-    <tr>
-      <td><strong>수명</strong></td>
-      <td>클래스 로드부터 프로그램 종료까지 유지</td>
-      <td>변수의 유효 범위 내에서만 사용 가능</td>
-    </tr>
-    <tr>
-      <td><strong>클래스 의존성</strong></td>
-      <td>클래스와 연결 (객체와 무관)</td>
-      <td>객체를 가리킴 (객체가 없으면 의미 없음)</td>
-    </tr>
-    <tr>
-      <td><strong>메모리 위치</strong></td>
-      <td>메서드 영역(Method Area)</td>
-      <td>스택(지역 변수일 때) 또는 힙(객체를 참조할 때)</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="지역-변수와-레퍼런스-변수-비교">지역 변수와 레퍼런스 변수 비교</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th><strong>특징</strong></th>
-      <th><strong>지역 변수</strong></th>
-      <th><strong>레퍼런스 변수</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>저장 내용</strong></td>
-      <td>값 자체</td>
-      <td>객체의 메모리 주소</td>
-    </tr>
-    <tr>
-      <td><strong>유효 범위</strong></td>
-      <td>선언된 블록 내</td>
-      <td>객체가 참조되는 동안</td>
-    </tr>
-    <tr>
-      <td><strong>메모리 위치</strong></td>
-      <td>스택 메모리</td>
-      <td>힙 메모리에 저장된 객체를 참조</td>
-    </tr>
-    <tr>
-      <td><strong>초기화 필요성</strong></td>
-      <td>명시적 초기화 필요</td>
-      <td>초기화되지 않은 경우 null 값을 가질 수 있음</td>
-    </tr>
-  </tbody>
-</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.]]></summary></entry></feed>
