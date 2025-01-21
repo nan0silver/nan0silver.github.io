@@ -1,7 +1,72 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-21T01:38:30+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-21T02:31:51+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[AI] 생성형 AI와 LLM</title><link href="https://nan0silver.github.io/ai/2025-01-16-basic/" rel="alternate" type="text/html" title="[AI] 생성형 AI와 LLM" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-21T01:37:44+00:00</updated><id>https://nan0silver.github.io/ai/basic</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-16-basic/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[HTML] Emmet</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/" rel="alternate" type="text/html" title="[HTML] Emmet" /><published>2025-01-17T00:00:00+00:00</published><updated>2025-01-21T02:31:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/emmet</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/"><![CDATA[<h2 id="emmet이란">Emmet이란?</h2>
+
+<p>Emmet은 웹 개발자가 HTML, CSS 코드를 훨씬 빠르고 효율적으로 작성할 수 있도록 도와주는 플러그인입니다. <br />
+간단한 축약어를 입력하면 Emmet이 알아서 전체 코드로 확장해줍니다. 예를 들어, <code class="language-plaintext highlighter-rouge">ul&gt;li*5&gt;a</code>라고 입력하면 다음과 같은 HTML 코드가 자동으로 생성됩니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ul&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre></div></div>
+
+<p>Emmet을 사용하면 이런 불필요한 작업을 줄이고, 개발자는 오롯이 로직과 디자인에 집중할 수 있습니다.</p>
+
+<h2 id="emmet의-강력한-단축키---tab">Emmet의 강력한 단축키 ! + Tab</h2>
+
+<p>Emmet을 사용하는 가장 대표적인 사례 중 하나는 ! + Tab 단축키입니다. 이 단축키를 입력하면 기본 HTML 문서의 구조가 즉시 생성됩니다. 예를 들어, 빈 파일에서 !를 입력한 후 Tab 키를 누르면 다음과 같은 기본 HTML 문서가 자동으로 작성됩니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Document<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>이 기본 구조는 웹 페이지를 시작할 때 반드시 필요한 요소들로 구성되어 있으며, 직접 입력하는 번거로움을 크게 줄여줍니다. 이 기능만 사용해도 초보자부터 숙련된 개발자까지 작업 시간을 크게 단축할 수 있습니다.</p>
+
+<h2 id="emmet-사용법-굉장히-쉽고-편리함">Emmet 사용법 (굉장히 쉽고 편리함)</h2>
+
+<p>Emmet의 문법은 간단하면서도 강력합니다. 몇 가지 기본 규칙만 익히면 금방 능숙하게 사용할 수 있습니다.</p>
+
+<ul>
+  <li><strong>자식 요소:</strong> <code class="language-plaintext highlighter-rouge">&gt;</code> 기호를 사용하여 자식 요소를 생성합니다. 예를 들어, <code class="language-plaintext highlighter-rouge">div&gt;p</code>는 <code class="language-plaintext highlighter-rouge">&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;</code>로 확장됩니다.</li>
+  <li><strong>형제 요소:</strong> <code class="language-plaintext highlighter-rouge">+</code> 기호를 사용하여 형제 요소를 생성합니다. 예를 들어, <code class="language-plaintext highlighter-rouge">h2+p</code>는 <code class="language-plaintext highlighter-rouge">&lt;h2&gt;&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;</code>로 확장됩니다.</li>
+  <li><strong>반복 요소:</strong> <code class="language-plaintext highlighter-rouge">*</code> 기호를 사용하여 요소를 반복 생성합니다. 예를 들어, <code class="language-plaintext highlighter-rouge">li*3</code>는 <code class="language-plaintext highlighter-rouge">&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;</code>로 확장됩니다.</li>
+  <li><strong>그룹화:</strong> <code class="language-plaintext highlighter-rouge">()</code> 괄호를 사용하여 요소들을 그룹으로 묶을 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">div&gt;(header&gt;ul&gt;li*2)+footer</code>는 다음과 같이 확장됩니다.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>
+  <span class="nt">&lt;header&gt;</span>
+    <span class="nt">&lt;ul&gt;</span>
+      <span class="nt">&lt;li&gt;&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/header&gt;</span>
+  <span class="nt">&lt;footer&gt;&lt;/footer&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>속성 추가:</strong> <code class="language-plaintext highlighter-rouge">[]</code> 괄호를 사용하여 요소에 속성을 추가할 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">a[href=#]</code>는 <code class="language-plaintext highlighter-rouge">&lt;a href="#"&gt;&lt;/a&gt;</code>로 확장됩니다. 여러 속성을 추가하려면 <code class="language-plaintext highlighter-rouge">a[href=# title=링크]</code>와 같이 작성합니다.</li>
+  <li><strong>클래스 및 ID 추가:</strong> CSS 선택자처럼 <code class="language-plaintext highlighter-rouge">.</code> 기호로 클래스를, <code class="language-plaintext highlighter-rouge">#</code> 기호로 ID를 추가할 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">div.container</code>는 <code class="language-plaintext highlighter-rouge">&lt;div class="container"&gt;&lt;/div&gt;</code>로, <code class="language-plaintext highlighter-rouge">div#header</code>는 <code class="language-plaintext highlighter-rouge">&lt;div id="header"&gt;&lt;/div&gt;</code>로 확장됩니다. 여러 개의 클래스를 추가하려면 <code class="language-plaintext highlighter-rouge">div.container.main</code>처럼 작성합니다.</li>
+  <li><strong>텍스트 내용 추가:</strong> <code class="language-plaintext highlighter-rouge">{}</code> 중괄호 안에 텍스트 내용을 입력할 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">p{안녕하세요}</code>는 <code class="language-plaintext highlighter-rouge">&lt;p&gt;안녕하세요&lt;/p&gt;</code>로 확장됩니다.</li>
+</ul>
+
+<p>이 외에도 다양한 기능들이 있지만, 이 정도만 알아도 Emmet의 강력함을 충분히 경험할 수 있습니다.</p>
+
+<h2 id="emmet-어디에서-사용할-수-있나요">Emmet, 어디에서 사용할 수 있나요?</h2>
+
+<p>Emmet은 대부분의 텍스트 에디터와 IDE에서 플러그인 형태로 제공됩니다. Visual Studio Code, Sublime Text, Atom, IntelliJ IDEA 등 유명한 에디터에서는 기본적으로 Emmet을 지원하거나, 간단한 설치만으로 사용할 수 있습니다. 여러분이 사용하는 에디터에서 Emmet을 활성화하고 코딩 효율을 높여보세요.</p>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[AI] 생성형 AI와 LLM</title><link href="https://nan0silver.github.io/ai/2025-01-16-basic/" rel="alternate" type="text/html" title="[AI] 생성형 AI와 LLM" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-21T02:31:07+00:00</updated><id>https://nan0silver.github.io/ai/basic</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-16-basic/"><![CDATA[<ul>
   <li><a href="#llm-large-language-model">LLM</a></li>
   <li><a href="#생성형-ai-generative-ai">생성형 AI</a></li>
   <li><a href="#gpt-genertive-pre-trained-transformer">GPT</a></li>
@@ -151,7 +216,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     </ul>
   </li>
   <li>학습자의 수준에 맞춘 접근 가능</li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[생성형 AI와 LLM에 대해 알아보자.]]></summary></entry><entry><title type="html">[AI] RAG (Retrieval-Augmented Generation) 이란?</title><link href="https://nan0silver.github.io/ai/2025-01-15-rag/" rel="alternate" type="text/html" title="[AI] RAG (Retrieval-Augmented Generation) 이란?" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-01-21T01:37:44+00:00</updated><id>https://nan0silver.github.io/ai/rag</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-15-rag/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[생성형 AI와 LLM에 대해 알아보자.]]></summary></entry><entry><title type="html">[AI] RAG (Retrieval-Augmented Generation) 이란?</title><link href="https://nan0silver.github.io/ai/2025-01-15-rag/" rel="alternate" type="text/html" title="[AI] RAG (Retrieval-Augmented Generation) 이란?" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-01-21T02:31:07+00:00</updated><id>https://nan0silver.github.io/ai/rag</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-15-rag/"><![CDATA[<ul>
   <li><a href="#rag-retrieval-augmented-generation">RAG</a></li>
   <li><a href="#rag의-작동-방식">RAG의 작동 방식</a></li>
   <li><a href="#rag의-장점">RAG의 장점</a></li>
@@ -240,7 +305,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
 
 <h2 id="결론">결론</h2>
 
-<p>RAG (Retrieval-Augmented Generation)은 언어 모델의 잠재력을 한 단계 더 끌어올리는 중요한 기술입니다. 외부 지식 소스를 활용하여 답변의 정확성, 최신성, 신뢰성을 높임으로써, 인공지능이 더욱 유용하고 신뢰할 수 있는 도구로 발전하는 데 기여할 것입니다. 마치 숙련된 개발자가 끊임없이 새로운 정보를 습득하고 활용하여 문제를 해결하는 것처럼, RAG는 인공지능이 더욱 똑똑하게 정보를 처리하고 활용할 수 있도록 돕는 핵심적인 기술입니다.</p>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[RAG (Retrieval-Augmented Generation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] Linear Time Sorting Algorithm</title><link href="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/" rel="alternate" type="text/html" title="[Algorithm] Linear Time Sorting Algorithm" /><published>2024-12-13T00:00:00+00:00</published><updated>2025-01-21T01:37:44+00:00</updated><id>https://nan0silver.github.io/algorithm/linear-time-sorting</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"><![CDATA[<p>목차</p>
+<p>RAG (Retrieval-Augmented Generation)은 언어 모델의 잠재력을 한 단계 더 끌어올리는 중요한 기술입니다. 외부 지식 소스를 활용하여 답변의 정확성, 최신성, 신뢰성을 높임으로써, 인공지능이 더욱 유용하고 신뢰할 수 있는 도구로 발전하는 데 기여할 것입니다. 마치 숙련된 개발자가 끊임없이 새로운 정보를 습득하고 활용하여 문제를 해결하는 것처럼, RAG는 인공지능이 더욱 똑똑하게 정보를 처리하고 활용할 수 있도록 돕는 핵심적인 기술입니다.</p>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[RAG (Retrieval-Augmented Generation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] Linear Time Sorting Algorithm</title><link href="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/" rel="alternate" type="text/html" title="[Algorithm] Linear Time Sorting Algorithm" /><published>2024-12-13T00:00:00+00:00</published><updated>2025-01-21T02:31:07+00:00</updated><id>https://nan0silver.github.io/algorithm/linear-time-sorting</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#counting-sort">Counting Sort</a></li>
   <li><a href="#radix-sort">Radix Sort</a></li>
@@ -392,7 +457,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <li>all comparison sorts are \(\Omega(nlogn)\)</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 분할정복 알고리즘 (Divide and conquer)</title><link href="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/" rel="alternate" type="text/html" title="[Algorithm] 분할정복 알고리즘 (Divide and conquer)" /><published>2024-12-12T00:00:00+00:00</published><updated>2025-01-21T01:37:44+00:00</updated><id>https://nan0silver.github.io/algorithm/divide-conquer</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 분할정복 알고리즘 (Divide and conquer)</title><link href="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/" rel="alternate" type="text/html" title="[Algorithm] 분할정복 알고리즘 (Divide and conquer)" /><published>2024-12-12T00:00:00+00:00</published><updated>2025-01-21T02:31:07+00:00</updated><id>https://nan0silver.github.io/algorithm/divide-conquer</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/"><![CDATA[<p>목차</p>
 <ol>
   <li>
     <p><a href="#분할정복-알고리즘-divide-and-conquer-algorithm">분할정복 알고리즘</a></p>
@@ -459,7 +524,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <td>∙  스택에 다량의 데이터가 보관되는 경우 오버플로우가 발생할 수 있다.</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[분할정복 알고리즘에 대한 설명입니다.]]></summary></entry><entry><title type="html">[JAVA] Set</title><link href="https://nan0silver.github.io/java/2024-12-08-set/" rel="alternate" type="text/html" title="[JAVA] Set" /><published>2024-12-08T00:00:00+00:00</published><updated>2025-01-21T01:37:44+00:00</updated><id>https://nan0silver.github.io/java/set</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-12-08-set/"><![CDATA[<p>목차</p>
+</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[분할정복 알고리즘에 대한 설명입니다.]]></summary></entry><entry><title type="html">[JAVA] Set</title><link href="https://nan0silver.github.io/java/2024-12-08-set/" rel="alternate" type="text/html" title="[JAVA] Set" /><published>2024-12-08T00:00:00+00:00</published><updated>2025-01-21T02:31:07+00:00</updated><id>https://nan0silver.github.io/java/set</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-12-08-set/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#텍스트-블록">텍스트 블록</a></li>
   <li><a href="#formatted-메서드">formatted() 메서드</a></li>
@@ -564,7 +629,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <li>LinkedHashSet의 성능은 HashSet보다 약간 느림</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA의 Set의 사용법을 알아본다.]]></summary></entry><entry><title type="html">[Spring] Spring 매핑 개념과 주요 애너테이션 활용법</title><link href="https://nan0silver.github.io/miscellaneous/2024-12-03-mapping/" rel="alternate" type="text/html" title="[Spring] Spring 매핑 개념과 주요 애너테이션 활용법" /><published>2024-12-03T00:00:00+00:00</published><updated>2025-01-21T01:37:44+00:00</updated><id>https://nan0silver.github.io/miscellaneous/mapping</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2024-12-03-mapping/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA의 Set의 사용법을 알아본다.]]></summary></entry><entry><title type="html">[Spring] Spring 매핑 개념과 주요 애너테이션 활용법</title><link href="https://nan0silver.github.io/miscellaneous/2024-12-03-mapping/" rel="alternate" type="text/html" title="[Spring] Spring 매핑 개념과 주요 애너테이션 활용법" /><published>2024-12-03T00:00:00+00:00</published><updated>2025-01-21T02:31:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/mapping</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2024-12-03-mapping/"><![CDATA[<p>목차</p>
 
 <ul>
   <li><a href="#맵핑-mapping">Mapping</a></li>
@@ -646,7 +711,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다.]]></summary></entry><entry><title type="html">[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)</title><link href="https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/" rel="alternate" type="text/html" title="[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)" /><published>2024-12-02T00:00:00+00:00</published><updated>2025-01-21T01:37:44+00:00</updated><id>https://nan0silver.github.io/miscellaneous/spring-basic</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다.]]></summary></entry><entry><title type="html">[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)</title><link href="https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/" rel="alternate" type="text/html" title="[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)" /><published>2024-12-02T00:00:00+00:00</published><updated>2025-01-21T02:31:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/spring-basic</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/"><![CDATA[<p>목차</p>
 
 <ul>
   <li><a href="#스프링-콘셉트">스프링 콘셉트</a></li>
@@ -731,7 +796,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.]]></summary></entry><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2025-01-21T01:37:44+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.]]></summary></entry><entry><title type="html">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</title><link href="https://nan0silver.github.io/java/2024-11-20-variable/" rel="alternate" type="text/html" title="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" /><published>2024-11-20T00:00:00+00:00</published><updated>2025-01-21T02:31:07+00:00</updated><id>https://nan0silver.github.io/java/variable</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-20-variable/"><![CDATA[<p>목차</p>
 <ol>
   <li>
     <p><a href="#static-변수">static 변수</a></p>
@@ -1106,7 +1171,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <td>초기화되지 않은 경우 null 값을 가질 수 있음</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] JAVA version 17의 주요 변화</title><link href="https://nan0silver.github.io/java/2024-11-15-java17/" rel="alternate" type="text/html" title="[JAVA] JAVA version 17의 주요 변화" /><published>2024-11-15T00:00:00+00:00</published><updated>2025-01-21T01:37:44+00:00</updated><id>https://nan0silver.github.io/java/java17</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-15-java17/"><![CDATA[<p>목차</p>
+</table>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] JAVA version 17의 주요 변화</title><link href="https://nan0silver.github.io/java/2024-11-15-java17/" rel="alternate" type="text/html" title="[JAVA] JAVA version 17의 주요 변화" /><published>2024-11-15T00:00:00+00:00</published><updated>2025-01-21T02:31:07+00:00</updated><id>https://nan0silver.github.io/java/java17</id><content type="html" xml:base="https://nan0silver.github.io/java/2024-11-15-java17/"><![CDATA[<p>목차</p>
 <ol>
   <li><a href="#텍스트-블록">텍스트 블록</a></li>
   <li><a href="#formatted-메서드">formatted() 메서드</a></li>
@@ -1199,62 +1264,4 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA 17버전의 주요 변화 사항을 알아본다.]]></summary></entry><entry><title type="html">[CS] 컴파일 언어 VS 인터프리터 언어</title><link href="https://nan0silver.github.io/miscellaneous/2024-11-08-language/" rel="alternate" type="text/html" title="[CS] 컴파일 언어 VS 인터프리터 언어" /><published>2024-11-08T00:00:00+00:00</published><updated>2025-01-21T01:37:44+00:00</updated><id>https://nan0silver.github.io/miscellaneous/language</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2024-11-08-language/"><![CDATA[<p>목차</p>
-
-<ul>
-  <li><a href="#컴파일-언어-vs-인터프리터-언어">컴파일 언어와 인터프리터 언어</a></li>
-</ul>
-
-<hr />
-
-<h2 id="컴파일-언어-vs-인터프리터-언어">컴파일 언어 VS 인터프리터 언어</h2>
-
-<ul>
-  <li>
-    <p>항상 접할때마다 헷갈려서 정리하기로 했다.</p>
-  </li>
-  <li>
-    <p>컴파일 언어</p>
-
-    <ul>
-      <li>한번에 통째 번역</li>
-      <li>컴파일 타임 사용
-        <ul>
-          <li>코드를 기계어로 바꾸는 시간</li>
-          <li>이 과정을 거쳐 소스코드는 기계어가 되어 실행가능한 상태가 됨</li>
-        </ul>
-      </li>
-      <li>대표적인 예
-        <ul>
-          <li>C, C++, 러스트, JAVA, Go</li>
-        </ul>
-      </li>
-      <li>인터프리터 언어보다 20~100배 이상 빠름</li>
-      <li>개발 편의성이 떨어져 개발 과정이 힘듬</li>
-    </ul>
-  </li>
-  <li>
-    <p>인터프리터 언어</p>
-    <ul>
-      <li>스크립트 언어</li>
-      <li>번역과 실행이 동시에 이루어짐</li>
-      <li>별도의 실행파일이 필요하지 않고, 빌드 시간이 없음</li>
-      <li>런타임 사용
-        <ul>
-          <li>프로그램을 실행할 때 한 줄씩 읽고 해석한 뒤 실행</li>
-          <li>모두 실행하는 속도는 컴파일 언어보다 느림</li>
-        </ul>
-      </li>
-      <li>대표적인 예
-        <ul>
-          <li>Python, Ruby</li>
-        </ul>
-      </li>
-      <li>python은 C++로 만들어져 있음
-        <ul>
-          <li>컴파일 언어는 빠르지만 개발 편의성이 떨어져 인터프리터 언어를 만드는데 사용되기도 함</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[컴파일 언어와 인터프리터에 관한 내용입니다.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[JAVA 17버전의 주요 변화 사항을 알아본다.]]></summary></entry></feed>
