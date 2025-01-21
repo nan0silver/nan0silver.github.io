@@ -24,12 +24,12 @@ var tipuesearch = {"pages": [{
     "tags": "java",
     "url": "/java/2024-12-08-set/"
   },{
-    "title": "[TIL] 2024.12.03",
+    "title": "[Spring] Spring 매핑 개념과 주요 애너테이션 활용법",
     "text": "목차 Mapping 맵핑 (Mapping) Mapping 클라이언트로 부터 요청이 들어오는 URL과 컨트롤러 메서드를 연결하는 작업 Mapping 애너테이션을 사용해 클라이언트의 요청이 URL로 들어올 때 해당 URL에 맞는 컨트롤러가 있는지 확인하고 해당 컨트롤러를 매핑하여 요청을 처리 @RequestMapping 클라이언트가 특정 URL로 요청을 보낼 때, 이 요청을 처리할 컨트롤러 메서드를 정의하는 것 Get, Post, Put, Delete, Patch등의 URL을 다 포함하고 있으며, 옵션을 통해 종류를 지정할 수 있음 @Controller public class ProductController { @RequestMapping(\"/products\", method = RequestMethod.GET) public String listProducts() { return \"product-list\"; } @RequestMapping(\"/products\", method = RequestMethod.POST) public String addProducts() { return \"product-added\"; } } HTTP 메서드에 특화된 매핑 @GetMapping GET 요청만 받는 애노테이션 @RequestMapping(method = RequestMethod.GET) @PostMapping POST 요청만 받는 애노테이션 @RequestMapping(method = RequestMethod.POST) @PutMapping PUT 요청만 받는 애노테이션 @RequestMapping(method = RequestMethod.PUT) @DeleteMapping DELETE 요청만 받는 애노테이션 @RequestMapping(method = RequestMethod.DELETE) @PatchtMapping PATCT 요청만 받는 애노테이션 @RequestMapping(method = RequestMethod.PATCH)",
     "tags": "miscellaneous",
     "url": "/miscellaneous/2024-12-03-mapping/"
   },{
-    "title": "[TIL] 2024.12.02",
+    "title": "[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)",
     "text": "목차 스프링 콘셉트 스프링 콘셉트 스프링 프레임워크의 주요 개념에 대해 다룬다. IoC Inversion of Control 객체의 생성과 관리를 개발자가 아니라 프레임워크가 대신하는 것 public class A { private B b; } 객체를 직접 생성하지 않고(new 키워드 사용하지 않고) 외부에서 관리하는 객체를 가져와 사용 스프링에서는 스프링 컨테이너가 객체를 관리, 제공하는 역할을 함 스프링 컨테이너 빈이 생성되고 소멸되기 까지의 생명주기를 관리하는 것 DI Dependency Injection 외부에서 객체를 주입받아 사용하는 것 예시 (IoC/DI를 기초로 하는 스프링 코드) public class A { //A에서 B를 주입받음 @Autowired B b; } Bean 스프링 컨테이너가 생성하고 관리하는 객체 스프링은 빈을 컨테이너에 등록하기 위해 XML 파일 설정, 애너테이션 추가 등 방법 제공 AOP Aspect Oriented Programming 프로그래밍 시 핵심 관점과 부가 관점을 나누어 개발하는 것 PSA Portable Service Abstraction 어느 기술을 사용하던 일관된 방식으로 처리하도록 하는 것 대표적인 예 클라이언트의 매핑과 클래스, 메서드의 매핑을 위한 애너테이션",
     "tags": "miscellaneous",
     "url": "/miscellaneous/2024-12-02-spring-basic/"
@@ -44,7 +44,7 @@ var tipuesearch = {"pages": [{
     "tags": "java",
     "url": "/java/2024-11-15-java17/"
   },{
-    "title": "[Etc] 컴파일 언어 VS 인터프리터 언어",
+    "title": "[CS] 컴파일 언어 VS 인터프리터 언어",
     "text": "목차 컴파일 언어와 인터프리터 언어 컴파일 언어 VS 인터프리터 언어 항상 접할때마다 헷갈려서 정리하기로 했다. 컴파일 언어 한번에 통째 번역 컴파일 타임 사용 코드를 기계어로 바꾸는 시간 이 과정을 거쳐 소스코드는 기계어가 되어 실행가능한 상태가 됨 대표적인 예 C, C++, 러스트, JAVA, Go 인터프리터 언어보다 20~100배 이상 빠름 개발 편의성이 떨어져 개발 과정이 힘듬 인터프리터 언어 스크립트 언어 번역과 실행이 동시에 이루어짐 별도의 실행파일이 필요하지 않고, 빌드 시간이 없음 런타임 사용 프로그램을 실행할 때 한 줄씩 읽고 해석한 뒤 실행 모두 실행하는 속도는 컴파일 언어보다 느림 대표적인 예 Python, Ruby python은 C++로 만들어져 있음 컴파일 언어는 빠르지만 개발 편의성이 떨어져 인터프리터 언어를 만드는데 사용되기도 함",
     "tags": "miscellaneous",
     "url": "/miscellaneous/2024-11-08-language/"
