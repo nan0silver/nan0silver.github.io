@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[Algorithm] Linear Time Sorting Algorithm" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2025-01-21T02:31:07+00:00","datePublished":"2024-12-13T00:00:00+00:00","description":"선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.","headline":"[Algorithm] Linear Time Sorting Algorithm","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2025-01-21T02:38:49+00:00","datePublished":"2024-12-13T00:00:00+00:00","description":"선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.","headline":"[Algorithm] Linear Time Sorting Algorithm","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-01-21T02:31:51+00:00',
+    INDEX_KEY: 'index--2025-01-21T02:39:34+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 21 Jan 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-01-21T02:31:07+00:00">2025-01-21</time>
+              <time datetime="2025-01-21T02:38:49+00:00">2025-01-21</time>
             </span>
           
         
@@ -270,8 +270,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <p>목차</p>
-<ol>
+    <ol>
   <li><a href="#counting-sort">Counting Sort</a></li>
   <li><a href="#radix-sort">Radix Sort</a></li>
   <li><a href="#order-statistics">Order Statistics</a></li>
@@ -332,7 +331,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   <li>
     <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">RadixSort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">d</span><span class="p">){</span>
       <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="n">d</span>
-          <span class="n">StableSort</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="n">on</span> <span class="n">digit</span> <span class="n">i</span> 
+          <span class="n">StableSort</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="n">on</span> <span class="n">digit</span> <span class="n">i</span>
           <span class="c1">//StableSort = counting sort</span>
   <span class="p">}</span>
 </code></pre></div>    </div>
@@ -360,16 +359,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <ul>
   <li>quicksort의 partition()을 사용한다.</li>
   <li>하지만 우리는 오직 하나의 subarray만 평가하면 된다.</li>
-  <li><code class="language-plaintext highlighter-rouge">c
-  RandomizedSelect(A, l, r, k)
-      if (l == r) then return A[l];
-      p = RandomizedPartition(A, l, r)
-      if (p == k) then return A[p];
-      if (p &lt; k) then
-          return RandomizedSelect(A, l, p-1, k);
-      else
-          return RandomizedSelect(A, p+1, r, k);
-     </code></li>
+  <li>
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">RandomizedSelect</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span> <span class="n">then</span> <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
+      <span class="n">p</span> <span class="o">=</span> <span class="n">RandomizedPartition</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span> <span class="n">then</span> <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="n">then</span>
+          <span class="k">return</span> <span class="nf">RandomizedSelect</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+      <span class="k">else</span>
+          <span class="k">return</span> <span class="nf">RandomizedSelect</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+      <span class="err">```</span>
+</code></pre></div>    </div>
+  </li>
   <li>시간 복잡도
     <ul>
       <li>worst case : \(O(n^2)\)</li>

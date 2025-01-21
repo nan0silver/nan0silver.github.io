@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[Flutter] Flutter UI" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2025-01-21T02:31:07+00:00","datePublished":"2023-04-13T00:00:00+00:00","description":"Flutte 개발 전 알아야 된 UI관련 설명과 생명주기에 관한 내용을 담고 있다.","headline":"[Flutter] Flutter UI","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/flutter/2023-04-13-flutter-UI/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/flutter/2023-04-13-flutter-UI/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2025-01-21T02:38:49+00:00","datePublished":"2023-04-13T00:00:00+00:00","description":"Flutte 개발 전 알아야 된 UI관련 설명과 생명주기에 관한 내용을 담고 있다.","headline":"[Flutter] Flutter UI","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/flutter/2023-04-13-flutter-UI/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/flutter/2023-04-13-flutter-UI/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-01-21T02:31:51+00:00',
+    INDEX_KEY: 'index--2025-01-21T02:39:34+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 21 Jan 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-01-21T02:31:07+00:00">2025-01-21</time>
+              <time datetime="2025-01-21T02:38:49+00:00">2025-01-21</time>
             </span>
           
         
@@ -270,75 +270,34 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <p>목차</p>
-<ol>
+    <ul>
   <li><a href="#flutter-layout">Flutter Layout</a></li>
   <li><a href="#widget의-생명주기">Widget의 생명주기</a></li>
-</ol>
+</ul>
 
 <hr />
 
 <h2 id="flutter-layout">Flutter Layout</h2>
 
 <ul>
-  <li>Flutter Layout의 핵심은 <strong>위젯</strong>
-    <ul>
-      <li>위젯은 현재 주어진 상태(데이터)를 기반으로 어떤 UI를 구현할지 정의
-        <ul>
-          <li>플러터 프레임워크는 기존 상태 위젯과 새로운 상태의 위젯을 비교하여 UI변화를 반영
-            <blockquote>
-              <p>최소한의 리소스로 UI변경을 이룸</p>
-            </blockquote>
-          </li>
-        </ul>
-      </li>
-      <li>레이아웃 모델, 앱 내 이미지, 아이콘, 글자 등 거의 모든 것이 위젯</li>
-      <li>위젯은 자식을 하나만 갖는 위젯과 자식을 여럿 갖는 위젯으로 나뉨
-        <ul>
-          <li>자식을 하나만 갖는 위젯
-            <ul>
-              <li>container 위젯
-                <ul>
-                  <li>자식 위젯을 커스터마이징할 수 있는 위젯 클래스</li>
-                  <li>여백, 간격, 테두리, 배경색 등을 추가할 수 있음</li>
-                  <li>나머지 UI는 속성에 의해 제어됨 (color속성, Text.style속성 등)</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>자식을 여럿 갖는 위젯
-            <ul>
-              <li>children 매개변수를 입력 받음</li>
-              <li>리스트로 여러 위젯을 입력할 수 있음</li>
-              <li>Column 위젯, Row 위젯
-                <ul>
-                  <li>children 매개변수에 입력된 모든 위젯들을 세로(가로)로 베치</li>
-                </ul>
-              </li>
-              <li>ListView 위젯
-                <ul>
-                  <li>리스트 구현가능, 입력된 위젯이 화면을 벗어나게 되면 스크롤 가능해짐</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>예시</p>
+  <li>
+    <p>Flutter Layout의 핵심은 <strong>위젯</strong> - 위젯은 현재 주어진 상태(데이터)를 기반으로 어떤 UI를 구현할지 정의 - 플러터 프레임워크는 기존 상태 위젯과 새로운 상태의 위젯을 비교하여 UI변화를 반영 &gt; 최소한의 리소스로 UI변경을 이룸 - 레이아웃 모델, 앱 내 이미지, 아이콘, 글자 등 거의 모든 것이 위젯 - 위젯은 자식을 하나만 갖는 위젯과 자식을 여럿 갖는 위젯으로 나뉨 - 자식을 하나만 갖는 위젯 - container 위젯 - 자식 위젯을 커스터마이징할 수 있는 위젯 클래스 - 여백, 간격, 테두리, 배경색 등을 추가할 수 있음 - 나머지 UI는 속성에 의해 제어됨 (color속성, Text.style속성 등) - 자식을 여럿 갖는 위젯 - children 매개변수를 입력 받음 - 리스트로 여러 위젯을 입력할 수 있음 - Column 위젯, Row 위젯 - children 매개변수에 입력된 모든 위젯들을 세로(가로)로 베치 - ListView 위젯 - 리스트 구현가능, 입력된 위젯이 화면을 벗어나게 되면 스크롤 가능해짐 - 예시</p>
 
-        <p><img src="/assets/img/blog/lakes-icons-visual.png" alt="Full-width image" /></p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ![Full-width image](/assets/img/blog/lakes-icons-visual.png)
 
-        <p><img src="/assets/img/blog/sample-flutter-layout.png" alt="Full-width image" /></p>
 
-        <ul>
-          <li>위의 스크린샷에 해당하는 위젯을 구현하기 위한 위젯 트리이다.
-<br /></li>
-        </ul>
-      </li>
-    </ul>
+    ![Full-width image](/assets/img/blog/sample-flutter-layout.png)
+
+
+
+    - 위의 스크린샷에 해당하는 위젯을 구현하기 위한 위젯 트리이다.
+</code></pre></div>    </div>
+
+    <p><br /></p>
   </li>
-  <li>❗️Material apps vs Non-Material apps
+  <li>
+    <p>❗️Material apps vs Non-Material apps</p>
+
     <ul>
       <li>Material apps
         <ul>
@@ -357,15 +316,20 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       </li>
     </ul>
   </li>
-  <li>Scafflod 위젯 vs Container
+  <li>
+    <p>Scafflod 위젯 vs Container</p>
+
     <ul>
-      <li>Scafflod
+      <li>
+        <p>Scafflod</p>
+
         <ul>
           <li>기본적으로 appbar, body라는 2개의 옵션을 가짐
-  <img src="/assets/img/blog/flutter-scaffold.webp" alt="Full-width image" /></li>
+<img src="/assets/img/blog/flutter-scaffold.webp" alt="Full-width image" /></li>
         </ul>
       </li>
-      <li>Container
+      <li>
+        <p>Container</p>
         <ul>
           <li>Scafflod의 body부분에 들어가는 부속품</li>
           <li>봉지라고 생각하면 됨</li>
@@ -386,26 +350,31 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   this.transform,
   this.child,
   })&lt;/pre&gt;</code>
+-
+
 </pre>
           </li>
-          <li></li>
         </ul>
       </li>
     </ul>
   </li>
 </ul>
-
 <h2 id="widget의-생명주기">Widget의 생명주기</h2>
 
 <ul>
-  <li>Stateful Widget의 생명주기
+  <li>
+    <p>Stateful Widget의 생명주기</p>
+
     <ul>
       <li>stateless widget은 한 번 만들어지면 갱신할 수 없어 생명주기가 없다.</li>
-      <li>stateful widget은 10단계의 생명주기가 있다. 
-  <br />
-        <ol>
-          <li>createState()함수</li>
-        </ol>
+      <li>stateful widget은 10단계의 생명주기가 있다.
+<br /></li>
+    </ul>
+
+    <ol>
+      <li>
+        <p>createState()함수</p>
+
         <ul>
           <li>상태를 생성하는 함수</li>
           <li>다른 생명주기 함수들이 포함된 State 클래스를 반환</li>
@@ -418,9 +387,6 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           </li>
         </ul>
       </li>
-    </ul>
-
-    <ol>
       <li>mounted == true
         <ul>
           <li>createState() 함수가 호출되어 상태가 생성되면 mounted 속성이 true가 된다.
@@ -431,20 +397,26 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           </li>
         </ul>
       </li>
-      <li>initState()함수
+      <li>
+        <p>initState()함수</p>
+
         <ul>
           <li>위젯을 초기화하는 함수</li>
           <li>주로 데이터 목록을 만들거나 처음 필요한 데이터를 주고받을 때 호출</li>
           <li>이 함수를 호출할 때 내부에서 _getJsonData() 함수를 호출하면 서버에서 데이터를 가져와 화면에 출력할 수 있음</li>
         </ul>
       </li>
-      <li>didChangeDependencies()함수
+      <li>
+        <p>didChangeDependencies()함수</p>
+
         <ul>
           <li>initState()함수 호출 후, 해당 위젯이 데이터에 의존하는 위젯이라면 반드시 호출해야하는 함수</li>
           <li>주로 상속받은 위젯을 사용할 때 피상속자가 변경되면 호출</li>
         </ul>
       </li>
-      <li>build()함수
+      <li>
+        <p>build()함수</p>
+
         <ul>
           <li>위젯을 화면에 렌더링하는 함수 (Widget을 반환한다.)</li>
           <li>
@@ -461,7 +433,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           </li>
         </ul>
       </li>
-      <li>didUpdateWidget()함수
+      <li>
+        <p>didUpdateWidget()함수</p>
+
         <ul>
           <li>부모 위젯이나 데이터가 변경되어 위젯을 갱신해야 할 때 호출하는 함수</li>
           <li>initState()함수는 위젯을 초기화할 때 한 번만 호출되므로 위젯이 변경되었을 때 이 함수를 호출해야함</li>
@@ -472,7 +446,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <li>데이터가 변경되었다는 것을 알려주고 이를 반영하여 화면 UI를 변경하는 함수</li>
         </ul>
       </li>
-      <li>deactive()함수
+      <li>
+        <p>deactive()함수</p>
+
         <ul>
           <li>위젯의 상태 관리를 중지하는 함수</li>
           <li>State객체가 플러터 구성 트리에서 제거될 때 호출됨</li>
