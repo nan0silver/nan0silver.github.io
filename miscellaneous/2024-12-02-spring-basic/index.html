@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[TIL] 2024.11.08 | NAHYUN BLOG</title>
+<title>[TIL] 2024.12.02 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[TIL] 2024.11.08" />
+<meta property="og:title" content="[TIL] 2024.12.02" />
 <meta name="author" content="Nahyun Eun" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="2024년 11월 8일 하루 공부 내용 정리" />
-<meta property="og:description" content="2024년 11월 8일 하루 공부 내용 정리" />
-<link rel="canonical" href="https://nan0silver.github.io/devdiary/2024-11-08-til/" />
-<meta property="og:url" content="https://nan0silver.github.io/devdiary/2024-11-08-til/" />
+<meta name="description" content="스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다." />
+<meta property="og:description" content="스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다." />
+<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/" />
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-11-08T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-12-02T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[TIL] 2024.11.08" />
+<meta property="twitter:title" content="[TIL] 2024.12.02" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2025-01-17T00:41:56+00:00","datePublished":"2024-11-08T00:00:00+00:00","description":"2024년 11월 8일 하루 공부 내용 정리","headline":"[TIL] 2024.11.08","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/devdiary/2024-11-08-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/devdiary/2024-11-08-til/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun"},"dateModified":"2025-01-21T01:15:59+00:00","datePublished":"2024-12-02T00:00:00+00:00","description":"스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.","headline":"[TIL] 2024.12.02","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun"},"url":"https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/devdiary/2024-11-08-til/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/2024-12-02-spring-basic/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-01-17T00:42:44+00:00',
+    INDEX_KEY: 'index--2025-01-21T01:16:45+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/devdiary/">devdiary</a>
+          <a href="/miscellaneous/">miscellaneous</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2024-11-08-til</span>
+          <span>2024-12-02-spring-basic</span>
         
       </li>
     
@@ -222,18 +222,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-devdiary-til" class="page post mb6" role="article">
+<article id="post-miscellaneous-spring-basic" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [TIL] 2024.11.08
+        [TIL] 2024.12.02
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2024-11-08T00:00:00+00:00">08 Nov 2024</time> in <a href="/devdiary/" class="flip-title">Dev Diary</a> 
+        <time datetime="2024-12-02T00:00:00+00:00">02 Dec 2024</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
       </span>
       
         
@@ -242,10 +242,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Jan 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 21 Jan 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-01-17T00:41:56+00:00">2025-01-17</time>
+              <time datetime="2025-01-21T01:15:59+00:00">2025-01-21</time>
             </span>
           
         
@@ -261,7 +261,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      2024년 11월 8일 하루 공부 내용 정리
+      스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.
 
     </p>
   
@@ -271,55 +271,86 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p>목차</p>
+
 <ul>
-  <li><a href="#컴파일-언어-vs-인터프리터-언어">컴파일 언어와 인터프리터 언어</a></li>
+  <li><a href="#스프링-콘셉트">스프링 콘셉트</a></li>
 </ul>
 
 <hr />
 
-<h2 id="컴파일-언어-vs-인터프리터-언어">컴파일 언어 VS 인터프리터 언어</h2>
+<h2 id="스프링-콘셉트">스프링 콘셉트</h2>
+
+<h3 id="스프링-프레임워크의-주요-개념에-대해-다룬다">스프링 프레임워크의 주요 개념에 대해 다룬다.</h3>
 
 <ul>
   <li>
-    <p>항상 접할때마다 헷갈려서 정리하기로 했다.</p>
-  </li>
-  <li>컴파일 언어
+    <p>IoC</p>
+
     <ul>
-      <li>한번에 통째 번역</li>
-      <li>컴파일 타임 사용
+      <li>Inversion of Control</li>
+      <li>객체의 생성과 관리를 개발자가 아니라 프레임워크가 대신하는 것</li>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="no">B</span> <span class="n">b</span><span class="o">;</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>객체를 직접 생성하지 않고(new 키워드 사용하지 않고) 외부에서 관리하는 객체를 가져와 사용</li>
+      <li>스프링에서는 스프링 컨테이너가 객체를 관리, 제공하는 역할을 함
         <ul>
-          <li>코드를 기계어로 바꾸는 시간</li>
-          <li>이 과정을 거쳐 소스코드는 기계어가 되어 실행가능한 상태가 됨</li>
+          <li>스프링 컨테이너
+            <ul>
+              <li>빈이 생성되고 소멸되기 까지의 생명주기를 관리하는 것</li>
+            </ul>
+          </li>
         </ul>
       </li>
-      <li>대표적인 예
-        <ul>
-          <li>C, C++, 러스트, JAVA, Go</li>
-        </ul>
-      </li>
-      <li>인터프리터 언어보다 20~100배 이상 빠름</li>
-      <li>개발 편의성이 떨어져 개발 과정이 힘듬</li>
     </ul>
   </li>
-  <li>인터프리터 언어
+  <li>
+    <p>DI</p>
+
     <ul>
-      <li>스크립트 언어</li>
-      <li>번역과 실행이 동시에 이루어짐</li>
-      <li>별도의 실행파일이 필요하지 않고, 빌드 시간이 없음</li>
-      <li>런타임 사용
+      <li>Dependency Injection</li>
+      <li>외부에서 객체를 주입받아 사용하는 것</li>
+      <li>예시 (IoC/DI를 기초로 하는 스프링 코드)
         <ul>
-          <li>프로그램을 실행할 때 한 줄씩 읽고 해석한 뒤 실행</li>
-          <li>모두 실행하는 속도는 컴파일 언어보다 느림</li>
+          <li>
+            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
+      <span class="c1">//A에서 B를 주입받음</span>
+      <span class="nd">@Autowired</span>
+      <span class="no">B</span> <span class="n">b</span><span class="o">;</span>
+  <span class="o">}</span>
+</code></pre></div>            </div>
+          </li>
         </ul>
       </li>
+    </ul>
+  </li>
+  <li>
+    <p>Bean</p>
+
+    <ul>
+      <li>스프링 컨테이너가 생성하고 관리하는 객체</li>
+      <li>스프링은 빈을 컨테이너에 등록하기 위해 XML 파일 설정, 애너테이션 추가 등 방법 제공</li>
+    </ul>
+  </li>
+  <li>
+    <p>AOP</p>
+
+    <ul>
+      <li>Aspect Oriented Programming</li>
+      <li>프로그래밍 시 핵심 관점과 부가 관점을 나누어 개발하는 것</li>
+    </ul>
+  </li>
+  <li>
+    <p>PSA</p>
+    <ul>
+      <li>Portable Service Abstraction</li>
+      <li>어느 기술을 사용하던 일관된 방식으로 처리하도록 하는 것</li>
       <li>대표적인 예
         <ul>
-          <li>Python, Ruby</li>
-        </ul>
-      </li>
-      <li>python은 C++로 만들어져 있음
-        <ul>
-          <li>컴파일 언어는 빠르지만 개발 편의성이 떨어져 인터프리터 언어를 만드는데 사용되기도 함</li>
+          <li>클라이언트의 매핑과 클래스, 메서드의 매핑을 위한 애너테이션</li>
         </ul>
       </li>
     </ul>
@@ -611,11 +642,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         <a
           
-          href="/devdiary/"
+          href="/miscellaneous/"
           class="sidebar-nav-item "
           
         >
-          DevDiary
+          Miscellaneous
         </a>
       </li>
     
