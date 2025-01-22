@@ -1,7 +1,290 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-22T08:57:23+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-22T14:34:25+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-22T08:56:38+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-22T14:33:33+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
+  <li><a href="#git-clone">git clone</a></li>
+  <li><a href="#git-fork">git fork</a></li>
+  <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
+  <li><a href="#워크플로우">워크플로우</a></li>
+  <li><a href="#실전-예시">실전 예시</a></li>
+</ul>
+
+<hr />
+
+<h2 id="git-clone">git clone</h2>
+
+<ul>
+  <li>역할
+    <ul>
+      <li>원격 저장소를 로컬 컴퓨터에 복제</li>
+    </ul>
+  </li>
+  <li>작업 대상
+    <ul>
+      <li>원격 저장소</li>
+    </ul>
+  </li>
+  <li>특징
+    <ul>
+      <li>저장소의 완전한 복사본(전체 커밋 내역, 브랜치 등)을 가져옴</li>
+      <li>복제 후, 원격 저장소가 자동으로 <code class="language-plaintext highlighter-rouge">origin</code>이라는 이름으로 연결됨</li>
+      <li>로컬에서 작업한 내용을 원격 저장소에 반영하려면 <code class="language-plaintext highlighter-rouge">push</code>사용</li>
+    </ul>
+  </li>
+  <li>동작 방식
+    <ol>
+      <li>Git 저장소 초기화 (<code class="language-plaintext highlighter-rouge">git init</code>)
+        <ul>
+          <li>새로 생성된 폴더는 Git 저장소로 설정됨</li>
+          <li><code class="language-plaintext highlighter-rouge">.git</code> 디렉터리가 자동으로 생성됨</li>
+        </ul>
+      </li>
+      <li>원격 저장소 설정 (<code class="language-plaintext highlighter-rouge">git remote add origin</code>)
+        <ul>
+          <li>복제한 원격 저장소가 자동으로 <code class="language-plaintext highlighter-rouge">origin</code>이라는 이름으로 연결됨</li>
+          <li>로컬에서 원격 저장소와 동기화(<code class="language-plaintext highlighter-rouge">push</code>, <code class="language-plaintext highlighter-rouge">pull</code>)를 가능하게 함</li>
+        </ul>
+      </li>
+      <li>브랜치 체크아웃
+        <ul>
+          <li>기본 브랜치(<code class="language-plaintext highlighter-rouge">main</code> or <code class="language-plaintext highlighter-rouge">master</code>)의 최신 상태가 복제됨</li>
+          <li>이 브랜치는 로컬 저장소로 가져와 자동으로 체크아웃됨</li>
+        </ul>
+      </li>
+      <li>파일 다운로드
+        <ul>
+          <li>원격 저장소에 있는 모든 파일과 폴더가 로컬 디렉토리에 다운로드됨</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">git clone</code> 명령을 실행하면, 다운받은 폴더는 자동으로 Git 저장소로 초기화되고, 원격 저장소와도 연결된 상태임
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">git init</code>이나 <code class="language-plaintext highlighter-rouge">git remote add</code>를 실행할 필요가 없음</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="git-fork">git fork</h2>
+
+<ul>
+  <li>역할
+    <ul>
+      <li>원격 저장소를 자신의 원격 계정으로 복제</li>
+    </ul>
+  </li>
+  <li>작업 대상
+    <ul>
+      <li>GitHub/GitLab 계정 상의 저장소</li>
+    </ul>
+  </li>
+  <li>특징
+    <ul>
+      <li>원본 저장소의 복사본이 내 계정의 원격 저장소로 생성됨</li>
+      <li><strong>내 계정에서 관리할 수 있는 원격 저장소를 만든다는 것</strong>이 핵심</li>
+      <li>원본 저장소와 연결은 유지되지만, 독립적인 저장소로 사용됨</li>
+      <li>추가 단계
+        <ul>
+          <li>포크 후, 로컬에 복사하려면 <strong><code class="language-plaintext highlighter-rouge">git clone</code></strong>을 사용해야 함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>사용 시기
+    <ul>
+      <li>오픈소스 프로젝트에 기여할 때, 원본 저장소를 수정하지 않고 내 계정에서 관리 가능한 복사본을 만들어야 할 때 사용</li>
+      <li><strong>Pull Request</strong>를 보내기 위한 준비 단계로 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="주요-차이점-정리">주요 차이점 정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>특징</strong></th>
+      <th><strong>git clone</strong></th>
+      <th><strong>git fork</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>복제 대상</td>
+      <td>원격 저장소 ➡️ 로컬 저장소</td>
+      <td>원격 저장소 ➡️ 내 원격 저장소</td>
+    </tr>
+    <tr>
+      <td>저장소 위치</td>
+      <td>로컬에서 작업</td>
+      <td>내 계정의 원격 저장소에서 작업</td>
+    </tr>
+    <tr>
+      <td>연결된 원격 저장소</td>
+      <td><code class="language-plaintext highlighter-rouge">origin</code>으로 원본 저장소 연결</td>
+      <td>내 계정의 원격 저장소 (원본 저장소는 upstream으로 연결 가능)</td>
+    </tr>
+    <tr>
+      <td>사용 목적</td>
+      <td>로컬에서 작업하고 원본 저장소에 반영</td>
+      <td>내 계정에서 독립적으로 원격 저장소 관리</td>
+    </tr>
+    <tr>
+      <td>주로 사용 상황</td>
+      <td>협업 프로젝트에 바로 참여</td>
+      <td>오픈소스 프로젝트에 기여 (Pull Request 준비)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="워크플로우">워크플로우</h2>
+
+<h3 id="일반적으로-fork--clone--push--pull-request가-오픈-소스-협업의-표준-워크플로우">일반적으로 <strong>Fork → Clone → Push → Pull Request</strong>가 오픈 소스 협업의 표준 워크플로우</h3>
+
+<ol>
+  <li>Fork 저장소 생성</li>
+</ol>
+
+<ul>
+  <li>
+    <p>먼저, 해당 저장소를 <strong>Fork</strong>하여 내 계정으로 복사</p>
+
+    <ul>
+      <li>GitHub에서 기여하고자 하는 저장소 페이지로 이동</li>
+      <li>우측 상단의 <strong>Fork</strong> 버튼을 클릭</li>
+      <li>그러면 내 계정에 저장소 복사본이 생성됨</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<ol>
+  <li>Fork 저장소 Clone</li>
+</ol>
+
+<ul>
+  <li>
+    <p>Fork된 저장소를 로컬로 복제</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/your-username/repository.git
+</code></pre></div>    </div>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">your-username</code>은 GitHub 계정 이름으로 대체</li>
+      <li>Clone이 완료되면 로컬 환경에서 작업 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>원본 저장소 추가 (선택 사항)</li>
+</ol>
+
+<ul>
+  <li>
+    <p>원본 저장소와 동기화를 유지하려면, 원본 저장소를 <strong><code class="language-plaintext highlighter-rouge">upstream</code></strong>으로 추가</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add upstream https://github.com/original-owner/repository.git
+</code></pre></div>    </div>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">original-owner</code>는 원본 저장소의 소유자 이름으로 대체</li>
+      <li><code class="language-plaintext highlighter-rouge">git remote -v</code> 명령을 사용하여 설정이 제대로 되었는지 확인 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>로컬에서 작업</li>
+</ol>
+
+<ul>
+  <li>
+    <p>새로운 파일을 추가하거나 수정 후 커밋</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Add new feature"</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>Fork된 저장소에 Push</li>
+</ol>
+
+<ul>
+  <li>로컬에서 작업한 내용을 자신의 Fork 저장소에 Push
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin main
+</code></pre></div>    </div>
+    <ul>
+      <li>여기서 <code class="language-plaintext highlighter-rouge">main</code>은 사용하는 브랜치 이름</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>Pull Request 생성</li>
+</ol>
+
+<ul>
+  <li>
+    <p>GitHub로 돌아가, Fork된 저장소에서 원본 저장소로 <strong>Pull Request</strong>를 생성</p>
+
+    <ol>
+      <li>내 Fork 저장소 페이지에서 <strong>“Contribute”</strong> 버튼 클릭.</li>
+      <li><strong>“Open Pull Request”</strong> 버튼 클릭.</li>
+      <li>변경 사항에 대한 설명을 작성하고 Pull Request를 제출합니다.</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="-요약">✅ 요약</h3>
+
+<p>다른 사람의 저장소에 기여하기 위한 전체 과정</p>
+
+<ol>
+  <li><strong>Fork</strong>: 저장소를 내 계정으로 복제.</li>
+  <li><strong>Clone</strong>: 내 계정에 있는 저장소를 로컬로 복제.</li>
+  <li><strong>원본 저장소 추가</strong>: 원본 저장소와 동기화(선택 사항).</li>
+  <li><strong>작업</strong>: 로컬에서 파일 수정 및 커밋.</li>
+  <li><strong>Push</strong>: 작업 내용을 내 계정 저장소로 업로드.</li>
+  <li><strong>Pull Request</strong>: 원본 저장소에 변경 사항을 제안.</li>
+</ol>
+
+<h2 id="실전-예시">실전 예시</h2>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git clone</code>만 사용하는 경우</p>
+
+    <ul>
+      <li>팀 프로젝트에서 기존 저장소를 복제하여 작업 후, 원본 저장소에 바로 push</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone &lt;repository-url&gt;
+<span class="nb">cd</span> &lt;repository-folder&gt;
+<span class="c"># 작업 후</span>
+git push origin &lt;branch-name&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git fork</code>와 <code class="language-plaintext highlighter-rouge">git clone</code>을 함께 사용하는 경우</p>
+    <ul>
+      <li>오픈소스 프로젝트에서 자신의 계정으로 fork 후, 로컬에서 복제하여 작업 후 pull request 보냄
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># GitHub에서 Fork한 후</span>
+git clone &lt;forked-repository-url&gt;
+<span class="nb">cd</span> &lt;repository-folder&gt;
+<span class="c"># 원본 저장소를 upstream으로 추가</span>
+git remote add upstream &lt;original-repository-url&gt;
+git fetch upstream
+<span class="c"># 작업 후, 내 계정 원격 저장소에 Push</span>
+git push origin &lt;branch-name&gt;
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-22T14:33:33+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
   <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
   <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
   <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
@@ -147,7 +430,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     </ul>
   </li>
   <li>팀 또는 프로젝트의 코딩 컨벤션에 따라 일관성 유지가 중요 (가독성을 위해)</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-01-22T08:56:38+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-01-22T14:33:33+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
   <li><a href="#flexflexbox">Flex(Flexbox)</a></li>
   <li><a href="#주요-flexbox-속성">주요 Flexbox 속성 20개</a></li>
   <li><a href="#예제-통합-코드">예제: 통합 코드</a></li>
@@ -520,7 +803,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>다 깼다!</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+00:00</published><updated>2025-01-22T08:56:38+00:00</updated><id>https://nan0silver.github.io/miscellaneous/responsive</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+00:00</published><updated>2025-01-22T14:33:33+00:00</updated><id>https://nan0silver.github.io/miscellaneous/responsive</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
   <li><a href="#responsive-반응형">Responsive</a></li>
   <li><a href="#reactive-반응형">Reactive</a></li>
   <li><a href="#responsive-vs-reactive">Responsive VS Reactive</a></li>
@@ -728,7 +1011,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Float</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/" rel="alternate" type="text/html" title="[HTML] CSS Float" /><published>2025-01-19T00:00:00+00:00</published><updated>2025-01-22T08:56:38+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-float</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Float</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/" rel="alternate" type="text/html" title="[HTML] CSS Float" /><published>2025-01-19T00:00:00+00:00</published><updated>2025-01-22T14:33:33+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-float</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/"><![CDATA[<ul>
   <li><a href="#css-float이란">CSS Float란</a></li>
   <li><a href="#clearfix">Clearfix</a></li>
   <li><a href="#clear-속성">Clear 속성</a></li>
@@ -880,7 +1163,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <ul>
   <li>CSS Float는 여전히 유용한 기술이지만, 현대적인 레이아웃 기술과 함께 이해하고 사용하는 것이 중요</li>
   <li>프로젝트의 요구 사항에 따라 적절한 레이아웃 기술을 선택해야 함</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지 레이아웃을 만들때 사용되는 CSS Float에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS 문법</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-18-css/" rel="alternate" type="text/html" title="[HTML] CSS 문법" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-01-22T08:56:38+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-18-css/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지 레이아웃을 만들때 사용되는 CSS Float에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS 문법</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-18-css/" rel="alternate" type="text/html" title="[HTML] CSS 문법" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-01-22T14:33:33+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-18-css/"><![CDATA[<ul>
   <li><a href="#css란">CSS란?</a></li>
   <li><a href="#css-문법-기초">CSS 문법 기초</a></li>
   <li><a href="#css-적용-방법">CSS 적용 방법</a></li>
@@ -1019,7 +1302,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>Viewport 단위 : vh, vw, vmin, vmax</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[HTML] Emmet</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/" rel="alternate" type="text/html" title="[HTML] Emmet" /><published>2025-01-17T00:00:00+00:00</published><updated>2025-01-22T08:56:38+00:00</updated><id>https://nan0silver.github.io/miscellaneous/emmet</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/"><![CDATA[<ol>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[HTML] Emmet</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/" rel="alternate" type="text/html" title="[HTML] Emmet" /><published>2025-01-17T00:00:00+00:00</published><updated>2025-01-22T14:33:33+00:00</updated><id>https://nan0silver.github.io/miscellaneous/emmet</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/"><![CDATA[<ol>
   <li><a href="#emmet이란">Emmet이란?</a></li>
   <li><a href="#emmet의-강력한-단축키---tab">Emmet의 강력한 단축키 !+Tab</a></li>
   <li><a href="#emmet-사용법-굉장히-쉽고-편리함">Emmet 사용법</a></li>
@@ -1093,7 +1376,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 <h2 id="emmet-어디에서-사용할-수-있나요">Emmet, 어디에서 사용할 수 있나요?</h2>
 
-<p>Emmet은 대부분의 텍스트 에디터와 IDE에서 플러그인 형태로 제공됩니다. Visual Studio Code, Sublime Text, Atom, IntelliJ IDEA 등 유명한 에디터에서는 기본적으로 Emmet을 지원하거나, 간단한 설치만으로 사용할 수 있습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[AI] 생성형 AI와 LLM</title><link href="https://nan0silver.github.io/ai/2025-01-16-basic/" rel="alternate" type="text/html" title="[AI] 생성형 AI와 LLM" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-22T08:56:38+00:00</updated><id>https://nan0silver.github.io/ai/basic</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-16-basic/"><![CDATA[<ul>
+<p>Emmet은 대부분의 텍스트 에디터와 IDE에서 플러그인 형태로 제공됩니다. Visual Studio Code, Sublime Text, Atom, IntelliJ IDEA 등 유명한 에디터에서는 기본적으로 Emmet을 지원하거나, 간단한 설치만으로 사용할 수 있습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[AI] 생성형 AI와 LLM</title><link href="https://nan0silver.github.io/ai/2025-01-16-basic/" rel="alternate" type="text/html" title="[AI] 생성형 AI와 LLM" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-22T14:33:33+00:00</updated><id>https://nan0silver.github.io/ai/basic</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-16-basic/"><![CDATA[<ul>
   <li><a href="#llm-large-language-model">LLM</a></li>
   <li><a href="#생성형-ai-generative-ai">생성형 AI</a></li>
   <li><a href="#gpt-genertive-pre-trained-transformer">GPT</a></li>
@@ -1243,7 +1526,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     </ul>
   </li>
   <li>학습자의 수준에 맞춘 접근 가능</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[생성형 AI와 LLM에 대해 알아보자.]]></summary></entry><entry><title type="html">[AI] RAG (Retrieval-Augmented Generation) 이란?</title><link href="https://nan0silver.github.io/ai/2025-01-15-rag/" rel="alternate" type="text/html" title="[AI] RAG (Retrieval-Augmented Generation) 이란?" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-01-22T08:56:38+00:00</updated><id>https://nan0silver.github.io/ai/rag</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-15-rag/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[생성형 AI와 LLM에 대해 알아보자.]]></summary></entry><entry><title type="html">[AI] RAG (Retrieval-Augmented Generation) 이란?</title><link href="https://nan0silver.github.io/ai/2025-01-15-rag/" rel="alternate" type="text/html" title="[AI] RAG (Retrieval-Augmented Generation) 이란?" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-01-22T14:33:33+00:00</updated><id>https://nan0silver.github.io/ai/rag</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-15-rag/"><![CDATA[<ul>
   <li><a href="#rag-retrieval-augmented-generation">RAG</a></li>
   <li><a href="#rag의-작동-방식">RAG의 작동 방식</a></li>
   <li><a href="#rag의-장점">RAG의 장점</a></li>
@@ -1332,7 +1615,7 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
 
 <h2 id="결론">결론</h2>
 
-<p>RAG (Retrieval-Augmented Generation)은 언어 모델의 잠재력을 한 단계 더 끌어올리는 중요한 기술입니다. 외부 지식 소스를 활용하여 답변의 정확성, 최신성, 신뢰성을 높임으로써, 인공지능이 더욱 유용하고 신뢰할 수 있는 도구로 발전하는 데 기여할 것입니다. 마치 숙련된 개발자가 끊임없이 새로운 정보를 습득하고 활용하여 문제를 해결하는 것처럼, RAG는 인공지능이 더욱 똑똑하게 정보를 처리하고 활용할 수 있도록 돕는 핵심적인 기술입니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[RAG (Retrieval-Augmented Generation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] Linear Time Sorting Algorithm</title><link href="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/" rel="alternate" type="text/html" title="[Algorithm] Linear Time Sorting Algorithm" /><published>2024-12-13T00:00:00+00:00</published><updated>2025-01-22T08:56:38+00:00</updated><id>https://nan0silver.github.io/algorithm/linear-time-sorting</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"><![CDATA[<ol>
+<p>RAG (Retrieval-Augmented Generation)은 언어 모델의 잠재력을 한 단계 더 끌어올리는 중요한 기술입니다. 외부 지식 소스를 활용하여 답변의 정확성, 최신성, 신뢰성을 높임으로써, 인공지능이 더욱 유용하고 신뢰할 수 있는 도구로 발전하는 데 기여할 것입니다. 마치 숙련된 개발자가 끊임없이 새로운 정보를 습득하고 활용하여 문제를 해결하는 것처럼, RAG는 인공지능이 더욱 똑똑하게 정보를 처리하고 활용할 수 있도록 돕는 핵심적인 기술입니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[RAG (Retrieval-Augmented Generation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] Linear Time Sorting Algorithm</title><link href="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/" rel="alternate" type="text/html" title="[Algorithm] Linear Time Sorting Algorithm" /><published>2024-12-13T00:00:00+00:00</published><updated>2025-01-22T14:33:33+00:00</updated><id>https://nan0silver.github.io/algorithm/linear-time-sorting</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-13-linear-time-sorting/"><![CDATA[<ol>
   <li><a href="#counting-sort">Counting Sort</a></li>
   <li><a href="#radix-sort">Radix Sort</a></li>
   <li><a href="#order-statistics">Order Statistics</a></li>
@@ -1485,69 +1768,4 @@ RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소�
       <li>all comparison sorts are \(\Omega(nlogn)\)</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 분할정복 알고리즘 (Divide and conquer)</title><link href="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/" rel="alternate" type="text/html" title="[Algorithm] 분할정복 알고리즘 (Divide and conquer)" /><published>2024-12-12T00:00:00+00:00</published><updated>2025-01-22T08:56:38+00:00</updated><id>https://nan0silver.github.io/algorithm/divide-conquer</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2024-12-12-divide-conquer/"><![CDATA[<ul>
-  <li><a href="#분할정복-알고리즘-divide-and-conquer-algorithm">분할정복 알고리즘</a>
-    <ul>
-      <li><a href="#설계-방법">설계 방법</a></li>
-      <li><a href="#특징-및-장단점">특징 및 장단점</a></li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h2 id="분할정복-알고리즘-divide-and-conquer-algorithm">분할정복 알고리즘 (Divide and conquer algorithm)</h2>
-
-<ul>
-  <li>
-    <p>그대로 해결할 수 없는 문제를 작은 문제로 분할하여 문제를 해결하는 방법.</p>
-  </li>
-  <li>
-    <p>대표적인 예로는 정렬 알고리즘 중에서 퀵 정렬이나 합병 정렬과 이진 탐색, 선택 문제, 고속 푸리에 변환(FFT) 문제들이 있음.</p>
-  </li>
-</ul>
-
-<h3 id="설계-방법"><strong>설계 방법</strong></h3>
-
-<p><strong>1) Divide</strong></p>
-
-<p>∙  원래 문제가 분할하여 비슷한 유형의 더 작은 하위 문제로 분할이 가능할 때 까지 나눈다.</p>
-
-<p><strong>2) Conquer</strong></p>
-
-<p>∙  각 하위 문제를 재귀적으로 해결한다. 하위 문제의 규모가 나눌 수 없는 단위가 되면 탈출 조건을 설정하고 해결한다.</p>
-
-<p><strong>3) Combine</strong></p>
-
-<p>∙  Conquer한 문제들을 통합하여 원래 문제의 답을 얻어 해결한다.</p>
-
-<p>🖋 Divide를 제대로 나누면 Conquer과정은 자동으로 쉬워진다. 그래서 Divide를 잘 설계하는 것이 중요!</p>
-
-<p>🖋 분할정복 알고리즘은 재귀 알고리즘이 많이 사용되는데, 이 부분에서 분할정복 알고리즘의 효율성을 깎아내릴 수 있다.</p>
-
-<h3 id="특징-및-장단점"><strong>특징 및 장단점</strong></h3>
-
-<p>∙  분할된 작은 문제는 원래 문제와 성격이 동일하다  -&gt; 입력 크기만 작아짐</p>
-
-<p>∙  분할된 문제는 서로 독립적이다(중복 제거 X) -&gt; 순환적 분할  및 결과 결합 가능</p>
-
-<p>∙  분할정복은 Top-down방식으로 재귀 호출의 장단점과 똑같다고 보면 된다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>장점</th>
-      <th>단점</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>∙  Top-down 재귀방식으로 구현하기 때문에 코드가 직관적이다.</td>
-      <td>∙  재귀함수 호출로 오버헤드가 발생할 수 있다</td>
-    </tr>
-    <tr>
-      <td>∙  문제를 나누어 해결한다는 특징상 병렬적으로 문제를 해결할 수 있다.</td>
-      <td>∙  스택에 다량의 데이터가 보관되는 경우 오버플로우가 발생할 수 있다.</td>
-    </tr>
-  </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[분할정복 알고리즘에 대한 설명입니다.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.]]></summary></entry></feed>
