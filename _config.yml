@@ -46,7 +46,7 @@ logo: /assets/img/blog/nh_duck_logo.webp
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
   # Used by `jekyll-feed`:
-  name: Nahyun Eun
+  name: Nahyun Eun 은나현
   email: dmsskgus@sookmyung.ac.kr
   # # Used by `jekyll-seo-tag`:
   github: nan0silver
