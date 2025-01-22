@@ -4,6 +4,19 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/</loc>
+        
+        <lastmod>2025-01-20T00:00:00+00:00</lastmod>
+        
+        
+        <changefreq>weekly</changefreq>
+        
+        
+        <priority>0.5</priority>
+        
+    </url>
+    
+    <url>
         <loc>https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/</loc>
         
         <lastmod>2025-01-19T00:00:00+00:00</lastmod>
