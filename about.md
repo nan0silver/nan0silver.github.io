@@ -48,7 +48,7 @@ Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 
 2018.03 ~ 2019.12 　　숙명여자대학교 IT공학전공 제3,4대 학생회 소속 <br><br>
 
-<div style="display: flex; flex-direction: column;">
+<div style="display: flex; flex-direction: column; gap:10px">
 <h3>🔶Publication🔶</h3>
 
 <div style="display: flex; align-items: flex-start;">
@@ -93,6 +93,7 @@ Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
     <img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/myImage/spain_presentation.JPG?raw=true" alt="Your Photo" style="width: 150px; border-radius: 10px;">
   </div>
 </div>
+</div>
 
 <h4>2022.06.	</h4>
 은나현, 이종우<br>
@@ -100,8 +101,6 @@ Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 <a href="https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11113801">[Link]</a><br>
 <span style="background-color:#DDDDDD">2022년 한국컴퓨터종합학술대회 (KCC 2022) 논문집</span><br>
 논문 출판 및 국내 학술 대회 Poster 발표<br>
-
-</div>
 
 [blog]: /
 [portfolio]: https://hydejack.com/examples/
