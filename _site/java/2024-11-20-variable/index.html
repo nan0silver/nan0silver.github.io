@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다." />
+<meta property="og:description" content="static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다." />
+<link rel="canonical" href="http://localhost:4000/java/2024-11-20-variable/" />
+<meta property="og:url" content="http://localhost:4000/java/2024-11-20-variable/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-20T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기" />
+<meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-01-21T12:20:47+09:00","datePublished":"2024-11-20T00:00:00+09:00","description":"static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.","headline":"[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/java/2024-11-20-variable/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"http://localhost:4000/java/2024-11-20-variable/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="NAHYUN BLOG">
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+
+<link rel="alternate" href="http://localhost:4000/java/2024-11-20-variable/" hreflang="ko-kr, en-us">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="NAHYUN BLOG" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+
+
+
+
+<script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-01-23T09:54:52+09:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/java/">java</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2024-11-20-variable</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-java-variable" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2024-11-20T00:00:00+09:00">20 Nov 2024</time> in <a href="/java/" class="flip-title">JAVA</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 21 Jan 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-01-21T12:20:47+09:00">2025-01-21</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#static-변수">static 변수</a>
+    <ul>
+      <li><a href="#method-area">Method Area</a></li>
+    </ul>
+  </li>
+  <li><a href="#지역변수--레퍼런스-변수">지역변수 &amp; 레퍼런스 변수</a>
+    <ul>
+      <li><a href="#지역변수-local-variable">지역 변수</a></li>
+      <li><a href="#레퍼런스-변수-reference-variable">레퍼런스 변수</a></li>
+    </ul>
+  </li>
+  <li><a href="#java-변수-비교-static-지역-변수-레퍼런스-변수의-특징과-차이점">JAVA 변수들의 특징 및 차이점 요약</a>
+    <ul>
+      <li><a href="#static-변수와-지역-변수-비교">static 변수와 지역 변수 비교</a></li>
+      <li><a href="#static-변수와-레퍼런스-변수-비교">static 변수와 레퍼런스 변수 비교</a></li>
+      <li><a href="#지역-변수와-레퍼런스-변수-비교">지역 변수와 레퍼런스 변수 비교</a></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="static-변수">static 변수</h2>
+
+<ul>
+  <li>인스턴스가 아닌 클래스에 귀속</li>
+  <li>인스턴스가 여러 개 생성되도 static 변수는 딱 하나
+    <ul>
+      <li>클래스가 메모리에 로드될 때 한 번 생성됨</li>
+      <li>객체가 아닌 클래스 자체에 저장되기 때문에 모든 객체가 동일한 메모리 위치를 공유함</li>
+    </ul>
+  </li>
+  <li>
+    <p>특징</p>
+
+    <ul>
+      <li>수명
+        <ul>
+          <li>클래스가 메모리에 로드될 때 생성되고, 프로그램이 종료될 때까지 유지됨</li>
+          <li>일반적인 지역변수와 달리 블록을 벗어나도 소멸되지 않음</li>
+        </ul>
+      </li>
+      <li>메모리 위치
+        <ul>
+          <li>static 변수는 Method Area에 저장됨</li>
+        </ul>
+      </li>
+      <li>
+        <p>static 변수의 객체 독립성</p>
+
+        <ul>
+          <li>static 변수가 클래스 자체에 속해 있기 때문에, 객체를 생성하지 않아도 해당 클래스 이름만으로 직접 접근 가능</li>
+          <li>
+            <p>예시</p>
+
+            <ul>
+              <li>
+                <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+      <span class="kd">static</span> <span class="kt">int</span> <span class="n">staticVar</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">//static 변수 (클래스 변수)</span>
+      <span class="kt">int</span> <span class="n">instanceVar</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span> <span class="c1">//인스턴스 변수 (객체 변수)</span>
+
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="c1">//static 변수는 클래스 이름으로 접근 가능</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Static Variable: "</span> <span class="o">+</span> <span class="nc">Example</span><span class="o">.</span><span class="na">staticVar</span><span class="o">);</span> <span class="c1">//출력: 10</span>
+
+          <span class="c1">//객체를 생성하지 않아도 static 변수에 접근 가능</span>
+          <span class="nc">Example</span><span class="o">.</span><span class="na">staticVar</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Static Variable: "</span> <span class="o">+</span><span class="nc">Example</span><span class="o">.</span><span class="na">staticVar</span><span class="o">);</span> <span class="c1">//출력: 30</span>
+
+          <span class="c1">//객체를 생성해야 인스턴스 변수에 접근 가능</span>
+          <span class="nc">Example</span> <span class="n">obj1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Example</span><span class="o">();</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Instance Variable: "</span> <span class="o">+</span> <span class="n">obj1</span><span class="o">.</span><span class="na">instanceVar</span><span class="o">);</span> <span class="c1">//출력: 20</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>static 변수 사용 시점</p>
+
+    <ul>
+      <li>공유 데이터가 필요할 때
+        <ul>
+          <li>모든 객체에서 동일한 값 공유해아 할 때 사용</li>
+          <li>예: 총 객체 갯수, 공통 설정값 등</li>
+        </ul>
+      </li>
+      <li>객체와 무관하게 동작해야할 때
+        <ul>
+          <li>클래스 자체의 정보를 나타내거나, 객체 없이 사용 가능한 값을 저장할 때</li>
+          <li>예: 수학 상수 Math.PI, System.out.println()의 out도 static</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestClass</span><span class="o">{</span>
+      <span class="kd">static</span> <span class="kt">int</span> <span class="n">number</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span><span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="o">[]</span><span class="n">arg</span><span class="o">){</span>
+          <span class="nc">TestClass</span> <span class="n">class1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TestClass</span><span class="o">();</span>
+          <span class="nc">TestClass</span> <span class="n">class2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TestClass</span><span class="o">();</span>
+
+          <span class="n">class1</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+          <span class="n">class2</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"class1의 number: "</span> <span class="o">+</span> <span class="n">class1</span><span class="o">.</span><span class="na">number</span><span class="o">);</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"class2의 number: "</span> <span class="o">+</span> <span class="n">class2</span><span class="o">.</span><span class="na">number</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="c1">// class1의 number: 5</span>
+  <span class="c1">// class2의 number: 5</span>
+</code></pre></div>    </div>
+  </li>
+  <li>마지막에 number에 5가 저장되어있기 때문에 5가 두번 출력</li>
+</ul>
+
+<h3 id="method-area">Method Area</h3>
+
+<ul>
+  <li>JVM(Java Virtual Machine)의 메모리 구조 중 하나</li>
+  <li>클래스 수준의 정보를 저장하는 영역
+    <ul>
+      <li>저장되는 데이터 종류
+        <ol>
+          <li>클래스 정보
+            <ul>
+              <li>클래스의 이름, 부모 클래스, 접근 제어자 등의 메타데이터</li>
+            </ul>
+          </li>
+          <li>클래스 변수 (static 변수)
+            <ul>
+              <li>클래스가 로드될 때 메모리에 할당되며 모든 객체에서 공유됨</li>
+            </ul>
+          </li>
+          <li>메서드 정보
+            <ul>
+              <li>메서드의 이름, 리턴 타입, 매개변수 타입 등</li>
+              <li>메서드의 바이트코드 포함</li>
+            </ul>
+          </li>
+          <li>상수 (Constant Pool)
+            <ul>
+              <li>컴파일 시 생성된 상수(문자열, 숫자 리터럴 등)와 참조(메서드 참조, 클래스 참조)가 저장됨</li>
+            </ul>
+          </li>
+          <li>런타임 상수 풀(Runtime Constant Pool)
+            <ul>
+              <li>런타임 중에 동적으로 생성된 상수와 참조.</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>특징
+    <ul>
+      <li>JVM내에서 유일 : 모든 스레드가 공유</li>
+      <li>수명 : JVM이 종료될 때까지 유지</li>
+      <li>Garbage Collection 대상 아님 : 클래스 정보는 명시적으로 제거되지 않음</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="지역변수--레퍼런스-변수">지역변수 &amp; 레퍼런스 변수</h2>
+
+<h3 id="지역변수-local-variable">지역변수 (Local Variable)</h3>
+
+<ul>
+  <li>특정 블록이나 함수 안에서만 선언되고 사용가능한 변수</li>
+  <li>해당 블록이나 함수가 실행을 마치면 메모리에서 삭제되며, 외부에서 접근 불가능</li>
+  <li>특징
+    <ul>
+      <li>유효 범위 (Scope)
+        <ul>
+          <li>변수가 선언된 블록(중괄호 {}로 감싸진 영역) 내에서만 유효</li>
+        </ul>
+      </li>
+      <li>초기화 필요
+        <ul>
+          <li>지역변수는 자동으로 초기화 되지 않음</li>
+        </ul>
+      </li>
+      <li>메모리 관리
+        <ul>
+          <li>지역변수는 함수 호출시 생성되고, 함수 종료 시 자동으로 소멸됨</li>
+          <li>일반적으로 스택 메모리 사용</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>예제
+    <ul>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// x는 main 메서드의 지역 변수</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">)</span> <span class="o">{</span>
+              <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span> <span class="c1">// y는 if 블록의 지역 변수</span>
+          <span class="o">}</span>
+          <span class="c1">//y는 if블록 밖에서 사용할 수 없음</span>
+          <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="레퍼런스-변수-reference-variable">레퍼런스 변수 (Reference Variable)</h3>
+
+<ul>
+  <li>객체의 메모리 주소를 저장한는 변수, 즉 객체를 참조하는 데 사용됨</li>
+  <li>실제 객체 데이터를 직접 저장하지 않고 객체가 메모리에 위치한 주소만 저장</li>
+  <li>특징
+    <ul>
+      <li>객체와 연결
+        <ul>
+          <li>레퍼런스 변수는 new키워드 등을 통해 생성된 객체를 가리킴</li>
+        </ul>
+      </li>
+      <li>동적 메모리 사용
+        <ul>
+          <li>레퍼런스 변수가 가리키는 객체는 힙(Heap)메모리에 저장됨</li>
+        </ul>
+      </li>
+      <li>null값 가능
+        <ul>
+          <li>초기화되지 않은 레퍼런스 변수는 null값을 가질 수 있음</li>
+          <li>null값을 참조하려면 NullPointerException이 발생</li>
+        </ul>
+      </li>
+      <li>두 레퍼런스 변수가 동일한 객체를 가리킬 수 있음
+        <ul>
+          <li>한 레퍼런스 변수를 통해 객체를 수정하면 다른 레퍼런스 변수도 수정됨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>예제</p>
+
+    <ul>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span><span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span> <span class="c1">//str은 String객체를 참조하는 레퍼런스 변수</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">());</span> <span class="c1">//참조된 객체의 메서드 호출 가능</span>
+
+          <span class="n">str</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">//str이 아무 객체도 참조하지 않음</span>
+          <span class="c1">//System.out.println(str.length()); //NullPointerException 발생</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">};</span>
+          <span class="kt">int</span><span class="o">[]</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">;</span> <span class="c1">//같은 객체 참조</span>
+          <span class="n">ref</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">//참조를 통해 객체 수정</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span> <span class="c1">//출력: 100</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="java-변수-비교-static-지역-변수-레퍼런스-변수의-특징과-차이점">Java 변수 비교: static, 지역 변수, 레퍼런스 변수의 특징과 차이점</h2>
+
+<h3 id="static-변수와-지역-변수-비교">static 변수와 지역 변수 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>특징</strong></th>
+      <th><strong>static 변수</strong></th>
+      <th><strong>지역 변수</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>범위(Scope)</strong></td>
+      <td>클래스 전체에서 접근 가능 (전역적)</td>
+      <td>선언된 블록(예: 함수) 내에서만 유효</td>
+    </tr>
+    <tr>
+      <td><strong>수명(Lifetime)</strong></td>
+      <td>프로그램 종료 시까지 유지</td>
+      <td>블록 실행이 끝나면 소멸</td>
+    </tr>
+    <tr>
+      <td><strong>공유</strong></td>
+      <td>모든 객체가 같은 값을 공유</td>
+      <td>각 함수 호출마다 독립적으로 생성</td>
+    </tr>
+    <tr>
+      <td><strong>메모리 위치</strong></td>
+      <td>메서드 영역(Method Area)</td>
+      <td>스택(Stack) 메모리</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="static-변수와-레퍼런스-변수-비교">static 변수와 레퍼런스 변수 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>특징</strong></th>
+      <th><strong>static 변수</strong></th>
+      <th><strong>레퍼런스 변수</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>저장 내용</strong></td>
+      <td>클래스 수준에서 공유되는 데이터</td>
+      <td>객체의 메모리 주소를 저장</td>
+    </tr>
+    <tr>
+      <td><strong>초기화 여부</strong></td>
+      <td>명시적 초기화가 없으면 기본값으로 초기화됨</td>
+      <td>초기화되지 않으면 null 값을 가짐</td>
+    </tr>
+    <tr>
+      <td><strong>수명</strong></td>
+      <td>클래스 로드부터 프로그램 종료까지 유지</td>
+      <td>변수의 유효 범위 내에서만 사용 가능</td>
+    </tr>
+    <tr>
+      <td><strong>클래스 의존성</strong></td>
+      <td>클래스와 연결 (객체와 무관)</td>
+      <td>객체를 가리킴 (객체가 없으면 의미 없음)</td>
+    </tr>
+    <tr>
+      <td><strong>메모리 위치</strong></td>
+      <td>메서드 영역(Method Area)</td>
+      <td>스택(지역 변수일 때) 또는 힙(객체를 참조할 때)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="지역-변수와-레퍼런스-변수-비교">지역 변수와 레퍼런스 변수 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>특징</strong></th>
+      <th><strong>지역 변수</strong></th>
+      <th><strong>레퍼런스 변수</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>저장 내용</strong></td>
+      <td>값 자체</td>
+      <td>객체의 메모리 주소</td>
+    </tr>
+    <tr>
+      <td><strong>유효 범위</strong></td>
+      <td>선언된 블록 내</td>
+      <td>객체가 참조되는 동안</td>
+    </tr>
+    <tr>
+      <td><strong>메모리 위치</strong></td>
+      <td>스택 메모리</td>
+      <td>힙 메모리에 저장된 객체를 참조</td>
+    </tr>
+    <tr>
+      <td><strong>초기화 필요성</strong></td>
+      <td>명시적 초기화 필요</td>
+      <td>초기화되지 않은 경우 null 값을 가질 수 있음</td>
+    </tr>
+  </tbody>
+</table>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/miscellaneous/2025-01-22-naming-convention/" class="flip-title"><span>[Etc] Naming Convention</span></a>  <time class="faded fine" datetime="2025-01-22T00:00:00+09:00">22 Jan 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-01-22-git-clone-fork/" class="flip-title"><span>[Git] git clone VS git fork</span></a>  <time class="faded fine" datetime="2025-01-22T00:00:00+09:00">22 Jan 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-01-21-css-flex/" class="flip-title"><span>[HTML] CSS Flex</span></a>  <time class="faded fine" datetime="2025-01-21T00:00:00+09:00">21 Jan 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flutter/"
+          class="sidebar-nav-item "
+          
+        >
+          Flutter (5)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (10)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          JAVA (5)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/aws/"
+          class="sidebar-nav-item "
+          
+        >
+          AWS (1)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (10)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnan0silver.github.io&count_bg=%23E786D8&title_bg=%237624DD&icon=waze.svg&icon_color=%23E7E7E7&title=%EC%A1%B0%ED%9A%8C%EC%88%98&edge_flat=false" alt="조회수 배치" width="120" height="20" loading="lazy"/></a>
+  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

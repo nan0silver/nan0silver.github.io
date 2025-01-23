@@ -1,1294 +1,1756 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2024-11-06T14:08:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">NANO BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-23T09:54:52+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[AWS] AWS 기초</title><link href="http://localhost:4000/aws/2024-09-02-aws/" rel="alternate" type="text/html" title="[AWS] AWS 기초" /><published>2024-09-02T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/aws/aws</id><content type="html" xml:base="http://localhost:4000/aws/2024-09-02-aws/"><![CDATA[<ul>
-  <li>AWS의 주요 서비스를 실무에서 어떻게 활용하는가</li>
-  <li>내가 만든 백엔드 포트폴리오를 AWS 주요 인프라에 배포</li>
-  <li>내가 지원할 회사에서 쓰는 서비스를 곁들인</li>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Etc] Naming Convention</title><link href="http://localhost:4000/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+09:00</published><updated>2025-01-22T17:56:38+09:00</updated><id>http://localhost:4000/miscellaneous/naming-convention</id><content type="html" xml:base="http://localhost:4000/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
+  <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
+  <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
+  <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
+  <li><a href="#3-스네이크-케이스-snake_case">스네이크 케이스 (snake_case)</a></li>
+  <li><a href="#4-파스칼-케이스-pascalcase">파스칼 케이스 (PascalCase)</a></li>
+  <li><a href="#선택-기준">선택 기준</a></li>
 </ul>
 
-<p>목차</p>
+<hr />
+
+<h2 id="naming-convention이란">Naming Convention이란?</h2>
+
 <ul>
-  <li>S3 &amp; Cloudfront 소개</li>
-  <li>실무 활용 사례 part1
-    <ul>
-      <li>이미지 리사이징</li>
-      <li>권한 관리</li>
-    </ul>
-  </li>
-  <li>내가 지원한 회사 채용공고 뜯어보기</li>
-  <li>실무 활용 사례 part2
-    <ul>
-      <li>CPA</li>
-      <li>Glue &amp; Athena 를 통한 Data Lake 구축</li>
-    </ul>
-  </li>
+  <li>프로그래밍에서 변수, 함수, 클래스 이름 등을 작성하는 규칙</li>
 </ul>
 
-<p>수업 목표</p>
-<ul>
-  <li>AWS가 무엇인지 설명할 수 있다</li>
-  <li>S3의 주요 기능 및 활용 방안을 설명할 수 있다.</li>
-  <li>지원하고 싶은 회사의 지원 공고 뜯어보기</li>
-</ul>
+<hr />
 
-<h1 id="aws">AWS</h1>
-<ul>
-  <li>Amazon Web Service</li>
-  <li>클라우드 컴퓨팅 플랫폼</li>
-  <li>AWS 계정 만들어보기</li>
-  <li>AWS Cloud Practitioner Essentials (Korean)
-    <ul>
-      <li>Cloud Practitioner 자격증 있음
-        <ul>
-          <li>공부하는 것 추천함 (따는건 비쌈)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>큰 회사에서는 AWS 자격증이 크게 상관없겠지만, 작은 회사에서는 AWS역량이 필수적</li>
-</ul>
+<h2 id="1-케밥-케이스-kebab-case">1. 케밥 케이스 (Kebab-case)</h2>
 
-<h2 id="클라우드-컴퓨팅">클라우드 컴퓨팅</h2>
 <ul>
-  <li>인터넷을 통해 IT리소스(서버, 스토리지, 데이터베이스, 네트워킹 등)를 제공하고 관리하는 서비스</li>
+  <li>단어를 <strong>하이픈(-)</strong>으로 구분하며, 모든 문자를 소문자로 작성</li>
+  <li>모양이 케밥을 닮았다고 해서 붙여진 이름</li>
   <li>특징
-    <ol>
-      <li>확장성 (Scalability)
-        <ul>
-          <li>사용자가 필요에 따라 리소스를 쉽게 확장, 축소 가능</li>
-          <li>블랙 프라이데이에는 몇 배의 트래픽이 몰림. 이때마다 하드웨어를 사용하는건 비효율적, 이때만 자원을 사용하고 끝나면 반납할 수 있음</li>
-        </ul>
-      </li>
-      <li>유연성 (Flexibility)
-        <ul>
-          <li>다양한 IT 환경에 맞춰 손쉽게 맞춤화 가능</li>
-          <li>자바스크립트로 백엔드 많이 사용</li>
-        </ul>
-      </li>
-      <li>비용 효율성 (Cost Efficiency)
-        <ul>
-          <li>초기 자본 투자 없이, 사용한 만큼 지불하는 비용 구조</li>
-        </ul>
-      </li>
-      <li>가용성
-        <ul>
-          <li>높은 가용성과 자동 백업, 복구 기능으로 서비스 중간 최소화</li>
-          <li>람다 서비스를 처음 띄울 때 서울 4개의 구역에 띄워놓을 수 있음. 한 개의 구역에 오류가 나도 다른 구역에서는 잘 쓸 수 있음.</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-</ul>
-
-<h2 id="s3">S3</h2>
-<ul>
-  <li>Simple Storage Service</li>
-  <li>AWS 최초의 서비스</li>
-  <li>클라우드 파일 저장소</li>
-  <li>AWS 사용하고 있는 회사라면 99%의 확률로 활용하고 있음</li>
-  <li>기본 개념
     <ul>
-      <li>버킷 (Bucket)
+      <li>가독성이 좋음</li>
+      <li>HTML, CSS에서 자주 사용됨</li>
+      <li>언어에 따라 변수나 함수이름으로는 사용할 수 없는 경우도 있음
         <ul>
-          <li>S3에서 데이터를 저장하는 컨테이너</li>
-          <li>모든 S3객체는 반드시 하나의 버킷에 속해 있음</li>
-          <li>S3 스토리지의 최상위 계층이며, 사용자가 데이터를 저장하고 관리할 수 있는 폴더와 비슷
-            <ul>
-              <li>컴퓨터에서 C드라이브와 비슷한 느낌</li>
-            </ul>
-          </li>
-          <li>각 버킷은 고유한 이름을 가짐(전세걔 유일)</li>
-          <li>데이터 저장 위치(region), 권한 설정, 버전 관리, 수명 주기 정책 등 관리 가능</li>
-        </ul>
-      </li>
-      <li>Key
-        <ul>
-          <li>S3버킷 내 객체(파일)를 고유하게 식별하는 문자열</li>
-          <li>버킷 내 키는 객체의 “경로”로 생각 가능</li>
-          <li>디렉토리 구조를 흉내낼 수 있도록 설계됨
-            <ul>
-              <li>그냥 전체가 하나의 키임</li>
-            </ul>
-          </li>
+          <li>하이픈이 연산자로 해석될 수 있어서</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>사용 방법
-    <ul>
-      <li>AWS Console</li>
-      <li>AWS Cli</li>
-      <li>FTP 프로그램
-        <ul>
-          <li>file transfer protocol</li>
-          <li>사이버덕, 파일질라</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="cloudfront">Cloudfront</h2>
-<ul>
-  <li>AWS CDN 서비스
-    <ul>
-      <li>Contents Delivery Network</li>
-      <li>인터넷 사용자에게 웹 콘텐츠를 빠르고 효율적으로 제공하기 위해 설계된 분산형 서버 네트워크</li>
-    </ul>
-  </li>
-  <li>S3를 비롯한 AWS의 다른 서비스와 연동이 쉬움</li>
-  <li>AWS를 사용하는 회사라면 99% 사용</li>
-  <li>S3는 저장에 특화, Cloudfront는 전송에 특화
-    <ul>
-      <li>S3는 직접 접근으로 주로 내부 사용자나 제한된 사용자들에게 제공을 많이함</li>
-      <li>하지만 Cloudfront는 CDN을 통해 접근하기때문에 속도도 빠르고 캐싱도 됨</li>
-    </ul>
-  </li>
-  <li>S3 1GB당 약 0.117$, Cloudfront 1GB당 0.095$</li>
-  <li>CloudFront는 약정 계약이 가능</li>
-</ul>
-
-<h2 id="이미지-리사이즈">이미지 리사이즈</h2>
-<ul>
-  <li>대역폭 및 비용 감소할 수 있음</li>
-  <li>첫 번째 AWS 활용 포트폴리오
-    <ol>
-      <li>S3에 이미지가 업로드 되면 자동적으로 원하는 크기로 리사이징하여 저장하는 방법</li>
-      <li>원하는 사이즈의 이미지를 실시간으로 생성하는 방법
-        <ul>
-          <li>본인이 자신있는 프로그래밍 언어를 선택하여 AWS Lambda 기능을 활용해서 작성</li>
-          <li>‘aws cloudfront 이미지 리사이징’ 구글 검색</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-</ul>
-
-<h2 id="실무-활용-사례--보안">실무 활용 사례 -보안</h2>
-<ul>
-  <li>민감정보 보호 방법
-    <ul>
-      <li>Signed URL
-        <ul>
-          <li>특정 사용자에게만 접근 권한을 부여하기 위해 URL에 만료 시간과 암호화된 서명을 포함한 URL</li>
-        </ul>
-      </li>
-      <li>Signed Cookie
-        <ul>
-          <li>특정 조건을 만족하는 사용자만 CloudFront를 통해 콘텐츠에 접근할 수 있도록 설정하는 보안 메커니즘</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="s3-hosting--cloudfront">S3 hosting &amp; CloudFront</h2>
-<ul>
-  <li>S3는 서버사이트 스크립팅(PHP, Python등)이 필요없는 정적 웹사이트에 최적</li>
-  <li>설정이 간단하고 관리가 쉬움</li>
-  <li>서버 관리가 필요 없으며 AWS에서 모든 인프라를 관리</li>
-  <li>CPA
-    <ul>
-      <li>Cost Per Action</li>
-      <li>광고주와 퍼블리셔를 연결하는 플랫폼이라면
-        <ul>
-          <li>이 모델에서 광고주는 특정 행동을 기준으로 퍼블리셔 비용 지불</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="ec2-elastic-compute-cloud">EC2 (Elastic Compute Cloud)</h2>
-<ul>
-  <li>개발자가 클라우드 컴퓨팅 작업을 할 수 있도록 설계된 서비스</li>
-  <li>가상화된 서버를 하나의 인스턴스 형태로 제공하며, 컴퓨팅 요구사항에 맞게 용량 조절 가능</li>
-</ul>
-
-<h2 id="idc">IDC</h2>
-<ul>
-  <li>Internet Data Center</li>
-  <li>물리적 인프라를 제공하는 시설</li>
-</ul>
-
-<h2 id="리전-region">리전 (Region)</h2>
-<ul>
-  <li>물리적으로 분리된 지리적 위치</li>
-  <li>각 리전은 여러 개의 데이터 센터(Availability Zone, AZ)로 구성되어 있음</li>
-  <li>리전 간 데이터 전송은 네트워크 지연 시간(latency)이 발생할 수 있음</li>
-  <li>각 리전은 법적, 규제 요구 사항을 충족하도록 설계됨</li>
-</ul>
-
-<h2 id="availability-zone">Availability Zone</h2>
-<ul>
-  <li>리전 내에서 독립적으로 운영되는 데이터 센터</li>
-  <li>각 AZ는 하나 이상의 데이터 센터로 구성되어 있음</li>
-  <li>VPC (가상 사설 네트워크)
-    <ul>
-      <li>Virtual Private Cloud</li>
-      <li>네트워크
-        <ul>
-          <li>2개 이상의 컴퓨터나 장치가 서로 데이터를 주고 받을 수 있도록 연결된 시스템</li>
-        </ul>
-      </li>
-      <li>사설
-        <ul>
-          <li>공개되지 않은, 외부와 분리되느 특정 사용자나 조직만 접근할 수 있는</li>
-        </ul>
-      </li>
-      <li>가상
-        <ul>
-          <li>물리적인 하드웨어 장비나 네트워크 인프라 없이, 소프트웨어를 통해 논리적으로 격리</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="주요-용어">주요 용어</h2>
-<h3 id="a대학교-캠퍼스를-예시로-했을-때">A대학교 캠퍼스를 예시로 했을 때</h3>
-<ul>
-  <li>퍼블릭 서브넷
-    <ul>
-      <li>Public Subnet
-        <ul>
-          <li>public : 인터넷과 직접 연결되어있다.</li>
-          <li>subnet : sub + network, 하나의 네트워크를 더 작은 단위의 네트워크로 (부분 집합)</li>
-        </ul>
-      </li>
-      <li>중앙 운동장, 도서관, 기념품샵 등등</li>
-    </ul>
-  </li>
-  <li>프라이빗 서브넷
-    <ul>
-      <li>Private Subnet
-        <ul>
-          <li>인터넷과 직접 연결되어있지 않다.</li>
-        </ul>
-      </li>
-      <li>교수 연구실, 실험실 (아무나 못들어가는)</li>
-    </ul>
-  </li>
-  <li>라우팅 / 라우팅 테이블
-    <ul>
-      <li>Routing Table
-        <ul>
-          <li>라우팅 : 경로, 네트워크 내에서 데이터가 이동할 경로를 결정</li>
-        </ul>
-      </li>
-      <li>캠퍼스 내 길 / 길 안내 지도</li>
-    </ul>
-  </li>
-  <li>인터넷 게이트웨이
-    <ul>
-      <li>학교 정문</li>
-    </ul>
-  </li>
-  <li>NAT 게이트웨이
-    <ul>
-      <li>Network Address Translation
-        <ul>
-          <li>Network Address : IP주소 (Internet Protocol)
-            <ul>
-              <li>네트워크 상에서 각 장치를 식별하기 위해 사용되는 고유한 숫자 주소</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>내부 네트워크의 사설 IP 주소를 공용 IP주소로 변환</li>
-      <li>경비실, 차량 차단기, 보안 검사대</li>
-    </ul>
-  </li>
-  <li>네트워크 ACL (Access Control List)
-    <ul>
-      <li>전체 구역 통제 시스템</li>
-      <li>서브넷 단위</li>
-      <li>Stateless, 상태 비기반, 독립적인 제어
-        <ul>
-          <li>들어올 때도 검사하고 나갈때도 검사함</li>
-        </ul>
-      </li>
-      <li>우선순위가 있음</li>
-      <li>차단기의 정책, 비행기 탈 때와 비슷</li>
-    </ul>
-  </li>
-  <li>보안 그룹 (Security Group)
-    <ul>
-      <li>개별 사무실 출입 통제 시스템</li>
-      <li>기본적으로 모든 트래픽은 차단하며 허용 규칙만 있음</li>
-      <li>stateful, 상태 기반 (신분증 제출하고 출입증 받아가는 느낌)</li>
-    </ul>
-  </li>
-  <li>라우팅 테이블에 인터넷 게이트웨이랑 <strong>퍼블릭 서브넷</strong>이 연결
-    <ul>
-      <li>반대로 생각하면 퍼블릭 서브넷과 프라이빗 서브넷을 구분짓는 중요한 요소가 됨</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="주의-사항">주의 사항</h2>
-<ul>
-  <li>AWS에서 처음으로 제공해주는 VPC는 가급적으로 사용하지 말자</li>
-  <li>람다를 private 서브에 올리고 nat를 사용하는 것을 추천
-    <ul>
-      <li>람다는 실행할 때마다 ip가 바뀜, 문제가 될 수 있음</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="aws" /><summary type="html"><![CDATA[AWS의 기본 내용에 대해 알아본다.]]></summary></entry><entry><title type="html">[JAVA] StringBuilder</title><link href="http://localhost:4000/java/2024-08-29-stringbuilder/" rel="alternate" type="text/html" title="[JAVA] StringBuilder" /><published>2024-08-29T00:00:00+09:00</published><updated>2024-08-29T23:50:48+09:00</updated><id>http://localhost:4000/java/stringbuilder</id><content type="html" xml:base="http://localhost:4000/java/2024-08-29-stringbuilder/"><![CDATA[<p>목차</p>
-<ol>
-  <li><a href="#string">String</a></li>
-  <li><a href="#stringbuilder">StringBuilder</a></li>
-</ol>
-
-<hr />
-
-<h2 id="string">String</h2>
-<ul>
-  <li>반복적으로 String을 연결하거나, 수정해야 할 경우, 보통은 아래와 같은 경우로 string을 사용한다.</li>
   <li>
-    <p><code class="language-plaintext highlighter-rouge">java
-  public class Main{
-  public static void main(String[] args) {
-      String java = "자바";
-      java += "공부";
-      System.out.println(java);
-  }
-  }</code></p>
-  </li>
-  <li>하지만 string은 불변(immutable)객체이므로, “자바”메모리에 “공부”가 추가되는 것이 아니라, 새로운 메모리에 “자바공부”가 저장됨</li>
-  <li>문자열이 수정될 때마다 새로운 메모리를 할당받기 때문에 성능저하가 일어날 수 있음</li>
-</ul>
+    <p>예시</p>
 
-<h2 id="stringbuilder">StringBuilder</h2>
-<ul>
-  <li>StringBuilder는 mutable sequence of characters.</li>
-  <li>문자열이 변경될 때마다 새로운 메모리를 할당받지 않고, 버퍼를 통해 문자열을 관리하다 toStirng()을 통해 Stirng 객체를 생성</li>
-  <li>StringBuilder가 효율적인 경우
-    <ul>
-      <li>문자열의 반복적인 연결</li>
-      <li>문자열의 잦은 수정</li>
-      <li>대량의 문자열을 처리할 때</li>
-    </ul>
-  </li>
-  <li>단점
-    <ul>
-      <li>StringBuilder는 thread-safe하지 않아 멀티쓰레드 환경에서 좋지 않다.</li>
-      <li>멀티쓰레스 환경에서는 StringBuffer를 추천
-        <ul>
-          <li>StringBuffer는 StringBuilder와 동일한 API를 사용하지만 각각의 메소드에 대해 동기화를 보장하기 때문</li>
-          <li>String보다는 빠르고 StirngBuilder보다는 느림</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.]]></summary></entry><entry><title type="html">[Algorithm] 서로소 집합과 유니온 파인드</title><link href="http://localhost:4000/algorithm/2024-07-18-day9/" rel="alternate" type="text/html" title="[Algorithm] 서로소 집합과 유니온 파인드" /><published>2024-07-18T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day9</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-18-day9/"><![CDATA[<p>목차</p>
-<ol>
-  <li><a href="#서로소-집합">서로소 집합</a></li>
-  <li><a href="#유니온-파인드">유니온 파인드</a>
-  1) <a href="#유니온-파인드union-find의-자료구조">유니온 파인드의 자료구조</a>
-  2) <a href="#유니온-파인드의-예시">유니온 파인드의 예시</a></li>
-</ol>
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* CSS 클래스 이름 */</span>
+<span class="nc">.button-primary</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+<span class="p">}</span>
 
-<hr />
-
-<h3 id="트리와-관련된-용어들">트리와 관련된 용어들</h3>
-<ul>
-  <li><img src="/algorithm/image/day9_image.png" alt="Full-width image" /></li>
-  <li>루트 노드, 자식노드, 부모노드, 서브트리, 리프노드, 깊이</li>
-  <li>이 이미지에서 깊이는 5</li>
-  <li>이진트리
-    <ul>
-      <li>자식 노드가 2개씩 있는 트리</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="서로소-집합">서로소 집합</h2>
-<ul>
-  <li>서로 공통된 원소를 가지고 있지 않은 두 개 이상의 집합</li>
-  <li>분리 집합 (Disjoint Set)이라고도 부름</li>
-  <li>사용 용도
-    <ul>
-      <li>서로 다른 원소들이 같은 집합에 속해있는지, 아닌지 판별할 때 사용</li>
-      <li>사이클이 존재하는지 판별할때 사용</li>
-    </ul>
-  </li>
-  <li>Union-Find 자료구조로 서로소 집합을 표현
-    <ul>
-      <li>유니온 파인드가 다른 고급 알고리즘의 베이스가 됨 (Kruskal Algorithm)</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="유니온-파인드">유니온 파인드</h2>
-
-<h3 id="유니온-파인드union-find의-자료구조">유니온 파인드(Union-Find)의 자료구조</h3>
-<ul>
-  <li>init, find, merge(union) 함수들의 형태로 보통 이루어짐
-    <ul>
-      <li>함수명 고정 X</li>
-    </ul>
-  </li>
-</ul>
-
-<ol>
-  <li>init
-    <ul>
-      <li>초기화 함수</li>
-      <li>Parent 배열에 대해 자신의 인덱스 값을 가지도록 초기화</li>
-    </ul>
-    <ul>
-      <li>초기에 자신의 부모 노드는 자신이라는 의미
-      - <code class="language-plaintext highlighter-rouge">java
-void init() {
-  for (int i = 1; i &lt;= n; ++i) {
-    parent[i] = i;
-  }
-}
-</code></li>
-    </ul>
-  </li>
-  <li>find
-    <ul>
-      <li>자신의 부모 노드를 찾는 함수</li>
-      <li>재귀 함수로 구현됨</li>
-      <li>자기 자신을 가리키는 인덱스 (루트 노드)를 찾을 때까지 반복</li>
-      <li>
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">int</span> <span class="nf">find_parent1</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
-   <span class="k">return</span> <span class="n">x</span> <span class="o">==</span> <span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">?</span> <span class="n">x</span> <span class="o">:</span> <span class="n">find_parent1</span><span class="o">(</span><span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">]);</span>
- <span class="o">}</span>
-
- <span class="kt">int</span> <span class="nf">find_parent2</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
-   <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">])</span> <span class="k">return</span> <span class="n">x</span><span class="o">;</span>
-   <span class="k">else</span> <span class="k">return</span> <span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">find_parent2</span><span class="o">(</span><span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">]);</span>
- <span class="o">}</span>
- <span class="c1">// memoization을 사용하는 2가 더 빠름</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>merge
-    <ul>
-      <li>두 노드를 하나의 집합으로 합치는 함수</li>
-    </ul>
-    <ul>
-      <li>y의 부모 노드는 x
-      - find 함수를 같이 사용
-      - if 문에서 x == y이면?</li>
-      <li>
-        <p>사이클이 발생하는 경우이므로 제외
-      - ```java
-  void merge_parent(int x, int y) {
-    int x = find_parent(x);
-    int y = find_parent(y);</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (x != y) parent[y] = x;   }   ```
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<h3 id="유니온-파인드의-예시">유니온 파인드의 예시</h3>
-<ul>
-  <li><img src="/algorithm/image/day9_image-1.jpeg" alt="Full-width image" /></li>
-  <li>최종적으로 오직 루트 노드만이 자기 자신을 가리키게 됨
-    <ul>
-      <li>이러한 특서으로 루트 노드 찾을 수 있음</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 9 (유니온 파인드)]]></summary></entry><entry><title type="html">[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)</title><link href="http://localhost:4000/java/2024-07-17-day8/" rel="alternate" type="text/html" title="[JAVA] 키보드로 사용자 입력받는 2가지 방법 (BufferdReader, Scanner)" /><published>2024-07-17T00:00:00+09:00</published><updated>2024-08-29T23:50:48+09:00</updated><id>http://localhost:4000/java/day8</id><content type="html" xml:base="http://localhost:4000/java/2024-07-17-day8/"><![CDATA[<p>목차</p>
-<ol>
-  <li><a href="#1-bufferdreader-inputstreamreader-systemin">BufferReader, InputStreamReader, System.in</a></li>
-  <li><a href="#2-scanner">Scanner</a></li>
-</ol>
-
-<hr />
-
-<h2 id="1-bufferdreader-inputstreamreader-systemin">1. BufferdReader, InputStreamReader, System.in</h2>
-
-<h3 id="systemin">System.in</h3>
-<ul>
-  <li>일반적으로 keyboard 입력을 지칭하는 Standard Input Stream</li>
-</ul>
-
-<h3 id="inputstreamreader">InputStreamReader</h3>
-<ul>
-  <li>byte stream을 character stream으로 변경해주는 역할 수행</li>
-  <li>InputStreamReader 클래스는 생성자의 파라미터로 InputStream 객체를 전달받음
-    <ul>
-      <li>이 InputStream 객체의 종류에 따라 키보드 사용자 입력을 읽어들일수도 있고, 파일 내용을 읽어들일 수도 있음</li>
-    </ul>
-  </li>
-  <li>사용법
-    <ul>
-      <li>InputstreamReader (InputStream in)</li>
-      <li>InputstreamReader (InputStream in, String charsetName)</li>
-      <li>InputstreamReader (InputStream in, Charset cs)</li>
-      <li>InputstreamReader (InputStream in, CharsetDecoder dec)</li>
-    </ul>
-  </li>
-  <li>생성자의 파라미터로 charset 정보를 전달받아 읽어들이는 stream의 charset을 지정할 수도 있음</li>
-</ul>
-
-<h3 id="bufferedreader">BufferedReader</h3>
-<ul>
-  <li>효율적으로 문자를 읽어들이기 위해 버퍼링을 해줌
-    <ul>
-      <li>버퍼링 (Buffering)
-        <ul>
-          <li>효율적인 데이터 처리를 위해 중간 저장공간(Buffer)을 사용하는 것 (주로 입출력에서 사용)</li>
-          <li>디스크 접근은 시간이 오래걸리기 때문에 한번에 데이터를 저장하여 시간을 줄이고, 필요할 때마다 데이터를 읽음</li>
-          <li>I/O작업은 시간이 많이 걸리기 때문에 버퍼링으로 접근횟수를 줄여 효율적으로 데이터 사용이 가능</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>기본 버퍼 사이즈를 그대로 이용할 수도, 생성자를 이용해 버퍼 사이즈를 지정할 수도 있음</li>
-  <li>보통 FileReader, InputStreamReader의 read()와 같이 비용이 많이 드는 Reader를 파라미터로 전달받아 사용함</li>
-  <li>만약 BufferedReader없이 FileReader나 InputStreamReader를 사용하면 시스템은 바이트별로 사용자의 입력을 받아서 처리하는 동작을 반복함
-    <ul>
-      <li>시스템에서 IO는 자원소모가 많음</li>
-    </ul>
-  </li>
-  <li>하지만 <strong>BufferReader를 사용하면</strong>, 시스템은 버퍼가 비어있을 때만, 실제 IO를 일으켜서 데이터를 읽어오고, 나머지 경우에는 메모리에 있는 버퍼의 데이터를 읽어서 처리함</li>
-  <li>데이터를 문자열로 받아오기 때문에, 적절히 데이터를 처리 후 사용해야 한다.</li>
-</ul>
-
-<h3 id="bufferdreader-inputstreamreader-systemin를-이용한-예제">BufferdReader, InputStreamReader, System.in를 이용한 예제</h3>
-<ul>
-  <li>
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
-  <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-  <span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span> 
-    
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserInput</span> <span class="o">{</span>    
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOExceptio</span><span class="o">{</span>
-
-          <span class="c1">//키보드 사용자 입력을 받을 수 있는 객체 생성</span>
-          <span class="nc">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>   
-
-          <span class="c1">// 입력 데이터 읽기 (한 줄)      </span>
-          <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>  
-
-          <span class="c1">// 입력 데이터 출력        </span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>      
-      <span class="o">}</span>
-  <span class="o">}</span>
+<span class="c">/* 파일 이름 */</span>
+<span class="nt">my-awesome-file</span><span class="nc">.js</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h2 id="2-scanner">2. Scanner</h2>
-<ul>
-  <li>Scanner 클래스를 이용하면 1번 방법보다 더 쉽게 사용자 키보드 입력을 받을 수 있음</li>
-  <li>입력받은 데이터를 Scanner클래스 메소드를 사용해 더 쉽게 가공 가능</li>
-  <li>예제
-    <ul>
-      <li>
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span> 
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ScannerLoop</span> <span class="o">{</span>    
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>      
-
-          <span class="c1">// Scanner 선언        </span>
-          <span class="nc">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>        
-                
-          <span class="c1">//다음으로 읽어들일 token이 있는지 체크</span>
-          <span class="k">while</span> <span class="o">(</span><span class="n">scanner</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>     
-              <span class="c1">//token별로 입력값을 읽어 String을 리턴</span>
-              <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>  
-              <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>        
-          <span class="o">}</span>         
-                
-          <span class="n">scanner</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>    
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>        </div>
-      </li>
-      <li>token(공백)별로 사용자 입력값을 읽어들이는 예제</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 8]]></summary></entry><entry><title type="html">[Algorithm] 동적 계획법 (DP)</title><link href="http://localhost:4000/algorithm/2024-07-16-day7/" rel="alternate" type="text/html" title="[Algorithm] 동적 계획법 (DP)" /><published>2024-07-16T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day7</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-16-day7/"><![CDATA[<p>목차</p>
-<ol>
-  <li><a href="#dynamic-programming-정의">Dynamic Programming 정의</a></li>
-  <li><a href="#dp의-종류">DP의 종류</a></li>
-  <li><a href="#dp-사용-조건">DP 사용조건</a></li>
-  <li><a href="#dp-유의점">DP 유의점</a></li>
-</ol>
-
-<hr />
-
-<h2 id="동적-계획법-dp-dynamic-programming">동적 계획법 (DP, Dynamic Programming)</h2>
+<h2 id="2-카멜-케이스-camelcase">2. 카멜 케이스 (camelCase)</h2>
 
 <ul>
-  <li>예시 문제 1
+  <li>첫 단어는 소문자로 시작하고, 이후 단어의 첫 글자를 대문자로 작성</li>
+  <li>이름이 낙타의 등처럼 튀어나온 형태를 닮아서 붙인 이름</li>
+  <li>특징
     <ul>
-      <li>1000원짜리 커피를 500원짜리 동전과 100원짜리 동전만 사용하여 계산하려고 한다.</li>
-      <li>동전을 가장 적게 사용하여 계산하려고 할 때, 필요한 동전의 최소 개수는?</li>
-      <li>(단, 동전은 무수히 많다.)</li>
-      <li>Solution
-        <ul>
-          <li>(500 * 2) VS (500 * 1 + 100 * 5) VS (100 * 10)
-            <ul>
-              <li><strong>그리디 알고리즘으로 해결 가능</strong></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
+      <li>JavaScript, Java, C#, Python 등에서 변수와 함수 이름으로 자주 사용됨</li>
+      <li>대문자 없이 단어를 연결해 코드 가독성을 높이는 데 도움을 줌</li>
     </ul>
   </li>
-  <li>예시 문제 2
-    <ul>
-      <li>23원짜리 커피를 5원짜리 동전과 2원짜리 동전만 사용하여 계산하려고 한다.</li>
-      <li>동전을 가장 적게 사용하여 계산하려고 할 때, 필요한 동전의 최소 개수는?</li>
-      <li>(단, 동전은 무수히 많다.)</li>
-      <li>Solution
-        <ul>
-          <li><strong><em>그리디 알고리즘으로 해결 불가능</em></strong></li>
-          <li>그리디 알고리즘을 적용할 수 잇는 조건 중 하나인 <strong>최적 부분 구조 조건</strong>을 만족하지 않기 때문
-            <ul>
-              <li>지역적으로 최적이 전역적으로도 최적이 아님</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="dynamic-programming-정의">Dynamic Programming 정의</h3>
-<ul>
-  <li>이전에 계산한 값을 재사용하여, 하나의 문제를 한 번만 풀게 하는 알고리즘 패러다임</li>
-  <li>Divide &amp; Conquer과 비슷하지만, 중간 결과를 저장하여 효율성을 높인다는 점에서 차이</li>
-  <li>이전에 계산해둔 값을 <strong>메모리(배열 등)에 저장해서 반복 작업을 줄이는 기법</strong>이 핵심
-    <ul>
-      <li>하위 문제의 결과를 먼저 저장하고, 이를 나중에 필요할 때 사용</li>
-      <li>Tabulation(botton-up), Memoization(top-down)</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="dp의-종류">DP의 종류</h3>
-<ul>
-  <li>Top-Down DP
-    <ul>
-      <li>가장 큰 문제부터 풀기 시작하여, 작은 문제들을 재귀적으로 호출하여 답을 구하는 방식</li>
-      <li>주로 재귀를 통해 해결</li>
-      <li>${\color{yellow}메모이제이션(Memoization)}$을 활용하여 복잡도를 줄임</li>
-      <li>예시
-        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="kt">int</span> <span class="nf">fibo</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-          <span class="kt">int</span> <span class="o">&amp;</span><span class="n">ret</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
-
-          <span class="k">if</span> <span class="p">(</span><span class="n">ret</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-          <span class="k">return</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">fibo</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibo</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-      <span class="p">}</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>Botton-Up DP
-    <ul>
-      <li>작은 문제들을 먼저 풀기 시작하여, 최종적으로 가장 큰 문제들을 해결하는 방식</li>
-      <li>주로 반복문을 통해 해결</li>
-      <li>${\color{yellow}점화식과 기저사례}$(base case)가 필요 -&gt; ${\color{yellow}Tabulation}$</li>
-      <li>예시
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-          <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="o">];</span> 
-      <span class="o">}</span> <span class="c1">//점화식</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="dp-사용-조건">DP 사용 조건</h3>
-<ol>
-  <li>겹치는 부분(작은) 문제 (Overlapping Subproblem)
-    <ul>
-      <li>어떠한 문제가 여러 개의 부분(하위) 문제(subproblem)으로 쪼갤 수 있을 대 사용</li>
-    </ul>
-  </li>
-  <li>최적 부분 구조 (Optimal Substructure)
-    <ul>
-      <li>문제의 정답을 작은 문제의 정답에서 구할 수 있을 때 사용</li>
-    </ul>
-  </li>
-</ol>
-
-<ul>
   <li>예시
-    <ul>
-      <li>N번째 피보나치 수를 구하는 문제
-        <ul>
-          <li>N-1번째 피보나치 수를 구하는 문제, N-2번째 피보나치 수를 구하는 문제로 쪼갤 수 있음</li>
-          <li>문제의 정답을 하위 문제의 정답의 합으로 구할 수 있음</li>
-          <li>재귀로 풀 때
-            <ul>
-              <li>O(2^N)</li>
-              <li>이미 구했던 값도 다시 계산해야 함
-                <ul>
-                  <li>시간 초과 발생 빛 stack overflow 가능성이 높음</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>반복문으로 풀 때
-            <ul>
-              <li>O(N)</li>
-              <li>기저사례와 점화식으로 구현</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// JavaScript 변수와 함수</span>
+<span class="kd">let</span> <span class="nx">userName</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">getUserData</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">userName</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="dp-유의점">DP 유의점</h3>
+<h2 id="3-스네이크-케이스-snake_case">3. 스네이크 케이스 (snake_case)</h2>
+
 <ul>
-  <li>복잡한 문제의 경우, 점화식을 직접 계산해서 구해야 한다.</li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 7 (동적 계획법)]]></summary></entry><entry><title type="html">[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘</title><link href="http://localhost:4000/algorithm/2024-07-15-day6/" rel="alternate" type="text/html" title="[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘" /><published>2024-07-15T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day6</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-15-day6/"><![CDATA[<p>목차</p>
-<ol>
-  <li><a href="#너비-우선-탐색-bfs">너비 우선 탐색 BFS</a></li>
-  <li><a href="#다익스트라-dijkstra-알고리즘">다익스트라 Dijkstra 알고리즘</a></li>
-</ol>
-
-<hr />
-
-<h2 id="너비-우선-탐색-bfs">너비 우선 탐색 (BFS)</h2>
-
-<h3 id="bfs-breadth-first-search">BFS (Breadth First Search)</h3>
-<ul>
-  <li>하나의 정점으로부터 시작하여 차례대로 모든 정점들을 한 번씩 방문하는 것</li>
-  <li>루트 노드 (혹은 다른 임의의 노드)에서 시작해서 인접한 노드를 먼저 탐색하는 방법</li>
-  <li>두 노드 사이의 최단 경로 혹은 임의의 경로를 찾고 싶을 때 사용</li>
-</ul>
-
-<h3 id="bfs의-특징">BFS의 특징</h3>
-<ul>
-  <li>재귀적으로 동작하는 DFS와 달리, BFS는 주로 큐(Queue) 사용</li>
-  <li>사이클이 있는 경우, 무한 루프에 빠지지 않도록 방문하는 방문 체크를 해주어야 함</li>
-  <li>물웅덩이에 돌멩이를 하나 던지면, 파동이 전체 방향으로 퍼져나가는 동심원의 형태로 탐색이 진행</li>
-</ul>
-
-<h3 id="bfs의-동작-순서">BFS의 동작 순서</h3>
-<ul>
-  <li><img src="/algorithm/image/day6_image.png" alt="Full-width image" /></li>
-</ul>
-
-<h3 id="bfs의-구현">BFS의 구현</h3>
-<ul>
-  <li>빈 큐 q 및 visited 배열 생성</li>
-  <li>시작 노드 ‘st’를 큐 q에 삽입</li>
-  <li>노드 ‘st’를 방문한 것으로 표시</li>
-  <li>큐 q가 비어있지 않은 동안 다음을 반복 :
+  <li>단어를 <strong>밑줄(_)</strong>로 구분하며, 모든 문자를 소문자로 작성</li>
+  <li>뱀이 기어다니는 모양을 닮아서 붙여진 이름</li>
+  <li>특징
     <ul>
-      <li>큐의 맨 앞에서 요소를 꺼내 ‘now’에 저장</li>
-      <li>큐의 맨 앞의 요소를 제거</li>
-      <li>‘now’의 값을 출력하고 뒤에 공백을 붙임</li>
-      <li>노드 ‘now’의 인접 리스트 v에서 각 이웃 ‘next’에 대해
-        <ul>
-          <li>만약 ‘next’가 아직 방문하지 않은 노드인 경우 :
-            <ul>
-              <li>노드 ‘next’를 방문한 것으로 표시</li>
-              <li>‘next’를 큐 q에 넣음</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
+      <li>Python, SQL, Ruby, C, C++, PHP, JSON 데이터 스키마에서 변수와 함수 이름으로 자주 사용됨</li>
     </ul>
   </li>
-  <li><img src="/algorithm/image/day6_image-1.png" alt="Full-width image" /></li>
-</ul>
+  <li>
+    <p>예시</p>
 
-<h3 id="bfs의-시간복잡도">BFS의 시간복잡도</h3>
-<ul>
-  <li>V : 정점(노드)의 수, E : 간선의 수</li>
-  <li>인접 리스트로 표현된 그래프
-    <ul>
-      <li>O(V+E)</li>
-    </ul>
-  </li>
-  <li>인접 행렬로 표현된 그래프
-    <ul>
-      <li>O(V^2)</li>
-    </ul>
-  </li>
-  <li>DFS와 BFS의 공통점과 차이점
-    <ul>
-      <li>공통점
-        <ul>
-          <li>그래프에서 시작 노드로부터 목적지 노드까지 도달하거니 특정 정보를 찾는 것이 목표</li>
-          <li>방문 기록을 체크해 이미 방문한 노드를 다시 방문하지 않게 하여 무한 루프 방지</li>
-          <li>DFS, BFS 두 방식 모드 조건 내의 모든 노드를 검색한다는 점에서 시간 복잡도는 동일</li>
-        </ul>
-      </li>
-      <li>차이점
-        <ul>
-          <li>DFS는 주로 재귀로 구현하지만, BFS는 큐(queue) 자료구조를 활용하여 구현
-            <ul>
-              <li>일반적으로 DFS보다 BFS가 조금 더 빠르게 동작</li>
-            </ul>
-          </li>
-          <li>동작 순서 상 DFS는 트리를 탐색할 때 자주 사용, BFS는 최단 경로 탐색에서 자주 사용</li>
-        </ul>
-      </li>
-      <li>시간 복잡도
-        <ul>
-          <li>주어진 그래프의 구조와 시작 노드에 따라서 실제 시간 복잡도가 다를 수 있으며,</li>
-          <li>어떤 알고리즘이 더 효율적인지는 그래프의 형태와 알고리즘의 목적에 따라 달라짐</li>
-          <li>일반적으로 어떤 알고리즘을 선택할지는 문제의 특성과 요구사항에 따라 결정</li>
-        </ul>
-      </li>
-    </ul>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Python 변수 이름
+</span><span class="n">user_name</span> <span class="o">=</span> <span class="s">"Alice"</span>
+
+<span class="c1"># Python 함수 이름
+</span><span class="k">def</span> <span class="nf">get_user_data</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">user_name</span>
+</code></pre></div>    </div>
   </li>
 </ul>
 
-<hr />
+<h2 id="4-파스칼-케이스-pascalcase">4. 파스칼 케이스 (PascalCase)</h2>
 
-<h2 id="다익스트라-dijkstra-알고리즘">다익스트라 (Dijkstra) 알고리즘</h2>
 <ul>
-  <li>그래프 알고리즘</li>
-  <li>알고리즘을 사용하는 경우
+  <li>각 단어의 첫 글자를 대문자로 작성
     <ul>
-      <li>BFS 사용 시, 격자모양의 미로에서는 상하좌우 방향의 가중치가 모두 동일
-        <ul>
-          <li>현재 정점에서 이어진 간선들의 가중치가 모두 동일</li>
-        </ul>
-      </li>
-      <li>하지만 가중치가 모두 일정하지 않다면 -&gt; BFS를 사용할 수 없음</li>
+      <li>카멜 케이스와 비슷하지만 첫 단어도 대문자</li>
     </ul>
+  </li>
+  <li>특징
+    <ul>
+      <li>Java, TypeScript등의 클래스 이름과 타입 이름으로 자주 사용됨</li>
+    </ul>
+  </li>
+  <li>
+    <p>예시</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Java 클래스 이름</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserAccount</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="nc">UserName</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">UserAccount</span><span class="o">(</span><span class="nc">String</span> <span class="n">userName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">UserName</span> <span class="o">=</span> <span class="n">userName</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="다익스트라-알고리즘-설명">다익스트라 알고리즘 설명</h3>
-<ul>
-  <li>한 정점에서 다른 모든 정점으로의 최단 경로를 구하는 알고리즘</li>
-  <li>간선의 가중치가 양수일 때만 사용 가능
-    <ul>
-      <li>음수면 다익스트라가 아닌 테이크스트라 알고리즘 사용</li>
-    </ul>
-  </li>
-  <li>BFS와 유사하지만, 일반적인 큐가 아닌 <strong>우선순위 큐(Priority Queue)</strong>를 사용하여 <strong>비용이 가장 작은 간선부터 탐색</strong>한다는 차이점이 있음
-    <ul>
-      <li>우선순위 큐 (Priority Queue)
-        <ul>
-          <li>들어오는 순서에 상관 없이 우선 순위가 높은 데이터가 먼저 나가는 자료구조</li>
-          <li>Heap을 이용해 구현하는 것이 가장 효율적</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>${\color{red}그리디(Greedy) 알고리즘}$
-    <ul>
-      <li>매 단계에서 현재까지의 부분 해(solution)를 최적화하여 최종적으로 전체 문제의 최적 해를 찾아냄</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="다익스트라-알고리즘-동작-순서">다익스트라 알고리즘 동작 순서</h3>
-<ol>
-  <li>출발 노드 선택</li>
-  <li>출발 노드로부터 각 노드까지의 최단 거리 배열 초기화
-    <ul>
-      <li>출발노드 거리는 0, 나머지 노드는 무한대(충분히 큰 값)로 설정</li>
-    </ul>
-  </li>
-  <li>현재 노드 설정
-    <ul>
-      <li>현재까지의 최단 거리가 확정된 노드 중 가장 가까운 노드 선택</li>
-    </ul>
-  </li>
-  <li>이웃 노드 갱신
-    <ul>
-      <li>선택한 노드를 기준으로 해당 노드와 이웃한 노드들 간의 거리 갱신</li>
-    </ul>
-  </li>
-  <li>모든 노드를 확인할 때까지 3,4단계 반복</li>
-</ol>
+<h2 id="선택-기준">선택 기준</h2>
 
 <ul>
-  <li>핵심 아이디어
+  <li>언어/환경의 표준에 따라 케이스를 선택
     <ul>
-      <li>각 노드까지의 현재까지 알려진 최단 거리를 계속 갱신하며 출발 노드로부터 최단 경로를 찾는 것</li>
-      <li>비용이 가장 작은 간선부터 이어주기 위해 우선순위 큐를 사용한다.</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="다익스트라-알고리즘-시간-복잡도">다익스트라 알고리즘 시간 복잡도</h3>
-<ul>
-  <li>V : 정점(노드)의 수, E : 간선의 수</li>
-  <li>O(ElogV)</li>
-</ul>
-
-<h3 id="다익스트라-알고리즘의-구현">다익스트라 알고리즘의 구현</h3>
-<ul>
-  <li>문제 예시
-    <ul>
-      <li>방향 그래프가 주어지면 주어진 시작점에서 다른 모든 정점으로의 최단 경로의 비용을 구하여라</li>
-      <li>첫째 줄에 정점의 개수와 간선의 개수가 입력됨</li>
-      <li>둘째 줄에는 시작 정점의 번호가 입력됨</li>
-      <li>셋째 줄부터 간선의 개수만큼의 줄에 걸쳐 (u,v,w)가 주어짐
+      <li>JavaScript, Java
         <ul>
-          <li>(u,v,w) -&gt; u에서 v로 가는 양의 가중치 w인 간선 존재</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>구현 예시
-    <ol>
-      <li>출발 노드 선택
-        <ul>
-          <li><img src="/algorithm/image/day6_image-dijkstra-1.png" alt="Full-width image" /></li>
-        </ul>
-      </li>
-      <li>출발 노드로부터 각 노드까지의 최단 거리 배열 초기화
-        <ul>
-          <li><img src="/algorithm/image/day6_image-dijkstra-2.png" alt="Full-width image" /></li>
-        </ul>
-      </li>
-      <li>현재 노드 설정</li>
-      <li>이웃 노드 갱신</li>
-      <li>모든 노드 확인할 때까지 3,4단계 반복
-        <ul>
-          <li><img src="/algorithm/image/day6_image-dijkstra-3.png" alt="Full-width image" /></li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 깊이 우선 탐색</title><link href="http://localhost:4000/algorithm/2024-07-12-day5/" rel="alternate" type="text/html" title="[Algorithm] 깊이 우선 탐색" /><published>2024-07-12T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day5</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-12-day5/"><![CDATA[<p>목차</p>
-<ol>
-  <li><a href="#dfs란depth-first-search">DFS란?</a></li>
-  <li><a href="#dfs-특징">DFS특징</a></li>
-  <li><a href="#dfs-시간-복잡도">DFS 시간 복잡도</a></li>
-</ol>
-
-<hr />
-
-<h2 id="깊이-우선-탐색-dfs">깊이 우선 탐색 (DFS)</h2>
-
-<h3 id="dfs란depth-first-search">DFS란?(Depth First Search)</h3>
-<ul>
-  <li>특정 정점(노드)에서 시작해서 트리나 그래프에서 한 가지 경로를 최대한 깊게 탐색하고, 해당 경로를 끝까지 탐색한 후 다른 경로로 이동</li>
-  <li>미로를 탐색할 때 한 방향으로 갈 수 있을 때까지 계속 가다가, 더 이상 갈 수 없게 되면 다시 가장 가까운 갈림길로 돌아와서 다른 방향으로 다시 탐색을 진행하는 방법과 유사</li>
-  <li>모든 정점을 방문하고자 하는 경우에 사용</li>
-</ul>
-
-<h3 id="dfs-특징">DFS 특징</h3>
-<ul>
-  <li>일반적으로 재귀 함수 사용
-    <ul>
-      <li>Stack으로도 구현 가능</li>
-    </ul>
-  </li>
-  <li>모든 경우의 수에 대해 탐색을 진행</li>
-  <li>사이클이 있는 경우, 무한 루프에 빠지지 않도록 방문 체크 해줘야함</li>
-  <li>BFS보다 깊은 경로를 빠르게 찾는데 용이</li>
-  <li>진행 순서
-    <ul>
-      <li><img src="/algorithm/image/day5_image.png" alt="Full-width image" /></li>
-    </ul>
-  </li>
-  <li>구현
-    <ul>
-      <li>
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  함수 DFS(now):
-      현재 노드를 방문한 것으로 표시
-      현재 노드를 출력
-
-      모든 이웃노드 'next'에 대해서 반복:
-          만약 'next'를 아직 방문하지 않았다면:
-              DFS(next)
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="dfs-시간-복잡도">DFS 시간 복잡도</h3>
-<ul>
-  <li>V : 정점(노드)의 수, E : 간선의 수</li>
-  <li>인접 리스트로 표현된 그래프
-    <ul>
-      <li>O(V+E)</li>
-      <li><img src="/algorithm/image/day5_image-1.png" alt="Full-width image" /></li>
-    </ul>
-  </li>
-  <li>인접 행렬로 표현된 그래프
-    <ul>
-      <li>O(V^2)</li>
-      <li><img src="/algorithm/image/day5_image-2.png" alt="Full-width image" /></li>
-    </ul>
-  </li>
-  <li>희소 그래프
-    <ul>
-      <li>Sparse Graph</li>
-      <li>그래프 내에 적은 숫자의 간선만을 가지는 그래프</li>
-      <li>인접 행렬보다 인접 리스트 사용이 유리</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)]]></summary></entry><entry><title type="html">[Algorithm] 재귀와 정렬</title><link href="http://localhost:4000/algorithm/2024-07-11-day4/" rel="alternate" type="text/html" title="[Algorithm] 재귀와 정렬" /><published>2024-07-11T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day4</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-11-day4/"><![CDATA[<p>목차</p>
-<ol>
-  <li><a href="#재귀">재귀</a></li>
-  <li><a href="#정렬">정렬</a></li>
-</ol>
-
-<hr />
-
-<h2 id="재귀">재귀</h2>
-
-<ul>
-  <li>재귀 : 자신을 정의할 때, 자기 자신을 참조하는 것</li>
-  <li>재귀 함수 : 함수 내부에서 자기 자신을 호출하는 함수</li>
-  <li>주의할 점
-    <ul>
-      <li>무한 루프에 빠지지 않도록 종료 조건을 잘 설정
-        <ul>
-          <li>종료 조건을 기저 사례 (base case)라고도 함</li>
-        </ul>
-      </li>
-      <li>함수의 파라미터 및 인자 설정에 유의</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="정렬">정렬</h2>
-
-<ul>
-  <li>정렬의 종류
-    <ul>
-      <li>삽입 정렬 (Insertion Sort)
-        <ul>
-          <li>최악 O(n^2)</li>
-        </ul>
-      </li>
-      <li>버블 정렬 (Bubble Sort)
-        <ul>
-          <li>최악 O(n^2)</li>
-        </ul>
-      </li>
-      <li>합병 정렬 (Merge Sort)
-        <ul>
-          <li>최악 O(nlogn)</li>
-        </ul>
-      </li>
-      <li>퀵 정렬 (Quick Sort)
-        <ul>
-          <li>최악 O(n^2)</li>
-          <li>평균 O(nlogn)</li>
-          <li>설명
-            <ul>
-              <li>배열의 요소들 중에서 피벗(Pivot)을 정하여, 피벗의 앞에는 피벗보다 작은 원소들이 오고, 피벗 뒤에는 피벗보다 큰 값이 오도록 배열을 둘로 나눔</li>
-              <li>분할된 두 개의 배열의 크기가 0이나 1이 될 때까지, 분할된 두 배열에 대해 재귀적으로 이 과정을 반복</li>
-              <li>재귀 호출이 한 번 진행될 때마다 최소한 하나의 원소가 최종적인 위치에 있게 되므로, 종료됨이 보장</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>힙 정렬 (Heap Sort)
-        <ul>
-          <li>최악 O(nlogn)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>특정 정렬이 빠르다고 항상 좋은 것은 아님
-    <ul>
-      <li>데이터의 특성, 크기에 따라 적절한 방법 사용해야 함</li>
-    </ul>
-  </li>
-  <li>언어들의 라이브러리 내장 sort 구현
-    <ul>
-      <li>C++
-        <ul>
-          <li>인트로 정렬 (Intro Sort)
-            <ul>
-              <li>퀵 정렬 + 힙 정렬 + 삽입 정렬</li>
-            </ul>
-          </li>
+          <li>camelCase (변수/함수)</li>
+          <li>PascalCase (클래스)</li>
         </ul>
       </li>
       <li>Python
         <ul>
-          <li>팀 정렬 (Tim Sort)
-            <ul>
-              <li>합병 정렬 + 삽입 정렬</li>
-            </ul>
-          </li>
+          <li>snake_case</li>
         </ul>
       </li>
-      <li>Java
+      <li>CSS/HTML
         <ul>
-          <li>Java7 이전에는 병합 정렬, 이후에는 팀 정렬</li>
+          <li>kebab-case</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>코테에선 왠만하면 내장 sort함수를 사용</li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 4 (재귀와 정렬)]]></summary></entry><entry><title type="html">[Algorithm] 문자열</title><link href="http://localhost:4000/algorithm/2024-07-10-day3/" rel="alternate" type="text/html" title="[Algorithm] 문자열" /><published>2024-07-10T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day3</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-10-day3/"><![CDATA[<p>목차</p>
-<ol>
-  <li><a href="#코딩테스트에-자주-나오는-문자열">코딩테스트에 자주 나오는 문자열</a>
- 1) <a href="#1-회문-palindrome">회문</a>
- 2) <a href="#2-올바른-괄호-문자열-vps--valid-parenthesis-string">올바른 괄호 문자열</a></li>
-  <li><a href="#분할-정복과-백트래킹">분할 정복과 백트래킹</a>
- 1) <a href="#분할-정복-divide-and-conquer">분할 정복</a>
- 2) <a href="#백트래킹">백트레킹</a></li>
-</ol>
+  <li>팀 또는 프로젝트의 코딩 컨벤션에 따라 일관성 유지가 중요 (가독성을 위해)</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="http://localhost:4000/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+09:00</published><updated>2025-01-23T09:28:58+09:00</updated><id>http://localhost:4000/miscellaneous/git-clone-fork</id><content type="html" xml:base="http://localhost:4000/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
+  <li><a href="#git-clone">git clone</a></li>
+  <li><a href="#git-fork">git fork</a></li>
+  <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
+  <li><a href="#워크플로우">워크플로우</a></li>
+  <li><a href="#실전-예시">실전 예시</a></li>
+</ul>
 
 <hr />
 
-<h2 id="코딩테스트에-자주-나오는-문자열">코딩테스트에 자주 나오는 문자열</h2>
+<h2 id="git-clone">git clone</h2>
 
-<h3 id="1-회문-palindrome">1. 회문 (Palindrome)</h3>
 <ul>
-  <li>앞뒤 방향으로 볼 때, 같은 순서의 문자로 구성된 문자열을 의미</li>
-  <li>예시
+  <li>역할
     <ul>
-      <li>“소주 만 병만 주소”, “Madam, I’m Adam”, “1234321”</li>
+      <li>원격 저장소를 로컬 컴퓨터에 복제</li>
     </ul>
   </li>
-</ul>
-
-<h3 id="2-올바른-괄호-문자열-vps--valid-parenthesis-string">2. 올바른 괄호 문자열 (VPS = Valid Parenthesis String)</h3>
-<ul>
-  <li>조건
+  <li>작업 대상
+    <ul>
+      <li>원격 저장소</li>
+    </ul>
+  </li>
+  <li>특징
+    <ul>
+      <li>저장소의 완전한 복사본(전체 커밋 내역, 브랜치 등)을 가져옴</li>
+      <li>복제 후, 원격 저장소가 자동으로 <code class="language-plaintext highlighter-rouge">origin</code>이라는 이름으로 연결됨</li>
+      <li>로컬에서 작업한 내용을 원격 저장소에 반영하려면 <code class="language-plaintext highlighter-rouge">push</code>사용</li>
+    </ul>
+  </li>
+  <li>동작 방식
     <ol>
-      <li>빈 문자열은 올바른 괄호 문자열이다</li>
-      <li>S가 올바른 괄호 문자열이라면, (S)도 올바른 괄호 문자열이다.</li>
-      <li>S, T가 괄호 문자열이라면 ST도 올바른 괄호 문자열이다.</li>
+      <li>Git 저장소 초기화 (<code class="language-plaintext highlighter-rouge">git init</code>)
+        <ul>
+          <li>새로 생성된 폴더는 Git 저장소로 설정됨</li>
+          <li><code class="language-plaintext highlighter-rouge">.git</code> 디렉터리가 자동으로 생성됨</li>
+        </ul>
+      </li>
+      <li>원격 저장소 설정 (<code class="language-plaintext highlighter-rouge">git remote add origin</code>)
+        <ul>
+          <li>복제한 원격 저장소가 자동으로 <code class="language-plaintext highlighter-rouge">origin</code>이라는 이름으로 연결됨</li>
+          <li>로컬에서 원격 저장소와 동기화(<code class="language-plaintext highlighter-rouge">push</code>, <code class="language-plaintext highlighter-rouge">pull</code>)를 가능하게 함</li>
+        </ul>
+      </li>
+      <li>브랜치 체크아웃
+        <ul>
+          <li>기본 브랜치(<code class="language-plaintext highlighter-rouge">main</code> or <code class="language-plaintext highlighter-rouge">master</code>)의 최신 상태가 복제됨</li>
+          <li>이 브랜치는 로컬 저장소로 가져와 자동으로 체크아웃됨</li>
+        </ul>
+      </li>
+      <li>파일 다운로드
+        <ul>
+          <li>원격 저장소에 있는 모든 파일과 폴더가 로컬 디렉토리에 다운로드됨</li>
+        </ul>
+      </li>
     </ol>
   </li>
-  <li>보통은 Stack을 사용해서 해결</li>
-  <li>’)’가 입력될 때마다, 스택에 있는 ‘(‘를 하나씩 지움
+  <li><code class="language-plaintext highlighter-rouge">git clone</code> 명령을 실행하면, 다운받은 폴더는 자동으로 Git 저장소로 초기화되고, 원격 저장소와도 연결된 상태임
     <ul>
-      <li>이때, 스택(top)이 비어있거나, ‘(‘가 없으면 올바른 괄호 문자열이 아님</li>
-    </ul>
-  </li>
-  <li>모든 문자열을 순회한 뒤, 스택이 비어있으면 올바른 괄호 문자열</li>
-  <li>치환 사용하기
-    <ul>
-      <li>’(‘를 1, ‘)’를 -1로 치환</li>
-      <li>문자열 S를 전부 순회하며 합 계산</li>
-      <li>중간에 합이 음수가 되거나,
-  모든 계산이 끝나고 0이 아니면 올바른 괄호 문자열이 아님</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">git init</code>이나 <code class="language-plaintext highlighter-rouge">git remote add</code>를 실행할 필요가 없음</strong></li>
     </ul>
   </li>
 </ul>
 
-<h2 id="분할-정복과-백트래킹">분할 정복과 백트래킹</h2>
+<h2 id="git-fork">git fork</h2>
 
-<h3 id="분할-정복-divide-and-conquer">분할 정복 (Divide and Conquer)</h3>
 <ul>
-  <li>큰 문자를 작은 문제로 분할하여 작은 문제의 답을 모다 큰 문제의 답을 구함</li>
-  <li>기저 사례(base case)를 잘 설정하여 일정 기준 이상 분할되지 않도록 해야 함</li>
-  <li>보통 재귀로 구현</li>
-  <li>예시
+  <li>역할
     <ul>
-      <li>피보나치 수열</li>
-      <li>Z
+      <li>원격 저장소를 자신의 원격 계정으로 복제</li>
+    </ul>
+  </li>
+  <li>작업 대상
+    <ul>
+      <li>GitHub/GitLab 계정 상의 저장소</li>
+    </ul>
+  </li>
+  <li>특징
+    <ul>
+      <li>원본 저장소의 복사본이 내 계정의 원격 저장소로 생성됨</li>
+      <li><strong>내 계정에서 관리할 수 있는 원격 저장소를 만든다는 것</strong>이 핵심</li>
+      <li>원본 저장소와 연결은 유지되지만, 독립적인 저장소로 사용됨</li>
+      <li>추가 단계
         <ul>
-          <li><img src="/algorithm/image/image-2.png" alt="Full-width image" /></li>
-          <li><img src="/algorithm/image/image-1.png" alt="Full-width image" /></li>
+          <li>포크 후, 로컬에 복사하려면 <strong><code class="language-plaintext highlighter-rouge">git clone</code></strong>을 사용해야 함</li>
         </ul>
       </li>
+    </ul>
+  </li>
+  <li>사용 시기
+    <ul>
+      <li>오픈소스 프로젝트에 기여할 때, 원본 저장소를 수정하지 않고 내 계정에서 관리 가능한 복사본을 만들어야 할 때 사용</li>
+      <li><strong>Pull Request</strong>를 보내기 위한 준비 단계로 사용</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="백트래킹">백트래킹</h3>
-<ul>
-  <li>답이 될 수 없는 경우는 탐색 대상에서 제외하며 효율적으로 답을 구하는 알고리즘
-    <ul>
-      <li>가지치기(pruning)를 통해 연산량을 유의미하게 줄여줌</li>
-    </ul>
-  </li>
-  <li>가지치기를 사용하기 위해서는 현재 상태에서 도달할 수 있는 상태가 모두 답이 될 수 없음을 보여야 함</li>
-  <li>정확한 시간 복잡도 측정 어려움</li>
-  <li>보통 재귀로 구현</li>
-  <li>많이 연습해봐야 익힐 수 있음</li>
-  <li>예시
-    <ul>
-      <li>스도쿠
-        <ul>
-          <li>대입해보고 현재 상태에서 스도쿠를 완성할 수 없다면, 분기점으로 다시 돌아옴</li>
-        </ul>
-      </li>
-      <li>Nqueen</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 3 (문자열)]]></summary></entry><entry><title type="html">[Algorithm] 유클리드 호제법</title><link href="http://localhost:4000/algorithm/2024-07-09-day2/" rel="alternate" type="text/html" title="[Algorithm] 유클리드 호제법" /><published>2024-07-09T00:00:00+09:00</published><updated>2024-11-06T13:44:35+09:00</updated><id>http://localhost:4000/algorithm/day2</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-07-09-day2/"><![CDATA[<p>목차</p>
+<h2 id="주요-차이점-정리">주요 차이점 정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>특징</strong></th>
+      <th><strong>git clone</strong></th>
+      <th><strong>git fork</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>복제 대상</td>
+      <td>원격 저장소 ➡️ 로컬 저장소</td>
+      <td>원격 저장소 ➡️ 내 원격 저장소</td>
+    </tr>
+    <tr>
+      <td>저장소 위치</td>
+      <td>로컬에서 작업</td>
+      <td>내 계정의 원격 저장소에서 작업</td>
+    </tr>
+    <tr>
+      <td>연결된 원격 저장소</td>
+      <td><code class="language-plaintext highlighter-rouge">origin</code>으로 원본 저장소 연결</td>
+      <td>내 계정의 원격 저장소 (원본 저장소는 upstream으로 연결 가능)</td>
+    </tr>
+    <tr>
+      <td>사용 목적</td>
+      <td>로컬에서 작업하고 원본 저장소에 반영</td>
+      <td>내 계정에서 독립적으로 원격 저장소 관리</td>
+    </tr>
+    <tr>
+      <td>주로 사용 상황</td>
+      <td>협업 프로젝트에 바로 참여</td>
+      <td>오픈소스 프로젝트에 기여 (Pull Request 준비)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="워크플로우">워크플로우</h2>
+
+<h3 id="일반적으로-fork--clone--push--pull-request가-오픈-소스-협업의-표준-워크플로우">일반적으로 <strong>Fork → Clone → Push → Pull Request</strong>가 오픈 소스 협업의 표준 워크플로우</h3>
+
 <ol>
-  <li><a href="#유클리드-호제법">유클리드 호제법</a></li>
-  <li><a href="#소수-판별법">소수 판별법</a></li>
+  <li>
+    <p>Fork 저장소 생성</p>
+
+    <ul>
+      <li>먼저, 해당 저장소를 <strong>Fork</strong>하여 내 계정으로 복사
+        <ul>
+          <li>GitHub에서 기여하고자 하는 저장소 페이지로 이동</li>
+          <li>우측 상단의 <strong>Fork</strong> 버튼을 클릭</li>
+          <li>그러면 내 계정에 저장소 복사본이 생성됨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Fork 저장소 Clone</p>
+
+    <ul>
+      <li>Fork된 저장소를 로컬로 복제
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/your-username/repository.git
+</code></pre></div>        </div>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">your-username</code>은 GitHub 계정 이름으로 대체</li>
+          <li>Clone이 완료되면 로컬 환경에서 작업 가능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>원본 저장소 추가 (선택 사항)</p>
+
+    <ul>
+      <li>원본 저장소와 동기화를 유지하려면, 원본 저장소를 <strong><code class="language-plaintext highlighter-rouge">upstream</code></strong>으로 추가
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add upstream https://github.com/original-owner/repository.git
+</code></pre></div>        </div>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">original-owner</code>는 원본 저장소의 소유자 이름으로 대체</li>
+          <li><code class="language-plaintext highlighter-rouge">git remote -v</code> 명령을 사용하여 설정이 제대로 되었는지 확인 가능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>로컬에서 작업</p>
+
+    <ul>
+      <li>새로운 파일을 추가하거나 수정 후 커밋
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Add new feature"</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Fork된 저장소에 Push</p>
+
+    <ul>
+      <li>로컬에서 작업한 내용을 자신의 Fork 저장소에 Push
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin main
+</code></pre></div>        </div>
+        <ul>
+          <li>여기서 <code class="language-plaintext highlighter-rouge">main</code>은 사용하는 브랜치 이름</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Pull Request 생성</p>
+
+    <ul>
+      <li>
+        <p>GitHub로 돌아가, Fork된 저장소에서 원본 저장소로 <strong>Pull Request</strong>를 생성</p>
+
+        <ol>
+          <li>내 Fork 저장소 페이지에서 <strong>“Contribute”</strong> 버튼 클릭.</li>
+          <li><strong>“Open Pull Request”</strong> 버튼 클릭.</li>
+          <li>변경 사항에 대한 설명을 작성하고 Pull Request를 제출합니다.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-요약">✅ 요약</h3>
+
+<p>다른 사람의 저장소에 기여하기 위한 전체 과정</p>
+
+<ol>
+  <li><strong>Fork</strong>: 저장소를 내 계정으로 복제.</li>
+  <li><strong>Clone</strong>: 내 계정에 있는 저장소를 로컬로 복제.</li>
+  <li><strong>원본 저장소 추가</strong>: 원본 저장소와 동기화(선택 사항).</li>
+  <li><strong>작업</strong>: 로컬에서 파일 수정 및 커밋.</li>
+  <li><strong>Push</strong>: 작업 내용을 내 계정 저장소로 업로드.</li>
+  <li><strong>Pull Request</strong>: 원본 저장소에 변경 사항을 제안.</li>
+</ol>
+
+<h2 id="실전-예시">실전 예시</h2>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git clone</code>만 사용하는 경우</p>
+
+    <ul>
+      <li>팀 프로젝트에서 기존 저장소를 복제하여 작업 후, 원본 저장소에 바로 push</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone &lt;repository-url&gt;
+<span class="nb">cd</span> &lt;repository-folder&gt;
+<span class="c"># 작업 후</span>
+git push origin &lt;branch-name&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git fork</code>와 <code class="language-plaintext highlighter-rouge">git clone</code>을 함께 사용하는 경우</p>
+    <ul>
+      <li>오픈소스 프로젝트에서 자신의 계정으로 fork 후, 로컬에서 복제하여 작업 후 pull request 보냄
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># GitHub에서 Fork한 후</span>
+git clone &lt;forked-repository-url&gt;
+<span class="nb">cd</span> &lt;repository-folder&gt;
+<span class="c"># 원본 저장소를 upstream으로 추가</span>
+git remote add upstream &lt;original-repository-url&gt;
+git fetch upstream
+<span class="c"># 작업 후, 내 계정 원격 저장소에 Push</span>
+git push origin &lt;branch-name&gt;
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="http://localhost:4000/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+09:00</published><updated>2025-01-22T17:56:38+09:00</updated><id>http://localhost:4000/miscellaneous/css-flex</id><content type="html" xml:base="http://localhost:4000/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
+  <li><a href="#flexflexbox">Flex(Flexbox)</a></li>
+  <li><a href="#주요-flexbox-속성">주요 Flexbox 속성 20개</a></li>
+  <li><a href="#예제-통합-코드">예제: 통합 코드</a></li>
+  <li><a href="#flex를-이용한-게임">flex를 이용한 게임</a></li>
+</ul>
+
+<hr />
+
+<h2 id="flexflexbox">Flex(Flexbox)</h2>
+
+<ul>
+  <li>Flexbox(Flexible Box Layout Module)</li>
+  <li>컨테이너 내의 아이템 간 공간 배분과 정렬 기능을 제공하는 1차원 레이아웃 모델</li>
+  <li>
+    <p>주로 행이나 열 단위로 작동하며, 복잡한 계산 없이도 요소들의 크기와 순서를 유연하게 배치할 수 있음</p>
+  </li>
+  <li>장점
+    <ul>
+      <li>복잡한 레이아웃을 간단하게 구현</li>
+      <li>컨테이너 내 요소의 크기가 불명확하거나 동적인 경우에도 효과적으로 대응</li>
+      <li>요소의 순서를 CSS로 변경할 수 있어 반응형 디자인에 유용</li>
+      <li>float나 Position을 사용할 때보다 코드가 간결해짐</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="주요-flexbox-속성">주요 Flexbox 속성</h2>
+
+<p>CSS3 Flexbox에서 가장 많이 사용되는 <strong>20개의 속성(property)</strong>을 아래에 정리했습니다. 각각의 속성에 대한 간략한 설명과 함께 예제 코드를 제공합니다.</p>
+
+<hr />
+
+<h3 id="1-display-flex"><strong>1. <code class="language-plaintext highlighter-rouge">display: flex</code></strong></h3>
+
+<ul>
+  <li>Flexbox를 활성화.</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="2-flex-direction"><strong>2. <code class="language-plaintext highlighter-rouge">flex-direction</code></strong></h3>
+
+<ul>
+  <li>주축의 방향 설정.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">row</code> (기본값), <code class="language-plaintext highlighter-rouge">row-reverse</code>, <code class="language-plaintext highlighter-rouge">column</code>, <code class="language-plaintext highlighter-rouge">column-reverse</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">flex-direction</span><span class="p">:</span> <span class="n">column</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="3-justify-content"><strong>3. <code class="language-plaintext highlighter-rouge">justify-content</code></strong></h3>
+
+<ul>
+  <li>주축에서 항목 정렬.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">flex-start</code>, <code class="language-plaintext highlighter-rouge">flex-end</code>, <code class="language-plaintext highlighter-rouge">center</code>, <code class="language-plaintext highlighter-rouge">space-between</code>, <code class="language-plaintext highlighter-rouge">space-around</code>, <code class="language-plaintext highlighter-rouge">space-evenly</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">justify-content</span><span class="p">:</span> <span class="n">space-between</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="4-align-items"><strong>4. <code class="language-plaintext highlighter-rouge">align-items</code></strong></h3>
+
+<ul>
+  <li>교차축에서 항목 정렬.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">stretch</code> (기본값), <code class="language-plaintext highlighter-rouge">flex-start</code>, <code class="language-plaintext highlighter-rouge">flex-end</code>, <code class="language-plaintext highlighter-rouge">center</code>, <code class="language-plaintext highlighter-rouge">baseline</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-align-content"><strong>5. <code class="language-plaintext highlighter-rouge">align-content</code></strong></h3>
+
+<ul>
+  <li>여러 줄에서 교차축 정렬.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">stretch</code>, <code class="language-plaintext highlighter-rouge">flex-start</code>, <code class="language-plaintext highlighter-rouge">flex-end</code>, <code class="language-plaintext highlighter-rouge">center</code>, <code class="language-plaintext highlighter-rouge">space-between</code>, <code class="language-plaintext highlighter-rouge">space-around</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">align-content</span><span class="p">:</span> <span class="n">space-around</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="6-flex-wrap"><strong>6. <code class="language-plaintext highlighter-rouge">flex-wrap</code></strong></h3>
+
+<ul>
+  <li>항목이 컨테이너를 초과하면 줄 바꿈 여부.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">nowrap</code> (기본값), <code class="language-plaintext highlighter-rouge">wrap</code>, <code class="language-plaintext highlighter-rouge">wrap-reverse</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">flex-wrap</span><span class="p">:</span> <span class="n">wrap</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="7-flex"><strong>7. <code class="language-plaintext highlighter-rouge">flex</code></strong></h3>
+
+<ul>
+  <li>개별 항목의 크기 설정 (약어).
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">flex: grow shrink basis;</code></li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">flex</span><span class="p">:</span> <span class="m">1</span> <span class="m">1</span> <span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="8-flex-grow"><strong>8. <code class="language-plaintext highlighter-rouge">flex-grow</code></strong></h3>
+
+<ul>
+  <li>남은 공간을 차지할 비율.
+    <ul>
+      <li>기본값: <code class="language-plaintext highlighter-rouge">0</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">flex-grow</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="9-flex-shrink"><strong>9. <code class="language-plaintext highlighter-rouge">flex-shrink</code></strong></h3>
+
+<ul>
+  <li>공간 부족 시 줄어드는 비율.
+    <ul>
+      <li>기본값: <code class="language-plaintext highlighter-rouge">1</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">flex-shrink</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="10-flex-basis"><strong>10. <code class="language-plaintext highlighter-rouge">flex-basis</code></strong></h3>
+
+<ul>
+  <li>항목의 기본 크기 설정.</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">flex-basis</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="11-order"><strong>11. <code class="language-plaintext highlighter-rouge">order</code></strong></h3>
+
+<ul>
+  <li>항목의 배치 순서.
+    <ul>
+      <li>기본값: <code class="language-plaintext highlighter-rouge">0</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">order</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="12-gap"><strong>12. <code class="language-plaintext highlighter-rouge">gap</code></strong></h3>
+
+<ul>
+  <li>항목 간 간격 설정.</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="py">gap</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="13-row-gap"><strong>13. <code class="language-plaintext highlighter-rouge">row-gap</code></strong></h3>
+
+<ul>
+  <li>가로축 항목 간 간격 설정.</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="py">row-gap</span><span class="p">:</span> <span class="m">15px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="14-column-gap"><strong>14. <code class="language-plaintext highlighter-rouge">column-gap</code></strong></h3>
+
+<ul>
+  <li>세로축 항목 간 간격 설정.</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">column-gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="15-align-self"><strong>15. <code class="language-plaintext highlighter-rouge">align-self</code></strong></h3>
+
+<ul>
+  <li>개별 항목의 교차축 정렬 설정.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">auto</code>, <code class="language-plaintext highlighter-rouge">flex-start</code>, <code class="language-plaintext highlighter-rouge">flex-end</code>, <code class="language-plaintext highlighter-rouge">center</code>, <code class="language-plaintext highlighter-rouge">baseline</code>, <code class="language-plaintext highlighter-rouge">stretch</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">align-self</span><span class="p">:</span> <span class="n">flex-end</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="16-min-width"><strong>16. <code class="language-plaintext highlighter-rouge">min-width</code></strong></h3>
+
+<ul>
+  <li>항목의 최소 너비.</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">min-width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="17-max-width"><strong>17. <code class="language-plaintext highlighter-rouge">max-width</code></strong></h3>
+
+<ul>
+  <li>항목의 최대 너비.</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="18-min-height"><strong>18. <code class="language-plaintext highlighter-rouge">min-height</code></strong></h3>
+
+<ul>
+  <li>항목의 최소 높이.</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">min-height</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="19-max-height"><strong>19. <code class="language-plaintext highlighter-rouge">max-height</code></strong></h3>
+
+<ul>
+  <li>항목의 최대 높이.</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">max-height</span><span class="p">:</span> <span class="m">150px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="20-place-content"><strong>20. <code class="language-plaintext highlighter-rouge">place-content</code></strong></h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">justify-content</code>와 <code class="language-plaintext highlighter-rouge">align-content</code>를 한 번에 설정.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">center</code>, <code class="language-plaintext highlighter-rouge">stretch</code>, <code class="language-plaintext highlighter-rouge">space-between</code> 등.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="py">place-content</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="예제-통합-코드">예제: 통합 코드</h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>Item 1<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>Item 2<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>Item 3<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;style&gt;</span>
+  <span class="nc">.container</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="nl">flex-direction</span><span class="p">:</span> <span class="n">row</span><span class="p">;</span>
+    <span class="nl">justify-content</span><span class="p">:</span> <span class="n">space-between</span><span class="p">;</span>
+    <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+    <span class="nl">flex-wrap</span><span class="p">:</span> <span class="n">wrap</span><span class="p">;</span>
+    <span class="py">gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nc">.item</span> <span class="p">{</span>
+    <span class="nl">flex</span><span class="p">:</span> <span class="m">1</span> <span class="m">1</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">align-self</span><span class="p">:</span> <span class="n">stretch</span><span class="p">;</span>
+    <span class="nl">min-width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">max-width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div></div>
+
+<h2 id="flex를-이용한-게임">flex를 이용한 게임</h2>
+
+<ul>
+  <li>https://flexboxfroggy.com/#ko</li>
+  <li><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-01-21-css-flex-image.png?raw=true" alt="flexboxfroggy" />
+    <ul>
+      <li>다 깼다!</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="http://localhost:4000/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+09:00</published><updated>2025-01-22T10:05:43+09:00</updated><id>http://localhost:4000/miscellaneous/responsive</id><content type="html" xml:base="http://localhost:4000/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
+  <li><a href="#responsive-반응형">Responsive</a></li>
+  <li><a href="#reactive-반응형">Reactive</a></li>
+  <li><a href="#responsive-vs-reactive">Responsive VS Reactive</a></li>
+  <li><a href="#결합된-활용">결합된 활용</a></li>
+</ul>
+
+<hr />
+
+<h2 id="responsive-반응형">Responsive (반응형)</h2>
+
+<ul>
+  <li>Responsive는 주로 UI/UX 디자인이나 프론트엔트 개발에서 사용되는 개념</li>
+  <li>애플리케이션 또는 웹 페이지가 화면 크기, 해상도, 디바이스 특성에 따라 적절히 변하도록 설계된 것을 의미</li>
+  <li>특징
+    <ul>
+      <li>주요 초점
+        <ul>
+          <li>레이아웃 및 디자인이 다양한 화면 환경(데스크톱, 태블릿, 모바일)에 적응</li>
+        </ul>
+      </li>
+      <li>기술
+        <ul>
+          <li>주로 CSS, Flexbox, Grid, Viewport 등을 사용</li>
+        </ul>
+      </li>
+      <li>목적
+        <ul>
+          <li>사용자 경험을 개선하고, 어떤 장치에서도 보기 좋은 디자인을 제공</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>예시
+    <ul>
+      <li>웹사이트 반응형 디자인
+        <ul>
+          <li>큰 화면에서는 여러 열(column)을 보여주고, 작은 화면에서는 한 열로 정렬</li>
+          <li>이미지와 텍스트 사이즈가 디바이스 크기에 따라 자동으로 조정</li>
+        </ul>
+      </li>
+      <li><a href="https://getbootstrap.kr/">부트스트랩 (Bootstrap)</a>
+        <ul>
+          <li>col-m-6와 같은 클래스 이름을 사용하여 화면 크기에 따라 레이아웃을 조정</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reactive-반응형">Reactive (반응형)</h2>
+
+<ul>
+  <li>Reactive는 주로 프로그래밍 패러다임과 관련이 있음</li>
+  <li>시스템이 변화를 감지하고 즉각적으로 동작을 수행하는 것을 의미</li>
+  <li>특징
+    <ul>
+      <li>주요 초점
+        <ul>
+          <li>데이터와 상태의 변화에 따라 UI가 자동으로 업데이트</li>
+        </ul>
+      </li>
+      <li>기술
+        <ul>
+          <li>Reactive Programming과 관련된 라이브러리와 프레임워크를 활용</li>
+          <li>ex) RxJS, React, Vue, Svelte 등</li>
+        </ul>
+      </li>
+      <li>목적
+        <ul>
+          <li>상태 관리와 데이터 흐름을 단순화하고, 사용자 입력 또는 데이터 변화에 실시간으로 반응</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>예시</p>
+
+    <ul>
+      <li>
+        <p>React.js에서의 State변화</p>
+
+        <ul>
+          <li>사용자가 버튼을 클릭하면 상태가 변경되고, 해당 상태에 따라 UI가 즉각적으로 업데이트</li>
+        </ul>
+
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Counter</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Count</span><span class="p">:</span> <span class="p">{</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Increase</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>RxJS 스트림</p>
+
+        <ul>
+          <li>데이터를 스트림(stream) 형태로 처리하고, 데이터 변경에 실시간으로 반응</li>
+        </ul>
+
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">fromEvent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">rxjs</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">myButton</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">clicks</span> <span class="o">=</span> <span class="nx">fromEvent</span><span class="p">(</span><span class="nx">button</span><span class="p">,</span> <span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">clicks</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Button clicked!</span><span class="dl">"</span><span class="p">));</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="responsive-vs-reactive">Responsive VS Reactive</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>측면</strong></th>
+      <th><strong>Responsive</strong></th>
+      <th><strong>Reactive</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>적용 범위</td>
+      <td>주로 UI/UX와 레이아웃 디자인</td>
+      <td>상태 관리와 데이터 흐름</td>
+    </tr>
+    <tr>
+      <td>목적</td>
+      <td>화면 크기에 따른 레이아웃 및 스타일 변경</td>
+      <td>데이터 및 상태 변경에 따른 즉각적인 반응</td>
+    </tr>
+    <tr>
+      <td>사용 기술</td>
+      <td>CSS, Flexbox, Grid 등</td>
+      <td>React, RxJS, Vue 등 상태 기반 프레임워크</td>
+    </tr>
+    <tr>
+      <td>초점</td>
+      <td>디바이스별 최적화된 레이아웃 제공</td>
+      <td>데이터의 흐름과 UI 동기화</td>
+    </tr>
+    <tr>
+      <td>예시</td>
+      <td>모바일에서 1열 레이아웃, 데스크톱에서 3열 레이아웃</td>
+      <td>버튼 클릭 시 상태 업데이트 후 UI 리렌더링</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="결합된-활용">결합된 활용</h2>
+
+<ul>
+  <li>Responsive와 Reactive는 함께 사용될 때 더 큰 효과를 발휘한다.</li>
+  <li>예를 들어, React.js로 만들어진 SPA(Single Page Application)에서 반응형 디자인(CSS)을 사용해 다양한 디바이스를 지원하면서, React의 상태 관리(State Management)를 통해 UI를 데이터와 동기화할 수 있음.</li>
+  <li>
+    <p>예시</p>
+
+    <ul>
+      <li>Reaponsive는 레이아웃과 UI에 초점을 맞추고, Reactive는 데이터와 상태 관리에 집중
+        <ul>
+          <li>둘이 상호보완적!</li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// Responsive 스타일 포함</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">[</span><span class="nx">isDarkMode</span><span class="p">,</span> <span class="nx">setIsDarkMode</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="s2">`app </span><span class="p">${</span><span class="nx">isDarkMode</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">dark-mode</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="p">}</span><span class="s2">`</span><span class="p">}</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">responsive</span> <span class="nx">and</span> <span class="nx">reactive</span> <span class="nx">app</span><span class="o">!&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>            <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">setIsDarkMode</span><span class="p">(</span><span class="o">!</span><span class="nx">isDarkMode</span><span class="p">)}</span><span class="o">&gt;</span>
+                <span class="nx">Toggle</span> <span class="nx">Dark</span> <span class="nx">Mode</span>
+            <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* App.css */</span>
+<span class="p">.</span><span class="nx">app</span> <span class="p">{</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="mi">20</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">transition</span><span class="p">:</span> <span class="nx">background</span><span class="o">-</span><span class="nx">color</span> <span class="mf">0.3</span><span class="nx">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nx">dark</span><span class="o">-</span><span class="nx">mode</span> <span class="p">{</span>
+    <span class="nx">background</span><span class="o">-</span><span class="nx">color</span><span class="p">:</span> <span class="err">#</span><span class="mi">333</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="err">#</span><span class="nx">fff</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="nd">media</span> <span class="p">(</span><span class="nx">max</span><span class="o">-</span><span class="nx">width</span><span class="p">:</span> <span class="mi">768</span><span class="nx">px</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">.</span><span class="nx">app</span> <span class="p">{</span>
+        <span class="nx">font</span><span class="o">-</span><span class="nx">size</span><span class="p">:</span> <span class="mi">14</span><span class="nx">px</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Float</title><link href="http://localhost:4000/miscellaneous/2025-01-19-css-float/" rel="alternate" type="text/html" title="[HTML] CSS Float" /><published>2025-01-19T00:00:00+09:00</published><updated>2025-01-21T16:59:17+09:00</updated><id>http://localhost:4000/miscellaneous/css-float</id><content type="html" xml:base="http://localhost:4000/miscellaneous/2025-01-19-css-float/"><![CDATA[<ul>
+  <li><a href="#css-float이란">CSS Float란</a></li>
+  <li><a href="#clearfix">Clearfix</a></li>
+  <li><a href="#clear-속성">Clear 속성</a></li>
+  <li><a href="#clearfix-vs-clear-속성">Clearfix VS Clear</a></li>
+  <li><a href="#float-사용-시-주의사항">Float 사용시 주의사항</a></li>
+  <li><a href="#결론">결론</a></li>
+</ul>
+
+<hr />
+
+<h2 id="css-float이란">CSS Float이란?</h2>
+
+<ul>
+  <li>
+    <p><strong>Float의 기본 개념</strong></p>
+
+    <ul>
+      <li>요소가 normal flow에서 벗어나 부모 요소의 왼쪽 또는 오른쪽으로 이동한다.</li>
+      <li>텍스트와 inline 요소들이 float된 요소 주변을 감싼다.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Float의 사용</strong></p>
+    <ul>
+      <li>전통적으로 다단 레이아웃을 만드는 데 사용된다.</li>
+      <li>이미지나 다른 요소를 텍스트 흐름 내에 배치하는 데 유용</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="clearfix">Clearfix</h2>
+
+<ul>
+  <li>Float의 문제점
+    <ul>
+      <li><strong>부모 요소 높이 붕괴</strong> float된 요소는 부모 요소의 높이에 영향을 주지 않아 부모 요소가 높이를 잃을 수 있다.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Clearfix</strong></p>
+
+    <ul>
+      <li>이 문제를 해결하기 위해 clearfix 기법이 사용된다.</li>
+      <li><code class="language-plaintext highlighter-rouge">overflow: auto</code> 또는 <code class="language-plaintext highlighter-rouge">overflow: hidden</code>을 부모 요소에 적용한다.</li>
+      <li>가상 요소 (<code class="language-plaintext highlighter-rouge">::after</code>)를 사용하여 float를 해제한다.</li>
+    </ul>
+  </li>
+  <li><strong>Clearfix 방법:</strong>
+    <ul>
+      <li><strong>CSS를 이용한 Clearfix:</strong>
+        <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.clearfix</span><span class="nd">::after</span> <span class="p">{</span>
+  <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+  <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>부모 요소에 <code class="language-plaintext highlighter-rouge">clearfix</code> 클래스를 추가하여 float 문제를 해결한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="clear-속성">Clear 속성</h2>
+
+<ul>
+  <li><strong>핵심 문제</strong>: 특정 요소가 바로 앞에 있는 float 요소의 영향을 받아 원하는 위치에 배치되지 않을 수 있다.</li>
+  <li><strong>clear 속성의 역할</strong>:
+    <ul>
+      <li>특정 요소가 이전의 float 요소 아래로 내려가도록 강제하여 float의 영향을 방지한다.</li>
+      <li>float 요소 다음에 나오는 요소에 주로 사용된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>사용 예시 (clear 속성):</strong></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.element</span> <span class="p">{</span>
+  <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">clear: both</code>: 왼쪽과 오른쪽의 float 요소로부터 벗어남.</li>
+  <li>특정 요소 자체의 위치를 조정하기 위한 용도로 사용된다.</li>
+</ul>
+
+<hr />
+
+<h2 id="clearfix-vs-clear-속성">Clearfix VS Clear 속성</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>개념</strong></th>
+      <th><strong>Clearfix</strong></th>
+      <th><strong>Clear 속성</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>적용 대상</strong></td>
+      <td>부모 요소가 float된 자식 요소를 감싸도록 해결</td>
+      <td>특정 요소가 float 요소의 영향을 받지 않도록 해결</td>
+    </tr>
+    <tr>
+      <td><strong>해결 문제</strong></td>
+      <td>부모 요소 높이 붕괴 문제</td>
+      <td>특정 요소의 위치 문제</td>
+    </tr>
+    <tr>
+      <td><strong>주요 방식</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">overflow</code> 속성, <code class="language-plaintext highlighter-rouge">::after</code> 가상 요소</td>
+      <td><code class="language-plaintext highlighter-rouge">clear: left/right/both</code> 속성</td>
+    </tr>
+    <tr>
+      <td><strong>사용 위치</strong></td>
+      <td>부모 요소</td>
+      <td>float 요소 바로 다음에 나오는 요소</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<ul>
+  <li><strong>부모 요소의 높이 붕괴 문제</strong>를 해결하려면 <strong>Clearfix</strong>를 사용한다.</li>
+  <li><strong>요소가 float의 영향을 받아 잘못된 위치에 있을 때</strong>는 <strong>clear 속성</strong>을 사용한다.</li>
+</ul>
+
+<hr />
+
+<h3 id="float-사용-시-주의사항">Float 사용 시 주의사항</h3>
+
+<ul>
+  <li>Float는 레이아웃의 기본적인 도구이지만, Flexbox나 Grid와 같은 현대적인 레이아웃 기술로 대체될 수 있다.</li>
+  <li>복잡한 레이아웃에서는 유지보수가 어려워질 수 있다.</li>
+  <li><strong>Float의 대안:</strong>
+    <ul>
+      <li><strong>Flexbox:</strong> 1차원 레이아웃에 적합하며, 요소의 정렬 및 간격 조절에 강력하다.</li>
+      <li><strong>CSS Grid:</strong> 2차원 레이아웃에 적합하며, 행과 열을 기반으로 복잡한 레이아웃을 만들 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="결론">결론</h3>
+
+<ul>
+  <li>CSS Float는 여전히 유용한 기술이지만, 현대적인 레이아웃 기술과 함께 이해하고 사용하는 것이 중요</li>
+  <li>프로젝트의 요구 사항에 따라 적절한 레이아웃 기술을 선택해야 함</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지 레이아웃을 만들때 사용되는 CSS Float에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS 문법</title><link href="http://localhost:4000/miscellaneous/2025-01-18-css/" rel="alternate" type="text/html" title="[HTML] CSS 문법" /><published>2025-01-18T00:00:00+09:00</published><updated>2025-01-22T09:30:42+09:00</updated><id>http://localhost:4000/miscellaneous/css</id><content type="html" xml:base="http://localhost:4000/miscellaneous/2025-01-18-css/"><![CDATA[<ul>
+  <li><a href="#css란">CSS란?</a></li>
+  <li><a href="#css-문법-기초">CSS 문법 기초</a></li>
+  <li><a href="#css-적용-방법">CSS 적용 방법</a></li>
+  <li><a href="#css-프로퍼티-값의-단위">CSS 프로퍼티 값의 단위</a></li>
+</ul>
+
+<hr />
+
+<h2 id="css란">CSS란?</h2>
+
+<ul>
+  <li>CSS : Cascading Style Sheets</li>
+  <li>웹 페이지의 시각적 표현을 담당하는 스타일 언어
+    <ul>
+      <li>다양한 디바이스의 화면 크기에 대응하는 반응형 디자인 구현</li>
+      <li>내용과 디자인의 분리로 유지보수성 향</li>
+    </ul>
+  </li>
+  <li>HTML VS CSS
+    <ul>
+      <li>HTML
+        <ul>
+          <li>웹페이지 구조와 콘텐츠 정의</li>
+        </ul>
+      </li>
+      <li>CSS
+        <ul>
+          <li>HTML 요소의 스타일과 레이아웃 지정</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="css-문법-기초">CSS 문법 기초</h2>
+
+<ul>
+  <li>
+    <p>선택자 (Selector)</p>
+
+    <ul>
+      <li>스타일을 적용할 HTML 요소 지정</li>
+      <li>
+        <pre><code class="language-CSS">    /* 요소 선택자 */
+    p {
+    color: blue;
+    }
+
+    /* 클래스 선택자 */
+    .highlight {
+    background-color: yellow;
+    }
+
+    /* ID 선택자 */
+    #header {
+    font-size: 24px;
+    }
+
+    /* 전체 선택자 */
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    /* 무조건 뒤에 오는게 이긴다. 뒤로 갈수록 덮어씌우는 개념 */
+    /* 아이디랑 클래스 중 아이디가 이김 */
+
+
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>속성 (Property)
+    <ul>
+      <li>변경하고자 하는 스타일의 종류</li>
+    </ul>
+  </li>
+  <li>값 (Value)
+    <ul>
+      <li>속성에 적용할 구체적인 스타일 값</li>
+    </ul>
+  </li>
+  <li>선언 (Declaration)
+    <ul>
+      <li>속성과 값의 쌍</li>
+    </ul>
+  </li>
+  <li>규칙 (Rule)
+    <ul>
+      <li>선택자와 선언 블록의 조합</li>
+    </ul>
+  </li>
+</ul>
+
+<pre><code class="language-CSS">    선택자 {
+        속성: 값;
+        속성: 값;
+    }
+
+    /* 구체적인 예시 */
+    h1 {
+        color: blue;
+        font-size: 18px;
+    }
+</code></pre>
+
+<h2 id="css-적용-방법">CSS 적용 방법</h2>
+
+<ol>
+  <li>인라인 스타일
+    <ul>
+      <li>HTML 요소 내부에 직접 스타일 적용</li>
+    </ul>
+  </li>
+  <li>내부 스타일시트
+    <ul>
+      <li>head 섹션 내 style 태그에 CSS 작성</li>
+    </ul>
+  </li>
+  <li>외부 스타일시트
+    <ul>
+      <li>별도의 .css파일에 스타일 정의</li>
+      <li>HTML 문서의 head 섹션에서 링크로 연결</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="css-프로퍼티-값의-단위">CSS 프로퍼티 값의 단위</h2>
+
+<ul>
+  <li>크기 단위
+    <ul>
+      <li>px : 픽셀 단위, 절대값</li>
+      <li>% : 백분율 단위, 상대값</li>
+      <li>em : 요소에 지정된 사이즈에 상대적인 배수 단위</li>
+      <li>rem : 최상위 요소(html)의 사이즈 기준 배수 단위</li>
+      <li>Viewport 단위 : vh, vw, vmin, vmax</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[HTML] Emmet</title><link href="http://localhost:4000/miscellaneous/2025-01-17-emmet/" rel="alternate" type="text/html" title="[HTML] Emmet" /><published>2025-01-17T00:00:00+09:00</published><updated>2025-01-21T12:20:47+09:00</updated><id>http://localhost:4000/miscellaneous/emmet</id><content type="html" xml:base="http://localhost:4000/miscellaneous/2025-01-17-emmet/"><![CDATA[<ol>
+  <li><a href="#emmet이란">Emmet이란?</a></li>
+  <li><a href="#emmet의-강력한-단축키---tab">Emmet의 강력한 단축키 !+Tab</a></li>
+  <li><a href="#emmet-사용법-굉장히-쉽고-편리함">Emmet 사용법</a></li>
+  <li><a href="#emmet-어디에서-사용할-수-있나요">Emmet, 어디에서 사용할 수 있나요?</a></li>
 </ol>
 
 <hr />
 
-<h2 id="유클리드-호제법">유클리드 호제법</h2>
+<h2 id="emmet이란">Emmet이란?</h2>
+
+<p>Emmet은 웹 개발자가 HTML, CSS 코드를 훨씬 빠르고 효율적으로 작성할 수 있도록 도와주는 플러그인입니다. <br />
+간단한 축약어를 입력하면 Emmet이 알아서 전체 코드로 확장해줍니다. 예를 들어, <code class="language-plaintext highlighter-rouge">ul&gt;li*5&gt;a</code>라고 입력하면 다음과 같은 HTML 코드가 자동으로 생성됩니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ul&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre></div></div>
+
+<p>Emmet을 사용하면 이런 불필요한 작업을 줄이고, 개발자는 오롯이 로직과 디자인에 집중할 수 있습니다.</p>
+
+<h2 id="emmet의-강력한-단축키---tab">Emmet의 강력한 단축키 ! + Tab</h2>
+
+<p>Emmet을 사용하는 가장 대표적인 사례 중 하나는 ! + Tab 단축키입니다. 이 단축키를 입력하면 기본 HTML 문서의 구조가 즉시 생성됩니다. 예를 들어, 빈 파일에서 !를 입력한 후 Tab 키를 누르면 다음과 같은 기본 HTML 문서가 자동으로 작성됩니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Document<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>이 기본 구조는 웹 페이지를 시작할 때 반드시 필요한 요소들로 구성되어 있으며, 직접 입력하는 번거로움을 크게 줄여줍니다. 이 기능만 사용해도 초보자부터 숙련된 개발자까지 작업 시간을 크게 단축할 수 있습니다.</p>
+
+<h2 id="emmet-사용법-굉장히-쉽고-편리함">Emmet 사용법 (굉장히 쉽고 편리함)</h2>
+
+<p>Emmet의 문법은 간단하면서도 강력합니다. 몇 가지 기본 규칙만 익히면 금방 능숙하게 사용할 수 있습니다.</p>
 
 <ul>
-  <li>두 수가 서로 상대방 수를 나누어 원하는 수를 구하는 것</li>
-  <li>GCD (Greatest Common Divisor) 최대공약수
+  <li><strong>자식 요소:</strong> <code class="language-plaintext highlighter-rouge">&gt;</code> 기호를 사용하여 자식 요소를 생성합니다. 예를 들어, <code class="language-plaintext highlighter-rouge">div&gt;p</code>는 <code class="language-plaintext highlighter-rouge">&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;</code>로 확장됩니다.</li>
+  <li><strong>형제 요소:</strong> <code class="language-plaintext highlighter-rouge">+</code> 기호를 사용하여 형제 요소를 생성합니다. 예를 들어, <code class="language-plaintext highlighter-rouge">h2+p</code>는 <code class="language-plaintext highlighter-rouge">&lt;h2&gt;&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;</code>로 확장됩니다.</li>
+  <li><strong>반복 요소:</strong> <code class="language-plaintext highlighter-rouge">*</code> 기호를 사용하여 요소를 반복 생성합니다. 예를 들어, <code class="language-plaintext highlighter-rouge">li*3</code>는 <code class="language-plaintext highlighter-rouge">&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;</code>로 확장됩니다.</li>
+  <li><strong>그룹화:</strong> <code class="language-plaintext highlighter-rouge">()</code> 괄호를 사용하여 요소들을 그룹으로 묶을 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">div&gt;(header&gt;ul&gt;li*2)+footer</code>는 다음과 같이 확장됩니다.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>
+  <span class="nt">&lt;header&gt;</span>
+    <span class="nt">&lt;ul&gt;</span>
+      <span class="nt">&lt;li&gt;&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/header&gt;</span>
+  <span class="nt">&lt;footer&gt;&lt;/footer&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>속성 추가:</strong> <code class="language-plaintext highlighter-rouge">[]</code> 괄호를 사용하여 요소에 속성을 추가할 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">a[href=#]</code>는 <code class="language-plaintext highlighter-rouge">&lt;a href="#"&gt;&lt;/a&gt;</code>로 확장됩니다. 여러 속성을 추가하려면 <code class="language-plaintext highlighter-rouge">a[href=# title=링크]</code>와 같이 작성합니다.</li>
+  <li><strong>클래스 및 ID 추가:</strong> CSS 선택자처럼 <code class="language-plaintext highlighter-rouge">.</code> 기호로 클래스를, <code class="language-plaintext highlighter-rouge">#</code> 기호로 ID를 추가할 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">div.container</code>는 <code class="language-plaintext highlighter-rouge">&lt;div class="container"&gt;&lt;/div&gt;</code>로, <code class="language-plaintext highlighter-rouge">div#header</code>는 <code class="language-plaintext highlighter-rouge">&lt;div id="header"&gt;&lt;/div&gt;</code>로 확장됩니다. 여러 개의 클래스를 추가하려면 <code class="language-plaintext highlighter-rouge">div.container.main</code>처럼 작성합니다.</li>
+  <li><strong>텍스트 내용 추가:</strong> <code class="language-plaintext highlighter-rouge">{}</code> 중괄호 안에 텍스트 내용을 입력할 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">p{안녕하세요}</code>는 <code class="language-plaintext highlighter-rouge">&lt;p&gt;안녕하세요&lt;/p&gt;</code>로 확장됩니다.</li>
+</ul>
+
+<p>이 외에도 다양한 기능들이 있지만, 이 정도만 알아도 Emmet의 강력함을 충분히 경험할 수 있습니다.</p>
+
+<h2 id="emmet-어디에서-사용할-수-있나요">Emmet, 어디에서 사용할 수 있나요?</h2>
+
+<p>Emmet은 대부분의 텍스트 에디터와 IDE에서 플러그인 형태로 제공됩니다. Visual Studio Code, Sublime Text, Atom, IntelliJ IDEA 등 유명한 에디터에서는 기본적으로 Emmet을 지원하거나, 간단한 설치만으로 사용할 수 있습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[AI] 생성형 AI와 LLM</title><link href="http://localhost:4000/ai/2025-01-16-basic/" rel="alternate" type="text/html" title="[AI] 생성형 AI와 LLM" /><published>2025-01-16T00:00:00+09:00</published><updated>2025-01-21T10:37:44+09:00</updated><id>http://localhost:4000/ai/basic</id><content type="html" xml:base="http://localhost:4000/ai/2025-01-16-basic/"><![CDATA[<ul>
+  <li><a href="#llm-large-language-model">LLM</a></li>
+  <li><a href="#생성형-ai-generative-ai">생성형 AI</a></li>
+  <li><a href="#gpt-genertive-pre-trained-transformer">GPT</a></li>
+  <li><a href="#prompt-engineering">Prompt Engineering</a></li>
+  <li><a href="#rtf-framework">RTF Framework</a></li>
+</ul>
+
+<hr />
+
+<h2 id="llm-large-language-model">LLM (Large Language Model)</h2>
+
+<ul>
+  <li>광범위한 양의 텍스트 데이터를 학습한 모델</li>
+  <li>인간의 글과 대화 방식을 받아들이며 더욱 정교하고 자연스러운 대화 능력 갖춰감</li>
+</ul>
+
+<h2 id="생성형-ai-generative-ai">생성형 AI (Generative AI)</h2>
+
+<ul>
+  <li>데이터를 분석하고 학습하여 새로운 콘텐츠를 생성하는 인공지능 기술</li>
+</ul>
+
+<h3 id="gpt-genertive-pre-trained-transformer">GPT (Genertive Pre-trained Transformer)</h3>
+
+<ul>
+  <li>OpenAI가 개발한 대형 언어 모델로, 사전 학습된 트렌스포머 구조를 기반으로 한 생성형 AI기술
     <ul>
-      <li>두 자연수 a, b에 대해서 (a &gt; b) a를 b로 나눈 나머지를 r이라고 하면
+      <li>트렌스포머 구조
         <ul>
-          <li>a와 b의 최대공약수는 b와 r의 최대공약수와 동일</li>
+          <li>Google의 논문 “Attention is All You Need”에서 소개된 딥러닝 모델 구조</li>
         </ul>
       </li>
-      <li>이 성질에 따라, b를 r로 나눈 나머지 r’를 구하고,</li>
-      <li>다시 r을 r’로 나눈 나머지를 구하는 과정을 반복하여 나머지가 0이 되었을때 나누는 수가 a와 b의 최대공약수</li>
-      <li>예시
+    </ul>
+  </li>
+  <li>Pre-training
+    <ul>
+      <li>방대한 텍스트 데이터를 기반으로 언어의 패턴과 문맥을 학습</li>
+    </ul>
+  </li>
+  <li>Fine-tuning (미세 조정)
+    <ul>
+      <li>특정 목적이나 응용에 맞춰 추가 학습을 진행하여 성능 최적화</li>
+    </ul>
+  </li>
+  <li>
+    <p>생성 능력</p>
+
+    <ul>
+      <li>기존 데이터를 이해하고 이를 기반으로 새로운 텍스트 생성</li>
+    </ul>
+  </li>
+  <li>
+    <p>ChatGPT</p>
+
+    <ul>
+      <li>맥락을 파악하는 능력이 뛰어남</li>
+    </ul>
+  </li>
+  <li>환각(Hallucinate)
+    <ul>
+      <li>실제 데이터나 사실을 반영하지 않고 비현실적이거나 오류를 포함하 내용을 만들어내는 경우가 있다</li>
+      <li>해결 방법
+        <ol>
+          <li>파인 튜닝</li>
+          <li>프롬프트 엔지니어링</li>
+          <li>크로스체킹</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="prompt-engineering">Prompt Engineering</h2>
+
+<ul>
+  <li>어떻게 질문을 하느냐에 따라 결과가 달라질 수 있음</li>
+  <li>필요성
+    <ol>
+      <li>내가 원하는 바를 정확히 주면 줄수록 정확한 대답을 얻을 수 있음</li>
+      <li>언제나 고급 모델을 쓸수는 없음 (너무 비쌈)</li>
+    </ol>
+  </li>
+</ul>
+
+<ol>
+  <li>Zero-shot Prompting
+    <ul>
+      <li>작업에 대한 지시만 포함하는 프롬프트 방식</li>
+    </ul>
+  </li>
+  <li>One-shot Prompting
+    <ul>
+      <li>작업 예시를 하나 제공하여 AI가 이를 참고로 결과를 생성하도록 하는 방식</li>
+    </ul>
+  </li>
+  <li>Few-shot Prompting
+    <ul>
+      <li>작업 예시를 여러 개 제공하는 방식</li>
+      <li>복잡한 작업 수행에서 사용</li>
+    </ul>
+  </li>
+  <li>Chain of Thought (CoT)
+    <ul>
+      <li>모델이 단계적으로 사고 과정을 출력하도록 유도</li>
+    </ul>
+  </li>
+  <li>Zero-shot CoT</li>
+  <li>Tree of Thoughts (ToT)
+    <ul>
+      <li>가능한 대안을 모두 도출하고 그 중 촤선의 답변을 선택하도록 하는 방식</li>
+      <li>“모든 옵션을 평가하고 가장 좋은 대안을 제시하세요”</li>
+    </ul>
+  </li>
+  <li>ReAct
+    <ul>
+      <li>결과물을 생성(Reaction)하고 피드백(Reasoning)을 통해 개선해나가는 방식</li>
+      <li>“예제를 짜고 정상적으로 작동하는지 검증하시오”</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="rtf-framework">RTF Framework</h2>
+
+<ul>
+  <li>Role, Task, Format를 명확히 정의해 프롬프트를 설계하는 방법론</li>
+  <li>Role-based Prompting
+    <ul>
+      <li>AI의 역할을 명확히 지정하여 특정 관점이나 전문성으로 답 얻을 수 있음</li>
+    </ul>
+  </li>
+  <li>Task
+    <ul>
+      <li>특정 작업을 지시</li>
+      <li>프롬프트의 핵심</li>
+    </ul>
+  </li>
+  <li>
+    <p>Format</p>
+
+    <ul>
+      <li>AI의 응답 형식을 지정 (JSON, 엑셀 등)</li>
+    </ul>
+  </li>
+  <li>면접할때 사용 가능
+    <ul>
+      <li>당신은 백엔드 면접관입니다. 주니어 개발자 면접을 진행할 때 어떤 질문을 묻겠습니까?</li>
+    </ul>
+  </li>
+  <li>학습자의 수준에 맞춘 접근 가능</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[생성형 AI와 LLM에 대해 알아보자.]]></summary></entry><entry><title type="html">[AI] RAG (Retrieval-Augmented Generation) 이란?</title><link href="http://localhost:4000/ai/2025-01-15-rag/" rel="alternate" type="text/html" title="[AI] RAG (Retrieval-Augmented Generation) 이란?" /><published>2025-01-15T00:00:00+09:00</published><updated>2025-01-17T09:41:56+09:00</updated><id>http://localhost:4000/ai/rag</id><content type="html" xml:base="http://localhost:4000/ai/2025-01-15-rag/"><![CDATA[<ul>
+  <li><a href="#rag-retrieval-augmented-generation">RAG</a></li>
+  <li><a href="#rag의-작동-방식">RAG의 작동 방식</a></li>
+  <li><a href="#rag의-장점">RAG의 장점</a></li>
+  <li><a href="#rag의-활용-분야">RAG의 활용 분야</a></li>
+  <li><a href="#결론">결론</a></li>
+</ul>
+
+<hr />
+
+<h2 id="rag-retrieval-augmented-generation">RAG (Retrieval-Augmented Generation)</h2>
+
+<p>최근 몇 년 동안 인공지능 분야, 특히 자연어 처리(NLP) 분야는 놀라운 발전을 거듭해 왔습니다. 그 중심에는 사용자의 질문에 답변하거나, 글을 창작하거나, 심지어 코드를 생성하는 등 다양한 작업을 수행할 수 있는 거대 언어 모델(LLM)이 있습니다. 하지만 이러한 강력한 모델도 <em>학습 데이터에 없거나 최신 정보</em>에 대해서는 어려움을 겪을 수 있습니다.</p>
+
+<p>이러한 한계를 극복하기 위해 등장한 기술이 바로 <strong>RAG (Retrieval-Augmented Generation)</strong>, 즉 <strong>검색 증강 생성</strong>입니다.
+RAG는 <strong>언어 모델이 답변을 생성하기 전에 외부 지식 소스에서 관련 정보를 검색하여 답변의 품질과 정확성을 높이는 방법론</strong>입니다. 마치 20년차 개발자가 새로운 기술에 대해 설명하기 전에 관련 문서를 찾아보고 이해하는 과정과 유사하다고 볼 수 있습니다.</p>
+
+<h2 id="rag의-작동-방식">RAG의 작동 방식</h2>
+
+<ol>
+  <li>
+    <p><strong>검색 (Retrieval)</strong></p>
+
+    <ul>
+      <li>사용자의 질문이나 요청이 들어오면, RAG 시스템은 미리 구축된 외부 지식 베이스에서 관련 정보를 검색합니다. 이 지식 베이스는 문서, 웹 페이지, 데이터베이스 등 다양한 형태를 가질 수 있습니다.</li>
+      <li>검색 과정에서는 질문의 의미를 파악하고, 지식 베이스 내의 정보와 유사성을 비교하여 가장 관련성이 높은 정보를 추출합니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>생성 (Generation)</strong></p>
+    <ul>
+      <li>검색된 관련 정보는 원래의 질문 또는 요청과 함께 언어 모델에 입력됩니다. 언어 모델은 이 정보를 바탕으로 답변을 생성합니다.</li>
+      <li>이때, 단순히 검색된 정보를 나열하는 것이 아니라, 검색된 정보를 바탕으로 새로운 문장을 구성하거나, 질문에 대한 답변을 논리적으로 도출하는 등 더욱 풍부하고 맥락에 맞는 답변을 생성할 수 있습니다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="rag의-장점">RAG의 장점</h2>
+
+<ul>
+  <li><strong>정보의 최신성 확보</strong>
+    <ul>
+      <li>언어 모델은 학습 데이터 시점 이후의 최신 정보에 접근하기 어렵습니다. RAG는 외부 지식 베이스를 통해 실시간 또는 최신 정보를 활용하여 답변의 정확성을 높일 수 있습니다.</li>
+    </ul>
+  </li>
+  <li><strong>답변의 근거 제시</strong>
+    <ul>
+      <li>RAG는 답변을 생성할 때 사용된 외부 정보의 출처를 제시할 수 있습니다. 이는 답변의 신뢰도를 높이고, 사용자가 정보를 추가적으로 검증할 수 있도록 돕습니다.</li>
+    </ul>
+  </li>
+  <li><strong>모델 업데이트 비용 절감</strong>
+    <ul>
+      <li>기존 언어 모델은 새로운 정보를 학습시키기 위해 모델 전체를 재학습해야 하는 경우가 많아 비용과 시간이 많이 소요됩니다. RAG는 외부 지식 베이스만 업데이트하면 되므로 모델 업데이트 비용을 크게 절감할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li><strong>특정 도메인에 대한 전문성 강화</strong>
+    <ul>
+      <li>특정 분야의 지식 베이스를 RAG에 활용하면, 언어 모델은 해당 분야에 대한 전문적인 답변을 제공할 수 있습니다. 예를 들어, 의료 분야의 RAG 시스템은 최신 의학 논문을 검색하여 환자에게 정확한 정보를 제공할 수 있습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="rag의-활용-분야">RAG의 활용 분야</h2>
+
+<ul>
+  <li><strong>챗봇 및 가상 비서</strong>
+    <ul>
+      <li>사용자의 질문에 대해 최신 정보를 기반으로 정확하고 상세한 답변을 제공하는 챗봇을 구축할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li><strong>지식 검색 시스템</strong>
+    <ul>
+      <li>방대한 양의 문서나 데이터베이스에서 사용자의 질문에 가장 적합한 정보를 빠르게 찾아 제공하는 시스템을 구축할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li><strong>콘텐츠 생성</strong>
+    <ul>
+      <li>특정 주제에 대한 최신 정보를 검색하여 블로그 게시물, 기사, 보고서 등 다양한 형태의 콘텐츠를 생성하는 데 활용될 수 있습니다.</li>
+    </ul>
+  </li>
+  <li><strong>교육 및 연구</strong>
+    <ul>
+      <li>학생이나 연구자가 특정 주제에 대한 정보를 검색하고 이해하는 과정을 돕는 도구로 활용될 수 있습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="결론">결론</h2>
+
+<p>RAG (Retrieval-Augmented Generation)은 언어 모델의 잠재력을 한 단계 더 끌어올리는 중요한 기술입니다. 외부 지식 소스를 활용하여 답변의 정확성, 최신성, 신뢰성을 높임으로써, 인공지능이 더욱 유용하고 신뢰할 수 있는 도구로 발전하는 데 기여할 것입니다. 마치 숙련된 개발자가 끊임없이 새로운 정보를 습득하고 활용하여 문제를 해결하는 것처럼, RAG는 인공지능이 더욱 똑똑하게 정보를 처리하고 활용할 수 있도록 돕는 핵심적인 기술입니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="ai" /><summary type="html"><![CDATA[RAG (Retrieval-Augmented Generation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] Linear Time Sorting Algorithm</title><link href="http://localhost:4000/algorithm/2024-12-13-linear-time-sorting/" rel="alternate" type="text/html" title="[Algorithm] Linear Time Sorting Algorithm" /><published>2024-12-13T00:00:00+09:00</published><updated>2025-01-21T11:38:49+09:00</updated><id>http://localhost:4000/algorithm/linear-time-sorting</id><content type="html" xml:base="http://localhost:4000/algorithm/2024-12-13-linear-time-sorting/"><![CDATA[<ol>
+  <li><a href="#counting-sort">Counting Sort</a></li>
+  <li><a href="#radix-sort">Radix Sort</a></li>
+  <li><a href="#order-statistics">Order Statistics</a></li>
+  <li><a href="#randomized-selection">Randomized Selection</a></li>
+  <li><a href="#worst-case-linear-time-selection">Worst-Case Linear-Time Selection</a></li>
+  <li><a href="#그외">그외</a></li>
+</ol>
+
+<hr />
+
+<h2 id="counting-sort">Counting Sort</h2>
+
+<ul>
+  <li>No comparison sort</li>
+  <li>조건
+    <ul>
+      <li>데이터의 크기 범위가 제한된 경우</li>
+      <li>데이터의 갯수가 상수개인 경우</li>
+    </ul>
+  </li>
+  <li>
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">CountingSort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">k</span>
+          <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span>
+          <span class="n">C</span><span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">to</span> <span class="n">k</span>
+          <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+      <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span> <span class="n">downto</span> <span class="mi">1</span>
+      <span class="c1">//stable하게 만들기 위해 1 to n이 아닌 n to 1 수행</span>
+          <span class="n">B</span><span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+          <span class="n">C</span><span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>k가 n개 이하일 때 정렬이 가능하다.
+    <ul>
+      <li>k가 너무 큰 경우 각 자리수마다 counting sort를 수행하는 방법을 사용할 수 있다. - radix sort</li>
+    </ul>
+  </li>
+  <li>시간 복잡도 : \(O(n)\)</li>
+  <li>장점
+    <ul>
+      <li>stable하다</li>
+    </ul>
+  </li>
+  <li>단점
+    <ul>
+      <li>in-place 알고리즘은 아니다. (extra place 필요)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="radix-sort">Radix Sort</h2>
+
+<ul>
+  <li>counting sort의 일반 버전</li>
+  <li>
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">RadixSort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">d</span><span class="p">){</span>
+      <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="n">d</span>
+          <span class="n">StableSort</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="n">on</span> <span class="n">digit</span> <span class="n">i</span>
+          <span class="c1">//StableSort = counting sort</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>시간 복잡도 : \(d*O(n)\)</li>
+  <li>Radix Sort의 핵심은 stable한 것이다.</li>
+  <li>counting sort때문에 in-place하진 않다.</li>
+  <li>자릿수의 최대 값은 \(logn\)이다. 따라서 radix sort가 merge sort보다 빠를 수 있다.</li>
+  <li>한계
+    <ul>
+      <li>길이가 다른 문자열같은 digit이 정확하지 않으면 사용할 수 없다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="order-statistics">Order Statistics</h2>
+
+<ul>
+  <li>n개의 요소들 중 i번째로 작은 요소를 고르는 것</li>
+  <li>minimun은 첫 번째 order statistic</li>
+</ul>
+
+<h3 id="randomized-selection">Randomized Selection</h3>
+
+<ul>
+  <li>quicksort의 partition()을 사용한다.</li>
+  <li>하지만 우리는 오직 하나의 subarray만 평가하면 된다.</li>
+  <li>
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">RandomizedSelect</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span> <span class="n">then</span> <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
+      <span class="n">p</span> <span class="o">=</span> <span class="n">RandomizedPartition</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span> <span class="n">then</span> <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="n">then</span>
+          <span class="k">return</span> <span class="nf">RandomizedSelect</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+      <span class="k">else</span>
+          <span class="k">return</span> <span class="nf">RandomizedSelect</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+      <span class="err">```</span>
+</code></pre></div>    </div>
+  </li>
+  <li>시간 복잡도
+    <ul>
+      <li>worst case : \(O(n^2)\)</li>
+      <li>best, average case : \(O(n)\)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="worst-case-linear-time-selection">Worst-Case Linear-Time Selection</h3>
+
+<ul>
+  <li>generte a good partitioning element</li>
+  <li>Randomized selection에서 pivot value를 고르는데 추가로 $\Theta(n)$시간을 써 업그레이드한 방법</li>
+  <li>알고리즘
+    <ul>
+      <li>n개의 element들을 5개씩 묶어 그룹을 만든다.</li>
+      <li>각 그룹의 중간값을 찾는다. -&gt; \(O(const)\)</li>
+      <li>Select()를 재귀적으로 사용해 n/5개의 중간값 x를 찾는다.
         <ul>
-          <li>1071과 1029의 최대공약수 구하기
-            <ul>
-              <li>1071 % 1029 = 42</li>
-              <li>1029 % 42 = 21</li>
-              <li>42 % 21 = 0</li>
-              <li>21이 1071과 1029의 최대공약수</li>
-            </ul>
+          <li>
+\[n/5 + n/25 + n/125 + ... &lt; n\]
           </li>
         </ul>
       </li>
+      <li>x를 중심으로 partition을 진행한다.</li>
     </ul>
   </li>
-  <li>LCM (Least Common Multiple) 최소공배수
+  <li>시간 복잡도 : \(O(n)\)</li>
+  <li>Quick sort에서도 해당 알고리즘을 이용해 worst case의 시간복잡도를 \(O(nlogn)\)으로 만들 수 있다.
     <ul>
-      <li>LCM(a, b) = a * b / GCD(a, b)</li>
-      <li>어떠한 두 수의 곱은, 그 두 수의 최대공약수와 최소공배수의 곱과 같다</li>
+      <li>하지만 이 경우 pivot value를 찾는 과정에서 캐쉬가 한번 뒤집혀져 quick sort의 장점 중 하나인 cache friendly 장점이 사라진다.</li>
+      <li>차라리 merge sort나 heap sort를 사용한다.</li>
     </ul>
   </li>
-  <li>cpp의 gcd, lcm 함수는 c++17부터 지원
-    <ul>
-      <li>numeric 모듈</li>
-      <li>보통 코테에서 c++17 사용</li>
-    </ul>
-  </li>
-  <li>python은 math 모듈의 gcd, lcm 함수
-    <ul>
-      <li>gcd는 python 3.5</li>
-      <li>lcm은 python 3.9</li>
-      <li>보통 코테에서 python 3.8 사용</li>
-    </ul>
-  </li>
-  <li>java는 지원하지 않음</li>
 </ul>
 
-<h2 id="소수-판별법">소수 판별법</h2>
+<h3 id="그외">그외</h3>
 
 <ul>
-  <li>1은 소수, 합성수 아님</li>
-  <li>에라토스테네스의 체
+  <li>Insertion sort
     <ul>
-      <li>O(Nlog(logN))
-        <ul>
-          <li>N이 커지면 거의 O(N)</li>
-        </ul>
+      <li>
+\[O(n^2)\]
       </li>
-      <li><img src="/algorithm/image/image.png" alt="Full-width image" /></li>
-      <li>회귀가 아닌 반복</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[Elice Algorithm Code Challenge - Day 2 (유클리드 호제법)]]></summary></entry></feed>
+  <li>Merge sort, Heap sort, Quick sort
+    <ul>
+      <li>comparison sort</li>
+      <li>all comparison sorts are \(\Omega(nlogn)\)</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[선형 시간이 걸리는 정렬 알고리즘에 대해 알아본다.]]></summary></entry></feed>
