@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[Git] git clone VS git fork" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-01-22T14:33:33+00:00","datePublished":"2025-01-22T00:00:00+00:00","description":"git clone과 git fork의 동작 방식에 대해 알아보자.","headline":"[Git] git clone VS git fork","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-01-23T00:12:52+00:00","datePublished":"2025-01-22T00:00:00+00:00","description":"git clone과 git fork의 동작 방식에 대해 알아보자.","headline":"[Git] git clone VS git fork","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-01-22T14:34:25+00:00',
+    INDEX_KEY: 'index--2025-01-23T00:13:39+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -239,6 +239,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         
           
           
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 23 Jan 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-01-23T00:12:52+00:00">2025-01-23</time>
+            </span>
           
         
       
@@ -403,61 +411,50 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <h3 id="일반적으로-fork--clone--push--pull-request가-오픈-소스-협업의-표준-워크플로우">일반적으로 <strong>Fork → Clone → Push → Pull Request</strong>가 오픈 소스 협업의 표준 워크플로우</h3>
 
 <ol>
-  <li>Fork 저장소 생성</li>
-</ol>
-
-<ul>
   <li>
-    <p>먼저, 해당 저장소를 <strong>Fork</strong>하여 내 계정으로 복사</p>
+    <p>Fork 저장소 생성</p>
 
     <ul>
-      <li>GitHub에서 기여하고자 하는 저장소 페이지로 이동</li>
-      <li>우측 상단의 <strong>Fork</strong> 버튼을 클릭</li>
-      <li>그러면 내 계정에 저장소 복사본이 생성됨</li>
+      <li>먼저, 해당 저장소를 <strong>Fork</strong>하여 내 계정으로 복사
+        <ul>
+          <li>GitHub에서 기여하고자 하는 저장소 페이지로 이동</li>
+          <li>우측 상단의 <strong>Fork</strong> 버튼을 클릭</li>
+          <li>그러면 내 계정에 저장소 복사본이 생성됨</li>
+        </ul>
+      </li>
     </ul>
   </li>
-</ul>
-
-<hr />
-
-<ol>
-  <li>Fork 저장소 Clone</li>
-</ol>
-
-<ul>
   <li>
-    <p>Fork된 저장소를 로컬로 복제</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/your-username/repository.git
-</code></pre></div>    </div>
+    <p>Fork 저장소 Clone</p>
 
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">your-username</code>은 GitHub 계정 이름으로 대체</li>
-      <li>Clone이 완료되면 로컬 환경에서 작업 가능</li>
+      <li>Fork된 저장소를 로컬로 복제
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/your-username/repository.git
+</code></pre></div>        </div>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">your-username</code>은 GitHub 계정 이름으로 대체</li>
+          <li>Clone이 완료되면 로컬 환경에서 작업 가능</li>
+        </ul>
+      </li>
     </ul>
   </li>
-</ul>
-
-<ol>
-  <li>원본 저장소 추가 (선택 사항)</li>
-</ol>
-
-<ul>
   <li>
-    <p>원본 저장소와 동기화를 유지하려면, 원본 저장소를 <strong><code class="language-plaintext highlighter-rouge">upstream</code></strong>으로 추가</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add upstream https://github.com/original-owner/repository.git
-</code></pre></div>    </div>
+    <p>원본 저장소 추가 (선택 사항)</p>
 
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">original-owner</code>는 원본 저장소의 소유자 이름으로 대체</li>
-      <li><code class="language-plaintext highlighter-rouge">git remote -v</code> 명령을 사용하여 설정이 제대로 되었는지 확인 가능</li>
+      <li>원본 저장소와 동기화를 유지하려면, 원본 저장소를 <strong><code class="language-plaintext highlighter-rouge">upstream</code></strong>으로 추가
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add upstream https://github.com/original-owner/repository.git
+</code></pre></div>        </div>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">original-owner</code>는 원본 저장소의 소유자 이름으로 대체</li>
+          <li><code class="language-plaintext highlighter-rouge">git remote -v</code> 명령을 사용하여 설정이 제대로 되었는지 확인 가능</li>
+        </ul>
+      </li>
     </ul>
   </li>
-</ul>
-
-<ol>
-  <li>로컬에서 작업</li>
+  <li>
+    <p>로컬에서 작업</p>
+  </li>
 </ol>
 
 <ul>
@@ -836,7 +833,7 @@ git push origin &lt;branch-name&gt;
           class="sidebar-nav-item "
           
         >
-          Miscellaneous (9)
+          Miscellaneous (10)
         </a>
       </li>
     
