@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[Git] git clone VS git fork" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-01-23T00:12:52+00:00","datePublished":"2025-01-22T00:00:00+00:00","description":"git clone과 git fork의 동작 방식에 대해 알아보자.","headline":"[Git] git clone VS git fork","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-01-23T00:28:58+00:00","datePublished":"2025-01-22T00:00:00+00:00","description":"git clone과 git fork의 동작 방식에 대해 알아보자.","headline":"[Git] git clone VS git fork","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-01-23T00:13:39+00:00',
+    INDEX_KEY: 'index--2025-01-23T00:29:47+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 23 Jan 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-01-23T00:12:52+00:00">2025-01-23</time>
+              <time datetime="2025-01-23T00:28:58+00:00">2025-01-23</time>
             </span>
           
         
@@ -454,48 +454,44 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </li>
   <li>
     <p>로컬에서 작업</p>
-  </li>
-</ol>
 
-<ul>
-  <li>
-    <p>새로운 파일을 추가하거나 수정 후 커밋</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
-git commit <span class="nt">-m</span> <span class="s2">"Add new feature"</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<ol>
-  <li>Fork된 저장소에 Push</li>
-</ol>
-
-<ul>
-  <li>로컬에서 작업한 내용을 자신의 Fork 저장소에 Push
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin main
-</code></pre></div>    </div>
     <ul>
-      <li>여기서 <code class="language-plaintext highlighter-rouge">main</code>은 사용하는 브랜치 이름</li>
+      <li>새로운 파일을 추가하거나 수정 후 커밋
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Add new feature"</span>
+</code></pre></div>        </div>
+      </li>
     </ul>
   </li>
-</ul>
-
-<ol>
-  <li>Pull Request 생성</li>
-</ol>
-
-<ul>
   <li>
-    <p>GitHub로 돌아가, Fork된 저장소에서 원본 저장소로 <strong>Pull Request</strong>를 생성</p>
+    <p>Fork된 저장소에 Push</p>
 
-    <ol>
-      <li>내 Fork 저장소 페이지에서 <strong>“Contribute”</strong> 버튼 클릭.</li>
-      <li><strong>“Open Pull Request”</strong> 버튼 클릭.</li>
-      <li>변경 사항에 대한 설명을 작성하고 Pull Request를 제출합니다.</li>
-    </ol>
+    <ul>
+      <li>로컬에서 작업한 내용을 자신의 Fork 저장소에 Push
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin main
+</code></pre></div>        </div>
+        <ul>
+          <li>여기서 <code class="language-plaintext highlighter-rouge">main</code>은 사용하는 브랜치 이름</li>
+        </ul>
+      </li>
+    </ul>
   </li>
-</ul>
+  <li>
+    <p>Pull Request 생성</p>
+
+    <ul>
+      <li>
+        <p>GitHub로 돌아가, Fork된 저장소에서 원본 저장소로 <strong>Pull Request</strong>를 생성</p>
+
+        <ol>
+          <li>내 Fork 저장소 페이지에서 <strong>“Contribute”</strong> 버튼 클릭.</li>
+          <li><strong>“Open Pull Request”</strong> 버튼 클릭.</li>
+          <li>변경 사항에 대한 설명을 작성하고 Pull Request를 제출합니다.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ol>
 
 <h3 id="-요약">✅ 요약</h3>
 
