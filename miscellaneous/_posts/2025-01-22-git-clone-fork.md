@@ -73,35 +73,28 @@ sitemap: false
 
 1. Fork 저장소 생성
 
-- 먼저, 해당 저장소를 **Fork**하여 내 계정으로 복사
+   - 먼저, 해당 저장소를 **Fork**하여 내 계정으로 복사
+     - GitHub에서 기여하고자 하는 저장소 페이지로 이동
+     - 우측 상단의 **Fork** 버튼을 클릭
+     - 그러면 내 계정에 저장소 복사본이 생성됨
 
-  - GitHub에서 기여하고자 하는 저장소 페이지로 이동
-  - 우측 상단의 **Fork** 버튼을 클릭
-  - 그러면 내 계정에 저장소 복사본이 생성됨
+2. Fork 저장소 Clone
 
----
-
-2.  Fork 저장소 Clone
-
-- Fork된 저장소를 로컬로 복제
-
-  ```bash
-  git clone https://github.com/your-username/repository.git
-  ```
-
-  - `your-username`은 GitHub 계정 이름으로 대체
-  - Clone이 완료되면 로컬 환경에서 작업 가능
+   - Fork된 저장소를 로컬로 복제
+     ```bash
+     git clone https://github.com/your-username/repository.git
+     ```
+     - `your-username`은 GitHub 계정 이름으로 대체
+     - Clone이 완료되면 로컬 환경에서 작업 가능
 
 3. 원본 저장소 추가 (선택 사항)
 
-- 원본 저장소와 동기화를 유지하려면, 원본 저장소를 **`upstream`**으로 추가
-
-  ```bash
-  git remote add upstream https://github.com/original-owner/repository.git
-  ```
-
-  - `original-owner`는 원본 저장소의 소유자 이름으로 대체
-  - `git remote -v` 명령을 사용하여 설정이 제대로 되었는지 확인 가능
+   - 원본 저장소와 동기화를 유지하려면, 원본 저장소를 **`upstream`**으로 추가
+     ```bash
+     git remote add upstream https://github.com/original-owner/repository.git
+     ```
+     - `original-owner`는 원본 저장소의 소유자 이름으로 대체
+     - `git remote -v` 명령을 사용하여 설정이 제대로 되었는지 확인 가능
 
 4. 로컬에서 작업
 
