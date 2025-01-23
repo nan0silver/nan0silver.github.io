@@ -98,28 +98,27 @@ sitemap: false
 
 4. 로컬에서 작업
 
-- 새로운 파일을 추가하거나 수정 후 커밋
-
-  ```bash
-  git add .
-  git commit -m "Add new feature"
-  ```
+   - 새로운 파일을 추가하거나 수정 후 커밋
+     ```bash
+     git add .
+     git commit -m "Add new feature"
+     ```
 
 5. Fork된 저장소에 Push
 
-- 로컬에서 작업한 내용을 자신의 Fork 저장소에 Push
-  ```bash
-  git push origin main
-  ```
-  - 여기서 `main`은 사용하는 브랜치 이름
+   - 로컬에서 작업한 내용을 자신의 Fork 저장소에 Push
+     ```bash
+     git push origin main
+     ```
+     - 여기서 `main`은 사용하는 브랜치 이름
 
 6. Pull Request 생성
 
-- GitHub로 돌아가, Fork된 저장소에서 원본 저장소로 **Pull Request**를 생성
+   - GitHub로 돌아가, Fork된 저장소에서 원본 저장소로 **Pull Request**를 생성
 
-  1. 내 Fork 저장소 페이지에서 **"Contribute"** 버튼 클릭.
-  2. **"Open Pull Request"** 버튼 클릭.
-  3. 변경 사항에 대한 설명을 작성하고 Pull Request를 제출합니다.
+     1. 내 Fork 저장소 페이지에서 **"Contribute"** 버튼 클릭.
+     2. **"Open Pull Request"** 버튼 클릭.
+     3. 변경 사항에 대한 설명을 작성하고 Pull Request를 제출합니다.
 
 ### ✅ 요약
 
