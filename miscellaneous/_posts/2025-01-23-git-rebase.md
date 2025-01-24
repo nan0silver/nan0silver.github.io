@@ -30,7 +30,7 @@ sitemap: false
     - 한 브랜치의 커밋을 다른 브랜치의 끝으로 옮겨서, 히스토리가 마치 일렬로 정리된 것처럼 보임
 - 예시 이미지
 
-  - <img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-01-23-git-rebase.png?raw=true" alt="git-rebase" hegith="300px">
+  - <img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-01-23-git-rebase.png?raw=true" alt="git-rebase" style="width:150px; ">
 
   - `16d0e75` 커밋 아래는 merge 흔적
   - `16d0e75` 커밋 위는 rebase로 인한 선형 히스토리
