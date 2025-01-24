@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Etc] Naming Convention | NAHYUN BLOG</title>
+<title>[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Etc] Naming Convention" />
+<meta property="og:title" content="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자." />
-<meta property="og:description" content="식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자." />
-<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" />
-<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" />
+<meta name="description" content="프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자." />
+<meta property="og:description" content="프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/java/2025-01-23-int-long/" />
+<meta property="og:url" content="https://nan0silver.github.io/java/2025-01-23-int-long/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-01-22T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-01-23T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Etc] Naming Convention" />
+<meta property="twitter:title" content="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-01-24T01:22:28+00:00","datePublished":"2025-01-22T00:00:00+00:00","description":"식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.","headline":"[Etc] Naming Convention","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-01-24T01:22:28+00:00","datePublished":"2025-01-23T00:00:00+00:00","description":"프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.","headline":"[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2025-01-23-int-long/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/java/2025-01-23-int-long/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/java/2025-01-23-int-long/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/miscellaneous/">miscellaneous</a>
+          <a href="/java/">java</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-01-22-naming-convention</span>
+          <span>2025-01-23-int-long</span>
         
       </li>
     
@@ -222,18 +222,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-naming-convention" class="page post mb6" role="article">
+<article id="post-java-int-long" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Etc] Naming Convention
+        [JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-22T00:00:00+00:00">22 Jan 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+        <time datetime="2025-01-23T00:00:00+00:00">23 Jan 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
       </span>
       
         
@@ -261,7 +261,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.
+      프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.
 
     </p>
   
@@ -271,152 +271,84 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
-  <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
-  <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
-  <li><a href="#3-스네이크-케이스-snake_case">스네이크 케이스 (snake_case)</a></li>
-  <li><a href="#4-파스칼-케이스-pascalcase">파스칼 케이스 (PascalCase)</a></li>
-  <li><a href="#선택-기준">선택 기준</a></li>
+  <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
+  <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
+  <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
+  <li><a href="#문제를-보고-빠르게-판단하는-팁">문제를 보고 빠르게 판단하는 팁</a></li>
 </ul>
 
 <hr />
 
-<h2 id="naming-convention이란">Naming Convention이란?</h2>
+<h2 id="int와-long의-차이">int와 long의 차이</h2>
 
 <ul>
-  <li>프로그래밍에서 변수, 함수, 클래스 이름 등을 작성하는 규칙</li>
+  <li>자꾸 문제를 풀다 int와 long을 혼동해서 문제를 틀리는 경우가 있어서 완벽 정리하려고 한다.</li>
+  <li><strong>입력값의 범위와 연산 결과의 최댓값</strong>을 기준으로 판단하는 습관을 들여야 함</li>
 </ul>
 
-<hr />
-
-<h2 id="1-케밥-케이스-kebab-case">1. 케밥 케이스 (Kebab-case)</h2>
+<h2 id="int와-long의-입력값">int와 long의 입력값</h2>
 
 <ul>
-  <li>단어를 <strong>하이픈(-)</strong>으로 구분하며, 모든 문자를 소문자로 작성</li>
-  <li>모양이 케밥을 닮았다고 해서 붙여진 이름</li>
-  <li>특징
-    <ul>
-      <li>가독성이 좋음</li>
-      <li>HTML, CSS에서 자주 사용됨</li>
-      <li>언어에 따라 변수나 함수이름으로는 사용할 수 없는 경우도 있음
-        <ul>
-          <li>하이픈이 연산자로 해석될 수 있어서</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">int</code> : 약 -2,147,483,648 ~ 2,147,483,648</li>
   <li>
-    <p>예시</p>
-
-    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* CSS 클래스 이름 */</span>
-<span class="nc">.button-primary</span> <span class="p">{</span>
-    <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
-    <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c">/* 파일 이름 */</span>
-<span class="nt">my-awesome-file</span><span class="nc">.js</span>
-</code></pre></div>    </div>
+    <p><code class="language-plaintext highlighter-rouge">long</code> : 약 -9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,808</p>
   </li>
-</ul>
-
-<h2 id="2-카멜-케이스-camelcase">2. 카멜 케이스 (camelCase)</h2>
-
-<ul>
-  <li>첫 단어는 소문자로 시작하고, 이후 단어의 첫 글자를 대문자로 작성</li>
-  <li>이름이 낙타의 등처럼 튀어나온 형태를 닮아서 붙인 이름</li>
-  <li>특징
+  <li>문제에 입력값이 명시되어 있다면
     <ul>
-      <li>JavaScript, Java, C#, Python 등에서 변수와 함수 이름으로 자주 사용됨</li>
-      <li>대문자 없이 단어를 연결해 코드 가독성을 높이는 데 도움을 줌</li>
-    </ul>
-  </li>
-  <li>예시
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// JavaScript 변수와 함수</span>
-<span class="kd">let</span> <span class="nx">userName</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">;</span>
-<span class="kd">function</span> <span class="nx">getUserData</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">userName</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="3-스네이크-케이스-snake_case">3. 스네이크 케이스 (snake_case)</h2>
-
-<ul>
-  <li>단어를 <strong>밑줄(_)</strong>로 구분하며, 모든 문자를 소문자로 작성</li>
-  <li>뱀이 기어다니는 모양을 닮아서 붙여진 이름</li>
-  <li>특징
-    <ul>
-      <li>Python, SQL, Ruby, C, C++, PHP, JSON 데이터 스키마에서 변수와 함수 이름으로 자주 사용됨</li>
-    </ul>
-  </li>
-  <li>
-    <p>예시</p>
-
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Python 변수 이름
-</span><span class="n">user_name</span> <span class="o">=</span> <span class="s">"Alice"</span>
-
-<span class="c1"># Python 함수 이름
-</span><span class="k">def</span> <span class="nf">get_user_data</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">user_name</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="4-파스칼-케이스-pascalcase">4. 파스칼 케이스 (PascalCase)</h2>
-
-<ul>
-  <li>각 단어의 첫 글자를 대문자로 작성
-    <ul>
-      <li>카멜 케이스와 비슷하지만 첫 단어도 대문자</li>
-    </ul>
-  </li>
-  <li>특징
-    <ul>
-      <li>Java, TypeScript등의 클래스 이름과 타입 이름으로 자주 사용됨</li>
-    </ul>
-  </li>
-  <li>
-    <p>예시</p>
-
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Java 클래스 이름</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserAccount</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="nc">UserName</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">UserAccount</span><span class="o">(</span><span class="nc">String</span> <span class="n">userName</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">UserName</span> <span class="o">=</span> <span class="n">userName</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="선택-기준">선택 기준</h2>
-
-<ul>
-  <li>언어/환경의 표준에 따라 케이스를 선택
-    <ul>
-      <li>JavaScript, Java
+      <li>-2,000,000,000 &lt;= N,M &lt;= 2,000,000,000
         <ul>
-          <li>camelCase (변수/함수)</li>
-          <li>PascalCase (클래스)</li>
+          <li><code class="language-plaintext highlighter-rouge">int</code>는 처리 가능. 하지만 연산 결과를 생각해야 함</li>
         </ul>
       </li>
-      <li>Python
-        <ul>
-          <li>snake_case</li>
-        </ul>
-      </li>
-      <li>CSS/HTML
-        <ul>
-          <li>kebab-case</li>
-        </ul>
-      </li>
+      <li>범위가 <code class="language-plaintext highlighter-rouge">int</code>의 한계와 가깝다면, 입력값은 int로 가능하더라도 연산 결과가 범위를 초과할 수 있기 때문에 <code class="language-plaintext highlighter-rouge">long</code>을 사용하는 것이 안전</li>
     </ul>
   </li>
-  <li>팀 또는 프로젝트의 코딩 컨벤션에 따라 일관성 유지가 중요 (가독성을 위해)</li>
 </ul>
+
+<h3 id="판단-기준">판단 기준</h3>
+
+<ul>
+  <li>입력값이 <code class="language-plaintext highlighter-rouge">-10^9 ~ 10^9</code> 사이일 경우
+    <ul>
+      <li>단순한 덧셈이나 뺄셈은 <code class="language-plaintext highlighter-rouge">int</code>로 처리 가능</li>
+      <li>곱셈, 제곱 연산, 누적 합계 등은 <code class="language-plaintext highlighter-rouge">long</code>이 필요할 수 있음</li>
+    </ul>
+  </li>
+  <li>입력값이 <code class="language-plaintext highlighter-rouge">-10^{10}</code> 이상이거나, 결과적으로 큰 숫자가 나올 가능성이 있다면
+    <ul>
+      <li>무조건 <code class="language-plaintext highlighter-rouge">long</code> 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</h2>
+
+<ul>
+  <li>문제에서 요구하는 연산 결과 예상하기</li>
+  <li>예) 누적합 문제
+    <ul>
+      <li>배열의 크기가 1,000,000이고, 각 원소가 최대 10^6이라면, 누적합은 최대 10^12가 될 수 있음</li>
+      <li>이 경우 int의 범위를 초과하므로 long을 사용해야 함</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="문제를-보고-빠르게-판단하는-팁">문제를 보고 빠르게 판단하는 팁</h2>
+
+<ol>
+  <li>입력 범위 확인</li>
+  <li>연산의 종류 확인</li>
+  <li>규칙 만들기
+    <ul>
+      <li>“입력값이 10^9 이상이면 무조건 <code class="language-plaintext highlighter-rouge">long</code>으로 처리한다”</li>
+    </ul>
+  </li>
+  <li>테스트 데이터 체크
+    <ul>
+      <li>극단적인 입력값을 대입해보기</li>
+    </ul>
+  </li>
+</ol>
 
   
 </article>
@@ -543,7 +475,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/miscellaneous/2025-01-23-git-rebase/" class="flip-title"><span>[Git] git rebase</span></a>  <time class="faded fine" datetime="2025-01-23T00:00:00+00:00">23 Jan 2025</time></li>                        <li class="h4">  <a href="/java/2025-01-23-int-long/" class="flip-title"><span>[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</span></a>  <time class="faded fine" datetime="2025-01-23T00:00:00+00:00">23 Jan 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-01-22-git-clone-fork/" class="flip-title"><span>[Git] git clone VS git fork</span></a>  <time class="faded fine" datetime="2025-01-22T00:00:00+00:00">22 Jan 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/miscellaneous/2025-01-23-git-rebase/" class="flip-title"><span>[Git] git rebase</span></a>  <time class="faded fine" datetime="2025-01-23T00:00:00+00:00">23 Jan 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-01-22-naming-convention/" class="flip-title"><span>[Etc] Naming Convention</span></a>  <time class="faded fine" datetime="2025-01-22T00:00:00+00:00">22 Jan 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-01-22-git-clone-fork/" class="flip-title"><span>[Git] git clone VS git fork</span></a>  <time class="faded fine" datetime="2025-01-22T00:00:00+00:00">22 Jan 2025</time></li>            </ul></aside>
 
   
 
