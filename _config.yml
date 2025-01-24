@@ -63,13 +63,13 @@ menu:
     url: /flutter/
   - title: Algorithm (10)
     url: /algorithm/
-  - title: JAVA (5)
+  - title: JAVA (6)
     url: /java/
   - title: AWS (1)
     url: /aws/
   - title: AI (2)
     url: /ai/
-  - title: Miscellaneous (10)
+  - title: Miscellaneous (11)
     url: /miscellaneous/
 
 # Add links to the footer.
