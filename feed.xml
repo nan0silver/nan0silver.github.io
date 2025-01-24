@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-24T01:30:47+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-24T01:46:54+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-24T01:30:01+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-24T01:46:08+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
   <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
   <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
   <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
@@ -79,7 +79,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>극단적인 입력값을 대입해보기</li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-24T01:30:01+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-24T01:46:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
   <li><a href="#git-rebase">git rebase</a></li>
   <li><a href="#git-rebase-vs-git-merge">git rebase VS git merge</a></li>
   <li><a href="#git-rebase-사용법">git rebase 사용법</a></li>
@@ -118,7 +118,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
     <ul>
       <li>
-        <p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-01-23-git-rebase.png?raw=true" alt="git-rebase" hegith="300px" /></p>
+        <p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-01-23-git-rebase.png?raw=true" alt="git-rebase" style="width:150px; " /></p>
       </li>
       <li><code class="language-plaintext highlighter-rouge">16d0e75</code> 커밋 아래는 merge 흔적</li>
       <li><code class="language-plaintext highlighter-rouge">16d0e75</code> 커밋 위는 rebase로 인한 선형 히스토리</li>
@@ -173,7 +173,7 @@ git rebase main
       <li>원격 브랜치의 변경 사항을 병합 대신 리베이스로 가져올 때 사용</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-24T01:30:01+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-24T01:46:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
   <li><a href="#git-clone">git clone</a></li>
   <li><a href="#git-fork">git fork</a></li>
   <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
@@ -441,7 +441,7 @@ git push origin &lt;branch-name&gt;
       </li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-24T01:30:01+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-24T01:46:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
   <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
   <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
   <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
@@ -587,7 +587,7 @@ git push origin &lt;branch-name&gt;
     </ul>
   </li>
   <li>팀 또는 프로젝트의 코딩 컨벤션에 따라 일관성 유지가 중요 (가독성을 위해)</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-01-24T01:30:01+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-01-24T01:46:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
   <li><a href="#flexflexbox">Flex(Flexbox)</a></li>
   <li><a href="#주요-flexbox-속성">주요 Flexbox 속성 20개</a></li>
   <li><a href="#예제-통합-코드">예제: 통합 코드</a></li>
@@ -960,7 +960,7 @@ git push origin &lt;branch-name&gt;
       <li>다 깼다!</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+00:00</published><updated>2025-01-24T01:30:01+00:00</updated><id>https://nan0silver.github.io/miscellaneous/responsive</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+00:00</published><updated>2025-01-24T01:46:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/responsive</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
   <li><a href="#responsive-반응형">Responsive</a></li>
   <li><a href="#reactive-반응형">Reactive</a></li>
   <li><a href="#responsive-vs-reactive">Responsive VS Reactive</a></li>
@@ -1168,7 +1168,7 @@ git push origin &lt;branch-name&gt;
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Float</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/" rel="alternate" type="text/html" title="[HTML] CSS Float" /><published>2025-01-19T00:00:00+00:00</published><updated>2025-01-24T01:30:01+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-float</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Float</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/" rel="alternate" type="text/html" title="[HTML] CSS Float" /><published>2025-01-19T00:00:00+00:00</published><updated>2025-01-24T01:46:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-float</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/"><![CDATA[<ul>
   <li><a href="#css-float이란">CSS Float란</a></li>
   <li><a href="#clearfix">Clearfix</a></li>
   <li><a href="#clear-속성">Clear 속성</a></li>
@@ -1320,7 +1320,7 @@ git push origin &lt;branch-name&gt;
 <ul>
   <li>CSS Float는 여전히 유용한 기술이지만, 현대적인 레이아웃 기술과 함께 이해하고 사용하는 것이 중요</li>
   <li>프로젝트의 요구 사항에 따라 적절한 레이아웃 기술을 선택해야 함</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지 레이아웃을 만들때 사용되는 CSS Float에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS 문법</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-18-css/" rel="alternate" type="text/html" title="[HTML] CSS 문법" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-01-24T01:30:01+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-18-css/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지 레이아웃을 만들때 사용되는 CSS Float에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS 문법</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-18-css/" rel="alternate" type="text/html" title="[HTML] CSS 문법" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-01-24T01:46:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-18-css/"><![CDATA[<ul>
   <li><a href="#css란">CSS란?</a></li>
   <li><a href="#css-문법-기초">CSS 문법 기초</a></li>
   <li><a href="#css-적용-방법">CSS 적용 방법</a></li>
@@ -1459,7 +1459,7 @@ git push origin &lt;branch-name&gt;
       <li>Viewport 단위 : vh, vw, vmin, vmax</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[HTML] Emmet</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/" rel="alternate" type="text/html" title="[HTML] Emmet" /><published>2025-01-17T00:00:00+00:00</published><updated>2025-01-24T01:30:01+00:00</updated><id>https://nan0silver.github.io/miscellaneous/emmet</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/"><![CDATA[<ol>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[HTML] Emmet</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/" rel="alternate" type="text/html" title="[HTML] Emmet" /><published>2025-01-17T00:00:00+00:00</published><updated>2025-01-24T01:46:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/emmet</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/"><![CDATA[<ol>
   <li><a href="#emmet이란">Emmet이란?</a></li>
   <li><a href="#emmet의-강력한-단축키---tab">Emmet의 강력한 단축키 !+Tab</a></li>
   <li><a href="#emmet-사용법-굉장히-쉽고-편리함">Emmet 사용법</a></li>
@@ -1533,7 +1533,7 @@ git push origin &lt;branch-name&gt;
 
 <h2 id="emmet-어디에서-사용할-수-있나요">Emmet, 어디에서 사용할 수 있나요?</h2>
 
-<p>Emmet은 대부분의 텍스트 에디터와 IDE에서 플러그인 형태로 제공됩니다. Visual Studio Code, Sublime Text, Atom, IntelliJ IDEA 등 유명한 에디터에서는 기본적으로 Emmet을 지원하거나, 간단한 설치만으로 사용할 수 있습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[AI] 생성형 AI와 LLM</title><link href="https://nan0silver.github.io/ai/2025-01-16-basic/" rel="alternate" type="text/html" title="[AI] 생성형 AI와 LLM" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-24T01:30:01+00:00</updated><id>https://nan0silver.github.io/ai/basic</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-16-basic/"><![CDATA[<ul>
+<p>Emmet은 대부분의 텍스트 에디터와 IDE에서 플러그인 형태로 제공됩니다. Visual Studio Code, Sublime Text, Atom, IntelliJ IDEA 등 유명한 에디터에서는 기본적으로 Emmet을 지원하거나, 간단한 설치만으로 사용할 수 있습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[AI] 생성형 AI와 LLM</title><link href="https://nan0silver.github.io/ai/2025-01-16-basic/" rel="alternate" type="text/html" title="[AI] 생성형 AI와 LLM" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-24T01:46:08+00:00</updated><id>https://nan0silver.github.io/ai/basic</id><content type="html" xml:base="https://nan0silver.github.io/ai/2025-01-16-basic/"><![CDATA[<ul>
   <li><a href="#llm-large-language-model">LLM</a></li>
   <li><a href="#생성형-ai-generative-ai">생성형 AI</a></li>
   <li><a href="#gpt-genertive-pre-trained-transformer">GPT</a></li>
