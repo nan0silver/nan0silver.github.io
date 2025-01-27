@@ -6,7 +6,7 @@ description: >
 sitemap: false
 ---
 
-# [JavaScript] JavaScript 단축 평가 (Short-circuit evaluation)
+# [JavaScript] 단축 평가 (Short-circuit evaluation)
 
 - [단축 평가란?](#단축-평가란)
 - [단축 평가 동작 방식](#단축-평가-동작-방식)
