@@ -15,16 +15,29 @@ sitemap: false
 
 ## Flutter Layout
 
-- Flutter Layout의 핵심은 <strong>위젯</strong> - 위젯은 현재 주어진 상태(데이터)를 기반으로 어떤 UI를 구현할지 정의 - 플러터 프레임워크는 기존 상태 위젯과 새로운 상태의 위젯을 비교하여 UI변화를 반영 > 최소한의 리소스로 UI변경을 이룸 - 레이아웃 모델, 앱 내 이미지, 아이콘, 글자 등 거의 모든 것이 위젯 - 위젯은 자식을 하나만 갖는 위젯과 자식을 여럿 갖는 위젯으로 나뉨 - 자식을 하나만 갖는 위젯 - container 위젯 - 자식 위젯을 커스터마이징할 수 있는 위젯 클래스 - 여백, 간격, 테두리, 배경색 등을 추가할 수 있음 - 나머지 UI는 속성에 의해 제어됨 (color속성, Text.style속성 등) - 자식을 여럿 갖는 위젯 - children 매개변수를 입력 받음 - 리스트로 여러 위젯을 입력할 수 있음 - Column 위젯, Row 위젯 - children 매개변수에 입력된 모든 위젯들을 세로(가로)로 베치 - ListView 위젯 - 리스트 구현가능, 입력된 위젯이 화면을 벗어나게 되면 스크롤 가능해짐 - 예시
+- Flutter Layout의 핵심은 <strong>위젯</strong>
 
-          ![Full-width image](/assets/img/blog/lakes-icons-visual.png)
-
-
-          ![Full-width image](/assets/img/blog/sample-flutter-layout.png)
-
-
-
-          - 위의 스크린샷에 해당하는 위젯을 구현하기 위한 위젯 트리이다.
+  - 위젯은 현재 주어진 상태(데이터)를 기반으로 어떤 UI를 구현할지 정의
+  - 플러터 프레임워크는 기존 상태 위젯과 새로운 상태의 위젯을 비교하여 UI변화를 반영
+    > 최소한의 리소스로 UI변경을 이룸
+  - 레이아웃 모델, 앱 내 이미지, 아이콘, 글자 등 거의 모든 것이 위젯
+  - 위젯은 자식을 하나만 갖는 위젯과 자식을 여럿 갖는 위젯으로 나뉨
+    - 자식을 하나만 갖는 위젯
+      - container 위젯
+        - 자식 위젯을 커스터마이징할 수 있는 위젯 클래스
+        - 여백, 간격, 테두리, 배경색 등을 추가할 수 있음
+      - 나머지 UI는 속성에 의해 제어됨 (color속성, Text.style속성 등)
+    - 자식을 여럿 갖는 위젯
+      - children 매개변수를 입력 받음
+      - 리스트로 여러 위젯을 입력할 수 있음
+      - Column 위젯, Row 위젯
+        - children 매개변수에 입력된 모든 위젯들을 세로(가로)로 베치
+      - ListView 위젯
+        - 리스트 구현가능, 입력된 위젯이 화면을 벗어나게 되면 스크롤 가능해짐
+      - 예시
+        ![Full-width image](/assets/img/blog/lakes-icons-visual.png)
+        ![Full-width image](/assets/img/blog/sample-flutter-layout.png)
+        - 위의 스크린샷에 해당하는 위젯을 구현하기 위한 위젯 트리이다.
 
   <br>
 
