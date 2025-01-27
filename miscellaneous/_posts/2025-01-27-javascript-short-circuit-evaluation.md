@@ -125,7 +125,7 @@ greet2(); // Hello, Guest!
 
 ### 3. 조건부 렌더링 (React)
 
-React와 같은 UI 라이브러리에서 조건부 렌더링을 구현할 때 단축 평가를 유용하게 사용할 수 있습니다.
+React와 같은 UI 라이브러리에서 조건부 렌더링을 구현할 때 단축 평가를 유용하게 사용할 수 있다.
 
 ```jsx
 function MyComponent({ items }) {
