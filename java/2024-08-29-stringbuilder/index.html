@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[JAVA] StringBuilder" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-01-24T01:46:08+00:00","datePublished":"2024-08-29T00:00:00+00:00","description":"StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.","headline":"[JAVA] StringBuilder","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2024-08-29-stringbuilder/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/java/2024-08-29-stringbuilder/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-01-27T04:00:13+00:00","datePublished":"2024-08-29T00:00:00+00:00","description":"StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.","headline":"[JAVA] StringBuilder","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2024-08-29-stringbuilder/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/java/2024-08-29-stringbuilder/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-01-24T01:46:54+00:00',
+    INDEX_KEY: 'index--2025-01-27T04:00:58+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -242,10 +242,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 24 Jan 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 27 Jan 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-01-24T01:46:08+00:00">2025-01-24</time>
+              <time datetime="2025-01-27T04:00:13+00:00">2025-01-27</time>
             </span>
           
         
@@ -271,6 +271,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p>목차</p>
+
 <ol>
   <li><a href="#string">String</a></li>
   <li><a href="#stringbuilder">StringBuilder</a></li>
@@ -279,23 +280,25 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <hr />
 
 <h2 id="string">String</h2>
+
 <ul>
   <li>반복적으로 String을 연결하거나, 수정해야 할 경우, 보통은 아래와 같은 경우로 string을 사용한다.</li>
   <li>
-    <p><code class="language-plaintext highlighter-rouge">java
-  public class Main{
-  public static void main(String[] args) {
-      String java = "자바";
-      java += "공부";
-      System.out.println(java);
-  }
-  }</code></p>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span><span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">String</span> <span class="n">java</span> <span class="o">=</span> <span class="s">"자바"</span><span class="o">;</span>
+      <span class="n">java</span> <span class="o">+=</span> <span class="s">"공부"</span><span class="o">;</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">java</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
   </li>
   <li>하지만 string은 불변(immutable)객체이므로, “자바”메모리에 “공부”가 추가되는 것이 아니라, 새로운 메모리에 “자바공부”가 저장됨</li>
   <li>문자열이 수정될 때마다 새로운 메모리를 할당받기 때문에 성능저하가 일어날 수 있음</li>
 </ul>
 
 <h2 id="stringbuilder">StringBuilder</h2>
+
 <ul>
   <li>StringBuilder는 mutable sequence of characters.</li>
   <li>문자열이 변경될 때마다 새로운 메모리를 할당받지 않고, 버퍼를 통해 문자열을 관리하다 toStirng()을 통해 Stirng 객체를 생성</li>
@@ -444,7 +447,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/miscellaneous/2025-01-23-git-rebase/" class="flip-title"><span>[Git] git rebase</span></a>  <time class="faded fine" datetime="2025-01-23T00:00:00+00:00">23 Jan 2025</time></li>                        <li class="h4">  <a href="/java/2025-01-23-int-long/" class="flip-title"><span>[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</span></a>  <time class="faded fine" datetime="2025-01-23T00:00:00+00:00">23 Jan 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-01-22-naming-convention/" class="flip-title"><span>[Etc] Naming Convention</span></a>  <time class="faded fine" datetime="2025-01-22T00:00:00+00:00">22 Jan 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/" class="flip-title"><span>[JavaScript] JavaScript 단축 평가 (Short-circuit evaluation)</span></a>  <time class="faded fine" datetime="2025-01-27T00:00:00+00:00">27 Jan 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-01-23-git-rebase/" class="flip-title"><span>[Git] git rebase</span></a>  <time class="faded fine" datetime="2025-01-23T00:00:00+00:00">23 Jan 2025</time></li>                        <li class="h4">  <a href="/java/2025-01-23-int-long/" class="flip-title"><span>[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</span></a>  <time class="faded fine" datetime="2025-01-23T00:00:00+00:00">23 Jan 2025</time></li>            </ul></aside>
 
   
 
@@ -608,7 +611,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Miscellaneous (11)
+          Miscellaneous (12)
         </a>
       </li>
     
