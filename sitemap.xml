@@ -17,6 +17,19 @@
     </url>
     
     <url>
+        <loc>https://nan0silver.github.io/java/2025-01-24-generic/</loc>
+        
+        <lastmod>2025-01-24T00:00:00+00:00</lastmod>
+        
+        
+        <changefreq>weekly</changefreq>
+        
+        
+        <priority>0.5</priority>
+        
+    </url>
+    
+    <url>
         <loc>https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/</loc>
         
         <lastmod>2025-01-23T00:00:00+00:00</lastmod>
@@ -397,19 +410,6 @@
         <loc>https://nan0silver.github.io/algorithm/2024-07-08-day1/</loc>
         
         <lastmod>2024-07-08T00:00:00+00:00</lastmod>
-        
-        
-        <changefreq>weekly</changefreq>
-        
-        
-        <priority>0.5</priority>
-        
-    </url>
-    
-    <url>
-        <loc>https://nan0silver.github.io/deeplearning/2023-10-17-DLtrading-01/</loc>
-        
-        <lastmod>2023-10-17T00:00:00+00:00</lastmod>
         
         
         <changefreq>weekly</changefreq>

@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-27T06:37:14+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-31T02:11:57+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JavaScript] 단축 평가 (Short-circuit evaluation)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가 (Short-circuit evaluation)" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-01-27T06:36:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JavaScript] 단축 평가 (Short-circuit evaluation)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가 (Short-circuit evaluation)" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-01-31T02:11:13+00:00</updated><id>https://nan0silver.github.io/miscellaneous/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
   <li><a href="#단축-평가란">단축 평가란?</a></li>
   <li><a href="#단축-평가-동작-방식">단축 평가 동작 방식</a></li>
   <li><a href="#단축-평가-활용-예시">단축 평가 활용 예시</a></li>
@@ -174,7 +174,201 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>단축 평가의 반환 값은 마지막으로 평가된 표현식의 결과이다.</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-27T06:36:26+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-24-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-24T00:00:00+00:00</published><updated>2025-01-31T02:11:13+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-24-generic/"><![CDATA[<ul>
+  <li><a href="#generic이란">Generic이란?</a></li>
+  <li><a href="#generic의-장점">Generic의 장점</a></li>
+  <li><a href="#generic-사용법">Generic 사용법</a></li>
+</ul>
+
+<hr />
+
+<h2 id="generic이란">Generic이란?</h2>
+
+<ul>
+  <li>클래스나 메서드에서 사용할 데이터 타입을 지정하지 않고, 나중에 사용할 때 타입을 결정하는 기능
+    <ul>
+      <li>하나의 값이 여러 다른 데이터 타입들을 가질 수 있도록 하는 방법</li>
+      <li>클래스 내부에서 지정하는 것이 아닌, 외부에서 사용자에 의해 지정되는 것을 의미
+        <ul>
+          <li>specific 타입을 미리 지정해주는 것이 아닌 필요에 의해 지정할 수 있도록 하는 generic 타입</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>제네릭을 사용하면 코드의 재사용성을 높이고, 타입 안정성을 보장할 수 있음</li>
+  <li><code class="language-plaintext highlighter-rouge">ArrayList&lt;T&gt;</code>, <code class="language-plaintext highlighter-rouge">HashMap&lt;K, V&gt;</code>같은 자바 컬렉션 프레임워크에서 많이 사용됨</li>
+</ul>
+
+<h2 id="generic의-장점">Generic의 장점</h2>
+
+<ol>
+  <li>타입 안정성 (Type Safety) 보장
+    <ul>
+      <li>제네릭을 사용하면 컴파일 시점에 타입을 검사해서 타입 오류 방지 가능</li>
+      <li>예를 들어, ArrayList에 String만 저장하도록 지정하면 다른 타입을 추가하는 실수를 막을 수 있음</li>
+    </ul>
+  </li>
+  <li>형변환(Casting) 불필요
+    <ul>
+      <li>제네릭을 사용하면 클래스 외부에서 타입을 지정해주기 때문에 따로 타입을 체크하고 변환할 필요 없음</li>
+      <li>관리하기 편함</li>
+    </ul>
+  </li>
+  <li>코드의 재사용성 증가
+    <ul>
+      <li>같은 로직을 다양한 데이터 타입에 대해 사용할 수 있어 코드의 중복을 줄일 수 있음</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="generic-사용법">Generic 사용법</h2>
+
+<ul>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">WithGenerics</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span> <span class="c1">//제네릭 사용</span>
+          <span class="c1">//ArrayList list = new ArrayList(); 제네릭 미사용</span>
+
+          <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+          <span class="c1">//list.add(123);  오류 발생 (타입 안정성 보장)</span>
+          <span class="c1">//제네릭을 사용하지 않으면 오류 발생 X -&gt; 문제 발생 가능</span>
+
+          <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">//형변환 없이 바로 사용 가능</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>제네릭 클래스 만들기</p>
+
+    <ul>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// 제네릭 클래스 선언 (T는 타입 매개변수)</span>
+  <span class="kd">class</span> <span class="nc">Box</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="no">T</span> <span class="n">value</span><span class="o">;</span>
+
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="o">(</span><span class="no">T</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+      <span class="o">}</span>
+
+      <span class="kd">public</span> <span class="no">T</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">GenericExample</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">Box</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">stringBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Box</span><span class="o">&lt;&gt;();</span>
+          <span class="c1">//String으로 구체적인 타입 지정</span>
+
+          <span class="n">stringBox</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stringBox</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
+
+          <span class="nc">Box</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">intBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Box</span><span class="o">&lt;&gt;();</span>
+          <span class="n">intBox</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intBox</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>제네릭 메서드 만들기</p>
+
+    <ul>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">Util</span> <span class="o">{</span>
+      <span class="c1">// 제네릭 메서드 선언</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">printData</span><span class="o">(</span><span class="no">T</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">GenericMethodExample</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">Util</span><span class="o">.</span><span class="na">printData</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span> <span class="c1">// String 타입</span>
+          <span class="nc">Util</span><span class="o">.</span><span class="na">printData</span><span class="o">(</span><span class="mi">123</span><span class="o">);</span> <span class="c1">// Integer 타입</span>
+          <span class="nc">Util</span><span class="o">.</span><span class="na">printData</span><span class="o">(</span><span class="mf">3.14</span><span class="o">);</span> <span class="c1">// Double 타입</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>제네릭 타입 제한 (Bounded Type Parameter)</p>
+
+    <ul>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// Number를 상속받은 타입만 사용 가능 (Integer, Double 등)</span>
+  <span class="kd">class</span> <span class="nc">NumberBox</span><span class="o">&lt;</span><span class="no">T</span> <span class="kd">extends</span> <span class="nc">Number</span><span class="o">&gt;</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="no">T</span> <span class="n">number</span><span class="o">;</span>
+
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNumber</span><span class="o">(</span><span class="no">T</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="n">number</span><span class="o">;</span>
+      <span class="o">}</span>
+
+      <span class="kd">public</span> <span class="no">T</span> <span class="nf">getNumber</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="n">number</span><span class="o">;</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">BoundedGenericExample</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">NumberBox</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">intBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NumberBox</span><span class="o">&lt;&gt;();</span>
+          <span class="n">intBox</span><span class="o">.</span><span class="na">setNumber</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intBox</span><span class="o">.</span><span class="na">getNumber</span><span class="o">());</span>
+
+          <span class="nc">NumberBox</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">doubleBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NumberBox</span><span class="o">&lt;&gt;();</span>
+          <span class="n">doubleBox</span><span class="o">.</span><span class="na">setNumber</span><span class="o">(</span><span class="mf">3.14</span><span class="o">);</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">doubleBox</span><span class="o">.</span><span class="na">getNumber</span><span class="o">());</span>
+
+          <span class="c1">// NumberBox&lt;String&gt; strBox = new NumberBox&lt;&gt;(); // 오류 발생 (String은 Number가 아님)</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>와일드카드 (<code class="language-plaintext highlighter-rouge">?</code> - 제네릭 타입 미지정)</p>
+
+    <ul>
+      <li>특정 타입을 제한하지 않고 유연하게 사용하고 싶은 경우</li>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+  <span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+  <span class="kd">class</span> <span class="nc">WildcardExample</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printList</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;?&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 와일드카드 사용</span>
+          <span class="k">for</span> <span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+              <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">stringList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+          <span class="n">stringList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Apple"</span><span class="o">);</span>
+          <span class="n">stringList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Banana"</span><span class="o">);</span>
+
+          <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">intList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+          <span class="n">intList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+          <span class="n">intList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+
+          <span class="n">printList</span><span class="o">(</span><span class="n">stringList</span><span class="o">);</span> <span class="c1">// 가능</span>
+          <span class="n">printList</span><span class="o">(</span><span class="n">intList</span><span class="o">);</span> <span class="c1">// 가능</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-31T02:11:13+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
   <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
   <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
   <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
@@ -252,7 +446,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>극단적인 입력값을 대입해보기</li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-27T06:36:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-31T02:11:13+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
   <li><a href="#git-rebase">git rebase</a></li>
   <li><a href="#git-rebase-vs-git-merge">git rebase VS git merge</a></li>
   <li><a href="#git-rebase-사용법">git rebase 사용법</a></li>
@@ -346,7 +540,7 @@ git rebase main
       <li>원격 브랜치의 변경 사항을 병합 대신 리베이스로 가져올 때 사용</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-27T06:36:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-31T02:11:13+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
   <li><a href="#git-clone">git clone</a></li>
   <li><a href="#git-fork">git fork</a></li>
   <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
@@ -614,7 +808,7 @@ git push origin &lt;branch-name&gt;
       </li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-27T06:36:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-31T02:11:13+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
   <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
   <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
   <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
@@ -760,7 +954,7 @@ git push origin &lt;branch-name&gt;
     </ul>
   </li>
   <li>팀 또는 프로젝트의 코딩 컨벤션에 따라 일관성 유지가 중요 (가독성을 위해)</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-01-27T06:36:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-01-31T02:11:13+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
   <li><a href="#flexflexbox">Flex(Flexbox)</a></li>
   <li><a href="#주요-flexbox-속성">주요 Flexbox 속성 20개</a></li>
   <li><a href="#예제-통합-코드">예제: 통합 코드</a></li>
@@ -1133,7 +1327,7 @@ git push origin &lt;branch-name&gt;
       <li>다 깼다!</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+00:00</published><updated>2025-01-27T06:36:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/responsive</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+00:00</published><updated>2025-01-31T02:11:13+00:00</updated><id>https://nan0silver.github.io/miscellaneous/responsive</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
   <li><a href="#responsive-반응형">Responsive</a></li>
   <li><a href="#reactive-반응형">Reactive</a></li>
   <li><a href="#responsive-vs-reactive">Responsive VS Reactive</a></li>
@@ -1341,7 +1535,7 @@ git push origin &lt;branch-name&gt;
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Float</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/" rel="alternate" type="text/html" title="[HTML] CSS Float" /><published>2025-01-19T00:00:00+00:00</published><updated>2025-01-27T06:36:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-float</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Float</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/" rel="alternate" type="text/html" title="[HTML] CSS Float" /><published>2025-01-19T00:00:00+00:00</published><updated>2025-01-31T02:11:13+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-float</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/"><![CDATA[<ul>
   <li><a href="#css-float이란">CSS Float란</a></li>
   <li><a href="#clearfix">Clearfix</a></li>
   <li><a href="#clear-속성">Clear 속성</a></li>
@@ -1493,7 +1687,7 @@ git push origin &lt;branch-name&gt;
 <ul>
   <li>CSS Float는 여전히 유용한 기술이지만, 현대적인 레이아웃 기술과 함께 이해하고 사용하는 것이 중요</li>
   <li>프로젝트의 요구 사항에 따라 적절한 레이아웃 기술을 선택해야 함</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지 레이아웃을 만들때 사용되는 CSS Float에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS 문법</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-18-css/" rel="alternate" type="text/html" title="[HTML] CSS 문법" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-01-27T06:36:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-18-css/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지 레이아웃을 만들때 사용되는 CSS Float에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS 문법</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-18-css/" rel="alternate" type="text/html" title="[HTML] CSS 문법" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-01-31T02:11:13+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-18-css/"><![CDATA[<ul>
   <li><a href="#css란">CSS란?</a></li>
   <li><a href="#css-문법-기초">CSS 문법 기초</a></li>
   <li><a href="#css-적용-방법">CSS 적용 방법</a></li>
@@ -1632,78 +1826,4 @@ git push origin &lt;branch-name&gt;
       <li>Viewport 단위 : vh, vw, vmin, vmax</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry><entry><title type="html">[HTML] Emmet</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/" rel="alternate" type="text/html" title="[HTML] Emmet" /><published>2025-01-17T00:00:00+00:00</published><updated>2025-01-27T06:36:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/emmet</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-17-emmet/"><![CDATA[<ol>
-  <li><a href="#emmet이란">Emmet이란?</a></li>
-  <li><a href="#emmet의-강력한-단축키---tab">Emmet의 강력한 단축키 !+Tab</a></li>
-  <li><a href="#emmet-사용법-굉장히-쉽고-편리함">Emmet 사용법</a></li>
-  <li><a href="#emmet-어디에서-사용할-수-있나요">Emmet, 어디에서 사용할 수 있나요?</a></li>
-</ol>
-
-<hr />
-
-<h2 id="emmet이란">Emmet이란?</h2>
-
-<p>Emmet은 웹 개발자가 HTML, CSS 코드를 훨씬 빠르고 효율적으로 작성할 수 있도록 도와주는 플러그인입니다. <br />
-간단한 축약어를 입력하면 Emmet이 알아서 전체 코드로 확장해줍니다. 예를 들어, <code class="language-plaintext highlighter-rouge">ul&gt;li*5&gt;a</code>라고 입력하면 다음과 같은 HTML 코드가 자동으로 생성됩니다.</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ul&gt;</span>
-  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
-</code></pre></div></div>
-
-<p>Emmet을 사용하면 이런 불필요한 작업을 줄이고, 개발자는 오롯이 로직과 디자인에 집중할 수 있습니다.</p>
-
-<h2 id="emmet의-강력한-단축키---tab">Emmet의 강력한 단축키 ! + Tab</h2>
-
-<p>Emmet을 사용하는 가장 대표적인 사례 중 하나는 ! + Tab 단축키입니다. 이 단축키를 입력하면 기본 HTML 문서의 구조가 즉시 생성됩니다. 예를 들어, 빈 파일에서 !를 입력한 후 Tab 키를 누르면 다음과 같은 기본 HTML 문서가 자동으로 작성됩니다.</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Document<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;/head&gt;</span>
-  <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre></div></div>
-
-<p>이 기본 구조는 웹 페이지를 시작할 때 반드시 필요한 요소들로 구성되어 있으며, 직접 입력하는 번거로움을 크게 줄여줍니다. 이 기능만 사용해도 초보자부터 숙련된 개발자까지 작업 시간을 크게 단축할 수 있습니다.</p>
-
-<h2 id="emmet-사용법-굉장히-쉽고-편리함">Emmet 사용법 (굉장히 쉽고 편리함)</h2>
-
-<p>Emmet의 문법은 간단하면서도 강력합니다. 몇 가지 기본 규칙만 익히면 금방 능숙하게 사용할 수 있습니다.</p>
-
-<ul>
-  <li><strong>자식 요소:</strong> <code class="language-plaintext highlighter-rouge">&gt;</code> 기호를 사용하여 자식 요소를 생성합니다. 예를 들어, <code class="language-plaintext highlighter-rouge">div&gt;p</code>는 <code class="language-plaintext highlighter-rouge">&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;</code>로 확장됩니다.</li>
-  <li><strong>형제 요소:</strong> <code class="language-plaintext highlighter-rouge">+</code> 기호를 사용하여 형제 요소를 생성합니다. 예를 들어, <code class="language-plaintext highlighter-rouge">h2+p</code>는 <code class="language-plaintext highlighter-rouge">&lt;h2&gt;&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;</code>로 확장됩니다.</li>
-  <li><strong>반복 요소:</strong> <code class="language-plaintext highlighter-rouge">*</code> 기호를 사용하여 요소를 반복 생성합니다. 예를 들어, <code class="language-plaintext highlighter-rouge">li*3</code>는 <code class="language-plaintext highlighter-rouge">&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;</code>로 확장됩니다.</li>
-  <li><strong>그룹화:</strong> <code class="language-plaintext highlighter-rouge">()</code> 괄호를 사용하여 요소들을 그룹으로 묶을 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">div&gt;(header&gt;ul&gt;li*2)+footer</code>는 다음과 같이 확장됩니다.</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>
-  <span class="nt">&lt;header&gt;</span>
-    <span class="nt">&lt;ul&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;/ul&gt;</span>
-  <span class="nt">&lt;/header&gt;</span>
-  <span class="nt">&lt;footer&gt;&lt;/footer&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li><strong>속성 추가:</strong> <code class="language-plaintext highlighter-rouge">[]</code> 괄호를 사용하여 요소에 속성을 추가할 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">a[href=#]</code>는 <code class="language-plaintext highlighter-rouge">&lt;a href="#"&gt;&lt;/a&gt;</code>로 확장됩니다. 여러 속성을 추가하려면 <code class="language-plaintext highlighter-rouge">a[href=# title=링크]</code>와 같이 작성합니다.</li>
-  <li><strong>클래스 및 ID 추가:</strong> CSS 선택자처럼 <code class="language-plaintext highlighter-rouge">.</code> 기호로 클래스를, <code class="language-plaintext highlighter-rouge">#</code> 기호로 ID를 추가할 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">div.container</code>는 <code class="language-plaintext highlighter-rouge">&lt;div class="container"&gt;&lt;/div&gt;</code>로, <code class="language-plaintext highlighter-rouge">div#header</code>는 <code class="language-plaintext highlighter-rouge">&lt;div id="header"&gt;&lt;/div&gt;</code>로 확장됩니다. 여러 개의 클래스를 추가하려면 <code class="language-plaintext highlighter-rouge">div.container.main</code>처럼 작성합니다.</li>
-  <li><strong>텍스트 내용 추가:</strong> <code class="language-plaintext highlighter-rouge">{}</code> 중괄호 안에 텍스트 내용을 입력할 수 있습니다. 예를 들어, <code class="language-plaintext highlighter-rouge">p{안녕하세요}</code>는 <code class="language-plaintext highlighter-rouge">&lt;p&gt;안녕하세요&lt;/p&gt;</code>로 확장됩니다.</li>
-</ul>
-
-<p>이 외에도 다양한 기능들이 있지만, 이 정도만 알아도 Emmet의 강력함을 충분히 경험할 수 있습니다.</p>
-
-<h2 id="emmet-어디에서-사용할-수-있나요">Emmet, 어디에서 사용할 수 있나요?</h2>
-
-<p>Emmet은 대부분의 텍스트 에디터와 IDE에서 플러그인 형태로 제공됩니다. Visual Studio Code, Sublime Text, Atom, IntelliJ IDEA 등 유명한 에디터에서는 기본적으로 Emmet을 지원하거나, 간단한 설치만으로 사용할 수 있습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry></feed>
