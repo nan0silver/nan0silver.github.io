@@ -1,7 +1,239 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-31T02:16:52+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-31T05:25:49+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JavaScript] 단축 평가 (Short-circuit evaluation)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가 (Short-circuit evaluation)" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-01-31T02:16:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-01-31T05:25:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
+  <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
+  <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
+  <li><a href="#tdd의-장점">TDD의 장점</a></li>
+  <li><a href="#tdd-예제-java">TDD 예제 (Java)</a></li>
+  <li><a href="#tdd-vs-전통적인-개발-방식">TDD VS 전통적인 개발 방식</a></li>
+  <li><a href="#tdd가-필요한-경우">TDD가 필요한 경우</a></li>
+  <li><a href="#tdd의-단점">TDD의 단점</a></li>
+  <li><a href="#xunit">xUnit</a></li>
+</ul>
+
+<hr />
+
+<h2 id="tdd-test-driven-development란">TDD (Test-Driven Development)란?</h2>
+
+<blockquote>
+  <p>테스트 주도 개발</p>
+</blockquote>
+
+<ul>
+  <li>소프트웨어 개발 방법론 중 하나로, 테스트 코드를 먼저 작성한 후 실제 기능을 구현하는 방식
+    <ul>
+      <li><strong>테스트 먼저, 코드 작성 나중!</strong></li>
+    </ul>
+  </li>
+  <li>짧은 개발 주기의 반복에 의존하는 개발 프로세스</li>
+  <li>애자일 방법론 중 하나인 eXtream Programming(XP)의 “Test-First” 개념에 기반을 둔 단순한 설계를 중요시함
+    <ul>
+      <li>eXtream Programming(XP)
+        <ul>
+          <li>미래에 대한 예측을 최대한 하지 않고, 지속적으로 프로토타입을 완성하는 애자일 방법론 중 하나</li>
+          <li>추가 요구사항이 생기더라도, 실시간으로 반영할 수 있음</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="tdd의-주요-과정">TDD의 주요 과정</h2>
+
+<ul>
+  <li><strong>Red-Green-Refactor</strong> 세 단계 반복</li>
+</ul>
+
+<h3 id="1️⃣-red-실패하는-테스트-작성">1️⃣ Red (실패하는 테스트 작성)</h3>
+
+<ul>
+  <li>구현할 기능에 대한 테스트 코드 작성</li>
+  <li>실제 기능이 이 시점에서는 없기 때문에 테스트는 실패
+    <ul>
+      <li>빨간색 = 실패</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2️⃣-green-코드-작성-후-테스트-통과">2️⃣ Green (코드 작성 후 테스트 통과)</h3>
+
+<ul>
+  <li>테스트를 통과할 최소한의 코드만 작성</li>
+  <li>코드가 정상적으로 동작하여 테스트가 성공하면 다음 단계로 넘어감
+    <ul>
+      <li>초록색 = 성공</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="3️⃣-refactor-리팩토링">3️⃣ Refactor (리팩토링)</h3>
+
+<ul>
+  <li>코드의 중복을 제거하고 더 나은 구조로 개선</li>
+  <li>테스트를 다시 실행하여 리팩토링 후에도 테스트가 성공하는지 확인</li>
+  <li>성능 개선, 코드 가독성 높이기</li>
+</ul>
+
+<h2 id="tdd의-장점">TDD의 장점</h2>
+
+<ul>
+  <li>버그 감소
+    <ul>
+      <li>미리 테스트를 작성하기 때문에 오류를 조기에 발견할 수 있음</li>
+    </ul>
+  </li>
+  <li>리팩토링 용이
+    <ul>
+      <li>테스트 코드가 보장되므로 안심하고 코드를 사용 가능</li>
+    </ul>
+  </li>
+  <li>유지보수성 향상
+    <ul>
+      <li>코드가 변경될 때 기존 기능이 정상적으로 동작하는지 확인 가능</li>
+    </ul>
+  </li>
+  <li>문서 역할
+    <ul>
+      <li>테스트 코드 자체가 기능 명세서 역할을 함</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="tdd-예제-java">TDD 예제 (Java)</h2>
+
+<h3 id="1-실패하는-테스트-작성">1. 실패하는 테스트 작성</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">jupiter</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Assertions</span><span class="o">.*;</span>
+
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">CalculatorTest</span> <span class="o">{</span>
+        <span class="nd">@Test</span>
+        <span class="kt">void</span> <span class="nf">testAddition</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nc">Calculator</span> <span class="n">calc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Calculator</span><span class="o">();</span>
+            <span class="n">assertEquals</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="n">calc</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>현재 Calculator 클래스와 add() 메서드가 없어서 테스트 실패</li>
+</ul>
+
+<h3 id="2-최소한의-코드-작성-테스트-통과">2. 최소한의 코드 작성 (테스트 통과)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Calculator</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span> <span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>이제 테스트 실행하면 성공!</li>
+</ul>
+
+<h3 id="3-리팩토링">3. 리팩토링</h3>
+
+<ul>
+  <li>코드가 복잡한 경우 성능 최적화나 코드 구조 개선 가능</li>
+</ul>
+
+<h2 id="tdd-vs-전통적인-개발-방식">TDD VS 전통적인 개발 방식</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>전통적인 개발 방식</th>
+      <th>TDD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>순서</strong></td>
+      <td>기능 구현 → 테스트 작성</td>
+      <td>테스트 작성 → 기능 구현</td>
+    </tr>
+    <tr>
+      <td><strong>목적</strong></td>
+      <td>기능 개발 후 버그 찾기</td>
+      <td>처음부터 버그 방지</td>
+    </tr>
+    <tr>
+      <td><strong>유지보수</strong></td>
+      <td>테스트 부족 시 리팩토링 어려움</td>
+      <td>안전한 리팩토링 가능</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="tdd가-필요한-경우">TDD가 필요한 경우</h2>
+
+<ul>
+  <li>복잡한 로직이 포함된 코드
+    <ul>
+      <li>알고리즘, 비즈니스 로직</li>
+    </ul>
+  </li>
+  <li>장기적으로 유지보수해야하는 프로젝트</li>
+  <li>협업이 필요한 개발 환경
+    <ul>
+      <li>테스트 코드가 문서 역할을 하므로 이해하기 쉬움</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="tdd의-단점">TDD의 단점</h2>
+
+<ul>
+  <li>간단한 코드에는 불필요한 오버헤드가 발생할 수 있음</li>
+  <li>초기 개발 속도가 느려질 수 있음</li>
+</ul>
+
+<h2 id="xunit">xUnit</h2>
+
+<ul>
+  <li>단위 테스트를 위한 프레임워크</li>
+  <li>JUnit(for JAVA)을 시작으로 여러 xUnit 프레임워크가 탄생함</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>xUnit 이름</th>
+      <th>해당 언어</th>
+      <th>관련 사이트</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>CUnit</strong></td>
+      <td>C</td>
+      <td><a href="http://cunit.sourceforge.net/">CUnit</a></td>
+    </tr>
+    <tr>
+      <td><strong>CppUnit</strong></td>
+      <td>C++</td>
+      <td><a href="https://sourceforge.net/projects/cppunit/">CppUnit</a></td>
+    </tr>
+    <tr>
+      <td><strong>PHPUnit</strong></td>
+      <td>PHP</td>
+      <td><a href="https://phpunit.de/">PHPUnit</a></td>
+    </tr>
+    <tr>
+      <td><strong>PyUnit</strong></td>
+      <td>Python</td>
+      <td><a href="http://pyunit.sourceforge.net/">PyUnit</a></td>
+    </tr>
+    <tr>
+      <td><strong>JUnit</strong></td>
+      <td>Java</td>
+      <td><a href="http://junit.org/">JUnit</a></td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가 (Short-circuit evaluation)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가 (Short-circuit evaluation)" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-01-31T05:25:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
   <li><a href="#단축-평가란">단축 평가란?</a></li>
   <li><a href="#단축-평가-동작-방식">단축 평가 동작 방식</a></li>
   <li><a href="#단축-평가-활용-예시">단축 평가 활용 예시</a></li>
@@ -174,7 +406,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>단축 평가의 반환 값은 마지막으로 평가된 표현식의 결과이다.</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-24-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-24T00:00:00+00:00</published><updated>2025-01-31T02:16:08+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-24-generic/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-24-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-24T00:00:00+00:00</published><updated>2025-01-31T05:25:07+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-24-generic/"><![CDATA[<ul>
   <li><a href="#generic이란">Generic이란?</a></li>
   <li><a href="#generic의-장점">Generic의 장점</a></li>
   <li><a href="#generic-사용법">Generic 사용법</a></li>
@@ -368,7 +600,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-31T02:16:08+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-31T05:25:07+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
   <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
   <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
   <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
@@ -446,7 +678,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>극단적인 입력값을 대입해보기</li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-31T02:16:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-31T05:25:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
   <li><a href="#git-rebase">git rebase</a></li>
   <li><a href="#git-rebase-vs-git-merge">git rebase VS git merge</a></li>
   <li><a href="#git-rebase-사용법">git rebase 사용법</a></li>
@@ -540,7 +772,7 @@ git rebase main
       <li>원격 브랜치의 변경 사항을 병합 대신 리베이스로 가져올 때 사용</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-31T02:16:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-31T05:25:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
   <li><a href="#git-clone">git clone</a></li>
   <li><a href="#git-fork">git fork</a></li>
   <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
@@ -808,7 +1040,7 @@ git push origin &lt;branch-name&gt;
       </li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-31T02:16:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-31T05:25:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
   <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
   <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
   <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
@@ -954,7 +1186,7 @@ git push origin &lt;branch-name&gt;
     </ul>
   </li>
   <li>팀 또는 프로젝트의 코딩 컨벤션에 따라 일관성 유지가 중요 (가독성을 위해)</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-01-31T02:16:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-01-31T05:25:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
   <li><a href="#flexflexbox">Flex(Flexbox)</a></li>
   <li><a href="#주요-flexbox-속성">주요 Flexbox 속성 20개</a></li>
   <li><a href="#예제-통합-코드">예제: 통합 코드</a></li>
@@ -1327,7 +1559,7 @@ git push origin &lt;branch-name&gt;
       <li>다 깼다!</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+00:00</published><updated>2025-01-31T02:16:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/responsive</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+00:00</published><updated>2025-01-31T05:25:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/responsive</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
   <li><a href="#responsive-반응형">Responsive</a></li>
   <li><a href="#reactive-반응형">Reactive</a></li>
   <li><a href="#responsive-vs-reactive">Responsive VS Reactive</a></li>
@@ -1535,7 +1767,7 @@ git push origin &lt;branch-name&gt;
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Float</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/" rel="alternate" type="text/html" title="[HTML] CSS Float" /><published>2025-01-19T00:00:00+00:00</published><updated>2025-01-31T02:16:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-float</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Float</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/" rel="alternate" type="text/html" title="[HTML] CSS Float" /><published>2025-01-19T00:00:00+00:00</published><updated>2025-01-31T05:25:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-float</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/"><![CDATA[<ul>
   <li><a href="#css-float이란">CSS Float란</a></li>
   <li><a href="#clearfix">Clearfix</a></li>
   <li><a href="#clear-속성">Clear 속성</a></li>
@@ -1687,143 +1919,4 @@ git push origin &lt;branch-name&gt;
 <ul>
   <li>CSS Float는 여전히 유용한 기술이지만, 현대적인 레이아웃 기술과 함께 이해하고 사용하는 것이 중요</li>
   <li>프로젝트의 요구 사항에 따라 적절한 레이아웃 기술을 선택해야 함</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지 레이아웃을 만들때 사용되는 CSS Float에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS 문법</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-18-css/" rel="alternate" type="text/html" title="[HTML] CSS 문법" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-01-31T02:16:08+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-18-css/"><![CDATA[<ul>
-  <li><a href="#css란">CSS란?</a></li>
-  <li><a href="#css-문법-기초">CSS 문법 기초</a></li>
-  <li><a href="#css-적용-방법">CSS 적용 방법</a></li>
-  <li><a href="#css-프로퍼티-값의-단위">CSS 프로퍼티 값의 단위</a></li>
-</ul>
-
-<hr />
-
-<h2 id="css란">CSS란?</h2>
-
-<ul>
-  <li>CSS : Cascading Style Sheets</li>
-  <li>웹 페이지의 시각적 표현을 담당하는 스타일 언어
-    <ul>
-      <li>다양한 디바이스의 화면 크기에 대응하는 반응형 디자인 구현</li>
-      <li>내용과 디자인의 분리로 유지보수성 향상</li>
-    </ul>
-  </li>
-  <li>HTML VS CSS
-    <ul>
-      <li>HTML
-        <ul>
-          <li>웹페이지 구조와 콘텐츠 정의</li>
-        </ul>
-      </li>
-      <li>CSS
-        <ul>
-          <li>HTML 요소의 스타일과 레이아웃 지정</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="css-문법-기초">CSS 문법 기초</h2>
-
-<ul>
-  <li>
-    <p>선택자 (Selector)</p>
-
-    <ul>
-      <li>스타일을 적용할 HTML 요소 지정</li>
-      <li>
-        <pre><code class="language-CSS">    /* 요소 선택자 */
-    p {
-    color: blue;
-    }
-
-    /* 클래스 선택자 */
-    .highlight {
-    background-color: yellow;
-    }
-
-    /* ID 선택자 */
-    #header {
-    font-size: 24px;
-    }
-
-    /* 전체 선택자 */
-    * {
-    margin: 0;
-    padding: 0;
-    }
-    /* 무조건 뒤에 오는게 이긴다. 뒤로 갈수록 덮어씌우는 개념 */
-    /* 아이디랑 클래스 중 아이디가 이김 */
-
-
-</code></pre>
-      </li>
-    </ul>
-  </li>
-  <li>속성 (Property)
-    <ul>
-      <li>변경하고자 하는 스타일의 종류</li>
-    </ul>
-  </li>
-  <li>값 (Value)
-    <ul>
-      <li>속성에 적용할 구체적인 스타일 값</li>
-    </ul>
-  </li>
-  <li>선언 (Declaration)
-    <ul>
-      <li>속성과 값의 쌍</li>
-    </ul>
-  </li>
-  <li>규칙 (Rule)
-    <ul>
-      <li>선택자와 선언 블록의 조합</li>
-    </ul>
-  </li>
-</ul>
-
-<pre><code class="language-CSS">    선택자 {
-        속성: 값;
-        속성: 값;
-    }
-
-    /* 구체적인 예시 */
-    h1 {
-        color: blue;
-        font-size: 18px;
-    }
-</code></pre>
-
-<h2 id="css-적용-방법">CSS 적용 방법</h2>
-
-<ol>
-  <li>인라인 스타일
-    <ul>
-      <li>HTML 요소 내부에 직접 스타일 적용</li>
-    </ul>
-  </li>
-  <li>내부 스타일시트
-    <ul>
-      <li>head 섹션 내 style 태그에 CSS 작성</li>
-    </ul>
-  </li>
-  <li>외부 스타일시트
-    <ul>
-      <li>별도의 .css파일에 스타일 정의</li>
-      <li>HTML 문서의 head 섹션에서 링크로 연결</li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="css-프로퍼티-값의-단위">CSS 프로퍼티 값의 단위</h2>
-
-<ul>
-  <li>크기 단위
-    <ul>
-      <li>px : 픽셀 단위, 절대값</li>
-      <li>% : 백분율 단위, 상대값</li>
-      <li>em : 요소에 지정된 사이즈에 상대적인 배수 단위</li>
-      <li>rem : 최상위 요소(html)의 사이즈 기준 배수 단위</li>
-      <li>Viewport 단위 : vh, vw, vmin, vmax</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지 레이아웃을 만들때 사용되는 CSS Float에 대해 알아보자.]]></summary></entry></feed>
