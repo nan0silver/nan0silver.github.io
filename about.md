@@ -20,19 +20,12 @@ JAVA와 PYTHON를 이용한 백엔드 개발과 모바일 앱을 관련해서 �
 AI와 Bitcoin에도 관심이 많으며 여러 분야로 공부하고 있습니다.<br>
 블로그에 와주셔서 감사합니다🤗<br>
 
-Hello! I'm Nahyun Eun, a student from South Korea focusing on backend development with Java. <br>
-This blog is a space where I organize and share my learning journey in software development. <br>
-Here, you'll find insights, notes, and practical examples from my studies in backend programming, covering key concepts and real-world applications. <br>
-Whether you're interested in Java, backend frameworks, or general programming tips, <br>
-I hope this blog offers valuable resources and inspiration. <br>
-Join me as I explore the world of coding and software engineering!<br><br>
-
 <span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> <br>
 Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 (2022.09 ~ 2025.02) <br><br>
 <span style="background-color:#FFDDFF">B.S. in IT Engineering)</span> <br>
 Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
-(2018.03 ~ 2022.08) <br><br>
+(2018.03 ~ 2022.08) <br>
 
 <h3>🔹Vita🔹</h3>
 
@@ -46,7 +39,7 @@ Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 
 2018.08 ~ 2019.12 　　숙명여자대학교 IT공학전공 밴드 동아리 'Hello World' 소속, 19년도 부회장 역할 수행 <br>
 
-2018.03 ~ 2019.12 　　숙명여자대학교 IT공학전공 제3,4대 학생회 소속 <br><br>
+2018.03 ~ 2019.12 　　숙명여자대학교 IT공학전공 제3,4대 학생회 소속 <br>
 
 <div style="display: flex; flex-direction: column; gap:10px">
 <h3>🔶Publication🔶</h3>
