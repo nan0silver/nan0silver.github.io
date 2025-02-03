@@ -1,7 +1,303 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-01-31T08:55:11+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-03T03:57:50+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-01-31T08:54:24+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-03T03:57:05+00:00</updated><id>https://nan0silver.github.io/miscellaneous/js-function</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-30-js-function/"><![CDATA[<ul>
+  <li><a href="#함수-function">함수 (function)</a></li>
+  <li><a href="#화살표-함수">화살표 함수</a></li>
+  <li><a href="#고차-함수">고차 함수 (map, filter, reduce)</a></li>
+  <li><a href="#구조-분해-할당">구조 분해 할당</a></li>
+</ul>
+
+<hr />
+
+<h2 id="함수-function">함수 (function)</h2>
+
+<ul>
+  <li>
+    <p>함수 선언</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">function</code>으로 선언</li>
+      <li>
+        <p>호이스팅 (hoisting)</p>
+
+        <ul>
+          <li>JavaScript에서 변수, 함수 선언, 클래스 등의 선언이 코드 실행 전에 메모리에 미리 할당되는 현상
+            <ul>
+              <li>코드에서 선언이 끌어올려진(hoisted) 것처럼 동작</li>
+            </ul>
+          </li>
+          <li>
+            <table>
+              <thead>
+                <tr>
+                  <th>변수 타입</th>
+                  <th>선언 Hoisting</th>
+                  <th>초기화 여부</th>
+                  <th>선언 전 접근</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code class="language-plaintext highlighter-rouge">var</code></td>
+                  <td>✅ O</td>
+                  <td>✅ (undefined)</td>
+                  <td>✅ 가능 (undefined 반환)</td>
+                </tr>
+                <tr>
+                  <td><code class="language-plaintext highlighter-rouge">let</code></td>
+                  <td>✅ O</td>
+                  <td>❌ (TDZ 존재)</td>
+                  <td>❌ ReferenceError</td>
+                </tr>
+                <tr>
+                  <td><code class="language-plaintext highlighter-rouge">const</code></td>
+                  <td>✅ O</td>
+                  <td>❌ (TDZ 존재)</td>
+                  <td>❌ ReferenceError</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li>함수 선언 이전에 호출이 가능</li>
+        </ul>
+      </li>
+      <li>
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">welcomeMessage</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="dl">"</span><span class="s2">Hi, ${username}!</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">welcomeMessage</span><span class="p">(</span><span class="dl">"</span><span class="s2">Lily</span><span class="dl">"</span><span class="p">));</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>함수 표현식</p>
+    <ul>
+      <li>이름이 없는 함수를 만들어 변수에 할당하여 정의</li>
+      <li>호이스팅되지 않으므로, 함수 정의 이후에만 호출 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="화살표-함수">화살표 함수</h2>
+
+<ul>
+  <li>ES6에서 도입된 간결한 함수 표현 방식</li>
+  <li>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//ex1</span>
+<span class="kd">const</span> <span class="nx">welcomeMessage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">Hi, ${username}!</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">welcomeMessage</span><span class="p">(</span><span class="dl">"</span><span class="s2">Lily</span><span class="dl">"</span><span class="p">));</span>
+
+<span class="c1">//ex2</span>
+<span class="kd">const</span> <span class="nx">calculateArea</span> <span class="o">=</span> <span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">area</span> <span class="o">=</span> <span class="nx">width</span> <span class="o">*</span> <span class="nx">height</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">area</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">calculateArea</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span> <span class="c1">// 출력: 50</span>
+</code></pre></div>    </div>
+  </li>
+  <li>함수 표현식보다 간결하게 작성 가능함</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">this</code> 바인딩이 화살표 함수의 정의 위치에서 고정되는 특성을 가짐</p>
+
+    <ul>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">this</code> 바인딩 (Binding)</p>
+
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">this</code> 키워드가 특정 실행 문맥(Excution Context)에서 어떤 객체를 가리키는지 결정되는 과정</li>
+          <li>JavaScript에서 <code class="language-plaintext highlighter-rouge">this</code>는 어떻게, 어디서 호출되었느냐에 따라 값이 달라짐</li>
+          <li>전통적인 함수와 화살표 함수의 <code class="language-plaintext highlighter-rouge">this</code> 바인딩 방식이 다름
+            <ul>
+              <li>전통적인 함수
+                <ul>
+                  <li>호출 맥락에 따라 this가 변경될 수 있음</li>
+                </ul>
+              </li>
+              <li>화살표 함수
+                <ul>
+                  <li>this가 고정되어 예상치 못한 this의 문제를 방지함</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3 id="기본적인-this-바인딩-규칙">기본적인 this 바인딩 규칙</h3>
+
+            <ul>
+              <li>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>호출 방식</th>
+                      <th><code class="language-plaintext highlighter-rouge">this</code>가 가리키는 대상</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>일반 함수 호출</td>
+                      <td><code class="language-plaintext highlighter-rouge">window</code> (브라우저) 또는 <code class="language-plaintext highlighter-rouge">undefined</code> (strict mode)</td>
+                    </tr>
+                    <tr>
+                      <td>메서드 호출 (객체 안에서)</td>
+                      <td>해당 객체</td>
+                    </tr>
+                    <tr>
+                      <td>생성자 함수</td>
+                      <td>새로 생성된 인스턴스</td>
+                    </tr>
+                    <tr>
+                      <td><code class="language-plaintext highlighter-rouge">call</code>, <code class="language-plaintext highlighter-rouge">apply</code>, <code class="language-plaintext highlighter-rouge">bind</code> 사용</td>
+                      <td>명시적으로 지정된 객체</td>
+                    </tr>
+                    <tr>
+                      <td>화살표 함수</td>
+                      <td>부모(외부) 스코프의 <code class="language-plaintext highlighter-rouge">this</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+              <li>예시</li>
+            </ul>
+
+            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">//일반 함수 호출</span>
+    <span class="kd">function</span> <span class="nx">showThis</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">showThis</span><span class="p">();</span> <span class="c1">//브라우저: window, strict mode: undefined</span>
+
+    <span class="c1">//화살표 함수</span>
+    <span class="kd">const</span> <span class="nx">user2</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Lily</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">greet</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">arrow</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+            <span class="p">};</span>
+            <span class="nx">arrow</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+    <span class="nx">user2</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span> <span class="c1">//"Lily"</span>
+    <span class="s2">```
+</span></code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="고차-함수">고차 함수</h2>
+
+<h3 id="map">map</h3>
+
+<ul>
+  <li>배열의 각 요소를 변환하여 새로운 배열 생성</li>
+  <li>원본 배열은 유지</li>
+  <li>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">mul</span> <span class="o">=</span> <span class="nx">num</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">*</span> <span class="mi">10</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mul</span><span class="p">);</span> <span class="c1">//[ 10, 20, 30 ]</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="filter">filter</h3>
+
+<ul>
+  <li>배열에서 조건에 맞는 요소만 반환하여 새로운 배열을 생성</li>
+  <li>원본 배열은 유지</li>
+  <li>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">apple</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">banana</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">avocado</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">cherry</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">apricot</span><span class="dl">"</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">aWords</span> <span class="o">=</span> <span class="nx">words</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">word</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">word</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">));</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">aWords</span><span class="p">);</span> <span class="c1">// ["apple", "avocado", "apricot"]</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="reduce">reduce</h3>
+
+<ul>
+  <li>배열의 모든 요소를 순회하며 누적하여 단일 값(accumulator) 생성</li>
+  <li>초기값 설정 가능</li>
+  <li>집계 연산에 유용</li>
+  <li>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">product</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">num</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">acc</span> <span class="o">*</span> <span class="nx">num</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">product</span><span class="p">);</span> <span class="c1">// 120</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="구조-분해-할당">구조 분해 할당</h2>
+
+<ul>
+  <li>배열 구조 분해 할당
+    <ul>
+      <li>배열을 개별 변수로 분해 가능</li>
+      <li>스프레드 연산자(<code class="language-plaintext highlighter-rouge">...</code>)로 나머지 요소 처리 가능</li>
+      <li>
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="p">...</span><span class="nx">remaining</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">remaining</span><span class="p">);</span> <span class="c1">// 10 20 [30, 40, 50]</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>객체 구조 분해 할당</p>
+
+    <ul>
+      <li>객체에서 속성을 변후로 추출 가능</li>
+      <li>기본값 설정 가능</li>
+      <li>
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">brand</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">year</span> <span class="o">=</span> <span class="mi">2023</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span> <span class="na">brand</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Tesla</span><span class="dl">"</span><span class="p">,</span> <span class="na">model</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Model S</span><span class="dl">"</span> <span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">brand</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">year</span><span class="p">);</span> <span class="c1">// Tesla Model S 2023</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>중첩된 객체의 속성도 분해하여 사용 가능</p>
+
+        <ul>
+          <li>
+            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">info</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">firstName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">lastName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Johnson</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="p">{</span>
+  <span class="na">info</span><span class="p">:</span> <span class="p">{</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span> <span class="p">},</span>
+  <span class="nx">age</span><span class="p">,</span>
+<span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">,</span> <span class="nx">age</span><span class="p">);</span> <span class="c1">// Alice Johnson 28</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>함수에서 구조 분해 활용</p>
+
+    <ul>
+      <li>
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">displayCar</span><span class="p">({</span> <span class="nx">brand</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">year</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`The car is a </span><span class="p">${</span><span class="nx">year</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="nx">brand</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="nx">model</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">displayCar</span><span class="p">({</span> <span class="na">brand</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Toyota</span><span class="dl">"</span><span class="p">,</span> <span class="na">model</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Corolla</span><span class="dl">"</span><span class="p">,</span> <span class="na">year</span><span class="p">:</span> <span class="mi">2022</span> <span class="p">});</span>
+<span class="c1">// The car is a 2022 Toyota Corolla</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-03T03:57:05+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
   <li><a href="#generic이란">Generic이란?</a></li>
   <li><a href="#generic의-장점">Generic의 장점</a></li>
   <li><a href="#generic-사용법">Generic 사용법</a></li>
@@ -195,7 +491,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-01-31T08:54:24+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-03T03:57:05+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
   <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
   <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
   <li><a href="#tdd의-장점">TDD의 장점</a></li>
@@ -427,7 +723,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td><a href="http://junit.org/">JUnit</a></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가 (Short-circuit evaluation)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가 (Short-circuit evaluation)" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-01-31T08:54:24+00:00</updated><id>https://nan0silver.github.io/miscellaneous/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가 (Short-circuit evaluation)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가 (Short-circuit evaluation)" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-03T03:57:05+00:00</updated><id>https://nan0silver.github.io/miscellaneous/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
   <li><a href="#단축-평가란">단축 평가란?</a></li>
   <li><a href="#단축-평가-동작-방식">단축 평가 동작 방식</a></li>
   <li><a href="#단축-평가-활용-예시">단축 평가 활용 예시</a></li>
@@ -600,7 +896,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>단축 평가의 반환 값은 마지막으로 평가된 표현식의 결과이다.</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-31T08:54:24+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-03T03:57:05+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
   <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
   <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
   <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
@@ -678,7 +974,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>극단적인 입력값을 대입해보기</li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-01-31T08:54:24+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-03T03:57:05+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
   <li><a href="#git-rebase">git rebase</a></li>
   <li><a href="#git-rebase-vs-git-merge">git rebase VS git merge</a></li>
   <li><a href="#git-rebase-사용법">git rebase 사용법</a></li>
@@ -772,7 +1068,7 @@ git rebase main
       <li>원격 브랜치의 변경 사항을 병합 대신 리베이스로 가져올 때 사용</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-31T08:54:24+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-03T03:57:05+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
   <li><a href="#git-clone">git clone</a></li>
   <li><a href="#git-fork">git fork</a></li>
   <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
@@ -1040,7 +1336,7 @@ git push origin &lt;branch-name&gt;
       </li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-31T08:54:24+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-03T03:57:05+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
   <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
   <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
   <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
@@ -1186,7 +1482,7 @@ git push origin &lt;branch-name&gt;
     </ul>
   </li>
   <li>팀 또는 프로젝트의 코딩 컨벤션에 따라 일관성 유지가 중요 (가독성을 위해)</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-01-31T08:54:24+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-02-03T03:57:05+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
   <li><a href="#flexflexbox">Flex(Flexbox)</a></li>
   <li><a href="#주요-flexbox-속성">주요 Flexbox 속성 20개</a></li>
   <li><a href="#예제-통합-코드">예제: 통합 코드</a></li>
@@ -1559,7 +1855,7 @@ git push origin &lt;branch-name&gt;
       <li>다 깼다!</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+00:00</published><updated>2025-01-31T08:54:24+00:00</updated><id>https://nan0silver.github.io/miscellaneous/responsive</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+00:00</published><updated>2025-02-03T03:57:05+00:00</updated><id>https://nan0silver.github.io/miscellaneous/responsive</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
   <li><a href="#responsive-반응형">Responsive</a></li>
   <li><a href="#reactive-반응형">Reactive</a></li>
   <li><a href="#responsive-vs-reactive">Responsive VS Reactive</a></li>
@@ -1767,156 +2063,4 @@ git push origin &lt;branch-name&gt;
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Float</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/" rel="alternate" type="text/html" title="[HTML] CSS Float" /><published>2025-01-19T00:00:00+00:00</published><updated>2025-01-31T08:54:24+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-float</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/"><![CDATA[<ul>
-  <li><a href="#css-float이란">CSS Float란</a></li>
-  <li><a href="#clearfix">Clearfix</a></li>
-  <li><a href="#clear-속성">Clear 속성</a></li>
-  <li><a href="#clearfix-vs-clear-속성">Clearfix VS Clear</a></li>
-  <li><a href="#float-사용-시-주의사항">Float 사용시 주의사항</a></li>
-  <li><a href="#결론">결론</a></li>
-</ul>
-
-<hr />
-
-<h2 id="css-float이란">CSS Float이란?</h2>
-
-<ul>
-  <li>
-    <p><strong>Float의 기본 개념</strong></p>
-
-    <ul>
-      <li>요소가 normal flow에서 벗어나 부모 요소의 왼쪽 또는 오른쪽으로 이동한다.</li>
-      <li>텍스트와 inline 요소들이 float된 요소 주변을 감싼다.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Float의 사용</strong></p>
-    <ul>
-      <li>전통적으로 다단 레이아웃을 만드는 데 사용된다.</li>
-      <li>이미지나 다른 요소를 텍스트 흐름 내에 배치하는 데 유용</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="clearfix">Clearfix</h2>
-
-<ul>
-  <li>Float의 문제점
-    <ul>
-      <li><strong>부모 요소 높이 붕괴</strong> float된 요소는 부모 요소의 높이에 영향을 주지 않아 부모 요소가 높이를 잃을 수 있다.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Clearfix</strong></p>
-
-    <ul>
-      <li>이 문제를 해결하기 위해 clearfix 기법이 사용된다.</li>
-      <li><code class="language-plaintext highlighter-rouge">overflow: auto</code> 또는 <code class="language-plaintext highlighter-rouge">overflow: hidden</code>을 부모 요소에 적용한다.</li>
-      <li>가상 요소 (<code class="language-plaintext highlighter-rouge">::after</code>)를 사용하여 float를 해제한다.</li>
-    </ul>
-  </li>
-  <li><strong>Clearfix 방법:</strong>
-    <ul>
-      <li><strong>CSS를 이용한 Clearfix:</strong>
-        <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.clearfix</span><span class="nd">::after</span> <span class="p">{</span>
-  <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
-  <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>        </div>
-      </li>
-      <li>부모 요소에 <code class="language-plaintext highlighter-rouge">clearfix</code> 클래스를 추가하여 float 문제를 해결한다.</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h2 id="clear-속성">Clear 속성</h2>
-
-<ul>
-  <li><strong>핵심 문제</strong>: 특정 요소가 바로 앞에 있는 float 요소의 영향을 받아 원하는 위치에 배치되지 않을 수 있다.</li>
-  <li><strong>clear 속성의 역할</strong>:
-    <ul>
-      <li>특정 요소가 이전의 float 요소 아래로 내려가도록 강제하여 float의 영향을 방지한다.</li>
-      <li>float 요소 다음에 나오는 요소에 주로 사용된다.</li>
-    </ul>
-  </li>
-</ul>
-
-<p><strong>사용 예시 (clear 속성):</strong></p>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.element</span> <span class="p">{</span>
-  <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">clear: both</code>: 왼쪽과 오른쪽의 float 요소로부터 벗어남.</li>
-  <li>특정 요소 자체의 위치를 조정하기 위한 용도로 사용된다.</li>
-</ul>
-
-<hr />
-
-<h2 id="clearfix-vs-clear-속성">Clearfix VS Clear 속성</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th><strong>개념</strong></th>
-      <th><strong>Clearfix</strong></th>
-      <th><strong>Clear 속성</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>적용 대상</strong></td>
-      <td>부모 요소가 float된 자식 요소를 감싸도록 해결</td>
-      <td>특정 요소가 float 요소의 영향을 받지 않도록 해결</td>
-    </tr>
-    <tr>
-      <td><strong>해결 문제</strong></td>
-      <td>부모 요소 높이 붕괴 문제</td>
-      <td>특정 요소의 위치 문제</td>
-    </tr>
-    <tr>
-      <td><strong>주요 방식</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">overflow</code> 속성, <code class="language-plaintext highlighter-rouge">::after</code> 가상 요소</td>
-      <td><code class="language-plaintext highlighter-rouge">clear: left/right/both</code> 속성</td>
-    </tr>
-    <tr>
-      <td><strong>사용 위치</strong></td>
-      <td>부모 요소</td>
-      <td>float 요소 바로 다음에 나오는 요소</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<ul>
-  <li><strong>부모 요소의 높이 붕괴 문제</strong>를 해결하려면 <strong>Clearfix</strong>를 사용한다.</li>
-  <li><strong>요소가 float의 영향을 받아 잘못된 위치에 있을 때</strong>는 <strong>clear 속성</strong>을 사용한다.</li>
-</ul>
-
-<hr />
-
-<h3 id="float-사용-시-주의사항">Float 사용 시 주의사항</h3>
-
-<ul>
-  <li>Float는 레이아웃의 기본적인 도구이지만, Flexbox나 Grid와 같은 현대적인 레이아웃 기술로 대체될 수 있다.</li>
-  <li>복잡한 레이아웃에서는 유지보수가 어려워질 수 있다.</li>
-  <li><strong>Float의 대안:</strong>
-    <ul>
-      <li><strong>Flexbox:</strong> 1차원 레이아웃에 적합하며, 요소의 정렬 및 간격 조절에 강력하다.</li>
-      <li><strong>CSS Grid:</strong> 2차원 레이아웃에 적합하며, 행과 열을 기반으로 복잡한 레이아웃을 만들 수 있다.</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="결론">결론</h3>
-
-<ul>
-  <li>CSS Float는 여전히 유용한 기술이지만, 현대적인 레이아웃 기술과 함께 이해하고 사용하는 것이 중요</li>
-  <li>프로젝트의 요구 사항에 따라 적절한 레이아웃 기술을 선택해야 함</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지 레이아웃을 만들때 사용되는 CSS Float에 대해 알아보자.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry></feed>
