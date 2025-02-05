@@ -1,7 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-03T06:27:03+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-05T02:15:26+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-03T06:26:16+00:00</updated><id>https://nan0silver.github.io/miscellaneous/js-function</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-30-js-function/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-02-04-test/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-05T02:14:37+00:00</updated><id>https://nan0silver.github.io/javascript/test</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-test/"><![CDATA[<ul>
+  <li><a href="#함수-function">함수 (function)</a></li>
+  <li><a href="#화살표-함수">화살표 함수</a></li>
+  <li><a href="#고차-함수">고차 함수 (map, filter, reduce)</a></li>
+  <li><a href="#구조-분해-할당">구조 분해 할당</a></li>
+</ul>
+
+<hr />
+
+<h2 id="함수-function">함수 (function)</h2>
+
+<ul>
+  <li>
+    <p>함수 선언</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">function</code>으로 선언</li>
+      <li>호이스팅 (hoisting)</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-05T02:14:37+00:00</updated><id>https://nan0silver.github.io/miscellaneous/js-function</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-30-js-function/"><![CDATA[<ul>
   <li><a href="#함수-function">함수 (function)</a></li>
   <li><a href="#화살표-함수">화살표 함수</a></li>
   <li><a href="#고차-함수">고차 함수 (map, filter, reduce)</a></li>
@@ -297,7 +317,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-03T06:26:16+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-05T02:14:37+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
   <li><a href="#generic이란">Generic이란?</a></li>
   <li><a href="#generic의-장점">Generic의 장점</a></li>
   <li><a href="#generic-사용법">Generic 사용법</a></li>
@@ -491,7 +511,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-03T06:26:16+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-05T02:14:37+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
   <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
   <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
   <li><a href="#tdd의-장점">TDD의 장점</a></li>
@@ -723,7 +743,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td><a href="http://junit.org/">JUnit</a></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가 (Short-circuit evaluation)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가 (Short-circuit evaluation)" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-03T06:26:16+00:00</updated><id>https://nan0silver.github.io/miscellaneous/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가 (Short-circuit evaluation)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가 (Short-circuit evaluation)" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-05T02:14:37+00:00</updated><id>https://nan0silver.github.io/miscellaneous/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
   <li><a href="#단축-평가란">단축 평가란?</a></li>
   <li><a href="#단축-평가-동작-방식">단축 평가 동작 방식</a></li>
   <li><a href="#단축-평가-활용-예시">단축 평가 활용 예시</a></li>
@@ -896,7 +916,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>단축 평가의 반환 값은 마지막으로 평가된 표현식의 결과이다.</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-03T06:26:16+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-05T02:14:37+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
   <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
   <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
   <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
@@ -974,7 +994,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>극단적인 입력값을 대입해보기</li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-03T06:26:16+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-05T02:14:37+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
   <li><a href="#git-rebase">git rebase</a></li>
   <li><a href="#git-rebase-vs-git-merge">git rebase VS git merge</a></li>
   <li><a href="#git-rebase-사용법">git rebase 사용법</a></li>
@@ -1068,7 +1088,7 @@ git rebase main
       <li>원격 브랜치의 변경 사항을 병합 대신 리베이스로 가져올 때 사용</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-03T06:26:16+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-05T02:14:37+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
   <li><a href="#git-clone">git clone</a></li>
   <li><a href="#git-fork">git fork</a></li>
   <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
@@ -1336,7 +1356,7 @@ git push origin &lt;branch-name&gt;
       </li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-03T06:26:16+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-05T02:14:37+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
   <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
   <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
   <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
@@ -1482,7 +1502,7 @@ git push origin &lt;branch-name&gt;
     </ul>
   </li>
   <li>팀 또는 프로젝트의 코딩 컨벤션에 따라 일관성 유지가 중요 (가독성을 위해)</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-02-03T06:26:16+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[HTML] CSS Flex</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[HTML] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-02-05T02:14:37+00:00</updated><id>https://nan0silver.github.io/miscellaneous/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/"><![CDATA[<ul>
   <li><a href="#flexflexbox">Flex(Flexbox)</a></li>
   <li><a href="#주요-flexbox-속성">주요 Flexbox 속성 20개</a></li>
   <li><a href="#예제-통합-코드">예제: 통합 코드</a></li>
@@ -1855,212 +1875,4 @@ git push origin &lt;branch-name&gt;
       <li>다 깼다!</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Responsive VS Reactive</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/" rel="alternate" type="text/html" title="[Etc] Responsive VS Reactive" /><published>2025-01-20T00:00:00+00:00</published><updated>2025-02-03T06:26:16+00:00</updated><id>https://nan0silver.github.io/miscellaneous/responsive</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/"><![CDATA[<ul>
-  <li><a href="#responsive-반응형">Responsive</a></li>
-  <li><a href="#reactive-반응형">Reactive</a></li>
-  <li><a href="#responsive-vs-reactive">Responsive VS Reactive</a></li>
-  <li><a href="#결합된-활용">결합된 활용</a></li>
-</ul>
-
-<hr />
-
-<h2 id="responsive-반응형">Responsive (반응형)</h2>
-
-<ul>
-  <li>Responsive는 주로 UI/UX 디자인이나 프론트엔트 개발에서 사용되는 개념</li>
-  <li>애플리케이션 또는 웹 페이지가 화면 크기, 해상도, 디바이스 특성에 따라 적절히 변하도록 설계된 것을 의미</li>
-  <li>특징
-    <ul>
-      <li>주요 초점
-        <ul>
-          <li>레이아웃 및 디자인이 다양한 화면 환경(데스크톱, 태블릿, 모바일)에 적응</li>
-        </ul>
-      </li>
-      <li>기술
-        <ul>
-          <li>주로 CSS, Flexbox, Grid, Viewport 등을 사용</li>
-        </ul>
-      </li>
-      <li>목적
-        <ul>
-          <li>사용자 경험을 개선하고, 어떤 장치에서도 보기 좋은 디자인을 제공</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>예시
-    <ul>
-      <li>웹사이트 반응형 디자인
-        <ul>
-          <li>큰 화면에서는 여러 열(column)을 보여주고, 작은 화면에서는 한 열로 정렬</li>
-          <li>이미지와 텍스트 사이즈가 디바이스 크기에 따라 자동으로 조정</li>
-        </ul>
-      </li>
-      <li><a href="https://getbootstrap.kr/">부트스트랩 (Bootstrap)</a>
-        <ul>
-          <li>col-m-6와 같은 클래스 이름을 사용하여 화면 크기에 따라 레이아웃을 조정</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="reactive-반응형">Reactive (반응형)</h2>
-
-<ul>
-  <li>Reactive는 주로 프로그래밍 패러다임과 관련이 있음</li>
-  <li>시스템이 변화를 감지하고 즉각적으로 동작을 수행하는 것을 의미</li>
-  <li>특징
-    <ul>
-      <li>주요 초점
-        <ul>
-          <li>데이터와 상태의 변화에 따라 UI가 자동으로 업데이트</li>
-        </ul>
-      </li>
-      <li>기술
-        <ul>
-          <li>Reactive Programming과 관련된 라이브러리와 프레임워크를 활용</li>
-          <li>ex) RxJS, React, Vue, Svelte 등</li>
-        </ul>
-      </li>
-      <li>목적
-        <ul>
-          <li>상태 관리와 데이터 흐름을 단순화하고, 사용자 입력 또는 데이터 변화에 실시간으로 반응</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>예시</p>
-
-    <ul>
-      <li>
-        <p>React.js에서의 State변화</p>
-
-        <ul>
-          <li>사용자가 버튼을 클릭하면 상태가 변경되고, 해당 상태에 따라 UI가 즉각적으로 업데이트</li>
-        </ul>
-
-        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="kd">function</span> <span class="nx">Counter</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Count</span><span class="p">:</span> <span class="p">{</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Increase</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>RxJS 스트림</p>
-
-        <ul>
-          <li>데이터를 스트림(stream) 형태로 처리하고, 데이터 변경에 실시간으로 반응</li>
-        </ul>
-
-        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">fromEvent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">rxjs</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="kd">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">myButton</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">clicks</span> <span class="o">=</span> <span class="nx">fromEvent</span><span class="p">(</span><span class="nx">button</span><span class="p">,</span> <span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="nx">clicks</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Button clicked!</span><span class="dl">"</span><span class="p">));</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="responsive-vs-reactive">Responsive VS Reactive</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th><strong>측면</strong></th>
-      <th><strong>Responsive</strong></th>
-      <th><strong>Reactive</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>적용 범위</td>
-      <td>주로 UI/UX와 레이아웃 디자인</td>
-      <td>상태 관리와 데이터 흐름</td>
-    </tr>
-    <tr>
-      <td>목적</td>
-      <td>화면 크기에 따른 레이아웃 및 스타일 변경</td>
-      <td>데이터 및 상태 변경에 따른 즉각적인 반응</td>
-    </tr>
-    <tr>
-      <td>사용 기술</td>
-      <td>CSS, Flexbox, Grid 등</td>
-      <td>React, RxJS, Vue 등 상태 기반 프레임워크</td>
-    </tr>
-    <tr>
-      <td>초점</td>
-      <td>디바이스별 최적화된 레이아웃 제공</td>
-      <td>데이터의 흐름과 UI 동기화</td>
-    </tr>
-    <tr>
-      <td>예시</td>
-      <td>모바일에서 1열 레이아웃, 데스크톱에서 3열 레이아웃</td>
-      <td>버튼 클릭 시 상태 업데이트 후 UI 리렌더링</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="결합된-활용">결합된 활용</h2>
-
-<ul>
-  <li>Responsive와 Reactive는 함께 사용될 때 더 큰 효과를 발휘한다.</li>
-  <li>예를 들어, React.js로 만들어진 SPA(Single Page Application)에서 반응형 디자인(CSS)을 사용해 다양한 디바이스를 지원하면서, React의 상태 관리(State Management)를 통해 UI를 데이터와 동기화할 수 있음.</li>
-  <li>
-    <p>예시</p>
-
-    <ul>
-      <li>Reaponsive는 레이아웃과 UI에 초점을 맞추고, Reactive는 데이터와 상태 관리에 집중
-        <ul>
-          <li>둘이 상호보완적!</li>
-        </ul>
-      </li>
-    </ul>
-
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// Responsive 스타일 포함</span>
-
-<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="p">[</span><span class="nx">isDarkMode</span><span class="p">,</span> <span class="nx">setIsDarkMode</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="s2">`app </span><span class="p">${</span><span class="nx">isDarkMode</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">dark-mode</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="p">}</span><span class="s2">`</span><span class="p">}</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">responsive</span> <span class="nx">and</span> <span class="nx">reactive</span> <span class="nx">app</span><span class="o">!&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span>            <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">setIsDarkMode</span><span class="p">(</span><span class="o">!</span><span class="nx">isDarkMode</span><span class="p">)}</span><span class="o">&gt;</span>
-                <span class="nx">Toggle</span> <span class="nx">Dark</span> <span class="nx">Mode</span>
-            <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>    <span class="p">);</span>
-<span class="p">}</span>
-
-<span class="cm">/* App.css */</span>
-<span class="p">.</span><span class="nx">app</span> <span class="p">{</span>
-    <span class="nl">padding</span><span class="p">:</span> <span class="mi">20</span><span class="nx">px</span><span class="p">;</span>
-    <span class="nl">transition</span><span class="p">:</span> <span class="nx">background</span><span class="o">-</span><span class="nx">color</span> <span class="mf">0.3</span><span class="nx">s</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nx">dark</span><span class="o">-</span><span class="nx">mode</span> <span class="p">{</span>
-    <span class="nx">background</span><span class="o">-</span><span class="nx">color</span><span class="p">:</span> <span class="err">#</span><span class="mi">333</span><span class="p">;</span>
-    <span class="nl">color</span><span class="p">:</span> <span class="err">#</span><span class="nx">fff</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">@</span><span class="nd">media</span> <span class="p">(</span><span class="nx">max</span><span class="o">-</span><span class="nx">width</span><span class="p">:</span> <span class="mi">768</span><span class="nx">px</span><span class="p">)</span> <span class="p">{</span>
-    <span class="p">.</span><span class="nx">app</span> <span class="p">{</span>
-        <span class="nx">font</span><span class="o">-</span><span class="nx">size</span><span class="p">:</span> <span class="mi">14</span><span class="nx">px</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>    </div>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry></feed>
