@@ -10,7 +10,7 @@ slug: javascript
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  JavaScript에 관련된 공부기록입니다.
+  JavaScript, HTML, CSS에 관련된 공부기록입니다.
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
