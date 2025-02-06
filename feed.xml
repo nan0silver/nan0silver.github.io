@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-06T07:51:56+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-06T08:21:17+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-06T07:51:11+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
   <li><a href="#로컬-스토리지-local-storage-vs-세션-스토리지-session-storage">로컬 스토리지 VS 세션 스토리지</a></li>
   <li><a href="#데이터-유지-기간">데이터 유지 기간</a></li>
   <li><a href="#접근-범위">접근 범위</a></li>
@@ -100,7 +100,214 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-06T07:51:11+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
+  <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
+  <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
+  <li><a href="#tdd의-장점">TDD의 장점</a></li>
+  <li><a href="#tdd-예제-java">TDD 예제 (Java)</a></li>
+  <li><a href="#tdd-vs-전통적인-개발-방식">TDD VS 전통적인 개발 방식</a></li>
+  <li><a href="#tdd가-필요한-경우">TDD가 필요한 경우</a></li>
+  <li><a href="#tdd의-단점">TDD의 단점</a></li>
+  <li><a href="#xunit">xUnit</a></li>
+</ul>
+
+<hr />
+
+<h2 id="직렬화serialization과-역직렬화deserialization--️-">직렬화(Serialization)과 역직렬화(Deserialization) 💾 ➡️ 💻</h2>
+
+<ul>
+  <li><strong>직렬화</strong>
+    <ul>
+      <li>프로그램에서 사용하는 데이터를 파일이나 네트워크를 통해 전송하거나 저장하기 쉬운 형태로 변환하는 과정</li>
+    </ul>
+  </li>
+  <li><strong>역직렬화</strong>
+    <ul>
+      <li>그 반대로, 저장되거나 전송된 데이터를 다시 프로그램에서 사용할 수 있는 원래의 데이터 형태로 복원하는 과정</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="직렬화-serialization-이란-">직렬화 (Serialization) 이란? 📦</h2>
+
+<p><strong>직렬화</strong>는 메모리 상에 있는 객체나 데이터 구조를 바이트 스트림 형태로 변환하는 것을 의미한다.</p>
+
+<blockquote>
+  <p>마치 택배 상자에 물건을 포장하는 것처럼, 데이터를 “직렬” 형태로 나열하여 보관하거나 전송하기 좋게 만드는 것.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><strong>주요 목적</strong>:</p>
+
+    <ul>
+      <li><strong>데이터 저장</strong>: 객체의 상태를 파일이나 데이터베이스에 저장하여 영구적으로 보관 💾</li>
+      <li><strong>데이터 전송</strong>: 네트워크를 통해 객체를 다른 시스템으로 전송 🌐</li>
+      <li><strong>원격 호출 (RPC, RMI)</strong>: 객체를 네트워크를 통해 다른 시스템의 메소드 인자로 전달 📞</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>예시</strong>:</p>
+    <ul>
+      <li>객체를 JSON이나 XML 형태로 변환하여 텍스트 파일에 저장</li>
+      <li>객체를 바이너리 형태로 변환하여 네트워크 소켓을 통해 전송</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="역직렬화-deserialization-이란--️-">역직렬화 (Deserialization) 이란? 📦 ➡️ 💻</h2>
+
+<p><strong>역직렬화</strong>는 직렬화된 바이트 스트림을 다시 원래의 객체나 데이터 구조로 복원하는 과정</p>
+
+<blockquote>
+  <p>택배 상자를 열어 내용물을 꺼내는 것과 비슷하게, 직렬화된 데이터를 “역으로 직렬”화하여 프로그램이 이해할 수 있는 형태로 되돌리는 것.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><strong>주요 목적</strong>:</p>
+
+    <ul>
+      <li><strong>저장된 데이터 로드</strong>: 파일이나 데이터베이스에서 직렬화된 객체를 읽어와 메모리에 복원 💾 ➡️ 💻</li>
+      <li><strong>전송된 데이터 수신</strong>: 네트워크를 통해 수신된 직렬화된 데이터를 객체로 변환 🌐 ➡️ 💻</li>
+      <li><strong>원격 호출 결과 처리</strong>: 원격 시스템으로부터 직렬화된 객체 형태로 결과를 받아 원래 객체로 복원 📞 ➡️ 💻</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>예시</strong>:</p>
+    <ul>
+      <li>JSON이나 XML 텍스트 파일을 읽어 객체로 복원</li>
+      <li>바이너리 데이터를 네트워크 소켓으로부터 읽어 객체로 복원</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="언어별-직렬화-및-역직렬화-예시">언어별 직렬화 및 역직렬화 예시</h2>
+
+<h3 id="javascripnt-nodejs">JavaScripnt (Node.js)</h3>
+
+<p>JavaScript에서는 기본적으로 JSON 객체를 사용하여 직렬화 및 역직렬화를 많이 수행</p>
+
+<ul>
+  <li>바이너리 직렬화는 Buffer 객체 등을 활용해야 합니다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 직렬화 (Serialization)</span>
+<span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">David</span><span class="dl">"</span><span class="p">,</span> <span class="na">city</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Seoul</span><span class="dl">"</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">jsonString</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// 📦 -&gt; JSON String</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jsonString</span><span class="p">);</span> <span class="c1">// {"name":"David","city":"Seoul"}</span>
+
+<span class="c1">// 역직렬화 (Deserialization)</span>
+<span class="kd">const</span> <span class="nx">loadedData</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">jsonString</span><span class="p">);</span> <span class="c1">// JSON String -&gt; 📦 -&gt; 💻</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">loadedData</span><span class="p">);</span> <span class="c1">// { name: 'David', city: 'Seoul' }</span>
+</code></pre></div></div>
+
+<h3 id="python">Python</h3>
+
+<p>Python에서는 <code class="language-plaintext highlighter-rouge">pickle</code> 모듈을 사용하여 직렬화 및 역직렬화를 기본적으로 지원한다.</p>
+
+<ul>
+  <li>JSON, <code class="language-plaintext highlighter-rouge">marshal</code> 등 다양한 모듈도 활용 가능</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">import</span> <span class="nn">pickle</span>
+
+    <span class="c1"># 직렬화 (Serialization)
+</span>    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'Alice'</span><span class="p">,</span> <span class="s">'age'</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data.pickle'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="c1"># 📦 -&gt; 💾
+</span>
+    <span class="c1"># 역직렬화 (Deserialization)
+</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data.pickle'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">loaded_data</span> <span class="o">=</span> <span class="n">pickle</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="c1"># 💾 -&gt; 📦 -&gt; 💻
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">loaded_data</span><span class="p">)</span> <span class="c1"># {'name': 'Alice', 'age': 30}
+</span></code></pre></div></div>
+
+<h3 id="java">Java</h3>
+
+<p>Java는 <code class="language-plaintext highlighter-rouge">java.io.Serializable</code> 인터페이스를 구현한 클래스에 대해 직렬화를 기본적으로 지원합니다.</p>
+
+<ul>
+  <li>JSON 라이브러리 (Jackson, Gson 등)를 사용하여 JSON 직렬화/역직렬화도 많이 사용됨.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Person</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Person{name='"</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">"', age="</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="sc">'}'</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SerializationExample</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 직렬화 (Serialization)</span>
+        <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Bob"</span><span class="o">,</span> <span class="mi">25</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">FileOutputStream</span> <span class="n">fileOut</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"person.ser"</span><span class="o">);</span>
+             <span class="nc">ObjectOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectOutputStream</span><span class="o">(</span><span class="n">fileOut</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">out</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">person</span><span class="o">);</span> <span class="c1">// 📦 -&gt; 💾</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Serialized data is saved in person.ser"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">i</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 역직렬화 (Deserialization)</span>
+        <span class="nc">Person</span> <span class="n">loadedPerson</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">FileInputStream</span> <span class="n">fileIn</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"person.ser"</span><span class="o">);</span>
+             <span class="nc">ObjectInputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span><span class="n">fileIn</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">loadedPerson</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Person</span><span class="o">)</span> <span class="n">in</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span> <span class="c1">// 💾 -&gt; 📦 -&gt; 💻</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">i</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ClassNotFoundException</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Person class not found"</span><span class="o">);</span>
+            <span class="n">c</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Deserialized Person: "</span> <span class="o">+</span> <span class="n">loadedPerson</span><span class="o">);</span> <span class="c1">// Deserialized Person: Person{name='Bob', age=25}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="kotlin">Kotlin</h3>
+
+<p>Kotlin은 Java와 유사하게 <code class="language-plaintext highlighter-rouge">java.io.Serializable</code> 인터페이스를 사용하거나, Jackson, Gson 같은 JSON 라이브러리를 활용</p>
+
+<ul>
+  <li>Kotlin Serialization library를 사용하여 더 간편하게 직렬화/역직렬화를 할 수도 있음</li>
+</ul>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">import</span> <span class="nn">kotlinx.serialization.*</span>
+    <span class="k">import</span> <span class="nn">kotlinx.serialization.json.*</span>
+    <span class="k">import</span> <span class="nn">java.io.*</span>
+
+    <span class="nd">@Serializable</span>
+    <span class="kd">data class</span> <span class="nc">User</span><span class="p">(</span><span class="kd">val</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span> <span class="kd">val</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span>
+
+    <span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 직렬화 (Serialization)</span>
+        <span class="kd">val</span> <span class="py">user</span> <span class="p">=</span> <span class="nc">User</span><span class="p">(</span><span class="s">"Eve"</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+        <span class="kd">val</span> <span class="py">json</span> <span class="p">=</span> <span class="nc">Json</span><span class="p">.</span><span class="nf">encodeToString</span><span class="p">(</span><span class="nc">User</span><span class="p">.</span><span class="nf">serializer</span><span class="p">(),</span> <span class="n">user</span><span class="p">)</span> <span class="err">#</span> <span class="err">📦</span> <span class="p">-&gt;</span> <span class="nc">JSON</span> <span class="nc">String</span>
+        <span class="nf">println</span><span class="p">(</span><span class="n">json</span><span class="p">)</span> <span class="err">#</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span><span class="s">"Eve"</span><span class="p">,</span><span class="s">"age"</span><span class="p">:</span><span class="mi">28</span><span class="p">}</span>
+
+        <span class="c1">// 역직렬화 (Deserialization)</span>
+        <span class="kd">val</span> <span class="py">loadedUser</span> <span class="p">=</span> <span class="nc">Json</span><span class="p">.</span><span class="nf">decodeFromString</span><span class="p">(</span><span class="nc">User</span><span class="p">.</span><span class="nf">serializer</span><span class="p">(),</span> <span class="n">json</span><span class="p">)</span> <span class="err">#</span> <span class="nc">JSON</span> <span class="nc">String</span> <span class="p">-&gt;</span> <span class="err">📦</span> <span class="p">-&gt;</span> <span class="err">💻</span>
+        <span class="nf">println</span><span class="p">(</span><span class="n">loadedUser</span><span class="p">)</span> <span class="err">#</span> <span class="nc">User</span><span class="p">(</span><span class="n">name</span><span class="p">=</span><span class="nc">Eve</span><span class="p">,</span> <span class="n">age</span><span class="p">=</span><span class="mi">28</span><span class="p">)</span>
+
+
+        <span class="c1">// Java Serializable 사용 (Java와 동일)</span>
+        <span class="c1">// ... (Java 예시 코드와 유사)</span>
+    <span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
   <li><a href="#함수-function">함수 (function)</a></li>
   <li><a href="#화살표-함수">화살표 함수</a></li>
   <li><a href="#고차-함수">고차 함수 (map, filter, reduce)</a></li>
@@ -396,7 +603,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-06T07:51:11+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
   <li><a href="#generic이란">Generic이란?</a></li>
   <li><a href="#generic의-장점">Generic의 장점</a></li>
   <li><a href="#generic-사용법">Generic 사용법</a></li>
@@ -590,7 +797,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-06T07:51:11+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
   <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
   <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
   <li><a href="#tdd의-장점">TDD의 장점</a></li>
@@ -822,7 +1029,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td><a href="http://junit.org/">JUnit</a></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가 (Short-circuit evaluation)</title><link href="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가 (Short-circuit evaluation)" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-06T07:51:11+00:00</updated><id>https://nan0silver.github.io/javascript/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가</title><link href="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/javascript/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
   <li><a href="#단축-평가란">단축 평가란?</a></li>
   <li><a href="#단축-평가-동작-방식">단축 평가 동작 방식</a></li>
   <li><a href="#단축-평가-활용-예시">단축 평가 활용 예시</a></li>
@@ -831,7 +1038,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 <hr />
 
-<h2 id="단축-평가란">단축 평가란?</h2>
+<h2 id="단축-평가-short-circuit-evaluation">단축 평가 (Short-circuit evaluation)</h2>
 
 <ul>
   <li>논리 연산자 (<code class="language-plaintext highlighter-rouge">&amp;&amp;</code>, <code class="language-plaintext highlighter-rouge">||</code>) 를 평가할 때, <strong>결과를 미리 결정할 수 있다면 나머지 표현식을 평가하지 않고 곧바로 결과를 반환하는 것</strong>
@@ -995,7 +1202,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>단축 평가의 반환 값은 마지막으로 평가된 표현식의 결과이다.</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-06T07:51:11+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
   <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
   <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
   <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
@@ -1073,7 +1280,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>극단적인 입력값을 대입해보기</li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-06T07:51:11+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
   <li><a href="#git-rebase">git rebase</a></li>
   <li><a href="#git-rebase-vs-git-merge">git rebase VS git merge</a></li>
   <li><a href="#git-rebase-사용법">git rebase 사용법</a></li>
@@ -1167,7 +1374,7 @@ git rebase main
       <li>원격 브랜치의 변경 사항을 병합 대신 리베이스로 가져올 때 사용</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-06T07:51:11+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
   <li><a href="#git-clone">git clone</a></li>
   <li><a href="#git-fork">git fork</a></li>
   <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
@@ -1435,7 +1642,7 @@ git push origin &lt;branch-name&gt;
       </li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-06T07:51:11+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
   <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
   <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
   <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
@@ -1581,377 +1788,4 @@ git push origin &lt;branch-name&gt;
     </ul>
   </li>
   <li>팀 또는 프로젝트의 코딩 컨벤션에 따라 일관성 유지가 중요 (가독성을 위해)</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry><entry><title type="html">[CSS] CSS Flex</title><link href="https://nan0silver.github.io/javascript/2025-01-21-css-flex/" rel="alternate" type="text/html" title="[CSS] CSS Flex" /><published>2025-01-21T00:00:00+00:00</published><updated>2025-02-06T07:51:11+00:00</updated><id>https://nan0silver.github.io/javascript/css-flex</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-21-css-flex/"><![CDATA[<ul>
-  <li><a href="#flexflexbox">Flex(Flexbox)</a></li>
-  <li><a href="#주요-flexbox-속성">주요 Flexbox 속성 20개</a></li>
-  <li><a href="#예제-통합-코드">예제: 통합 코드</a></li>
-  <li><a href="#flex를-이용한-게임">flex를 이용한 게임</a></li>
-</ul>
-
-<hr />
-
-<h2 id="flexflexbox">Flex(Flexbox)</h2>
-
-<ul>
-  <li>Flexbox(Flexible Box Layout Module)</li>
-  <li>컨테이너 내의 아이템 간 공간 배분과 정렬 기능을 제공하는 1차원 레이아웃 모델</li>
-  <li>
-    <p>주로 행이나 열 단위로 작동하며, 복잡한 계산 없이도 요소들의 크기와 순서를 유연하게 배치할 수 있음</p>
-  </li>
-  <li>장점
-    <ul>
-      <li>복잡한 레이아웃을 간단하게 구현</li>
-      <li>컨테이너 내 요소의 크기가 불명확하거나 동적인 경우에도 효과적으로 대응</li>
-      <li>요소의 순서를 CSS로 변경할 수 있어 반응형 디자인에 유용</li>
-      <li>float나 Position을 사용할 때보다 코드가 간결해짐</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="주요-flexbox-속성">주요 Flexbox 속성</h2>
-
-<p>CSS3 Flexbox에서 가장 많이 사용되는 <strong>20개의 속성(property)</strong>을 아래에 정리했습니다. 각각의 속성에 대한 간략한 설명과 함께 예제 코드를 제공합니다.</p>
-
-<hr />
-
-<h3 id="1-display-flex"><strong>1. <code class="language-plaintext highlighter-rouge">display: flex</code></strong></h3>
-
-<ul>
-  <li>Flexbox를 활성화.</li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="2-flex-direction"><strong>2. <code class="language-plaintext highlighter-rouge">flex-direction</code></strong></h3>
-
-<ul>
-  <li>주축의 방향 설정.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">row</code> (기본값), <code class="language-plaintext highlighter-rouge">row-reverse</code>, <code class="language-plaintext highlighter-rouge">column</code>, <code class="language-plaintext highlighter-rouge">column-reverse</code>.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
-  <span class="nl">flex-direction</span><span class="p">:</span> <span class="n">column</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="3-justify-content"><strong>3. <code class="language-plaintext highlighter-rouge">justify-content</code></strong></h3>
-
-<ul>
-  <li>주축에서 항목 정렬.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">flex-start</code>, <code class="language-plaintext highlighter-rouge">flex-end</code>, <code class="language-plaintext highlighter-rouge">center</code>, <code class="language-plaintext highlighter-rouge">space-between</code>, <code class="language-plaintext highlighter-rouge">space-around</code>, <code class="language-plaintext highlighter-rouge">space-evenly</code>.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
-  <span class="nl">justify-content</span><span class="p">:</span> <span class="n">space-between</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="4-align-items"><strong>4. <code class="language-plaintext highlighter-rouge">align-items</code></strong></h3>
-
-<ul>
-  <li>교차축에서 항목 정렬.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">stretch</code> (기본값), <code class="language-plaintext highlighter-rouge">flex-start</code>, <code class="language-plaintext highlighter-rouge">flex-end</code>, <code class="language-plaintext highlighter-rouge">center</code>, <code class="language-plaintext highlighter-rouge">baseline</code>.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
-  <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="5-align-content"><strong>5. <code class="language-plaintext highlighter-rouge">align-content</code></strong></h3>
-
-<ul>
-  <li>여러 줄에서 교차축 정렬.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">stretch</code>, <code class="language-plaintext highlighter-rouge">flex-start</code>, <code class="language-plaintext highlighter-rouge">flex-end</code>, <code class="language-plaintext highlighter-rouge">center</code>, <code class="language-plaintext highlighter-rouge">space-between</code>, <code class="language-plaintext highlighter-rouge">space-around</code>.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
-  <span class="nl">align-content</span><span class="p">:</span> <span class="n">space-around</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="6-flex-wrap"><strong>6. <code class="language-plaintext highlighter-rouge">flex-wrap</code></strong></h3>
-
-<ul>
-  <li>항목이 컨테이너를 초과하면 줄 바꿈 여부.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">nowrap</code> (기본값), <code class="language-plaintext highlighter-rouge">wrap</code>, <code class="language-plaintext highlighter-rouge">wrap-reverse</code>.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
-  <span class="nl">flex-wrap</span><span class="p">:</span> <span class="n">wrap</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="7-flex"><strong>7. <code class="language-plaintext highlighter-rouge">flex</code></strong></h3>
-
-<ul>
-  <li>개별 항목의 크기 설정 (약어).
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">flex: grow shrink basis;</code></li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
-  <span class="nl">flex</span><span class="p">:</span> <span class="m">1</span> <span class="m">1</span> <span class="nb">auto</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="8-flex-grow"><strong>8. <code class="language-plaintext highlighter-rouge">flex-grow</code></strong></h3>
-
-<ul>
-  <li>남은 공간을 차지할 비율.
-    <ul>
-      <li>기본값: <code class="language-plaintext highlighter-rouge">0</code>.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
-  <span class="nl">flex-grow</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="9-flex-shrink"><strong>9. <code class="language-plaintext highlighter-rouge">flex-shrink</code></strong></h3>
-
-<ul>
-  <li>공간 부족 시 줄어드는 비율.
-    <ul>
-      <li>기본값: <code class="language-plaintext highlighter-rouge">1</code>.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
-  <span class="nl">flex-shrink</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="10-flex-basis"><strong>10. <code class="language-plaintext highlighter-rouge">flex-basis</code></strong></h3>
-
-<ul>
-  <li>항목의 기본 크기 설정.</li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
-  <span class="nl">flex-basis</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="11-order"><strong>11. <code class="language-plaintext highlighter-rouge">order</code></strong></h3>
-
-<ul>
-  <li>항목의 배치 순서.
-    <ul>
-      <li>기본값: <code class="language-plaintext highlighter-rouge">0</code>.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
-  <span class="nl">order</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="12-gap"><strong>12. <code class="language-plaintext highlighter-rouge">gap</code></strong></h3>
-
-<ul>
-  <li>항목 간 간격 설정.</li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
-  <span class="py">gap</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="13-row-gap"><strong>13. <code class="language-plaintext highlighter-rouge">row-gap</code></strong></h3>
-
-<ul>
-  <li>가로축 항목 간 간격 설정.</li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
-  <span class="py">row-gap</span><span class="p">:</span> <span class="m">15px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="14-column-gap"><strong>14. <code class="language-plaintext highlighter-rouge">column-gap</code></strong></h3>
-
-<ul>
-  <li>세로축 항목 간 간격 설정.</li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
-  <span class="nl">column-gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="15-align-self"><strong>15. <code class="language-plaintext highlighter-rouge">align-self</code></strong></h3>
-
-<ul>
-  <li>개별 항목의 교차축 정렬 설정.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">auto</code>, <code class="language-plaintext highlighter-rouge">flex-start</code>, <code class="language-plaintext highlighter-rouge">flex-end</code>, <code class="language-plaintext highlighter-rouge">center</code>, <code class="language-plaintext highlighter-rouge">baseline</code>, <code class="language-plaintext highlighter-rouge">stretch</code>.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
-  <span class="nl">align-self</span><span class="p">:</span> <span class="n">flex-end</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="16-min-width"><strong>16. <code class="language-plaintext highlighter-rouge">min-width</code></strong></h3>
-
-<ul>
-  <li>항목의 최소 너비.</li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
-  <span class="nl">min-width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="17-max-width"><strong>17. <code class="language-plaintext highlighter-rouge">max-width</code></strong></h3>
-
-<ul>
-  <li>항목의 최대 너비.</li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
-  <span class="nl">max-width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="18-min-height"><strong>18. <code class="language-plaintext highlighter-rouge">min-height</code></strong></h3>
-
-<ul>
-  <li>항목의 최소 높이.</li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
-  <span class="nl">min-height</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="19-max-height"><strong>19. <code class="language-plaintext highlighter-rouge">max-height</code></strong></h3>
-
-<ul>
-  <li>항목의 최대 높이.</li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
-  <span class="nl">max-height</span><span class="p">:</span> <span class="m">150px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="20-place-content"><strong>20. <code class="language-plaintext highlighter-rouge">place-content</code></strong></h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">justify-content</code>와 <code class="language-plaintext highlighter-rouge">align-content</code>를 한 번에 설정.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">center</code>, <code class="language-plaintext highlighter-rouge">stretch</code>, <code class="language-plaintext highlighter-rouge">space-between</code> 등.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
-  <span class="py">place-content</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="예제-통합-코드">예제: 통합 코드</h3>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>Item 1<span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>Item 2<span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>Item 3<span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-
-<span class="nt">&lt;style&gt;</span>
-  <span class="nc">.container</span> <span class="p">{</span>
-    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
-    <span class="nl">flex-direction</span><span class="p">:</span> <span class="n">row</span><span class="p">;</span>
-    <span class="nl">justify-content</span><span class="p">:</span> <span class="n">space-between</span><span class="p">;</span>
-    <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
-    <span class="nl">flex-wrap</span><span class="p">:</span> <span class="n">wrap</span><span class="p">;</span>
-    <span class="py">gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="nc">.item</span> <span class="p">{</span>
-    <span class="nl">flex</span><span class="p">:</span> <span class="m">1</span> <span class="m">1</span> <span class="m">100px</span><span class="p">;</span>
-    <span class="nl">align-self</span><span class="p">:</span> <span class="n">stretch</span><span class="p">;</span>
-    <span class="nl">min-width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-    <span class="nl">max-width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="nt">&lt;/style&gt;</span>
-</code></pre></div></div>
-
-<h2 id="flex를-이용한-게임">flex를 이용한 게임</h2>
-
-<ul>
-  <li>https://flexboxfroggy.com/#ko</li>
-  <li><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-01-21-css-flex-image.png?raw=true" alt="flexboxfroggy" />
-    <ul>
-      <li>다 깼다!</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.]]></summary></entry></feed>
