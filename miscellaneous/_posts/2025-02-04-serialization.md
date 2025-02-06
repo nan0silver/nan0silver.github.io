@@ -8,14 +8,10 @@ sitemap: false
 
 # [Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)
 
-- [TDD란?](#tdd-test-driven-development란)
-- [TDD의 주요 과정](#tdd의-주요-과정)
-- [TDD의 장점](#tdd의-장점)
-- [TDD 예제 (Java)](#tdd-예제-java)
-- [TDD VS 전통적인 개발 방식](#tdd-vs-전통적인-개발-방식)
-- [TDD가 필요한 경우](#tdd가-필요한-경우)
-- [TDD의 단점](#tdd의-단점)
-- [xUnit](#xunit)
+- [직렬화와 역직렬화](#직렬화serialization과-역직렬화deserialization--️-)
+- [직렬화란? 📦](#직렬화-serialization-이란-)
+- [역직렬화란? 📦 ➡️ 💻](#역직렬화-deserialization-이란--️-)
+- [언어별 직렬화 및 역직렬화 예시](#언어별-직렬화-및-역직렬화-예시)
 
 ---
 
