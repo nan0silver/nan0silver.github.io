@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-06T08:21:17+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-06T12:50:44+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-06T12:49:53+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
   <li><a href="#로컬-스토리지-local-storage-vs-세션-스토리지-session-storage">로컬 스토리지 VS 세션 스토리지</a></li>
   <li><a href="#데이터-유지-기간">데이터 유지 기간</a></li>
   <li><a href="#접근-범위">접근 범위</a></li>
@@ -100,15 +100,11 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
-  <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
-  <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
-  <li><a href="#tdd의-장점">TDD의 장점</a></li>
-  <li><a href="#tdd-예제-java">TDD 예제 (Java)</a></li>
-  <li><a href="#tdd-vs-전통적인-개발-방식">TDD VS 전통적인 개발 방식</a></li>
-  <li><a href="#tdd가-필요한-경우">TDD가 필요한 경우</a></li>
-  <li><a href="#tdd의-단점">TDD의 단점</a></li>
-  <li><a href="#xunit">xUnit</a></li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-06T12:49:53+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
+  <li><a href="#직렬화serialization과-역직렬화deserialization--️-">직렬화와 역직렬화</a></li>
+  <li><a href="#직렬화-serialization-이란-">직렬화란? 📦</a></li>
+  <li><a href="#역직렬화-deserialization-이란--️-">역직렬화란? 📦 ➡️ 💻</a></li>
+  <li><a href="#언어별-직렬화-및-역직렬화-예시">언어별 직렬화 및 역직렬화 예시</a></li>
 </ul>
 
 <hr />
@@ -307,7 +303,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
         <span class="c1">// Java Serializable 사용 (Java와 동일)</span>
         <span class="c1">// ... (Java 예시 코드와 유사)</span>
     <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-06T12:49:53+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
   <li><a href="#함수-function">함수 (function)</a></li>
   <li><a href="#화살표-함수">화살표 함수</a></li>
   <li><a href="#고차-함수">고차 함수 (map, filter, reduce)</a></li>
@@ -603,7 +599,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-06T12:49:53+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
   <li><a href="#generic이란">Generic이란?</a></li>
   <li><a href="#generic의-장점">Generic의 장점</a></li>
   <li><a href="#generic-사용법">Generic 사용법</a></li>
@@ -797,7 +793,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-06T12:49:53+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
   <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
   <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
   <li><a href="#tdd의-장점">TDD의 장점</a></li>
@@ -1029,7 +1025,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td><a href="http://junit.org/">JUnit</a></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가</title><link href="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/javascript/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가</title><link href="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-06T12:49:53+00:00</updated><id>https://nan0silver.github.io/javascript/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
   <li><a href="#단축-평가란">단축 평가란?</a></li>
   <li><a href="#단축-평가-동작-방식">단축 평가 동작 방식</a></li>
   <li><a href="#단축-평가-활용-예시">단축 평가 활용 예시</a></li>
@@ -1202,7 +1198,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>단축 평가의 반환 값은 마지막으로 평가된 표현식의 결과이다.</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-06T12:49:53+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
   <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
   <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
   <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
@@ -1280,7 +1276,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>극단적인 입력값을 대입해보기</li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-06T12:49:53+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
   <li><a href="#git-rebase">git rebase</a></li>
   <li><a href="#git-rebase-vs-git-merge">git rebase VS git merge</a></li>
   <li><a href="#git-rebase-사용법">git rebase 사용법</a></li>
@@ -1374,7 +1370,7 @@ git rebase main
       <li>원격 브랜치의 변경 사항을 병합 대신 리베이스로 가져올 때 사용</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-06T12:49:53+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
   <li><a href="#git-clone">git clone</a></li>
   <li><a href="#git-fork">git fork</a></li>
   <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
@@ -1642,7 +1638,7 @@ git push origin &lt;branch-name&gt;
       </li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-06T08:20:26+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] Naming Convention</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/" rel="alternate" type="text/html" title="[Etc] Naming Convention" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-06T12:49:53+00:00</updated><id>https://nan0silver.github.io/miscellaneous/naming-convention</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-naming-convention/"><![CDATA[<ul>
   <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
   <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
   <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
