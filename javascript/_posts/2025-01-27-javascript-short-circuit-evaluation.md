@@ -6,7 +6,7 @@ description: >
 sitemap: false
 ---
 
-# [JavaScript] 단축 평가 (Short-circuit evaluation)
+# [JavaScript] 단축 평가
 
 - [단축 평가란?](#단축-평가란)
 - [단축 평가 동작 방식](#단축-평가-동작-방식)
@@ -15,7 +15,7 @@ sitemap: false
 
 ---
 
-## 단축 평가란?
+## 단축 평가 (Short-circuit evaluation)
 
 - 논리 연산자 (`&&`, `||`) 를 평가할 때, **결과를 미리 결정할 수 있다면 나머지 표현식을 평가하지 않고 곧바로 결과를 반환하는 것**
   - **`&&` (AND) 연산자**: 두 피연산자가 모두 `true` 일 때만 `true` 를 반환합니다.
