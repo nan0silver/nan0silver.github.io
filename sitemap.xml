@@ -4,6 +4,19 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/</loc>
+        
+        <lastmod>2025-02-19T00:00:00+00:00</lastmod>
+        
+        
+        <changefreq>weekly</changefreq>
+        
+        
+        <priority>0.5</priority>
+        
+    </url>
+    
+    <url>
         <loc>https://nan0silver.github.io/javascript/2025-02-05-dom-bom/</loc>
         
         <lastmod>2025-02-05T00:00:00+00:00</lastmod>

@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[AI] 생성형 AI와 LLM | NAHYUN BLOG</title>
+<title>[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[AI] 생성형 AI와 LLM" />
+<meta property="og:title" content="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="생성형 AI와 LLM에 대해 알아보자." />
-<meta property="og:description" content="생성형 AI와 LLM에 대해 알아보자." />
-<link rel="canonical" href="https://nan0silver.github.io/ai/2025-01-16-basic/" />
-<meta property="og:url" content="https://nan0silver.github.io/ai/2025-01-16-basic/" />
+<meta name="description" content="직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자." />
+<meta property="og:description" content="직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" />
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-01-16T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-02-19T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[AI] 생성형 AI와 LLM" />
+<meta property="twitter:title" content="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-02-19T15:03:30+00:00","datePublished":"2025-01-16T00:00:00+00:00","description":"생성형 AI와 LLM에 대해 알아보자.","headline":"[AI] 생성형 AI와 LLM","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/ai/2025-01-16-basic/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/ai/2025-01-16-basic/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-02-19T15:03:30+00:00","datePublished":"2025-02-19T00:00:00+00:00","description":"직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.","headline":"[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/ai/2025-01-16-basic/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/ai/">ai</a>
+          <a href="/miscellaneous/">miscellaneous</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-01-16-basic</span>
+          <span>2025-02-19-git-commit</span>
         
       </li>
     
@@ -222,31 +222,23 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-ai-basic" class="page post mb6" role="article">
+<article id="post-miscellaneous-git-commit" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [AI] 생성형 AI와 LLM
+        [Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-16T00:00:00+00:00">16 Jan 2025</time> in <a href="/ai/" class="flip-title">AI</a> 
+        <time datetime="2025-02-19T00:00:00+00:00">19 Feb 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
       </span>
       
         
           
           
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 19 Feb 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-02-19T15:03:30+00:00">2025-02-19</time>
-            </span>
           
         
       
@@ -261,7 +253,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      생성형 AI와 LLM에 대해 알아보자.
+      직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.
 
     </p>
   
@@ -271,155 +263,208 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#llm-large-language-model">LLM</a></li>
-  <li><a href="#생성형-ai-generative-ai">생성형 AI</a></li>
-  <li><a href="#gpt-genertive-pre-trained-transformer">GPT</a></li>
-  <li><a href="#prompt-engineering">Prompt Engineering</a></li>
-  <li><a href="#rtf-framework">RTF Framework</a></li>
+  <li><a href="#commit-단위를-결정-짓는-요소">Commit 단위를 결정 짓는 요소</a></li>
+  <li><a href="#udacity-style">Udacity style</a></li>
+  <li><a href="#rebase를-잘쓰자">Rebase를 잘쓰자!</a></li>
+  <li><a href="#conflict를-해결하는-방법-reset--force-push">conflict를 해결하는 방법</a></li>
 </ul>
 
 <hr />
 
-<h2 id="llm-large-language-model">LLM (Large Language Model)</h2>
+<h2 id="commit-단위를-결정-짓는-요소">Commit 단위를 결정 짓는 요소</h2>
+
+<ol>
+  <li>하나의 목적 / 의도</li>
+</ol>
 
 <ul>
-  <li>광범위한 양의 텍스트 데이터를 학습한 모델</li>
-  <li>인간의 글과 대화 방식을 받아들이며 더욱 정교하고 자연스러운 대화 능력 갖춰감</li>
-</ul>
-
-<h2 id="생성형-ai-generative-ai">생성형 AI (Generative AI)</h2>
-
-<ul>
-  <li>데이터를 분석하고 학습하여 새로운 콘텐츠를 생성하는 인공지능 기술</li>
-</ul>
-
-<h3 id="gpt-genertive-pre-trained-transformer">GPT (Genertive Pre-trained Transformer)</h3>
-
-<ul>
-  <li>OpenAI가 개발한 대형 언어 모델로, 사전 학습된 트렌스포머 구조를 기반으로 한 생성형 AI기술
+  <li>커밋은 하나의 논리적 작업 단위만 포함한다.
     <ul>
-      <li>트렌스포머 구조
+      <li>예시
         <ul>
-          <li>Google의 논문 “Attention is All You Need”에서 소개된 딥러닝 모델 구조</li>
+          <li>“로그인 버튼 스타일 수정” 과 “API 요청 추가”는 별도 커밋으로 나눔</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>Pre-training
-    <ul>
-      <li>방대한 텍스트 데이터를 기반으로 언어의 패턴과 문맥을 학습</li>
-    </ul>
-  </li>
-  <li>Fine-tuning (미세 조정)
-    <ul>
-      <li>특정 목적이나 응용에 맞춰 추가 학습을 진행하여 성능 최적화</li>
-    </ul>
-  </li>
-  <li>
-    <p>생성 능력</p>
+</ul>
 
+<ol>
+  <li>변경 사항의 크기
     <ul>
-      <li>기존 데이터를 이해하고 이를 기반으로 새로운 텍스트 생성</li>
+      <li>가능한 작은 크기로 나누되, 완결성을 가져야 한다.</li>
     </ul>
   </li>
-  <li>
-    <p>ChatGPT</p>
+  <li>독립성</li>
+</ol>
 
+<ul>
+  <li>독립적으로 동작할 수 있어야 한다.
     <ul>
-      <li>맥락을 파악하는 능력이 뛰어남</li>
+      <li>커밋 후 언제든 코드를 실행하거나 테스트할 수 있어야 한다.</li>
     </ul>
   </li>
-  <li>환각(Hallucinate)
+</ul>
+
+<ol>
+  <li>관련성</li>
+</ol>
+
+<ul>
+  <li>서로 연관된 변경사항은 하나의 커밋으로 묶는다.
     <ul>
-      <li>실제 데이터나 사실을 반영하지 않고 비현실적이거나 오류를 포함하 내용을 만들어내는 경우가 있다</li>
-      <li>해결 방법
-        <ol>
-          <li>파인 튜닝</li>
-          <li>프롬프트 엔지니어링</li>
-          <li>크로스체킹</li>
-        </ol>
+      <li>예시: 새로운 기능을 추가하면서 해당 기능의 스타일을 함께 수정하는 경우, 하나의 커밋으로 처리 가능</li>
+      <li>하지만 독립적인 기능 수정과 스타일 변경은 별도의 커밋으로 분리해야 함.</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>의미 있는 메시지</li>
+</ol>
+
+<ul>
+  <li>커밋 메시지가 변경 사항을 명확하게 설명할 수 있도록 구성해야함
+    <ul>
+      <li>예시
+        <ul>
+          <li>좋은 예 : “사용자 로그인 API 요청 로직 추가”</li>
+          <li>나쁜 예 : “수정함” 또는 “업데이트”</li>
+        </ul>
       </li>
     </ul>
   </li>
 </ul>
 
-<h2 id="prompt-engineering">Prompt Engineering</h2>
+<hr />
+
+<h2 id="udacity-style">Udacity style</h2>
 
 <ul>
-  <li>어떻게 질문을 하느냐에 따라 결과가 달라질 수 있음</li>
-  <li>필요성
-    <ol>
-      <li>내가 원하는 바를 정확히 주면 줄수록 정확한 대답을 얻을 수 있음</li>
-      <li>언제나 고급 모델을 쓸수는 없음 (너무 비쌈)</li>
-    </ol>
-  </li>
+  <li>Udacity에서 권장하는 <strong>커밋 메시지 작성 스타일</strong>을 의미</li>
 </ul>
 
+<h3 id="-udacity-커밋-메시지-스타일">📌 <strong>Udacity 커밋 메시지 스타일</strong></h3>
+
+<p><strong><code class="language-plaintext highlighter-rouge">type: 설명 (길이 72자 이내)</code></strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">type</code>: 변경 사항의 유형을 나타냄 (예: feat, fix, refactor 등)</li>
+  <li><code class="language-plaintext highlighter-rouge">설명</code>: 간결하고 명확한 변경 사항 설명</li>
+</ul>
+
+<h3 id="-udacity-스타일-커밋-메시지-예시">✅ <strong>Udacity 스타일 커밋 메시지 예시</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>feat: 로그인 API 요청 추가
+fix: 비밀번호 입력 검증 로직 수정
+refactor: 중복된 코드 제거 및 함수 리팩토링
+style: 코드 스타일 정리 (불필요한 공백 제거)
+docs: README 파일 업데이트
+test: 회원가입 유닛 테스트 추가
+chore: 패키지 버전 업데이트
+</code></pre></div></div>
+
+<h3 id="-udacity-스타일-주요-특징">🛠 <strong>Udacity 스타일 주요 특징</strong></h3>
+
 <ol>
-  <li>Zero-shot Prompting
+  <li><strong>첫 글자는 소문자 사용</strong>
     <ul>
-      <li>작업에 대한 지시만 포함하는 프롬프트 방식</li>
+      <li>Git 커밋 메시지 관례에 따라 소문자로 시작함</li>
     </ul>
   </li>
-  <li>One-shot Prompting
+  <li><strong>커밋 타입을 명확히 구분</strong>
     <ul>
-      <li>작업 예시를 하나 제공하여 AI가 이를 참고로 결과를 생성하도록 하는 방식</li>
+      <li><code class="language-plaintext highlighter-rouge">feat</code>: 새로운 기능 추가</li>
+      <li><code class="language-plaintext highlighter-rouge">fix</code>: 버그 수정</li>
+      <li><code class="language-plaintext highlighter-rouge">refactor</code>: 코드 리팩토링</li>
+      <li>기능 유지 + 코드의 가독성, 유지보수성, 성능 최적화등 코드 구조 개선</li>
+      <li><code class="language-plaintext highlighter-rouge">style</code>: 코드 스타일 변경 (기능 변경 없음)</li>
+      <li>기능 유지 + 들여쓰기, 공백, 줄정리 등 코드 포맷 정리</li>
+      <li><code class="language-plaintext highlighter-rouge">docs</code>: 문서 수정</li>
+      <li><code class="language-plaintext highlighter-rouge">test</code>: 테스트 코드 추가/수정</li>
+      <li><code class="language-plaintext highlighter-rouge">chore</code>: 빌드 및 패키지 관련 작업</li>
     </ul>
   </li>
-  <li>Few-shot Prompting
+  <li><strong>제목 길이는 72자 이내로 유지</strong>
     <ul>
-      <li>작업 예시를 여러 개 제공하는 방식</li>
-      <li>복잡한 작업 수행에서 사용</li>
+      <li>Git 로그에서 한눈에 보기 쉽게 유지</li>
     </ul>
   </li>
-  <li>Chain of Thought (CoT)
+  <li><strong>명령형 사용</strong>
     <ul>
-      <li>모델이 단계적으로 사고 과정을 출력하도록 유도</li>
-    </ul>
-  </li>
-  <li>Zero-shot CoT</li>
-  <li>Tree of Thoughts (ToT)
-    <ul>
-      <li>가능한 대안을 모두 도출하고 그 중 촤선의 답변을 선택하도록 하는 방식</li>
-      <li>“모든 옵션을 평가하고 가장 좋은 대안을 제시하세요”</li>
-    </ul>
-  </li>
-  <li>ReAct
-    <ul>
-      <li>결과물을 생성(Reaction)하고 피드백(Reasoning)을 통해 개선해나가는 방식</li>
-      <li>“예제를 짜고 정상적으로 작동하는지 검증하시오”</li>
+      <li><code class="language-plaintext highlighter-rouge">"Fixed login bug"</code> ❌ → <code class="language-plaintext highlighter-rouge">"fix: 로그인 버그 수정"</code> ✅</li>
     </ul>
   </li>
 </ol>
 
-<h2 id="rtf-framework">RTF Framework</h2>
+<h3 id="-udacity-스타일을-쓰는-이유">🎯 <strong>Udacity 스타일을 쓰는 이유</strong></h3>
 
 <ul>
-  <li>Role, Task, Format를 명확히 정의해 프롬프트를 설계하는 방법론</li>
-  <li>Role-based Prompting
-    <ul>
-      <li>AI의 역할을 명확히 지정하여 특정 관점이나 전문성으로 답 얻을 수 있음</li>
-    </ul>
-  </li>
-  <li>Task
-    <ul>
-      <li>특정 작업을 지시</li>
-      <li>프롬프트의 핵심</li>
-    </ul>
-  </li>
-  <li>
-    <p>Format</p>
+  <li>협업 시 <strong>일관성 있는 커밋 로그 유지</strong></li>
+  <li><strong>Git 커밋 히스토리 가독성 향상</strong></li>
+  <li>자동화된 릴리즈 노트 생성 가능 (Conventional Commits 방식과 유사)</li>
+  <li><strong>커밋 이력이 깔끔하게 정리</strong>되고 <strong>팀원들이 쉽게 이해</strong>할 수 있어 유지보수 및 협업에 유리하다.</li>
+</ul>
 
+<hr />
+
+<h2 id="rebase를-잘쓰자">Rebase를 잘쓰자!</h2>
+
+<ul>
+  <li>참조하는 commit을 변경하는 명령어</li>
+  <li>base branch가 변경될 때마다 rebase를 하면 conflict를 최소화할 수 있다.</li>
+</ul>
+
+<h3 id="rebase란">Rebase란?</h3>
+
+<blockquote>
+  <p><a href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/">🔗 [Git] git rebase</a> 블로그에 정리되어 있습니다!</p>
+</blockquote>
+
+<hr />
+
+<h2 id="conflict를-해결하는-방법-reset--force-push">conflict를 해결하는 방법, Reset + force push</h2>
+
+<h3 id="reset이란">Reset이란?</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git reset</code> 명령어는 특정 커밋으로 되돌리는 기능을 하며, 되돌리는 방식에 따라 코드 변경 사항을 유지할 수도 있고, 삭제할 수도 있음</li>
+  <li><code class="language-plaintext highlighter-rouge">git reset</code>의 주요 옵션
     <ul>
-      <li>AI의 응답 형식을 지정 (JSON, 엑셀 등)</li>
+      <li><code class="language-plaintext highlighter-rouge">--soft</code>
+        <ul>
+          <li>특정 커밋 이전으로 HEAD를 이동하지만, 변경된 파일과 스테이징 영역은 그대로 유지</li>
+          <li>보통 최근 커밋을 수정하고 다시 커밋할 때 사용</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">--mixed</code> (기본 옵션)
+        <ul>
+          <li>특정 커밋 이전으로 HEAD 이동, 스테이징 영역은 초기화되지만 작업 디렉터리는 유지됨</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">--hard</code>
+        <ul>
+          <li>특정 커밋 이전으로 HEAD 이동, 변경된 코드까지 전부 삭제되며 되돌릴 수 없음</li>
+        </ul>
+      </li>
     </ul>
   </li>
-  <li>면접할때 사용 가능
+</ul>
+
+<h3 id="reset-후-force-push-사용">Reset 후 force push 사용</h3>
+
+<ul>
+  <li>로컬에서 <code class="language-plaintext highlighter-rouge">git reset</code>을 사용하여 커밋을 변경하면, 원격 저장소와 커밋 이력이 달라져 <code class="language-plaintext highlighter-rouge">git push</code>시 conflict가 발생할 수 있다.</li>
+  <li>이 문제를 해결하기 위해 <code class="language-plaintext highlighter-rouge">git push --force</code>를 사용하면, 로컬 브랜치의 변경사항을 강제로 원격 저장소에 반영할 수 있음</li>
+  <li>conflict 해결 방법으로써의 Reset + force push
     <ul>
-      <li>당신은 백엔드 면접관입니다. 주니어 개발자 면접을 진행할 때 어떤 질문을 묻겠습니까?</li>
+      <li>commit이 여러개인 경우, 중간에 conflict가 난 경우, 이 후의 커밋 모두 conflict가 발생
+        <ul>
+          <li>하지만 <code class="language-plaintext highlighter-rouge">git reset</code>으로 커밋을 하나의 커밋으로 만들면 코드 충돌을 빠르게 해결할 수 있음</li>
+        </ul>
+      </li>
     </ul>
   </li>
-  <li>학습자의 수준에 맞춘 접근 가능</li>
 </ul>
 
   
@@ -547,7 +592,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/miscellaneous/2025-02-19-git-commit/" class="flip-title"><span>[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</span></a>  <time class="faded fine" datetime="2025-02-19T00:00:00+00:00">19 Feb 2025</time></li>                        <li class="h4">  <a href="/javascript/2025-02-05-dom-bom/" class="flip-title"><span>[JavaScript] DOM &amp; BOM</span></a>  <time class="faded fine" datetime="2025-02-05T00:00:00+00:00">05 Feb 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-02-04-serialization/" class="flip-title"><span>[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</span></a>  <time class="faded fine" datetime="2025-02-04T00:00:00+00:00">04 Feb 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/javascript/2025-02-05-dom-bom/" class="flip-title"><span>[JavaScript] DOM &amp; BOM</span></a>  <time class="faded fine" datetime="2025-02-05T00:00:00+00:00">05 Feb 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-02-04-serialization/" class="flip-title"><span>[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</span></a>  <time class="faded fine" datetime="2025-02-04T00:00:00+00:00">04 Feb 2025</time></li>                        <li class="h4">  <a href="/javascript/2025-02-04-storage/" class="flip-title"><span>[JavaScript] 로컬 스토리지 VS 세션 스토리지</span></a>  <time class="faded fine" datetime="2025-02-04T00:00:00+00:00">04 Feb 2025</time></li>            </ul></aside>
 
   
 

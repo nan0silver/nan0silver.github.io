@@ -1,7 +1,210 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-19T03:31:15+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-19T15:04:15+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-02-19T03:30:31+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" rel="alternate" type="text/html" title="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" /><published>2025-02-19T00:00:00+00:00</published><updated>2025-02-19T15:03:30+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-commit</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/"><![CDATA[<ul>
+  <li><a href="#commit-단위를-결정-짓는-요소">Commit 단위를 결정 짓는 요소</a></li>
+  <li><a href="#udacity-style">Udacity style</a></li>
+  <li><a href="#rebase를-잘쓰자">Rebase를 잘쓰자!</a></li>
+  <li><a href="#conflict를-해결하는-방법-reset--force-push">conflict를 해결하는 방법</a></li>
+</ul>
+
+<hr />
+
+<h2 id="commit-단위를-결정-짓는-요소">Commit 단위를 결정 짓는 요소</h2>
+
+<ol>
+  <li>하나의 목적 / 의도</li>
+</ol>
+
+<ul>
+  <li>커밋은 하나의 논리적 작업 단위만 포함한다.
+    <ul>
+      <li>예시
+        <ul>
+          <li>“로그인 버튼 스타일 수정” 과 “API 요청 추가”는 별도 커밋으로 나눔</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>변경 사항의 크기
+    <ul>
+      <li>가능한 작은 크기로 나누되, 완결성을 가져야 한다.</li>
+    </ul>
+  </li>
+  <li>독립성</li>
+</ol>
+
+<ul>
+  <li>독립적으로 동작할 수 있어야 한다.
+    <ul>
+      <li>커밋 후 언제든 코드를 실행하거나 테스트할 수 있어야 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>관련성</li>
+</ol>
+
+<ul>
+  <li>서로 연관된 변경사항은 하나의 커밋으로 묶는다.
+    <ul>
+      <li>예시: 새로운 기능을 추가하면서 해당 기능의 스타일을 함께 수정하는 경우, 하나의 커밋으로 처리 가능</li>
+      <li>하지만 독립적인 기능 수정과 스타일 변경은 별도의 커밋으로 분리해야 함.</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>의미 있는 메시지</li>
+</ol>
+
+<ul>
+  <li>커밋 메시지가 변경 사항을 명확하게 설명할 수 있도록 구성해야함
+    <ul>
+      <li>예시
+        <ul>
+          <li>좋은 예 : “사용자 로그인 API 요청 로직 추가”</li>
+          <li>나쁜 예 : “수정함” 또는 “업데이트”</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="udacity-style">Udacity style</h2>
+
+<ul>
+  <li>Udacity에서 권장하는 <strong>커밋 메시지 작성 스타일</strong>을 의미</li>
+</ul>
+
+<h3 id="-udacity-커밋-메시지-스타일">📌 <strong>Udacity 커밋 메시지 스타일</strong></h3>
+
+<p><strong><code class="language-plaintext highlighter-rouge">type: 설명 (길이 72자 이내)</code></strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">type</code>: 변경 사항의 유형을 나타냄 (예: feat, fix, refactor 등)</li>
+  <li><code class="language-plaintext highlighter-rouge">설명</code>: 간결하고 명확한 변경 사항 설명</li>
+</ul>
+
+<h3 id="-udacity-스타일-커밋-메시지-예시">✅ <strong>Udacity 스타일 커밋 메시지 예시</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>feat: 로그인 API 요청 추가
+fix: 비밀번호 입력 검증 로직 수정
+refactor: 중복된 코드 제거 및 함수 리팩토링
+style: 코드 스타일 정리 (불필요한 공백 제거)
+docs: README 파일 업데이트
+test: 회원가입 유닛 테스트 추가
+chore: 패키지 버전 업데이트
+</code></pre></div></div>
+
+<h3 id="-udacity-스타일-주요-특징">🛠 <strong>Udacity 스타일 주요 특징</strong></h3>
+
+<ol>
+  <li><strong>첫 글자는 소문자 사용</strong>
+    <ul>
+      <li>Git 커밋 메시지 관례에 따라 소문자로 시작함</li>
+    </ul>
+  </li>
+  <li><strong>커밋 타입을 명확히 구분</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">feat</code>: 새로운 기능 추가</li>
+      <li><code class="language-plaintext highlighter-rouge">fix</code>: 버그 수정</li>
+      <li><code class="language-plaintext highlighter-rouge">refactor</code>: 코드 리팩토링</li>
+      <li>기능 유지 + 코드의 가독성, 유지보수성, 성능 최적화등 코드 구조 개선</li>
+      <li><code class="language-plaintext highlighter-rouge">style</code>: 코드 스타일 변경 (기능 변경 없음)</li>
+      <li>기능 유지 + 들여쓰기, 공백, 줄정리 등 코드 포맷 정리</li>
+      <li><code class="language-plaintext highlighter-rouge">docs</code>: 문서 수정</li>
+      <li><code class="language-plaintext highlighter-rouge">test</code>: 테스트 코드 추가/수정</li>
+      <li><code class="language-plaintext highlighter-rouge">chore</code>: 빌드 및 패키지 관련 작업</li>
+    </ul>
+  </li>
+  <li><strong>제목 길이는 72자 이내로 유지</strong>
+    <ul>
+      <li>Git 로그에서 한눈에 보기 쉽게 유지</li>
+    </ul>
+  </li>
+  <li><strong>명령형 사용</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">"Fixed login bug"</code> ❌ → <code class="language-plaintext highlighter-rouge">"fix: 로그인 버그 수정"</code> ✅</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-udacity-스타일을-쓰는-이유">🎯 <strong>Udacity 스타일을 쓰는 이유</strong></h3>
+
+<ul>
+  <li>협업 시 <strong>일관성 있는 커밋 로그 유지</strong></li>
+  <li><strong>Git 커밋 히스토리 가독성 향상</strong></li>
+  <li>자동화된 릴리즈 노트 생성 가능 (Conventional Commits 방식과 유사)</li>
+  <li><strong>커밋 이력이 깔끔하게 정리</strong>되고 <strong>팀원들이 쉽게 이해</strong>할 수 있어 유지보수 및 협업에 유리하다.</li>
+</ul>
+
+<hr />
+
+<h2 id="rebase를-잘쓰자">Rebase를 잘쓰자!</h2>
+
+<ul>
+  <li>참조하는 commit을 변경하는 명령어</li>
+  <li>base branch가 변경될 때마다 rebase를 하면 conflict를 최소화할 수 있다.</li>
+</ul>
+
+<h3 id="rebase란">Rebase란?</h3>
+
+<blockquote>
+  <p><a href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/">🔗 [Git] git rebase</a> 블로그에 정리되어 있습니다!</p>
+</blockquote>
+
+<hr />
+
+<h2 id="conflict를-해결하는-방법-reset--force-push">conflict를 해결하는 방법, Reset + force push</h2>
+
+<h3 id="reset이란">Reset이란?</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git reset</code> 명령어는 특정 커밋으로 되돌리는 기능을 하며, 되돌리는 방식에 따라 코드 변경 사항을 유지할 수도 있고, 삭제할 수도 있음</li>
+  <li><code class="language-plaintext highlighter-rouge">git reset</code>의 주요 옵션
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">--soft</code>
+        <ul>
+          <li>특정 커밋 이전으로 HEAD를 이동하지만, 변경된 파일과 스테이징 영역은 그대로 유지</li>
+          <li>보통 최근 커밋을 수정하고 다시 커밋할 때 사용</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">--mixed</code> (기본 옵션)
+        <ul>
+          <li>특정 커밋 이전으로 HEAD 이동, 스테이징 영역은 초기화되지만 작업 디렉터리는 유지됨</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">--hard</code>
+        <ul>
+          <li>특정 커밋 이전으로 HEAD 이동, 변경된 코드까지 전부 삭제되며 되돌릴 수 없음</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="reset-후-force-push-사용">Reset 후 force push 사용</h3>
+
+<ul>
+  <li>로컬에서 <code class="language-plaintext highlighter-rouge">git reset</code>을 사용하여 커밋을 변경하면, 원격 저장소와 커밋 이력이 달라져 <code class="language-plaintext highlighter-rouge">git push</code>시 conflict가 발생할 수 있다.</li>
+  <li>이 문제를 해결하기 위해 <code class="language-plaintext highlighter-rouge">git push --force</code>를 사용하면, 로컬 브랜치의 변경사항을 강제로 원격 저장소에 반영할 수 있음</li>
+  <li>conflict 해결 방법으로써의 Reset + force push
+    <ul>
+      <li>commit이 여러개인 경우, 중간에 conflict가 난 경우, 이 후의 커밋 모두 conflict가 발생
+        <ul>
+          <li>하지만 <code class="language-plaintext highlighter-rouge">git reset</code>으로 커밋을 하나의 커밋으로 만들면 코드 충돌을 빠르게 해결할 수 있음</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-02-19T15:03:30+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
   <li><a href="#dom-document-object-model">DOM (Document Object Model)</a></li>
   <li><a href="#dom-기본-구조">DOM 기본 구조</a></li>
   <li><a href="#dom의-특징">DOM의 특징</a></li>
@@ -256,7 +459,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td><code class="language-plaintext highlighter-rouge">alert()</code>, <code class="language-plaintext highlighter-rouge">location.href</code>, <code class="language-plaintext highlighter-rouge">history.back()</code></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-19T03:30:31+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-19T15:03:30+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
   <li><a href="#로컬-스토리지-local-storage-vs-세션-스토리지-session-storage">로컬 스토리지 VS 세션 스토리지</a></li>
   <li><a href="#데이터-유지-기간">데이터 유지 기간</a></li>
   <li><a href="#접근-범위">접근 범위</a></li>
@@ -355,7 +558,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-19T03:30:31+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-19T15:03:30+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
   <li><a href="#직렬화serialization과-역직렬화deserialization--️-">직렬화와 역직렬화</a></li>
   <li><a href="#직렬화-serialization-이란-">직렬화란? 📦</a></li>
   <li><a href="#역직렬화-deserialization-이란--️-">역직렬화란? 📦 ➡️ 💻</a></li>
@@ -558,7 +761,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
         <span class="c1">// Java Serializable 사용 (Java와 동일)</span>
         <span class="c1">// ... (Java 예시 코드와 유사)</span>
     <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-19T03:30:31+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-19T15:03:30+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
   <li><a href="#함수-function">함수 (function)</a></li>
   <li><a href="#화살표-함수">화살표 함수</a></li>
   <li><a href="#고차-함수">고차 함수 (map, filter, reduce)</a></li>
@@ -854,7 +1057,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-19T03:30:31+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-19T15:03:30+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
   <li><a href="#generic이란">Generic이란?</a></li>
   <li><a href="#generic의-장점">Generic의 장점</a></li>
   <li><a href="#generic-사용법">Generic 사용법</a></li>
@@ -1048,7 +1251,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-19T03:30:31+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-19T15:03:30+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
   <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
   <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
   <li><a href="#tdd의-장점">TDD의 장점</a></li>
@@ -1280,7 +1483,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td><a href="http://junit.org/">JUnit</a></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가</title><link href="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-19T03:30:31+00:00</updated><id>https://nan0silver.github.io/javascript/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가</title><link href="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-19T15:03:30+00:00</updated><id>https://nan0silver.github.io/javascript/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
   <li><a href="#단축-평가란">단축 평가란?</a></li>
   <li><a href="#단축-평가-동작-방식">단축 평가 동작 방식</a></li>
   <li><a href="#단축-평가-활용-예시">단축 평가 활용 예시</a></li>
@@ -1453,7 +1656,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>단축 평가의 반환 값은 마지막으로 평가된 표현식의 결과이다.</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-19T03:30:31+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-19T15:03:30+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
   <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
   <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
   <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
@@ -1531,7 +1734,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>극단적인 입력값을 대입해보기</li>
     </ul>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-19T03:30:31+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry><entry><title type="html">[Git] git rebase</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/" rel="alternate" type="text/html" title="[Git] git rebase" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-19T15:03:30+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-rebase</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"><![CDATA[<ul>
   <li><a href="#git-rebase">git rebase</a></li>
   <li><a href="#git-rebase-vs-git-merge">git rebase VS git merge</a></li>
   <li><a href="#git-rebase-사용법">git rebase 사용법</a></li>
@@ -1544,8 +1747,61 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <h2 id="git-rebase">git rebase</h2>
 
 <ul>
-  <li>Git에서 브랜치의 커밋 히스토리를 재구성할 때 사용하는 명령어</li>
+  <li>Git에서 브랜치의 커밋 히스토리를 재구성할 때 사용하는 명령어로, 현재 브랜치의 기반이 되는 커밋을 변경한다.
+    <blockquote>
+      <p>브랜치의 시작점을 다른 브랜치의 최신 커밋으로 옮겨서, 변경 이력을 깔끔하게 정리함</p>
+    </blockquote>
+  </li>
   <li>이를 통해 브랜치의 히스토리를 “정리(clean)”하거나 최신 상태를 기반으로 변경사항을 다시 적용할 수 있음</li>
+  <li>‼️ 실제 동작 방식
+    <ul>
+      <li>main 브랜치가 이렇게 변경되었다.
+        <blockquote>
+          <p>A - B - C (main 최신 상태)</p>
+        </blockquote>
+      </li>
+      <li>내 feature-branch는 main 브랜치를 기반으로 작업했지만 오랜된 상태임
+        <blockquote>
+          <p>A - B - (내 변경 사항 X, Y) (feature-branch)</p>
+        </blockquote>
+      </li>
+      <li>➡️ 이 상태에서 <code class="language-plaintext highlighter-rouge">git rebase main</code>을 실행하면
+        <blockquote>
+          <p>A - B - C - ( 내 변경 사항 X, Y) (rebase된 feature-branch)</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="git-rebase의-필요성">git rebase의 필요성</h2>
+
+<h3 id="1-base-브랜치가-변경될-때-conflict-최소화">1. Base 브랜치가 변경될 때 Conflict 최소화</h3>
+
+<ul>
+  <li>여러 개발자가 동시에 작업하는 경우, 메인 브랜치(main or develop)의 최신 커밋을 반영하지 않으면 충돌이 발생할 가능성이 높다/</li>
+  <li>Rebase를 하면, 최신 코드 기준으로 브랜치 변경 이력을 재구성할 수 있어, Merge conflict를 최소화할 수 있다.</li>
+  <li>✅ 예제 : Rebase없이 충돌 발생
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">feature-branch</code>에서 작업을 했지만, main 브랜치가 업데이트됨</li>
+      <li><code class="language-plaintext highlighter-rouge">git merge main</code>을 하면 불필요한 merge commit이 생성됨
+        <ul>
+          <li>merge commit이 많아지면 협업시 코드리뷰할 때 이력 파악이 어려워짐</li>
+        </ul>
+      </li>
+      <li>conflict가 날 가능성이 많아짐</li>
+      <li>✅ Rebase로 conflict 최소화</li>
+      <li>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout feature-branch
+git rebase main
+<span class="c"># → 최신 main 브랜치 기준으로 변경 이력 재구성</span>
+</code></pre></div>        </div>
+        <ul>
+          <li>➡️ Rebase를 하면 최신 코드와 충돌을 최소화하면서 깔끔한 커밋 이력 유지 가능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="git-rebase-vs-git-merge">git rebase VS git merge</h2>
@@ -1556,11 +1812,16 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>merge
         <ul>
           <li>두 브랜치의 히스토리를 합치면서, 새로운 병합 커밋을 생성</li>
+          <li><strong>개발이 완료된 브랜치를 병합할 때 주로 사용</strong></li>
+          <li><strong>두 개의 문서를 그냥 합치기</strong></li>
         </ul>
       </li>
       <li>rebase
         <ul>
           <li>한 브랜치의 커밋을 다른 브랜치의 끝으로 옮겨서, 히스토리가 마치 일렬로 정리된 것처럼 보임</li>
+          <li>불필요한 병합 커밋을 없애고 이력을 깔끔하게 유지 가능</li>
+          <li><strong>개발 브랜치를 최신 코드로 업데이트 할 때 주로 사용</strong></li>
+          <li><strong>새로운 버전의 문서 위에 내 작업을 다시 복사해서 붙여넣기</strong></li>
         </ul>
       </li>
     </ul>
@@ -1625,272 +1886,4 @@ git rebase main
       <li>원격 브랜치의 변경 사항을 병합 대신 리베이스로 가져올 때 사용</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] git clone VS git fork</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/" rel="alternate" type="text/html" title="[Git] git clone VS git fork" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-19T03:30:31+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-clone-fork</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-22-git-clone-fork/"><![CDATA[<ul>
-  <li><a href="#git-clone">git clone</a></li>
-  <li><a href="#git-fork">git fork</a></li>
-  <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
-  <li><a href="#워크플로우">워크플로우</a></li>
-  <li><a href="#실전-예시">실전 예시</a></li>
-</ul>
-
-<hr />
-
-<h2 id="git-clone">git clone</h2>
-
-<ul>
-  <li>역할
-    <ul>
-      <li>원격 저장소를 로컬 컴퓨터에 복제</li>
-    </ul>
-  </li>
-  <li>작업 대상
-    <ul>
-      <li>원격 저장소</li>
-    </ul>
-  </li>
-  <li>특징
-    <ul>
-      <li>저장소의 완전한 복사본(전체 커밋 내역, 브랜치 등)을 가져옴</li>
-      <li>복제 후, 원격 저장소가 자동으로 <code class="language-plaintext highlighter-rouge">origin</code>이라는 이름으로 연결됨</li>
-      <li>로컬에서 작업한 내용을 원격 저장소에 반영하려면 <code class="language-plaintext highlighter-rouge">push</code>사용</li>
-    </ul>
-  </li>
-  <li>동작 방식
-    <ol>
-      <li>Git 저장소 초기화 (<code class="language-plaintext highlighter-rouge">git init</code>)
-        <ul>
-          <li>새로 생성된 폴더는 Git 저장소로 설정됨</li>
-          <li><code class="language-plaintext highlighter-rouge">.git</code> 디렉터리가 자동으로 생성됨</li>
-        </ul>
-      </li>
-      <li>원격 저장소 설정 (<code class="language-plaintext highlighter-rouge">git remote add origin</code>)
-        <ul>
-          <li>복제한 원격 저장소가 자동으로 <code class="language-plaintext highlighter-rouge">origin</code>이라는 이름으로 연결됨</li>
-          <li>로컬에서 원격 저장소와 동기화(<code class="language-plaintext highlighter-rouge">push</code>, <code class="language-plaintext highlighter-rouge">pull</code>)를 가능하게 함</li>
-        </ul>
-      </li>
-      <li>브랜치 체크아웃
-        <ul>
-          <li>기본 브랜치(<code class="language-plaintext highlighter-rouge">main</code> or <code class="language-plaintext highlighter-rouge">master</code>)의 최신 상태가 복제됨</li>
-          <li>이 브랜치는 로컬 저장소로 가져와 자동으로 체크아웃됨</li>
-        </ul>
-      </li>
-      <li>파일 다운로드
-        <ul>
-          <li>원격 저장소에 있는 모든 파일과 폴더가 로컬 디렉토리에 다운로드됨</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">git clone</code> 명령을 실행하면, 다운받은 폴더는 자동으로 Git 저장소로 초기화되고, 원격 저장소와도 연결된 상태임
-    <ul>
-      <li><strong><code class="language-plaintext highlighter-rouge">git init</code>이나 <code class="language-plaintext highlighter-rouge">git remote add</code>를 실행할 필요가 없음</strong></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="git-fork">git fork</h2>
-
-<ul>
-  <li>역할
-    <ul>
-      <li>원격 저장소를 자신의 원격 계정으로 복제</li>
-    </ul>
-  </li>
-  <li>작업 대상
-    <ul>
-      <li>GitHub/GitLab 계정 상의 저장소</li>
-    </ul>
-  </li>
-  <li>특징
-    <ul>
-      <li>원본 저장소의 복사본이 내 계정의 원격 저장소로 생성됨</li>
-      <li><strong>내 계정에서 관리할 수 있는 원격 저장소를 만든다는 것</strong>이 핵심</li>
-      <li>원본 저장소와 연결은 유지되지만, 독립적인 저장소로 사용됨</li>
-      <li>추가 단계
-        <ul>
-          <li>포크 후, 로컬에 복사하려면 <strong><code class="language-plaintext highlighter-rouge">git clone</code></strong>을 사용해야 함</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>사용 시기
-    <ul>
-      <li>오픈소스 프로젝트에 기여할 때, 원본 저장소를 수정하지 않고 내 계정에서 관리 가능한 복사본을 만들어야 할 때 사용</li>
-      <li><strong>Pull Request</strong>를 보내기 위한 준비 단계로 사용</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="주요-차이점-정리">주요 차이점 정리</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th><strong>특징</strong></th>
-      <th><strong>git clone</strong></th>
-      <th><strong>git fork</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>복제 대상</td>
-      <td>원격 저장소 ➡️ 로컬 저장소</td>
-      <td>원격 저장소 ➡️ 내 원격 저장소</td>
-    </tr>
-    <tr>
-      <td>저장소 위치</td>
-      <td>로컬에서 작업</td>
-      <td>내 계정의 원격 저장소에서 작업</td>
-    </tr>
-    <tr>
-      <td>연결된 원격 저장소</td>
-      <td><code class="language-plaintext highlighter-rouge">origin</code>으로 원본 저장소 연결</td>
-      <td>내 계정의 원격 저장소 (원본 저장소는 upstream으로 연결 가능)</td>
-    </tr>
-    <tr>
-      <td>사용 목적</td>
-      <td>로컬에서 작업하고 원본 저장소에 반영</td>
-      <td>내 계정에서 독립적으로 원격 저장소 관리</td>
-    </tr>
-    <tr>
-      <td>주로 사용 상황</td>
-      <td>협업 프로젝트에 바로 참여</td>
-      <td>오픈소스 프로젝트에 기여 (Pull Request 준비)</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="워크플로우">워크플로우</h2>
-
-<h3 id="일반적으로-fork--clone--push--pull-request가-오픈-소스-협업의-표준-워크플로우">일반적으로 <strong>Fork → Clone → Push → Pull Request</strong>가 오픈 소스 협업의 표준 워크플로우</h3>
-
-<ol>
-  <li>
-    <p>Fork 저장소 생성</p>
-
-    <ul>
-      <li>먼저, 해당 저장소를 <strong>Fork</strong>하여 내 계정으로 복사
-        <ul>
-          <li>GitHub에서 기여하고자 하는 저장소 페이지로 이동</li>
-          <li>우측 상단의 <strong>Fork</strong> 버튼을 클릭</li>
-          <li>그러면 내 계정에 저장소 복사본이 생성됨</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Fork 저장소 Clone</p>
-
-    <ul>
-      <li>Fork된 저장소를 로컬로 복제
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/your-username/repository.git
-</code></pre></div>        </div>
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">your-username</code>은 GitHub 계정 이름으로 대체</li>
-          <li>Clone이 완료되면 로컬 환경에서 작업 가능</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>원본 저장소 추가 (선택 사항)</p>
-
-    <ul>
-      <li>원본 저장소와 동기화를 유지하려면, 원본 저장소를 <strong><code class="language-plaintext highlighter-rouge">upstream</code></strong>으로 추가
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add upstream https://github.com/original-owner/repository.git
-</code></pre></div>        </div>
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">original-owner</code>는 원본 저장소의 소유자 이름으로 대체</li>
-          <li><code class="language-plaintext highlighter-rouge">git remote -v</code> 명령을 사용하여 설정이 제대로 되었는지 확인 가능</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>로컬에서 작업</p>
-
-    <ul>
-      <li>새로운 파일을 추가하거나 수정 후 커밋
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
-git commit <span class="nt">-m</span> <span class="s2">"Add new feature"</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Fork된 저장소에 Push</p>
-
-    <ul>
-      <li>로컬에서 작업한 내용을 자신의 Fork 저장소에 Push
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin main
-</code></pre></div>        </div>
-        <ul>
-          <li>여기서 <code class="language-plaintext highlighter-rouge">main</code>은 사용하는 브랜치 이름</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Pull Request 생성</p>
-
-    <ul>
-      <li>
-        <p>GitHub로 돌아가, Fork된 저장소에서 원본 저장소로 <strong>Pull Request</strong>를 생성</p>
-
-        <ol>
-          <li>내 Fork 저장소 페이지에서 <strong>“Contribute”</strong> 버튼 클릭.</li>
-          <li><strong>“Open Pull Request”</strong> 버튼 클릭.</li>
-          <li>변경 사항에 대한 설명을 작성하고 Pull Request를 제출합니다.</li>
-        </ol>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<h3 id="-요약">✅ 요약</h3>
-
-<p>다른 사람의 저장소에 기여하기 위한 전체 과정</p>
-
-<ol>
-  <li><strong>Fork</strong>: 저장소를 내 계정으로 복제.</li>
-  <li><strong>Clone</strong>: 내 계정에 있는 저장소를 로컬로 복제.</li>
-  <li><strong>원본 저장소 추가</strong>: 원본 저장소와 동기화(선택 사항).</li>
-  <li><strong>작업</strong>: 로컬에서 파일 수정 및 커밋.</li>
-  <li><strong>Push</strong>: 작업 내용을 내 계정 저장소로 업로드.</li>
-  <li><strong>Pull Request</strong>: 원본 저장소에 변경 사항을 제안.</li>
-</ol>
-
-<h2 id="실전-예시">실전 예시</h2>
-
-<ol>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">git clone</code>만 사용하는 경우</p>
-
-    <ul>
-      <li>팀 프로젝트에서 기존 저장소를 복제하여 작업 후, 원본 저장소에 바로 push</li>
-    </ul>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone &lt;repository-url&gt;
-<span class="nb">cd</span> &lt;repository-folder&gt;
-<span class="c"># 작업 후</span>
-git push origin &lt;branch-name&gt;
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">git fork</code>와 <code class="language-plaintext highlighter-rouge">git clone</code>을 함께 사용하는 경우</p>
-    <ul>
-      <li>오픈소스 프로젝트에서 자신의 계정으로 fork 후, 로컬에서 복제하여 작업 후 pull request 보냄
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># GitHub에서 Fork한 후</span>
-git clone &lt;forked-repository-url&gt;
-<span class="nb">cd</span> &lt;repository-folder&gt;
-<span class="c"># 원본 저장소를 upstream으로 추가</span>
-git remote add upstream &lt;original-repository-url&gt;
-git fetch upstream
-<span class="c"># 작업 후, 내 계정 원격 저장소에 Push</span>
-git push origin &lt;branch-name&gt;
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git clone과 git fork의 동작 방식에 대해 알아보자.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[git rebase의 동작 방식에 대해 알아보자.]]></summary></entry></feed>

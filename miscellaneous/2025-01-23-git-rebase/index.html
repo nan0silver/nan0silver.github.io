@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[Git] git rebase" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-02-19T03:30:31+00:00","datePublished":"2025-01-23T00:00:00+00:00","description":"git rebase의 동작 방식에 대해 알아보자.","headline":"[Git] git rebase","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-02-19T15:03:30+00:00","datePublished":"2025-01-23T00:00:00+00:00","description":"git rebase의 동작 방식에 대해 알아보자.","headline":"[Git] git rebase","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-02-19T03:31:15+00:00',
+    INDEX_KEY: 'index--2025-02-19T15:04:15+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 19 Feb 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-02-19T03:30:31+00:00">2025-02-19</time>
+              <time datetime="2025-02-19T15:03:30+00:00">2025-02-19</time>
             </span>
           
         
@@ -283,8 +283,61 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <h2 id="git-rebase">git rebase</h2>
 
 <ul>
-  <li>Git에서 브랜치의 커밋 히스토리를 재구성할 때 사용하는 명령어</li>
+  <li>Git에서 브랜치의 커밋 히스토리를 재구성할 때 사용하는 명령어로, 현재 브랜치의 기반이 되는 커밋을 변경한다.
+    <blockquote>
+      <p>브랜치의 시작점을 다른 브랜치의 최신 커밋으로 옮겨서, 변경 이력을 깔끔하게 정리함</p>
+    </blockquote>
+  </li>
   <li>이를 통해 브랜치의 히스토리를 “정리(clean)”하거나 최신 상태를 기반으로 변경사항을 다시 적용할 수 있음</li>
+  <li>‼️ 실제 동작 방식
+    <ul>
+      <li>main 브랜치가 이렇게 변경되었다.
+        <blockquote>
+          <p>A - B - C (main 최신 상태)</p>
+        </blockquote>
+      </li>
+      <li>내 feature-branch는 main 브랜치를 기반으로 작업했지만 오랜된 상태임
+        <blockquote>
+          <p>A - B - (내 변경 사항 X, Y) (feature-branch)</p>
+        </blockquote>
+      </li>
+      <li>➡️ 이 상태에서 <code class="language-plaintext highlighter-rouge">git rebase main</code>을 실행하면
+        <blockquote>
+          <p>A - B - C - ( 내 변경 사항 X, Y) (rebase된 feature-branch)</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="git-rebase의-필요성">git rebase의 필요성</h2>
+
+<h3 id="1-base-브랜치가-변경될-때-conflict-최소화">1. Base 브랜치가 변경될 때 Conflict 최소화</h3>
+
+<ul>
+  <li>여러 개발자가 동시에 작업하는 경우, 메인 브랜치(main or develop)의 최신 커밋을 반영하지 않으면 충돌이 발생할 가능성이 높다/</li>
+  <li>Rebase를 하면, 최신 코드 기준으로 브랜치 변경 이력을 재구성할 수 있어, Merge conflict를 최소화할 수 있다.</li>
+  <li>✅ 예제 : Rebase없이 충돌 발생
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">feature-branch</code>에서 작업을 했지만, main 브랜치가 업데이트됨</li>
+      <li><code class="language-plaintext highlighter-rouge">git merge main</code>을 하면 불필요한 merge commit이 생성됨
+        <ul>
+          <li>merge commit이 많아지면 협업시 코드리뷰할 때 이력 파악이 어려워짐</li>
+        </ul>
+      </li>
+      <li>conflict가 날 가능성이 많아짐</li>
+      <li>✅ Rebase로 conflict 최소화</li>
+      <li>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout feature-branch
+git rebase main
+<span class="c"># → 최신 main 브랜치 기준으로 변경 이력 재구성</span>
+</code></pre></div>        </div>
+        <ul>
+          <li>➡️ Rebase를 하면 최신 코드와 충돌을 최소화하면서 깔끔한 커밋 이력 유지 가능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="git-rebase-vs-git-merge">git rebase VS git merge</h2>
@@ -295,11 +348,16 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>merge
         <ul>
           <li>두 브랜치의 히스토리를 합치면서, 새로운 병합 커밋을 생성</li>
+          <li><strong>개발이 완료된 브랜치를 병합할 때 주로 사용</strong></li>
+          <li><strong>두 개의 문서를 그냥 합치기</strong></li>
         </ul>
       </li>
       <li>rebase
         <ul>
           <li>한 브랜치의 커밋을 다른 브랜치의 끝으로 옮겨서, 히스토리가 마치 일렬로 정리된 것처럼 보임</li>
+          <li>불필요한 병합 커밋을 없애고 이력을 깔끔하게 유지 가능</li>
+          <li><strong>개발 브랜치를 최신 코드로 업데이트 할 때 주로 사용</strong></li>
+          <li><strong>새로운 버전의 문서 위에 내 작업을 다시 복사해서 붙여넣기</strong></li>
         </ul>
       </li>
     </ul>
@@ -491,7 +549,7 @@ git rebase main
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/javascript/2025-02-05-dom-bom/" class="flip-title"><span>[JavaScript] DOM &amp; BOM</span></a>  <time class="faded fine" datetime="2025-02-05T00:00:00+00:00">05 Feb 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-02-04-serialization/" class="flip-title"><span>[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</span></a>  <time class="faded fine" datetime="2025-02-04T00:00:00+00:00">04 Feb 2025</time></li>                        <li class="h4">  <a href="/javascript/2025-02-04-storage/" class="flip-title"><span>[JavaScript] 로컬 스토리지 VS 세션 스토리지</span></a>  <time class="faded fine" datetime="2025-02-04T00:00:00+00:00">04 Feb 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/miscellaneous/2025-02-19-git-commit/" class="flip-title"><span>[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</span></a>  <time class="faded fine" datetime="2025-02-19T00:00:00+00:00">19 Feb 2025</time></li>                        <li class="h4">  <a href="/javascript/2025-02-05-dom-bom/" class="flip-title"><span>[JavaScript] DOM &amp; BOM</span></a>  <time class="faded fine" datetime="2025-02-05T00:00:00+00:00">05 Feb 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-02-04-serialization/" class="flip-title"><span>[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</span></a>  <time class="faded fine" datetime="2025-02-04T00:00:00+00:00">04 Feb 2025</time></li>            </ul></aside>
 
   
 
@@ -643,7 +701,7 @@ git rebase main
           class="sidebar-nav-item "
           
         >
-          JavaScript (7)
+          JavaScript (8)
         </a>
       </li>
     
