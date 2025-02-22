@@ -1,7 +1,268 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-22T12:40:07+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-22T12:53:07+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Etc] OAuth란?</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" rel="alternate" type="text/html" title="[Etc] OAuth란?" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-02-22T12:39:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/OAuth</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-02-22T12:52:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
+  <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
+  <li><a href="#2-access-token">Access Token</a></li>
+  <li><a href="#3-refresh-token">Refresh Token</a></li>
+  <li><a href="#4-access-token-vs-refresh-token-비교">Access Token vs. Refresh Token 비교</a></li>
+  <li><a href="#5-access-token과-refresh-token을-사용하는-이유">Access Token과 Refresh Token을 사용하는 이유</a></li>
+  <li><a href="#6-access-token과-refresh-token을-활용한-인증-흐름">Access Token과 Refresh Token을 활용한 인증 흐름</a></li>
+  <li><a href="#7-access-token--refresh-token-보안-고려-사항">Access Token &amp; Refresh Token 보안 고려 사항</a></li>
+  <li><a href="#8-access-token--refresh-token-실제-코드-구현-java-spring-security">실제 코드 구현 (Java, Spring Security)</a></li>
+</ul>
+
+<hr />
+
+<h2 id="1-access-token과-refresh-token이란"><strong>1. Access Token과 Refresh Token이란?</strong></h2>
+
+<blockquote>
+  <p>OAuth 2.0을 사용할 때 핵심이 되는 토큰</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>토큰 종류</th>
+      <th>역할</th>
+      <th>유효 기간</th>
+      <th>사용 목적</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Access Token</strong></td>
+      <td>API 요청 시 인증을 위한 토큰</td>
+      <td>짧음 (몇 분~1시간)</td>
+      <td>사용자가 인증된 후 API 접근</td>
+    </tr>
+    <tr>
+      <td><strong>Refresh Token</strong></td>
+      <td>Access Token이 만료되었을 때 새 토큰 발급</td>
+      <td>김 (며칠~몇 달)</td>
+      <td>Access Token을 갱신</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-access-token"><strong>2. Access Token</strong></h2>
+
+<h3 id="-access-token이란">✅ <strong>Access Token이란?</strong></h3>
+
+<ul>
+  <li>사용자가 OAuth 인증을 마치면 <strong>Authorization Server</strong>가 발급하는 <strong>단기 유효 토큰</strong>.</li>
+  <li>이 토큰을 API 요청의 <strong>Authorization 헤더</strong>에 포함하여 사용.</li>
+  <li>일반적으로 <strong>Bearer Token 방식</strong>으로 사용됨.</li>
+</ul>
+
+<h3 id="-access-token-사용-예시">🎯 <strong>Access Token 사용 예시</strong></h3>
+
+<p>HTTP 요청에서 Access Token을 포함하여 API 호출:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">GET</span> <span class="nn">/user/profile</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.example.com</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer ACCESS_TOKEN</span>
+</code></pre></div></div>
+
+<h3 id="-access-token의-유효-기간">⏳ <strong>Access Token의 유효 기간</strong></h3>
+
+<ul>
+  <li>보안상 <strong>짧은 시간(몇 분~1시간 정도)</strong> 만 유지됨.</li>
+  <li>Access Token이 만료되면 더 이상 API를 호출할 수 없음.</li>
+  <li>해결 방법: <strong>Refresh Token을 사용하여 새로운 Access Token 발급</strong>.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-refresh-token"><strong>3. Refresh Token</strong></h2>
+
+<h3 id="-refresh-token이란">✅ <strong>Refresh Token이란?</strong></h3>
+
+<ul>
+  <li>Access Token이 만료되었을 때, <strong>새로운 Access Token을 요청할 수 있도록 제공되는 장기 토큰</strong>.</li>
+  <li>Access Token과 다르게, Refresh Token 자체로는 API 요청을 보낼 수 없음.</li>
+  <li>일반적으로 <strong>다시 로그인하지 않고도 인증을 연장할 때 사용</strong>.</li>
+</ul>
+
+<h3 id="-refresh-token-사용-예시">🎯 <strong>Refresh Token 사용 예시</strong></h3>
+
+<p>Access Token이 만료되면, Refresh Token을 이용하여 새 Access Token을 요청:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">POST</span> <span class="nn">/auth/token</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">auth.example.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
+
+grant_type=refresh_token&amp;
+client_id=YOUR_CLIENT_ID&amp;
+client_secret=YOUR_CLIENT_SECRET&amp;
+refresh_token=YOUR_REFRESH_TOKEN
+</code></pre></div></div>
+
+<h3 id="-refresh-token의-유효-기간">⏳ <strong>Refresh Token의 유효 기간</strong></h3>
+
+<ul>
+  <li><strong>며칠~몇 달까지 유지 가능</strong> (보안 정책에 따라 다름).</li>
+  <li>일반적으로 <strong>기기 변경, 비밀번호 변경, 보안 위험 감지 시 강제 만료됨</strong>.</li>
+</ul>
+
+<hr />
+
+<h2 id="4-access-token-vs-refresh-token-비교"><strong>4. Access Token vs. Refresh Token 비교</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th><strong>Access Token</strong></th>
+      <th><strong>Refresh Token</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>목적</strong></td>
+      <td>API 요청 인증</td>
+      <td>새로운 Access Token 발급</td>
+    </tr>
+    <tr>
+      <td><strong>유효 기간</strong></td>
+      <td>짧음 (몇 분~1시간)</td>
+      <td>김 (며칠~몇 달)</td>
+    </tr>
+    <tr>
+      <td><strong>보관 위치</strong></td>
+      <td>클라이언트 저장</td>
+      <td>클라이언트 저장 (보안 필요)</td>
+    </tr>
+    <tr>
+      <td><strong>보안 위험</strong></td>
+      <td>탈취되면 API 무단 접근 가능</td>
+      <td>탈취되면 새로운 Access Token 발급 가능</td>
+    </tr>
+    <tr>
+      <td><strong>사용 가능 횟수</strong></td>
+      <td>여러 번 API 요청 가능</td>
+      <td>1회 또는 제한적 사용</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="5-access-token과-refresh-token을-사용하는-이유"><strong>5. Access Token과 Refresh Token을 사용하는 이유</strong></h2>
+
+<h3 id="access-token만-사용하면"><strong>Access Token만 사용하면?</strong></h3>
+
+<ul>
+  <li>보안상 유효 기간을 길게 설정할 수 없음.</li>
+  <li>토큰이 만료될 때마다 사용자가 다시 로그인해야 함 → <strong>불편함</strong>.</li>
+</ul>
+
+<h3 id="refresh-token을-추가하면"><strong>Refresh Token을 추가하면?</strong></h3>
+
+<ul>
+  <li><strong>Access Token을 자주 갱신할 수 있음</strong> → 보안 강화.</li>
+  <li>사용자가 다시 로그인할 필요 없이 <strong>자동으로 인증 연장 가능</strong>.</li>
+</ul>
+
+<p>👉 <strong>Refresh Token을 사용하면 보안과 사용자 편의성 모두 향상됨</strong>.</p>
+
+<hr />
+
+<h2 id="6-access-token과-refresh-token을-활용한-인증-흐름"><strong>6. Access Token과 Refresh Token을 활용한 인증 흐름</strong></h2>
+
+<p>1️⃣ <strong>사용자가 로그인 &amp; 권한 부여</strong><br />
+ → OAuth 서버가 <strong>Access Token과 Refresh Token 발급</strong><br />
+2️⃣ <strong>클라이언트가 API 요청</strong><br />
+ → <code class="language-plaintext highlighter-rouge">Authorization: Bearer Access_Token</code> 포함하여 요청<br />
+3️⃣ <strong>Access Token이 만료됨</strong><br />
+ → API 서버가 <strong>401 Unauthorized</strong> 응답 반환<br />
+4️⃣ <strong>Refresh Token을 사용해 새 Access Token 요청</strong><br />
+ → 새 Access Token 발급 후 다시 API 요청 가능<br />
+5️⃣ <strong>Refresh Token도 만료됨</strong><br />
+ → 사용자는 <strong>다시 로그인 필요</strong></p>
+
+<p>👉 <strong>Access Token은 API 요청을 인증하는 용도, Refresh Token은 새로운 Access Token을 발급하는 용도!</strong><br />
+👉 <strong>보안이 중요한 만큼 저장 방식과 유효 기간을 잘 관리해야 함!</strong> 🚀</p>
+
+<hr />
+
+<h2 id="7-access-token--refresh-token-보안-고려-사항"><strong>7. Access Token &amp; Refresh Token 보안 고려 사항</strong></h2>
+
+<h3 id="-access-token-보안">✅ <strong>Access Token 보안</strong></h3>
+
+<ul>
+  <li><strong>유효 기간을 짧게 설정</strong> (몇 분~1시간)</li>
+  <li><strong>HTTPS 사용 필수</strong> (네트워크 스니핑 방지)</li>
+  <li><strong>탈취되면 API 접근 가능 → 짧은 유효 기간이 보안성을 보장</strong></li>
+</ul>
+
+<h3 id="-refresh-token-보안">✅ <strong>Refresh Token 보안</strong></h3>
+
+<ul>
+  <li><strong>보안 저장소 사용</strong> (예: 모바일 앱에서는 <strong>Secure Storage</strong>)</li>
+  <li><strong>HTTP 요청 시 노출되지 않도록 주의</strong> (쿠키 또는 안전한 저장소에 보관)</li>
+  <li><strong>유출 시 즉시 무효화 필요</strong> (서버에서 토큰 무효화 기능 추가)</li>
+</ul>
+
+<h3 id="-탈취-방지-방법">🚨 <strong>탈취 방지 방법</strong></h3>
+
+<ol>
+  <li><strong>Refresh Token을 클라이언트에서 안전하게 저장</strong>
+    <ul>
+      <li>브라우저: <strong>HttpOnly Secure Cookie</strong> 사용</li>
+      <li>모바일 앱: <strong>Secure Storage / Keychain</strong> 사용</li>
+    </ul>
+  </li>
+  <li><strong>Refresh Token 재사용 방지 (One-Time Refresh Token)</strong>
+    <ul>
+      <li>Refresh Token을 사용할 때마다 새 Refresh Token을 발급하고 이전 것은 무효화</li>
+    </ul>
+  </li>
+  <li><strong>IP &amp; 디바이스 검증</strong>
+    <ul>
+      <li>Refresh Token 사용 시 <strong>IP 주소와 디바이스 정보를 확인하여 이상 감지 시 무효화</strong></li>
+    </ul>
+  </li>
+  <li><strong>토큰 암호화 및 서명</strong>
+    <ul>
+      <li>JWT 기반 Access Token은 <strong>서명(Signature)</strong> 을 포함하여 위변조 방지</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="8-access-token--refresh-token-실제-코드-구현-java-spring-security"><strong>8. Access Token &amp; Refresh Token 실제 코드 구현 (Java, Spring Security)</strong></h2>
+
+<h3 id="-access-token--refresh-token-발급-api-예제-spring-boot"><strong>🔹 Access Token &amp; Refresh Token 발급 API 예제 (Spring Boot)</strong></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/auth"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthController</span> <span class="o">{</span>
+
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/token"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">getToken</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="nc">String</span> <span class="n">refreshToken</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isValidRefreshToken</span><span class="o">(</span><span class="n">refreshToken</span><span class="o">))</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">newAccessToken</span> <span class="o">=</span> <span class="n">generateNewAccessToken</span><span class="o">();</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">newAccessToken</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">UNAUTHORIZED</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="s">"Invalid Refresh Token"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isValidRefreshToken</span><span class="o">(</span><span class="nc">String</span> <span class="n">token</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Refresh Token 검증 로직</span>
+        <span class="k">return</span> <span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"valid-refresh-token"</span><span class="o">);</span> <span class="c1">// 예제 코드</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="nf">generateNewAccessToken</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 새로운 Access Token 생성 (JWT 사용 가능)</span>
+        <span class="k">return</span> <span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] OAuth란?</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" rel="alternate" type="text/html" title="[Etc] OAuth란?" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-02-22T12:52:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/OAuth</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"><![CDATA[<ul>
   <li><a href="#1-oauth-개념과-특징">OAuth 개념과 특징</a></li>
   <li><a href="#2-oauth-10-vs-oauth-20">OAuth 1.0 vs. OAuth 2.0</a></li>
   <li><a href="#3-oauth-20-상세-동작-방식">OAuth 2.0 상세 동작 방식</a></li>
@@ -289,7 +550,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li><strong>구현이 복잡함</strong>: Access Token, Refresh Token 관리 필요</li>
   <li><strong>서버 부하 증가</strong>: 토큰 발급 및 검증 과정에서 추가적인 요청 발생</li>
   <li><strong>Refresh Token 유출 위험</strong>: Refresh Token이 유출되면 악용될 가능성 있음</li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" rel="alternate" type="text/html" title="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" /><published>2025-02-19T00:00:00+00:00</published><updated>2025-02-22T12:39:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-commit</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" rel="alternate" type="text/html" title="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" /><published>2025-02-19T00:00:00+00:00</published><updated>2025-02-22T12:52:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-commit</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/"><![CDATA[<ul>
   <li><a href="#commit-단위를-결정-짓는-요소">Commit 단위를 결정 짓는 요소</a></li>
   <li><a href="#udacity-style">Udacity style</a></li>
   <li><a href="#rebase를-잘쓰자">Rebase를 잘쓰자!</a></li>
@@ -492,7 +753,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-02-22T12:39:22+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-02-22T12:52:22+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
   <li><a href="#dom-document-object-model">DOM (Document Object Model)</a></li>
   <li><a href="#dom-기본-구조">DOM 기본 구조</a></li>
   <li><a href="#dom의-특징">DOM의 특징</a></li>
@@ -747,7 +1008,7 @@ chore: 패키지 버전 업데이트
       <td><code class="language-plaintext highlighter-rouge">alert()</code>, <code class="language-plaintext highlighter-rouge">location.href</code>, <code class="language-plaintext highlighter-rouge">history.back()</code></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-22T12:39:22+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-22T12:52:22+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
   <li><a href="#로컬-스토리지-local-storage-vs-세션-스토리지-session-storage">로컬 스토리지 VS 세션 스토리지</a></li>
   <li><a href="#데이터-유지-기간">데이터 유지 기간</a></li>
   <li><a href="#접근-범위">접근 범위</a></li>
@@ -846,7 +1107,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-22T12:39:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-22T12:52:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
   <li><a href="#직렬화serialization과-역직렬화deserialization--️-">직렬화와 역직렬화</a></li>
   <li><a href="#직렬화-serialization-이란-">직렬화란? 📦</a></li>
   <li><a href="#역직렬화-deserialization-이란--️-">역직렬화란? 📦 ➡️ 💻</a></li>
@@ -1049,7 +1310,7 @@ chore: 패키지 버전 업데이트
         <span class="c1">// Java Serializable 사용 (Java와 동일)</span>
         <span class="c1">// ... (Java 예시 코드와 유사)</span>
     <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-22T12:39:22+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-22T12:52:22+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
   <li><a href="#함수-function">함수 (function)</a></li>
   <li><a href="#화살표-함수">화살표 함수</a></li>
   <li><a href="#고차-함수">고차 함수 (map, filter, reduce)</a></li>
@@ -1345,7 +1606,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-22T12:39:22+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-22T12:52:22+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
   <li><a href="#generic이란">Generic이란?</a></li>
   <li><a href="#generic의-장점">Generic의 장점</a></li>
   <li><a href="#generic-사용법">Generic 사용법</a></li>
@@ -1539,7 +1800,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-22T12:39:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-22T12:52:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
   <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
   <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
   <li><a href="#tdd의-장점">TDD의 장점</a></li>
@@ -1771,7 +2032,7 @@ chore: 패키지 버전 업데이트
       <td><a href="http://junit.org/">JUnit</a></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가</title><link href="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-22T12:39:22+00:00</updated><id>https://nan0silver.github.io/javascript/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가</title><link href="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-22T12:52:22+00:00</updated><id>https://nan0silver.github.io/javascript/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
   <li><a href="#단축-평가란">단축 평가란?</a></li>
   <li><a href="#단축-평가-동작-방식">단축 평가 동작 방식</a></li>
   <li><a href="#단축-평가-활용-예시">단축 평가 활용 예시</a></li>
@@ -1944,82 +2205,4 @@ chore: 패키지 버전 업데이트
       <li>단축 평가의 반환 값은 마지막으로 평가된 표현식의 결과이다.</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</title><link href="https://nan0silver.github.io/java/2025-01-23-int-long/" rel="alternate" type="text/html" title="[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리" /><published>2025-01-23T00:00:00+00:00</published><updated>2025-02-22T12:39:22+00:00</updated><id>https://nan0silver.github.io/java/int-long</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-23-int-long/"><![CDATA[<ul>
-  <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
-  <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
-  <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
-  <li><a href="#문제를-보고-빠르게-판단하는-팁">문제를 보고 빠르게 판단하는 팁</a></li>
-</ul>
-
-<hr />
-
-<h2 id="int와-long의-차이">int와 long의 차이</h2>
-
-<ul>
-  <li>자꾸 문제를 풀다 int와 long을 혼동해서 문제를 틀리는 경우가 있어서 완벽 정리하려고 한다.</li>
-  <li><strong>입력값의 범위와 연산 결과의 최댓값</strong>을 기준으로 판단하는 습관을 들여야 함</li>
-</ul>
-
-<h2 id="int와-long의-입력값">int와 long의 입력값</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">int</code> : 약 -2,147,483,648 ~ 2,147,483,648</li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">long</code> : 약 -9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,808</p>
-  </li>
-  <li>문제에 입력값이 명시되어 있다면
-    <ul>
-      <li>-2,000,000,000 &lt;= N,M &lt;= 2,000,000,000
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">int</code>는 처리 가능. 하지만 연산 결과를 생각해야 함</li>
-        </ul>
-      </li>
-      <li>범위가 <code class="language-plaintext highlighter-rouge">int</code>의 한계와 가깝다면, 입력값은 int로 가능하더라도 연산 결과가 범위를 초과할 수 있기 때문에 <code class="language-plaintext highlighter-rouge">long</code>을 사용하는 것이 안전</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="판단-기준">판단 기준</h3>
-
-<ul>
-  <li>입력값이 <code class="language-plaintext highlighter-rouge">-10^9 ~ 10^9</code> 사이일 경우
-    <ul>
-      <li>단순한 덧셈이나 뺄셈은 <code class="language-plaintext highlighter-rouge">int</code>로 처리 가능</li>
-      <li>곱셈, 제곱 연산, 누적 합계 등은 <code class="language-plaintext highlighter-rouge">long</code>이 필요할 수 있음</li>
-    </ul>
-  </li>
-  <li>입력값이 <code class="language-plaintext highlighter-rouge">-10^{10}</code> 이상이거나, 결과적으로 큰 숫자가 나올 가능성이 있다면
-    <ul>
-      <li>무조건 <code class="language-plaintext highlighter-rouge">long</code> 사용</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</h2>
-
-<ul>
-  <li>문제에서 요구하는 연산 결과 예상하기</li>
-  <li>예) 누적합 문제
-    <ul>
-      <li>배열의 크기가 1,000,000이고, 각 원소가 최대 10^6이라면, 누적합은 최대 10^12가 될 수 있음</li>
-      <li>이 경우 int의 범위를 초과하므로 long을 사용해야 함</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="문제를-보고-빠르게-판단하는-팁">문제를 보고 빠르게 판단하는 팁</h2>
-
-<ol>
-  <li>입력 범위 확인</li>
-  <li>연산의 종류 확인</li>
-  <li>규칙 만들기
-    <ul>
-      <li>“입력값이 10^9 이상이면 무조건 <code class="language-plaintext highlighter-rouge">long</code>으로 처리한다”</li>
-    </ul>
-  </li>
-  <li>테스트 데이터 체크
-    <ul>
-      <li>극단적인 입력값을 대입해보기</li>
-    </ul>
-  </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry></feed>
