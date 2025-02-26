@@ -1,7 +1,167 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-26T02:41:06+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-26T02:52:35+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-02-26T02:40:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] SOLID 원칙</title><link href="https://nan0silver.github.io/java/2025-02-23-solid/" rel="alternate" type="text/html" title="[JAVA] SOLID 원칙" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-02-26T02:51:49+00:00</updated><id>https://nan0silver.github.io/java/solid</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-23-solid/"><![CDATA[<ul>
+  <li><a href="#1-srp-single-responsibility-principle">1. 단일 책임 원칙</a></li>
+  <li><a href="#2-ocp-openclosed-principle">2. 개방-폐쇄 원칙</a></li>
+  <li><a href="#3-lsp-liskov-substitution-principle">3. 리스코프 치환 원칙</a></li>
+  <li><a href="#4-isp-interface-segregation-principle">4. 인터페이스 분리 원칙</a></li>
+  <li><a href="#5-dip-dependency-inversion-principle">5. 의존성 역전 원칙</a></li>
+</ul>
+
+<hr />
+
+<h2 id="solid-원칙">SOLID 원칙</h2>
+
+<ul>
+  <li>객체지향 프로그래밍(OOP)에서 SOLID 원칙이란, 유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙</li>
+  <li>각각의 원칙의 첫글자를 따서 만든 약자.</li>
+  <li><img src="https://raw.githubusercontent.com/nan0silver/nan0silver.github.io/3820f9cfa16c85c0487a9fd198d804a6f957a658/assets/img/blog/2025-02-23-solid.svg" alt="solid 원칙" /></li>
+</ul>
+
+<h2 id="1-srp-single-responsibility-principle"><strong>1. SRP (Single Responsibility Principle)</strong></h2>
+
+<blockquote>
+  <p>🔴 단일 책임 원칙</p>
+</blockquote>
+
+<ul>
+  <li>정의
+    <ul>
+      <li>하나의 클래스는 단 하나의 책임(기능)만 가져야 한다.</li>
+      <li>즉, 클래스가 변경될 이유는 오직 하나여야 한다/</li>
+    </ul>
+  </li>
+  <li>의미
+    <ul>
+      <li>클래스가 너무 많은 역할을 담당하게 되면, 유지보수나 확장 시 하나의 변경 사항이 다른 기능까지 의도치 않게 영향을 줄 수 있음</li>
+      <li>하나의 클래스가 단 하나의 목적만 수행하도록 하면, 코드 관리가 쉬워지고 명확해짐</li>
+    </ul>
+  </li>
+  <li>예시
+    <ul>
+      <li>❌ 나쁜 예시 : 회원 관리 클래스가 로그인, 회원정보 관리, 이메일 발송까지 전부 담당</li>
+      <li>✅ 좋은 예시 : 로그인 클래스, 회원정보 관리 클래스, 이메일 발송 클래스를 각각 따로 분리</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="2-ocp-openclosed-principle"><strong>2. OCP (Open/Closed Principle)</strong></h2>
+
+<blockquote>
+  <p>🟠 개방-폐쇄 원칙</p>
+</blockquote>
+
+<ul>
+  <li>정의
+    <ul>
+      <li>소프트웨어의 구성 요소(클래스, 모듈, 함수 등)는 확장에는 열려있고, 변경에는 닫혀있어야 한다.</li>
+    </ul>
+  </li>
+  <li>의미
+    <ul>
+      <li>새로운 기능을 추가할 때 기존 코드를 수정하지 않고도 기능을 확장할 수 있어야 함.</li>
+    </ul>
+  </li>
+  <li>예시
+    <ul>
+      <li>❌ 나쁜 예시 : 새로운 결제 방식을 추가할 때마다 기존의 결제 클래스를 직접 수정</li>
+      <li>✅ 좋은 예시 : 결제 방식 인터페이스를 정의하고, 이를 구현한 클래스(신용카드 결제, 페이팔 결제 등)를 추가함으로써 기존 코드 수정 없이 확장 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-lsp-liskov-substitution-principle"><strong>3. LSP (Liskov Substitution Principle)</strong></h2>
+
+<blockquote>
+  <p>🟡 리스코프 치환 원칙</p>
+</blockquote>
+
+<ul>
+  <li>정의
+    <ul>
+      <li>자식 클래스는 언제나 부모 클래스를 대체할 수 있어야 함.</li>
+      <li>부모 클래스가 사용되는 곳에 자식 클래스를 넣었을 때도 프로그램이 정확히 동작해야 함</li>
+    </ul>
+  </li>
+  <li>의미
+    <ul>
+      <li>상속 관계를 올바르게 설계해 자식 클래스가 부모 클래스의 본질적인 특성을 바꾸지 않아야 한다.</li>
+      <li>자식 클래스는 부모 클래스가 가진 모든 속성과 메서드를 위반 없이 사용할 수 있어야함</li>
+    </ul>
+  </li>
+  <li>예시
+    <ul>
+      <li>❌ 나쁜 예시 : ‘정사각형’ 클래스를 ‘직사각형’의 자식 클래스로 만들었지만, 가로세로를 독립적으로 조정할 수 없어서 예상한 동작이 깨지는 경우</li>
+      <li>✅ 좋은 예시 : ‘도형’이라는 부모 클래스를 상속하여 ‘직사각형’, ‘정사각형’, ‘삼각형’ 등으로 각자 독립적으로 확장하여 서로 간섭 없이 동작</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="4-isp-interface-segregation-principle"><strong>4. ISP (Interface Segregation Principle)</strong></h2>
+
+<blockquote>
+  <p>🟢 인터페이스 분리 원칙</p>
+</blockquote>
+
+<ul>
+  <li>정의
+    <ul>
+      <li>클라이언트는 자신이 사용하지 않은 메서드에 의존하지 않아야 함.</li>
+      <li>하나의 일반적인 인터페이스보다 여러 개의 구체적이고 세분화된 인터페이스를 사용하는 것이 좋음</li>
+    </ul>
+  </li>
+  <li>의미
+    <ul>
+      <li>하나의 크고 범용적인 인터페이스보다, 용도에 따라 작고 명확하게 구분된 인터페이스를 제공하는 것이 좋음</li>
+      <li>클라이언트가 필요로 하는 최소한의 메서드만 포함한 인터페이스를 만들어야함</li>
+    </ul>
+  </li>
+  <li>예시
+    <ul>
+      <li>❌ 나쁜 예시 : 하나의 인터페이스에 “프린트, 팩스, 복사, 스캔” 기능을 모두 넣어서 일부만 사용하는 프린터 기기같이 모든 메서드를 구현해야하는 경우</li>
+      <li>✅ 좋은 예시 : “프린트 인터페이스”, “팩스 인터페이스”, “복사 인터페이스”, “스캔 인터페이스”로 나눠서 필요한 기능만 구현하도록 제공</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="5-dip-dependency-inversion-principle"><strong>5. DIP (Dependency Inversion Principle)</strong></h2>
+
+<blockquote>
+  <p>🔵 의존성 역전 원칙</p>
+</blockquote>
+
+<ul>
+  <li>정의
+    <ul>
+      <li>고수준 모듈은 저수준 모듈의 구현에 의존해서는 안되며 둘 다 추상화에 의존해야함</li>
+      <li>또한, 추상화(인터페이스나 추상 클래스)는 세부 사항에 의존해서는 안되고, 세부 사항이 추상화에 의존해야함</li>
+    </ul>
+  </li>
+  <li>의미
+    <ul>
+      <li>클래스가 특정 구현(구체적 클래스)이 아닌, 추상화된 인터페이스에 의존하도록 설계해야 함.</li>
+      <li>이는 의존 관계룰 유연하게 만들어 유지보수 및 확장이 편리해지게 횜</li>
+    </ul>
+  </li>
+  <li>
+    <p>예시</p>
+
+    <ul>
+      <li>❌ 나쁜 예시 : 데이터베이스 클래스가 특정 DB(에: MySQL)에 직접 의존하는 코드 설계</li>
+      <li>✅ 좋은 예시 : 데이터베이스 인터페이스를 정의하고, 이를 구현하는 다양한 DB클래스(MySQL, PostgreSQL 등)를 만들어 상위 모듈이 인터페이스에만 의존하도록 설계</li>
+    </ul>
+
+    <h2 id="solid-원칙을-지켰을-때의-장점">SOLID 원칙을 지켰을 때의 장점</h2>
+
+    <ul>
+      <li>유지보수 용이성</li>
+      <li>코드 확장 용이성</li>
+      <li>가독성 및 코드 품질 향상</li>
+      <li>테스트 용이성</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-02-26T02:51:49+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
   <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
   <li><a href="#2-access-token">Access Token</a></li>
   <li><a href="#3-refresh-token">Refresh Token</a></li>
@@ -262,7 +422,7 @@ refresh_token=YOUR_REFRESH_TOKEN
         <span class="k">return</span> <span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] OAuth란?</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" rel="alternate" type="text/html" title="[Etc] OAuth란?" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-02-26T02:40:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/OAuth</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] OAuth란?</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" rel="alternate" type="text/html" title="[Etc] OAuth란?" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-02-26T02:51:49+00:00</updated><id>https://nan0silver.github.io/miscellaneous/OAuth</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"><![CDATA[<ul>
   <li><a href="#1-oauth-개념과-특징">OAuth 개념과 특징</a></li>
   <li><a href="#2-oauth-10-vs-oauth-20">OAuth 1.0 vs. OAuth 2.0</a></li>
   <li><a href="#3-oauth-20-상세-동작-방식">OAuth 2.0 상세 동작 방식</a></li>
@@ -550,7 +710,7 @@ refresh_token=YOUR_REFRESH_TOKEN
   <li><strong>구현이 복잡함</strong>: Access Token, Refresh Token 관리 필요</li>
   <li><strong>서버 부하 증가</strong>: 토큰 발급 및 검증 과정에서 추가적인 요청 발생</li>
   <li><strong>Refresh Token 유출 위험</strong>: Refresh Token이 유출되면 악용될 가능성 있음</li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" rel="alternate" type="text/html" title="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" /><published>2025-02-19T00:00:00+00:00</published><updated>2025-02-26T02:40:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-commit</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" rel="alternate" type="text/html" title="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" /><published>2025-02-19T00:00:00+00:00</published><updated>2025-02-26T02:51:49+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-commit</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/"><![CDATA[<ul>
   <li><a href="#commit-단위를-결정-짓는-요소">Commit 단위를 결정 짓는 요소</a></li>
   <li><a href="#udacity-style">Udacity style</a></li>
   <li><a href="#rebase를-잘쓰자">Rebase를 잘쓰자!</a></li>
@@ -753,7 +913,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-02-26T02:40:22+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-02-26T02:51:49+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
   <li><a href="#dom-document-object-model">DOM (Document Object Model)</a></li>
   <li><a href="#dom-기본-구조">DOM 기본 구조</a></li>
   <li><a href="#dom의-특징">DOM의 특징</a></li>
@@ -1008,7 +1168,7 @@ chore: 패키지 버전 업데이트
       <td><code class="language-plaintext highlighter-rouge">alert()</code>, <code class="language-plaintext highlighter-rouge">location.href</code>, <code class="language-plaintext highlighter-rouge">history.back()</code></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-26T02:40:22+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-26T02:51:49+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
   <li><a href="#로컬-스토리지-local-storage-vs-세션-스토리지-session-storage">로컬 스토리지 VS 세션 스토리지</a></li>
   <li><a href="#데이터-유지-기간">데이터 유지 기간</a></li>
   <li><a href="#접근-범위">접근 범위</a></li>
@@ -1107,7 +1267,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-26T02:40:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-26T02:51:49+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
   <li><a href="#직렬화serialization과-역직렬화deserialization--️-">직렬화와 역직렬화</a></li>
   <li><a href="#직렬화-serialization-이란-">직렬화란? 📦</a></li>
   <li><a href="#역직렬화-deserialization-이란--️-">역직렬화란? 📦 ➡️ 💻</a></li>
@@ -1310,7 +1470,7 @@ chore: 패키지 버전 업데이트
         <span class="c1">// Java Serializable 사용 (Java와 동일)</span>
         <span class="c1">// ... (Java 예시 코드와 유사)</span>
     <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-26T02:40:22+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-26T02:51:49+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
   <li><a href="#함수-function">함수 (function)</a></li>
   <li><a href="#화살표-함수">화살표 함수</a></li>
   <li><a href="#고차-함수">고차 함수 (map, filter, reduce)</a></li>
@@ -1606,7 +1766,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-26T02:40:22+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-26T02:51:49+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
   <li><a href="#generic이란">Generic이란?</a></li>
   <li><a href="#generic의-장점">Generic의 장점</a></li>
   <li><a href="#generic-사용법">Generic 사용법</a></li>
@@ -1800,7 +1960,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-26T02:40:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry><entry><title type="html">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</title><link href="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/" rel="alternate" type="text/html" title="[Etc] TDD (Test-Driven Development, 테스트 주도 개발)" /><published>2025-01-28T00:00:00+00:00</published><updated>2025-02-26T02:51:49+00:00</updated><id>https://nan0silver.github.io/miscellaneous/tdd</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-01-28-tdd/"><![CDATA[<ul>
   <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
   <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
   <li><a href="#tdd의-장점">TDD의 장점</a></li>
@@ -2032,177 +2192,4 @@ chore: 패키지 버전 업데이트
       <td><a href="http://junit.org/">JUnit</a></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 단축 평가</title><link href="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/" rel="alternate" type="text/html" title="[JavaScript] 단축 평가" /><published>2025-01-27T00:00:00+00:00</published><updated>2025-02-26T02:40:22+00:00</updated><id>https://nan0silver.github.io/javascript/javascript-short-circuit-evaluation</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-27-javascript-short-circuit-evaluation/"><![CDATA[<ul>
-  <li><a href="#단축-평가란">단축 평가란?</a></li>
-  <li><a href="#단축-평가-동작-방식">단축 평가 동작 방식</a></li>
-  <li><a href="#단축-평가-활용-예시">단축 평가 활용 예시</a></li>
-  <li><a href="#주의사항">주의사항</a></li>
-</ul>
-
-<hr />
-
-<h2 id="단축-평가-short-circuit-evaluation">단축 평가 (Short-circuit evaluation)</h2>
-
-<ul>
-  <li>논리 연산자 (<code class="language-plaintext highlighter-rouge">&amp;&amp;</code>, <code class="language-plaintext highlighter-rouge">||</code>) 를 평가할 때, <strong>결과를 미리 결정할 수 있다면 나머지 표현식을 평가하지 않고 곧바로 결과를 반환하는 것</strong>
-    <ul>
-      <li><strong><code class="language-plaintext highlighter-rouge">&amp;&amp;</code> (AND) 연산자</strong>: 두 피연산자가 모두 <code class="language-plaintext highlighter-rouge">true</code> 일 때만 <code class="language-plaintext highlighter-rouge">true</code> 를 반환합니다.</li>
-      <li><strong><code class="language-plaintext highlighter-rouge">||</code> (OR) 연산자</strong>: 두 피연산자 중 하나라도 <code class="language-plaintext highlighter-rouge">true</code> 이면 <code class="language-plaintext highlighter-rouge">true</code> 를 반환합니다.</li>
-    </ul>
-  </li>
-  <li>논리 연산자의 동작 방식을 이용하여 불필요한 연산을 줄이고, 코드 실행 효율성을 높임.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">&amp;&amp;</code> (AND) 와 <code class="language-plaintext highlighter-rouge">||</code> (OR) 연산자를 조건문 없이 사용하는 코드를 가능하게 함</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="단축-평가-동작-방식">단축 평가 동작 방식</h2>
-
-<h3 id="1--and-연산자">1. <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> (AND) 연산자</h3>
-
-<p><code class="language-plaintext highlighter-rouge">&amp;&amp;</code> 연산자는 <strong>좌항부터 평가</strong></p>
-
-<ul>
-  <li><strong>좌항이 <code class="language-plaintext highlighter-rouge">false</code> 라면</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">&amp;&amp;</code> 연산의 결과는 항상 <code class="language-plaintext highlighter-rouge">false</code> 이므로, <strong>우항을 평가하지 않고 곧바로 <code class="language-plaintext highlighter-rouge">false</code> 를 반환</strong></li>
-    </ul>
-  </li>
-  <li><strong>좌항이 <code class="language-plaintext highlighter-rouge">true</code> 라면</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">&amp;&amp;</code> 연산의 결과는 우항에 따라 결정되므로, <strong>우항을 평가하고 그 결과를 반환</strong></li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">//falsk</span>
-<span class="c1">//(좌항이 false이므로 우항을 평가하지 않고 false 반환)</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="kc">false</span><span class="p">);</span> <span class="c1">//false</span>
-<span class="c1">//(좌항이 true이므로 우항을 평가하여 false 반환)</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">//true</span>
-<span class="c1">//(좌항이 true이므로 우항을 평가하여 true 반환)</span>
-</code></pre></div></div>
-
-<h3 id="2--or-연산자">2. <code class="language-plaintext highlighter-rouge">||</code> (OR) 연산자</h3>
-
-<p><code class="language-plaintext highlighter-rouge">||</code> 연산자는 <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> 연산자와 마찬가지로 <strong>좌항부터 평가</strong></p>
-
-<ul>
-  <li><strong>좌항이 <code class="language-plaintext highlighter-rouge">true</code> 라면</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">||</code> 연산의 결과는 항상 <code class="language-plaintext highlighter-rouge">true</code> 이므로, <strong>우항을 평가하지 않고 곧바로 <code class="language-plaintext highlighter-rouge">true</code> 를 반환</strong></li>
-    </ul>
-  </li>
-  <li><strong>좌항이 <code class="language-plaintext highlighter-rouge">false</code> 라면</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">||</code> 연산의 결과는 우항에 따라 결정되므로, <strong>우항을 평가하고 그 결과를 반환</strong></li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">true</span> <span class="o">||</span> <span class="kc">false</span><span class="p">);</span> <span class="c1">//true</span>
-<span class="c1">//(좌항이 true이므로 우항을 평가하지 않고 true 반환)</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">false</span> <span class="o">||</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">//true</span>
-<span class="c1">//(좌항이 false이므로 우항을 평가하여 true 반환)</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">false</span> <span class="o">||</span> <span class="kc">false</span><span class="p">);</span> <span class="c1">//false</span>
-<span class="c1">//(좌항이 false이므로 우항을 평가하여 false 반환)</span>
-</code></pre></div></div>
-
-<h2 id="단축-평가-활용-예시">단축 평가 활용 예시</h2>
-
-<h3 id="1-객체의-속성에-접근할-때">1. 객체의 속성에 접근할 때</h3>
-
-<p>객체의 속성에 접근하기 전에 객체가 <code class="language-plaintext highlighter-rouge">null</code> 또는 <code class="language-plaintext highlighter-rouge">undefined</code> 인지 확인하는 코드를 단축 평가로 간결하게 작성 가능</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span> <span class="p">};</span>
-<span class="c1">// const person = null; // person이 null인 경우</span>
-
-<span class="c1">// 조건문 사용</span>
-<span class="kd">let</span> <span class="nx">name</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">name</span> <span class="o">=</span> <span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Unknown</span><span class="dl">"</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Alice</span>
-
-<span class="c1">// 단축 평가 사용</span>
-<span class="kd">const</span> <span class="nx">name2</span> <span class="o">=</span> <span class="nx">person</span> <span class="o">&amp;&amp;</span> <span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name2</span><span class="p">);</span>
-<span class="c1">// Alice (person이 truthy 값이므로 person.name 평가)</span>
-
-<span class="kd">const</span> <span class="nx">person2</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">name3</span> <span class="o">=</span> <span class="nx">person2</span> <span class="o">&amp;&amp;</span> <span class="nx">person2</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name3</span><span class="p">);</span> <span class="c1">// null (person2가 falsy 값이므로 person2 그대로 반환)</span>
-
-<span class="c1">// || 연산자를 사용한 기본값 설정</span>
-<span class="kd">const</span> <span class="nx">name4</span> <span class="o">=</span> <span class="nx">person2</span> <span class="o">||</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Unknown</span><span class="dl">"</span> <span class="p">};</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name4</span><span class="p">);</span> <span class="c1">// { name: 'Unknown' } (person2가 falsy 값이므로 { name: 'Unknown' } 반환)</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name4</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Unknown</span>
-</code></pre></div></div>
-
-<h3 id="2-함수-매개변수에-기본값-설정">2. 함수 매개변수에 기본값 설정</h3>
-
-<p>함수 매개변수에 기본값을 설정할 때 <code class="language-plaintext highlighter-rouge">||</code> 연산자를 사용하여 코드를 간결하게 만들 수 있다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// 조건문 사용</span>
-  <span class="kd">const</span> <span class="nx">userName</span> <span class="o">=</span> <span class="nx">name</span> <span class="p">?</span> <span class="nx">name</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">Guest</span><span class="dl">"</span><span class="p">;</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Hello, </span><span class="p">${</span><span class="nx">userName</span><span class="p">}</span><span class="s2">!`</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">greet</span><span class="p">(</span><span class="dl">"</span><span class="s2">Bob</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// Hello, Bob!</span>
-<span class="nx">greet</span><span class="p">();</span> <span class="c1">// Hello, Guest!</span>
-
-<span class="kd">function</span> <span class="nx">greet2</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// 단축 평가 사용</span>
-  <span class="kd">const</span> <span class="nx">userName</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">||</span> <span class="dl">"</span><span class="s2">Guest</span><span class="dl">"</span><span class="p">;</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Hello, </span><span class="p">${</span><span class="nx">userName</span><span class="p">}</span><span class="s2">!`</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">greet2</span><span class="p">(</span><span class="dl">"</span><span class="s2">Charlie</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// Hello, Charlie!</span>
-<span class="nx">greet2</span><span class="p">();</span> <span class="c1">// Hello, Guest!</span>
-</code></pre></div></div>
-
-<h3 id="3-조건부-렌더링-react">3. 조건부 렌더링 (React)</h3>
-
-<p>React와 같은 UI 라이브러리에서 조건부 렌더링을 구현할 때 단축 평가를 유용하게 사용할 수 있다.</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">MyComponent</span><span class="p">({</span> <span class="nx">items</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="si">{</span><span class="sr">/_ items가 존재하고 배열인 경우에만 목록 렌더링 _/</span><span class="si">}</span>
-      <span class="si">{</span><span class="nx">items</span> <span class="o">&amp;&amp;</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-          <span class="si">{</span><span class="nx">items</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
-            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-          <span class="p">))</span><span class="si">}</span>
-        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-      <span class="p">)</span><span class="si">}</span>
-      <span class="si">{</span><span class="sr">/_ items가 없거나 배열이 아닌 경우 메시지 표시 _/</span><span class="si">}</span>
-      <span class="si">{</span><span class="o">!</span><span class="nx">items</span> <span class="o">&amp;&amp;</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>No items to display.<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="si">}</span>
-      <span class="si">{</span><span class="nx">items</span> <span class="o">||</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>No items to display.<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="si">}</span> <span class="si">{</span><span class="sr">/_ || 연산자 사용 _/</span><span class="si">}</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="주의사항">주의사항</h2>
-
-<ul>
-  <li>단축 평가는 코드를 간결하게 만들어주지만, 남용하면 코드의 가독성을 해칠 수 있음.
-    <ul>
-      <li>적절한 상황에서 사용하는 것이 중요합니다.</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">&amp;&amp;</code> 와 <code class="language-plaintext highlighter-rouge">||</code> 연산자는 boolean 값이 아닌 값도 반환 가능
-    <ul>
-      <li>단축 평가의 반환 값은 마지막으로 평가된 표현식의 결과이다.</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.]]></summary></entry></feed>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[TDD (Test-Driven Development)에 대해 알아보자.]]></summary></entry></feed>
