@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <!-- 외부 경계 (객체) -->
+  <rect x="100" y="80" width="400" height="240" rx="20" ry="20" fill="#E3F2FD" stroke="#1565C0" stroke-width="3"/>
+  
+  <!-- 객체 이름 -->
+  <text x="300" y="60" font-family="Arial" font-size="24" text-anchor="middle" fill="#1565C0" font-weight="bold">객체</text>
+  
+  <!-- 내부 경계 (캡슐화된 상태) -->
+  <rect x="140" y="130" width="320" height="120" rx="15" ry="15" fill="#BBDEFB" stroke="#0D47A1" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <!-- 캡슐화된 상태 텍스트 -->
+  <text x="300" y="150" font-family="Arial" font-size="18" text-anchor="middle" fill="#0D47A1">캡슐화된 상태 (private)</text>
+  
+  <!-- 상태 내용 -->
+  <text x="300" y="180" font-family="Arial" font-size="16" text-anchor="middle">name, age, balance 등</text>
+  <text x="300" y="210" font-family="Arial" font-size="16" text-anchor="middle">객체의 내부 데이터</text>
+  
+  <!-- 행동 (메서드) -->
+  <rect x="180" y="270" width="240" height="40" rx="10" ry="10" fill="#2196F3" stroke="#0D47A1" stroke-width="2"/>
+  <text x="300" y="295" font-family="Arial" font-size="18" text-anchor="middle" fill="white">공개된 행동 (public 메서드)</text>
+  
+  <!-- 외부에서 오는 호출 화살표 -->
+  <path d="M50,290 L170,290" stroke="#FF5722" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <text x="110" y="280" font-family="Arial" font-size="14" fill="#FF5722">외부 호출</text>
+  
+  <!-- 화살표 마커 정의 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FF5722"/>
+    </marker>
+  </defs>
+</svg>

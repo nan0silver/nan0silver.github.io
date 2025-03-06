@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500">
+  <!-- 배경 -->
+  <rect width="700" height="500" fill="#F5F5F5"/>
+  
+  <!-- 제목 -->
+  <text x="350" y="40" font-family="Arial" font-size="24" text-anchor="middle" fill="#1565C0" font-weight="bold">캡슐화의 이점</text>
+  
+  <!-- 왼쪽 부분: 캡슐화 없음 -->
+  <rect x="50" y="70" width="250" height="380" rx="10" ry="10" fill="#FFCDD2" stroke="#B71C1C" stroke-width="2"/>
+  <text x="175" y="100" font-family="Arial" font-size="18" text-anchor="middle" fill="#B71C1C" font-weight="bold">캡슐화 없음</text>
+  
+  <!-- 오른쪽 부분: 캡슐화 있음 -->
+  <rect x="400" y="70" width="250" height="380" rx="10" ry="10" fill="#C8E6C9" stroke="#1B5E20" stroke-width="2"/>
+  <text x="525" y="100" font-family="Arial" font-size="18" text-anchor="middle" fill="#1B5E20" font-weight="bold">캡슐화 있음</text>
+  
+  <!-- 캡슐화 없음: 요소들 -->
+  <rect x="75" y="130" width="200" height="60" rx="5" ry="5" fill="#EF9A9A" stroke="#B71C1C" stroke-width="1"/>
+  <text x="175" y="160" font-family="Arial" font-size="14" text-anchor="middle">외부에서 직접 상태 접근/수정</text>
+  <text x="175" y="180" font-family="Arial" font-size="14" text-anchor="middle">account.balance = -5000;</text>
+  
+  <rect x="75" y="210" width="200" height="60" rx="5" ry="5" fill="#EF9A9A" stroke="#B71C1C" stroke-width="1"/>
+  <text x="175" y="240" font-family="Arial" font-size="14" text-anchor="middle">무결성 검증 불가능</text>
+  <text x="175" y="260" font-family="Arial" font-size="14" text-anchor="middle">비즈니스 규칙 위반 가능</text>
+  
+  <rect x="75" y="290" width="200" height="60" rx="5" ry="5" fill="#EF9A9A" stroke="#B71C1C" stroke-width="1"/>
+  <text x="175" y="320" font-family="Arial" font-size="14" text-anchor="middle">객체의 자율성 저하</text>
+  <text x="175" y="340" font-family="Arial" font-size="14" text-anchor="middle">수동적인 데이터 보관소</text>
+  
+  <rect x="75" y="370" width="200" height="60" rx="5" ry="5" fill="#EF9A9A" stroke="#B71C1C" stroke-width="1"/>
+  <text x="175" y="400" font-family="Arial" font-size="14" text-anchor="middle">구현 변경 시 높은 결합도</text>
+  <text x="175" y="420" font-family="Arial" font-size="14" text-anchor="middle">코드 유지보수 어려움</text>
+  
+  <!-- 캡슐화 있음: 요소들 -->
+  <rect x="425" y="130" width="200" height="60" rx="5" ry="5" fill="#A5D6A7" stroke="#1B5E20" stroke-width="1"/>
+  <text x="525" y="160" font-family="Arial" font-size="14" text-anchor="middle">메서드를 통한 상태 변경</text>
+  <text x="525" y="180" font-family="Arial" font-size="14" text-anchor="middle">account.deposit(5000);</text>
+  
+  <rect x="425" y="210" width="200" height="60" rx="5" ry="5" fill="#A5D6A7" stroke="#1B5E20" stroke-width="1"/>
+  <text x="525" y="240" font-family="Arial" font-size="14" text-anchor="middle">상태 무결성 보장</text>
+  <text x="525" y="260" font-family="Arial" font-size="14" text-anchor="middle">비즈니스 규칙 강제 가능</text>
+  
+  <rect x="425" y="290" width="200" height="60" rx="5" ry="5" fill="#A5D6A7" stroke="#1B5E20" stroke-width="1"/>
+  <text x="525" y="315" font-family="Arial" font-size="14" text-anchor="middle">객체의 자율성 증가</text>
+  <text x="525" y="335" font-family="Arial" font-size="14" text-anchor="middle">스스로 판단하고 결정</text>
+  
+  <rect x="425" y="370" width="200" height="60" rx="5" ry="5" fill="#A5D6A7" stroke="#1B5E20" stroke-width="1"/>
+  <text x="525" y="400" font-family="Arial" font-size="14" text-anchor="middle">낮은 결합도, 높은 응집도</text>
+  <text x="525" y="420" font-family="Arial" font-size="14" text-anchor="middle">유연한 코드 유지보수</text>
+</svg>

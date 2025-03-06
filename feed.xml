@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-02-26T13:55:24+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-03-06T14:09:08+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</title><link href="https://nan0silver.github.io/java/2025-02-25-arraylist-array/" rel="alternate" type="text/html" title="[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교" /><published>2025-02-25T00:00:00+00:00</published><updated>2025-02-26T13:54:37+00:00</updated><id>https://nan0silver.github.io/java/arraylist-array</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-25-arraylist-array/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">Boiler Plate</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/" rel="alternate" type="text/html" title="Boiler Plate" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-03-06T14:08:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/boiler-plate</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/"><![CDATA[]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</title><link href="https://nan0silver.github.io/java/2025-02-25-arraylist-array/" rel="alternate" type="text/html" title="[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교" /><published>2025-02-25T00:00:00+00:00</published><updated>2025-03-06T14:08:22+00:00</updated><id>https://nan0silver.github.io/java/arraylist-array</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-25-arraylist-array/"><![CDATA[<ul>
   <li><a href="#-arraylistinteger는-언제-더-유리할까"><code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code>는 언제 더 유리할까?</a></li>
   <li><a href="#-int-배열이-더-유리한-경우"><code class="language-plaintext highlighter-rouge">int[] 배열</code>이 더 유리한 경우</a></li>
   <li><a href="#-성능-비교-실험-java">성능 비교 실험 (Java)</a></li>
@@ -294,7 +294,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <p>즉,<br />
 ✔ <strong>빠른 연산이 필요하면 <code class="language-plaintext highlighter-rouge">int[] 배열</code></strong><br />
 ✔ <strong>동적 크기가 필요하면 <code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code></strong><br />
-✔ <strong>키-값 조회가 많다면 <code class="language-plaintext highlighter-rouge">HashMap&lt;Integer, Integer&gt;</code></strong></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[ArrayList와 배열(int[])의 성능을 비교해보자.]]></summary></entry><entry><title type="html">[JAVA] SOLID 원칙</title><link href="https://nan0silver.github.io/java/2025-02-23-solid/" rel="alternate" type="text/html" title="[JAVA] SOLID 원칙" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-02-26T13:54:37+00:00</updated><id>https://nan0silver.github.io/java/solid</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-23-solid/"><![CDATA[<ul>
+✔ <strong>키-값 조회가 많다면 <code class="language-plaintext highlighter-rouge">HashMap&lt;Integer, Integer&gt;</code></strong></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[ArrayList와 배열(int[])의 성능을 비교해보자.]]></summary></entry><entry><title type="html">[JAVA] SOLID 원칙</title><link href="https://nan0silver.github.io/java/2025-02-23-solid/" rel="alternate" type="text/html" title="[JAVA] SOLID 원칙" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-03-06T14:08:22+00:00</updated><id>https://nan0silver.github.io/java/solid</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-23-solid/"><![CDATA[<ul>
   <li><a href="#1-srp-single-responsibility-principle">1. 단일 책임 원칙</a></li>
   <li><a href="#2-ocp-openclosed-principle">2. 개방-폐쇄 원칙</a></li>
   <li><a href="#3-lsp-liskov-substitution-principle">3. 리스코프 치환 원칙</a></li>
@@ -454,7 +454,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>테스트 용이성</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-02-26T13:54:37+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-03-06T14:08:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
   <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
   <li><a href="#2-access-token">Access Token</a></li>
   <li><a href="#3-refresh-token">Refresh Token</a></li>
@@ -715,7 +715,7 @@ refresh_token=YOUR_REFRESH_TOKEN
         <span class="k">return</span> <span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] OAuth란?</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" rel="alternate" type="text/html" title="[Etc] OAuth란?" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-02-26T13:54:37+00:00</updated><id>https://nan0silver.github.io/miscellaneous/OAuth</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] OAuth란?</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" rel="alternate" type="text/html" title="[Etc] OAuth란?" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-03-06T14:08:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/OAuth</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"><![CDATA[<ul>
   <li><a href="#1-oauth-개념과-특징">OAuth 개념과 특징</a></li>
   <li><a href="#2-oauth-10-vs-oauth-20">OAuth 1.0 vs. OAuth 2.0</a></li>
   <li><a href="#3-oauth-20-상세-동작-방식">OAuth 2.0 상세 동작 방식</a></li>
@@ -1003,7 +1003,7 @@ refresh_token=YOUR_REFRESH_TOKEN
   <li><strong>구현이 복잡함</strong>: Access Token, Refresh Token 관리 필요</li>
   <li><strong>서버 부하 증가</strong>: 토큰 발급 및 검증 과정에서 추가적인 요청 발생</li>
   <li><strong>Refresh Token 유출 위험</strong>: Refresh Token이 유출되면 악용될 가능성 있음</li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" rel="alternate" type="text/html" title="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" /><published>2025-02-19T00:00:00+00:00</published><updated>2025-02-26T13:54:37+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-commit</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" rel="alternate" type="text/html" title="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" /><published>2025-02-19T00:00:00+00:00</published><updated>2025-03-06T14:08:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-commit</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/"><![CDATA[<ul>
   <li><a href="#commit-단위를-결정-짓는-요소">Commit 단위를 결정 짓는 요소</a></li>
   <li><a href="#udacity-style">Udacity style</a></li>
   <li><a href="#rebase를-잘쓰자">Rebase를 잘쓰자!</a></li>
@@ -1206,7 +1206,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-02-26T13:54:37+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-03-06T14:08:22+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
   <li><a href="#dom-document-object-model">DOM (Document Object Model)</a></li>
   <li><a href="#dom-기본-구조">DOM 기본 구조</a></li>
   <li><a href="#dom의-특징">DOM의 특징</a></li>
@@ -1461,7 +1461,7 @@ chore: 패키지 버전 업데이트
       <td><code class="language-plaintext highlighter-rouge">alert()</code>, <code class="language-plaintext highlighter-rouge">location.href</code>, <code class="language-plaintext highlighter-rouge">history.back()</code></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-26T13:54:37+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-03-06T14:08:22+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
   <li><a href="#로컬-스토리지-local-storage-vs-세션-스토리지-session-storage">로컬 스토리지 VS 세션 스토리지</a></li>
   <li><a href="#데이터-유지-기간">데이터 유지 기간</a></li>
   <li><a href="#접근-범위">접근 범위</a></li>
@@ -1560,7 +1560,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-02-26T13:54:37+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-03-06T14:08:22+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
   <li><a href="#직렬화serialization과-역직렬화deserialization--️-">직렬화와 역직렬화</a></li>
   <li><a href="#직렬화-serialization-이란-">직렬화란? 📦</a></li>
   <li><a href="#역직렬화-deserialization-이란--️-">역직렬화란? 📦 ➡️ 💻</a></li>
@@ -1763,7 +1763,7 @@ chore: 패키지 버전 업데이트
         <span class="c1">// Java Serializable 사용 (Java와 동일)</span>
         <span class="c1">// ... (Java 예시 코드와 유사)</span>
     <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-02-26T13:54:37+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-03-06T14:08:22+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
   <li><a href="#함수-function">함수 (function)</a></li>
   <li><a href="#화살표-함수">화살표 함수</a></li>
   <li><a href="#고차-함수">고차 함수 (map, filter, reduce)</a></li>
@@ -2059,198 +2059,4 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] Generic</title><link href="https://nan0silver.github.io/java/2025-01-29-generic/" rel="alternate" type="text/html" title="[JAVA] Generic" /><published>2025-01-29T00:00:00+00:00</published><updated>2025-02-26T13:54:37+00:00</updated><id>https://nan0silver.github.io/java/generic</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-01-29-generic/"><![CDATA[<ul>
-  <li><a href="#generic이란">Generic이란?</a></li>
-  <li><a href="#generic의-장점">Generic의 장점</a></li>
-  <li><a href="#generic-사용법">Generic 사용법</a></li>
-</ul>
-
-<hr />
-
-<h2 id="generic이란">Generic이란?</h2>
-
-<ul>
-  <li>클래스나 메서드에서 사용할 데이터 타입을 지정하지 않고, 나중에 사용할 때 타입을 결정하는 기능
-    <ul>
-      <li>하나의 값이 여러 다른 데이터 타입들을 가질 수 있도록 하는 방법</li>
-      <li>클래스 내부에서 지정하는 것이 아닌, 외부에서 사용자에 의해 지정되는 것을 의미
-        <ul>
-          <li>specific 타입을 미리 지정해주는 것이 아닌 필요에 의해 지정할 수 있도록 하는 generic 타입</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>제네릭을 사용하면 코드의 재사용성을 높이고, 타입 안정성을 보장할 수 있음</li>
-  <li><code class="language-plaintext highlighter-rouge">ArrayList&lt;T&gt;</code>, <code class="language-plaintext highlighter-rouge">HashMap&lt;K, V&gt;</code>같은 자바 컬렉션 프레임워크에서 많이 사용됨</li>
-</ul>
-
-<h2 id="generic의-장점">Generic의 장점</h2>
-
-<ol>
-  <li>타입 안정성 (Type Safety) 보장
-    <ul>
-      <li>제네릭을 사용하면 컴파일 시점에 타입을 검사해서 타입 오류 방지 가능</li>
-      <li>예를 들어, ArrayList에 String만 저장하도록 지정하면 다른 타입을 추가하는 실수를 막을 수 있음</li>
-    </ul>
-  </li>
-  <li>형변환(Casting) 불필요
-    <ul>
-      <li>제네릭을 사용하면 클래스 외부에서 타입을 지정해주기 때문에 따로 타입을 체크하고 변환할 필요 없음</li>
-      <li>관리하기 편함</li>
-    </ul>
-  </li>
-  <li>코드의 재사용성 증가
-    <ul>
-      <li>같은 로직을 다양한 데이터 타입에 대해 사용할 수 있어 코드의 중복을 줄일 수 있음</li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="generic-사용법">Generic 사용법</h2>
-
-<ul>
-  <li>
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
-
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">WithGenerics</span> <span class="o">{</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-          <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span> <span class="c1">//제네릭 사용</span>
-          <span class="c1">//ArrayList list = new ArrayList(); 제네릭 미사용</span>
-
-          <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
-          <span class="c1">//list.add(123);  오류 발생 (타입 안정성 보장)</span>
-          <span class="c1">//제네릭을 사용하지 않으면 오류 발생 X -&gt; 문제 발생 가능</span>
-
-          <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">//형변환 없이 바로 사용 가능</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>제네릭 클래스 만들기</p>
-
-    <ul>
-      <li>
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// 제네릭 클래스 선언 (T는 타입 매개변수)</span>
-  <span class="kd">class</span> <span class="nc">Box</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
-      <span class="kd">private</span> <span class="no">T</span> <span class="n">value</span><span class="o">;</span>
-
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="o">(</span><span class="no">T</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-          <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
-      <span class="o">}</span>
-
-      <span class="kd">public</span> <span class="no">T</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">GenericExample</span> <span class="o">{</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-          <span class="nc">Box</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">stringBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Box</span><span class="o">&lt;&gt;();</span>
-          <span class="c1">//String으로 구체적인 타입 지정</span>
-
-          <span class="n">stringBox</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stringBox</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
-
-          <span class="nc">Box</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">intBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Box</span><span class="o">&lt;&gt;();</span>
-          <span class="n">intBox</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intBox</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>제네릭 메서드 만들기</p>
-
-    <ul>
-      <li>
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">Util</span> <span class="o">{</span>
-      <span class="c1">// 제네릭 메서드 선언</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">printData</span><span class="o">(</span><span class="no">T</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">GenericMethodExample</span> <span class="o">{</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-          <span class="nc">Util</span><span class="o">.</span><span class="na">printData</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span> <span class="c1">// String 타입</span>
-          <span class="nc">Util</span><span class="o">.</span><span class="na">printData</span><span class="o">(</span><span class="mi">123</span><span class="o">);</span> <span class="c1">// Integer 타입</span>
-          <span class="nc">Util</span><span class="o">.</span><span class="na">printData</span><span class="o">(</span><span class="mf">3.14</span><span class="o">);</span> <span class="c1">// Double 타입</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>제네릭 타입 제한 (Bounded Type Parameter)</p>
-
-    <ul>
-      <li>
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// Number를 상속받은 타입만 사용 가능 (Integer, Double 등)</span>
-  <span class="kd">class</span> <span class="nc">NumberBox</span><span class="o">&lt;</span><span class="no">T</span> <span class="kd">extends</span> <span class="nc">Number</span><span class="o">&gt;</span> <span class="o">{</span>
-      <span class="kd">private</span> <span class="no">T</span> <span class="n">number</span><span class="o">;</span>
-
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNumber</span><span class="o">(</span><span class="no">T</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
-          <span class="k">this</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="n">number</span><span class="o">;</span>
-      <span class="o">}</span>
-
-      <span class="kd">public</span> <span class="no">T</span> <span class="nf">getNumber</span><span class="o">()</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="n">number</span><span class="o">;</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">BoundedGenericExample</span> <span class="o">{</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-          <span class="nc">NumberBox</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">intBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NumberBox</span><span class="o">&lt;&gt;();</span>
-          <span class="n">intBox</span><span class="o">.</span><span class="na">setNumber</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intBox</span><span class="o">.</span><span class="na">getNumber</span><span class="o">());</span>
-
-          <span class="nc">NumberBox</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">doubleBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NumberBox</span><span class="o">&lt;&gt;();</span>
-          <span class="n">doubleBox</span><span class="o">.</span><span class="na">setNumber</span><span class="o">(</span><span class="mf">3.14</span><span class="o">);</span>
-          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">doubleBox</span><span class="o">.</span><span class="na">getNumber</span><span class="o">());</span>
-
-          <span class="c1">// NumberBox&lt;String&gt; strBox = new NumberBox&lt;&gt;(); // 오류 발생 (String은 Number가 아님)</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>와일드카드 (<code class="language-plaintext highlighter-rouge">?</code> - 제네릭 타입 미지정)</p>
-
-    <ul>
-      <li>특정 타입을 제한하지 않고 유연하게 사용하고 싶은 경우</li>
-      <li>
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
-  <span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
-
-  <span class="kd">class</span> <span class="nc">WildcardExample</span> <span class="o">{</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printList</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;?&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 와일드카드 사용</span>
-          <span class="k">for</span> <span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
-              <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
-          <span class="o">}</span>
-      <span class="o">}</span>
-
-      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-          <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">stringList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
-          <span class="n">stringList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Apple"</span><span class="o">);</span>
-          <span class="n">stringList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Banana"</span><span class="o">);</span>
-
-          <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">intList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
-          <span class="n">intList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-          <span class="n">intList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
-
-          <span class="n">printList</span><span class="o">(</span><span class="n">stringList</span><span class="o">);</span> <span class="c1">// 가능</span>
-          <span class="n">printList</span><span class="o">(</span><span class="n">intList</span><span class="o">);</span> <span class="c1">// 가능</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[java에서 Generic이 무엇인지 알아보자.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry></feed>
