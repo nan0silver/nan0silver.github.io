@@ -10,7 +10,7 @@ slug: backend
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  Back-end 공부 기록입니다.
+  AWS, Spring 등 Back-end 공부 기록입니다.
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
