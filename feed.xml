@@ -1,7 +1,178 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-03-18T01:34:38+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-03-18T06:07:19+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Etc] 🎞️ Boilerplate</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/" rel="alternate" type="text/html" title="[Etc] 🎞️ Boilerplate" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-03-18T01:33:55+00:00</updated><id>https://nan0silver.github.io/miscellaneous/boiler-plate</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-03-18T06:06:35+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
+  <li><a href="#java에서-동시성">JAVA에서 동시성</a></li>
+  <li><a href="#스레드-thread">스레드 (Thread)</a></li>
+  <li><a href="#비동기-처리-async">비동기 처리 (Aysnc)</a></li>
+  <li><a href="#분산-처리-distributed">분산 처리 (Distribute)</a></li>
+  <li><a href="#핵심-키워드-및-정리">핵심 키워드 및 정리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="java에서-동시성">JAVA에서 동시성</h2>
+
+<ul>
+  <li>여러 작업을 동시에 겹쳐서 처리하는 것</li>
+  <li>한 번에 여러 일을 수행하며 일의 효율성을 높임</li>
+  <li>크게 3가지 관점에서 접근 가능하다.
+    <ol>
+      <li>스레드 (Thread)</li>
+      <li>비동기 (Async)</li>
+      <li>분산 (Distributed)</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="스레드-thread">스레드 (Thread)</h2>
+
+<ul>
+  <li>스레드는 프로세스 내에서 실제 작업을 수행하는 작업 단위</li>
+  <li>한 개의 프로그램(프로세스)은 여러 개의 스레드를 가질 수 있음</li>
+  <li>멀티 스레드 (Multi-thread)
+    <ul>
+      <li>하나의 프로세스에서 여러 스레드를 동시에 실행하는 방식</li>
+      <li>자바에서는 주로 JVM(Java Virtual Machine)이 여러 스레드를 관리해줌
+        <ul>
+          <li>ex) 웹 서버(Servlet, Spring)에서는 사용자 요청마다 별도의 스레드를 생성해서 동시에 많은 요청을 처리할 수 있게 함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>🔥 중요한 이유
+    <ul>
+      <li>효율성 향상
+        <ul>
+          <li>CPU 자원을 최대한 활용할 수 있음</li>
+        </ul>
+      </li>
+      <li>응답성 향상
+        <ul>
+          <li>동시에 여러 요청을 처리할 수 있음</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>하지만 최근 자바 프레임워크(Spring)는 스레드를 자동으로 관리해주기 때문에 개발자가 직접 스레드를 관리할 일이 많지 않음
+    <ul>
+      <li>JVM과 프레임워크가 이미 효율적으로 관리해줌</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="비동기-처리-async">비동기 처리 (Async)</h2>
+
+<ul>
+  <li>비동기란 “요청을 보낸 뒤 결과를 기다리지 않고 다음 작업을 진행”하는 방식
+    <ul>
+      <li>동기 (Synchronous)
+        <ul>
+          <li>하나의 요청이 끝날 때까지 기다림</li>
+        </ul>
+      </li>
+      <li>비동기 (Asynchronous)
+        <ul>
+          <li>요청이 처리되는 동안 다른 작업 수행</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>자바에서 비동기 처리를 지원하는 방법
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">CompletableFuture</code> : 자바 비동기 처리 클래스</li>
+      <li>자바스크립트의 async/await와 비슷한 방식</li>
+    </ul>
+  </li>
+  <li>🔥 중요한 이유
+    <ul>
+      <li>빠른 응답성
+        <ul>
+          <li>요청 처리 중에도 사용자가 대기하지 않고, 시스템의 다른 작업 수행 가능</li>
+        </ul>
+      </li>
+      <li>높은 확장성
+        <ul>
+          <li>비동기 처리를 하면 서버가 많은 요청을 효율적으로 관리 가능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="분산-처리-distributed">분산 처리 (Distributed)</h2>
+
+<ul>
+  <li>분산처리는 “하나의 서버가 아닌, 여러 대의 서버가 나누어서 작업을 처리하는 방식”
+    <ul>
+      <li>서버 하나만 운영하는 것부다 작은 여러 서버(클러스터)를 운영하면 비용이 줄어듬</li>
+      <li>대규모 서비스나 성장한 서비스에서 자주 사용됨</li>
+    </ul>
+  </li>
+  <li>분산 환경에서 자주 사용되는 기술
+    <ul>
+      <li>Redis
+        <ul>
+          <li>메모리 기반 데이터 저장소로, 분산락(Distributed Lock)울 구현할 때 사용</li>
+          <li>예를 들어, 여러 서버가 하나의 데이터를 동시에 수정하지 못하게 관리하는 방식</li>
+        </ul>
+      </li>
+      <li>Kafka
+        <ul>
+          <li>메시지 큐(Message Queue)로, 서버간 메시지를 주고받고, 작업을 순차적으로 처리할 때 사용됨</li>
+        </ul>
+      </li>
+      <li>클러스터(Cluster)
+        <ul>
+          <li>여러 대의 서버가 협력하여 요청을 나누어 처리 (MSA와 비슷한 개념)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>🔥 중요한 이유
+    <ul>
+      <li>비용 효율성
+        <ul>
+          <li>큰 서버 하나보다 여러 작은 서버가 경제적</li>
+        </ul>
+      </li>
+      <li>안정성 및 확장성
+        <ul>
+          <li>한 서버가 문제가 생기더라도 서비스는 계속 운영됨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="핵심-키워드-및-정리">핵심 키워드 및 정리</h2>
+
+<ol>
+  <li>스레스 (Thread)</li>
+</ol>
+
+<ul>
+  <li>멀티 스레드 -&gt; JVM, Servlet, Spring</li>
+  <li>스레드는 직원이다. 회사(JVM, Servlet, Spring)가 직원(스레드)을 잘 관리하면, 일(요청 처리)이 효율적이다.</li>
+</ul>
+
+<ol>
+  <li>비동기 (Async)</li>
+</ol>
+
+<ul>
+  <li>CompletableFuture, async/await</li>
+  <li>비동기는 배달앱이다. 주문을 넣고 기다리지 않고, 다음 일을 진행한다.</li>
+</ul>
+
+<ol>
+  <li>분산처리 (Distributed)</li>
+</ol>
+
+<ul>
+  <li>Redis, Kafka, 클러스터</li>
+  <li>분산처리는 프랜차이즈이다. 큰 가게 하나보다 작은 여러 가게가 효율적이고 비용도 절감된다.</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[Etc] 🎞️ Boilerplate</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/" rel="alternate" type="text/html" title="[Etc] 🎞️ Boilerplate" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-03-18T06:06:35+00:00</updated><id>https://nan0silver.github.io/miscellaneous/boiler-plate</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/"><![CDATA[<ul>
   <li><a href="#보일러플레이트boilerplate란">보일러플레이트(Boilerplate)란?</a></li>
   <li><a href="#보일러플레이트의-특징">보일러플레이트의 특징</a></li>
   <li><a href="#예제-코드">예제 코드</a></li>
@@ -67,7 +238,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
         <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">MyApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</title><link href="https://nan0silver.github.io/java/2025-02-25-arraylist-array/" rel="alternate" type="text/html" title="[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교" /><published>2025-02-25T00:00:00+00:00</published><updated>2025-03-18T01:33:55+00:00</updated><id>https://nan0silver.github.io/java/arraylist-array</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-25-arraylist-array/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</title><link href="https://nan0silver.github.io/java/2025-02-25-arraylist-array/" rel="alternate" type="text/html" title="[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교" /><published>2025-02-25T00:00:00+00:00</published><updated>2025-03-18T06:06:35+00:00</updated><id>https://nan0silver.github.io/java/arraylist-array</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-25-arraylist-array/"><![CDATA[<ul>
   <li><a href="#-arraylistinteger는-언제-더-유리할까"><code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code>는 언제 더 유리할까?</a></li>
   <li><a href="#-int-배열이-더-유리한-경우"><code class="language-plaintext highlighter-rouge">int[] 배열</code>이 더 유리한 경우</a></li>
   <li><a href="#-성능-비교-실험-java">성능 비교 실험 (Java)</a></li>
@@ -360,7 +531,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <p>즉,<br />
 ✔ <strong>빠른 연산이 필요하면 <code class="language-plaintext highlighter-rouge">int[] 배열</code></strong><br />
 ✔ <strong>동적 크기가 필요하면 <code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code></strong><br />
-✔ <strong>키-값 조회가 많다면 <code class="language-plaintext highlighter-rouge">HashMap&lt;Integer, Integer&gt;</code></strong></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[ArrayList와 배열(int[])의 성능을 비교해보자.]]></summary></entry><entry><title type="html">[JAVA] SOLID 원칙</title><link href="https://nan0silver.github.io/java/2025-02-23-solid/" rel="alternate" type="text/html" title="[JAVA] SOLID 원칙" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-03-18T01:33:55+00:00</updated><id>https://nan0silver.github.io/java/solid</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-23-solid/"><![CDATA[<ul>
+✔ <strong>키-값 조회가 많다면 <code class="language-plaintext highlighter-rouge">HashMap&lt;Integer, Integer&gt;</code></strong></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[ArrayList와 배열(int[])의 성능을 비교해보자.]]></summary></entry><entry><title type="html">[JAVA] SOLID 원칙</title><link href="https://nan0silver.github.io/java/2025-02-23-solid/" rel="alternate" type="text/html" title="[JAVA] SOLID 원칙" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-03-18T06:06:35+00:00</updated><id>https://nan0silver.github.io/java/solid</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-23-solid/"><![CDATA[<ul>
   <li><a href="#1-srp-single-responsibility-principle">1. 단일 책임 원칙</a></li>
   <li><a href="#2-ocp-openclosed-principle">2. 개방-폐쇄 원칙</a></li>
   <li><a href="#3-lsp-liskov-substitution-principle">3. 리스코프 치환 원칙</a></li>
@@ -520,7 +691,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>테스트 용이성</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-03-18T01:33:55+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-03-18T06:06:35+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
   <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
   <li><a href="#2-access-token">Access Token</a></li>
   <li><a href="#3-refresh-token">Refresh Token</a></li>
@@ -781,7 +952,7 @@ refresh_token=YOUR_REFRESH_TOKEN
         <span class="k">return</span> <span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] OAuth란?</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" rel="alternate" type="text/html" title="[Etc] OAuth란?" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-03-18T01:33:55+00:00</updated><id>https://nan0silver.github.io/miscellaneous/OAuth</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] OAuth란?</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" rel="alternate" type="text/html" title="[Etc] OAuth란?" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-03-18T06:06:35+00:00</updated><id>https://nan0silver.github.io/miscellaneous/OAuth</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"><![CDATA[<ul>
   <li><a href="#1-oauth-개념과-특징">OAuth 개념과 특징</a></li>
   <li><a href="#2-oauth-10-vs-oauth-20">OAuth 1.0 vs. OAuth 2.0</a></li>
   <li><a href="#3-oauth-20-상세-동작-방식">OAuth 2.0 상세 동작 방식</a></li>
@@ -1069,7 +1240,7 @@ refresh_token=YOUR_REFRESH_TOKEN
   <li><strong>구현이 복잡함</strong>: Access Token, Refresh Token 관리 필요</li>
   <li><strong>서버 부하 증가</strong>: 토큰 발급 및 검증 과정에서 추가적인 요청 발생</li>
   <li><strong>Refresh Token 유출 위험</strong>: Refresh Token이 유출되면 악용될 가능성 있음</li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" rel="alternate" type="text/html" title="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" /><published>2025-02-19T00:00:00+00:00</published><updated>2025-03-18T01:33:55+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-commit</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/" rel="alternate" type="text/html" title="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" /><published>2025-02-19T00:00:00+00:00</published><updated>2025-03-18T06:06:35+00:00</updated><id>https://nan0silver.github.io/miscellaneous/git-commit</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/"><![CDATA[<ul>
   <li><a href="#commit-단위를-결정-짓는-요소">Commit 단위를 결정 짓는 요소</a></li>
   <li><a href="#udacity-style">Udacity style</a></li>
   <li><a href="#rebase를-잘쓰자">Rebase를 잘쓰자!</a></li>
@@ -1272,7 +1443,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-03-18T01:33:55+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-03-18T06:06:35+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
   <li><a href="#dom-document-object-model">DOM (Document Object Model)</a></li>
   <li><a href="#dom-기본-구조">DOM 기본 구조</a></li>
   <li><a href="#dom의-특징">DOM의 특징</a></li>
@@ -1527,7 +1698,7 @@ chore: 패키지 버전 업데이트
       <td><code class="language-plaintext highlighter-rouge">alert()</code>, <code class="language-plaintext highlighter-rouge">location.href</code>, <code class="language-plaintext highlighter-rouge">history.back()</code></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-03-18T01:33:55+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-03-18T06:06:35+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
   <li><a href="#로컬-스토리지-local-storage-vs-세션-스토리지-session-storage">로컬 스토리지 VS 세션 스토리지</a></li>
   <li><a href="#데이터-유지-기간">데이터 유지 기간</a></li>
   <li><a href="#접근-범위">접근 범위</a></li>
@@ -1626,7 +1797,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-03-18T01:33:55+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/" rel="alternate" type="text/html" title="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-03-18T06:06:35+00:00</updated><id>https://nan0silver.github.io/miscellaneous/serialization</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-04-serialization/"><![CDATA[<ul>
   <li><a href="#직렬화serialization과-역직렬화deserialization--️-">직렬화와 역직렬화</a></li>
   <li><a href="#직렬화-serialization-이란-">직렬화란? 📦</a></li>
   <li><a href="#역직렬화-deserialization-이란--️-">역직렬화란? 📦 ➡️ 💻</a></li>
@@ -1829,300 +2000,4 @@ chore: 패키지 버전 업데이트
         <span class="c1">// Java Serializable 사용 (Java와 동일)</span>
         <span class="c1">// ... (Java 예시 코드와 유사)</span>
     <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 함수</title><link href="https://nan0silver.github.io/javascript/2025-01-30-js-function/" rel="alternate" type="text/html" title="[JavaScript] 함수" /><published>2025-01-30T00:00:00+00:00</published><updated>2025-03-18T01:33:55+00:00</updated><id>https://nan0silver.github.io/javascript/js-function</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-01-30-js-function/"><![CDATA[<ul>
-  <li><a href="#함수-function">함수 (function)</a></li>
-  <li><a href="#화살표-함수">화살표 함수</a></li>
-  <li><a href="#고차-함수">고차 함수 (map, filter, reduce)</a></li>
-  <li><a href="#구조-분해-할당">구조 분해 할당</a></li>
-</ul>
-
-<hr />
-
-<h2 id="함수-function">함수 (function)</h2>
-
-<ul>
-  <li>
-    <p>함수 선언</p>
-
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">function</code>으로 선언</li>
-      <li>
-        <p>호이스팅 (hoisting)</p>
-
-        <ul>
-          <li>JavaScript에서 변수, 함수 선언, 클래스 등의 선언이 코드 실행 전에 메모리에 미리 할당되는 현상
-            <ul>
-              <li>코드에서 선언이 끌어올려진(hoisted) 것처럼 동작</li>
-            </ul>
-          </li>
-          <li>
-            <table>
-              <thead>
-                <tr>
-                  <th>변수 타입</th>
-                  <th>선언 Hoisting</th>
-                  <th>초기화 여부</th>
-                  <th>선언 전 접근</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code class="language-plaintext highlighter-rouge">var</code></td>
-                  <td>✅ O</td>
-                  <td>✅ (undefined)</td>
-                  <td>✅ 가능 (undefined 반환)</td>
-                </tr>
-                <tr>
-                  <td><code class="language-plaintext highlighter-rouge">let</code></td>
-                  <td>✅ O</td>
-                  <td>❌ (TDZ 존재)</td>
-                  <td>❌ ReferenceError</td>
-                </tr>
-                <tr>
-                  <td><code class="language-plaintext highlighter-rouge">const</code></td>
-                  <td>✅ O</td>
-                  <td>❌ (TDZ 존재)</td>
-                  <td>❌ ReferenceError</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
-          <li>함수 선언 이전에 호출이 가능</li>
-        </ul>
-      </li>
-      <li>
-        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">welcomeMessage</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="dl">"</span><span class="s2">Hi, ${username}!</span><span class="dl">"</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">welcomeMessage</span><span class="p">(</span><span class="dl">"</span><span class="s2">Lily</span><span class="dl">"</span><span class="p">));</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>함수 표현식</p>
-    <ul>
-      <li>이름이 없는 함수를 만들어 변수에 할당하여 정의</li>
-      <li>호이스팅되지 않으므로, 함수 정의 이후에만 호출 가능</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="화살표-함수">화살표 함수</h2>
-
-<ul>
-  <li>ES6에서 도입된 간결한 함수 표현 방식</li>
-  <li>
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//ex1</span>
-<span class="kd">const</span> <span class="nx">welcomeMessage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">Hi, ${username}!</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">welcomeMessage</span><span class="p">(</span><span class="dl">"</span><span class="s2">Lily</span><span class="dl">"</span><span class="p">));</span>
-
-<span class="c1">//ex2</span>
-<span class="kd">const</span> <span class="nx">calculateArea</span> <span class="o">=</span> <span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">area</span> <span class="o">=</span> <span class="nx">width</span> <span class="o">*</span> <span class="nx">height</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">area</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">calculateArea</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span> <span class="c1">// 출력: 50</span>
-</code></pre></div>    </div>
-  </li>
-  <li>함수 표현식보다 간결하게 작성 가능함</li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">this</code> 바인딩이 화살표 함수의 정의 위치에서 고정되는 특성을 가짐</p>
-
-    <ul>
-      <li>
-        <p><code class="language-plaintext highlighter-rouge">this</code> 바인딩 (Binding)</p>
-
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">this</code> 키워드가 특정 실행 문맥(Excution Context)에서 어떤 객체를 가리키는지 결정되는 과정</li>
-          <li>JavaScript에서 <code class="language-plaintext highlighter-rouge">this</code>는 어떻게, 어디서 호출되었느냐에 따라 값이 달라짐</li>
-          <li>전통적인 함수와 화살표 함수의 <code class="language-plaintext highlighter-rouge">this</code> 바인딩 방식이 다름
-            <ul>
-              <li>전통적인 함수
-                <ul>
-                  <li>호출 맥락에 따라 this가 변경될 수 있음</li>
-                </ul>
-              </li>
-              <li>화살표 함수
-                <ul>
-                  <li>this가 고정되어 예상치 못한 this의 문제를 방지함</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <h3 id="기본적인-this-바인딩-규칙">기본적인 this 바인딩 규칙</h3>
-
-            <ul>
-              <li>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>호출 방식</th>
-                      <th><code class="language-plaintext highlighter-rouge">this</code>가 가리키는 대상</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>일반 함수 호출</td>
-                      <td><code class="language-plaintext highlighter-rouge">window</code> (브라우저) 또는 <code class="language-plaintext highlighter-rouge">undefined</code> (strict mode)</td>
-                    </tr>
-                    <tr>
-                      <td>메서드 호출 (객체 안에서)</td>
-                      <td>해당 객체</td>
-                    </tr>
-                    <tr>
-                      <td>생성자 함수</td>
-                      <td>새로 생성된 인스턴스</td>
-                    </tr>
-                    <tr>
-                      <td><code class="language-plaintext highlighter-rouge">call</code>, <code class="language-plaintext highlighter-rouge">apply</code>, <code class="language-plaintext highlighter-rouge">bind</code> 사용</td>
-                      <td>명시적으로 지정된 객체</td>
-                    </tr>
-                    <tr>
-                      <td>화살표 함수</td>
-                      <td>부모(외부) 스코프의 <code class="language-plaintext highlighter-rouge">this</code></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </li>
-              <li>예시</li>
-            </ul>
-
-            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">//일반 함수 호출</span>
-    <span class="kd">function</span> <span class="nx">showThis</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="nx">showThis</span><span class="p">();</span> <span class="c1">//브라우저: window, strict mode: undefined</span>
-
-    <span class="c1">//화살표 함수</span>
-    <span class="kd">const</span> <span class="nx">user2</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Lily</span><span class="dl">"</span><span class="p">,</span>
-        <span class="na">greet</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">const</span> <span class="nx">arrow</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-            <span class="p">};</span>
-            <span class="nx">arrow</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
-    <span class="nx">user2</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span> <span class="c1">//"Lily"</span>
-    <span class="s2">```
-</span></code></pre></div>            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="고차-함수">고차 함수</h2>
-
-<h3 id="map">map</h3>
-
-<ul>
-  <li>배열의 각 요소를 변환하여 새로운 배열 생성</li>
-  <li>원본 배열은 유지</li>
-  <li>
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
-<span class="kd">const</span> <span class="nx">mul</span> <span class="o">=</span> <span class="nx">num</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">*</span> <span class="mi">10</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mul</span><span class="p">);</span> <span class="c1">//[ 10, 20, 30 ]</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="filter">filter</h3>
-
-<ul>
-  <li>배열에서 조건에 맞는 요소만 반환하여 새로운 배열을 생성</li>
-  <li>원본 배열은 유지</li>
-  <li>
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">apple</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">banana</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">avocado</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">cherry</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">apricot</span><span class="dl">"</span><span class="p">];</span>
-<span class="kd">const</span> <span class="nx">aWords</span> <span class="o">=</span> <span class="nx">words</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">word</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">word</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">));</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">aWords</span><span class="p">);</span> <span class="c1">// ["apple", "avocado", "apricot"]</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="reduce">reduce</h3>
-
-<ul>
-  <li>배열의 모든 요소를 순회하며 누적하여 단일 값(accumulator) 생성</li>
-  <li>초기값 설정 가능</li>
-  <li>집계 연산에 유용</li>
-  <li>
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
-<span class="kd">const</span> <span class="nx">product</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">num</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">acc</span> <span class="o">*</span> <span class="nx">num</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">product</span><span class="p">);</span> <span class="c1">// 120</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="구조-분해-할당">구조 분해 할당</h2>
-
-<ul>
-  <li>배열 구조 분해 할당
-    <ul>
-      <li>배열을 개별 변수로 분해 가능</li>
-      <li>스프레드 연산자(<code class="language-plaintext highlighter-rouge">...</code>)로 나머지 요소 처리 가능</li>
-      <li>
-        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="p">...</span><span class="nx">remaining</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">];</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">remaining</span><span class="p">);</span> <span class="c1">// 10 20 [30, 40, 50]</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>객체 구조 분해 할당</p>
-
-    <ul>
-      <li>객체에서 속성을 변후로 추출 가능</li>
-      <li>기본값 설정 가능</li>
-      <li>
-        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">brand</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">year</span> <span class="o">=</span> <span class="mi">2023</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span> <span class="na">brand</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Tesla</span><span class="dl">"</span><span class="p">,</span> <span class="na">model</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Model S</span><span class="dl">"</span> <span class="p">};</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">brand</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">year</span><span class="p">);</span> <span class="c1">// Tesla Model S 2023</span>
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>중첩된 객체의 속성도 분해하여 사용 가능</p>
-
-        <ul>
-          <li>
-            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">info</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">firstName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">lastName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Johnson</span><span class="dl">"</span><span class="p">,</span>
-  <span class="p">},</span>
-  <span class="na">age</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span>
-<span class="p">};</span>
-
-<span class="kd">const</span> <span class="p">{</span>
-  <span class="na">info</span><span class="p">:</span> <span class="p">{</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span> <span class="p">},</span>
-  <span class="nx">age</span><span class="p">,</span>
-<span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">,</span> <span class="nx">age</span><span class="p">);</span> <span class="c1">// Alice Johnson 28</span>
-</code></pre></div>            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>함수에서 구조 분해 활용</p>
-
-    <ul>
-      <li>
-        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">displayCar</span><span class="p">({</span> <span class="nx">brand</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">year</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`The car is a </span><span class="p">${</span><span class="nx">year</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="nx">brand</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="nx">model</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">displayCar</span><span class="p">({</span> <span class="na">brand</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Toyota</span><span class="dl">"</span><span class="p">,</span> <span class="na">model</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Corolla</span><span class="dl">"</span><span class="p">,</span> <span class="na">year</span><span class="p">:</span> <span class="mi">2022</span> <span class="p">});</span>
-<span class="c1">// The car is a 2022 Toyota Corolla</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 함수에 대해 알아보자.]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry></feed>
