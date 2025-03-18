@@ -61,16 +61,16 @@ menu:
     url: /about/
   - title: Flutter (5)
     url: /flutter/
-  - title: Algorithm (10)
-    url: /algorithm/
   - title: JavaScript (8)
     url: /javascript/
+  - title: Algorithm (10)
+    url: /algorithm/
   - title: JAVA (10)
     url: /java/
-  - title: Back-end (5)
-    url: /backend/
   - title: AI (2)
     url: /ai/
+  - title: Back-end (5)
+    url: /backend/
   - title: Miscellaneous (9)
     url: /miscellaneous/
 
