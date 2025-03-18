@@ -65,13 +65,13 @@ menu:
     url: /algorithm/
   - title: JavaScript (8)
     url: /javascript/
-  - title: JAVA (9)
+  - title: JAVA (10)
     url: /java/
   - title: Back-end (5)
     url: /backend/
   - title: AI (2)
     url: /ai/
-  - title: Miscellaneous (12)
+  - title: Miscellaneous (9)
     url: /miscellaneous/
 
 # Add links to the footer.
