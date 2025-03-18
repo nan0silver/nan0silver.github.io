@@ -8,11 +8,13 @@ sitemap: false
 
 # [Etc] 🎞️ Boilerplate
 
-- [Access Token과 Refresh Token이란?](#1-access-token과-refresh-token이란)
+- [보일러플레이트(Boilerplate)란?](#보일러플레이트boilerplate란)
+- [보일러플레이트의 특징](#보일러플레이트의-특징)
+- [예제 코드](#예제-코드)
 
 ---
 
-## Boilerplate란?
+## 보일러플레이트(Boilerplate)란?
 
 - 소프트웨어 개발에서 반복적으로 사용되는 사용되는 <strong>기본 코드 템플릿</strong>
 - 🔥 즉, "매번 새로 작성해야하는 기본 코드세트"를 보일러플레이트라고 함
