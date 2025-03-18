@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Flutter] Flask 서버와 Flutter 통신 | NAHYUN BLOG</title>
+<title>[Etc] URI과 URL의 차이 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Flutter] Flask 서버와 Flutter 통신" />
+<meta property="og:title" content="[Etc] URI과 URL의 차이" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="Flutter와 Flask서버와 통신하는 방법을 알아본다." />
-<meta property="og:description" content="Flutter와 Flask서버와 통신하는 방법을 알아본다." />
-<link rel="canonical" href="https://nan0silver.github.io/flutter/2023-04-18-about-flask/" />
-<meta property="og:url" content="https://nan0silver.github.io/flutter/2023-04-18-about-flask/" />
+<meta name="description" content="URI와 URL에 관한 차이" />
+<meta property="og:description" content="URI와 URL에 관한 차이" />
+<link rel="canonical" href="https://nan0silver.github.io/backend/2023-08-14-about-UriUrl/" />
+<meta property="og:url" content="https://nan0silver.github.io/backend/2023-08-14-about-UriUrl/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-04-18T00:00:00+00:00" />
+<meta property="article:published_time" content="2023-08-14T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Flutter] Flask 서버와 Flutter 통신" />
+<meta property="twitter:title" content="[Etc] URI과 URL의 차이" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-18T06:18:39+00:00","datePublished":"2023-04-18T00:00:00+00:00","description":"Flutter와 Flask서버와 통신하는 방법을 알아본다.","headline":"[Flutter] Flask 서버와 Flutter 통신","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/flutter/2023-04-18-about-flask/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/flutter/2023-04-18-about-flask/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-18T07:41:50+00:00","datePublished":"2023-08-14T00:00:00+00:00","description":"URI와 URL에 관한 차이","headline":"[Etc] URI과 URL의 차이","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/backend/2023-08-14-about-UriUrl/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/backend/2023-08-14-about-UriUrl/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/flutter/2023-04-18-about-flask/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/backend/2023-08-14-about-UriUrl/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-03-18T06:19:26+00:00',
+    INDEX_KEY: 'index--2025-03-18T07:42:31+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/flutter/">flutter</a>
+          <a href="/backend/">backend</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2023-04-18-about-flask</span>
+          <span>2023-08-14-about-UriUrl</span>
         
       </li>
     
@@ -222,18 +222,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-flutter-about-flask" class="page post mb6" role="article">
+<article id="post-backend-about-UriUrl" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Flutter] Flask 서버와 Flutter 통신
+        [Etc] URI과 URL의 차이
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2023-04-18T00:00:00+00:00">18 Apr 2023</time> in <a href="/flutter/" class="flip-title">Flutter</a> 
+        <time datetime="2023-08-14T00:00:00+00:00">14 Aug 2023</time> in <a href="/backend/" class="flip-title">BACK-END</a> 
       </span>
       
         
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-03-18T06:18:39+00:00">2025-03-18</time>
+              <time datetime="2025-03-18T07:41:50+00:00">2025-03-18</time>
             </span>
           
         
@@ -261,7 +261,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      Flutter와 Flask서버와 통신하는 방법을 알아본다.
+      URI와 URL에 관한 차이
 
     </p>
   
@@ -271,79 +271,63 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p>목차</p>
+
 <ol>
-  <li><a href="#flask란">Flask란?</a></li>
-  <li><a href="#dio">Dio</a></li>
-  <li><a href="#future">Future</a></li>
-  <li><a href="#flask에서-json-형태로-response보내는-함수">Flask에서 json형태로 response보내는 함수</a></li>
+  <li><a href="#uri-uniform-resource-identifier">URI</a></li>
+  <li><a href="#url-uniform-resource-locator">URL</a></li>
+  <li><a href="#urn-uniform-resource-name">URN</a></li>
+  <li><a href="#uri와-url의-차이점">URI와 URL의 차이점</a></li>
 </ol>
 
 <hr />
 
-<h2 id="flask란">Flask란?</h2>
 <ul>
-  <li>웹 애플리케이션 개발을 위한 파이썬 프레임워크</li>
-  <li>가장 유명한 Django(장고)보다 가볍고 필요한 기능만 최대한 라이트한 개발을 할 수 있다.</li>
+  <li>flutter앱을 개발하는 도중, http통신관련 코드를 짜면서 Uri.parse()함수를 여러 번 접하게 되었다.</li>
+  <li>주소 관련 변수명을 url로 쓰고 있어 이 둘의 의미가 혼동되어 정확하게 알아보고자 하였다.</li>
 </ul>
 
-<h3 id="dio">Dio</h3>
+<h2 id="uri-uniform-resource-identifier">URI (Uniform Resource Identifier)</h2>
+
 <ul>
-  <li>A powerful Http client for Dart</li>
-  <li>http처럼 서버와 통신하기 위해 필요한 패키지</li>
-  <li>많은 기능을 가지고 있고, 여러가지 커스텀을 쉽게 할 수 있다.</li>
-  <li>pubspec.yaml에 dependency를 추가해주어야 한다.</li>
-  <li>Http와 json형식의 데이터로 받아올 때 차이점
+  <li>우리 말로 ‘통합 자원 식별자’
     <ul>
-      <li><strong>Http로 요청 후 리턴받은 데이터를 decode해준 값이 Dio로 요청 후 리턴받은 데이터와 동일하다.</strong></li>
-      <li>
-        <url>https://kyungsnim.net/175</url>
-        <p>에서 참고</p>
-      </li>
+      <li>Uniform -&gt; 리소스를 식별는 통일된 방식</li>
+      <li>Resource -&gt; URI로 식별이 가능한 웹 브라우저 파일 및 그 이외의 리소스를 포함하는 모든 종류의 자원</li>
+      <li>Identifier -&gt; 다른 항목과 구분하기 위해 필요한 정보</li>
     </ul>
   </li>
+  <li><strong> 즉, URI는 인터넷상의 리소스 자원 자체를 식별하는 고유한 문자열 시퀀스</strong></li>
 </ul>
 
-<h3 id="future">Future</h3>
+<h2 id="url-uniform-resource-locator">URL (Uniform Resource Locator)</h2>
+
 <ul>
-  <li>지금은 없지만 미래에 요청한 데이터 혹은 에러가 담길 그릇</li>
-  <li>싱글스레드 환경에서 비동기 처리를 위함
+  <li>네트워크상에서 통합 자원(리소스)의 <strong>“위치”</strong>를 나타내기 위한 규약</li>
+  <li>웹 사이트 주소 + 컴퓨터 네트워크 상의 자원
     <ul>
-      <li>비동기 : 어떤 동작이 완료되지 않아도 다음 동작을 수행하는 것</li>
-      <li>동기 : 모든 동작이 완료된 후 다음 동작을 수행하는 것</li>
+      <li>특정 웹 페이지의 주소에 접속하기 위해서는 웹 사이트의 주소뿐만 아니라 프로토콜(https, http, sftp, smp 등)을 함께 알아야 접속이 가능한데, URL은 이들 모두를 나타낸다.</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="flask에서-json-형태로-response보내는-함수">Flask에서 json 형태로 response보내는 함수</h3>
+<h2 id="urn-uniform-resource-name">URN (Uniform Resource Name)</h2>
+
 <ul>
-  <li>jsonify
-    <ul>
-      <li>json response를 보내기 위해 이미 content-type header가 ‘application/json’로 되어 있는 flask.Response() 객체를 리턴</li>
-      <li>jsonify도 함수 내부에서도 json form으로 serialize하는 과정에서 json.dumps를 사용
-        <ul>
-          <li>다만 dump하기 전에 받은 값들을 모두 dictionary로 만들었다.</li>
-        </ul>
-      </li>
-      <li>Parameter accept
-        <ul>
-          <li>dictionary</li>
-          <li>list</li>
-        </ul>
-      </li>
-    </ul>
+  <li>리소스의 위치, 프로토콜, 호스트 등과는 상관없이 각 자원에 이름을 부여한 것</li>
+  <li>웹 문서의 물리적인 위치와 상관없이 웹 문서 자체를 나타낸다.</li>
+</ul>
+
+<h2 id="uri와-url의-차이점">URI와 URL의 차이점</h2>
+
+<ul>
+  <li>URI= 식별자, URL=식별자+위치</li>
+  <li>nan0silver.github.io는 리소스의 이름만 나타내므로 URI</li>
+  <li>
+    <p>https://nan0silver.github.io/는 이름과 위치를 나타내므로 URL (프로토콜 http를 포함하기 때문)</p>
   </li>
-  <li>json.dumps
-    <ul>
-      <li>python이 가지고 있는 json library의 json.dumps()</li>
-      <li>수동으로 MIME type header를 추가해주어야 하는 encoded string을 리턴한다.</li>
-      <li>flask가 알아서 판단해 response를 자동으로 보내주도록 사용하기 때문에 직접적으로 사용할 수 있다. 다만 reponse header fields는 디폴트(text/html; charset=utf-80)로 처리된다.</li>
-      <li>Parameter accept
-        <ul>
-          <li>jsonify보다 더 많은 타입</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li>URL ⊂ URI</li>
+  <li>URL은 프로토콜과 결합된 상태이다. (프로토콜 + 이름)</li>
+  <li>URI는 그 자체로 이름이 될 수 있다.</li>
 </ul>
 
   
@@ -599,7 +583,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Flutter (5)
+          Flutter (2)
         </a>
       </li>
     
@@ -659,7 +643,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Back-end (5)
+          Back-end (8)
         </a>
       </li>
     
