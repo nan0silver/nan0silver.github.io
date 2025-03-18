@@ -59,7 +59,7 @@ menu:
   #   url:               /docs/
   - title: About
     url: /about/
-  - title: Flutter (5)
+  - title: Flutter (2)
     url: /flutter/
   - title: JavaScript (8)
     url: /javascript/
@@ -69,7 +69,7 @@ menu:
     url: /java/
   - title: AI (2)
     url: /ai/
-  - title: Back-end (5)
+  - title: Back-end (8)
     url: /backend/
   - title: Miscellaneous (9)
     url: /miscellaneous/
