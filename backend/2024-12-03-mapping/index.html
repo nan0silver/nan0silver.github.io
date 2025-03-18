@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Etc] OAuth란? | NAHYUN BLOG</title>
+<title>[Spring] Spring 매핑 개념과 주요 애너테이션 활용법 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Etc] OAuth란?" />
+<meta property="og:title" content="[Spring] Spring 매핑 개념과 주요 애너테이션 활용법" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자." />
-<meta property="og:description" content="인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자." />
-<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" />
-<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" />
+<meta name="description" content="URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다." />
+<meta property="og:description" content="URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다." />
+<link rel="canonical" href="https://nan0silver.github.io/backend/2024-12-03-mapping/" />
+<meta property="og:url" content="https://nan0silver.github.io/backend/2024-12-03-mapping/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-02-20T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-12-03T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Etc] OAuth란?" />
+<meta property="twitter:title" content="[Spring] Spring 매핑 개념과 주요 애너테이션 활용법" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-18T06:06:35+00:00","datePublished":"2025-02-20T00:00:00+00:00","description":"인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.","headline":"[Etc] OAuth란?","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-18T06:10:04+00:00","datePublished":"2024-12-03T00:00:00+00:00","description":"URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다.","headline":"[Spring] Spring 매핑 개념과 주요 애너테이션 활용법","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/backend/2024-12-03-mapping/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/backend/2024-12-03-mapping/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/backend/2024-12-03-mapping/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-03-18T06:07:19+00:00',
+    INDEX_KEY: 'index--2025-03-18T06:10:46+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/miscellaneous/">miscellaneous</a>
+          <a href="/backend/">backend</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-02-20-OAuth</span>
+          <span>2024-12-03-mapping</span>
         
       </li>
     
@@ -222,18 +222,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-OAuth" class="page post mb6" role="article">
+<article id="post-backend-mapping" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Etc] OAuth란?
+        [Spring] Spring 매핑 개념과 주요 애너테이션 활용법
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-20T00:00:00+00:00">20 Feb 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+        <time datetime="2024-12-03T00:00:00+00:00">03 Dec 2024</time> in <a href="/backend/" class="flip-title">BACK-END</a> 
       </span>
       
         
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-03-18T06:06:35+00:00">2025-03-18</time>
+              <time datetime="2025-03-18T06:10:04+00:00">2025-03-18</time>
             </span>
           
         
@@ -261,7 +261,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.
+      URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다.
 
     </p>
   
@@ -271,294 +271,86 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#1-oauth-개념과-특징">OAuth 개념과 특징</a></li>
-  <li><a href="#2-oauth-10-vs-oauth-20">OAuth 1.0 vs. OAuth 2.0</a></li>
-  <li><a href="#3-oauth-20-상세-동작-방식">OAuth 2.0 상세 동작 방식</a></li>
-  <li><a href="#4-oauth-20-grant-types-인증-방식">OAuth 2.0 Grant Types (인증 방식)</a></li>
-  <li><a href="#5-oauth-20의-주요-용어">OAuth 2.0의 주요 용어</a></li>
-  <li><a href="#6-oauth-20을-실제-코드로-구현">OAuth 2.0을 실제 코드로 구현</a></li>
-  <li><a href="#7-oauth의-장점--단점">OAuth의 장점 &amp; 단점</a></li>
+  <li><a href="#맵핑-mapping">Mapping</a></li>
 </ul>
 
 <hr />
 
-<h2 id="oauth란"><strong>OAuth란?</strong></h2>
-
-<blockquote>
-  <p><strong>서드파티 애플리케이션이 사용자 인증 정보를 직접 다루지 않고, 다른 서비스의 인증을 통해 특정 리소스에 접근할 수 있도록 하는 인증 및 권한 부여 프로토콜</strong></p>
-</blockquote>
+<h2 id="맵핑-mapping">맵핑 (Mapping)</h2>
 
 <ul>
-  <li><strong>“카카오 로그인”, “구글 로그인”, “페이스북 로그인”</strong> 같은 기능이 OAuth를 사용한 대표적인 사례</li>
+  <li>
+    <p>Mapping</p>
+
+    <ul>
+      <li>클라이언트로 부터 요청이 들어오는 URL과 컨트롤러 메서드를 연결하는 작업</li>
+      <li>Mapping 애너테이션을 사용해 클라이언트의 요청이 URL로 들어올 때 해당 URL에 맞는 컨트롤러가 있는지 확인하고 해당 컨트롤러를 매핑하여 요청을 처리</li>
+    </ul>
+  </li>
+  <li>
+    <p>@RequestMapping</p>
+
+    <ul>
+      <li>클라이언트가 특정 URL로 요청을 보낼 때, 이 요청을 처리할 컨트롤러 메서드를 정의하는 것</li>
+      <li>
+        <p>Get, Post, Put, Delete, Patch등의 URL을 다 포함하고 있으며, 옵션을 통해 종류를 지정할 수 있음</p>
+
+        <ul>
+          <li>
+            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nd">@Controller</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProductController</span> <span class="o">{</span>
+      <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/products"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">listProducts</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="s">"product-list"</span><span class="o">;</span>
+      <span class="o">}</span>
+
+      <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/products"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
+      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">addProducts</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="s">"product-added"</span><span class="o">;</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>HTTP 메서드에 특화된 매핑</p>
+    <ul>
+      <li>@GetMapping
+        <ul>
+          <li>GET 요청만 받는 애노테이션</li>
+          <li>@RequestMapping(method = RequestMethod.GET)</li>
+        </ul>
+      </li>
+      <li>@PostMapping
+        <ul>
+          <li>POST 요청만 받는 애노테이션</li>
+          <li>@RequestMapping(method = RequestMethod.POST)</li>
+        </ul>
+      </li>
+      <li>@PutMapping
+        <ul>
+          <li>PUT 요청만 받는 애노테이션</li>
+          <li>@RequestMapping(method = RequestMethod.PUT)</li>
+        </ul>
+      </li>
+      <li>@DeleteMapping
+        <ul>
+          <li>DELETE 요청만 받는 애노테이션</li>
+          <li>@RequestMapping(method = RequestMethod.DELETE)</li>
+        </ul>
+      </li>
+      <li>@PatchtMapping
+        <ul>
+          <li>PATCT 요청만 받는 애노테이션</li>
+          <li>@RequestMapping(method = RequestMethod.PATCH)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
-
-<hr />
-
-<h2 id="1-oauth-개념과-특징"><strong>1. OAuth 개념과 특징</strong></h2>
-
-<h3 id="-oauth의-핵심-개념">✅ <strong>OAuth의 핵심 개념</strong></h3>
-
-<ul>
-  <li><strong>인증(Authentication)</strong>: 사용자가 누구인지 확인하는 과정</li>
-  <li><strong>권한 부여(Authorization)</strong>: 사용자가 특정 리소스에 대한 액세스를 허용하는 과정</li>
-  <li><strong>토큰 기반 인증</strong>: ID/비밀번호 대신 <strong>Access Token</strong>을 사용하여 API 요청</li>
-  <li><strong>안전한 인증 방식</strong>: 클라이언트가 직접 사용자 계정 정보를 저장하지 않아 보안 강화</li>
-</ul>
-
-<h3 id="-oauth-동작-방식">✅ <strong>OAuth 동작 방식</strong></h3>
-
-<ol>
-  <li>사용자가 서드파티 앱에서 로그인 버튼 클릭</li>
-  <li>OAuth 서버(예: Google, Kakao)가 사용자에게 로그인 페이지 제공</li>
-  <li>사용자가 로그인하고 권한을 승인</li>
-  <li>OAuth 서버가 서드파티 앱에 <strong>Authorization Code</strong> 제공</li>
-  <li>서드파티 앱이 Authorization Code를 사용하여 <strong>Access Token</strong> 요청</li>
-  <li>Access Token을 통해 리소스 서버(API)에 접근하여 데이터 제공</li>
-</ol>
-
-<hr />
-
-<h2 id="2-oauth-10-vs-oauth-20"><strong>2. OAuth 1.0 vs. OAuth 2.0</strong></h2>
-
-<blockquote>
-  <p>OAuth는 <strong>1.0과 2.0 두 가지 버전</strong>이 있으며 현재는 <strong>OAuth 2.0</strong>이 표준.</p>
-</blockquote>
-
-<table>
-  <thead>
-    <tr>
-      <th>특징</th>
-      <th>OAuth 1.0</th>
-      <th>OAuth 2.0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>출시</strong></td>
-      <td>2010년 이전</td>
-      <td>2012년 이후</td>
-    </tr>
-    <tr>
-      <td><strong>보안 방식</strong></td>
-      <td>HMAC-SHA1 서명</td>
-      <td>Bearer Token 방식</td>
-    </tr>
-    <tr>
-      <td><strong>암호화 필수 여부</strong></td>
-      <td>요청마다 암호화 필요</td>
-      <td>HTTPS만 사용하면 됨</td>
-    </tr>
-    <tr>
-      <td><strong>사용성</strong></td>
-      <td>복잡함</td>
-      <td>간단하고 확장성이 좋음</td>
-    </tr>
-    <tr>
-      <td><strong>클라이언트 유형</strong></td>
-      <td>웹 앱 중심</td>
-      <td>모바일, 웹, 서버, IoT 지원</td>
-    </tr>
-    <tr>
-      <td><strong>인증 방식</strong></td>
-      <td>Access Token, Secret Key</td>
-      <td>Access Token, Refresh Token</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>💡 현재 OAuth 2.0을 대부분 사용</p>
-
-<hr />
-
-<h2 id="3-oauth-20-상세-동작-방식"><strong>3. OAuth 2.0 상세 동작 방식</strong></h2>
-
-<h3 id="-oauth-20의-핵심-개념">🔑 <strong>OAuth 2.0의 핵심 개념</strong></h3>
-
-<ul>
-  <li><strong>Authorization Code</strong>: Access Token을 받기 위한 코드</li>
-  <li><strong>Access Token</strong>: API 요청 시 사용하는 인증 키</li>
-  <li><strong>Refresh Token</strong>: Access Token이 만료될 때 새로운 Token을 발급하는 키</li>
-  <li><strong>Redirect URI</strong>: OAuth 서버가 Authorization Code를 전달할 URL</li>
-</ul>
-
-<h3 id="oauth-20-인증-과정"><strong>OAuth 2.0 인증 과정</strong></h3>
-
-<h4 id="1️⃣-사용자-인증--권한-부여-authorization-request">1️⃣ <strong>사용자 인증 &amp; 권한 부여 (Authorization Request)</strong></h4>
-
-<ul>
-  <li>클라이언트가 <strong>OAuth 제공자(Google, Kakao 등)</strong>에게 로그인 요청</li>
-  <li>사용자 로그인 후, 권한 허용 여부를 선택</li>
-</ul>
-
-<h4 id="2️⃣-authorization-code-발급">2️⃣ <strong>Authorization Code 발급</strong></h4>
-
-<ul>
-  <li>사용자가 권한을 허용하면, OAuth 서버가 <strong>Authorization Code</strong>를 클라이언트에게 전달</li>
-</ul>
-
-<h4 id="3️⃣-access-token-발급-token-exchange">3️⃣ <strong>Access Token 발급 (Token Exchange)</strong></h4>
-
-<ul>
-  <li>클라이언트는 Authorization Code를 사용해 <strong>Access Token 요청</strong></li>
-  <li>OAuth 서버가 유효성 검증 후, <strong>Access Token과 Refresh Token 발급</strong></li>
-</ul>
-
-<h4 id="4️⃣-api-요청-resource-access">4️⃣ <strong>API 요청 (Resource Access)</strong></h4>
-
-<ul>
-  <li>클라이언트는 Access Token을 포함하여 API 서버에 요청</li>
-  <li>API 서버는 토큰을 확인한 후 데이터 반환</li>
-</ul>
-
-<h4 id="5️⃣-access-token-갱신-token-refresh">5️⃣ <strong>Access Token 갱신 (Token Refresh)</strong></h4>
-
-<ul>
-  <li>Access Token이 만료되면, Refresh Token을 사용하여 새로운 Access Token 발급</li>
-</ul>
-
-<hr />
-
-<h2 id="4-oauth-20-grant-types-인증-방식"><strong>4. OAuth 2.0 Grant Types (인증 방식)</strong></h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Grant Type</th>
-      <th>설명</th>
-      <th>사용 예시</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Authorization Code</strong></td>
-      <td>보안이 뛰어난 방식으로, 서버를 거쳐 Access Token을 받음</td>
-      <td>웹, 모바일 앱에서 로그인 연동</td>
-    </tr>
-    <tr>
-      <td><strong>Implicit</strong></td>
-      <td>Access Token을 직접 발급 (보안 약함)</td>
-      <td>예전 프론트엔드 앱에서 사용 (현재는 사용 X)</td>
-    </tr>
-    <tr>
-      <td><strong>Resource Owner Password Credentials (ROPC)</strong></td>
-      <td>사용자 ID/PW를 직접 입력받아 Access Token 발급</td>
-      <td>신뢰할 수 있는 앱 (예: 사내 시스템)</td>
-    </tr>
-    <tr>
-      <td><strong>Client Credentials</strong></td>
-      <td>클라이언트(서버) 자체가 인증됨 (사용자 없음)</td>
-      <td>서버 간 API 호출</td>
-    </tr>
-    <tr>
-      <td><strong>Device Code</strong></td>
-      <td>디바이스(스마트 TV 등)에서 로그인</td>
-      <td>TV, IoT 기기</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>💡 <strong>일반적으로 “Authorization Code” 방식이 가장 많이 사용됨</strong>.</p>
-
-<hr />
-
-<h2 id="5-oauth-20의-주요-용어"><strong>5. OAuth 2.0의 주요 용어</strong></h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>용어</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Resource Owner (사용자)</strong></td>
-      <td>API의 데이터를 소유한 사용자</td>
-    </tr>
-    <tr>
-      <td><strong>Client (클라이언트 앱)</strong></td>
-      <td>사용자의 데이터를 요청하는 앱 (예: 서드파티 앱)</td>
-    </tr>
-    <tr>
-      <td><strong>Authorization Server</strong></td>
-      <td>인증을 담당하는 서버 (Google, Kakao 등)</td>
-    </tr>
-    <tr>
-      <td><strong>Resource Server</strong></td>
-      <td>API 요청을 처리하는 서버 (Google API, Kakao API 등)</td>
-    </tr>
-    <tr>
-      <td><strong>Access Token</strong></td>
-      <td>사용자가 인증된 후 API에 접근할 수 있는 키</td>
-    </tr>
-    <tr>
-      <td><strong>Refresh Token</strong></td>
-      <td>Access Token이 만료되었을 때 재발급하는 키</td>
-    </tr>
-    <tr>
-      <td><strong>Redirect URI</strong></td>
-      <td>OAuth 서버가 Authorization Code를 전달하는 URL</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="6-oauth-20을-실제-코드로-구현"><strong>6. OAuth 2.0을 실제 코드로 구현</strong></h2>
-
-<h3 id="1-authorization-code-방식-java"><strong>(1) Authorization Code 방식 (Java)</strong></h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.http.HttpClient</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.http.HttpRequest</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.http.HttpResponse</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OAuthExample</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
-        <span class="c1">// 1. Authorization Code 요청</span>
-        <span class="nc">String</span> <span class="n">clientId</span> <span class="o">=</span> <span class="s">"your-client-id"</span><span class="o">;</span>
-        <span class="nc">String</span> <span class="n">redirectUri</span> <span class="o">=</span> <span class="s">"https://your-app.com/callback"</span><span class="o">;</span>
-        <span class="nc">String</span> <span class="n">authUrl</span> <span class="o">=</span> <span class="s">"https://oauth-provider.com/auth?client_id="</span> <span class="o">+</span> <span class="n">clientId</span> <span class="o">+</span> <span class="s">"&amp;redirect_uri="</span> <span class="o">+</span> <span class="n">redirectUri</span> <span class="o">+</span> <span class="s">"&amp;response_type=code"</span><span class="o">;</span>
-
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Login URL: "</span> <span class="o">+</span> <span class="n">authUrl</span><span class="o">);</span>
-
-        <span class="c1">// 2. Access Token 요청</span>
-        <span class="nc">String</span> <span class="n">authCode</span> <span class="o">=</span> <span class="s">"received-authorization-code"</span><span class="o">;</span>
-        <span class="nc">String</span> <span class="n">tokenUrl</span> <span class="o">=</span> <span class="s">"https://oauth-provider.com/token"</span><span class="o">;</span>
-
-        <span class="nc">HttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="nc">HttpClient</span><span class="o">.</span><span class="na">newHttpClient</span><span class="o">();</span>
-        <span class="nc">HttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">HttpRequest</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">tokenUrl</span><span class="o">))</span>
-            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/x-www-form-urlencoded"</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">POST</span><span class="o">(</span><span class="nc">HttpRequest</span><span class="o">.</span><span class="na">BodyPublishers</span><span class="o">.</span><span class="na">ofString</span><span class="o">(</span><span class="s">"client_id="</span> <span class="o">+</span> <span class="n">clientId</span> <span class="o">+</span> <span class="s">"&amp;code="</span> <span class="o">+</span> <span class="n">authCode</span> <span class="o">+</span> <span class="s">"&amp;redirect_uri="</span> <span class="o">+</span> <span class="n">redirectUri</span> <span class="o">+</span> <span class="s">"&amp;grant_type=authorization_code"</span><span class="o">))</span>
-            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-
-        <span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="nc">HttpResponse</span><span class="o">.</span><span class="na">BodyHandlers</span><span class="o">.</span><span class="na">ofString</span><span class="o">());</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Access Token Response: "</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">());</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="7-oauth의-장점--단점"><strong>7. OAuth의 장점 &amp; 단점</strong></h2>
-
-<h3 id="-장점">✅ <strong>장점</strong></h3>
-
-<ol>
-  <li><strong>보안성 강화</strong>: ID/PW를 직접 저장하지 않고, Access Token으로 인증</li>
-  <li><strong>편리한 로그인</strong>: Google, Kakao 로그인 등 쉽게 연동 가능</li>
-  <li><strong>API 사용 간편화</strong>: 서드파티 서비스와 연동할 때 필수</li>
-  <li><strong>토큰 만료로 보안 강화</strong>: Access Token이 주기적으로 만료되므로 보안성 향상</li>
-</ol>
-
-<h3 id="-단점">❌ <strong>단점</strong></h3>
-
-<ol>
-  <li><strong>구현이 복잡함</strong>: Access Token, Refresh Token 관리 필요</li>
-  <li><strong>서버 부하 증가</strong>: 토큰 발급 및 검증 과정에서 추가적인 요청 발생</li>
-  <li><strong>Refresh Token 유출 위험</strong>: Refresh Token이 유출되면 악용될 가능성 있음</li>
-</ol>
 
   
 </article>
@@ -857,11 +649,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         <a
           
-          href="/aws/"
+          href="/backend/"
           class="sidebar-nav-item "
           
         >
-          AWS (1)
+          Back-end (5)
         </a>
       </li>
     

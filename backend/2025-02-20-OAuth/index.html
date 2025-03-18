@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[AWS] AWS 기초 | NAHYUN BLOG</title>
+<title>[Etc] OAuth란? | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[AWS] AWS 기초" />
+<meta property="og:title" content="[Etc] OAuth란?" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="AWS의 기본 내용에 대해 알아본다." />
-<meta property="og:description" content="AWS의 기본 내용에 대해 알아본다." />
-<link rel="canonical" href="https://nan0silver.github.io/aws/2024-09-02-aws/" />
-<meta property="og:url" content="https://nan0silver.github.io/aws/2024-09-02-aws/" />
+<meta name="description" content="인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자." />
+<meta property="og:description" content="인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/backend/2025-02-20-OAuth/" />
+<meta property="og:url" content="https://nan0silver.github.io/backend/2025-02-20-OAuth/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-09-02T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-02-20T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[AWS] AWS 기초" />
+<meta property="twitter:title" content="[Etc] OAuth란?" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-18T06:06:35+00:00","datePublished":"2024-09-02T00:00:00+00:00","description":"AWS의 기본 내용에 대해 알아본다.","headline":"[AWS] AWS 기초","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/aws/2024-09-02-aws/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/aws/2024-09-02-aws/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-18T06:10:04+00:00","datePublished":"2025-02-20T00:00:00+00:00","description":"인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.","headline":"[Etc] OAuth란?","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/backend/2025-02-20-OAuth/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/backend/2025-02-20-OAuth/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/aws/2024-09-02-aws/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/backend/2025-02-20-OAuth/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-03-18T06:07:19+00:00',
+    INDEX_KEY: 'index--2025-03-18T06:10:46+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/aws/">aws</a>
+          <a href="/backend/">backend</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2024-09-02-aws</span>
+          <span>2025-02-20-OAuth</span>
         
       </li>
     
@@ -222,18 +222,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-aws-aws" class="page post mb6" role="article">
+<article id="post-backend-OAuth" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [AWS] AWS 기초
+        [Etc] OAuth란?
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2024-09-02T00:00:00+00:00">02 Sep 2024</time> in <a href="/aws/" class="flip-title">AWS</a> 
+        <time datetime="2025-02-20T00:00:00+00:00">20 Feb 2025</time> in <a href="/backend/" class="flip-title">BACK-END</a> 
       </span>
       
         
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-03-18T06:06:35+00:00">2025-03-18</time>
+              <time datetime="2025-03-18T06:10:04+00:00">2025-03-18</time>
             </span>
           
         
@@ -261,7 +261,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      AWS의 기본 내용에 대해 알아본다.
+      인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.
 
     </p>
   
@@ -270,319 +270,295 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <p>목차</p>
+    <ul>
+  <li><a href="#1-oauth-개념과-특징">OAuth 개념과 특징</a></li>
+  <li><a href="#2-oauth-10-vs-oauth-20">OAuth 1.0 vs. OAuth 2.0</a></li>
+  <li><a href="#3-oauth-20-상세-동작-방식">OAuth 2.0 상세 동작 방식</a></li>
+  <li><a href="#4-oauth-20-grant-types-인증-방식">OAuth 2.0 Grant Types (인증 방식)</a></li>
+  <li><a href="#5-oauth-20의-주요-용어">OAuth 2.0의 주요 용어</a></li>
+  <li><a href="#6-oauth-20을-실제-코드로-구현">OAuth 2.0을 실제 코드로 구현</a></li>
+  <li><a href="#7-oauth의-장점--단점">OAuth의 장점 &amp; 단점</a></li>
+</ul>
+
+<hr />
+
+<h2 id="oauth란"><strong>OAuth란?</strong></h2>
+
+<blockquote>
+  <p><strong>서드파티 애플리케이션이 사용자 인증 정보를 직접 다루지 않고, 다른 서비스의 인증을 통해 특정 리소스에 접근할 수 있도록 하는 인증 및 권한 부여 프로토콜</strong></p>
+</blockquote>
+
+<ul>
+  <li><strong>“카카오 로그인”, “구글 로그인”, “페이스북 로그인”</strong> 같은 기능이 OAuth를 사용한 대표적인 사례</li>
+</ul>
+
+<hr />
+
+<h2 id="1-oauth-개념과-특징"><strong>1. OAuth 개념과 특징</strong></h2>
+
+<h3 id="-oauth의-핵심-개념">✅ <strong>OAuth의 핵심 개념</strong></h3>
+
+<ul>
+  <li><strong>인증(Authentication)</strong>: 사용자가 누구인지 확인하는 과정</li>
+  <li><strong>권한 부여(Authorization)</strong>: 사용자가 특정 리소스에 대한 액세스를 허용하는 과정</li>
+  <li><strong>토큰 기반 인증</strong>: ID/비밀번호 대신 <strong>Access Token</strong>을 사용하여 API 요청</li>
+  <li><strong>안전한 인증 방식</strong>: 클라이언트가 직접 사용자 계정 정보를 저장하지 않아 보안 강화</li>
+</ul>
+
+<h3 id="-oauth-동작-방식">✅ <strong>OAuth 동작 방식</strong></h3>
+
 <ol>
-  <li><a href="#aws란">AWS란?</a></li>
-  <li><a href="#s3--cloudfront">S3 &amp; Cloudfront</a></li>
-  <li><a href="#aws-솔루션-실무-적용-사례">AWS 솔루션 실무 적용 사례</a></li>
-  <li><a href="#aws-클라우드-인프라의-구성-요소">AWS 클라우드 인프라의 구성 요소</a></li>
-  <li><a href="#aws-네트워크-구성-요소-설명-캠퍼스-예시로-이해하기">AWS 네트워크 구성 요소 설명: 캠퍼스 예시로 이해하기</a></li>
-  <li><a href="#aws-초기-설정-및-구성-시-주의점">AWS 초기 설정 및 구성 시 주의점</a></li>
+  <li>사용자가 서드파티 앱에서 로그인 버튼 클릭</li>
+  <li>OAuth 서버(예: Google, Kakao)가 사용자에게 로그인 페이지 제공</li>
+  <li>사용자가 로그인하고 권한을 승인</li>
+  <li>OAuth 서버가 서드파티 앱에 <strong>Authorization Code</strong> 제공</li>
+  <li>서드파티 앱이 Authorization Code를 사용하여 <strong>Access Token</strong> 요청</li>
+  <li>Access Token을 통해 리소스 서버(API)에 접근하여 데이터 제공</li>
 </ol>
 
 <hr />
 
-<h2 id="aws에-대한-기초-내용">AWS에 대한 기초 내용</h2>
+<h2 id="2-oauth-10-vs-oauth-20"><strong>2. OAuth 1.0 vs. OAuth 2.0</strong></h2>
 
-<h3 id="aws란">AWS란?</h3>
+<blockquote>
+  <p>OAuth는 <strong>1.0과 2.0 두 가지 버전</strong>이 있으며 현재는 <strong>OAuth 2.0</strong>이 표준.</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>특징</th>
+      <th>OAuth 1.0</th>
+      <th>OAuth 2.0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>출시</strong></td>
+      <td>2010년 이전</td>
+      <td>2012년 이후</td>
+    </tr>
+    <tr>
+      <td><strong>보안 방식</strong></td>
+      <td>HMAC-SHA1 서명</td>
+      <td>Bearer Token 방식</td>
+    </tr>
+    <tr>
+      <td><strong>암호화 필수 여부</strong></td>
+      <td>요청마다 암호화 필요</td>
+      <td>HTTPS만 사용하면 됨</td>
+    </tr>
+    <tr>
+      <td><strong>사용성</strong></td>
+      <td>복잡함</td>
+      <td>간단하고 확장성이 좋음</td>
+    </tr>
+    <tr>
+      <td><strong>클라이언트 유형</strong></td>
+      <td>웹 앱 중심</td>
+      <td>모바일, 웹, 서버, IoT 지원</td>
+    </tr>
+    <tr>
+      <td><strong>인증 방식</strong></td>
+      <td>Access Token, Secret Key</td>
+      <td>Access Token, Refresh Token</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>💡 현재 OAuth 2.0을 대부분 사용</p>
+
+<hr />
+
+<h2 id="3-oauth-20-상세-동작-방식"><strong>3. OAuth 2.0 상세 동작 방식</strong></h2>
+
+<h3 id="-oauth-20의-핵심-개념">🔑 <strong>OAuth 2.0의 핵심 개념</strong></h3>
+
 <ul>
-  <li>Amazon Web Service</li>
-  <li>클라우드 컴퓨팅 플랫폼
-    <ul>
-      <li>인터넷을 통해 IT리소스(서버, 스토리지, 데이터베이스, 네트워킹 등)를 제공하고 관리하는 서비스</li>
-      <li>특징
-        <ol>
-          <li>확장성 (Scalability)
-            <ul>
-              <li>사용자가 필요에 따라 리소스를 쉽게 확장, 축소 가능</li>
-              <li>블랙 프라이데이에는 몇 배의 트래픽이 몰림. 이때마다 하드웨어를 사용하는건 비효율적, 이때만 자원을 사용하고 끝나면 반납할 수 있음</li>
-            </ul>
-          </li>
-          <li>유연성 (Flexibility)
-            <ul>
-              <li>다양한 IT 환경에 맞춰 손쉽게 맞춤화 가능</li>
-              <li>자바스크립트로 백엔드 많이 사용</li>
-            </ul>
-          </li>
-          <li>비용 효율성 (Cost Efficiency)
-            <ul>
-              <li>초기 자본 투자 없이, 사용한 만큼 지불하는 비용 구조</li>
-            </ul>
-          </li>
-          <li>가용성
-            <ul>
-              <li>높은 가용성과 자동 백업, 복구 기능으로 서비스 중간 최소화</li>
-              <li>람다 서비스를 처음 띄울 때 서울 4개의 구역에 띄워놓을 수 있음. 한 개의 구역에 오류가 나도 다른 구역에서는 잘 쓸 수 있음.</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ul>
-  </li>
-  <li>AWS 계정 만들어보기</li>
-  <li>AWS Cloud Practitioner Essentials (Korean)
-    <ul>
-      <li>Cloud Practitioner 자격증 있음
-        <ul>
-          <li>공부하는 것 추천함 (따는건 비쌈)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>큰 회사에서는 AWS 자격증이 크게 상관없겠지만, 작은 회사에서는 AWS역량이 필수적</li>
+  <li><strong>Authorization Code</strong>: Access Token을 받기 위한 코드</li>
+  <li><strong>Access Token</strong>: API 요청 시 사용하는 인증 키</li>
+  <li><strong>Refresh Token</strong>: Access Token이 만료될 때 새로운 Token을 발급하는 키</li>
+  <li><strong>Redirect URI</strong>: OAuth 서버가 Authorization Code를 전달할 URL</li>
 </ul>
 
-<h3 id="s3--cloudfront">S3 &amp; Cloudfront</h3>
+<h3 id="oauth-20-인증-과정"><strong>OAuth 2.0 인증 과정</strong></h3>
+
+<h4 id="1️⃣-사용자-인증--권한-부여-authorization-request">1️⃣ <strong>사용자 인증 &amp; 권한 부여 (Authorization Request)</strong></h4>
+
 <ul>
-  <li>S3
-    <ul>
-      <li>Simple Storage Service</li>
-      <li>AWS 최초의 서비스</li>
-      <li>클라우드 파일 저장소</li>
-      <li>AWS 사용하고 있는 회사라면 99%의 확률로 활용하고 있음</li>
-      <li>S3는 서버사이트 스크립팅(PHP, Python등)이 필요없는 정적 웹사이트에 최적</li>
-      <li>기본 개념
-        <ul>
-          <li>버킷 (Bucket)
-            <ul>
-              <li>S3에서 데이터를 저장하는 컨테이너</li>
-              <li>모든 S3객체는 반드시 하나의 버킷에 속해 있음</li>
-              <li>S3 스토리지의 최상위 계층이며, 사용자가 데이터를 저장하고 관리할 수 있는 폴더와 비슷
-                <ul>
-                  <li>컴퓨터에서 C드라이브와 비슷한 느낌</li>
-                </ul>
-              </li>
-              <li>각 버킷은 고유한 이름을 가짐(전세걔 유일)</li>
-              <li>데이터 저장 위치(region), 권한 설정, 버전 관리, 수명 주기 정책 등 관리 가능</li>
-            </ul>
-          </li>
-          <li>Key
-            <ul>
-              <li>S3버킷 내 객체(파일)를 고유하게 식별하는 문자열</li>
-              <li>버킷 내 키는 객체의 “경로”로 생각 가능</li>
-              <li>디렉토리 구조를 흉내낼 수 있도록 설계됨
-                <ul>
-                  <li>그냥 전체가 하나의 키임</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>사용 방법
-        <ul>
-          <li>AWS Console</li>
-          <li>AWS Cli</li>
-          <li>FTP 프로그램
-            <ul>
-              <li>file transfer protocol</li>
-              <li>사이버덕, 파일질라</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Cloudfront
-    <ul>
-      <li>AWS CDN 서비스
-        <ul>
-          <li>Contents Delivery Network</li>
-          <li>인터넷 사용자에게 웹 콘텐츠를 빠르고 효율적으로 제공하기 위해 설계된 분산형 서버 네트워크</li>
-        </ul>
-      </li>
-      <li>S3를 비롯한 AWS의 다른 서비스와 연동이 쉬움</li>
-      <li>AWS를 사용하는 회사라면 99% 사용</li>
-      <li>S3는 저장에 특화, Cloudfront는 전송에 특화
-        <ul>
-          <li>S3는 직접 접근으로 주로 내부 사용자나 제한된 사용자들에게 제공을 많이함</li>
-          <li>하지만 Cloudfront는 CDN을 통해 접근하기때문에 속도도 빠르고 캐싱도 됨</li>
-        </ul>
-      </li>
-      <li>S3 1GB당 약 0.117$, Cloudfront 1GB당 0.095$</li>
-      <li>CloudFront는 약정 계약이 가능</li>
-    </ul>
-  </li>
+  <li>클라이언트가 <strong>OAuth 제공자(Google, Kakao 등)</strong>에게 로그인 요청</li>
+  <li>사용자 로그인 후, 권한 허용 여부를 선택</li>
 </ul>
 
-<h3 id="aws-솔루션-실무-적용-사례">AWS 솔루션 실무 적용 사례</h3>
+<h4 id="2️⃣-authorization-code-발급">2️⃣ <strong>Authorization Code 발급</strong></h4>
+
+<ul>
+  <li>사용자가 권한을 허용하면, OAuth 서버가 <strong>Authorization Code</strong>를 클라이언트에게 전달</li>
+</ul>
+
+<h4 id="3️⃣-access-token-발급-token-exchange">3️⃣ <strong>Access Token 발급 (Token Exchange)</strong></h4>
+
+<ul>
+  <li>클라이언트는 Authorization Code를 사용해 <strong>Access Token 요청</strong></li>
+  <li>OAuth 서버가 유효성 검증 후, <strong>Access Token과 Refresh Token 발급</strong></li>
+</ul>
+
+<h4 id="4️⃣-api-요청-resource-access">4️⃣ <strong>API 요청 (Resource Access)</strong></h4>
+
+<ul>
+  <li>클라이언트는 Access Token을 포함하여 API 서버에 요청</li>
+  <li>API 서버는 토큰을 확인한 후 데이터 반환</li>
+</ul>
+
+<h4 id="5️⃣-access-token-갱신-token-refresh">5️⃣ <strong>Access Token 갱신 (Token Refresh)</strong></h4>
+
+<ul>
+  <li>Access Token이 만료되면, Refresh Token을 사용하여 새로운 Access Token 발급</li>
+</ul>
+
+<hr />
+
+<h2 id="4-oauth-20-grant-types-인증-방식"><strong>4. OAuth 2.0 Grant Types (인증 방식)</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Grant Type</th>
+      <th>설명</th>
+      <th>사용 예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Authorization Code</strong></td>
+      <td>보안이 뛰어난 방식으로, 서버를 거쳐 Access Token을 받음</td>
+      <td>웹, 모바일 앱에서 로그인 연동</td>
+    </tr>
+    <tr>
+      <td><strong>Implicit</strong></td>
+      <td>Access Token을 직접 발급 (보안 약함)</td>
+      <td>예전 프론트엔드 앱에서 사용 (현재는 사용 X)</td>
+    </tr>
+    <tr>
+      <td><strong>Resource Owner Password Credentials (ROPC)</strong></td>
+      <td>사용자 ID/PW를 직접 입력받아 Access Token 발급</td>
+      <td>신뢰할 수 있는 앱 (예: 사내 시스템)</td>
+    </tr>
+    <tr>
+      <td><strong>Client Credentials</strong></td>
+      <td>클라이언트(서버) 자체가 인증됨 (사용자 없음)</td>
+      <td>서버 간 API 호출</td>
+    </tr>
+    <tr>
+      <td><strong>Device Code</strong></td>
+      <td>디바이스(스마트 TV 등)에서 로그인</td>
+      <td>TV, IoT 기기</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>💡 <strong>일반적으로 “Authorization Code” 방식이 가장 많이 사용됨</strong>.</p>
+
+<hr />
+
+<h2 id="5-oauth-20의-주요-용어"><strong>5. OAuth 2.0의 주요 용어</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Resource Owner (사용자)</strong></td>
+      <td>API의 데이터를 소유한 사용자</td>
+    </tr>
+    <tr>
+      <td><strong>Client (클라이언트 앱)</strong></td>
+      <td>사용자의 데이터를 요청하는 앱 (예: 서드파티 앱)</td>
+    </tr>
+    <tr>
+      <td><strong>Authorization Server</strong></td>
+      <td>인증을 담당하는 서버 (Google, Kakao 등)</td>
+    </tr>
+    <tr>
+      <td><strong>Resource Server</strong></td>
+      <td>API 요청을 처리하는 서버 (Google API, Kakao API 등)</td>
+    </tr>
+    <tr>
+      <td><strong>Access Token</strong></td>
+      <td>사용자가 인증된 후 API에 접근할 수 있는 키</td>
+    </tr>
+    <tr>
+      <td><strong>Refresh Token</strong></td>
+      <td>Access Token이 만료되었을 때 재발급하는 키</td>
+    </tr>
+    <tr>
+      <td><strong>Redirect URI</strong></td>
+      <td>OAuth 서버가 Authorization Code를 전달하는 URL</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="6-oauth-20을-실제-코드로-구현"><strong>6. OAuth 2.0을 실제 코드로 구현</strong></h2>
+
+<h3 id="1-authorization-code-방식-java"><strong>(1) Authorization Code 방식 (Java)</strong></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.http.HttpClient</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.http.HttpRequest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.http.HttpResponse</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OAuthExample</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="c1">// 1. Authorization Code 요청</span>
+        <span class="nc">String</span> <span class="n">clientId</span> <span class="o">=</span> <span class="s">"your-client-id"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">redirectUri</span> <span class="o">=</span> <span class="s">"https://your-app.com/callback"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">authUrl</span> <span class="o">=</span> <span class="s">"https://oauth-provider.com/auth?client_id="</span> <span class="o">+</span> <span class="n">clientId</span> <span class="o">+</span> <span class="s">"&amp;redirect_uri="</span> <span class="o">+</span> <span class="n">redirectUri</span> <span class="o">+</span> <span class="s">"&amp;response_type=code"</span><span class="o">;</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Login URL: "</span> <span class="o">+</span> <span class="n">authUrl</span><span class="o">);</span>
+
+        <span class="c1">// 2. Access Token 요청</span>
+        <span class="nc">String</span> <span class="n">authCode</span> <span class="o">=</span> <span class="s">"received-authorization-code"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">tokenUrl</span> <span class="o">=</span> <span class="s">"https://oauth-provider.com/token"</span><span class="o">;</span>
+
+        <span class="nc">HttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="nc">HttpClient</span><span class="o">.</span><span class="na">newHttpClient</span><span class="o">();</span>
+        <span class="nc">HttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">HttpRequest</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">tokenUrl</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/x-www-form-urlencoded"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">POST</span><span class="o">(</span><span class="nc">HttpRequest</span><span class="o">.</span><span class="na">BodyPublishers</span><span class="o">.</span><span class="na">ofString</span><span class="o">(</span><span class="s">"client_id="</span> <span class="o">+</span> <span class="n">clientId</span> <span class="o">+</span> <span class="s">"&amp;code="</span> <span class="o">+</span> <span class="n">authCode</span> <span class="o">+</span> <span class="s">"&amp;redirect_uri="</span> <span class="o">+</span> <span class="n">redirectUri</span> <span class="o">+</span> <span class="s">"&amp;grant_type=authorization_code"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+        <span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="nc">HttpResponse</span><span class="o">.</span><span class="na">BodyHandlers</span><span class="o">.</span><span class="na">ofString</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Access Token Response: "</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="7-oauth의-장점--단점"><strong>7. OAuth의 장점 &amp; 단점</strong></h2>
+
+<h3 id="-장점">✅ <strong>장점</strong></h3>
 
 <ol>
-  <li>이미지 리사이즈
-    <ul>
-      <li>대역폭 및 비용 감소할 수 있음</li>
-      <li>첫 번째 AWS 활용 포트폴리오
-        <ol>
-          <li>S3에 이미지가 업로드 되면 자동적으로 원하는 크기로 리사이징하여 저장하는 방법</li>
-          <li>원하는 사이즈의 이미지를 실시간으로 생성하는 방법
-            <ul>
-              <li>본인이 자신있는 프로그래밍 언어를 선택하여 AWS Lambda 기능을 활용해서 작성</li>
-              <li>‘aws cloudfront 이미지 리사이징’ 구글 검색</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ul>
-  </li>
-  <li>보안
-    <ul>
-      <li>민감정보 보호 방법
-        <ul>
-          <li>Signed URL
-            <ul>
-              <li>특정 사용자에게만 접근 권한을 부여하기 위해 URL에 만료 시간과 암호화된 서명을 포함한 URL</li>
-            </ul>
-          </li>
-          <li>Signed Cookie
-            <ul>
-              <li>특정 조건을 만족하는 사용자만 CloudFront를 통해 콘텐츠에 접근할 수 있도록 설정하는 보안 메커니즘</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li><strong>보안성 강화</strong>: ID/PW를 직접 저장하지 않고, Access Token으로 인증</li>
+  <li><strong>편리한 로그인</strong>: Google, Kakao 로그인 등 쉽게 연동 가능</li>
+  <li><strong>API 사용 간편화</strong>: 서드파티 서비스와 연동할 때 필수</li>
+  <li><strong>토큰 만료로 보안 강화</strong>: Access Token이 주기적으로 만료되므로 보안성 향상</li>
 </ol>
 
-<h3 id="aws-클라우드-인프라의-구성-요소">AWS 클라우드 인프라의 구성 요소</h3>
+<h3 id="-단점">❌ <strong>단점</strong></h3>
+
 <ol>
-  <li>EC2 (Elastic Compute Cloud)
-    <ul>
-      <li>개발자가 클라우드 컴퓨팅 작업을 할 수 있도록 설계된 서비스</li>
-      <li>가상화된 서버를 하나의 인스턴스 형태로 제공하며, 컴퓨팅 요구사항에 맞게 용량 조절 가능</li>
-    </ul>
-  </li>
-  <li>IDC
-    <ul>
-      <li>Internet Data Center</li>
-      <li>물리적 인프라를 제공하는 시설</li>
-    </ul>
-  </li>
-  <li>리전 (Region)
-    <ul>
-      <li>물리적으로 분리된 지리적 위치</li>
-      <li>각 리전은 여러 개의 데이터 센터(Availability Zone, AZ)로 구성되어 있음</li>
-      <li>리전 간 데이터 전송은 네트워크 지연 시간(latency)이 발생할 수 있음</li>
-      <li>각 리전은 법적, 규제 요구 사항을 충족하도록 설계됨</li>
-    </ul>
-  </li>
-  <li>Availability Zone
-    <ul>
-      <li>리전 내에서 독립적으로 운영되는 데이터 센터</li>
-      <li>각 AZ는 하나 이상의 데이터 센터로 구성되어 있음</li>
-      <li>VPC (가상 사설 네트워크)
-        <ul>
-          <li>Virtual Private Cloud</li>
-          <li>네트워크
-            <ul>
-              <li>2개 이상의 컴퓨터나 장치가 서로 데이터를 주고 받을 수 있도록 연결된 시스템</li>
-            </ul>
-          </li>
-          <li>사설
-            <ul>
-              <li>공개되지 않은, 외부와 분리되느 특정 사용자나 조직만 접근할 수 있는</li>
-            </ul>
-          </li>
-          <li>가상
-            <ul>
-              <li>물리적인 하드웨어 장비나 네트워크 인프라 없이, 소프트웨어를 통해 논리적으로 격리</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li><strong>구현이 복잡함</strong>: Access Token, Refresh Token 관리 필요</li>
+  <li><strong>서버 부하 증가</strong>: 토큰 발급 및 검증 과정에서 추가적인 요청 발생</li>
+  <li><strong>Refresh Token 유출 위험</strong>: Refresh Token이 유출되면 악용될 가능성 있음</li>
 </ol>
-
-<h3 id="aws-네트워크-구성-요소-설명-캠퍼스-예시로-이해하기">AWS 네트워크 구성 요소 설명: 캠퍼스 예시로 이해하기</h3>
-<ul>
-  <li>퍼블릭 서브넷
-    <ul>
-      <li>Public Subnet
-        <ul>
-          <li>public : 인터넷과 직접 연결되어있다.</li>
-          <li>subnet : sub + network, 하나의 네트워크를 더 작은 단위의 네트워크로 (부분 집합)</li>
-        </ul>
-      </li>
-      <li>중앙 운동장, 도서관, 기념품샵 등등</li>
-    </ul>
-  </li>
-  <li>프라이빗 서브넷
-    <ul>
-      <li>Private Subnet
-        <ul>
-          <li>인터넷과 직접 연결되어있지 않다.</li>
-        </ul>
-      </li>
-      <li>교수 연구실, 실험실 (아무나 못들어가는)</li>
-    </ul>
-  </li>
-  <li>라우팅 / 라우팅 테이블
-    <ul>
-      <li>Routing Table
-        <ul>
-          <li>라우팅 : 경로, 네트워크 내에서 데이터가 이동할 경로를 결정</li>
-        </ul>
-      </li>
-      <li>캠퍼스 내 길 / 길 안내 지도</li>
-    </ul>
-  </li>
-  <li>인터넷 게이트웨이
-    <ul>
-      <li>학교 정문</li>
-    </ul>
-  </li>
-  <li>NAT 게이트웨이
-    <ul>
-      <li>Network Address Translation
-        <ul>
-          <li>Network Address : IP주소 (Internet Protocol)
-            <ul>
-              <li>네트워크 상에서 각 장치를 식별하기 위해 사용되는 고유한 숫자 주소</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>내부 네트워크의 사설 IP 주소를 공용 IP주소로 변환</li>
-      <li>경비실, 차량 차단기, 보안 검사대</li>
-    </ul>
-  </li>
-  <li>네트워크 ACL (Access Control List)
-    <ul>
-      <li>전체 구역 통제 시스템</li>
-      <li>서브넷 단위</li>
-      <li>Stateless, 상태 비기반, 독립적인 제어
-        <ul>
-          <li>들어올 때도 검사하고 나갈때도 검사함</li>
-        </ul>
-      </li>
-      <li>우선순위가 있음</li>
-      <li>차단기의 정책, 비행기 탈 때와 비슷</li>
-    </ul>
-  </li>
-  <li>보안 그룹 (Security Group)
-    <ul>
-      <li>개별 사무실 출입 통제 시스템</li>
-      <li>기본적으로 모든 트래픽은 차단하며 허용 규칙만 있음</li>
-      <li>stateful, 상태 기반 (신분증 제출하고 출입증 받아가는 느낌)</li>
-    </ul>
-  </li>
-  <li>라우팅 테이블에 인터넷 게이트웨이랑 <strong>퍼블릭 서브넷</strong>이 연결
-    <ul>
-      <li>반대로 생각하면 퍼블릭 서브넷과 프라이빗 서브넷을 구분짓는 중요한 요소가 됨</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="aws-초기-설정-및-구성-시-주의점">AWS 초기 설정 및 구성 시 주의점</h3>
-<ul>
-  <li>AWS에서 처음으로 제공해주는 VPC는 가급적으로 사용하지 말자</li>
-  <li>람다를 private 서브에 올리고 nat를 사용하는 것을 추천
-    <ul>
-      <li>람다는 실행할 때마다 ip가 바뀜, 문제가 될 수 있음</li>
-    </ul>
-  </li>
-</ul>
 
   
 </article>
@@ -881,11 +857,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         <a
           
-          href="/aws/"
+          href="/backend/"
           class="sidebar-nav-item "
           
         >
-          AWS (1)
+          Back-end (5)
         </a>
       </li>
     
