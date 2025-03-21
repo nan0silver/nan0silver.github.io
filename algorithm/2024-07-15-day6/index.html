@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[Algorithm] 너비 우선 탐색 &amp; 다익스트라 알고리즘" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-21T01:41:12+00:00","datePublished":"2024-07-15T00:00:00+00:00","description":"Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)","headline":"[Algorithm] 너비 우선 탐색 &amp; 다익스트라 알고리즘","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2024-07-15-day6/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/algorithm/2024-07-15-day6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-21T02:44:28+00:00","datePublished":"2024-07-15T00:00:00+00:00","description":"Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)","headline":"[Algorithm] 너비 우선 탐색 &amp; 다익스트라 알고리즘","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2024-07-15-day6/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/algorithm/2024-07-15-day6/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-03-21T01:41:54+00:00',
+    INDEX_KEY: 'index--2025-03-21T02:45:13+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 21 Mar 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-03-21T01:41:12+00:00">2025-03-21</time>
+              <time datetime="2025-03-21T02:44:28+00:00">2025-03-21</time>
             </span>
           
         
@@ -271,6 +271,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p>목차</p>
+
 <ol>
   <li><a href="#너비-우선-탐색-bfs">너비 우선 탐색 BFS</a></li>
   <li><a href="#다익스트라-dijkstra-알고리즘">다익스트라 Dijkstra 알고리즘</a></li>
@@ -281,6 +282,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <h2 id="너비-우선-탐색-bfs">너비 우선 탐색 (BFS)</h2>
 
 <h3 id="bfs-breadth-first-search">BFS (Breadth First Search)</h3>
+
 <ul>
   <li>하나의 정점으로부터 시작하여 차례대로 모든 정점들을 한 번씩 방문하는 것</li>
   <li>루트 노드 (혹은 다른 임의의 노드)에서 시작해서 인접한 노드를 먼저 탐색하는 방법</li>
@@ -288,6 +290,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 </ul>
 
 <h3 id="bfs의-특징">BFS의 특징</h3>
+
 <ul>
   <li>재귀적으로 동작하는 DFS와 달리, BFS는 주로 큐(Queue) 사용</li>
   <li>사이클이 있는 경우, 무한 루프에 빠지지 않도록 방문하는 방문 체크를 해주어야 함</li>
@@ -295,11 +298,13 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 </ul>
 
 <h3 id="bfs의-동작-순서">BFS의 동작 순서</h3>
+
 <ul>
   <li><img src="/algorithm/image/day6_image.png" alt="Full-width image" /></li>
 </ul>
 
 <h3 id="bfs의-구현">BFS의 구현</h3>
+
 <ul>
   <li>빈 큐 q 및 visited 배열 생성</li>
   <li>시작 노드 ‘st’를 큐 q에 삽입</li>
@@ -325,6 +330,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 </ul>
 
 <h3 id="bfs의-시간복잡도">BFS의 시간복잡도</h3>
+
 <ul>
   <li>V : 정점(노드)의 수, E : 간선의 수</li>
   <li>인접 리스트로 표현된 그래프
@@ -332,21 +338,29 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>O(V+E)</li>
     </ul>
   </li>
-  <li>인접 행렬로 표현된 그래프
+  <li>
+    <p>인접 행렬로 표현된 그래프</p>
+
     <ul>
       <li>O(V^2)</li>
     </ul>
   </li>
-  <li>DFS와 BFS의 공통점과 차이점
+  <li>
+    <p>DFS와 BFS의 공통점과 차이점</p>
+
     <ul>
-      <li>공통점
+      <li>
+        <p>공통점</p>
+
         <ul>
           <li>그래프에서 시작 노드로부터 목적지 노드까지 도달하거니 특정 정보를 찾는 것이 목표</li>
           <li>방문 기록을 체크해 이미 방문한 노드를 다시 방문하지 않게 하여 무한 루프 방지</li>
           <li>DFS, BFS 두 방식 모드 조건 내의 모든 노드를 검색한다는 점에서 시간 복잡도는 동일</li>
         </ul>
       </li>
-      <li>차이점
+      <li>
+        <p>차이점</p>
+
         <ul>
           <li>DFS는 주로 재귀로 구현하지만, BFS는 큐(queue) 자료구조를 활용하여 구현
             <ul>
@@ -356,7 +370,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <li>동작 순서 상 DFS는 트리를 탐색할 때 자주 사용, BFS는 최단 경로 탐색에서 자주 사용</li>
         </ul>
       </li>
-      <li>시간 복잡도
+      <li>
+        <p>시간 복잡도</p>
         <ul>
           <li>주어진 그래프의 구조와 시작 노드에 따라서 실제 시간 복잡도가 다를 수 있으며,</li>
           <li>어떤 알고리즘이 더 효율적인지는 그래프의 형태와 알고리즘의 목적에 따라 달라짐</li>
@@ -370,6 +385,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <hr />
 
 <h2 id="다익스트라-dijkstra-알고리즘">다익스트라 (Dijkstra) 알고리즘</h2>
+
 <ul>
   <li>그래프 알고리즘</li>
   <li>알고리즘을 사용하는 경우
@@ -385,6 +401,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 </ul>
 
 <h3 id="다익스트라-알고리즘-설명">다익스트라 알고리즘 설명</h3>
+
 <ul>
   <li>한 정점에서 다른 모든 정점으로의 최단 경로를 구하는 알고리즘</li>
   <li>간선의 가중치가 양수일 때만 사용 가능
@@ -402,7 +419,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       </li>
     </ul>
   </li>
-  <li>${\color{red}그리디(Greedy) 알고리즘}$
+  <li><strong>그리디(Greedy) 알고리즘</strong>
     <ul>
       <li>매 단계에서 현재까지의 부분 해(solution)를 최적화하여 최종적으로 전체 문제의 최적 해를 찾아냄</li>
     </ul>
@@ -410,6 +427,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 </ul>
 
 <h3 id="다익스트라-알고리즘-동작-순서">다익스트라 알고리즘 동작 순서</h3>
+
 <ol>
   <li>출발 노드 선택</li>
   <li>출발 노드로부터 각 노드까지의 최단 거리 배열 초기화
@@ -440,12 +458,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 </ul>
 
 <h3 id="다익스트라-알고리즘-시간-복잡도">다익스트라 알고리즘 시간 복잡도</h3>
+
 <ul>
   <li>V : 정점(노드)의 수, E : 간선의 수</li>
   <li>O(ElogV)</li>
 </ul>
 
 <h3 id="다익스트라-알고리즘의-구현">다익스트라 알고리즘의 구현</h3>
+
 <ul>
   <li>문제 예시
     <ul>
