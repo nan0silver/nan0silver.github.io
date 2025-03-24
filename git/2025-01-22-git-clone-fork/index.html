@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[Git] git clone VS git fork | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[Git] git clone VS git fork" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="git clone과 git fork의 동작 방식에 대해 알아보자." />
+<meta property="og:description" content="git clone과 git fork의 동작 방식에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/git/2025-01-22-git-clone-fork/" />
+<meta property="og:url" content="https://nan0silver.github.io/git/2025-01-22-git-clone-fork/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-22T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[Git] git clone VS git fork" />
+<meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-24T08:35:14+00:00","datePublished":"2025-01-22T00:00:00+00:00","description":"git clone과 git fork의 동작 방식에 대해 알아보자.","headline":"[Git] git clone VS git fork","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/git/2025-01-22-git-clone-fork/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/git/2025-01-22-git-clone-fork/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="NAHYUN BLOG">
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+
+<link rel="alternate" href="https://nan0silver.github.io/git/2025-01-22-git-clone-fork/" hreflang="ko-kr, en-us">
+
+<link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+
+
+
+
+<script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-03-24T08:35:57+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/git/">git</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-01-22-git-clone-fork</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-git-git-clone-fork" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [Git] git clone VS git fork
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-01-22T00:00:00+00:00">22 Jan 2025</time> in <span>Git</span> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-03-24T08:35:14+00:00">2025-03-24</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      git clone과 git fork의 동작 방식에 대해 알아보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#git-clone">git clone</a></li>
+  <li><a href="#git-fork">git fork</a></li>
+  <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
+  <li><a href="#워크플로우">워크플로우</a></li>
+  <li><a href="#실전-예시">실전 예시</a></li>
+</ul>
+
+<hr />
+
+<h2 id="git-clone">git clone</h2>
+
+<ul>
+  <li>역할
+    <ul>
+      <li>원격 저장소를 로컬 컴퓨터에 복제</li>
+    </ul>
+  </li>
+  <li>작업 대상
+    <ul>
+      <li>원격 저장소</li>
+    </ul>
+  </li>
+  <li>특징
+    <ul>
+      <li>저장소의 완전한 복사본(전체 커밋 내역, 브랜치 등)을 가져옴</li>
+      <li>복제 후, 원격 저장소가 자동으로 <code class="language-plaintext highlighter-rouge">origin</code>이라는 이름으로 연결됨</li>
+      <li>로컬에서 작업한 내용을 원격 저장소에 반영하려면 <code class="language-plaintext highlighter-rouge">push</code>사용</li>
+    </ul>
+  </li>
+  <li>동작 방식
+    <ol>
+      <li>Git 저장소 초기화 (<code class="language-plaintext highlighter-rouge">git init</code>)
+        <ul>
+          <li>새로 생성된 폴더는 Git 저장소로 설정됨</li>
+          <li><code class="language-plaintext highlighter-rouge">.git</code> 디렉터리가 자동으로 생성됨</li>
+        </ul>
+      </li>
+      <li>원격 저장소 설정 (<code class="language-plaintext highlighter-rouge">git remote add origin</code>)
+        <ul>
+          <li>복제한 원격 저장소가 자동으로 <code class="language-plaintext highlighter-rouge">origin</code>이라는 이름으로 연결됨</li>
+          <li>로컬에서 원격 저장소와 동기화(<code class="language-plaintext highlighter-rouge">push</code>, <code class="language-plaintext highlighter-rouge">pull</code>)를 가능하게 함</li>
+        </ul>
+      </li>
+      <li>브랜치 체크아웃
+        <ul>
+          <li>기본 브랜치(<code class="language-plaintext highlighter-rouge">main</code> or <code class="language-plaintext highlighter-rouge">master</code>)의 최신 상태가 복제됨</li>
+          <li>이 브랜치는 로컬 저장소로 가져와 자동으로 체크아웃됨</li>
+        </ul>
+      </li>
+      <li>파일 다운로드
+        <ul>
+          <li>원격 저장소에 있는 모든 파일과 폴더가 로컬 디렉토리에 다운로드됨</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">git clone</code> 명령을 실행하면, 다운받은 폴더는 자동으로 Git 저장소로 초기화되고, 원격 저장소와도 연결된 상태임
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">git init</code>이나 <code class="language-plaintext highlighter-rouge">git remote add</code>를 실행할 필요가 없음</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="git-fork">git fork</h2>
+
+<ul>
+  <li>역할
+    <ul>
+      <li>원격 저장소를 자신의 원격 계정으로 복제</li>
+    </ul>
+  </li>
+  <li>작업 대상
+    <ul>
+      <li>GitHub/GitLab 계정 상의 저장소</li>
+    </ul>
+  </li>
+  <li>특징
+    <ul>
+      <li>원본 저장소의 복사본이 내 계정의 원격 저장소로 생성됨</li>
+      <li><strong>내 계정에서 관리할 수 있는 원격 저장소를 만든다는 것</strong>이 핵심</li>
+      <li>원본 저장소와 연결은 유지되지만, 독립적인 저장소로 사용됨</li>
+      <li>추가 단계
+        <ul>
+          <li>포크 후, 로컬에 복사하려면 <strong><code class="language-plaintext highlighter-rouge">git clone</code></strong>을 사용해야 함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>사용 시기
+    <ul>
+      <li>오픈소스 프로젝트에 기여할 때, 원본 저장소를 수정하지 않고 내 계정에서 관리 가능한 복사본을 만들어야 할 때 사용</li>
+      <li><strong>Pull Request</strong>를 보내기 위한 준비 단계로 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="주요-차이점-정리">주요 차이점 정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>특징</strong></th>
+      <th><strong>git clone</strong></th>
+      <th><strong>git fork</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>복제 대상</td>
+      <td>원격 저장소 ➡️ 로컬 저장소</td>
+      <td>원격 저장소 ➡️ 내 원격 저장소</td>
+    </tr>
+    <tr>
+      <td>저장소 위치</td>
+      <td>로컬에서 작업</td>
+      <td>내 계정의 원격 저장소에서 작업</td>
+    </tr>
+    <tr>
+      <td>연결된 원격 저장소</td>
+      <td><code class="language-plaintext highlighter-rouge">origin</code>으로 원본 저장소 연결</td>
+      <td>내 계정의 원격 저장소 (원본 저장소는 upstream으로 연결 가능)</td>
+    </tr>
+    <tr>
+      <td>사용 목적</td>
+      <td>로컬에서 작업하고 원본 저장소에 반영</td>
+      <td>내 계정에서 독립적으로 원격 저장소 관리</td>
+    </tr>
+    <tr>
+      <td>주로 사용 상황</td>
+      <td>협업 프로젝트에 바로 참여</td>
+      <td>오픈소스 프로젝트에 기여 (Pull Request 준비)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="워크플로우">워크플로우</h2>
+
+<h3 id="일반적으로-fork--clone--push--pull-request가-오픈-소스-협업의-표준-워크플로우">일반적으로 <strong>Fork → Clone → Push → Pull Request</strong>가 오픈 소스 협업의 표준 워크플로우</h3>
+
+<ol>
+  <li>
+    <p>Fork 저장소 생성</p>
+
+    <ul>
+      <li>먼저, 해당 저장소를 <strong>Fork</strong>하여 내 계정으로 복사
+        <ul>
+          <li>GitHub에서 기여하고자 하는 저장소 페이지로 이동</li>
+          <li>우측 상단의 <strong>Fork</strong> 버튼을 클릭</li>
+          <li>그러면 내 계정에 저장소 복사본이 생성됨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Fork 저장소 Clone</p>
+
+    <ul>
+      <li>Fork된 저장소를 로컬로 복제
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/your-username/repository.git
+</code></pre></div>        </div>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">your-username</code>은 GitHub 계정 이름으로 대체</li>
+          <li>Clone이 완료되면 로컬 환경에서 작업 가능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>원본 저장소 추가 (선택 사항)</p>
+
+    <ul>
+      <li>원본 저장소와 동기화를 유지하려면, 원본 저장소를 <strong><code class="language-plaintext highlighter-rouge">upstream</code></strong>으로 추가
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add upstream https://github.com/original-owner/repository.git
+</code></pre></div>        </div>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">original-owner</code>는 원본 저장소의 소유자 이름으로 대체</li>
+          <li><code class="language-plaintext highlighter-rouge">git remote -v</code> 명령을 사용하여 설정이 제대로 되었는지 확인 가능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>로컬에서 작업</p>
+
+    <ul>
+      <li>새로운 파일을 추가하거나 수정 후 커밋
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Add new feature"</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Fork된 저장소에 Push</p>
+
+    <ul>
+      <li>로컬에서 작업한 내용을 자신의 Fork 저장소에 Push
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin main
+</code></pre></div>        </div>
+        <ul>
+          <li>여기서 <code class="language-plaintext highlighter-rouge">main</code>은 사용하는 브랜치 이름</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Pull Request 생성</p>
+
+    <ul>
+      <li>
+        <p>GitHub로 돌아가, Fork된 저장소에서 원본 저장소로 <strong>Pull Request</strong>를 생성</p>
+
+        <ol>
+          <li>내 Fork 저장소 페이지에서 <strong>“Contribute”</strong> 버튼 클릭.</li>
+          <li><strong>“Open Pull Request”</strong> 버튼 클릭.</li>
+          <li>변경 사항에 대한 설명을 작성하고 Pull Request를 제출합니다.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-요약">✅ 요약</h3>
+
+<p>다른 사람의 저장소에 기여하기 위한 전체 과정</p>
+
+<ol>
+  <li><strong>Fork</strong>: 저장소를 내 계정으로 복제.</li>
+  <li><strong>Clone</strong>: 내 계정에 있는 저장소를 로컬로 복제.</li>
+  <li><strong>원본 저장소 추가</strong>: 원본 저장소와 동기화(선택 사항).</li>
+  <li><strong>작업</strong>: 로컬에서 파일 수정 및 커밋.</li>
+  <li><strong>Push</strong>: 작업 내용을 내 계정 저장소로 업로드.</li>
+  <li><strong>Pull Request</strong>: 원본 저장소에 변경 사항을 제안.</li>
+</ol>
+
+<h2 id="실전-예시">실전 예시</h2>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git clone</code>만 사용하는 경우</p>
+
+    <ul>
+      <li>팀 프로젝트에서 기존 저장소를 복제하여 작업 후, 원본 저장소에 바로 push</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone &lt;repository-url&gt;
+<span class="nb">cd</span> &lt;repository-folder&gt;
+<span class="c"># 작업 후</span>
+git push origin &lt;branch-name&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git fork</code>와 <code class="language-plaintext highlighter-rouge">git clone</code>을 함께 사용하는 경우</p>
+    <ul>
+      <li>오픈소스 프로젝트에서 자신의 계정으로 fork 후, 로컬에서 복제하여 작업 후 pull request 보냄
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># GitHub에서 Fork한 후</span>
+git clone &lt;forked-repository-url&gt;
+<span class="nb">cd</span> &lt;repository-folder&gt;
+<span class="c"># 원본 저장소를 upstream으로 추가</span>
+git remote add upstream &lt;original-repository-url&gt;
+git fetch upstream
+<span class="c"># 작업 후, 내 계정 원격 저장소에 Push</span>
+git push origin &lt;branch-name&gt;
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/algorithm/2025-03-20-is-prime/" class="flip-title"><span>[Algorithm] 소수 빠르게 찾는 법</span></a>  <time class="faded fine" datetime="2025-03-20T00:00:00+00:00">20 Mar 2025</time></li>                        <li class="h4">  <a href="/java/2025-03-09-concurrency/" class="flip-title"><span>[JAVA] 동시성 처리 (Concurrency)</span></a>  <time class="faded fine" datetime="2025-03-09T00:00:00+00:00">09 Mar 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-03-06-boiler-plate/" class="flip-title"><span>[Etc] 🎞️ Boilerplate</span></a>  <time class="faded fine" datetime="2025-03-06T00:00:00+00:00">06 Mar 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flutter/"
+          class="sidebar-nav-item "
+          
+        >
+          Flutter (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (10)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          JAVA (10)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/aws/"
+          class="sidebar-nav-item "
+          
+        >
+          aws (1)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          spring (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/backend/"
+          class="sidebar-nav-item "
+          
+        >
+          Back-end (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (9)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnan0silver.github.io&count_bg=%23E786D8&title_bg=%237624DD&icon=waze.svg&icon_color=%23E7E7E7&title=%EC%A1%B0%ED%9A%8C%EC%88%98&edge_flat=false" alt="조회수 배치" width="120" height="20" loading="lazy"/></a>
+  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

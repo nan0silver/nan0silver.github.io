@@ -47,7 +47,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="Blog" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-24T08:31:28+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/4/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-24T08:35:14+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/4/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -110,7 +110,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-03-24T08:32:10+00:00',
+    INDEX_KEY: 'index--2025-03-24T08:35:57+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -271,18 +271,6 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         <a
           
-          href="/ai/"
-          class="sidebar-nav-item "
-          
-        >
-          AI (2)
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
           href="/git/"
           class="sidebar-nav-item "
           
@@ -319,7 +307,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         <a
           
-          href="/backend/"
+          href="/spring/"
           class="sidebar-nav-item "
           
         >
@@ -467,6 +455,465 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
+<article id="post-spring-spring-basic" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/spring/2024-12-02-spring-basic/" class="flip-title">
+        [Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2024-12-02T00:00:00+00:00">02 Dec 2024</time> in <a href="/spring/" class="flip-title">SPRING</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-03-24T08:35:14+00:00">2025-03-24</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#스프링-콘셉트">스프링 콘셉트</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/spring/2024-12-02-spring-basic/">[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-java-variable" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/java/2024-11-20-variable/" class="flip-title">
+        [JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2024-11-20T00:00:00+00:00">20 Nov 2024</time> in <a href="/java/" class="flip-title">JAVA</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-03-24T08:35:14+00:00">2025-03-24</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#static-변수">static 변수</a>
+    <ul>
+      <li><a href="#method-area">Method Area</a></li>
+    </ul>
+  </li>
+  <li><a href="#지역변수--레퍼런스-변수">지역변수 &amp; 레퍼런스 변수</a>
+    <ul>
+      <li><a href="#지역변수-local-variable">지역 변수</a></li>
+      <li><a href="#레퍼런스-변수-reference-variable">레퍼런스 변수</a></li>
+    </ul>
+  </li>
+  <li><a href="#java-변수-비교-static-지역-변수-레퍼런스-변수의-특징과-차이점">JAVA 변수들의 특징 및 차이점 요약</a>
+    <ul>
+      <li><a href="#static-변수와-지역-변수-비교">static 변수와 지역 변수 비교</a></li>
+      <li><a href="#static-변수와-레퍼런스-변수-비교">static 변수와 레퍼런스 변수 비교</a></li>
+      <li><a href="#지역-변수와-레퍼런스-변수-비교">지역 변수와 레퍼런스 변수 비교</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/java/2024-11-20-variable/">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-java-java17" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/java/2024-11-15-java17/" class="flip-title">
+        [JAVA] JAVA version 17의 주요 변화
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2024-11-15T00:00:00+00:00">15 Nov 2024</time> in <a href="/java/" class="flip-title">JAVA</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-03-24T08:35:14+00:00">2025-03-24</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      JAVA 17버전의 주요 변화 사항을 알아본다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <p>목차</p>
+<ol>
+  <li><a href="#텍스트-블록">텍스트 블록</a></li>
+  <li><a href="#formatted-메서드">formatted() 메서드</a></li>
+  <li><a href="#레코드">레코드</a></li>
+  <li><a href="#패턴-매칭">패턴 매칭</a></li>
+  <li><a href="#자료형에-맞는-case-처리">case문 개선</a></li>
+</ol>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/java/2024-11-15-java17/">[JAVA] JAVA version 17의 주요 변화</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-miscellaneous-language" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/miscellaneous/2024-11-08-language/" class="flip-title">
+        [CS] 컴파일 언어 VS 인터프리터 언어, 그리고 Java
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2024-11-08T00:00:00+00:00">08 Nov 2024</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-03-24T08:35:14+00:00">2025-03-24</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      컴파일 언어와 인터프리터에 관한 내용입니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#컴파일-언어">컴파일 언어</a></li>
+  <li><a href="#인터프리터-언어">인터프리터 언어</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/miscellaneous/2024-11-08-language/">[CS] 컴파일 언어 VS 인터프리터 언어, 그리고 Java</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-aws-aws" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/aws/2024-09-02-aws/" class="flip-title">
+        [AWS] AWS 기초
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2024-09-02T00:00:00+00:00">02 Sep 2024</time> in <a href="/aws/" class="flip-title">AWS</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-03-24T08:35:14+00:00">2025-03-24</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      AWS의 기본 내용에 대해 알아본다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <p>목차</p>
+<ol>
+  <li><a href="#aws란">AWS란?</a></li>
+  <li><a href="#s3--cloudfront">S3 &amp; Cloudfront</a></li>
+  <li><a href="#aws-솔루션-실무-적용-사례">AWS 솔루션 실무 적용 사례</a></li>
+  <li><a href="#aws-클라우드-인프라의-구성-요소">AWS 클라우드 인프라의 구성 요소</a></li>
+  <li><a href="#aws-네트워크-구성-요소-설명-캠퍼스-예시로-이해하기">AWS 네트워크 구성 요소 설명: 캠퍼스 예시로 이해하기</a></li>
+  <li><a href="#aws-초기-설정-및-구성-시-주의점">AWS 초기 설정 및 구성 시 주의점</a></li>
+</ol>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/aws/2024-09-02-aws/">[AWS] AWS 기초</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-java-stringbuilder" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/java/2024-08-29-stringbuilder/" class="flip-title">
+        [JAVA] StringBuilder
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2024-08-29T00:00:00+00:00">29 Aug 2024</time> in <a href="/java/" class="flip-title">JAVA</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-03-24T08:35:14+00:00">2025-03-24</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      StringBuilder란 무엇인지, 어떻게 활용되는지 알아본다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <p>목차</p>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/java/2024-08-29-stringbuilder/">[JAVA] StringBuilder</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-algorithm-day9" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -490,7 +937,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-03-24T08:31:28+00:00">2025-03-24</time>
+              <time datetime="2025-03-24T08:35:14+00:00">2025-03-24</time>
             </span>
           
         
@@ -568,7 +1015,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-03-24T08:31:28+00:00">2025-03-24</time>
+              <time datetime="2025-03-24T08:35:14+00:00">2025-03-24</time>
             </span>
           
         
@@ -642,7 +1089,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-03-24T08:31:28+00:00">2025-03-24</time>
+              <time datetime="2025-03-24T08:35:14+00:00">2025-03-24</time>
             </span>
           
         
@@ -718,7 +1165,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-03-24T08:31:28+00:00">2025-03-24</time>
+              <time datetime="2025-03-24T08:35:14+00:00">2025-03-24</time>
             </span>
           
         
@@ -752,447 +1199,6 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/algorithm/2024-07-15-day6/">[Algorithm] 너비 우선 탐색 &amp; 다익스트라 알고리즘</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-algorithm-day5" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/algorithm/2024-07-12-day5/" class="flip-title">
-        [Algorithm] 깊이 우선 탐색
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2024-07-12T00:00:00+00:00">12 Jul 2024</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-03-24T08:31:28+00:00">2025-03-24</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>목차</p>
-<ol>
-  <li><a href="#dfs란depth-first-search">DFS란?</a></li>
-  <li><a href="#dfs-특징">DFS특징</a></li>
-  <li><a href="#dfs-시간-복잡도">DFS 시간 복잡도</a></li>
-</ol>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/algorithm/2024-07-12-day5/">[Algorithm] 깊이 우선 탐색</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-algorithm-day4" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/algorithm/2024-07-11-day4/" class="flip-title">
-        [Algorithm] 재귀와 정렬
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2024-07-11T00:00:00+00:00">11 Jul 2024</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-03-24T08:31:28+00:00">2025-03-24</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      Elice Algorithm Code Challenge - Day 4 (재귀와 정렬)
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>목차</p>
-<ol>
-  <li><a href="#재귀">재귀</a></li>
-  <li><a href="#정렬">정렬</a></li>
-</ol>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/algorithm/2024-07-11-day4/">[Algorithm] 재귀와 정렬</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-algorithm-day3" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/algorithm/2024-07-10-day3/" class="flip-title">
-        [Algorithm] 문자열
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2024-07-10T00:00:00+00:00">10 Jul 2024</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-03-24T08:31:28+00:00">2025-03-24</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      Elice Algorithm Code Challenge - Day 3 (문자열)
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>목차</p>
-<ol>
-  <li><a href="#코딩테스트에-자주-나오는-문자열">코딩테스트에 자주 나오는 문자열</a>
- 1) <a href="#1-회문-palindrome">회문</a>
- 2) <a href="#2-올바른-괄호-문자열-vps--valid-parenthesis-string">올바른 괄호 문자열</a></li>
-  <li><a href="#분할-정복과-백트래킹">분할 정복과 백트래킹</a>
- 1) <a href="#분할-정복-divide-and-conquer">분할 정복</a>
- 2) <a href="#백트래킹">백트레킹</a></li>
-</ol>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/algorithm/2024-07-10-day3/">[Algorithm] 문자열</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-algorithm-day2" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/algorithm/2024-07-09-day2/" class="flip-title">
-        [Algorithm] 유클리드 호제법
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2024-07-09T00:00:00+00:00">09 Jul 2024</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-03-24T08:31:28+00:00">2025-03-24</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      Elice Algorithm Code Challenge - Day 2 (유클리드 호제법)
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>목차</p>
-<ol>
-  <li><a href="#유클리드-호제법">유클리드 호제법</a></li>
-  <li><a href="#소수-판별법">소수 판별법</a></li>
-</ol>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/algorithm/2024-07-09-day2/">[Algorithm] 유클리드 호제법</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-algorithm-day1" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/algorithm/2024-07-08-day1/" class="flip-title">
-        [Algorithm] 시간 복잡도
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2024-07-08T00:00:00+00:00">08 Jul 2024</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-03-24T08:31:28+00:00">2025-03-24</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      Elice Algorithm Code Challenge - Day 1 (시간 복잡도)
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <h2 id="시간-복잡도">시간 복잡도</h2>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/algorithm/2024-07-08-day1/">[Algorithm] 시간 복잡도</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-backend-about-UriUrl" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/backend/2023-08-14-about-UriUrl/" class="flip-title">
-        [Etc] URI과 URL의 차이
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2023-08-14T00:00:00+00:00">14 Aug 2023</time> in <a href="/backend/" class="flip-title">BACK-END</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 24 Mar 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-03-24T08:31:28+00:00">2025-03-24</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      URI와 URL에 관한 차이
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>목차</p>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/backend/2023-08-14-about-UriUrl/">[Etc] URI과 URL의 차이</a>
 
       </p>
     </footer>
