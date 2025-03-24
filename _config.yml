@@ -67,8 +67,6 @@ menu:
     url: /algorithm/
   - title: JAVA (10)
     url: /java/
-  - title: AI (2)
-    url: /ai/
   - title: Git (3)
     url: /git/
   - title: aws (1)
@@ -76,7 +74,7 @@ menu:
   - title: flask (2)
     url: /flask/
   - title: spring (2)
-    url: /backend/
+    url: /spring/
   - title: Back-end (8)
     url: /backend/
   - title: Miscellaneous (9)
