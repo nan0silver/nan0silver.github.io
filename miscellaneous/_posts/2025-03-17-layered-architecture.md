@@ -44,7 +44,7 @@ sitemap: false
   - **유연한 확장:** UI 변경(View)이나 비즈니스 로직(Model)을 따로 수정 가능
   - **재사용성 증가:** 같은 Model을 여러 View에서 사용 가능
 
-<img src="https://raw.githubusercontent.com/nan0silver/nan0silver.github.io/3820f9cfa16c85c0487a9fd198d804a6f957a658/assets/img/blog/2025-03-17-image.png>
+<img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-03-17-image.png?raw=true" alt="Layered Architecture & MVC pattern" >
 
 ## 레이어드 아키텍쳐와 MVC를 함께 사용
 
