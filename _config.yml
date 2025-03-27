@@ -75,8 +75,6 @@ menu:
     url: /flask/
   - title: Spring (2)
     url: /spring/
-  - title: Back-end (8)
-    url: /backend/
   - title: Miscellaneous (9)
     url: /miscellaneous/
 
