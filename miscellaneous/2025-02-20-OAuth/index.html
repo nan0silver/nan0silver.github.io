@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Etc] 🔑 Access Token과 Refresh Token 완벽 정리 | NAHYUN BLOG</title>
+<title>[Etc] OAuth란? | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" />
+<meta property="og:title" content="[Etc] OAuth란?" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자." />
-<meta property="og:description" content="OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자." />
-<link rel="canonical" href="https://nan0silver.github.io/backend/2025-02-22-token/" />
-<meta property="og:url" content="https://nan0silver.github.io/backend/2025-02-22-token/" />
+<meta name="description" content="인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자." />
+<meta property="og:description" content="인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" />
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-02-22T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-02-20T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" />
+<meta property="twitter:title" content="[Etc] OAuth란?" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-26T00:12:50+00:00","datePublished":"2025-02-22T00:00:00+00:00","description":"OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.","headline":"[Etc] 🔑 Access Token과 Refresh Token 완벽 정리","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/backend/2025-02-22-token/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/backend/2025-02-22-token/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-27T00:04:45+00:00","datePublished":"2025-02-20T00:00:00+00:00","description":"인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.","headline":"[Etc] OAuth란?","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/backend/2025-02-22-token/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-03-26T00:13:35+00:00',
+    INDEX_KEY: 'index--2025-03-27T00:05:29+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/backend/">backend</a>
+          <a href="/miscellaneous/">miscellaneous</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-02-22-token</span>
+          <span>2025-02-20-OAuth</span>
         
       </li>
     
@@ -222,18 +222,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-backend-token" class="page post mb6" role="article">
+<article id="post-miscellaneous-OAuth" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Etc] 🔑 Access Token과 Refresh Token 완벽 정리
+        [Etc] OAuth란?
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-22T00:00:00+00:00">22 Feb 2025</time> in <a href="/backend/" class="flip-title">BACK-END</a> 
+        <time datetime="2025-02-20T00:00:00+00:00">20 Feb 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
       </span>
       
         
@@ -242,10 +242,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 26 Mar 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 27 Mar 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-03-26T00:12:50+00:00">2025-03-26</time>
+              <time datetime="2025-03-27T00:04:45+00:00">2025-03-27</time>
             </span>
           
         
@@ -261,7 +261,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.
+      인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.
 
     </p>
   
@@ -271,267 +271,294 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
-  <li><a href="#2-access-token">Access Token</a></li>
-  <li><a href="#3-refresh-token">Refresh Token</a></li>
-  <li><a href="#4-access-token-vs-refresh-token-비교">Access Token vs. Refresh Token 비교</a></li>
-  <li><a href="#5-access-token과-refresh-token을-사용하는-이유">Access Token과 Refresh Token을 사용하는 이유</a></li>
-  <li><a href="#6-access-token과-refresh-token을-활용한-인증-흐름">Access Token과 Refresh Token을 활용한 인증 흐름</a></li>
-  <li><a href="#7-access-token--refresh-token-보안-고려-사항">Access Token &amp; Refresh Token 보안 고려 사항</a></li>
-  <li><a href="#8-access-token--refresh-token-실제-코드-구현-java-spring-security">실제 코드 구현 (Java, Spring Security)</a></li>
+  <li><a href="#1-oauth-개념과-특징">OAuth 개념과 특징</a></li>
+  <li><a href="#2-oauth-10-vs-oauth-20">OAuth 1.0 vs. OAuth 2.0</a></li>
+  <li><a href="#3-oauth-20-상세-동작-방식">OAuth 2.0 상세 동작 방식</a></li>
+  <li><a href="#4-oauth-20-grant-types-인증-방식">OAuth 2.0 Grant Types (인증 방식)</a></li>
+  <li><a href="#5-oauth-20의-주요-용어">OAuth 2.0의 주요 용어</a></li>
+  <li><a href="#6-oauth-20을-실제-코드로-구현">OAuth 2.0을 실제 코드로 구현</a></li>
+  <li><a href="#7-oauth의-장점--단점">OAuth의 장점 &amp; 단점</a></li>
 </ul>
 
 <hr />
 
-<h2 id="1-access-token과-refresh-token이란"><strong>1. Access Token과 Refresh Token이란?</strong></h2>
+<h2 id="oauth란"><strong>OAuth란?</strong></h2>
 
 <blockquote>
-  <p>OAuth 2.0을 사용할 때 핵심이 되는 토큰</p>
+  <p><strong>서드파티 애플리케이션이 사용자 인증 정보를 직접 다루지 않고, 다른 서비스의 인증을 통해 특정 리소스에 접근할 수 있도록 하는 인증 및 권한 부여 프로토콜</strong></p>
+</blockquote>
+
+<ul>
+  <li><strong>“카카오 로그인”, “구글 로그인”, “페이스북 로그인”</strong> 같은 기능이 OAuth를 사용한 대표적인 사례</li>
+</ul>
+
+<hr />
+
+<h2 id="1-oauth-개념과-특징"><strong>1. OAuth 개념과 특징</strong></h2>
+
+<h3 id="-oauth의-핵심-개념">✅ <strong>OAuth의 핵심 개념</strong></h3>
+
+<ul>
+  <li><strong>인증(Authentication)</strong>: 사용자가 누구인지 확인하는 과정</li>
+  <li><strong>권한 부여(Authorization)</strong>: 사용자가 특정 리소스에 대한 액세스를 허용하는 과정</li>
+  <li><strong>토큰 기반 인증</strong>: ID/비밀번호 대신 <strong>Access Token</strong>을 사용하여 API 요청</li>
+  <li><strong>안전한 인증 방식</strong>: 클라이언트가 직접 사용자 계정 정보를 저장하지 않아 보안 강화</li>
+</ul>
+
+<h3 id="-oauth-동작-방식">✅ <strong>OAuth 동작 방식</strong></h3>
+
+<ol>
+  <li>사용자가 서드파티 앱에서 로그인 버튼 클릭</li>
+  <li>OAuth 서버(예: Google, Kakao)가 사용자에게 로그인 페이지 제공</li>
+  <li>사용자가 로그인하고 권한을 승인</li>
+  <li>OAuth 서버가 서드파티 앱에 <strong>Authorization Code</strong> 제공</li>
+  <li>서드파티 앱이 Authorization Code를 사용하여 <strong>Access Token</strong> 요청</li>
+  <li>Access Token을 통해 리소스 서버(API)에 접근하여 데이터 제공</li>
+</ol>
+
+<hr />
+
+<h2 id="2-oauth-10-vs-oauth-20"><strong>2. OAuth 1.0 vs. OAuth 2.0</strong></h2>
+
+<blockquote>
+  <p>OAuth는 <strong>1.0과 2.0 두 가지 버전</strong>이 있으며 현재는 <strong>OAuth 2.0</strong>이 표준.</p>
 </blockquote>
 
 <table>
   <thead>
     <tr>
-      <th>토큰 종류</th>
-      <th>역할</th>
-      <th>유효 기간</th>
-      <th>사용 목적</th>
+      <th>특징</th>
+      <th>OAuth 1.0</th>
+      <th>OAuth 2.0</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Access Token</strong></td>
-      <td>API 요청 시 인증을 위한 토큰</td>
-      <td>짧음 (몇 분~1시간)</td>
-      <td>사용자가 인증된 후 API 접근</td>
+      <td><strong>출시</strong></td>
+      <td>2010년 이전</td>
+      <td>2012년 이후</td>
     </tr>
     <tr>
-      <td><strong>Refresh Token</strong></td>
-      <td>Access Token이 만료되었을 때 새 토큰 발급</td>
-      <td>김 (며칠~몇 달)</td>
-      <td>Access Token을 갱신</td>
+      <td><strong>보안 방식</strong></td>
+      <td>HMAC-SHA1 서명</td>
+      <td>Bearer Token 방식</td>
+    </tr>
+    <tr>
+      <td><strong>암호화 필수 여부</strong></td>
+      <td>요청마다 암호화 필요</td>
+      <td>HTTPS만 사용하면 됨</td>
+    </tr>
+    <tr>
+      <td><strong>사용성</strong></td>
+      <td>복잡함</td>
+      <td>간단하고 확장성이 좋음</td>
+    </tr>
+    <tr>
+      <td><strong>클라이언트 유형</strong></td>
+      <td>웹 앱 중심</td>
+      <td>모바일, 웹, 서버, IoT 지원</td>
+    </tr>
+    <tr>
+      <td><strong>인증 방식</strong></td>
+      <td>Access Token, Secret Key</td>
+      <td>Access Token, Refresh Token</td>
     </tr>
   </tbody>
 </table>
 
-<hr />
-
-<h2 id="2-access-token"><strong>2. Access Token</strong></h2>
-
-<h3 id="-access-token이란">✅ <strong>Access Token이란?</strong></h3>
-
-<ul>
-  <li>사용자가 OAuth 인증을 마치면 <strong>Authorization Server</strong>가 발급하는 <strong>단기 유효 토큰</strong>.</li>
-  <li>이 토큰을 API 요청의 <strong>Authorization 헤더</strong>에 포함하여 사용.</li>
-  <li>일반적으로 <strong>Bearer Token 방식</strong>으로 사용됨.</li>
-</ul>
-
-<h3 id="-access-token-사용-예시">🎯 <strong>Access Token 사용 예시</strong></h3>
-
-<p>HTTP 요청에서 Access Token을 포함하여 API 호출:</p>
-
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">GET</span> <span class="nn">/user/profile</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.example.com</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer ACCESS_TOKEN</span>
-</code></pre></div></div>
-
-<h3 id="-access-token의-유효-기간">⏳ <strong>Access Token의 유효 기간</strong></h3>
-
-<ul>
-  <li>보안상 <strong>짧은 시간(몇 분~1시간 정도)</strong> 만 유지됨.</li>
-  <li>Access Token이 만료되면 더 이상 API를 호출할 수 없음.</li>
-  <li>해결 방법: <strong>Refresh Token을 사용하여 새로운 Access Token 발급</strong>.</li>
-</ul>
+<p>💡 현재 OAuth 2.0을 대부분 사용</p>
 
 <hr />
 
-<h2 id="3-refresh-token"><strong>3. Refresh Token</strong></h2>
+<h2 id="3-oauth-20-상세-동작-방식"><strong>3. OAuth 2.0 상세 동작 방식</strong></h2>
 
-<h3 id="-refresh-token이란">✅ <strong>Refresh Token이란?</strong></h3>
+<h3 id="-oauth-20의-핵심-개념">🔑 <strong>OAuth 2.0의 핵심 개념</strong></h3>
 
 <ul>
-  <li>Access Token이 만료되었을 때, <strong>새로운 Access Token을 요청할 수 있도록 제공되는 장기 토큰</strong>.</li>
-  <li>Access Token과 다르게, Refresh Token 자체로는 API 요청을 보낼 수 없음.</li>
-  <li>일반적으로 <strong>다시 로그인하지 않고도 인증을 연장할 때 사용</strong>.</li>
+  <li><strong>Authorization Code</strong>: Access Token을 받기 위한 코드</li>
+  <li><strong>Access Token</strong>: API 요청 시 사용하는 인증 키</li>
+  <li><strong>Refresh Token</strong>: Access Token이 만료될 때 새로운 Token을 발급하는 키</li>
+  <li><strong>Redirect URI</strong>: OAuth 서버가 Authorization Code를 전달할 URL</li>
 </ul>
 
-<h3 id="-refresh-token-사용-예시">🎯 <strong>Refresh Token 사용 예시</strong></h3>
+<h3 id="oauth-20-인증-과정"><strong>OAuth 2.0 인증 과정</strong></h3>
 
-<p>Access Token이 만료되면, Refresh Token을 이용하여 새 Access Token을 요청:</p>
-
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">POST</span> <span class="nn">/auth/token</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">auth.example.com</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
-
-grant_type=refresh_token&amp;
-client_id=YOUR_CLIENT_ID&amp;
-client_secret=YOUR_CLIENT_SECRET&amp;
-refresh_token=YOUR_REFRESH_TOKEN
-</code></pre></div></div>
-
-<h3 id="-refresh-token의-유효-기간">⏳ <strong>Refresh Token의 유효 기간</strong></h3>
+<h4 id="1️⃣-사용자-인증--권한-부여-authorization-request">1️⃣ <strong>사용자 인증 &amp; 권한 부여 (Authorization Request)</strong></h4>
 
 <ul>
-  <li><strong>며칠~몇 달까지 유지 가능</strong> (보안 정책에 따라 다름).</li>
-  <li>일반적으로 <strong>기기 변경, 비밀번호 변경, 보안 위험 감지 시 강제 만료됨</strong>.</li>
+  <li>클라이언트가 <strong>OAuth 제공자(Google, Kakao 등)</strong>에게 로그인 요청</li>
+  <li>사용자 로그인 후, 권한 허용 여부를 선택</li>
+</ul>
+
+<h4 id="2️⃣-authorization-code-발급">2️⃣ <strong>Authorization Code 발급</strong></h4>
+
+<ul>
+  <li>사용자가 권한을 허용하면, OAuth 서버가 <strong>Authorization Code</strong>를 클라이언트에게 전달</li>
+</ul>
+
+<h4 id="3️⃣-access-token-발급-token-exchange">3️⃣ <strong>Access Token 발급 (Token Exchange)</strong></h4>
+
+<ul>
+  <li>클라이언트는 Authorization Code를 사용해 <strong>Access Token 요청</strong></li>
+  <li>OAuth 서버가 유효성 검증 후, <strong>Access Token과 Refresh Token 발급</strong></li>
+</ul>
+
+<h4 id="4️⃣-api-요청-resource-access">4️⃣ <strong>API 요청 (Resource Access)</strong></h4>
+
+<ul>
+  <li>클라이언트는 Access Token을 포함하여 API 서버에 요청</li>
+  <li>API 서버는 토큰을 확인한 후 데이터 반환</li>
+</ul>
+
+<h4 id="5️⃣-access-token-갱신-token-refresh">5️⃣ <strong>Access Token 갱신 (Token Refresh)</strong></h4>
+
+<ul>
+  <li>Access Token이 만료되면, Refresh Token을 사용하여 새로운 Access Token 발급</li>
 </ul>
 
 <hr />
 
-<h2 id="4-access-token-vs-refresh-token-비교"><strong>4. Access Token vs. Refresh Token 비교</strong></h2>
+<h2 id="4-oauth-20-grant-types-인증-방식"><strong>4. OAuth 2.0 Grant Types (인증 방식)</strong></h2>
 
 <table>
   <thead>
     <tr>
-      <th> </th>
-      <th><strong>Access Token</strong></th>
-      <th><strong>Refresh Token</strong></th>
+      <th>Grant Type</th>
+      <th>설명</th>
+      <th>사용 예시</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>목적</strong></td>
-      <td>API 요청 인증</td>
-      <td>새로운 Access Token 발급</td>
+      <td><strong>Authorization Code</strong></td>
+      <td>보안이 뛰어난 방식으로, 서버를 거쳐 Access Token을 받음</td>
+      <td>웹, 모바일 앱에서 로그인 연동</td>
     </tr>
     <tr>
-      <td><strong>유효 기간</strong></td>
-      <td>짧음 (몇 분~1시간)</td>
-      <td>김 (며칠~몇 달)</td>
+      <td><strong>Implicit</strong></td>
+      <td>Access Token을 직접 발급 (보안 약함)</td>
+      <td>예전 프론트엔드 앱에서 사용 (현재는 사용 X)</td>
     </tr>
     <tr>
-      <td><strong>보관 위치</strong></td>
-      <td>클라이언트 저장</td>
-      <td>클라이언트 저장 (보안 필요)</td>
+      <td><strong>Resource Owner Password Credentials (ROPC)</strong></td>
+      <td>사용자 ID/PW를 직접 입력받아 Access Token 발급</td>
+      <td>신뢰할 수 있는 앱 (예: 사내 시스템)</td>
     </tr>
     <tr>
-      <td><strong>보안 위험</strong></td>
-      <td>탈취되면 API 무단 접근 가능</td>
-      <td>탈취되면 새로운 Access Token 발급 가능</td>
+      <td><strong>Client Credentials</strong></td>
+      <td>클라이언트(서버) 자체가 인증됨 (사용자 없음)</td>
+      <td>서버 간 API 호출</td>
     </tr>
     <tr>
-      <td><strong>사용 가능 횟수</strong></td>
-      <td>여러 번 API 요청 가능</td>
-      <td>1회 또는 제한적 사용</td>
+      <td><strong>Device Code</strong></td>
+      <td>디바이스(스마트 TV 등)에서 로그인</td>
+      <td>TV, IoT 기기</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>💡 <strong>일반적으로 “Authorization Code” 방식이 가장 많이 사용됨</strong>.</p>
+
+<hr />
+
+<h2 id="5-oauth-20의-주요-용어"><strong>5. OAuth 2.0의 주요 용어</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Resource Owner (사용자)</strong></td>
+      <td>API의 데이터를 소유한 사용자</td>
+    </tr>
+    <tr>
+      <td><strong>Client (클라이언트 앱)</strong></td>
+      <td>사용자의 데이터를 요청하는 앱 (예: 서드파티 앱)</td>
+    </tr>
+    <tr>
+      <td><strong>Authorization Server</strong></td>
+      <td>인증을 담당하는 서버 (Google, Kakao 등)</td>
+    </tr>
+    <tr>
+      <td><strong>Resource Server</strong></td>
+      <td>API 요청을 처리하는 서버 (Google API, Kakao API 등)</td>
+    </tr>
+    <tr>
+      <td><strong>Access Token</strong></td>
+      <td>사용자가 인증된 후 API에 접근할 수 있는 키</td>
+    </tr>
+    <tr>
+      <td><strong>Refresh Token</strong></td>
+      <td>Access Token이 만료되었을 때 재발급하는 키</td>
+    </tr>
+    <tr>
+      <td><strong>Redirect URI</strong></td>
+      <td>OAuth 서버가 Authorization Code를 전달하는 URL</td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-<h2 id="5-access-token과-refresh-token을-사용하는-이유"><strong>5. Access Token과 Refresh Token을 사용하는 이유</strong></h2>
+<h2 id="6-oauth-20을-실제-코드로-구현"><strong>6. OAuth 2.0을 실제 코드로 구현</strong></h2>
 
-<h3 id="access-token만-사용하면"><strong>Access Token만 사용하면?</strong></h3>
+<h3 id="1-authorization-code-방식-java"><strong>(1) Authorization Code 방식 (Java)</strong></h3>
 
-<ul>
-  <li>보안상 유효 기간을 길게 설정할 수 없음.</li>
-  <li>토큰이 만료될 때마다 사용자가 다시 로그인해야 함 → <strong>불편함</strong>.</li>
-</ul>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.http.HttpClient</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.http.HttpRequest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.http.HttpResponse</span><span class="o">;</span>
 
-<h3 id="refresh-token을-추가하면"><strong>Refresh Token을 추가하면?</strong></h3>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OAuthExample</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="c1">// 1. Authorization Code 요청</span>
+        <span class="nc">String</span> <span class="n">clientId</span> <span class="o">=</span> <span class="s">"your-client-id"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">redirectUri</span> <span class="o">=</span> <span class="s">"https://your-app.com/callback"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">authUrl</span> <span class="o">=</span> <span class="s">"https://oauth-provider.com/auth?client_id="</span> <span class="o">+</span> <span class="n">clientId</span> <span class="o">+</span> <span class="s">"&amp;redirect_uri="</span> <span class="o">+</span> <span class="n">redirectUri</span> <span class="o">+</span> <span class="s">"&amp;response_type=code"</span><span class="o">;</span>
 
-<ul>
-  <li><strong>Access Token을 자주 갱신할 수 있음</strong> → 보안 강화.</li>
-  <li>사용자가 다시 로그인할 필요 없이 <strong>자동으로 인증 연장 가능</strong>.</li>
-</ul>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Login URL: "</span> <span class="o">+</span> <span class="n">authUrl</span><span class="o">);</span>
 
-<p>👉 <strong>Refresh Token을 사용하면 보안과 사용자 편의성 모두 향상됨</strong>.</p>
+        <span class="c1">// 2. Access Token 요청</span>
+        <span class="nc">String</span> <span class="n">authCode</span> <span class="o">=</span> <span class="s">"received-authorization-code"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">tokenUrl</span> <span class="o">=</span> <span class="s">"https://oauth-provider.com/token"</span><span class="o">;</span>
 
-<hr />
+        <span class="nc">HttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="nc">HttpClient</span><span class="o">.</span><span class="na">newHttpClient</span><span class="o">();</span>
+        <span class="nc">HttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">HttpRequest</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">tokenUrl</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/x-www-form-urlencoded"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">POST</span><span class="o">(</span><span class="nc">HttpRequest</span><span class="o">.</span><span class="na">BodyPublishers</span><span class="o">.</span><span class="na">ofString</span><span class="o">(</span><span class="s">"client_id="</span> <span class="o">+</span> <span class="n">clientId</span> <span class="o">+</span> <span class="s">"&amp;code="</span> <span class="o">+</span> <span class="n">authCode</span> <span class="o">+</span> <span class="s">"&amp;redirect_uri="</span> <span class="o">+</span> <span class="n">redirectUri</span> <span class="o">+</span> <span class="s">"&amp;grant_type=authorization_code"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 
-<h2 id="6-access-token과-refresh-token을-활용한-인증-흐름"><strong>6. Access Token과 Refresh Token을 활용한 인증 흐름</strong></h2>
-
-<p>1️⃣ <strong>사용자가 로그인 &amp; 권한 부여</strong><br />
- → OAuth 서버가 <strong>Access Token과 Refresh Token 발급</strong><br />
-2️⃣ <strong>클라이언트가 API 요청</strong><br />
- → <code class="language-plaintext highlighter-rouge">Authorization: Bearer Access_Token</code> 포함하여 요청<br />
-3️⃣ <strong>Access Token이 만료됨</strong><br />
- → API 서버가 <strong>401 Unauthorized</strong> 응답 반환<br />
-4️⃣ <strong>Refresh Token을 사용해 새 Access Token 요청</strong><br />
- → 새 Access Token 발급 후 다시 API 요청 가능<br />
-5️⃣ <strong>Refresh Token도 만료됨</strong><br />
- → 사용자는 <strong>다시 로그인 필요</strong></p>
-
-<p>👉 <strong>Access Token은 API 요청을 인증하는 용도, Refresh Token은 새로운 Access Token을 발급하는 용도!</strong><br />
-👉 <strong>보안이 중요한 만큼 저장 방식과 유효 기간을 잘 관리해야 함!</strong> 🚀</p>
-
-<hr />
-
-<h2 id="7-access-token--refresh-token-보안-고려-사항"><strong>7. Access Token &amp; Refresh Token 보안 고려 사항</strong></h2>
-
-<h3 id="-access-token-보안">✅ <strong>Access Token 보안</strong></h3>
-
-<ul>
-  <li><strong>유효 기간을 짧게 설정</strong> (몇 분~1시간)</li>
-  <li><strong>HTTPS 사용 필수</strong> (네트워크 스니핑 방지)</li>
-  <li><strong>탈취되면 API 접근 가능 → 짧은 유효 기간이 보안성을 보장</strong></li>
-</ul>
-
-<h3 id="-refresh-token-보안">✅ <strong>Refresh Token 보안</strong></h3>
-
-<ul>
-  <li><strong>보안 저장소 사용</strong> (예: 모바일 앱에서는 <strong>Secure Storage</strong>)</li>
-  <li><strong>HTTP 요청 시 노출되지 않도록 주의</strong> (쿠키 또는 안전한 저장소에 보관)</li>
-  <li><strong>유출 시 즉시 무효화 필요</strong> (서버에서 토큰 무효화 기능 추가)</li>
-</ul>
-
-<h3 id="-탈취-방지-방법">🚨 <strong>탈취 방지 방법</strong></h3>
-
-<ol>
-  <li><strong>Refresh Token을 클라이언트에서 안전하게 저장</strong>
-    <ul>
-      <li>브라우저: <strong>HttpOnly Secure Cookie</strong> 사용</li>
-      <li>모바일 앱: <strong>Secure Storage / Keychain</strong> 사용</li>
-    </ul>
-  </li>
-  <li><strong>Refresh Token 재사용 방지 (One-Time Refresh Token)</strong>
-    <ul>
-      <li>Refresh Token을 사용할 때마다 새 Refresh Token을 발급하고 이전 것은 무효화</li>
-    </ul>
-  </li>
-  <li><strong>IP &amp; 디바이스 검증</strong>
-    <ul>
-      <li>Refresh Token 사용 시 <strong>IP 주소와 디바이스 정보를 확인하여 이상 감지 시 무효화</strong></li>
-    </ul>
-  </li>
-  <li><strong>토큰 암호화 및 서명</strong>
-    <ul>
-      <li>JWT 기반 Access Token은 <strong>서명(Signature)</strong> 을 포함하여 위변조 방지</li>
-    </ul>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="8-access-token--refresh-token-실제-코드-구현-java-spring-security"><strong>8. Access Token &amp; Refresh Token 실제 코드 구현 (Java, Spring Security)</strong></h2>
-
-<h3 id="-access-token--refresh-token-발급-api-예제-spring-boot"><strong>🔹 Access Token &amp; Refresh Token 발급 API 예제 (Spring Boot)</strong></h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
-<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/auth"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthController</span> <span class="o">{</span>
-
-    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/token"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">getToken</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="nc">String</span> <span class="n">refreshToken</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">isValidRefreshToken</span><span class="o">(</span><span class="n">refreshToken</span><span class="o">))</span> <span class="o">{</span>
-            <span class="nc">String</span> <span class="n">newAccessToken</span> <span class="o">=</span> <span class="n">generateNewAccessToken</span><span class="o">();</span>
-            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">newAccessToken</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">UNAUTHORIZED</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="s">"Invalid Refresh Token"</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isValidRefreshToken</span><span class="o">(</span><span class="nc">String</span> <span class="n">token</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// Refresh Token 검증 로직</span>
-        <span class="k">return</span> <span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"valid-refresh-token"</span><span class="o">);</span> <span class="c1">// 예제 코드</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="nc">String</span> <span class="nf">generateNewAccessToken</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// 새로운 Access Token 생성 (JWT 사용 가능)</span>
-        <span class="k">return</span> <span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+        <span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="nc">HttpResponse</span><span class="o">.</span><span class="na">BodyHandlers</span><span class="o">.</span><span class="na">ofString</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Access Token Response: "</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
+<hr />
+
+<h2 id="7-oauth의-장점--단점"><strong>7. OAuth의 장점 &amp; 단점</strong></h2>
+
+<h3 id="-장점">✅ <strong>장점</strong></h3>
+
+<ol>
+  <li><strong>보안성 강화</strong>: ID/PW를 직접 저장하지 않고, Access Token으로 인증</li>
+  <li><strong>편리한 로그인</strong>: Google, Kakao 로그인 등 쉽게 연동 가능</li>
+  <li><strong>API 사용 간편화</strong>: 서드파티 서비스와 연동할 때 필수</li>
+  <li><strong>토큰 만료로 보안 강화</strong>: Access Token이 주기적으로 만료되므로 보안성 향상</li>
+</ol>
+
+<h3 id="-단점">❌ <strong>단점</strong></h3>
+
+<ol>
+  <li><strong>구현이 복잡함</strong>: Access Token, Refresh Token 관리 필요</li>
+  <li><strong>서버 부하 증가</strong>: 토큰 발급 및 검증 과정에서 추가적인 요청 발생</li>
+  <li><strong>Refresh Token 유출 위험</strong>: Refresh Token이 유출되면 악용될 가능성 있음</li>
+</ol>
 
   
 </article>

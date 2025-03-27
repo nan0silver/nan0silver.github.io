@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Etc] URI과 URL의 차이 | NAHYUN BLOG</title>
+<title>[Etc] 🔑 Access Token과 Refresh Token 완벽 정리 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Etc] URI과 URL의 차이" />
+<meta property="og:title" content="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="URI와 URL에 관한 차이" />
-<meta property="og:description" content="URI와 URL에 관한 차이" />
-<link rel="canonical" href="https://nan0silver.github.io/backend/2023-08-14-about-UriUrl/" />
-<meta property="og:url" content="https://nan0silver.github.io/backend/2023-08-14-about-UriUrl/" />
+<meta name="description" content="OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자." />
+<meta property="og:description" content="OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" />
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-08-14T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-02-22T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Etc] URI과 URL의 차이" />
+<meta property="twitter:title" content="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-26T00:12:50+00:00","datePublished":"2023-08-14T00:00:00+00:00","description":"URI와 URL에 관한 차이","headline":"[Etc] URI과 URL의 차이","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/backend/2023-08-14-about-UriUrl/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/backend/2023-08-14-about-UriUrl/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-27T00:04:45+00:00","datePublished":"2025-02-22T00:00:00+00:00","description":"OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.","headline":"[Etc] 🔑 Access Token과 Refresh Token 완벽 정리","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-02-22-token/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-02-22-token/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/backend/2023-08-14-about-UriUrl/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-03-26T00:13:35+00:00',
+    INDEX_KEY: 'index--2025-03-27T00:05:29+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/backend/">backend</a>
+          <a href="/miscellaneous/">miscellaneous</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2023-08-14-about-UriUrl</span>
+          <span>2025-02-22-token</span>
         
       </li>
     
@@ -222,18 +222,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-backend-about-UriUrl" class="page post mb6" role="article">
+<article id="post-miscellaneous-token" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Etc] URI과 URL의 차이
+        [Etc] 🔑 Access Token과 Refresh Token 완벽 정리
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2023-08-14T00:00:00+00:00">14 Aug 2023</time> in <a href="/backend/" class="flip-title">BACK-END</a> 
+        <time datetime="2025-02-22T00:00:00+00:00">22 Feb 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
       </span>
       
         
@@ -242,10 +242,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 26 Mar 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 27 Mar 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-03-26T00:12:50+00:00">2025-03-26</time>
+              <time datetime="2025-03-27T00:04:45+00:00">2025-03-27</time>
             </span>
           
         
@@ -261,7 +261,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      URI와 URL에 관한 차이
+      OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.
 
     </p>
   
@@ -270,65 +270,268 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <p>목차</p>
+    <ul>
+  <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
+  <li><a href="#2-access-token">Access Token</a></li>
+  <li><a href="#3-refresh-token">Refresh Token</a></li>
+  <li><a href="#4-access-token-vs-refresh-token-비교">Access Token vs. Refresh Token 비교</a></li>
+  <li><a href="#5-access-token과-refresh-token을-사용하는-이유">Access Token과 Refresh Token을 사용하는 이유</a></li>
+  <li><a href="#6-access-token과-refresh-token을-활용한-인증-흐름">Access Token과 Refresh Token을 활용한 인증 흐름</a></li>
+  <li><a href="#7-access-token--refresh-token-보안-고려-사항">Access Token &amp; Refresh Token 보안 고려 사항</a></li>
+  <li><a href="#8-access-token--refresh-token-실제-코드-구현-java-spring-security">실제 코드 구현 (Java, Spring Security)</a></li>
+</ul>
+
+<hr />
+
+<h2 id="1-access-token과-refresh-token이란"><strong>1. Access Token과 Refresh Token이란?</strong></h2>
+
+<blockquote>
+  <p>OAuth 2.0을 사용할 때 핵심이 되는 토큰</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>토큰 종류</th>
+      <th>역할</th>
+      <th>유효 기간</th>
+      <th>사용 목적</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Access Token</strong></td>
+      <td>API 요청 시 인증을 위한 토큰</td>
+      <td>짧음 (몇 분~1시간)</td>
+      <td>사용자가 인증된 후 API 접근</td>
+    </tr>
+    <tr>
+      <td><strong>Refresh Token</strong></td>
+      <td>Access Token이 만료되었을 때 새 토큰 발급</td>
+      <td>김 (며칠~몇 달)</td>
+      <td>Access Token을 갱신</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-access-token"><strong>2. Access Token</strong></h2>
+
+<h3 id="-access-token이란">✅ <strong>Access Token이란?</strong></h3>
+
+<ul>
+  <li>사용자가 OAuth 인증을 마치면 <strong>Authorization Server</strong>가 발급하는 <strong>단기 유효 토큰</strong>.</li>
+  <li>이 토큰을 API 요청의 <strong>Authorization 헤더</strong>에 포함하여 사용.</li>
+  <li>일반적으로 <strong>Bearer Token 방식</strong>으로 사용됨.</li>
+</ul>
+
+<h3 id="-access-token-사용-예시">🎯 <strong>Access Token 사용 예시</strong></h3>
+
+<p>HTTP 요청에서 Access Token을 포함하여 API 호출:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">GET</span> <span class="nn">/user/profile</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.example.com</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer ACCESS_TOKEN</span>
+</code></pre></div></div>
+
+<h3 id="-access-token의-유효-기간">⏳ <strong>Access Token의 유효 기간</strong></h3>
+
+<ul>
+  <li>보안상 <strong>짧은 시간(몇 분~1시간 정도)</strong> 만 유지됨.</li>
+  <li>Access Token이 만료되면 더 이상 API를 호출할 수 없음.</li>
+  <li>해결 방법: <strong>Refresh Token을 사용하여 새로운 Access Token 발급</strong>.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-refresh-token"><strong>3. Refresh Token</strong></h2>
+
+<h3 id="-refresh-token이란">✅ <strong>Refresh Token이란?</strong></h3>
+
+<ul>
+  <li>Access Token이 만료되었을 때, <strong>새로운 Access Token을 요청할 수 있도록 제공되는 장기 토큰</strong>.</li>
+  <li>Access Token과 다르게, Refresh Token 자체로는 API 요청을 보낼 수 없음.</li>
+  <li>일반적으로 <strong>다시 로그인하지 않고도 인증을 연장할 때 사용</strong>.</li>
+</ul>
+
+<h3 id="-refresh-token-사용-예시">🎯 <strong>Refresh Token 사용 예시</strong></h3>
+
+<p>Access Token이 만료되면, Refresh Token을 이용하여 새 Access Token을 요청:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">POST</span> <span class="nn">/auth/token</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">auth.example.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
+
+grant_type=refresh_token&amp;
+client_id=YOUR_CLIENT_ID&amp;
+client_secret=YOUR_CLIENT_SECRET&amp;
+refresh_token=YOUR_REFRESH_TOKEN
+</code></pre></div></div>
+
+<h3 id="-refresh-token의-유효-기간">⏳ <strong>Refresh Token의 유효 기간</strong></h3>
+
+<ul>
+  <li><strong>며칠~몇 달까지 유지 가능</strong> (보안 정책에 따라 다름).</li>
+  <li>일반적으로 <strong>기기 변경, 비밀번호 변경, 보안 위험 감지 시 강제 만료됨</strong>.</li>
+</ul>
+
+<hr />
+
+<h2 id="4-access-token-vs-refresh-token-비교"><strong>4. Access Token vs. Refresh Token 비교</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th><strong>Access Token</strong></th>
+      <th><strong>Refresh Token</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>목적</strong></td>
+      <td>API 요청 인증</td>
+      <td>새로운 Access Token 발급</td>
+    </tr>
+    <tr>
+      <td><strong>유효 기간</strong></td>
+      <td>짧음 (몇 분~1시간)</td>
+      <td>김 (며칠~몇 달)</td>
+    </tr>
+    <tr>
+      <td><strong>보관 위치</strong></td>
+      <td>클라이언트 저장</td>
+      <td>클라이언트 저장 (보안 필요)</td>
+    </tr>
+    <tr>
+      <td><strong>보안 위험</strong></td>
+      <td>탈취되면 API 무단 접근 가능</td>
+      <td>탈취되면 새로운 Access Token 발급 가능</td>
+    </tr>
+    <tr>
+      <td><strong>사용 가능 횟수</strong></td>
+      <td>여러 번 API 요청 가능</td>
+      <td>1회 또는 제한적 사용</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="5-access-token과-refresh-token을-사용하는-이유"><strong>5. Access Token과 Refresh Token을 사용하는 이유</strong></h2>
+
+<h3 id="access-token만-사용하면"><strong>Access Token만 사용하면?</strong></h3>
+
+<ul>
+  <li>보안상 유효 기간을 길게 설정할 수 없음.</li>
+  <li>토큰이 만료될 때마다 사용자가 다시 로그인해야 함 → <strong>불편함</strong>.</li>
+</ul>
+
+<h3 id="refresh-token을-추가하면"><strong>Refresh Token을 추가하면?</strong></h3>
+
+<ul>
+  <li><strong>Access Token을 자주 갱신할 수 있음</strong> → 보안 강화.</li>
+  <li>사용자가 다시 로그인할 필요 없이 <strong>자동으로 인증 연장 가능</strong>.</li>
+</ul>
+
+<p>👉 <strong>Refresh Token을 사용하면 보안과 사용자 편의성 모두 향상됨</strong>.</p>
+
+<hr />
+
+<h2 id="6-access-token과-refresh-token을-활용한-인증-흐름"><strong>6. Access Token과 Refresh Token을 활용한 인증 흐름</strong></h2>
+
+<p>1️⃣ <strong>사용자가 로그인 &amp; 권한 부여</strong><br />
+ → OAuth 서버가 <strong>Access Token과 Refresh Token 발급</strong><br />
+2️⃣ <strong>클라이언트가 API 요청</strong><br />
+ → <code class="language-plaintext highlighter-rouge">Authorization: Bearer Access_Token</code> 포함하여 요청<br />
+3️⃣ <strong>Access Token이 만료됨</strong><br />
+ → API 서버가 <strong>401 Unauthorized</strong> 응답 반환<br />
+4️⃣ <strong>Refresh Token을 사용해 새 Access Token 요청</strong><br />
+ → 새 Access Token 발급 후 다시 API 요청 가능<br />
+5️⃣ <strong>Refresh Token도 만료됨</strong><br />
+ → 사용자는 <strong>다시 로그인 필요</strong></p>
+
+<p>👉 <strong>Access Token은 API 요청을 인증하는 용도, Refresh Token은 새로운 Access Token을 발급하는 용도!</strong><br />
+👉 <strong>보안이 중요한 만큼 저장 방식과 유효 기간을 잘 관리해야 함!</strong> 🚀</p>
+
+<hr />
+
+<h2 id="7-access-token--refresh-token-보안-고려-사항"><strong>7. Access Token &amp; Refresh Token 보안 고려 사항</strong></h2>
+
+<h3 id="-access-token-보안">✅ <strong>Access Token 보안</strong></h3>
+
+<ul>
+  <li><strong>유효 기간을 짧게 설정</strong> (몇 분~1시간)</li>
+  <li><strong>HTTPS 사용 필수</strong> (네트워크 스니핑 방지)</li>
+  <li><strong>탈취되면 API 접근 가능 → 짧은 유효 기간이 보안성을 보장</strong></li>
+</ul>
+
+<h3 id="-refresh-token-보안">✅ <strong>Refresh Token 보안</strong></h3>
+
+<ul>
+  <li><strong>보안 저장소 사용</strong> (예: 모바일 앱에서는 <strong>Secure Storage</strong>)</li>
+  <li><strong>HTTP 요청 시 노출되지 않도록 주의</strong> (쿠키 또는 안전한 저장소에 보관)</li>
+  <li><strong>유출 시 즉시 무효화 필요</strong> (서버에서 토큰 무효화 기능 추가)</li>
+</ul>
+
+<h3 id="-탈취-방지-방법">🚨 <strong>탈취 방지 방법</strong></h3>
 
 <ol>
-  <li><a href="#uri-uniform-resource-identifier">URI</a></li>
-  <li><a href="#url-uniform-resource-locator">URL</a></li>
-  <li><a href="#urn-uniform-resource-name">URN</a></li>
-  <li><a href="#uri와-url의-차이점">URI와 URL의 차이점</a></li>
+  <li><strong>Refresh Token을 클라이언트에서 안전하게 저장</strong>
+    <ul>
+      <li>브라우저: <strong>HttpOnly Secure Cookie</strong> 사용</li>
+      <li>모바일 앱: <strong>Secure Storage / Keychain</strong> 사용</li>
+    </ul>
+  </li>
+  <li><strong>Refresh Token 재사용 방지 (One-Time Refresh Token)</strong>
+    <ul>
+      <li>Refresh Token을 사용할 때마다 새 Refresh Token을 발급하고 이전 것은 무효화</li>
+    </ul>
+  </li>
+  <li><strong>IP &amp; 디바이스 검증</strong>
+    <ul>
+      <li>Refresh Token 사용 시 <strong>IP 주소와 디바이스 정보를 확인하여 이상 감지 시 무효화</strong></li>
+    </ul>
+  </li>
+  <li><strong>토큰 암호화 및 서명</strong>
+    <ul>
+      <li>JWT 기반 Access Token은 <strong>서명(Signature)</strong> 을 포함하여 위변조 방지</li>
+    </ul>
+  </li>
 </ol>
 
 <hr />
 
-<ul>
-  <li>flutter앱을 개발하는 도중, http통신관련 코드를 짜면서 Uri.parse()함수를 여러 번 접하게 되었다.</li>
-  <li>주소 관련 변수명을 url로 쓰고 있어 이 둘의 의미가 혼동되어 정확하게 알아보고자 하였다.</li>
-</ul>
+<h2 id="8-access-token--refresh-token-실제-코드-구현-java-spring-security"><strong>8. Access Token &amp; Refresh Token 실제 코드 구현 (Java, Spring Security)</strong></h2>
 
-<h2 id="uri-uniform-resource-identifier">URI (Uniform Resource Identifier)</h2>
+<h3 id="-access-token--refresh-token-발급-api-예제-spring-boot"><strong>🔹 Access Token &amp; Refresh Token 발급 API 예제 (Spring Boot)</strong></h3>
 
-<ul>
-  <li>우리 말로 ‘통합 자원 식별자’
-    <ul>
-      <li>Uniform -&gt; 리소스를 식별는 통일된 방식</li>
-      <li>Resource -&gt; URI로 식별이 가능한 웹 브라우저 파일 및 그 이외의 리소스를 포함하는 모든 종류의 자원</li>
-      <li>Identifier -&gt; 다른 항목과 구분하기 위해 필요한 정보</li>
-    </ul>
-  </li>
-  <li><strong> 즉, URI는 인터넷상의 리소스 자원 자체를 식별하는 고유한 문자열 시퀀스</strong></li>
-</ul>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/auth"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthController</span> <span class="o">{</span>
 
-<h2 id="url-uniform-resource-locator">URL (Uniform Resource Locator)</h2>
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/token"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">getToken</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="nc">String</span> <span class="n">refreshToken</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isValidRefreshToken</span><span class="o">(</span><span class="n">refreshToken</span><span class="o">))</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">newAccessToken</span> <span class="o">=</span> <span class="n">generateNewAccessToken</span><span class="o">();</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">newAccessToken</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">UNAUTHORIZED</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="s">"Invalid Refresh Token"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
-<ul>
-  <li>네트워크상에서 통합 자원(리소스)의 <strong>“위치”</strong>를 나타내기 위한 규약</li>
-  <li>웹 사이트 주소 + 컴퓨터 네트워크 상의 자원
-    <ul>
-      <li>특정 웹 페이지의 주소에 접속하기 위해서는 웹 사이트의 주소뿐만 아니라 프로토콜(https, http, sftp, smp 등)을 함께 알아야 접속이 가능한데, URL은 이들 모두를 나타낸다.</li>
-    </ul>
-  </li>
-</ul>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isValidRefreshToken</span><span class="o">(</span><span class="nc">String</span> <span class="n">token</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Refresh Token 검증 로직</span>
+        <span class="k">return</span> <span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"valid-refresh-token"</span><span class="o">);</span> <span class="c1">// 예제 코드</span>
+    <span class="o">}</span>
 
-<h2 id="urn-uniform-resource-name">URN (Uniform Resource Name)</h2>
-
-<ul>
-  <li>리소스의 위치, 프로토콜, 호스트 등과는 상관없이 각 자원에 이름을 부여한 것</li>
-  <li>웹 문서의 물리적인 위치와 상관없이 웹 문서 자체를 나타낸다.</li>
-</ul>
-
-<h2 id="uri와-url의-차이점">URI와 URL의 차이점</h2>
-
-<ul>
-  <li>URI= 식별자, URL=식별자+위치</li>
-  <li>nan0silver.github.io는 리소스의 이름만 나타내므로 URI</li>
-  <li>
-    <p>https://nan0silver.github.io/는 이름과 위치를 나타내므로 URL (프로토콜 http를 포함하기 때문)</p>
-  </li>
-  <li>URL ⊂ URI</li>
-  <li>URL은 프로토콜과 결합된 상태이다. (프로토콜 + 이름)</li>
-  <li>URI는 그 자체로 이름이 될 수 있다.</li>
-</ul>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="nf">generateNewAccessToken</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 새로운 Access Token 생성 (JWT 사용 가능)</span>
+        <span class="k">return</span> <span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
   
 </article>
