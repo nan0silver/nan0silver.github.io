@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-03-27T00:12:14+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-03-27T01:43:26+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-03-27T00:11:31+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-03-27T01:42:45+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
   <li><a href="#1️⃣-기본-소수-판별-on">기본 소수 판별</a></li>
   <li><a href="#2️⃣-에라토스테네스의-체-on-log-log-n">에라토스테네스의 체</a></li>
   <li><a href="#3️⃣-miller-rabin-소수판별법-olog-n">Miller-Rabin 소수 판별법</a></li>
@@ -159,7 +159,93 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isPrime</span><span class="o">(</span><span class="mi">1000000008</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span> <span class="c1">// false (합성수)</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-03-27T00:11:31+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-03-27T01:42:45+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
+  <li><a href="#레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</a></li>
+  <li><a href="#mvc란">MVC란?</a></li>
+  <li><a href="#레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</a></li>
+</ul>
+
+<hr />
+
+<h2 id="레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</h2>
+
+<ul>
+  <li>여러 수평 레이어가 수직적으로 쌓인 구조 (상위 레이어에서 하위 레이어로 단방향 의존성)
+    <ul>
+      <li>프레젠테이션 레이어 : 1층로비, 방문객 맞이하고 안내</li>
+      <li>비즈니스 레이어 : 실제 회사 업무 설계 및 규칙 수립</li>
+      <li>서비스 레이어 : 비즈니스 레이어의 명령 실행</li>
+      <li>데이터 접근 레이어 : 필요한 정보 저장 및 검색</li>
+      <li>각 층은 자신의 역할만 수행, 보통 아래층에만 의존</li>
+    </ul>
+  </li>
+  <li>데이터 흐름
+    <ul>
+      <li>요청 → 컨트롤러 → 서비스 → 레포지토리</li>
+    </ul>
+  </li>
+  <li>사용 이유
+    <ul>
+      <li><strong>모듈화:</strong> 각 레이어가 독립적이라 변경 사항이 영향을 최소화</li>
+      <li><strong>유지보수성:</strong> 비즈니스 로직(Service)과 DB 접근(Repository)을 분리</li>
+      <li><strong>테스트 용이:</strong> 단위 테스트 작성이 쉬움 (ex: Service 레이어만 Mock 테스트 가능)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="mvc란">MVC란?</h2>
+
+<ul>
+  <li>Model-View-Controller
+    <ul>
+      <li>Model : 요리사가 실제 음식을 준비하고 만드는 작업</li>
+      <li>View : 음식의 플레이팅</li>
+      <li>Controller : 고객의 주문을 받고, 요리사에게 전달하여 완성된 요리를 테이블에 서빙 (백엔드)</li>
+      <li>3개의 요소가 유기적으로 협력</li>
+    </ul>
+  </li>
+  <li>사용자 인터페이스와 비즈니스 로직 분리</li>
+  <li>데이터 흐름
+    <ul>
+      <li>요청 → 컨트롤러 → 모델 → 뷰</li>
+    </ul>
+  </li>
+  <li>사용 이유
+    <ul>
+      <li><strong>역할 분리:</strong> View, Model, Controller가 독립적으로 동작하여 유지보수 용이</li>
+      <li><strong>유연한 확장:</strong> UI 변경(View)이나 비즈니스 로직(Model)을 따로 수정 가능</li>
+      <li><strong>재사용성 증가:</strong> 같은 Model을 여러 View에서 사용 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<p>&lt;img src=”https://raw.githubusercontent.com/nan0silver/nan0silver.github.io/3820f9cfa16c85c0487a9fd198d804a6f957a658/assets/img/blog/2025-03-17-image.png&gt;</p>
+
+<h2 id="레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</h2>
+
+<ul>
+  <li><strong>둘을 함께 사용하면 유지보수성과 확장성이 좋아진다.</strong>
+    <ul>
+      <li><strong>Controller는 최대한 가볍게 (Thin Controller, Fat Service)</strong></li>
+      <li><strong>비즈니스 로직은 Service Layer에서 처리 (SRP 원칙 준수)</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="둘을-함께-사용했을-때-관계-흐름-요청--응답">둘을 함께 사용했을 때 관계 흐름 (요청 → 응답)</h3>
+
+<ol>
+  <li>사용자 (Client) 가 요청을 보냄</li>
+  <li>Controller (입력 처리, 요청 매핑)</li>
+  <li>Service (비즈니스 로직 처리)</li>
+  <li>Repository (데이터베이스 접근)</li>
+  <li>Service → Controller 로 응답 반환</li>
+  <li>Controller → View (또는 JSON)</li>
+</ol>
+
+<ul>
+  <li>MVC는 역할을 분리하고, 레이어드 아키텍처는 각 계층을 더 체계적으로 조직화하여 유지보수성과 확장성을 높인다</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-03-27T01:42:45+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
   <li><a href="#java에서-동시성">JAVA에서 동시성</a></li>
   <li><a href="#스레드-thread">스레드 (Thread)</a></li>
   <li><a href="#비동기-처리-async">비동기 처리 (Aysnc)</a></li>
@@ -330,7 +416,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <ul>
   <li>Redis, Kafka, 클러스터</li>
   <li>분산처리는 프랜차이즈이다. 큰 가게 하나보다 작은 여러 가게가 효율적이고 비용도 절감된다.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[Etc] 🎞️ Boilerplate</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/" rel="alternate" type="text/html" title="[Etc] 🎞️ Boilerplate" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-03-27T00:11:31+00:00</updated><id>https://nan0silver.github.io/miscellaneous/boiler-plate</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[Etc] 🎞️ Boilerplate</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/" rel="alternate" type="text/html" title="[Etc] 🎞️ Boilerplate" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-03-27T01:42:45+00:00</updated><id>https://nan0silver.github.io/miscellaneous/boiler-plate</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/"><![CDATA[<ul>
   <li><a href="#보일러플레이트boilerplate란">보일러플레이트(Boilerplate)란?</a></li>
   <li><a href="#보일러플레이트의-특징">보일러플레이트의 특징</a></li>
   <li><a href="#예제-코드">예제 코드</a></li>
@@ -396,7 +482,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
         <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">MyApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</title><link href="https://nan0silver.github.io/java/2025-02-25-arraylist-array/" rel="alternate" type="text/html" title="[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교" /><published>2025-02-25T00:00:00+00:00</published><updated>2025-03-27T00:11:31+00:00</updated><id>https://nan0silver.github.io/java/arraylist-array</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-25-arraylist-array/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</title><link href="https://nan0silver.github.io/java/2025-02-25-arraylist-array/" rel="alternate" type="text/html" title="[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교" /><published>2025-02-25T00:00:00+00:00</published><updated>2025-03-27T01:42:45+00:00</updated><id>https://nan0silver.github.io/java/arraylist-array</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-25-arraylist-array/"><![CDATA[<ul>
   <li><a href="#-arraylistinteger는-언제-더-유리할까"><code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code>는 언제 더 유리할까?</a></li>
   <li><a href="#-int-배열이-더-유리한-경우"><code class="language-plaintext highlighter-rouge">int[] 배열</code>이 더 유리한 경우</a></li>
   <li><a href="#-성능-비교-실험-java">성능 비교 실험 (Java)</a></li>
@@ -689,7 +775,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <p>즉,<br />
 ✔ <strong>빠른 연산이 필요하면 <code class="language-plaintext highlighter-rouge">int[] 배열</code></strong><br />
 ✔ <strong>동적 크기가 필요하면 <code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code></strong><br />
-✔ <strong>키-값 조회가 많다면 <code class="language-plaintext highlighter-rouge">HashMap&lt;Integer, Integer&gt;</code></strong></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[ArrayList와 배열(int[])의 성능을 비교해보자.]]></summary></entry><entry><title type="html">[JAVA] SOLID 원칙</title><link href="https://nan0silver.github.io/java/2025-02-23-solid/" rel="alternate" type="text/html" title="[JAVA] SOLID 원칙" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-03-27T00:11:31+00:00</updated><id>https://nan0silver.github.io/java/solid</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-23-solid/"><![CDATA[<ul>
+✔ <strong>키-값 조회가 많다면 <code class="language-plaintext highlighter-rouge">HashMap&lt;Integer, Integer&gt;</code></strong></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[ArrayList와 배열(int[])의 성능을 비교해보자.]]></summary></entry><entry><title type="html">[JAVA] SOLID 원칙</title><link href="https://nan0silver.github.io/java/2025-02-23-solid/" rel="alternate" type="text/html" title="[JAVA] SOLID 원칙" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-03-27T01:42:45+00:00</updated><id>https://nan0silver.github.io/java/solid</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-23-solid/"><![CDATA[<ul>
   <li><a href="#1-srp-single-responsibility-principle">1. 단일 책임 원칙</a></li>
   <li><a href="#2-ocp-openclosed-principle">2. 개방-폐쇄 원칙</a></li>
   <li><a href="#3-lsp-liskov-substitution-principle">3. 리스코프 치환 원칙</a></li>
@@ -849,7 +935,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>테스트 용이성</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-03-27T00:11:31+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-03-27T01:42:45+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
   <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
   <li><a href="#2-access-token">Access Token</a></li>
   <li><a href="#3-refresh-token">Refresh Token</a></li>
@@ -1110,7 +1196,7 @@ refresh_token=YOUR_REFRESH_TOKEN
         <span class="k">return</span> <span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] OAuth란?</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" rel="alternate" type="text/html" title="[Etc] OAuth란?" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-03-27T00:11:31+00:00</updated><id>https://nan0silver.github.io/miscellaneous/OAuth</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] OAuth란?</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" rel="alternate" type="text/html" title="[Etc] OAuth란?" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-03-27T01:42:45+00:00</updated><id>https://nan0silver.github.io/miscellaneous/OAuth</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"><![CDATA[<ul>
   <li><a href="#1-oauth-개념과-특징">OAuth 개념과 특징</a></li>
   <li><a href="#2-oauth-10-vs-oauth-20">OAuth 1.0 vs. OAuth 2.0</a></li>
   <li><a href="#3-oauth-20-상세-동작-방식">OAuth 2.0 상세 동작 방식</a></li>
@@ -1398,7 +1484,7 @@ refresh_token=YOUR_REFRESH_TOKEN
   <li><strong>구현이 복잡함</strong>: Access Token, Refresh Token 관리 필요</li>
   <li><strong>서버 부하 증가</strong>: 토큰 발급 및 검증 과정에서 추가적인 요청 발생</li>
   <li><strong>Refresh Token 유출 위험</strong>: Refresh Token이 유출되면 악용될 가능성 있음</li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</title><link href="https://nan0silver.github.io/git/2025-02-19-git-commit/" rel="alternate" type="text/html" title="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" /><published>2025-02-19T00:00:00+00:00</published><updated>2025-03-27T00:11:31+00:00</updated><id>https://nan0silver.github.io/git/git-commit</id><content type="html" xml:base="https://nan0silver.github.io/git/2025-02-19-git-commit/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.]]></summary></entry><entry><title type="html">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</title><link href="https://nan0silver.github.io/git/2025-02-19-git-commit/" rel="alternate" type="text/html" title="[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법" /><published>2025-02-19T00:00:00+00:00</published><updated>2025-03-27T01:42:45+00:00</updated><id>https://nan0silver.github.io/git/git-commit</id><content type="html" xml:base="https://nan0silver.github.io/git/2025-02-19-git-commit/"><![CDATA[<ul>
   <li><a href="#commit-단위를-결정-짓는-요소">Commit 단위를 결정 짓는 요소</a></li>
   <li><a href="#udacity-style">Udacity style</a></li>
   <li><a href="#rebase를-잘쓰자">Rebase를 잘쓰자!</a></li>
@@ -1601,7 +1687,7 @@ chore: 패키지 버전 업데이트
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="git" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-03-27T00:11:31+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="git" /><summary type="html"><![CDATA[직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] DOM &amp;amp; BOM</title><link href="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/" rel="alternate" type="text/html" title="[JavaScript] DOM &amp;amp; BOM" /><published>2025-02-05T00:00:00+00:00</published><updated>2025-03-27T01:42:45+00:00</updated><id>https://nan0silver.github.io/javascript/dom-bom</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-05-dom-bom/"><![CDATA[<ul>
   <li><a href="#dom-document-object-model">DOM (Document Object Model)</a></li>
   <li><a href="#dom-기본-구조">DOM 기본 구조</a></li>
   <li><a href="#dom의-특징">DOM의 특징</a></li>
@@ -1856,103 +1942,4 @@ chore: 패키지 버전 업데이트
       <td><code class="language-plaintext highlighter-rouge">alert()</code>, <code class="language-plaintext highlighter-rouge">location.href</code>, <code class="language-plaintext highlighter-rouge">history.back()</code></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry><entry><title type="html">[JavaScript] 로컬 스토리지 VS 세션 스토리지</title><link href="https://nan0silver.github.io/javascript/2025-02-04-storage/" rel="alternate" type="text/html" title="[JavaScript] 로컬 스토리지 VS 세션 스토리지" /><published>2025-02-04T00:00:00+00:00</published><updated>2025-03-27T00:11:31+00:00</updated><id>https://nan0silver.github.io/javascript/storage</id><content type="html" xml:base="https://nan0silver.github.io/javascript/2025-02-04-storage/"><![CDATA[<ul>
-  <li><a href="#로컬-스토리지-local-storage-vs-세션-스토리지-session-storage">로컬 스토리지 VS 세션 스토리지</a></li>
-  <li><a href="#데이터-유지-기간">데이터 유지 기간</a></li>
-  <li><a href="#접근-범위">접근 범위</a></li>
-  <li><a href="#활용-예제">활용 예제</a></li>
-  <li><a href="#사용-방법-javascript">사용 방법 (JavaScript)</a></li>
-</ul>
-
-<hr />
-
-<h2 id="로컬-스토리지-local-storage-vs-세션-스토리지-session-storage">로컬 스토리지 (Local Storage) VS 세션 스토리지 (Session Storage)</h2>
-
-<ul>
-  <li>둘 다 웹 브라우저의 저장소</li>
-  <li>데이터를 클라이언트 측에 저장할 수 있는 기능을 제공
-<br /></li>
-  <li>아래는 차이점을 확인할 수 있다.</li>
-</ul>
-
-<h3 id="데이터-유지-기간">데이터 유지 기간</h3>
-
-<ul>
-  <li>Local Storage
-    <ul>
-      <li>브라우저를 닫아도 데이터가 유지됨</li>
-      <li>명시적으로 삭제하지 않는 한 영구적으로 저장됨</li>
-    </ul>
-  </li>
-  <li>Session Storage
-    <ul>
-      <li>브라우저의 탭을 닫으면 데이터가 삭제됨</li>
-      <li>세션동안만 유지됨
-        <blockquote>
-          <p>세션 : 일정 기간 동안 유지되는 사용자와 시스템 간의 연결 상태 (주로 사용자의 로그인 상태 유지, 임시 데이터 저장에 사용됨)</p>
-        </blockquote>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="접근-범위">접근 범위</h3>
-
-<ul>
-  <li>Local Storage
-    <ul>
-      <li>같은 출처 (Origin, 즉 도메인+프로토콜+포트)가 같다면 모든 탬과 창에서 접근 가능</li>
-    </ul>
-  </li>
-  <li>Session Storage
-    <ul>
-      <li>같은 출처라도 각 탭과 창마다 개별적인 저장소 가짐</li>
-      <li>다른 탭에서 접근 불가</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="활용-예제">활용 예제</h3>
-
-<ul>
-  <li>Local Storage
-    <ul>
-      <li>로그인 정보, 사용자 설정, 테마 설정 등 장기적으로 유지해야하는 데이터 저장</li>
-    </ul>
-  </li>
-  <li>Session Storage
-    <ul>
-      <li>특정 페이지에서만 필요한 임시 데이터 등 일시적인 데이터 저장</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="사용-방법-javascript">사용 방법 (JavaScript)</h3>
-
-<ul>
-  <li>
-    <p>Local Storage</p>
-
-    <ul>
-      <li>
-        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 데이터 저장</span>
-<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">username</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">JohnDoe</span><span class="dl">"</span><span class="p">);</span>
-<span class="c1">// 데이터 가져오기</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">username</span><span class="dl">"</span><span class="p">));</span> <span class="c1">// "JohnDoe"</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Session Storage</p>
-    <ul>
-      <li>
-        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 데이터 저장</span>
-<span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">sessionUser</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">JaneDoe</span><span class="dl">"</span><span class="p">);</span>
-<span class="c1">// 데이터 가져오기</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">sessionUser</span><span class="dl">"</span><span class="p">));</span> <span class="c1">// "JaneDoe"</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.]]></summary></entry></feed>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="javascript" /><summary type="html"><![CDATA[JavaScript의 DOM과 BOM에 대해 알아보자.]]></summary></entry></feed>
