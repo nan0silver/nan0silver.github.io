@@ -63,7 +63,7 @@ menu:
     url: /flutter/
   - title: JavaScript (8)
     url: /javascript/
-  - title: Algorithm (10)
+  - title: Algorithm (11)
     url: /algorithm/
   - title: Java (10)
     url: /java/
@@ -75,7 +75,7 @@ menu:
     url: /flask/
   - title: Spring (2)
     url: /spring/
-  - title: Miscellaneous (9)
+  - title: Miscellaneous (11)
     url: /miscellaneous/
 
 # Add links to the footer.
