@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Git] git clone VS git fork | NAHYUN BLOG</title>
+<title>[Etc] 💣 SQL Injection | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Git] git clone VS git fork" />
+<meta property="og:title" content="[Etc] 💣 SQL Injection" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="git clone과 git fork의 동작 방식에 대해 알아보자." />
-<meta property="og:description" content="git clone과 git fork의 동작 방식에 대해 알아보자." />
-<link rel="canonical" href="https://nan0silver.github.io/git/2025-01-22-git-clone-fork/" />
-<meta property="og:url" content="https://nan0silver.github.io/git/2025-01-22-git-clone-fork/" />
+<meta name="description" content="악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자." />
+<meta property="og:description" content="악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" />
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-01-22T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-03-31T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Git] git clone VS git fork" />
+<meta property="twitter:title" content="[Etc] 💣 SQL Injection" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-31T08:28:52+00:00","datePublished":"2025-01-22T00:00:00+00:00","description":"git clone과 git fork의 동작 방식에 대해 알아보자.","headline":"[Git] git clone VS git fork","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/git/2025-01-22-git-clone-fork/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/git/2025-01-22-git-clone-fork/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-31T08:28:52+00:00","datePublished":"2025-03-31T00:00:00+00:00","description":"악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.","headline":"[Etc] 💣 SQL Injection","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/git/2025-01-22-git-clone-fork/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/git/">git</a>
+          <a href="/miscellaneous/">miscellaneous</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-01-22-git-clone-fork</span>
+          <span>2025-03-31-sql-injection</span>
         
       </li>
     
@@ -222,31 +222,23 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-git-git-clone-fork" class="page post mb6" role="article">
+<article id="post-miscellaneous-sql-injection" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Git] git clone VS git fork
+        [Etc] 💣 SQL Injection
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-22T00:00:00+00:00">22 Jan 2025</time> in <a href="/git/" class="flip-title">GIT</a> 
+        <time datetime="2025-03-31T00:00:00+00:00">31 Mar 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
       </span>
       
         
           
           
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 31 Mar 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-03-31T08:28:52+00:00">2025-03-31</time>
-            </span>
           
         
       
@@ -261,7 +253,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      git clone과 git fork의 동작 방식에 대해 알아보자.
+      악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.
 
     </p>
   
@@ -271,274 +263,139 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#git-clone">git clone</a></li>
-  <li><a href="#git-fork">git fork</a></li>
-  <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
-  <li><a href="#워크플로우">워크플로우</a></li>
-  <li><a href="#실전-예시">실전 예시</a></li>
+  <li><a href="#sql-injection이란">SQL Injection이란?</a></li>
+  <li><a href="#-spring-관점에서-sql-injection-방지법">Spring 관점에서 SQL Injection 방지법</a></li>
+  <li><a href="#-spring-배우는-입장에서-조심할-포인트-요약">요약</a></li>
 </ul>
 
 <hr />
 
-<h2 id="git-clone">git clone</h2>
+<h2 id="sql-injection이란">SQL Injection이란?</h2>
 
-<ul>
-  <li>역할
-    <ul>
-      <li>원격 저장소를 로컬 컴퓨터에 복제</li>
-    </ul>
-  </li>
-  <li>작업 대상
-    <ul>
-      <li>원격 저장소</li>
-    </ul>
-  </li>
-  <li>특징
-    <ul>
-      <li>저장소의 완전한 복사본(전체 커밋 내역, 브랜치 등)을 가져옴</li>
-      <li>복제 후, 원격 저장소가 자동으로 <code class="language-plaintext highlighter-rouge">origin</code>이라는 이름으로 연결됨</li>
-      <li>로컬에서 작업한 내용을 원격 저장소에 반영하려면 <code class="language-plaintext highlighter-rouge">push</code>사용</li>
-    </ul>
-  </li>
-  <li>동작 방식
-    <ol>
-      <li>Git 저장소 초기화 (<code class="language-plaintext highlighter-rouge">git init</code>)
-        <ul>
-          <li>새로 생성된 폴더는 Git 저장소로 설정됨</li>
-          <li><code class="language-plaintext highlighter-rouge">.git</code> 디렉터리가 자동으로 생성됨</li>
-        </ul>
-      </li>
-      <li>원격 저장소 설정 (<code class="language-plaintext highlighter-rouge">git remote add origin</code>)
-        <ul>
-          <li>복제한 원격 저장소가 자동으로 <code class="language-plaintext highlighter-rouge">origin</code>이라는 이름으로 연결됨</li>
-          <li>로컬에서 원격 저장소와 동기화(<code class="language-plaintext highlighter-rouge">push</code>, <code class="language-plaintext highlighter-rouge">pull</code>)를 가능하게 함</li>
-        </ul>
-      </li>
-      <li>브랜치 체크아웃
-        <ul>
-          <li>기본 브랜치(<code class="language-plaintext highlighter-rouge">main</code> or <code class="language-plaintext highlighter-rouge">master</code>)의 최신 상태가 복제됨</li>
-          <li>이 브랜치는 로컬 저장소로 가져와 자동으로 체크아웃됨</li>
-        </ul>
-      </li>
-      <li>파일 다운로드
-        <ul>
-          <li>원격 저장소에 있는 모든 파일과 폴더가 로컬 디렉토리에 다운로드됨</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">git clone</code> 명령을 실행하면, 다운받은 폴더는 자동으로 Git 저장소로 초기화되고, 원격 저장소와도 연결된 상태임
-    <ul>
-      <li><strong><code class="language-plaintext highlighter-rouge">git init</code>이나 <code class="language-plaintext highlighter-rouge">git remote add</code>를 실행할 필요가 없음</strong></li>
-    </ul>
-  </li>
-</ul>
+<blockquote>
+  <p><strong>SQL Injection</strong>이란, 사용자가 입력한 값을 통해 <strong>원래 의도하지 않은 SQL문을 실행하게 만들어</strong><br />
+<strong>데이터베이스의 데이터를 탈취하거나 조작하는 공격</strong></p>
+</blockquote>
 
-<h2 id="git-fork">git fork</h2>
+<h3 id="-예시-spring-쓰기-전-일반-jdbc-코드-기준">🔍 예시 (Spring 쓰기 전 일반 JDBC 코드 기준):</h3>
 
-<ul>
-  <li>역할
-    <ul>
-      <li>원격 저장소를 자신의 원격 계정으로 복제</li>
-    </ul>
-  </li>
-  <li>작업 대상
-    <ul>
-      <li>GitHub/GitLab 계정 상의 저장소</li>
-    </ul>
-  </li>
-  <li>특징
-    <ul>
-      <li>원본 저장소의 복사본이 내 계정의 원격 저장소로 생성됨</li>
-      <li><strong>내 계정에서 관리할 수 있는 원격 저장소를 만든다는 것</strong>이 핵심</li>
-      <li>원본 저장소와 연결은 유지되지만, 독립적인 저장소로 사용됨</li>
-      <li>추가 단계
-        <ul>
-          <li>포크 후, 로컬에 복사하려면 <strong><code class="language-plaintext highlighter-rouge">git clone</code></strong>을 사용해야 함</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>사용 시기
-    <ul>
-      <li>오픈소스 프로젝트에 기여할 때, 원본 저장소를 수정하지 않고 내 계정에서 관리 가능한 복사본을 만들어야 할 때 사용</li>
-      <li><strong>Pull Request</strong>를 보내기 위한 준비 단계로 사용</li>
-    </ul>
-  </li>
-</ul>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT * FROM users WHERE username = '"</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s">"'"</span><span class="o">;</span>
+</code></pre></div></div>
 
-<h2 id="주요-차이점-정리">주요 차이점 정리</h2>
+<p>만약 <code class="language-plaintext highlighter-rouge">username</code>에 아래와 같은 값을 입력하면?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>' OR '1'='1
+</code></pre></div></div>
+
+<p>그러면 쿼리가 이렇게 바뀜:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">username</span> <span class="o">=</span> <span class="s1">''</span> <span class="k">OR</span> <span class="s1">'1'</span><span class="o">=</span><span class="s1">'1'</span>
+</code></pre></div></div>
+
+<p>→ 모든 유저 정보가 다 조회됨 😱<br />
+→ 비밀번호 없이 로그인도 가능해짐</p>
+
+<hr />
+
+<h2 id="-spring-관점에서-sql-injection-방지법">🔐 Spring 관점에서 SQL Injection 방지법</h2>
+
+<h3 id="-1-jdbc-직접-사용-시-preparedstatement-필수">✅ 1. <strong>JDBC 직접 사용 시: PreparedStatement 필수!</strong></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT * FROM users WHERE username = ?"</span><span class="o">;</span>
+<span class="nc">PreparedStatement</span> <span class="n">pstmt</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">prepareStatement</span><span class="o">(</span><span class="n">sql</span><span class="o">);</span>
+<span class="n">pstmt</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">username</span><span class="o">);</span>  <span class="c1">// 자동으로 문자열 escape 처리</span>
+</code></pre></div></div>
+
+<p>이렇게 하면 <code class="language-plaintext highlighter-rouge">' OR '1'='1</code> 같은 입력도 그냥 문자열로 인식되므로 안전하다.</p>
+
+<hr />
+
+<h3 id="-2-spring-jdbc-template-사용-시">✅ 2. <strong>Spring JDBC Template 사용 시</strong></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT * FROM users WHERE username = ?"</span><span class="o">;</span>
+<span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">queryForObject</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Object</span><span class="o">[]{</span><span class="n">username</span><span class="o">},</span> <span class="n">userRowMapper</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>여기서도 <code class="language-plaintext highlighter-rouge">?</code>를 사용해서 바인딩하면 PreparedStatement가 적용되므로 안전하다.</p>
+
+<hr />
+
+<h3 id="-3-jpa--spring-data-jpa-사용-시">✅ 3. <strong>JPA / Spring Data JPA 사용 시</strong></h3>
+
+<p>JPA는 SQL을 직접 작성하지 않고 엔티티 중심으로 데이터를 다루기 때문에 <strong>기본적으로 SQL Injection에 강함</strong>!</p>
+
+<h4 id="-예시">🔸 예시:</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findByUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>이런 방식은 내부적으로 PreparedStatement를 사용하기 때문에 안전함.</p>
+
+<h4 id="-커스텀-jpql-사용-시에도-파라미터-바인딩-필수">🔸 커스텀 JPQL 사용 시에도 파라미터 바인딩 필수!</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"SELECT u FROM User u WHERE u.username = :username"</span><span class="o">)</span>
+<span class="nc">User</span> <span class="nf">findByUsername</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"username"</span><span class="o">)</span> <span class="nc">String</span> <span class="n">username</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>✅ <code class="language-plaintext highlighter-rouge">:username</code> 형태로 파라미터 바인딩하면 OK<br />
+❌ 아래처럼 문자열 직접 연결하면 위험:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"SELECT u FROM User u WHERE u.username = '"</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s">"'"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-spring-배우는-입장에서-조심할-포인트-요약">🚨 Spring 배우는 입장에서 조심할 포인트 요약</h2>
 
 <table>
   <thead>
     <tr>
-      <th><strong>특징</strong></th>
-      <th><strong>git clone</strong></th>
-      <th><strong>git fork</strong></th>
+      <th>상황</th>
+      <th>안전한 방법</th>
+      <th>주의할 점</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>복제 대상</td>
-      <td>원격 저장소 ➡️ 로컬 저장소</td>
-      <td>원격 저장소 ➡️ 내 원격 저장소</td>
+      <td>JDBC 직접 사용</td>
+      <td><code class="language-plaintext highlighter-rouge">PreparedStatement</code></td>
+      <td>문자열 직접 연결 ❌</td>
     </tr>
     <tr>
-      <td>저장소 위치</td>
-      <td>로컬에서 작업</td>
-      <td>내 계정의 원격 저장소에서 작업</td>
+      <td>JdbcTemplate</td>
+      <td><code class="language-plaintext highlighter-rouge">?</code> 자리 바인딩 사용</td>
+      <td>쿼리 조합 ❌</td>
     </tr>
     <tr>
-      <td>연결된 원격 저장소</td>
-      <td><code class="language-plaintext highlighter-rouge">origin</code>으로 원본 저장소 연결</td>
-      <td>내 계정의 원격 저장소 (원본 저장소는 upstream으로 연결 가능)</td>
+      <td>JPA / Spring Data JPA</td>
+      <td>파라미터 바인딩 (<code class="language-plaintext highlighter-rouge">:param</code>)</td>
+      <td>JPQL 문자열 직접 붙이기 ❌</td>
     </tr>
     <tr>
-      <td>사용 목적</td>
-      <td>로컬에서 작업하고 원본 저장소에 반영</td>
-      <td>내 계정에서 독립적으로 원격 저장소 관리</td>
+      <td>QueryDSL</td>
+      <td>완전 안전 (타입 기반 쿼리)</td>
+      <td>-</td>
     </tr>
     <tr>
-      <td>주로 사용 상황</td>
-      <td>협업 프로젝트에 바로 참여</td>
-      <td>오픈소스 프로젝트에 기여 (Pull Request 준비)</td>
+      <td>사용자 입력값 처리</td>
+      <td>입력 검증, 길이 제한</td>
+      <td>필터 없이 바로 사용 ❌</td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="워크플로우">워크플로우</h2>
+<hr />
 
-<h3 id="일반적으로-fork--clone--push--pull-request가-오픈-소스-협업의-표준-워크플로우">일반적으로 <strong>Fork → Clone → Push → Pull Request</strong>가 오픈 소스 협업의 표준 워크플로우</h3>
+<h2 id="-마무리-요약">🎯 마무리 요약</h2>
 
-<ol>
-  <li>
-    <p>Fork 저장소 생성</p>
+<ul>
+  <li>SQL Injection = <strong>사용자가 입력한 값을 통해 악성 SQL 실행</strong></li>
+  <li>Spring에서는 기본적으로 <strong>PreparedStatement</strong> 방식이므로 잘 쓰면 안전함</li>
+  <li>하지만 <strong>직접 쿼리 짜거나, 문자열로 SQL을 조합</strong>하는 경우 주의!</li>
+  <li><strong>ORM(JPA) + 파라미터 바인딩</strong> 방식으로 작성하면 거의 대부분 안전하게 막을 수 있음</li>
+</ul>
 
-    <ul>
-      <li>먼저, 해당 저장소를 <strong>Fork</strong>하여 내 계정으로 복사
-        <ul>
-          <li>GitHub에서 기여하고자 하는 저장소 페이지로 이동</li>
-          <li>우측 상단의 <strong>Fork</strong> 버튼을 클릭</li>
-          <li>그러면 내 계정에 저장소 복사본이 생성됨</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Fork 저장소 Clone</p>
-
-    <ul>
-      <li>Fork된 저장소를 로컬로 복제
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/your-username/repository.git
-</code></pre></div>        </div>
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">your-username</code>은 GitHub 계정 이름으로 대체</li>
-          <li>Clone이 완료되면 로컬 환경에서 작업 가능</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>원본 저장소 추가 (선택 사항)</p>
-
-    <ul>
-      <li>원본 저장소와 동기화를 유지하려면, 원본 저장소를 <strong><code class="language-plaintext highlighter-rouge">upstream</code></strong>으로 추가
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add upstream https://github.com/original-owner/repository.git
-</code></pre></div>        </div>
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">original-owner</code>는 원본 저장소의 소유자 이름으로 대체</li>
-          <li><code class="language-plaintext highlighter-rouge">git remote -v</code> 명령을 사용하여 설정이 제대로 되었는지 확인 가능</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>로컬에서 작업</p>
-
-    <ul>
-      <li>새로운 파일을 추가하거나 수정 후 커밋
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
-git commit <span class="nt">-m</span> <span class="s2">"Add new feature"</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Fork된 저장소에 Push</p>
-
-    <ul>
-      <li>로컬에서 작업한 내용을 자신의 Fork 저장소에 Push
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin main
-</code></pre></div>        </div>
-        <ul>
-          <li>여기서 <code class="language-plaintext highlighter-rouge">main</code>은 사용하는 브랜치 이름</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Pull Request 생성</p>
-
-    <ul>
-      <li>
-        <p>GitHub로 돌아가, Fork된 저장소에서 원본 저장소로 <strong>Pull Request</strong>를 생성</p>
-
-        <ol>
-          <li>내 Fork 저장소 페이지에서 <strong>“Contribute”</strong> 버튼 클릭.</li>
-          <li><strong>“Open Pull Request”</strong> 버튼 클릭.</li>
-          <li>변경 사항에 대한 설명을 작성하고 Pull Request를 제출합니다.</li>
-        </ol>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<h3 id="-요약">✅ 요약</h3>
-
-<p>다른 사람의 저장소에 기여하기 위한 전체 과정</p>
-
-<ol>
-  <li><strong>Fork</strong>: 저장소를 내 계정으로 복제.</li>
-  <li><strong>Clone</strong>: 내 계정에 있는 저장소를 로컬로 복제.</li>
-  <li><strong>원본 저장소 추가</strong>: 원본 저장소와 동기화(선택 사항).</li>
-  <li><strong>작업</strong>: 로컬에서 파일 수정 및 커밋.</li>
-  <li><strong>Push</strong>: 작업 내용을 내 계정 저장소로 업로드.</li>
-  <li><strong>Pull Request</strong>: 원본 저장소에 변경 사항을 제안.</li>
-</ol>
-
-<h2 id="실전-예시">실전 예시</h2>
-
-<ol>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">git clone</code>만 사용하는 경우</p>
-
-    <ul>
-      <li>팀 프로젝트에서 기존 저장소를 복제하여 작업 후, 원본 저장소에 바로 push</li>
-    </ul>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone &lt;repository-url&gt;
-<span class="nb">cd</span> &lt;repository-folder&gt;
-<span class="c"># 작업 후</span>
-git push origin &lt;branch-name&gt;
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">git fork</code>와 <code class="language-plaintext highlighter-rouge">git clone</code>을 함께 사용하는 경우</p>
-    <ul>
-      <li>오픈소스 프로젝트에서 자신의 계정으로 fork 후, 로컬에서 복제하여 작업 후 pull request 보냄
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># GitHub에서 Fork한 후</span>
-git clone &lt;forked-repository-url&gt;
-<span class="nb">cd</span> &lt;repository-folder&gt;
-<span class="c"># 원본 저장소를 upstream으로 추가</span>
-git remote add upstream &lt;original-repository-url&gt;
-git fetch upstream
-<span class="c"># 작업 후, 내 계정 원격 저장소에 Push</span>
-git push origin &lt;branch-name&gt;
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ol>
+<hr />
 
   
 </article>
@@ -665,7 +522,7 @@ git push origin &lt;branch-name&gt;
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/miscellaneous/2025-03-31-sql-injection/" class="flip-title"><span>[Etc] 💣 SQL Injection</span></a>  <time class="faded fine" datetime="2025-03-31T00:00:00+00:00">31 Mar 2025</time></li>                        <li class="h4">  <a href="/algorithm/2025-03-20-is-prime/" class="flip-title"><span>[Algorithm] 소수 빠르게 찾는 법</span></a>  <time class="faded fine" datetime="2025-03-20T00:00:00+00:00">20 Mar 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-03-17-layered-architecture/" class="flip-title"><span>[Etc] 🤖 Layered Architecture &amp; MVC pattern</span></a>  <time class="faded fine" datetime="2025-03-17T00:00:00+00:00">17 Mar 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/algorithm/2025-03-20-is-prime/" class="flip-title"><span>[Algorithm] 소수 빠르게 찾는 법</span></a>  <time class="faded fine" datetime="2025-03-20T00:00:00+00:00">20 Mar 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-03-17-layered-architecture/" class="flip-title"><span>[Etc] 🤖 Layered Architecture &amp; MVC pattern</span></a>  <time class="faded fine" datetime="2025-03-17T00:00:00+00:00">17 Mar 2025</time></li>                        <li class="h4">  <a href="/java/2025-03-09-concurrency/" class="flip-title"><span>[JAVA] 동시성 처리 (Concurrency)</span></a>  <time class="faded fine" datetime="2025-03-09T00:00:00+00:00">09 Mar 2025</time></li>            </ul></aside>
 
   
 
