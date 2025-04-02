@@ -74,7 +74,7 @@ public class Example {
 | `put()`           | PUT 요청 (응답 없음)                        |
 | `delete()`        | DELETE 요청                                 |
 
-<img src="/Users/nahyun/Documents/Git/gitBlog/nan0silver.github.io/assets/img/blog/2025-04-01-spring-resttemplate.png">
+<img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-04-01-spring-resttemplate.png?raw=true">
 
 ---
 
