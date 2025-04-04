@@ -1,7 +1,325 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-02T02:14:56+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-04T02:17:56+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] RestTemplate</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] RestTemplate" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-02T02:14:12+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-04T02:17:07+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
+  <li><a href="#-resttemplate이란">RestTemplate이란?</a></li>
+</ul>
+
+<hr />
+
+<h2 id="dto-vs-vo-vs-entity">DTO vs VO vs Entity</h2>
+
+<blockquote>
+  <p>Entity는 DB와 매핑되는 핵심 객체, DTO는 데이터 전달용 객체, VO는 값 자체에 의미가 있는 불변 객체
+Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>DTO : Data Transfer Object ➡️ 데이터 전달용 객체 (계층 간, 네트워크 등)</p>
+
+    <ul>
+      <li>🚐 손님에게 배달될 포장된 도시락
+        <ul>
+          <li>음식점 → 배달기사 → 고객까지 전달하는 용도
+            <ul>
+              <li>💡 클라이언트와 데이터 주고받는 운반용 객체! 💡</li>
+            </ul>
+          </li>
+          <li>메뉴명, 수량, 요청사항 등 담겨 있고, 전달 중에 수정될 수도 있음 (상황에 따라 포장을 다르게 담을 수 있다.)</li>
+        </ul>
+      </li>
+      <li>외부에 노출되는 API요청이나 응답은 Entity가 아닌 DTO를 통해 전달함으로써 보안성과 유연성을 확보</li>
+    </ul>
+
+    <blockquote>
+      <p>🔴 DTO는 데이터를 <strong>“옮기는 상자”</strong></p>
+    </blockquote>
+  </li>
+  <li>
+    <p>VO : Value Object ➡️ 값을 표현하는 객체 (의미 있는 불변 값)</p>
+
+    <ul>
+      <li>🍱 도시락 자체
+        <ul>
+          <li>만들어지면 바꿀 수 없음 (불변)</li>
+          <li>메뉴가 같으면 같은 도시락 취급</li>
+          <li>값 자체가 의미 있음 - 예: 좌표, 돈, 날짜, 주소 등</li>
+        </ul>
+      </li>
+    </ul>
+
+    <blockquote>
+      <p>🔴 VO는 의미 있는 값을 담은 <strong>“정체성 있는 객체”</strong></p>
+
+      <blockquote>
+        <p>“무엇을 나타내는 값인지”가 중요한 객체</p>
+      </blockquote>
+    </blockquote>
+  </li>
+  <li>
+    <p>Entity ➡️ 실제 DB 테이블과 연결된 핵심 객체</p>
+
+    <ul>
+      <li>🍱 도시락 안의 구성 요소 (밥, 반찬, 소스 등)
+        <ul>
+          <li>소중하기 때문에 주방 안에서만 써야 함</li>
+        </ul>
+      </li>
+      <li>Entity는 VO를 포함할 수 있음</li>
+      <li>DB와 직접 연결된 객체이기 때문에 식별자가 존재하며 상태가 바뀔 수 있음</li>
+    </ul>
+
+    <blockquote>
+      <p>🔴 Entity는 “누구인지”를 <strong>식별할 수 있는 객체</strong></p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="-dto-vs-vo">📦 DTO vs VO</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>DTO</th>
+      <th>VO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>목적</td>
+      <td><strong>데이터 전달</strong></td>
+      <td><strong>값 표현</strong></td>
+    </tr>
+    <tr>
+      <td>가변성</td>
+      <td><strong>가변(mutable)</strong></td>
+      <td><strong>불변(immutable)</strong></td>
+    </tr>
+    <tr>
+      <td>equals/hashCode 기준</td>
+      <td>주소 (기본)</td>
+      <td><strong>값 기준으로 재정의</strong></td>
+    </tr>
+    <tr>
+      <td>주 사용 위치</td>
+      <td>Controller ↔ Service ↔ API</td>
+      <td>도메인 내부, 로직 내 값 처리</td>
+    </tr>
+    <tr>
+      <td>예시</td>
+      <td>회원 요청 객체, 응답 DTO 등</td>
+      <td>Money, Address, Coordinate 등</td>
+    </tr>
+    <tr>
+      <td>생성 시</td>
+      <td>언제든 생성 가능</td>
+      <td>생성 후에는 값 변경 ❌</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-entity-vs-vo">📦 Entity vs VO</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Entity</th>
+      <th>VO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>의미</td>
+      <td><strong>DB 테이블과 1:1 매핑되는 객체</strong></td>
+      <td><strong>의미 있는 작은 값 단위 객체</strong></td>
+    </tr>
+    <tr>
+      <td>식별자 (ID)</td>
+      <td><strong>있음 (PK, 고유값)</strong></td>
+      <td><strong>없음 (값 자체로 구별)</strong></td>
+    </tr>
+    <tr>
+      <td>불변성</td>
+      <td>보통 가변</td>
+      <td><strong>보통 불변 (<code class="language-plaintext highlighter-rouge">final</code>)</strong></td>
+    </tr>
+    <tr>
+      <td>관리 위치</td>
+      <td>DB와 연결되는 핵심 모델</td>
+      <td>Entity 안의 필드나 계산용 값</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="entity와-dto로-분리해야하는-이유">Entity와 DTO로 분리해야하는 이유</h2>
+
+<blockquote>
+  <p>굳이 클래스를 2개로 나누지 않고 그냥 Entity 하나로 다 처리하면 안 되는 이유!</p>
+</blockquote>
+
+<ul>
+  <li>구체적인 이유 5가지
+    <ol>
+      <li>보안
+        <ul>
+          <li>Entity에는 민감한 필드(비밀번호 등)가 있을 수 있음 ➡️ 그대로 외부에 노출하면 위험</li>
+        </ul>
+      </li>
+      <li>유연성
+        <ul>
+          <li>API 요청/응답마다 필요한 필드가 다름 ➡️ DTO로 맞춤 설계 가능</li>
+        </ul>
+      </li>
+      <li>엔티티 보호
+        <ul>
+          <li>DTO로 외부와 통신 ➡️ Entity는 내부에서만 안전하게 관리</li>
+        </ul>
+      </li>
+      <li>유효성 검사 분리
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">@Valid</code>, <code class="language-plaintext highlighter-rouge">@NotNull</code>등 검증 로직은 DTO에만 적용
+            <blockquote>
+              <p>Entity는 DB와 연결된 순수한 모델이여야 함으로 비즈니스 룰, 요청 유효성 검증 같은 책임이 없어야 한다.</p>
+
+              <blockquote>
+                <p>JPA의 역할은 저장, 조회인데 검증 로직이 섞이면 책임이 뒤엉킴 (SRP(Single Responsibility Principle) 위반)</p>
+              </blockquote>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+      <li>레이어 분리 원칙
+        <ul>
+          <li>Controller ↔ Service ↔ Repository 역할 구분이 명확해짐
+            <blockquote>
+              <p>“Controller” : 클라이언트와 통신 (DTO 입출력)
+“Service” : 비즈니스 로직 (DTO 🔁 Entity 변환, 로직 처리)
+“Repository” : DB 접근 (Entity 전용)</p>
+
+              <blockquote>
+                <p>DTO와 Entity를 나누지 않고 Controller, Service에서 Entity를 직접 다루면</p>
+
+                <ul>
+                  <li>한 객체가 너무 많은 계층을 넘나듬 (의존성 얽힘)</li>
+                  <li>책임이 명확하지 않음 (수정 시 어디를 고쳐야 할지 모름)</li>
+                  <li>보안 이슈 발생 가능 (불필요한 필드 노출)</li>
+                </ul>
+              </blockquote>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="코드-예제">코드 예제</h2>
+
+<h3 id="-dto-값-전달용-가변-객체">✅ DTO (값 전달용, 가변 객체)</h3>
+
+<ul>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemberDTO</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+      <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+      <span class="c1">// 생성자</span>
+      <span class="kd">public</span> <span class="nf">MemberDTO</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+      <span class="o">}</span>
+
+      <span class="c1">// getter &amp; setter (값 변경 가능!)</span>
+      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">name</span><span class="o">;</span> <span class="o">}</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span> <span class="o">}</span>
+
+      <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">age</span><span class="o">;</span> <span class="o">}</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span> <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>setName(), setAge()처럼 값은 변경 가능</li>
+  <li>주로 Controller 🔁 Service 🔁 Client 간 데이터 전달용</li>
+</ul>
+
+<h3 id="-vo-값-표현용-불변-객체">✅ VO (값 표현용, 불변 객체)</h3>
+
+<ul>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Money</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">amount</span><span class="o">;</span>
+
+      <span class="kd">public</span> <span class="nf">Money</span><span class="o">(</span><span class="kt">int</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">amount</span> <span class="o">=</span> <span class="n">amount</span><span class="o">;</span>
+      <span class="o">}</span>
+
+      <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAmount</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">amount</span><span class="o">;</span> <span class="o">}</span>
+
+      <span class="c1">// 값 기반 equals, hashCode</span>
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">o</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+          <span class="k">if</span> <span class="o">(!(</span><span class="n">o</span> <span class="k">instanceof</span> <span class="nc">Money</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+          <span class="nc">Money</span> <span class="n">money</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Money</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span>
+          <span class="k">return</span> <span class="n">amount</span> <span class="o">==</span> <span class="n">money</span><span class="o">.</span><span class="na">amount</span><span class="o">;</span>
+      <span class="o">}</span>
+
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">amount</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>필드가 <code class="language-plaintext highlighter-rouge">final</code>, setter없음 → 불변 객체</li>
+  <li>equals() 재정의 → 값이 같으면 같은 객체로 간주</li>
+  <li>주로 비즈니스 로직 내부에서 의미 있는 값 표현용</li>
+</ul>
+
+<h3 id="-entity">✅ Entity</h3>
+
+<ul>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+    <span class="nd">@Id</span> <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>  <span class="c1">// 노출되면 안 되는 정보</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="-면접-시-설명-예시">💬 면접 시 설명 예시</h2>
+
+<blockquote>
+  <p>“DTO는 계층 간 데이터를 전달할 때 사용하는 객체로, 보통 가변이고 네트워크나 컨트롤러에 노출됩니다. 반면 VO는 불변 객체로, 값 자체가 의미를 가지며 equals와 hashCode를 통해 같은 값을 같다고 간주해 도메인 모델 내에서 활용됩니다. Entity는 DB와 직접 연결된 객체로 식별자가 존재하며 상태가 바뀔 수 있습니다. 외부에 노출되는 API 요청이나 응답은 Entity가 아닌 DTO를 통해 전달함으로써 보안성과 유연성을 확보할 수 있습니다.”</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-java-17부터는-record로-vo를-만들기-더-쉬워짐">🚀 Java 17부터는 <code class="language-plaintext highlighter-rouge">record</code>로 VO를 만들기 더 쉬워짐!</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">record</span> <span class="nf">Coordinate</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">final</code>, 불변성, equals/hashCode 자동 구현!</li>
+  <li><strong>값 객체(VO)</strong>를 표현할 때 <strong>record는 아주 강력한 도구</strong></li>
+</ul>
+
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] RestTemplate</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] RestTemplate" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-04T02:17:07+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
   <li><a href="#-resttemplate이란">RestTemplate이란?</a></li>
   <li><a href="#-필요한-이유">필요한 이유</a></li>
   <li><a href="#️-예시-코드-get-요청">예시 코드 (Get)</a></li>
@@ -256,7 +574,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <td>WebClient를 사용하는 게 <strong>미래지향적</strong></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 💣 SQL Injection</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" rel="alternate" type="text/html" title="[Etc] 💣 SQL Injection" /><published>2025-03-31T00:00:00+00:00</published><updated>2025-04-02T02:14:12+00:00</updated><id>https://nan0silver.github.io/miscellaneous/sql-injection</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 💣 SQL Injection</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" rel="alternate" type="text/html" title="[Etc] 💣 SQL Injection" /><published>2025-03-31T00:00:00+00:00</published><updated>2025-04-04T02:17:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/sql-injection</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"><![CDATA[<ul>
   <li><a href="#sql-injection이란">SQL Injection이란?</a></li>
   <li><a href="#-spring-관점에서-sql-injection-방지법">Spring 관점에서 SQL Injection 방지법</a></li>
   <li><a href="#-spring-배우는-입장에서-조심할-포인트-요약">요약</a></li>
@@ -389,7 +707,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li><strong>ORM(JPA) + 파라미터 바인딩</strong> 방식으로 작성하면 거의 대부분 안전하게 막을 수 있음</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-04-02T02:14:12+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-04-04T02:17:07+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
   <li><a href="#1️⃣-기본-소수-판별-on">기본 소수 판별</a></li>
   <li><a href="#2️⃣-에라토스테네스의-체-on-log-log-n">에라토스테네스의 체</a></li>
   <li><a href="#3️⃣-miller-rabin-소수판별법-olog-n">Miller-Rabin 소수 판별법</a></li>
@@ -547,7 +865,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isPrime</span><span class="o">(</span><span class="mi">1000000008</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span> <span class="c1">// false (합성수)</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-02T02:14:12+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-04T02:17:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
   <li><a href="#레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</a></li>
   <li><a href="#mvc란">MVC란?</a></li>
   <li><a href="#레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</a></li>
@@ -633,7 +951,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 <ul>
   <li>MVC는 역할을 분리하고, 레이어드 아키텍처는 각 계층을 더 체계적으로 조직화하여 유지보수성과 확장성을 높인다</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-02T02:14:12+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-04T02:17:07+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
   <li><a href="#java에서-동시성">JAVA에서 동시성</a></li>
   <li><a href="#스레드-thread">스레드 (Thread)</a></li>
   <li><a href="#비동기-처리-async">비동기 처리 (Aysnc)</a></li>
@@ -804,7 +1122,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <ul>
   <li>Redis, Kafka, 클러스터</li>
   <li>분산처리는 프랜차이즈이다. 큰 가게 하나보다 작은 여러 가게가 효율적이고 비용도 절감된다.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[Etc] 🎞️ Boilerplate</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/" rel="alternate" type="text/html" title="[Etc] 🎞️ Boilerplate" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-04-02T02:14:12+00:00</updated><id>https://nan0silver.github.io/miscellaneous/boiler-plate</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[Etc] 🎞️ Boilerplate</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/" rel="alternate" type="text/html" title="[Etc] 🎞️ Boilerplate" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-04-04T02:17:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/boiler-plate</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/"><![CDATA[<ul>
   <li><a href="#보일러플레이트boilerplate란">보일러플레이트(Boilerplate)란?</a></li>
   <li><a href="#보일러플레이트의-특징">보일러플레이트의 특징</a></li>
   <li><a href="#예제-코드">예제 코드</a></li>
@@ -870,7 +1188,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
         <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">MyApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</title><link href="https://nan0silver.github.io/java/2025-02-25-arraylist-array/" rel="alternate" type="text/html" title="[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교" /><published>2025-02-25T00:00:00+00:00</published><updated>2025-04-02T02:14:12+00:00</updated><id>https://nan0silver.github.io/java/arraylist-array</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-25-arraylist-array/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</title><link href="https://nan0silver.github.io/java/2025-02-25-arraylist-array/" rel="alternate" type="text/html" title="[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교" /><published>2025-02-25T00:00:00+00:00</published><updated>2025-04-04T02:17:07+00:00</updated><id>https://nan0silver.github.io/java/arraylist-array</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-25-arraylist-array/"><![CDATA[<ul>
   <li><a href="#-arraylistinteger는-언제-더-유리할까"><code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code>는 언제 더 유리할까?</a></li>
   <li><a href="#-int-배열이-더-유리한-경우"><code class="language-plaintext highlighter-rouge">int[] 배열</code>이 더 유리한 경우</a></li>
   <li><a href="#-성능-비교-실험-java">성능 비교 실험 (Java)</a></li>
@@ -1163,7 +1481,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <p>즉,<br />
 ✔ <strong>빠른 연산이 필요하면 <code class="language-plaintext highlighter-rouge">int[] 배열</code></strong><br />
 ✔ <strong>동적 크기가 필요하면 <code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code></strong><br />
-✔ <strong>키-값 조회가 많다면 <code class="language-plaintext highlighter-rouge">HashMap&lt;Integer, Integer&gt;</code></strong></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[ArrayList와 배열(int[])의 성능을 비교해보자.]]></summary></entry><entry><title type="html">[JAVA] SOLID 원칙</title><link href="https://nan0silver.github.io/java/2025-02-23-solid/" rel="alternate" type="text/html" title="[JAVA] SOLID 원칙" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-04-02T02:14:12+00:00</updated><id>https://nan0silver.github.io/java/solid</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-23-solid/"><![CDATA[<ul>
+✔ <strong>키-값 조회가 많다면 <code class="language-plaintext highlighter-rouge">HashMap&lt;Integer, Integer&gt;</code></strong></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[ArrayList와 배열(int[])의 성능을 비교해보자.]]></summary></entry><entry><title type="html">[JAVA] SOLID 원칙</title><link href="https://nan0silver.github.io/java/2025-02-23-solid/" rel="alternate" type="text/html" title="[JAVA] SOLID 원칙" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-04-04T02:17:07+00:00</updated><id>https://nan0silver.github.io/java/solid</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-23-solid/"><![CDATA[<ul>
   <li><a href="#1-srp-single-responsibility-principle">1. 단일 책임 원칙</a></li>
   <li><a href="#2-ocp-openclosed-principle">2. 개방-폐쇄 원칙</a></li>
   <li><a href="#3-lsp-liskov-substitution-principle">3. 리스코프 치환 원칙</a></li>
@@ -1323,7 +1641,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
       <li>테스트 용이성</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-04-02T02:14:12+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-04-04T02:17:07+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
   <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
   <li><a href="#2-access-token">Access Token</a></li>
   <li><a href="#3-refresh-token">Refresh Token</a></li>
@@ -1584,292 +1902,4 @@ refresh_token=YOUR_REFRESH_TOKEN
         <span class="k">return</span> <span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] OAuth란?</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/" rel="alternate" type="text/html" title="[Etc] OAuth란?" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-04-02T02:14:12+00:00</updated><id>https://nan0silver.github.io/miscellaneous/OAuth</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-20-OAuth/"><![CDATA[<ul>
-  <li><a href="#1-oauth-개념과-특징">OAuth 개념과 특징</a></li>
-  <li><a href="#2-oauth-10-vs-oauth-20">OAuth 1.0 vs. OAuth 2.0</a></li>
-  <li><a href="#3-oauth-20-상세-동작-방식">OAuth 2.0 상세 동작 방식</a></li>
-  <li><a href="#4-oauth-20-grant-types-인증-방식">OAuth 2.0 Grant Types (인증 방식)</a></li>
-  <li><a href="#5-oauth-20의-주요-용어">OAuth 2.0의 주요 용어</a></li>
-  <li><a href="#6-oauth-20을-실제-코드로-구현">OAuth 2.0을 실제 코드로 구현</a></li>
-  <li><a href="#7-oauth의-장점--단점">OAuth의 장점 &amp; 단점</a></li>
-</ul>
-
-<hr />
-
-<h2 id="oauth란"><strong>OAuth란?</strong></h2>
-
-<blockquote>
-  <p><strong>서드파티 애플리케이션이 사용자 인증 정보를 직접 다루지 않고, 다른 서비스의 인증을 통해 특정 리소스에 접근할 수 있도록 하는 인증 및 권한 부여 프로토콜</strong></p>
-</blockquote>
-
-<ul>
-  <li><strong>“카카오 로그인”, “구글 로그인”, “페이스북 로그인”</strong> 같은 기능이 OAuth를 사용한 대표적인 사례</li>
-</ul>
-
-<hr />
-
-<h2 id="1-oauth-개념과-특징"><strong>1. OAuth 개념과 특징</strong></h2>
-
-<h3 id="-oauth의-핵심-개념">✅ <strong>OAuth의 핵심 개념</strong></h3>
-
-<ul>
-  <li><strong>인증(Authentication)</strong>: 사용자가 누구인지 확인하는 과정</li>
-  <li><strong>권한 부여(Authorization)</strong>: 사용자가 특정 리소스에 대한 액세스를 허용하는 과정</li>
-  <li><strong>토큰 기반 인증</strong>: ID/비밀번호 대신 <strong>Access Token</strong>을 사용하여 API 요청</li>
-  <li><strong>안전한 인증 방식</strong>: 클라이언트가 직접 사용자 계정 정보를 저장하지 않아 보안 강화</li>
-</ul>
-
-<h3 id="-oauth-동작-방식">✅ <strong>OAuth 동작 방식</strong></h3>
-
-<ol>
-  <li>사용자가 서드파티 앱에서 로그인 버튼 클릭</li>
-  <li>OAuth 서버(예: Google, Kakao)가 사용자에게 로그인 페이지 제공</li>
-  <li>사용자가 로그인하고 권한을 승인</li>
-  <li>OAuth 서버가 서드파티 앱에 <strong>Authorization Code</strong> 제공</li>
-  <li>서드파티 앱이 Authorization Code를 사용하여 <strong>Access Token</strong> 요청</li>
-  <li>Access Token을 통해 리소스 서버(API)에 접근하여 데이터 제공</li>
-</ol>
-
-<hr />
-
-<h2 id="2-oauth-10-vs-oauth-20"><strong>2. OAuth 1.0 vs. OAuth 2.0</strong></h2>
-
-<blockquote>
-  <p>OAuth는 <strong>1.0과 2.0 두 가지 버전</strong>이 있으며 현재는 <strong>OAuth 2.0</strong>이 표준.</p>
-</blockquote>
-
-<table>
-  <thead>
-    <tr>
-      <th>특징</th>
-      <th>OAuth 1.0</th>
-      <th>OAuth 2.0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>출시</strong></td>
-      <td>2010년 이전</td>
-      <td>2012년 이후</td>
-    </tr>
-    <tr>
-      <td><strong>보안 방식</strong></td>
-      <td>HMAC-SHA1 서명</td>
-      <td>Bearer Token 방식</td>
-    </tr>
-    <tr>
-      <td><strong>암호화 필수 여부</strong></td>
-      <td>요청마다 암호화 필요</td>
-      <td>HTTPS만 사용하면 됨</td>
-    </tr>
-    <tr>
-      <td><strong>사용성</strong></td>
-      <td>복잡함</td>
-      <td>간단하고 확장성이 좋음</td>
-    </tr>
-    <tr>
-      <td><strong>클라이언트 유형</strong></td>
-      <td>웹 앱 중심</td>
-      <td>모바일, 웹, 서버, IoT 지원</td>
-    </tr>
-    <tr>
-      <td><strong>인증 방식</strong></td>
-      <td>Access Token, Secret Key</td>
-      <td>Access Token, Refresh Token</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>💡 현재 OAuth 2.0을 대부분 사용</p>
-
-<hr />
-
-<h2 id="3-oauth-20-상세-동작-방식"><strong>3. OAuth 2.0 상세 동작 방식</strong></h2>
-
-<h3 id="-oauth-20의-핵심-개념">🔑 <strong>OAuth 2.0의 핵심 개념</strong></h3>
-
-<ul>
-  <li><strong>Authorization Code</strong>: Access Token을 받기 위한 코드</li>
-  <li><strong>Access Token</strong>: API 요청 시 사용하는 인증 키</li>
-  <li><strong>Refresh Token</strong>: Access Token이 만료될 때 새로운 Token을 발급하는 키</li>
-  <li><strong>Redirect URI</strong>: OAuth 서버가 Authorization Code를 전달할 URL</li>
-</ul>
-
-<h3 id="oauth-20-인증-과정"><strong>OAuth 2.0 인증 과정</strong></h3>
-
-<h4 id="1️⃣-사용자-인증--권한-부여-authorization-request">1️⃣ <strong>사용자 인증 &amp; 권한 부여 (Authorization Request)</strong></h4>
-
-<ul>
-  <li>클라이언트가 <strong>OAuth 제공자(Google, Kakao 등)</strong>에게 로그인 요청</li>
-  <li>사용자 로그인 후, 권한 허용 여부를 선택</li>
-</ul>
-
-<h4 id="2️⃣-authorization-code-발급">2️⃣ <strong>Authorization Code 발급</strong></h4>
-
-<ul>
-  <li>사용자가 권한을 허용하면, OAuth 서버가 <strong>Authorization Code</strong>를 클라이언트에게 전달</li>
-</ul>
-
-<h4 id="3️⃣-access-token-발급-token-exchange">3️⃣ <strong>Access Token 발급 (Token Exchange)</strong></h4>
-
-<ul>
-  <li>클라이언트는 Authorization Code를 사용해 <strong>Access Token 요청</strong></li>
-  <li>OAuth 서버가 유효성 검증 후, <strong>Access Token과 Refresh Token 발급</strong></li>
-</ul>
-
-<h4 id="4️⃣-api-요청-resource-access">4️⃣ <strong>API 요청 (Resource Access)</strong></h4>
-
-<ul>
-  <li>클라이언트는 Access Token을 포함하여 API 서버에 요청</li>
-  <li>API 서버는 토큰을 확인한 후 데이터 반환</li>
-</ul>
-
-<h4 id="5️⃣-access-token-갱신-token-refresh">5️⃣ <strong>Access Token 갱신 (Token Refresh)</strong></h4>
-
-<ul>
-  <li>Access Token이 만료되면, Refresh Token을 사용하여 새로운 Access Token 발급</li>
-</ul>
-
-<hr />
-
-<h2 id="4-oauth-20-grant-types-인증-방식"><strong>4. OAuth 2.0 Grant Types (인증 방식)</strong></h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Grant Type</th>
-      <th>설명</th>
-      <th>사용 예시</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Authorization Code</strong></td>
-      <td>보안이 뛰어난 방식으로, 서버를 거쳐 Access Token을 받음</td>
-      <td>웹, 모바일 앱에서 로그인 연동</td>
-    </tr>
-    <tr>
-      <td><strong>Implicit</strong></td>
-      <td>Access Token을 직접 발급 (보안 약함)</td>
-      <td>예전 프론트엔드 앱에서 사용 (현재는 사용 X)</td>
-    </tr>
-    <tr>
-      <td><strong>Resource Owner Password Credentials (ROPC)</strong></td>
-      <td>사용자 ID/PW를 직접 입력받아 Access Token 발급</td>
-      <td>신뢰할 수 있는 앱 (예: 사내 시스템)</td>
-    </tr>
-    <tr>
-      <td><strong>Client Credentials</strong></td>
-      <td>클라이언트(서버) 자체가 인증됨 (사용자 없음)</td>
-      <td>서버 간 API 호출</td>
-    </tr>
-    <tr>
-      <td><strong>Device Code</strong></td>
-      <td>디바이스(스마트 TV 등)에서 로그인</td>
-      <td>TV, IoT 기기</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>💡 <strong>일반적으로 “Authorization Code” 방식이 가장 많이 사용됨</strong>.</p>
-
-<hr />
-
-<h2 id="5-oauth-20의-주요-용어"><strong>5. OAuth 2.0의 주요 용어</strong></h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>용어</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Resource Owner (사용자)</strong></td>
-      <td>API의 데이터를 소유한 사용자</td>
-    </tr>
-    <tr>
-      <td><strong>Client (클라이언트 앱)</strong></td>
-      <td>사용자의 데이터를 요청하는 앱 (예: 서드파티 앱)</td>
-    </tr>
-    <tr>
-      <td><strong>Authorization Server</strong></td>
-      <td>인증을 담당하는 서버 (Google, Kakao 등)</td>
-    </tr>
-    <tr>
-      <td><strong>Resource Server</strong></td>
-      <td>API 요청을 처리하는 서버 (Google API, Kakao API 등)</td>
-    </tr>
-    <tr>
-      <td><strong>Access Token</strong></td>
-      <td>사용자가 인증된 후 API에 접근할 수 있는 키</td>
-    </tr>
-    <tr>
-      <td><strong>Refresh Token</strong></td>
-      <td>Access Token이 만료되었을 때 재발급하는 키</td>
-    </tr>
-    <tr>
-      <td><strong>Redirect URI</strong></td>
-      <td>OAuth 서버가 Authorization Code를 전달하는 URL</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="6-oauth-20을-실제-코드로-구현"><strong>6. OAuth 2.0을 실제 코드로 구현</strong></h2>
-
-<h3 id="1-authorization-code-방식-java"><strong>(1) Authorization Code 방식 (Java)</strong></h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.http.HttpClient</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.http.HttpRequest</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.http.HttpResponse</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OAuthExample</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
-        <span class="c1">// 1. Authorization Code 요청</span>
-        <span class="nc">String</span> <span class="n">clientId</span> <span class="o">=</span> <span class="s">"your-client-id"</span><span class="o">;</span>
-        <span class="nc">String</span> <span class="n">redirectUri</span> <span class="o">=</span> <span class="s">"https://your-app.com/callback"</span><span class="o">;</span>
-        <span class="nc">String</span> <span class="n">authUrl</span> <span class="o">=</span> <span class="s">"https://oauth-provider.com/auth?client_id="</span> <span class="o">+</span> <span class="n">clientId</span> <span class="o">+</span> <span class="s">"&amp;redirect_uri="</span> <span class="o">+</span> <span class="n">redirectUri</span> <span class="o">+</span> <span class="s">"&amp;response_type=code"</span><span class="o">;</span>
-
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Login URL: "</span> <span class="o">+</span> <span class="n">authUrl</span><span class="o">);</span>
-
-        <span class="c1">// 2. Access Token 요청</span>
-        <span class="nc">String</span> <span class="n">authCode</span> <span class="o">=</span> <span class="s">"received-authorization-code"</span><span class="o">;</span>
-        <span class="nc">String</span> <span class="n">tokenUrl</span> <span class="o">=</span> <span class="s">"https://oauth-provider.com/token"</span><span class="o">;</span>
-
-        <span class="nc">HttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="nc">HttpClient</span><span class="o">.</span><span class="na">newHttpClient</span><span class="o">();</span>
-        <span class="nc">HttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">HttpRequest</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">tokenUrl</span><span class="o">))</span>
-            <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/x-www-form-urlencoded"</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">POST</span><span class="o">(</span><span class="nc">HttpRequest</span><span class="o">.</span><span class="na">BodyPublishers</span><span class="o">.</span><span class="na">ofString</span><span class="o">(</span><span class="s">"client_id="</span> <span class="o">+</span> <span class="n">clientId</span> <span class="o">+</span> <span class="s">"&amp;code="</span> <span class="o">+</span> <span class="n">authCode</span> <span class="o">+</span> <span class="s">"&amp;redirect_uri="</span> <span class="o">+</span> <span class="n">redirectUri</span> <span class="o">+</span> <span class="s">"&amp;grant_type=authorization_code"</span><span class="o">))</span>
-            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-
-        <span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="nc">HttpResponse</span><span class="o">.</span><span class="na">BodyHandlers</span><span class="o">.</span><span class="na">ofString</span><span class="o">());</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Access Token Response: "</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">());</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="7-oauth의-장점--단점"><strong>7. OAuth의 장점 &amp; 단점</strong></h2>
-
-<h3 id="-장점">✅ <strong>장점</strong></h3>
-
-<ol>
-  <li><strong>보안성 강화</strong>: ID/PW를 직접 저장하지 않고, Access Token으로 인증</li>
-  <li><strong>편리한 로그인</strong>: Google, Kakao 로그인 등 쉽게 연동 가능</li>
-  <li><strong>API 사용 간편화</strong>: 서드파티 서비스와 연동할 때 필수</li>
-  <li><strong>토큰 만료로 보안 강화</strong>: Access Token이 주기적으로 만료되므로 보안성 향상</li>
-</ol>
-
-<h3 id="-단점">❌ <strong>단점</strong></h3>
-
-<ol>
-  <li><strong>구현이 복잡함</strong>: Access Token, Refresh Token 관리 필요</li>
-  <li><strong>서버 부하 증가</strong>: 토큰 발급 및 검증 과정에서 추가적인 요청 발생</li>
-  <li><strong>Refresh Token 유출 위험</strong>: Refresh Token이 유출되면 악용될 가능성 있음</li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry></feed>
