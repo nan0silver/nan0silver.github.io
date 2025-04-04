@@ -46,7 +46,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="Blog" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-04T02:21:08+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","name":"NAHYUN BLOG","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-04T02:33:36+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","name":"NAHYUN BLOG","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -109,7 +109,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-04T02:21:48+00:00',
+    INDEX_KEY: 'index--2025-04-04T02:34:19+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -455,7 +455,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-04T02:21:08+00:00">2025-04-04</time>
+              <time datetime="2025-04-04T02:33:36+00:00">2025-04-04</time>
             </span>
           
         
@@ -481,7 +481,13 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#-resttemplate이란">RestTemplate이란?</a></li>
+  <li><a href="#dto-vs-vo-vs-entity">DTO vs VO vs Entity</a></li>
+  <li><a href="#-dto-vs-vo">📦 DTO vs VO</a></li>
+  <li><a href="#-entity-vs-vo">📦 Entity vs VO</a></li>
+  <li><a href="#-entity와-dto로-분리해야하는-이유">📦 Entity와 DTO로 분리해야하는 이유</a></li>
+  <li><a href="#코드-예제">코드 예제</a></li>
+  <li><a href="#-면접-시-설명-예시">💬 면접 시 설명 예시</a></li>
+  <li><a href="#-java-17부터는-record로-vo를-만들기-더-쉬워짐">🚀 Java 17부터는 <code class="language-plaintext highlighter-rouge">record</code>로 VO를 만들기 더 쉬워짐!</a></li>
 </ul>
 
 
@@ -527,7 +533,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-04T02:21:08+00:00">2025-04-04</time>
+              <time datetime="2025-04-04T02:33:36+00:00">2025-04-04</time>
             </span>
           
         
@@ -606,7 +612,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-04T02:21:08+00:00">2025-04-04</time>
+              <time datetime="2025-04-04T02:33:36+00:00">2025-04-04</time>
             </span>
           
         
@@ -680,7 +686,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-04T02:21:08+00:00">2025-04-04</time>
+              <time datetime="2025-04-04T02:33:36+00:00">2025-04-04</time>
             </span>
           
         
@@ -754,7 +760,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-04T02:21:08+00:00">2025-04-04</time>
+              <time datetime="2025-04-04T02:33:36+00:00">2025-04-04</time>
             </span>
           
         
@@ -828,7 +834,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-04T02:21:08+00:00">2025-04-04</time>
+              <time datetime="2025-04-04T02:33:36+00:00">2025-04-04</time>
             </span>
           
         
@@ -904,7 +910,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-04T02:21:08+00:00">2025-04-04</time>
+              <time datetime="2025-04-04T02:33:36+00:00">2025-04-04</time>
             </span>
           
         
@@ -978,7 +984,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-04T02:21:08+00:00">2025-04-04</time>
+              <time datetime="2025-04-04T02:33:36+00:00">2025-04-04</time>
             </span>
           
         
@@ -1054,7 +1060,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-04T02:21:08+00:00">2025-04-04</time>
+              <time datetime="2025-04-04T02:33:36+00:00">2025-04-04</time>
             </span>
           
         
@@ -1130,7 +1136,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-04T02:21:08+00:00">2025-04-04</time>
+              <time datetime="2025-04-04T02:33:36+00:00">2025-04-04</time>
             </span>
           
         
