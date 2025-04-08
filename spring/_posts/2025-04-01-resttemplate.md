@@ -1,67 +1,99 @@
 ---
 layout: post
-title: RestTemplate
+title: HttpURLConnection, RestTemplate, WebClient
 description: >
-  Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자.
+  Java 환경에서 사용되는 HTTP 클라이언트인 `HttpURLConnection`, `RestTemplate`, `WebClient`를 비교해보자.
 sitemap: false
 ---
 
-# [Spring] RestTemplate
+# [Spring] `HttpURLConnection`, `RestTemplate`, `WebClient`
 
-- [RestTemplate이란?](#-resttemplate이란)
-- [필요한 이유](#-필요한-이유)
-- [예시 코드 (Get)](#️-예시-코드-get-요청)
-- [주요 메서드들](#-주요-메서드들)
-- [응답을 객체로 받기 (JSON → Java 객체)](#-응답을-객체로-받기-json--java-객체)
-- [`RestTemplate` vs `WebClient` 핵심 비교](#-resttemplate-vs-webclient-핵심-비교)
-- [코드로 비교](#-코드로-비교)
-- [결론: 언제 뭘 쓰면 좋을까?](#-결론-언제-뭘-쓰면-좋을까)
-
----
-
-## ✅ RestTemplate이란?
-
-`RestTemplate`은 **Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트**.
-
-즉, 서버끼리 통신할 때:
-
-- 다른 서버에 요청을 보내고(`GET`, `POST`, `PUT`, `DELETE` 등),
-- 그 응답을 받아서 처리할 수 있도록 도와주는 **도구**
+- [한눈에 보는 비교표](#-먼저-한눈에-보는-비교표)
+- [1. HttpURLConnection](#-1-httpurlconnection--java-기본-클래스)
+- [2. RestTemplate](#-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트)
+- [3. WebClient](#-3-webclient--비동기--논블로킹-방식의-최신-http-클라이언트)
+- [현업 개발자들은 어떻게 생각할까?](#-현업-개발자들은-어떻게-생각할까)
+- [간단 정리](#-간단-정리-)
+- [선택 가이드](#-선택-가이드)
 
 ---
 
-## 🧠 필요한 이유
+## Java 환경에서 사용되는 HTTP 클라이언트인 `HttpURLConnection`, `RestTemplate`, `WebClient` 비교
 
-웹 애플리케이션을 만들다 보면,
+### 🧱 1. `HttpURLConnection` (자바 기본 제공)
 
-- 다른 서버에 있는 데이터를 가져오거나 (예: Kakao Map API, 날씨 API)
-- 다른 서버에 정보를 보내야 할 때
+### 🚗 2. `RestTemplate` (Spring 제공, 동기)
 
-이때 `RestTemplate`이 **HTTP 요청/응답을 대신 처리**해주는 역할을 함.
+### 🛸 3. `WebClient` (Spring WebFlux 제공, 비동기 & 논블로킹)
 
 ---
 
-## ⚙️ 예시 코드 (GET 요청)
+## 📌 먼저, 한눈에 보는 비교표
+
+| 항목      | `HttpURLConnection`        | `RestTemplate`                                      | `WebClient`                          |
+| --------- | -------------------------- | --------------------------------------------------- | ------------------------------------ |
+| 제공      | Java SE 표준               | Spring Web (3.x~)                                   | Spring WebFlux (5.x~)                |
+| 방식      | 동기 + 블로킹              | 동기 + 블로킹                                       | **비동기 + 논블로킹**                |
+| 쓰기 쉬움 | ❌ 불편하고 코드 길다      | ✅ 간결함                                           | ✅ (조금 복잡하지만 유연함)          |
+| 권장도    | ❌ 현업에서 거의 안 씀     | ⚠️ Spring 5부터 비권장                              | ✅ 최신 표준                         |
+| 성능      | 느림, 커넥션 재활용 어려움 | 괜찮음, 단순 요청에는 충분 (블로킹)                 | 고성능 (Netty 기반), MSA에서 더 좋음 |
+| 활용      | Java 기본 네트워크 통신    | 간단한 API 호출                                     | MSA, API Gateway, 대규모 호출 등     |
+| 미래 방향 | -                          | **Deprecated 예정** (Spring 6에서는 제거될 수 있음) | Spring이 권장하는 **표준 방식**      |
+
+---
+
+## ✅ 1. `HttpURLConnection` — Java 기본 클래스
 
 ```java
-import org.springframework.web.client.RestTemplate;
+URL url = new URL("https://api.example.com/data");
+HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+conn.setRequestMethod("GET");
 
-public class Example {
-    public static void main(String[] args) {
-        RestTemplate restTemplate = new RestTemplate();
+BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+String inputLine;
+StringBuilder content = new StringBuilder();
 
-        String url = "https://api.agify.io/?name=seongwoo";  // 이름을 넣으면 예상 나이를 알려주는 무료 API
-        String response = restTemplate.getForObject(url, String.class);
-
-        System.out.println(response);
-        // 출력 예: {"name":"seongwoo","age":27,"count":1123}
-    }
+while ((inputLine = in.readLine()) != null) {
+    content.append(inputLine);
 }
+
+in.close();
+conn.disconnect();
 ```
 
-여기서 `getForObject()`는 `GET` 요청을 보내고, 결과를 `String` 타입으로 받아오는 함수.
+### ❌ 단점
+
+- 코드가 **너무 장황**하고 귀찮음
+- 커넥션 풀도 없음 (직접 관리해야 함)
+- 에러 핸들링이 불편함
+
+### ✅ 장점
+
+- **Spring 없이도 동작** (가벼운 프로젝트, 시험용 앱에 쓸 수 있음)
+
+> 🚨 **실무에선 거의 안 씀. RestTemplate/WebClient로 대체.**
 
 ---
+
+## ✅ 2. `RestTemplate` — 동기 & 블로킹 방식의 Spring HTTP 클라이언트
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+String response = restTemplate.getForObject("https://api.example.com/data", String.class);
+```
+
+→ 응답이 올 때까지 **기다림**. 동기 처리.
+
+### ✅ 장점
+
+- 코드가 아주 **간단함**
+- Spring 기반이라 다양한 옵션 (converter, interceptor 등) 연동 쉬움
+
+### ⚠️ 단점
+
+- **동기 + 블로킹**이라, 요청 수가 많으면 쓰레드 고갈 위험
+- Spring 5 이후로 **점점 사용 비권장됨**
+  > 📢 Spring 공식 문서: _"RestTemplate은 더 이상 발전하지 않으며, WebClient 사용을 권장함."_
 
 ## 🔧 주요 메서드들
 
@@ -78,111 +110,54 @@ public class Example {
 
 ---
 
-## 📦 응답을 객체로 받기 (JSON → Java 객체)
+## ✅ 3. `WebClient` — 비동기 & 논블로킹 방식의 최신 HTTP 클라이언트
 
 ```java
-public class AgifyResponse {
-    private String name;
-    private int age;
-    private int count;
-
-    // 꼭! Getter/Setter 만들어줘야 함 (Lombok 써도 됨)
-}
-```
-
-```java
-RestTemplate restTemplate = new RestTemplate();
-String url = "https://api.agify.io/?name=seongwoo";
-
-AgifyResponse response = restTemplate.getForObject(url, AgifyResponse.class);
-
-System.out.println(response.getAge());  // 예: 27
-```
-
-→ JSON 데이터를 Java 객체로 자동으로 바꿔줌! (`Jackson` 같은 라이브러리를 내부에서 사용함)
-
----
-
-## 💡 RestTemplate 특징 요약
-
-- 동기 방식이다 (요청을 보내고 응답 올 때까지 기다림)
-- 간단한 API 호출엔 유용하지만, **요즘은 WebClient 사용이 증가** (비동기 처리, reactive 프로그래밍에 적합)
-- Spring 5 이후로는 `RestTemplate`은 **점점 deprecated 방향**이지만, 여전히 많이 사용됨
-
----
-
-## 🆚 `RestTemplate` vs `WebClient` 핵심 비교
-
-| 항목        | RestTemplate                                        | WebClient                                     |
-| ----------- | --------------------------------------------------- | --------------------------------------------- |
-| 방식        | **동기(Synchronous)**                               | **비동기(Asynchronous)** (동기도 가능)        |
-| 등장 시기   | 오래됨 (Spring 3.x부터)                             | 최신 (Spring 5, WebFlux부터 등장)             |
-| 쓰레드 처리 | 요청 → 응답 올 때까지 **쓰레드 점유**               | 응답 기다리는 동안 **쓰레드 반환**, 더 효율적 |
-| 성능        | 단순 요청에는 충분                                  | 고성능 시스템, MSA에서 더 좋음                |
-| 사용성      | 코드가 간단하고 직관적                              | 비동기라 처음엔 약간 복잡할 수 있음           |
-| 미래 방향   | **Deprecated 예정** (Spring 6에서는 제거될 수 있음) | Spring이 권장하는 **표준 방식**               |
-
----
-
-## 🔧 코드로 비교
-
-### 1️⃣ RestTemplate 예시 (동기)
-
-```java
-RestTemplate restTemplate = new RestTemplate();
-String url = "https://api.agify.io/?name=seongwoo";
-
-String result = restTemplate.getForObject(url, String.class);
-System.out.println(result);
-```
-
-→ 응답이 올 때까지 **기다림**. 동기 처리.
-
----
-
-### 2️⃣ WebClient 예시 (비동기 + 동기화 처리 가능)
-
-```java
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
-
 WebClient webClient = WebClient.create();
-String url = "https://api.agify.io/?name=seongwoo";
-
-// 비동기 방식 → block()을 붙이면 동기처럼 동작
-String result = webClient.get()
-        .uri(url)
-        .retrieve()
-        .bodyToMono(String.class)
-        .block();  // 이게 바로 응답 받을 때까지 기다리는 코드 (동기화)
-
-System.out.println(result);
-```
-
-→ WebClient는 원래 비동기지만, `.block()`을 붙이면 동기처럼 사용할 수도 있음.
-
----
-
-## 💬 비동기 방식으로 진짜 쓰고 싶다면?
-
-```java
 webClient.get()
-    .uri(url)
+    .uri("https://api.example.com/data")
     .retrieve()
     .bodyToMono(String.class)
-    .subscribe(result -> {
-        System.out.println("결과: " + result);
-    });
+    .subscribe(result -> System.out.println("결과: " + result));
 
 System.out.println("여긴 먼저 실행됨!");  // 비동기니까 이게 먼저 출력될 수도 있음
 ```
 
+### ✅ 장점
+
+- **논블로킹 + 비동기** 처리
+- 대규모 트래픽 처리에 유리
+- 기능 확장도 쉬움 (OAuth2, Retry, Timeout 등)
+
+### ❗ 단점
+
+- 처음 배울 땐 리액티브 스트림(Mono/Flux)이 좀 낯설 수 있음
+
+> 🌐 **현업에서는 WebClient가 기본**이 되고 있어! 특히 MSA(마이크로서비스) 환경에서는 거의 필수!
+
 ---
 
-## ✅ 결론: 언제 뭘 쓰면 좋을까?
+## 🔍 현업 개발자들은 어떻게 생각할까?
 
-| 상황                                                 | 추천                                   |
-| ---------------------------------------------------- | -------------------------------------- |
-| 간단한 테스트, 외부 API 한두 번 호출할 때            | RestTemplate (빠르게 개발 가능)        |
-| 마이크로서비스 간 통신, 대용량 처리, reactive 시스템 | WebClient (성능과 확장성 좋음)         |
-| Spring 5 이상 + 새로운 프로젝트                      | WebClient를 사용하는 게 **미래지향적** |
+- "`HttpURLConnection`은 진짜로 아무것도 없을 때 테스트용으로만 씀"
+- "`RestTemplate`은 작고 단순한 서비스에서는 아직도 많이 씀"
+- "`WebClient`는 대규모 시스템이나 MSA, API Gateway에서 표준처럼 쓰이고 있음"
+
+---
+
+## 🧑‍💻 간단 정리 :
+
+> “HttpURLConnection은 Java에서 기본 제공하는 HTTP 클라이언트지만, 코드가 장황하고 관리가 어렵기 때문에 Spring에서는 RestTemplate이나 WebClient를 사용합니다. RestTemplate은 동기 방식으로 간단한 API 호출에는 적합하지만, Spring 5부터는 WebClient처럼 비동기 + 논블로킹 방식을 사용하는 것이 대세입니다.”
+
+---
+
+## 🎁 선택 가이드
+
+| 사용 상황                          | 추천 방식                                 |
+| ---------------------------------- | ----------------------------------------- |
+| 가볍게 테스트용 API 호출           | `RestTemplate` or `WebClient.block()`     |
+| 복잡한 서비스 간 통신, 고성능 서버 | `WebClient`                               |
+| Java만 사용하는 초간단 도구 개발   | `HttpURLConnection` (단, 실무에는 비권장) |
+| Spring 5 이상 + 새로운 프로젝트    | WebClient를 사용하는 게 **미래지향적**    |
+
+---
