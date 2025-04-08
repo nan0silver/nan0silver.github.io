@@ -82,6 +82,19 @@
     </url>
     
     <url>
+        <loc>https://nan0silver.github.io/java/2025-03-09-record/</loc>
+        
+        <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+        
+        
+        <changefreq>weekly</changefreq>
+        
+        
+        <priority>0.5</priority>
+        
+    </url>
+    
+    <url>
         <loc>https://nan0silver.github.io/java/2025-03-09-concurrency/</loc>
         
         <lastmod>2025-03-09T00:00:00+00:00</lastmod>

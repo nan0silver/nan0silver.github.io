@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[JAVA] record | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[JAVA] record" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자." />
+<meta property="og:description" content="Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자." />
+<link rel="canonical" href="https://nan0silver.github.io/java/2025-03-09-record/" />
+<meta property="og:url" content="https://nan0silver.github.io/java/2025-03-09-record/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-03-09T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[JAVA] record" />
+<meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T08:53:56+00:00","datePublished":"2025-03-09T00:00:00+00:00","description":"Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자.","headline":"[JAVA] record","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2025-03-09-record/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/java/2025-03-09-record/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="NAHYUN BLOG">
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+
+<link rel="alternate" href="https://nan0silver.github.io/java/2025-03-09-record/" hreflang="ko-kr, en-us">
+
+<link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+
+
+
+
+<script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-04-08T08:54:38+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/java/">java</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-03-09-record</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-java-record" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [JAVA] record
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-03-09T00:00:00+00:00">09 Mar 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#-record란-java-14">record란?</a></li>
+  <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
+  <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
+  <li><a href="#3️⃣-record의-내부-동작">record 내부 동작</a></li>
+  <li><a href="#4️⃣-record의-주요-기능">record 주요 기능</a></li>
+  <li><a href="#5️⃣-record를-언제-사용할까">record 사용 방법</a></li>
+  <li><a href="#6️⃣-정리">정리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="-record란-java-14"><strong>✅ <code class="language-plaintext highlighter-rouge">record</code>란? (Java 14+)</strong></h2>
+
+<p><code class="language-plaintext highlighter-rouge">record</code>는 <strong>Java 14부터 도입된 새로운 클래스 유형</strong>으로, <strong>불변(immutable)한 데이터 객체를 간결하게 표현</strong>할 수 있도록 설계되었습니다.</p>
+
+<p>👉 기존의 <strong>DTO(Data Transfer Object)</strong>, <strong>VO(Value Object)</strong> 등을 만들 때 <strong>코드를 대폭 줄여줍니다.</strong></p>
+
+<hr />
+
+<h2 id="1️⃣-record의-특징"><strong>1️⃣ <code class="language-plaintext highlighter-rouge">record</code>의 특징</strong></h2>
+
+<ol>
+  <li><strong>자동으로 생성자, <code class="language-plaintext highlighter-rouge">getter</code>, <code class="language-plaintext highlighter-rouge">toString()</code>, <code class="language-plaintext highlighter-rouge">equals()</code>, <code class="language-plaintext highlighter-rouge">hashCode()</code> 제공</strong></li>
+  <li><strong>불변 객체 (Immutable)</strong></li>
+  <li><strong>Java의 일반적인 클래스처럼 사용 가능</strong></li>
+  <li><strong>Compact Constructor(압축된 생성자) 지원</strong></li>
+  <li><strong>상속 불가능 (<code class="language-plaintext highlighter-rouge">final</code> 클래스처럼 동작)</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="2️⃣-기존-클래스-vs-record-비교"><strong>2️⃣ 기존 클래스 vs <code class="language-plaintext highlighter-rouge">record</code> 비교</strong></h2>
+
+<h3 id="-기존-방식-java-클래스로-dto-만들기"><strong>🔹 기존 방식: Java 클래스로 DTO 만들기</strong></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Person</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">name</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">age</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Person{name='"</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">"', age="</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="s">"}"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">o</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">o</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">getClass</span><span class="o">()</span> <span class="o">!=</span> <span class="n">o</span><span class="o">.</span><span class="na">getClass</span><span class="o">())</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Person</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">age</span> <span class="o">==</span> <span class="n">person</span><span class="o">.</span><span class="na">age</span> <span class="o">&amp;&amp;</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">hash</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">getter</code>, <code class="language-plaintext highlighter-rouge">toString()</code>, <code class="language-plaintext highlighter-rouge">equals()</code>, <code class="language-plaintext highlighter-rouge">hashCode()</code>를 직접 구현해야 해서 <strong>코드가 길어짐</strong>.</li>
+</ul>
+
+<hr />
+
+<h3 id="-record를-사용한-간단한-구현"><strong>🔹 <code class="language-plaintext highlighter-rouge">record</code>를 사용한 간단한 구현</strong></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">record</span> <span class="nf">Person</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위처럼 <strong>한 줄만 작성하면 동일한 기능을 제공</strong>함!</li>
+  <li>자동으로 <code class="language-plaintext highlighter-rouge">getter</code>, <code class="language-plaintext highlighter-rouge">toString()</code>, <code class="language-plaintext highlighter-rouge">equals()</code>, <code class="language-plaintext highlighter-rouge">hashCode()</code>가 생성됨.</li>
+</ul>
+
+<hr />
+
+<h2 id="3️⃣-record의-내부-동작"><strong>3️⃣ <code class="language-plaintext highlighter-rouge">record</code>의 내부 동작</strong></h2>
+
+<p>위의 <code class="language-plaintext highlighter-rouge">record Person(String name, int age)</code>는 <strong>자동으로 다음과 같이 동작</strong>합니다:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Person</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 생성자 자동 생성</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">name</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">name</span><span class="o">;</span> <span class="o">}</span> <span class="c1">// getter 자동 생성</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">age</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">age</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span> <span class="cm">/* 자동 생성 */</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span> <span class="cm">/* 자동 생성 */</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Person[name="</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">", age="</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="s">"]"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>💡 <strong>이름이 <code class="language-plaintext highlighter-rouge">getName()</code>이 아니라 <code class="language-plaintext highlighter-rouge">name()</code>인 점이 특징!</strong></p>
+
+<hr />
+
+<h2 id="4️⃣-record의-주요-기능"><strong>4️⃣ <code class="language-plaintext highlighter-rouge">record</code>의 주요 기능</strong></h2>
+
+<h3 id="-1-기본-사용"><strong>✅ 1. 기본 사용</strong></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">record</span> <span class="nf">Person</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Person</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Alice"</span><span class="o">,</span> <span class="mi">25</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">name</span><span class="o">());</span>  <span class="c1">// Alice (getter)</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">age</span><span class="o">());</span>   <span class="c1">// 25 (getter)</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>         <span class="c1">// Person[name=Alice, age=25]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">name()</code>과 <code class="language-plaintext highlighter-rouge">age()</code>가 <strong>getter 역할을 함</strong> (<code class="language-plaintext highlighter-rouge">getName()</code>이 아님)</li>
+  <li><code class="language-plaintext highlighter-rouge">toString()</code>이 자동 생성됨 → <code class="language-plaintext highlighter-rouge">Person[name=Alice, age=25]</code></li>
+</ul>
+
+<hr />
+
+<h3 id="-2-compact-constructor-압축된-생성자"><strong>✅ 2. Compact Constructor (압축된 생성자)</strong></h3>
+
+<ul>
+  <li>기본적으로 <code class="language-plaintext highlighter-rouge">record</code>는 <strong>모든 필드가 자동 초기화</strong>되지만, 추가 검증 로직을 넣을 수도 있음.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">record</span> <span class="nf">Person</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">Person</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">age</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"나이는 0 이상이어야 합니다."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위처럼 생성자에서 유효성 검사를 추가 가능.</li>
+</ul>
+
+<hr />
+
+<h3 id="-3-메서드-추가-가능"><strong>✅ 3. 메서드 추가 가능</strong></h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">record</code>도 일반적인 클래스처럼 <strong>메서드를 추가할 수 있음</strong>.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">record</span> <span class="nf">Circle</span><span class="o">(</span><span class="kt">double</span> <span class="n">radius</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">area</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Circle</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Circle</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"원의 넓이: "</span> <span class="o">+</span> <span class="n">c</span><span class="o">.</span><span class="na">area</span><span class="o">());</span>  <span class="c1">// 원의 넓이: 78.5398...</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">record</code>는 단순히 데이터를 저장하는 역할이지만, <strong>관련 메서드를 추가하는 것도 가능</strong>.</li>
+</ul>
+
+<hr />
+
+<h3 id="-4-상속-불가능-final-클래스처럼-동작"><strong>✅ 4. 상속 불가능 (<code class="language-plaintext highlighter-rouge">final</code> 클래스처럼 동작)</strong></h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">record</code>는 자동으로 <code class="language-plaintext highlighter-rouge">final</code>로 선언되므로 <strong>상속이 불가능</strong>함.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">record</span> <span class="nf">Parent</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{}</span>
+
+<span class="c1">// 오류: record는 상속할 수 없음</span>
+<span class="kd">class</span> <span class="nc">Child</span> <span class="kd">extends</span> <span class="nc">Parent</span> <span class="o">{}</span>  <span class="c1">// ❌ 컴파일 오류</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5️⃣-record를-언제-사용할까"><strong>5️⃣ <code class="language-plaintext highlighter-rouge">record</code>를 언제 사용할까?</strong></h2>
+
+<p>✅ <strong>불변 객체(Immutable Object)가 필요할 때</strong><br />
+✅ <strong>DTO, VO (Data Transfer Object, Value Object)를 만들 때</strong><br />
+✅ <strong>간단한 데이터 저장용 클래스가 필요할 때</strong><br />
+✅ <strong>불필요한 <code class="language-plaintext highlighter-rouge">getter</code>, <code class="language-plaintext highlighter-rouge">toString()</code>, <code class="language-plaintext highlighter-rouge">equals()</code> 코드 작성을 줄이고 싶을 때</strong></p>
+
+<p>❌ <strong>상속을 해야 하는 경우에는 <code class="language-plaintext highlighter-rouge">record</code>를 사용할 수 없음</strong><br />
+❌ <strong>데이터 변경이 필요한 경우 (Mutable Object)는 <code class="language-plaintext highlighter-rouge">record</code>보다 일반 클래스를 사용</strong></p>
+
+<hr />
+
+<h2 id="6️⃣-정리"><strong>6️⃣ 정리</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>특징</th>
+      <th>일반 클래스</th>
+      <th><code class="language-plaintext highlighter-rouge">record</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>코드 길이</td>
+      <td>길다 (필드, 생성자, <code class="language-plaintext highlighter-rouge">getter</code>, <code class="language-plaintext highlighter-rouge">toString()</code>, <code class="language-plaintext highlighter-rouge">equals()</code>, <code class="language-plaintext highlighter-rouge">hashCode()</code>)</td>
+      <td>짧다 (한 줄로 가능)</td>
+    </tr>
+    <tr>
+      <td>불변성(Immutable)</td>
+      <td>X (<code class="language-plaintext highlighter-rouge">final</code> 필드 필요)</td>
+      <td>✅ 기본적으로 불변</td>
+    </tr>
+    <tr>
+      <td>자동 생성</td>
+      <td>X (수동으로 작성해야 함)</td>
+      <td>✅ 생성자, <code class="language-plaintext highlighter-rouge">getter</code>, <code class="language-plaintext highlighter-rouge">toString()</code> 자동 생성</td>
+    </tr>
+    <tr>
+      <td>상속 가능 여부</td>
+      <td>✅ 가능</td>
+      <td>❌ 불가능 (<code class="language-plaintext highlighter-rouge">final</code> 클래스처럼 동작)</td>
+    </tr>
+    <tr>
+      <td>데이터 변경</td>
+      <td>가능 (setter 추가 가능)</td>
+      <td>❌ 변경 불가능</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="-결론-record를-사용하면-불변-객체를-쉽게-만들-수-있으며-dto나-vo-같은-데이터-클래스를-훨씬-간결하게-표현할-수-있다-">🚀 <strong>결론: <code class="language-plaintext highlighter-rouge">record</code>를 사용하면 불변 객체를 쉽게 만들 수 있으며, DTO나 VO 같은 데이터 클래스를 훨씬 간결하게 표현할 수 있다!</strong> 🚀</h3>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/spring/2025-04-05-jpa-mybatis/" class="flip-title"><span>[Spring] JPA vs MyBatis</span></a>  <time class="faded fine" datetime="2025-04-05T00:00:00+00:00">05 Apr 2025</time></li>                        <li class="h4">  <a href="/spring/2025-04-02-dto-vo/" class="flip-title"><span>[Spring] DTO vs VO vs Entity</span></a>  <time class="faded fine" datetime="2025-04-02T00:00:00+00:00">02 Apr 2025</time></li>                        <li class="h4">  <a href="/spring/2025-04-01-resttemplate/" class="flip-title"><span>[Spring] RestTemplate</span></a>  <time class="faded fine" datetime="2025-04-01T00:00:00+00:00">01 Apr 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flutter/"
+          class="sidebar-nav-item "
+          
+        >
+          Flutter (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (10)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/aws/"
+          class="sidebar-nav-item "
+          
+        >
+          aws (1)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (11)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnan0silver.github.io&count_bg=%23E786D8&title_bg=%237624DD&icon=waze.svg&icon_color=%23E7E7E7&title=%EC%A1%B0%ED%9A%8C%EC%88%98&edge_flat=false" alt="조회수 배치" width="120" height="20" loading="lazy"/></a>
+  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

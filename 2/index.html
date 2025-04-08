@@ -47,7 +47,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="Blog" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T08:20:22+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T08:53:56+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -110,7 +110,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-08T08:21:07+00:00',
+    INDEX_KEY: 'index--2025-04-08T08:54:38+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -443,6 +443,82 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
+<article id="post-java-arraylist-array" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/java/2025-02-25-arraylist-array/" class="flip-title">
+        [JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-02-25T00:00:00+00:00">25 Feb 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      ArrayList와 배열(int[])의 성능을 비교해보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#-arraylistinteger는-언제-더-유리할까"><code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code>는 언제 더 유리할까?</a></li>
+  <li><a href="#-int-배열이-더-유리한-경우"><code class="language-plaintext highlighter-rouge">int[] 배열</code>이 더 유리한 경우</a></li>
+  <li><a href="#-성능-비교-실험-java">성능 비교 실험 (Java)</a></li>
+  <li><a href="#-결론-언제-arraylist를-쓰고-언제-배열int을-써야-할까">결론: 언제 <code class="language-plaintext highlighter-rouge">ArrayList</code>를 쓰고, 언제 <code class="language-plaintext highlighter-rouge">배열(int[])</code>을 써야 할까?</a></li>
+  <li><a href="#추가--hashmapinteger-integer와의-성능-비교">추가 : HashMap&lt;Integer, Integer&gt;와의 성능 비교</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/java/2025-02-25-arraylist-array/">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-java-solid" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -466,7 +542,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T08:20:22+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
             </span>
           
         
@@ -542,7 +618,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T08:20:22+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
             </span>
           
         
@@ -621,7 +697,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T08:20:22+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
             </span>
           
         
@@ -699,7 +775,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T08:20:22+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
             </span>
           
         
@@ -774,7 +850,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T08:20:22+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
             </span>
           
         
@@ -853,7 +929,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T08:20:22+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
             </span>
           
         
@@ -928,7 +1004,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T08:20:22+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
             </span>
           
         
@@ -1004,7 +1080,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T08:20:22+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
             </span>
           
         
@@ -1079,7 +1155,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T08:20:22+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
             </span>
           
         
@@ -1117,85 +1193,6 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/java/2025-01-29-generic/">[JAVA] Generic</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-miscellaneous-tdd" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-01-28-tdd/" class="flip-title">
-        [Etc] TDD (Test-Driven Development, 테스트 주도 개발)
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-01-28T00:00:00+00:00">28 Jan 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-04-08T08:20:22+00:00">2025-04-08</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      TDD (Test-Driven Development)에 대해 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
-  <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
-  <li><a href="#tdd의-장점">TDD의 장점</a></li>
-  <li><a href="#tdd-예제-java">TDD 예제 (Java)</a></li>
-  <li><a href="#tdd-vs-전통적인-개발-방식">TDD VS 전통적인 개발 방식</a></li>
-  <li><a href="#tdd가-필요한-경우">TDD가 필요한 경우</a></li>
-  <li><a href="#tdd의-단점">TDD의 단점</a></li>
-  <li><a href="#xunit">xUnit</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-01-28-tdd/">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</a>
 
       </p>
     </footer>
