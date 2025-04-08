@@ -7,9 +7,17 @@ description: >
 sitemap: false
 ---
 
-# [Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)
+# [Spring] JPA vs MyBatis
 
-- [스프링 콘셉트](#스프링-콘셉트)
+- [JPA란?](#-jpa란-java-persistence-api)
+- [MyBatis란?](#-mybatis란)
+- [🔍 JPA vs MyBatis](#-jpa-vs-mybatis)
+- [JPA vs MyBatis 비유로 이해하기](#jpa-vs-mybatis-비유로-이해하기)
+- [JPA vs MyBatis 코드로 비교하기](#-jpa-vs-mybatis-코드로-비교하기)
+- [사용 방식 차이 요약](#-사용-방식-차이-요약)
+- [장단점 비교](#-장단점-비교)
+- [실무에 쓰는 방법](#-실무에-쓰는-방법)
+- [한줄 정리](#-한줄-정리)
 
 ---
 
