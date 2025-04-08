@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[JAVA] SOLID 원칙 | NAHYUN BLOG</title>
+<title>[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA) | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[JAVA] SOLID 원칙" />
+<meta property="og:title" content="[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자." />
-<meta property="og:description" content="유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자." />
-<link rel="canonical" href="https://nan0silver.github.io/java/2025-02-23-solid/" />
-<meta property="og:url" content="https://nan0silver.github.io/java/2025-02-23-solid/" />
+<meta name="description" content="스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다." />
+<meta property="og:description" content="스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다." />
+<link rel="canonical" href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" />
+<meta property="og:url" content="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-02-23T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-04-05T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[JAVA] SOLID 원칙" />
+<meta property="twitter:title" content="[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T05:39:39+00:00","datePublished":"2025-02-23T00:00:00+00:00","description":"유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.","headline":"[JAVA] SOLID 원칙","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2025-02-23-solid/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/java/2025-02-23-solid/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T05:39:39+00:00","datePublished":"2025-04-05T00:00:00+00:00","description":"스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.","headline":"[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/java/2025-02-23-solid/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/java/">java</a>
+          <a href="/spring/">spring</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-02-23-solid</span>
+          <span>2025-04-05-jpa-mybatis</span>
         
       </li>
     
@@ -222,18 +222,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-java-solid" class="page post mb6" role="article">
+<article id="post-spring-jpa-mybatis" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [JAVA] SOLID 원칙
+        [Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-23T00:00:00+00:00">23 Feb 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+        <time datetime="2025-04-05T00:00:00+00:00">05 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
       </span>
       
         
@@ -261,7 +261,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.
+      스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.
 
     </p>
   
@@ -271,166 +271,349 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#1-srp-single-responsibility-principle">1. 단일 책임 원칙</a></li>
-  <li><a href="#2-ocp-openclosed-principle">2. 개방-폐쇄 원칙</a></li>
-  <li><a href="#3-lsp-liskov-substitution-principle">3. 리스코프 치환 원칙</a></li>
-  <li><a href="#4-isp-interface-segregation-principle">4. 인터페이스 분리 원칙</a></li>
-  <li><a href="#5-dip-dependency-inversion-principle">5. 의존성 역전 원칙</a></li>
+  <li><a href="#스프링-콘셉트">스프링 콘셉트</a></li>
 </ul>
 
 <hr />
 
-<h2 id="solid-원칙">SOLID 원칙</h2>
+<h2 id="-jpa란-java-persistence-api">📌 JPA란? (Java Persistence API)</h2>
 
 <ul>
-  <li>객체지향 프로그래밍(OOP)에서 SOLID 원칙이란, 유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙</li>
-  <li>각각의 원칙의 첫글자를 따서 만든 약자.</li>
-  <li><img src="https://raw.githubusercontent.com/nan0silver/nan0silver.github.io/3820f9cfa16c85c0487a9fd198d804a6f957a658/assets/img/blog/2025-02-23-solid.svg" alt="solid 원칙" /></li>
+  <li><strong>자바에서 관계형 데이터베이스(RDB)를 객체로 다룰 수 있게 해주는 표준 API</strong>.</li>
+  <li>SQL을 직접 작성하지 않아도 객체처럼 DB 데이터를 저장/조회/수정/삭제 가능.</li>
+  <li>구현체 중 가장 유명한 것은 <strong>Hibernate</strong>고, Spring에서 주로 이걸 씀.</li>
 </ul>
 
-<h2 id="1-srp-single-responsibility-principle"><strong>1. SRP (Single Responsibility Principle)</strong></h2>
+<hr />
+
+<h2 id="jpa-핵심-용어">JPA 핵심 용어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Entity</strong></td>
+      <td>DB 테이블과 매핑되는 자바 클래스</td>
+    </tr>
+    <tr>
+      <td><strong>EntityManager</strong></td>
+      <td>JPA의 핵심! DB와 객체 사이의 작업을 처리하는 도구</td>
+    </tr>
+    <tr>
+      <td><strong>Persistence Context (영속성 컨텍스트)</strong></td>
+      <td>엔티티를 관리하는 JPA 내부 메모리 공간</td>
+    </tr>
+    <tr>
+      <td><strong>JPQL (Java Persistence Query Language)</strong></td>
+      <td>객체 지향 쿼리 언어. SQL과 유사하지만, 테이블이 아닌 클래스/필드 단위로 작동</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-mybatis란">📌 MyBatis란?</h2>
+
+<ul>
+  <li><strong>자바에서 SQL을 직접 작성해서 데이터베이스와 통신할 수 있게 해주는 프레임워크.</strong></li>
+  <li>SQL 중심의 프로그래밍이 가능하고, <strong>복잡하고 세밀한 쿼리 제어</strong>에 유리함.</li>
+  <li>XML 또는 어노테이션 기반으로 SQL을 작성하고, <strong>쿼리 결과를 자바 객체와 매핑</strong>해줌.</li>
+  <li><strong>Spring과도 쉽게 통합 가능</strong>하며, 실무에서는 여전히 널리 사용됨.</li>
+</ul>
+
+<hr />
+
+<h2 id="mybatis-핵심-용어">MyBatis 핵심 용어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Mapper 인터페이스</strong></td>
+      <td>SQL 문장을 호출하는 자바 인터페이스. XML과 1:1 매칭되어 동작함</td>
+    </tr>
+    <tr>
+      <td><strong>Mapper XML</strong></td>
+      <td>실제 SQL이 작성되는 파일. <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;insert&gt;</code> 등 태그로 구성됨</td>
+    </tr>
+    <tr>
+      <td><strong>SqlSession</strong></td>
+      <td>DB 연결과 SQL 실행을 담당하는 핵심 객체 (JDBC의 Connection 역할)</td>
+    </tr>
+    <tr>
+      <td><strong>ResultMap</strong></td>
+      <td>쿼리 결과를 자바 객체에 <strong>정밀하게 매핑</strong>할 때 사용하는 설정</td>
+    </tr>
+    <tr>
+      <td><strong>#{} / ${}</strong></td>
+      <td>SQL 파라미터 바인딩 방식. <code class="language-plaintext highlighter-rouge">#{}</code>는 안전한 바인딩, <code class="language-plaintext highlighter-rouge">${}</code>는 SQL 인젝션 주의</td>
+    </tr>
+    <tr>
+      <td><strong>TypeAlias</strong></td>
+      <td>자바 클래스의 이름을 짧게 별칭으로 사용할 수 있도록 하는 기능</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-jpa-vs-mybatis">🔍 JPA vs MyBatis</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>JPA</th>
+      <th>MyBatis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>개발 방식</td>
+      <td><strong>자동 매핑</strong> (객체 중심)</td>
+      <td><strong>수동 매핑</strong> (SQL 중심)</td>
+    </tr>
+    <tr>
+      <td>핵심 개념</td>
+      <td>객체를 DB에 자동 매핑</td>
+      <td>직접 SQL 작성 + 매핑</td>
+    </tr>
+    <tr>
+      <td>학습 곡선</td>
+      <td>좀 더 높음 (추상화 많음)</td>
+      <td>비교적 쉬움 (SQL 그대로 작성)</td>
+    </tr>
+    <tr>
+      <td>유연성</td>
+      <td>추상화 많아 덜 유연함</td>
+      <td>SQL 작성 자유로움</td>
+    </tr>
+    <tr>
+      <td>성능 제어</td>
+      <td>ORM에 맡김 (튜닝 어려움)</td>
+      <td>직접 SQL 작성으로 제어 쉬움</td>
+    </tr>
+    <tr>
+      <td>대표 도구</td>
+      <td>Hibernate (JPA 구현체)</td>
+      <td>MyBatis 프레임워크</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="jpa-vs-mybatis-비유로-이해하기">JPA vs MyBatis 비유로 이해하기</h2>
+
+<h3 id="️-jpa--자동세탁기-">☝️ JPA = 자동세탁기 👕</h3>
+
+<ul>
+  <li><strong>세탁기 안에 옷(객체)</strong>을 넣으면<br />
+→ 알아서 물(쿼리) 넣고, 빨고, 말리고<br />
+→ 깨끗한 결과(조회된 객체)를 자동으로 꺼내줌!</li>
+</ul>
 
 <blockquote>
-  <p>🔴 단일 책임 원칙</p>
+  <p>→ 개발자는 <strong>“옷만 넣고 결과만 받으면 됨”</strong><br />
+→ 단, 세탁 방식은 기계가 알아서 함 (튜닝 어려움)</p>
 </blockquote>
 
-<ul>
-  <li>정의
-    <ul>
-      <li>하나의 클래스는 단 하나의 책임(기능)만 가져야 한다.</li>
-      <li>즉, 클래스가 변경될 이유는 오직 하나여야 한다/</li>
-    </ul>
-  </li>
-  <li>의미
-    <ul>
-      <li>클래스가 너무 많은 역할을 담당하게 되면, 유지보수나 확장 시 하나의 변경 사항이 다른 기능까지 의도치 않게 영향을 줄 수 있음</li>
-      <li>하나의 클래스가 단 하나의 목적만 수행하도록 하면, 코드 관리가 쉬워지고 명확해짐</li>
-    </ul>
-  </li>
-  <li>예시
-    <ul>
-      <li>❌ 나쁜 예시 : 회원 관리 클래스가 로그인, 회원정보 관리, 이메일 발송까지 전부 담당</li>
-      <li>✅ 좋은 예시 : 로그인 클래스, 회원정보 관리 클래스, 이메일 발송 클래스를 각각 따로 분리</li>
-    </ul>
-  </li>
-</ul>
+<hr />
 
-<h2 id="2-ocp-openclosed-principle"><strong>2. OCP (Open/Closed Principle)</strong></h2>
+<h3 id="️-mybatis--손빨래-">✌️ MyBatis = 손빨래 🧼</h3>
+
+<ul>
+  <li><strong>개발자가 직접</strong> 물 붓고, 비비고, 헹구고</li>
+  <li>어떤 SQL 쿼리를 쓰고, 어떤 칼럼을 어떤 필드에 넣을지도 <strong>직접 지정</strong></li>
+</ul>
 
 <blockquote>
-  <p>🟠 개방-폐쇄 원칙</p>
+  <p>→ 개발자는 <strong>“컨트롤을 많이 할 수 있음”</strong><br />
+→ 다만 <strong>귀찮고 실수할 가능성 있음</strong></p>
 </blockquote>
 
+<hr />
+
+<h2 id="-jpa-vs-mybatis-코드로-비교하기">🧩 JPA vs MyBatis 코드로 비교하기</h2>
+
+<h3 id="-jpa-예제-hibernate-기반">✅ JPA 예제 (Hibernate 기반)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 저장</span>
+<span class="nc">Member</span> <span class="n">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">(</span><span class="s">"Sungwoo"</span><span class="o">);</span>
+<span class="n">entityManager</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">m</span><span class="o">);</span>
+
+<span class="c1">// 조회</span>
+<span class="nc">Member</span> <span class="n">result</span> <span class="o">=</span> <span class="n">entityManager</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">m</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+</code></pre></div></div>
+
+<p>👉 SQL 없이 객체만 조작하면 됨!<br />
+→ <code class="language-plaintext highlighter-rouge">INSERT</code>, <code class="language-plaintext highlighter-rouge">SELECT</code>, <code class="language-plaintext highlighter-rouge">UPDATE</code>, <code class="language-plaintext highlighter-rouge">DELETE</code>를 <strong>자동으로 처리</strong></p>
+
+<hr />
+
+<h3 id="-mybatis-예제">✅ MyBatis 예제</h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- mapper.xml --&gt;</span>
+<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"findMemberById"</span> <span class="na">parameterType=</span><span class="s">"long"</span> <span class="na">resultType=</span><span class="s">"Member"</span><span class="nt">&gt;</span>
+  SELECT id, name FROM members WHERE id = #{id}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 자바 코드</span>
+<span class="nc">Member</span> <span class="n">m</span> <span class="o">=</span> <span class="n">memberMapper</span><span class="o">.</span><span class="na">findMemberById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>👉 SQL을 내가 직접 작성함<br />
+→ DB 구조가 복잡하거나 튜닝이 필요할 땐 <strong>더 유리</strong></p>
+
+<hr />
+
+<h2 id="-사용-방식-차이-요약">✅ 사용 방식 차이 요약</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>JPA</th>
+      <th>MyBatis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SQL 작성</td>
+      <td>❌ 안 함 (자동)</td>
+      <td>✅ 직접 함</td>
+    </tr>
+    <tr>
+      <td>객체 ↔ DB 매핑</td>
+      <td>자동 처리</td>
+      <td>명시적 지정</td>
+    </tr>
+    <tr>
+      <td>코드 양</td>
+      <td>적음</td>
+      <td>많음</td>
+    </tr>
+    <tr>
+      <td>유지보수</td>
+      <td>테이블 구조 바뀌면 자동 적용</td>
+      <td>SQL 전부 수정해야 함</td>
+    </tr>
+    <tr>
+      <td>복잡한 쿼리</td>
+      <td>어려움 (JPQL, QueryDSL)</td>
+      <td>자유롭고 세밀하게 가능</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-장단점-비교">✅ 장단점 비교</h2>
+
+<h3 id="-jpa의-장점">🟢 JPA의 장점</h3>
+
 <ul>
-  <li>정의
-    <ul>
-      <li>소프트웨어의 구성 요소(클래스, 모듈, 함수 등)는 확장에는 열려있고, 변경에는 닫혀있어야 한다.</li>
-    </ul>
-  </li>
-  <li>의미
-    <ul>
-      <li>새로운 기능을 추가할 때 기존 코드를 수정하지 않고도 기능을 확장할 수 있어야 함.</li>
-    </ul>
-  </li>
-  <li>예시
-    <ul>
-      <li>❌ 나쁜 예시 : 새로운 결제 방식을 추가할 때마다 기존의 결제 클래스를 직접 수정</li>
-      <li>✅ 좋은 예시 : 결제 방식 인터페이스를 정의하고, 이를 구현한 클래스(신용카드 결제, 페이팔 결제 등)를 추가함으로써 기존 코드 수정 없이 확장 가능</li>
-    </ul>
-  </li>
+  <li>생산성 높음 (코드 적게 작성)</li>
+  <li>객체 지향적으로 설계 가능</li>
+  <li>유지보수 편함 (쿼리 덜 바꿈)</li>
+  <li>캐싱, 지연 로딩, 영속성 컨텍스트 등 부가기능 풍부</li>
 </ul>
 
-<h2 id="3-lsp-liskov-substitution-principle"><strong>3. LSP (Liskov Substitution Principle)</strong></h2>
+<hr />
+
+<h3 id="-jpa의-단점">🔴 JPA의 단점</h3>
+
+<ul>
+  <li>처음 배울 때 어렵고 추상화가 깊음</li>
+  <li>성능 튜닝 어려움</li>
+  <li>복잡한 쿼리 작성이 불편함 (<code class="language-plaintext highlighter-rouge">JOIN</code>, <code class="language-plaintext highlighter-rouge">GROUP BY</code> 등)</li>
+</ul>
+
+<hr />
+
+<h3 id="-mybatis의-장점">🟢 MyBatis의 장점</h3>
+
+<ul>
+  <li>SQL을 자유롭게 짤 수 있어 → DB 성능 튜닝 유리</li>
+  <li>복잡한 쿼리나 데이터 조작에 강함</li>
+  <li>개발자 컨트롤이 높음</li>
+</ul>
+
+<hr />
+
+<h3 id="-mybatis의-단점">🔴 MyBatis의 단점</h3>
+
+<ul>
+  <li>반복 코드 많음 (SQL + 매핑 따로)</li>
+  <li>유지보수 힘듦 (테이블 구조 바뀌면 SQL 전부 바꿔야 함)</li>
+  <li>객체 지향 구조 만들기 어렵고, 연결이 느슨함</li>
+</ul>
+
+<hr />
+
+<h2 id="-실무에-쓰는-방법">✅ 실무에 쓰는 방법</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>상황</th>
+      <th>실무 선택</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>단순한 CRUD 위주의 서비스</td>
+      <td>JPA (빠르고 코드 간결)</td>
+    </tr>
+    <tr>
+      <td>복잡한 SQL 다루는 시스템</td>
+      <td>MyBatis</td>
+    </tr>
+    <tr>
+      <td>대기업/공공 시스템</td>
+      <td>아직도 MyBatis 많음</td>
+    </tr>
+    <tr>
+      <td>스타트업/신규 프로젝트</td>
+      <td>JPA + QueryDSL 조합 인기</td>
+    </tr>
+    <tr>
+      <td>둘 다 필요</td>
+      <td>일부는 JPA, 일부는 MyBatis 혼용 (실제로 많음)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-한줄-정리">📌 한줄 정리</h2>
 
 <blockquote>
-  <p>🟡 리스코프 치환 원칙</p>
+  <p>“JPA는 객체 중심의 ORM 프레임워크로, DB와의 데이터 처리를 추상화해 코드 생산성을 높여줍니다. 반면 MyBatis는 SQL 중심의 프레임워크로, 복잡한 쿼리나 성능 튜닝이 필요한 경우에 유리합니다. 프로젝트 성격에 따라 두 기술을 선택하거나 병행할 수 있습니다.”</p>
 </blockquote>
 
-<ul>
-  <li>정의
-    <ul>
-      <li>자식 클래스는 언제나 부모 클래스를 대체할 수 있어야 함.</li>
-      <li>부모 클래스가 사용되는 곳에 자식 클래스를 넣었을 때도 프로그램이 정확히 동작해야 함</li>
-    </ul>
-  </li>
-  <li>의미
-    <ul>
-      <li>상속 관계를 올바르게 설계해 자식 클래스가 부모 클래스의 본질적인 특성을 바꾸지 않아야 한다.</li>
-      <li>자식 클래스는 부모 클래스가 가진 모든 속성과 메서드를 위반 없이 사용할 수 있어야함</li>
-    </ul>
-  </li>
-  <li>예시
-    <ul>
-      <li>❌ 나쁜 예시 : ‘정사각형’ 클래스를 ‘직사각형’의 자식 클래스로 만들었지만, 가로세로를 독립적으로 조정할 수 없어서 예상한 동작이 깨지는 경우</li>
-      <li>✅ 좋은 예시 : ‘도형’이라는 부모 클래스를 상속하여 ‘직사각형’, ‘정사각형’, ‘삼각형’ 등으로 각자 독립적으로 확장하여 서로 간섭 없이 동작</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="4-isp-interface-segregation-principle"><strong>4. ISP (Interface Segregation Principle)</strong></h2>
-
-<blockquote>
-  <p>🟢 인터페이스 분리 원칙</p>
-</blockquote>
-
-<ul>
-  <li>정의
-    <ul>
-      <li>클라이언트는 자신이 사용하지 않은 메서드에 의존하지 않아야 함.</li>
-      <li>하나의 일반적인 인터페이스보다 여러 개의 구체적이고 세분화된 인터페이스를 사용하는 것이 좋음</li>
-    </ul>
-  </li>
-  <li>의미
-    <ul>
-      <li>하나의 크고 범용적인 인터페이스보다, 용도에 따라 작고 명확하게 구분된 인터페이스를 제공하는 것이 좋음</li>
-      <li>클라이언트가 필요로 하는 최소한의 메서드만 포함한 인터페이스를 만들어야함</li>
-    </ul>
-  </li>
-  <li>예시
-    <ul>
-      <li>❌ 나쁜 예시 : 하나의 인터페이스에 “프린트, 팩스, 복사, 스캔” 기능을 모두 넣어서 일부만 사용하는 프린터 기기같이 모든 메서드를 구현해야하는 경우</li>
-      <li>✅ 좋은 예시 : “프린트 인터페이스”, “팩스 인터페이스”, “복사 인터페이스”, “스캔 인터페이스”로 나눠서 필요한 기능만 구현하도록 제공</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="5-dip-dependency-inversion-principle"><strong>5. DIP (Dependency Inversion Principle)</strong></h2>
-
-<blockquote>
-  <p>🔵 의존성 역전 원칙</p>
-</blockquote>
-
-<ul>
-  <li>정의
-    <ul>
-      <li>고수준 모듈은 저수준 모듈의 구현에 의존해서는 안되며 둘 다 추상화에 의존해야함</li>
-      <li>또한, 추상화(인터페이스나 추상 클래스)는 세부 사항에 의존해서는 안되고, 세부 사항이 추상화에 의존해야함</li>
-    </ul>
-  </li>
-  <li>의미
-    <ul>
-      <li>클래스가 특정 구현(구체적 클래스)이 아닌, 추상화된 인터페이스에 의존하도록 설계해야 함.</li>
-      <li>이는 의존 관계룰 유연하게 만들어 유지보수 및 확장이 편리해지게 횜</li>
-    </ul>
-  </li>
-  <li>
-    <p>예시</p>
-
-    <ul>
-      <li>❌ 나쁜 예시 : 데이터베이스 클래스가 특정 DB(에: MySQL)에 직접 의존하는 코드 설계</li>
-      <li>✅ 좋은 예시 : 데이터베이스 인터페이스를 정의하고, 이를 구현하는 다양한 DB클래스(MySQL, PostgreSQL 등)를 만들어 상위 모듈이 인터페이스에만 의존하도록 설계</li>
-    </ul>
-
-    <h2 id="solid-원칙을-지켰을-때의-장점">SOLID 원칙을 지켰을 때의 장점</h2>
-
-    <ul>
-      <li>유지보수 용이성</li>
-      <li>코드 확장 용이성</li>
-      <li>가독성 및 코드 품질 향상</li>
-      <li>테스트 용이성</li>
-    </ul>
-  </li>
-</ul>
+<hr />
 
   
 </article>
@@ -557,7 +740,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/spring/2025-04-05-jpa-mybatis/" class="flip-title"><span>[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)</span></a>  <time class="faded fine" datetime="2025-04-05T00:00:00+00:00">05 Apr 2025</time></li>                        <li class="h4">  <a href="/spring/2025-04-02-dto-vo/" class="flip-title"><span>[Spring] DTO vs VO vs Entity</span></a>  <time class="faded fine" datetime="2025-04-02T00:00:00+00:00">02 Apr 2025</time></li>                        <li class="h4">  <a href="/spring/2025-04-01-resttemplate/" class="flip-title"><span>[Spring] RestTemplate</span></a>  <time class="faded fine" datetime="2025-04-01T00:00:00+00:00">01 Apr 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/spring/2025-04-02-dto-vo/" class="flip-title"><span>[Spring] DTO vs VO vs Entity</span></a>  <time class="faded fine" datetime="2025-04-02T00:00:00+00:00">02 Apr 2025</time></li>                        <li class="h4">  <a href="/spring/2025-04-01-resttemplate/" class="flip-title"><span>[Spring] RestTemplate</span></a>  <time class="faded fine" datetime="2025-04-01T00:00:00+00:00">01 Apr 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/2025-03-31-sql-injection/" class="flip-title"><span>[Etc] 💣 SQL Injection</span></a>  <time class="faded fine" datetime="2025-03-31T00:00:00+00:00">31 Mar 2025</time></li>            </ul></aside>
 
   
 

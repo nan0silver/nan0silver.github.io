@@ -1,7 +1,350 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-07T02:16:24+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-08T05:40:21+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-07T02:15:42+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-04-08T05:39:39+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
+  <li><a href="#스프링-콘셉트">스프링 콘셉트</a></li>
+</ul>
+
+<hr />
+
+<h2 id="-jpa란-java-persistence-api">📌 JPA란? (Java Persistence API)</h2>
+
+<ul>
+  <li><strong>자바에서 관계형 데이터베이스(RDB)를 객체로 다룰 수 있게 해주는 표준 API</strong>.</li>
+  <li>SQL을 직접 작성하지 않아도 객체처럼 DB 데이터를 저장/조회/수정/삭제 가능.</li>
+  <li>구현체 중 가장 유명한 것은 <strong>Hibernate</strong>고, Spring에서 주로 이걸 씀.</li>
+</ul>
+
+<hr />
+
+<h2 id="jpa-핵심-용어">JPA 핵심 용어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Entity</strong></td>
+      <td>DB 테이블과 매핑되는 자바 클래스</td>
+    </tr>
+    <tr>
+      <td><strong>EntityManager</strong></td>
+      <td>JPA의 핵심! DB와 객체 사이의 작업을 처리하는 도구</td>
+    </tr>
+    <tr>
+      <td><strong>Persistence Context (영속성 컨텍스트)</strong></td>
+      <td>엔티티를 관리하는 JPA 내부 메모리 공간</td>
+    </tr>
+    <tr>
+      <td><strong>JPQL (Java Persistence Query Language)</strong></td>
+      <td>객체 지향 쿼리 언어. SQL과 유사하지만, 테이블이 아닌 클래스/필드 단위로 작동</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-mybatis란">📌 MyBatis란?</h2>
+
+<ul>
+  <li><strong>자바에서 SQL을 직접 작성해서 데이터베이스와 통신할 수 있게 해주는 프레임워크.</strong></li>
+  <li>SQL 중심의 프로그래밍이 가능하고, <strong>복잡하고 세밀한 쿼리 제어</strong>에 유리함.</li>
+  <li>XML 또는 어노테이션 기반으로 SQL을 작성하고, <strong>쿼리 결과를 자바 객체와 매핑</strong>해줌.</li>
+  <li><strong>Spring과도 쉽게 통합 가능</strong>하며, 실무에서는 여전히 널리 사용됨.</li>
+</ul>
+
+<hr />
+
+<h2 id="mybatis-핵심-용어">MyBatis 핵심 용어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Mapper 인터페이스</strong></td>
+      <td>SQL 문장을 호출하는 자바 인터페이스. XML과 1:1 매칭되어 동작함</td>
+    </tr>
+    <tr>
+      <td><strong>Mapper XML</strong></td>
+      <td>실제 SQL이 작성되는 파일. <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;insert&gt;</code> 등 태그로 구성됨</td>
+    </tr>
+    <tr>
+      <td><strong>SqlSession</strong></td>
+      <td>DB 연결과 SQL 실행을 담당하는 핵심 객체 (JDBC의 Connection 역할)</td>
+    </tr>
+    <tr>
+      <td><strong>ResultMap</strong></td>
+      <td>쿼리 결과를 자바 객체에 <strong>정밀하게 매핑</strong>할 때 사용하는 설정</td>
+    </tr>
+    <tr>
+      <td><strong>#{} / ${}</strong></td>
+      <td>SQL 파라미터 바인딩 방식. <code class="language-plaintext highlighter-rouge">#{}</code>는 안전한 바인딩, <code class="language-plaintext highlighter-rouge">${}</code>는 SQL 인젝션 주의</td>
+    </tr>
+    <tr>
+      <td><strong>TypeAlias</strong></td>
+      <td>자바 클래스의 이름을 짧게 별칭으로 사용할 수 있도록 하는 기능</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-jpa-vs-mybatis">🔍 JPA vs MyBatis</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>JPA</th>
+      <th>MyBatis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>개발 방식</td>
+      <td><strong>자동 매핑</strong> (객체 중심)</td>
+      <td><strong>수동 매핑</strong> (SQL 중심)</td>
+    </tr>
+    <tr>
+      <td>핵심 개념</td>
+      <td>객체를 DB에 자동 매핑</td>
+      <td>직접 SQL 작성 + 매핑</td>
+    </tr>
+    <tr>
+      <td>학습 곡선</td>
+      <td>좀 더 높음 (추상화 많음)</td>
+      <td>비교적 쉬움 (SQL 그대로 작성)</td>
+    </tr>
+    <tr>
+      <td>유연성</td>
+      <td>추상화 많아 덜 유연함</td>
+      <td>SQL 작성 자유로움</td>
+    </tr>
+    <tr>
+      <td>성능 제어</td>
+      <td>ORM에 맡김 (튜닝 어려움)</td>
+      <td>직접 SQL 작성으로 제어 쉬움</td>
+    </tr>
+    <tr>
+      <td>대표 도구</td>
+      <td>Hibernate (JPA 구현체)</td>
+      <td>MyBatis 프레임워크</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="jpa-vs-mybatis-비유로-이해하기">JPA vs MyBatis 비유로 이해하기</h2>
+
+<h3 id="️-jpa--자동세탁기-">☝️ JPA = 자동세탁기 👕</h3>
+
+<ul>
+  <li><strong>세탁기 안에 옷(객체)</strong>을 넣으면<br />
+→ 알아서 물(쿼리) 넣고, 빨고, 말리고<br />
+→ 깨끗한 결과(조회된 객체)를 자동으로 꺼내줌!</li>
+</ul>
+
+<blockquote>
+  <p>→ 개발자는 <strong>“옷만 넣고 결과만 받으면 됨”</strong><br />
+→ 단, 세탁 방식은 기계가 알아서 함 (튜닝 어려움)</p>
+</blockquote>
+
+<hr />
+
+<h3 id="️-mybatis--손빨래-">✌️ MyBatis = 손빨래 🧼</h3>
+
+<ul>
+  <li><strong>개발자가 직접</strong> 물 붓고, 비비고, 헹구고</li>
+  <li>어떤 SQL 쿼리를 쓰고, 어떤 칼럼을 어떤 필드에 넣을지도 <strong>직접 지정</strong></li>
+</ul>
+
+<blockquote>
+  <p>→ 개발자는 <strong>“컨트롤을 많이 할 수 있음”</strong><br />
+→ 다만 <strong>귀찮고 실수할 가능성 있음</strong></p>
+</blockquote>
+
+<hr />
+
+<h2 id="-jpa-vs-mybatis-코드로-비교하기">🧩 JPA vs MyBatis 코드로 비교하기</h2>
+
+<h3 id="-jpa-예제-hibernate-기반">✅ JPA 예제 (Hibernate 기반)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 저장</span>
+<span class="nc">Member</span> <span class="n">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">(</span><span class="s">"Sungwoo"</span><span class="o">);</span>
+<span class="n">entityManager</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">m</span><span class="o">);</span>
+
+<span class="c1">// 조회</span>
+<span class="nc">Member</span> <span class="n">result</span> <span class="o">=</span> <span class="n">entityManager</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">m</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+</code></pre></div></div>
+
+<p>👉 SQL 없이 객체만 조작하면 됨!<br />
+→ <code class="language-plaintext highlighter-rouge">INSERT</code>, <code class="language-plaintext highlighter-rouge">SELECT</code>, <code class="language-plaintext highlighter-rouge">UPDATE</code>, <code class="language-plaintext highlighter-rouge">DELETE</code>를 <strong>자동으로 처리</strong></p>
+
+<hr />
+
+<h3 id="-mybatis-예제">✅ MyBatis 예제</h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- mapper.xml --&gt;</span>
+<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"findMemberById"</span> <span class="na">parameterType=</span><span class="s">"long"</span> <span class="na">resultType=</span><span class="s">"Member"</span><span class="nt">&gt;</span>
+  SELECT id, name FROM members WHERE id = #{id}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 자바 코드</span>
+<span class="nc">Member</span> <span class="n">m</span> <span class="o">=</span> <span class="n">memberMapper</span><span class="o">.</span><span class="na">findMemberById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>👉 SQL을 내가 직접 작성함<br />
+→ DB 구조가 복잡하거나 튜닝이 필요할 땐 <strong>더 유리</strong></p>
+
+<hr />
+
+<h2 id="-사용-방식-차이-요약">✅ 사용 방식 차이 요약</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>JPA</th>
+      <th>MyBatis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SQL 작성</td>
+      <td>❌ 안 함 (자동)</td>
+      <td>✅ 직접 함</td>
+    </tr>
+    <tr>
+      <td>객체 ↔ DB 매핑</td>
+      <td>자동 처리</td>
+      <td>명시적 지정</td>
+    </tr>
+    <tr>
+      <td>코드 양</td>
+      <td>적음</td>
+      <td>많음</td>
+    </tr>
+    <tr>
+      <td>유지보수</td>
+      <td>테이블 구조 바뀌면 자동 적용</td>
+      <td>SQL 전부 수정해야 함</td>
+    </tr>
+    <tr>
+      <td>복잡한 쿼리</td>
+      <td>어려움 (JPQL, QueryDSL)</td>
+      <td>자유롭고 세밀하게 가능</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-장단점-비교">✅ 장단점 비교</h2>
+
+<h3 id="-jpa의-장점">🟢 JPA의 장점</h3>
+
+<ul>
+  <li>생산성 높음 (코드 적게 작성)</li>
+  <li>객체 지향적으로 설계 가능</li>
+  <li>유지보수 편함 (쿼리 덜 바꿈)</li>
+  <li>캐싱, 지연 로딩, 영속성 컨텍스트 등 부가기능 풍부</li>
+</ul>
+
+<hr />
+
+<h3 id="-jpa의-단점">🔴 JPA의 단점</h3>
+
+<ul>
+  <li>처음 배울 때 어렵고 추상화가 깊음</li>
+  <li>성능 튜닝 어려움</li>
+  <li>복잡한 쿼리 작성이 불편함 (<code class="language-plaintext highlighter-rouge">JOIN</code>, <code class="language-plaintext highlighter-rouge">GROUP BY</code> 등)</li>
+</ul>
+
+<hr />
+
+<h3 id="-mybatis의-장점">🟢 MyBatis의 장점</h3>
+
+<ul>
+  <li>SQL을 자유롭게 짤 수 있어 → DB 성능 튜닝 유리</li>
+  <li>복잡한 쿼리나 데이터 조작에 강함</li>
+  <li>개발자 컨트롤이 높음</li>
+</ul>
+
+<hr />
+
+<h3 id="-mybatis의-단점">🔴 MyBatis의 단점</h3>
+
+<ul>
+  <li>반복 코드 많음 (SQL + 매핑 따로)</li>
+  <li>유지보수 힘듦 (테이블 구조 바뀌면 SQL 전부 바꿔야 함)</li>
+  <li>객체 지향 구조 만들기 어렵고, 연결이 느슨함</li>
+</ul>
+
+<hr />
+
+<h2 id="-실무에-쓰는-방법">✅ 실무에 쓰는 방법</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>상황</th>
+      <th>실무 선택</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>단순한 CRUD 위주의 서비스</td>
+      <td>JPA (빠르고 코드 간결)</td>
+    </tr>
+    <tr>
+      <td>복잡한 SQL 다루는 시스템</td>
+      <td>MyBatis</td>
+    </tr>
+    <tr>
+      <td>대기업/공공 시스템</td>
+      <td>아직도 MyBatis 많음</td>
+    </tr>
+    <tr>
+      <td>스타트업/신규 프로젝트</td>
+      <td>JPA + QueryDSL 조합 인기</td>
+    </tr>
+    <tr>
+      <td>둘 다 필요</td>
+      <td>일부는 JPA, 일부는 MyBatis 혼용 (실제로 많음)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-한줄-정리">📌 한줄 정리</h2>
+
+<blockquote>
+  <p>“JPA는 객체 중심의 ORM 프레임워크로, DB와의 데이터 처리를 추상화해 코드 생산성을 높여줍니다. 반면 MyBatis는 SQL 중심의 프레임워크로, 복잡한 쿼리나 성능 튜닝이 필요한 경우에 유리합니다. 프로젝트 성격에 따라 두 기술을 선택하거나 병행할 수 있습니다.”</p>
+</blockquote>
+
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.]]></summary></entry><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-08T05:39:39+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
   <li><a href="#dto-vs-vo-vs-entity">DTO vs VO vs Entity</a></li>
   <li><a href="#-dto-vs-vo">📦 DTO vs VO</a></li>
   <li><a href="#-entity-vs-vo">📦 Entity vs VO</a></li>
@@ -327,7 +670,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   <li><strong>값 객체(VO)</strong>를 표현할 때 <strong>record는 아주 강력한 도구</strong></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] RestTemplate</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] RestTemplate" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-07T02:15:42+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] RestTemplate</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] RestTemplate" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-08T05:39:39+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
   <li><a href="#-resttemplate이란">RestTemplate이란?</a></li>
   <li><a href="#-필요한-이유">필요한 이유</a></li>
   <li><a href="#️-예시-코드-get-요청">예시 코드 (Get)</a></li>
@@ -582,7 +925,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
       <td>WebClient를 사용하는 게 <strong>미래지향적</strong></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 💣 SQL Injection</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" rel="alternate" type="text/html" title="[Etc] 💣 SQL Injection" /><published>2025-03-31T00:00:00+00:00</published><updated>2025-04-07T02:15:42+00:00</updated><id>https://nan0silver.github.io/miscellaneous/sql-injection</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 💣 SQL Injection</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" rel="alternate" type="text/html" title="[Etc] 💣 SQL Injection" /><published>2025-03-31T00:00:00+00:00</published><updated>2025-04-08T05:39:39+00:00</updated><id>https://nan0silver.github.io/miscellaneous/sql-injection</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"><![CDATA[<ul>
   <li><a href="#sql-injection이란">SQL Injection이란?</a></li>
   <li><a href="#-spring-관점에서-sql-injection-방지법">Spring 관점에서 SQL Injection 방지법</a></li>
   <li><a href="#-spring-배우는-입장에서-조심할-포인트-요약">요약</a></li>
@@ -715,7 +1058,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   <li><strong>ORM(JPA) + 파라미터 바인딩</strong> 방식으로 작성하면 거의 대부분 안전하게 막을 수 있음</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-04-07T02:15:42+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-04-08T05:39:39+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
   <li><a href="#1️⃣-기본-소수-판별-on">기본 소수 판별</a></li>
   <li><a href="#2️⃣-에라토스테네스의-체-on-log-log-n">에라토스테네스의 체</a></li>
   <li><a href="#3️⃣-miller-rabin-소수판별법-olog-n">Miller-Rabin 소수 판별법</a></li>
@@ -873,7 +1216,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isPrime</span><span class="o">(</span><span class="mi">1000000008</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span> <span class="c1">// false (합성수)</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-07T02:15:42+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-08T05:39:39+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
   <li><a href="#레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</a></li>
   <li><a href="#mvc란">MVC란?</a></li>
   <li><a href="#레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</a></li>
@@ -959,7 +1302,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
 
 <ul>
   <li>MVC는 역할을 분리하고, 레이어드 아키텍처는 각 계층을 더 체계적으로 조직화하여 유지보수성과 확장성을 높인다</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-07T02:15:42+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-08T05:39:39+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
   <li><a href="#java에서-동시성">JAVA에서 동시성</a></li>
   <li><a href="#스레드-thread">스레드 (Thread)</a></li>
   <li><a href="#비동기-처리-async">비동기 처리 (Aysnc)</a></li>
@@ -1130,7 +1473,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
 <ul>
   <li>Redis, Kafka, 클러스터</li>
   <li>분산처리는 프랜차이즈이다. 큰 가게 하나보다 작은 여러 가게가 효율적이고 비용도 절감된다.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[Etc] 🎞️ Boilerplate</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/" rel="alternate" type="text/html" title="[Etc] 🎞️ Boilerplate" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-04-07T02:15:42+00:00</updated><id>https://nan0silver.github.io/miscellaneous/boiler-plate</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[Etc] 🎞️ Boilerplate</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/" rel="alternate" type="text/html" title="[Etc] 🎞️ Boilerplate" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-04-08T05:39:39+00:00</updated><id>https://nan0silver.github.io/miscellaneous/boiler-plate</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/"><![CDATA[<ul>
   <li><a href="#보일러플레이트boilerplate란">보일러플레이트(Boilerplate)란?</a></li>
   <li><a href="#보일러플레이트의-특징">보일러플레이트의 특징</a></li>
   <li><a href="#예제-코드">예제 코드</a></li>
@@ -1196,7 +1539,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
         <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">MyApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</title><link href="https://nan0silver.github.io/java/2025-02-25-arraylist-array/" rel="alternate" type="text/html" title="[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교" /><published>2025-02-25T00:00:00+00:00</published><updated>2025-04-07T02:15:42+00:00</updated><id>https://nan0silver.github.io/java/arraylist-array</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-25-arraylist-array/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</title><link href="https://nan0silver.github.io/java/2025-02-25-arraylist-array/" rel="alternate" type="text/html" title="[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교" /><published>2025-02-25T00:00:00+00:00</published><updated>2025-04-08T05:39:39+00:00</updated><id>https://nan0silver.github.io/java/arraylist-array</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-25-arraylist-array/"><![CDATA[<ul>
   <li><a href="#-arraylistinteger는-언제-더-유리할까"><code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code>는 언제 더 유리할까?</a></li>
   <li><a href="#-int-배열이-더-유리한-경우"><code class="language-plaintext highlighter-rouge">int[] 배열</code>이 더 유리한 경우</a></li>
   <li><a href="#-성능-비교-실험-java">성능 비교 실험 (Java)</a></li>
@@ -1489,7 +1832,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
 <p>즉,<br />
 ✔ <strong>빠른 연산이 필요하면 <code class="language-plaintext highlighter-rouge">int[] 배열</code></strong><br />
 ✔ <strong>동적 크기가 필요하면 <code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code></strong><br />
-✔ <strong>키-값 조회가 많다면 <code class="language-plaintext highlighter-rouge">HashMap&lt;Integer, Integer&gt;</code></strong></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[ArrayList와 배열(int[])의 성능을 비교해보자.]]></summary></entry><entry><title type="html">[JAVA] SOLID 원칙</title><link href="https://nan0silver.github.io/java/2025-02-23-solid/" rel="alternate" type="text/html" title="[JAVA] SOLID 원칙" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-04-07T02:15:42+00:00</updated><id>https://nan0silver.github.io/java/solid</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-23-solid/"><![CDATA[<ul>
+✔ <strong>키-값 조회가 많다면 <code class="language-plaintext highlighter-rouge">HashMap&lt;Integer, Integer&gt;</code></strong></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[ArrayList와 배열(int[])의 성능을 비교해보자.]]></summary></entry><entry><title type="html">[JAVA] SOLID 원칙</title><link href="https://nan0silver.github.io/java/2025-02-23-solid/" rel="alternate" type="text/html" title="[JAVA] SOLID 원칙" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-04-08T05:39:39+00:00</updated><id>https://nan0silver.github.io/java/solid</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-02-23-solid/"><![CDATA[<ul>
   <li><a href="#1-srp-single-responsibility-principle">1. 단일 책임 원칙</a></li>
   <li><a href="#2-ocp-openclosed-principle">2. 개방-폐쇄 원칙</a></li>
   <li><a href="#3-lsp-liskov-substitution-principle">3. 리스코프 치환 원칙</a></li>
@@ -1649,265 +1992,4 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
       <li>테스트 용이성</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</title><link href="https://nan0silver.github.io/miscellaneous/2025-02-22-token/" rel="alternate" type="text/html" title="[Etc] 🔑 Access Token과 Refresh Token 완벽 정리" /><published>2025-02-22T00:00:00+00:00</published><updated>2025-04-07T02:15:42+00:00</updated><id>https://nan0silver.github.io/miscellaneous/token</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-02-22-token/"><![CDATA[<ul>
-  <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
-  <li><a href="#2-access-token">Access Token</a></li>
-  <li><a href="#3-refresh-token">Refresh Token</a></li>
-  <li><a href="#4-access-token-vs-refresh-token-비교">Access Token vs. Refresh Token 비교</a></li>
-  <li><a href="#5-access-token과-refresh-token을-사용하는-이유">Access Token과 Refresh Token을 사용하는 이유</a></li>
-  <li><a href="#6-access-token과-refresh-token을-활용한-인증-흐름">Access Token과 Refresh Token을 활용한 인증 흐름</a></li>
-  <li><a href="#7-access-token--refresh-token-보안-고려-사항">Access Token &amp; Refresh Token 보안 고려 사항</a></li>
-  <li><a href="#8-access-token--refresh-token-실제-코드-구현-java-spring-security">실제 코드 구현 (Java, Spring Security)</a></li>
-</ul>
-
-<hr />
-
-<h2 id="1-access-token과-refresh-token이란"><strong>1. Access Token과 Refresh Token이란?</strong></h2>
-
-<blockquote>
-  <p>OAuth 2.0을 사용할 때 핵심이 되는 토큰</p>
-</blockquote>
-
-<table>
-  <thead>
-    <tr>
-      <th>토큰 종류</th>
-      <th>역할</th>
-      <th>유효 기간</th>
-      <th>사용 목적</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Access Token</strong></td>
-      <td>API 요청 시 인증을 위한 토큰</td>
-      <td>짧음 (몇 분~1시간)</td>
-      <td>사용자가 인증된 후 API 접근</td>
-    </tr>
-    <tr>
-      <td><strong>Refresh Token</strong></td>
-      <td>Access Token이 만료되었을 때 새 토큰 발급</td>
-      <td>김 (며칠~몇 달)</td>
-      <td>Access Token을 갱신</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="2-access-token"><strong>2. Access Token</strong></h2>
-
-<h3 id="-access-token이란">✅ <strong>Access Token이란?</strong></h3>
-
-<ul>
-  <li>사용자가 OAuth 인증을 마치면 <strong>Authorization Server</strong>가 발급하는 <strong>단기 유효 토큰</strong>.</li>
-  <li>이 토큰을 API 요청의 <strong>Authorization 헤더</strong>에 포함하여 사용.</li>
-  <li>일반적으로 <strong>Bearer Token 방식</strong>으로 사용됨.</li>
-</ul>
-
-<h3 id="-access-token-사용-예시">🎯 <strong>Access Token 사용 예시</strong></h3>
-
-<p>HTTP 요청에서 Access Token을 포함하여 API 호출:</p>
-
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">GET</span> <span class="nn">/user/profile</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.example.com</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer ACCESS_TOKEN</span>
-</code></pre></div></div>
-
-<h3 id="-access-token의-유효-기간">⏳ <strong>Access Token의 유효 기간</strong></h3>
-
-<ul>
-  <li>보안상 <strong>짧은 시간(몇 분~1시간 정도)</strong> 만 유지됨.</li>
-  <li>Access Token이 만료되면 더 이상 API를 호출할 수 없음.</li>
-  <li>해결 방법: <strong>Refresh Token을 사용하여 새로운 Access Token 발급</strong>.</li>
-</ul>
-
-<hr />
-
-<h2 id="3-refresh-token"><strong>3. Refresh Token</strong></h2>
-
-<h3 id="-refresh-token이란">✅ <strong>Refresh Token이란?</strong></h3>
-
-<ul>
-  <li>Access Token이 만료되었을 때, <strong>새로운 Access Token을 요청할 수 있도록 제공되는 장기 토큰</strong>.</li>
-  <li>Access Token과 다르게, Refresh Token 자체로는 API 요청을 보낼 수 없음.</li>
-  <li>일반적으로 <strong>다시 로그인하지 않고도 인증을 연장할 때 사용</strong>.</li>
-</ul>
-
-<h3 id="-refresh-token-사용-예시">🎯 <strong>Refresh Token 사용 예시</strong></h3>
-
-<p>Access Token이 만료되면, Refresh Token을 이용하여 새 Access Token을 요청:</p>
-
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">POST</span> <span class="nn">/auth/token</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">auth.example.com</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
-
-grant_type=refresh_token&amp;
-client_id=YOUR_CLIENT_ID&amp;
-client_secret=YOUR_CLIENT_SECRET&amp;
-refresh_token=YOUR_REFRESH_TOKEN
-</code></pre></div></div>
-
-<h3 id="-refresh-token의-유효-기간">⏳ <strong>Refresh Token의 유효 기간</strong></h3>
-
-<ul>
-  <li><strong>며칠~몇 달까지 유지 가능</strong> (보안 정책에 따라 다름).</li>
-  <li>일반적으로 <strong>기기 변경, 비밀번호 변경, 보안 위험 감지 시 강제 만료됨</strong>.</li>
-</ul>
-
-<hr />
-
-<h2 id="4-access-token-vs-refresh-token-비교"><strong>4. Access Token vs. Refresh Token 비교</strong></h2>
-
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th><strong>Access Token</strong></th>
-      <th><strong>Refresh Token</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>목적</strong></td>
-      <td>API 요청 인증</td>
-      <td>새로운 Access Token 발급</td>
-    </tr>
-    <tr>
-      <td><strong>유효 기간</strong></td>
-      <td>짧음 (몇 분~1시간)</td>
-      <td>김 (며칠~몇 달)</td>
-    </tr>
-    <tr>
-      <td><strong>보관 위치</strong></td>
-      <td>클라이언트 저장</td>
-      <td>클라이언트 저장 (보안 필요)</td>
-    </tr>
-    <tr>
-      <td><strong>보안 위험</strong></td>
-      <td>탈취되면 API 무단 접근 가능</td>
-      <td>탈취되면 새로운 Access Token 발급 가능</td>
-    </tr>
-    <tr>
-      <td><strong>사용 가능 횟수</strong></td>
-      <td>여러 번 API 요청 가능</td>
-      <td>1회 또는 제한적 사용</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="5-access-token과-refresh-token을-사용하는-이유"><strong>5. Access Token과 Refresh Token을 사용하는 이유</strong></h2>
-
-<h3 id="access-token만-사용하면"><strong>Access Token만 사용하면?</strong></h3>
-
-<ul>
-  <li>보안상 유효 기간을 길게 설정할 수 없음.</li>
-  <li>토큰이 만료될 때마다 사용자가 다시 로그인해야 함 → <strong>불편함</strong>.</li>
-</ul>
-
-<h3 id="refresh-token을-추가하면"><strong>Refresh Token을 추가하면?</strong></h3>
-
-<ul>
-  <li><strong>Access Token을 자주 갱신할 수 있음</strong> → 보안 강화.</li>
-  <li>사용자가 다시 로그인할 필요 없이 <strong>자동으로 인증 연장 가능</strong>.</li>
-</ul>
-
-<p>👉 <strong>Refresh Token을 사용하면 보안과 사용자 편의성 모두 향상됨</strong>.</p>
-
-<hr />
-
-<h2 id="6-access-token과-refresh-token을-활용한-인증-흐름"><strong>6. Access Token과 Refresh Token을 활용한 인증 흐름</strong></h2>
-
-<p>1️⃣ <strong>사용자가 로그인 &amp; 권한 부여</strong><br />
- → OAuth 서버가 <strong>Access Token과 Refresh Token 발급</strong><br />
-2️⃣ <strong>클라이언트가 API 요청</strong><br />
- → <code class="language-plaintext highlighter-rouge">Authorization: Bearer Access_Token</code> 포함하여 요청<br />
-3️⃣ <strong>Access Token이 만료됨</strong><br />
- → API 서버가 <strong>401 Unauthorized</strong> 응답 반환<br />
-4️⃣ <strong>Refresh Token을 사용해 새 Access Token 요청</strong><br />
- → 새 Access Token 발급 후 다시 API 요청 가능<br />
-5️⃣ <strong>Refresh Token도 만료됨</strong><br />
- → 사용자는 <strong>다시 로그인 필요</strong></p>
-
-<p>👉 <strong>Access Token은 API 요청을 인증하는 용도, Refresh Token은 새로운 Access Token을 발급하는 용도!</strong><br />
-👉 <strong>보안이 중요한 만큼 저장 방식과 유효 기간을 잘 관리해야 함!</strong> 🚀</p>
-
-<hr />
-
-<h2 id="7-access-token--refresh-token-보안-고려-사항"><strong>7. Access Token &amp; Refresh Token 보안 고려 사항</strong></h2>
-
-<h3 id="-access-token-보안">✅ <strong>Access Token 보안</strong></h3>
-
-<ul>
-  <li><strong>유효 기간을 짧게 설정</strong> (몇 분~1시간)</li>
-  <li><strong>HTTPS 사용 필수</strong> (네트워크 스니핑 방지)</li>
-  <li><strong>탈취되면 API 접근 가능 → 짧은 유효 기간이 보안성을 보장</strong></li>
-</ul>
-
-<h3 id="-refresh-token-보안">✅ <strong>Refresh Token 보안</strong></h3>
-
-<ul>
-  <li><strong>보안 저장소 사용</strong> (예: 모바일 앱에서는 <strong>Secure Storage</strong>)</li>
-  <li><strong>HTTP 요청 시 노출되지 않도록 주의</strong> (쿠키 또는 안전한 저장소에 보관)</li>
-  <li><strong>유출 시 즉시 무효화 필요</strong> (서버에서 토큰 무효화 기능 추가)</li>
-</ul>
-
-<h3 id="-탈취-방지-방법">🚨 <strong>탈취 방지 방법</strong></h3>
-
-<ol>
-  <li><strong>Refresh Token을 클라이언트에서 안전하게 저장</strong>
-    <ul>
-      <li>브라우저: <strong>HttpOnly Secure Cookie</strong> 사용</li>
-      <li>모바일 앱: <strong>Secure Storage / Keychain</strong> 사용</li>
-    </ul>
-  </li>
-  <li><strong>Refresh Token 재사용 방지 (One-Time Refresh Token)</strong>
-    <ul>
-      <li>Refresh Token을 사용할 때마다 새 Refresh Token을 발급하고 이전 것은 무효화</li>
-    </ul>
-  </li>
-  <li><strong>IP &amp; 디바이스 검증</strong>
-    <ul>
-      <li>Refresh Token 사용 시 <strong>IP 주소와 디바이스 정보를 확인하여 이상 감지 시 무효화</strong></li>
-    </ul>
-  </li>
-  <li><strong>토큰 암호화 및 서명</strong>
-    <ul>
-      <li>JWT 기반 Access Token은 <strong>서명(Signature)</strong> 을 포함하여 위변조 방지</li>
-    </ul>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="8-access-token--refresh-token-실제-코드-구현-java-spring-security"><strong>8. Access Token &amp; Refresh Token 실제 코드 구현 (Java, Spring Security)</strong></h2>
-
-<h3 id="-access-token--refresh-token-발급-api-예제-spring-boot"><strong>🔹 Access Token &amp; Refresh Token 발급 API 예제 (Spring Boot)</strong></h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
-<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/auth"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthController</span> <span class="o">{</span>
-
-    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/token"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">getToken</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="nc">String</span> <span class="n">refreshToken</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">isValidRefreshToken</span><span class="o">(</span><span class="n">refreshToken</span><span class="o">))</span> <span class="o">{</span>
-            <span class="nc">String</span> <span class="n">newAccessToken</span> <span class="o">=</span> <span class="n">generateNewAccessToken</span><span class="o">();</span>
-            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">newAccessToken</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">UNAUTHORIZED</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="s">"Invalid Refresh Token"</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isValidRefreshToken</span><span class="o">(</span><span class="nc">String</span> <span class="n">token</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// Refresh Token 검증 로직</span>
-        <span class="k">return</span> <span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"valid-refresh-token"</span><span class="o">);</span> <span class="c1">// 예제 코드</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="nc">String</span> <span class="nf">generateNewAccessToken</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// 새로운 Access Token 생성 (JWT 사용 가능)</span>
-        <span class="k">return</span> <span class="no">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.]]></summary></entry></feed>

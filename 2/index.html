@@ -47,7 +47,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="Blog" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-07T02:15:42+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T05:39:39+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -110,7 +110,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-07T02:16:24+00:00',
+    INDEX_KEY: 'index--2025-04-08T05:40:21+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -443,6 +443,85 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
+<article id="post-miscellaneous-token" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/miscellaneous/2025-02-22-token/" class="flip-title">
+        [Etc] 🔑 Access Token과 Refresh Token 완벽 정리
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-02-22T00:00:00+00:00">22 Feb 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
+  <li><a href="#2-access-token">Access Token</a></li>
+  <li><a href="#3-refresh-token">Refresh Token</a></li>
+  <li><a href="#4-access-token-vs-refresh-token-비교">Access Token vs. Refresh Token 비교</a></li>
+  <li><a href="#5-access-token과-refresh-token을-사용하는-이유">Access Token과 Refresh Token을 사용하는 이유</a></li>
+  <li><a href="#6-access-token과-refresh-token을-활용한-인증-흐름">Access Token과 Refresh Token을 활용한 인증 흐름</a></li>
+  <li><a href="#7-access-token--refresh-token-보안-고려-사항">Access Token &amp; Refresh Token 보안 고려 사항</a></li>
+  <li><a href="#8-access-token--refresh-token-실제-코드-구현-java-spring-security">실제 코드 구현 (Java, Spring Security)</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-02-22-token/">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-miscellaneous-OAuth" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -463,10 +542,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Apr 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-07T02:15:42+00:00">2025-04-07</time>
+              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
             </span>
           
         
@@ -541,10 +620,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Apr 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-07T02:15:42+00:00">2025-04-07</time>
+              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
             </span>
           
         
@@ -616,10 +695,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Apr 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-07T02:15:42+00:00">2025-04-07</time>
+              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
             </span>
           
         
@@ -695,10 +774,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Apr 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-07T02:15:42+00:00">2025-04-07</time>
+              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
             </span>
           
         
@@ -770,10 +849,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Apr 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-07T02:15:42+00:00">2025-04-07</time>
+              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
             </span>
           
         
@@ -846,10 +925,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Apr 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-07T02:15:42+00:00">2025-04-07</time>
+              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
             </span>
           
         
@@ -921,10 +1000,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Apr 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-07T02:15:42+00:00">2025-04-07</time>
+              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
             </span>
           
         
@@ -995,10 +1074,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Apr 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-07T02:15:42+00:00">2025-04-07</time>
+              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
             </span>
           
         
@@ -1074,10 +1153,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Apr 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-07T02:15:42+00:00">2025-04-07</time>
+              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
             </span>
           
         
@@ -1116,81 +1195,6 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/javascript/2025-01-27-javascript-short-circuit-evaluation/">[JavaScript] 단축 평가</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-java-int-long" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/java/2025-01-23-int-long/" class="flip-title">
-        [JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-01-23T00:00:00+00:00">23 Jan 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Apr 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-04-07T02:15:42+00:00">2025-04-07</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
-  <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
-  <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
-  <li><a href="#문제를-보고-빠르게-판단하는-팁">문제를 보고 빠르게 판단하는 팁</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/java/2025-01-23-int-long/">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</a>
 
       </p>
     </footer>
