@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Flutter] Flutter UI | NAHYUN BLOG</title>
+<title>[Etc] immutable, final, constant | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Flutter] Flutter UI" />
+<meta property="og:title" content="[Etc] immutable, final, constant" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="Flutte 개발 전 알아야 된 UI관련 설명과 생명주기에 관한 내용을 담고 있다." />
-<meta property="og:description" content="Flutte 개발 전 알아야 된 UI관련 설명과 생명주기에 관한 내용을 담고 있다." />
-<link rel="canonical" href="https://nan0silver.github.io/flutter/2023-04-13-flutter-UI/" />
-<meta property="og:url" content="https://nan0silver.github.io/flutter/2023-04-13-flutter-UI/" />
+<meta name="description" content="값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자." />
+<meta property="og:description" content="값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/" />
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-04-13T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-03-06T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Flutter] Flutter UI" />
+<meta property="twitter:title" content="[Etc] immutable, final, constant" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T08:17:48+00:00","datePublished":"2023-04-13T00:00:00+00:00","description":"Flutte 개발 전 알아야 된 UI관련 설명과 생명주기에 관한 내용을 담고 있다.","headline":"[Flutter] Flutter UI","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/flutter/2023-04-13-flutter-UI/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/flutter/2023-04-13-flutter-UI/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T08:17:48+00:00","datePublished":"2025-03-06T00:00:00+00:00","description":"값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자.","headline":"[Etc] immutable, final, constant","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/flutter/2023-04-13-flutter-UI/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/flutter/">flutter</a>
+          <a href="/miscellaneous/">miscellaneous</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2023-04-13-flutter-UI</span>
+          <span>2025-03-06-immutable</span>
         
       </li>
     
@@ -222,18 +222,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-flutter-flutter-UI" class="page post mb6" role="article">
+<article id="post-miscellaneous-immutable" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Flutter] Flutter UI
+        [Etc] immutable, final, constant
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2023-04-13T00:00:00+00:00">13 Apr 2023</time> in <a href="/flutter/" class="flip-title">Flutter</a> 
+        <time datetime="2025-03-06T00:00:00+00:00">06 Mar 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
       </span>
       
         
@@ -261,7 +261,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      Flutte 개발 전 알아야 된 UI관련 설명과 생명주기에 관한 내용을 담고 있다.
+      값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자.
 
     </p>
   
@@ -271,240 +271,136 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#flutter-layout">Flutter Layout</a></li>
-  <li><a href="#widget의-생명주기">Widget의 생명주기</a></li>
+  <li><a href="#보일러플레이트boilerplate란"><code class="language-plaintext highlighter-rouge">Immutable</code></a></li>
+  <li><a href="#보일러플레이트의-특징"><code class="language-plaintext highlighter-rouge">final</code></a></li>
+  <li><a href="#예제-코드"><code class="language-plaintext highlighter-rouge">const</code></a></li>
 </ul>
 
 <hr />
 
-<h2 id="flutter-layout">Flutter Layout</h2>
+<h2 id="immutable-불변"><code class="language-plaintext highlighter-rouge">Immutable</code> (불변)</h2>
+
+<blockquote>
+  <p>생성 후 객체 자체의 상태를 변경할 수 없음
+Java의 키워드는 아님, 다양한 언어에서 사용되는 객체의 속성 개념</p>
+</blockquote>
 
 <ul>
-  <li>
-    <p>Flutter Layout의 핵심은 <strong>위젯</strong></p>
-
+  <li>객체와 관련됨</li>
+  <li>특징
     <ul>
-      <li>위젯은 현재 주어진 상태(데이터)를 기반으로 어떤 UI를 구현할지 정의</li>
-      <li>플러터 프레임워크는 기존 상태 위젯과 새로운 상태의 위젯을 비교하여 UI변화를 반영
+      <li>모든 필드가 <code class="language-plaintext highlighter-rouge">final</code>이고 <code class="language-plaintext highlighter-rouge">private</code></li>
+      <li>setter 메서드가 없음</li>
+      <li>모든 가변 참조 필드가 방어적 복사를 통해 보호됨</li>
+    </ul>
+  </li>
+  <li>중요한 점
+    <ul>
+      <li>불변 객체는 멀티 스레드 환경에서 안전하게 사용 가능</li>
+      <li>내부 상태를 변경하는 메서드를 제공하지 않아야 함.</li>
+    </ul>
+  </li>
+  <li>예 : String, Integer, BigDecimal
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">String</code> 클래스는 자바에서 대표적인 불변 객체
         <blockquote>
-          <p>최소한의 리소스로 UI변경을 이룸</p>
+          <p><code class="language-plaintext highlighter-rouge">String</code>객체를 한 번 생성하면 내부 값이 변경되지 않음.
+새로운 값을 할당하려면 새로운 객체가 만들어짐.</p>
         </blockquote>
-      </li>
-      <li>레이아웃 모델, 앱 내 이미지, 아이콘, 글자 등 거의 모든 것이 위젯</li>
-      <li>위젯은 자식을 하나만 갖는 위젯과 자식을 여럿 갖는 위젯으로 나뉨
         <ul>
-          <li>자식을 하나만 갖는 위젯
-            <ul>
-              <li>container 위젯
-                <ul>
-                  <li>자식 위젯을 커스터마이징할 수 있는 위젯 클래스</li>
-                  <li>여백, 간격, 테두리, 배경색 등을 추가할 수 있음</li>
-                </ul>
-              </li>
-              <li>나머지 UI는 속성에 의해 제어됨 (color속성, Text.style속성 등)</li>
-            </ul>
-          </li>
-          <li>자식을 여럿 갖는 위젯
-            <ul>
-              <li>children 매개변수를 입력 받음</li>
-              <li>리스트로 여러 위젯을 입력할 수 있음</li>
-              <li>Column 위젯, Row 위젯
-                <ul>
-                  <li>children 매개변수에 입력된 모든 위젯들을 세로(가로)로 베치</li>
-                </ul>
-              </li>
-              <li>ListView 위젯
-                <ul>
-                  <li>리스트 구현가능, 입력된 위젯이 화면을 벗어나게 되면 스크롤 가능해짐</li>
-                </ul>
-              </li>
-              <li>예시
-<img src="/assets/img/blog/lakes-icons-visual.png" alt="Full-width image" />
-<img src="/assets/img/blog/sample-flutter-layout.png" alt="Full-width image" />
-                <ul>
-                  <li>위의 스크린샷에 해당하는 위젯을 구현하기 위한 위젯 트리이다.</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-
-    <p><br /></p>
-  </li>
-  <li>
-    <p>❗️Material apps vs Non-Material apps</p>
-
-    <ul>
-      <li>Material apps
-        <ul>
-          <li>플랫 디자인의 장점을 살리면서도 빛에 따른 종이의 그림자 효과를 이요해 입체감을 살리는 디자인방식을 가진 앱</li>
-          <li>구글에서 사용하고 있는 플랫 디자인 지침
-            <ul>
-              <li>앱마다 다른 디자인을 통일시키기 위함</li>
-            </ul>
-          </li>
-          <li><strong>Scaffold 위젯</strong>
-            <ul>
-              <li>기본적인 material design의 시각적인 레이아웃 구조를 실행한다.</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Scafflod 위젯 vs Container</p>
-
-    <ul>
-      <li>
-        <p>Scafflod</p>
-
-        <ul>
-          <li>기본적으로 appbar, body라는 2개의 옵션을 가짐
-<img src="/assets/img/blog/flutter-scaffold.webp" alt="Full-width image" /></li>
-        </ul>
-      </li>
-      <li>
-        <p>Container</p>
-        <ul>
-          <li>Scafflod의 body부분에 들어가는 부속품</li>
-          <li>봉지라고 생각하면 됨</li>
-          <li><span style="color:red">한 개의 자식</span>을 가지는 레이아웃 위젯</li>
-          <li>Container의 생성자는 아래와 같다.</li>
           <li>
-            <pre><code>Container({
-  Key key,
-  this.alignment,
-  this.padding,
-  Color color,
-  Decoration decoration,
-  this.foregroundDecoration,
-  double width,
-  double height,
-  BoxConstraints constraints,
-  this.margin,
-  this.transform,
-  this.child,
-  })&lt;/pre&gt;</code>
--
-
-</pre>
+            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nc">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span>
+  <span class="nc">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">concat</span><span class="o">(</span><span class="s">" World"</span><span class="o">);</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s1</span><span class="o">);</span> <span class="c1">// 여전히 "Hello"</span>
+</code></pre></div>            </div>
           </li>
         </ul>
       </li>
     </ul>
   </li>
 </ul>
-<h2 id="widget의-생명주기">Widget의 생명주기</h2>
+
+<h2 id="final-최종-변경-불가"><code class="language-plaintext highlighter-rouge">Final</code> (최종, 변경 불가)</h2>
+
+<blockquote>
+  <p>한 번 할당되면 값을 변경할 수 없는 변수 또는 참조
+Java의 키워드</p>
+</blockquote>
 
 <ul>
-  <li>
-    <p>Stateful Widget의 생명주기</p>
-
+  <li>특징
     <ul>
-      <li>stateless widget은 한 번 만들어지면 갱신할 수 없어 생명주기가 없다.</li>
-      <li>stateful widget은 10단계의 생명주기가 있다.
-<br /></li>
+      <li>변수에 사용 : 초기화 후 재할당 불가</li>
+      <li>메서드에 사용 : 오버라이딩 불가</li>
+      <li>클래스에 사용 : 상속 불가</li>
     </ul>
-
+  </li>
+  <li>중요한 점
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">final</code>은 참조의 변경을 막지만, 참조가 가리키는 객체의 내용 변경은 막지 않음</li>
+    </ul>
+  </li>
+  <li>실무에서 활용
     <ol>
-      <li>
-        <p>createState()함수</p>
-
+      <li>메서드 파라미터
         <ul>
-          <li>상태를 생성하는 함수</li>
-          <li>다른 생명주기 함수들이 포함된 State 클래스를 반환</li>
-          <li>StatefulWidget 클래스를 상속받는 클래스는 반드시 이 함수를 호출해야 한다.</li>
+          <li>메서드 내에서 파라미터 값이 변경되지 않도록 보장</li>
           <li>
-            <pre><code> Class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() =&gt; new _MyHomePageState();
-  } </code></pre>
+            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processUser</span><span class="o">(</span><span class="kd">final</span> <span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+</code></pre></div>            </div>
           </li>
         </ul>
       </li>
-      <li>mounted == true
+      <li>람다 표현식
         <ul>
-          <li>createState() 함수가 호출되어 상태가 생성되면 mounted 속성이 true가 된다.
-            <ul>
-              <li>위젯을 제어할 수 있는 buildContext클래스에 접근 가능해짐</li>
-              <li>buildContext가 활성화되어야 setState()함수 이용 가능</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>initState()함수</p>
-
-        <ul>
-          <li>위젯을 초기화하는 함수</li>
-          <li>주로 데이터 목록을 만들거나 처음 필요한 데이터를 주고받을 때 호출</li>
-          <li>이 함수를 호출할 때 내부에서 _getJsonData() 함수를 호출하면 서버에서 데이터를 가져와 화면에 출력할 수 있음</li>
-        </ul>
-      </li>
-      <li>
-        <p>didChangeDependencies()함수</p>
-
-        <ul>
-          <li>initState()함수 호출 후, 해당 위젯이 데이터에 의존하는 위젯이라면 반드시 호출해야하는 함수</li>
-          <li>주로 상속받은 위젯을 사용할 때 피상속자가 변경되면 호출</li>
-        </ul>
-      </li>
-      <li>
-        <p>build()함수</p>
-
-        <ul>
-          <li>위젯을 화면에 렌더링하는 함수 (Widget을 반환한다.)</li>
+          <li>람다에서 외부 변수를 사용할 때는 반드시 <code class="language-plaintext highlighter-rouge">final</code> 또는 <code class="language-plaintext highlighter-rouge">effectively final</code>이어야 함</li>
           <li>
-            <pre><code> @override
-  Widget build(BuildContext context) {
-      return MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-              primarySwatch: Colors.blue,
-          ),
-          home: MyHomePage(title: 'Flutter Demo Page'),
-      );
-  }</code></pre>
+            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">final</span> <span class="nc">String</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s">"User-"</span><span class="o">;</span>
+  <span class="n">userList</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">user</span> <span class="o">-&gt;</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">())</span>
+      <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</code></pre></div>            </div>
           </li>
         </ul>
       </li>
-      <li>
-        <p>didUpdateWidget()함수</p>
-
+      <li>스레드 안정성
         <ul>
-          <li>부모 위젯이나 데이터가 변경되어 위젯을 갱신해야 할 때 호출하는 함수</li>
-          <li>initState()함수는 위젯을 초기화할 때 한 번만 호출되므로 위젯이 변경되었을 때 이 함수를 호출해야함</li>
-        </ul>
-      </li>
-      <li>setState()함수
-        <ul>
-          <li>데이터가 변경되었다는 것을 알려주고 이를 반영하여 화면 UI를 변경하는 함수</li>
-        </ul>
-      </li>
-      <li>
-        <p>deactive()함수</p>
-
-        <ul>
-          <li>위젯의 상태 관리를 중지하는 함수</li>
-          <li>State객체가 플러터 구성 트리에서 제거될 때 호출됨</li>
-          <li>dispose()함수를 호출하기 전까지는 State객체를 재사용할 수 있게 해줌</li>
-        </ul>
-      </li>
-      <li>dispose()함수
-        <ul>
-          <li>State객체를 영구적으로 소멸할 때 호출되는 함수</li>
-        </ul>
-      </li>
-      <li>mounted == false
-        <ul>
-          <li>생명주기를 끝내주는 함수</li>
-          <li>false가 된 다음 이 State는 재사용할 수 없다.</li>
+          <li>멀티스레드 환경에서 불변성 보장에 도움</li>
         </ul>
       </li>
     </ol>
+  </li>
+</ul>
+
+<h2 id="const-상수"><code class="language-plaintext highlighter-rouge">Const</code> (상수)</h2>
+
+<blockquote>
+  <p>프로그램 전체에서 변경되지 않는 고정 값
+Java의 키워드</p>
+</blockquote>
+
+<ul>
+  <li>특징
+    <ul>
+      <li>일반적으로 <code class="language-plaintext highlighter-rouge">static final</code>로 선언</li>
+      <li>클래스 로딩 시점에 초기화</li>
+      <li>관례적으로 대문자와 언더스코어 사용 (UPPER_SNAKE_CASE)</li>
+      <li>예
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">public static final int MAX_USERS = 100;</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">static</code>
+    <ul>
+      <li>상수(<code class="language-plaintext highlighter-rouge">const</code>)와 자주 함께 사용되는 변수</li>
+      <li>클래스 수준에서 사용되며, 객체가 아닌 클래스에 종속됨
+        <ul>
+          <li>클래스 로딩 시 한 번만 초기화되며 모든 객체가 공유</li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ul>
 
