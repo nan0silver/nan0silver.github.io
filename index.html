@@ -46,7 +46,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="Blog" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T14:34:00+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","name":"NAHYUN BLOG","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T15:15:12+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","name":"NAHYUN BLOG","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -109,7 +109,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-08T14:34:45+00:00',
+    INDEX_KEY: 'index--2025-04-08T15:15:53+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -455,7 +455,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T14:34:00+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T15:15:12+00:00">2025-04-08</time>
             </span>
           
         
@@ -535,7 +535,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T14:34:00+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T15:15:12+00:00">2025-04-08</time>
             </span>
           
         
@@ -594,7 +594,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   <header>
     <h1 class="post-title flip-project-title">
       <a href="/spring/2025-04-01-resttemplate/" class="flip-title">
-        [Spring] RestTemplate
+        [Spring] HttpURLConnection, RestTemplate, WebClient
       </a>
     </h1>
 
@@ -613,7 +613,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T14:34:00+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T15:15:12+00:00">2025-04-08</time>
             </span>
           
         
@@ -629,7 +629,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자.
+      Java 환경에서 사용되는 HTTP 클라이언트인 <code class="language-plaintext highlighter-rouge">HttpURLConnection</code>, <code class="language-plaintext highlighter-rouge">RestTemplate</code>, <code class="language-plaintext highlighter-rouge">WebClient</code>를 비교해보자.
 
     </p>
   
@@ -639,14 +639,13 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#-resttemplate이란">RestTemplate이란?</a></li>
-  <li><a href="#-필요한-이유">필요한 이유</a></li>
-  <li><a href="#️-예시-코드-get-요청">예시 코드 (Get)</a></li>
-  <li><a href="#-주요-메서드들">주요 메서드들</a></li>
-  <li><a href="#-응답을-객체로-받기-json--java-객체">응답을 객체로 받기 (JSON → Java 객체)</a></li>
-  <li><a href="#-resttemplate-vs-webclient-핵심-비교"><code class="language-plaintext highlighter-rouge">RestTemplate</code> vs <code class="language-plaintext highlighter-rouge">WebClient</code> 핵심 비교</a></li>
-  <li><a href="#-코드로-비교">코드로 비교</a></li>
-  <li><a href="#-결론-언제-뭘-쓰면-좋을까">결론: 언제 뭘 쓰면 좋을까?</a></li>
+  <li><a href="#-먼저-한눈에-보는-비교표">한눈에 보는 비교표</a></li>
+  <li><a href="#-1-httpurlconnection--java-기본-클래스">1. HttpURLConnection</a></li>
+  <li><a href="#-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트">2. RestTemplate</a></li>
+  <li><a href="#-3-webclient--비동기--논블로킹-방식의-최신-http-클라이언트">3. WebClient</a></li>
+  <li><a href="#-현업-개발자들은-어떻게-생각할까">현업 개발자들은 어떻게 생각할까?</a></li>
+  <li><a href="#-간단-정리-">간단 정리</a></li>
+  <li><a href="#-선택-가이드">선택 가이드</a></li>
 </ul>
 
 
@@ -655,7 +654,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/spring/2025-04-01-resttemplate/">[Spring] RestTemplate</a>
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-01-resttemplate/">[Spring] HttpURLConnection, RestTemplate, WebClient</a>
 
       </p>
     </footer>
@@ -692,7 +691,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T14:34:00+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T15:15:12+00:00">2025-04-08</time>
             </span>
           
         
@@ -766,7 +765,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T14:34:00+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T15:15:12+00:00">2025-04-08</time>
             </span>
           
         
@@ -840,7 +839,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T14:34:00+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T15:15:12+00:00">2025-04-08</time>
             </span>
           
         
@@ -916,7 +915,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T14:34:00+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T15:15:12+00:00">2025-04-08</time>
             </span>
           
         
@@ -990,7 +989,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T14:34:00+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T15:15:12+00:00">2025-04-08</time>
             </span>
           
         
@@ -1068,7 +1067,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T14:34:00+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T15:15:12+00:00">2025-04-08</time>
             </span>
           
         
@@ -1144,7 +1143,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T14:34:00+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T15:15:12+00:00">2025-04-08</time>
             </span>
           
         

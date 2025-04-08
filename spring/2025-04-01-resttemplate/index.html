@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Spring] RestTemplate | NAHYUN BLOG</title>
+<title>[Spring] HttpURLConnection, RestTemplate, WebClient | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Spring] RestTemplate" />
+<meta property="og:title" content="[Spring] HttpURLConnection, RestTemplate, WebClient" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자." />
-<meta property="og:description" content="Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자." />
+<meta name="description" content="Java 환경에서 사용되는 HTTP 클라이언트인 HttpURLConnection, RestTemplate, WebClient를 비교해보자." />
+<meta property="og:description" content="Java 환경에서 사용되는 HTTP 클라이언트인 HttpURLConnection, RestTemplate, WebClient를 비교해보자." />
 <link rel="canonical" href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" />
 <meta property="og:url" content="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-04-01T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Spring] RestTemplate" />
+<meta property="twitter:title" content="[Spring] HttpURLConnection, RestTemplate, WebClient" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T14:34:00+00:00","datePublished":"2025-04-01T00:00:00+00:00","description":"Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자.","headline":"[Spring] RestTemplate","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/spring/2025-04-01-resttemplate/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/spring/2025-04-01-resttemplate/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T15:15:12+00:00","datePublished":"2025-04-01T00:00:00+00:00","description":"Java 환경에서 사용되는 HTTP 클라이언트인 HttpURLConnection, RestTemplate, WebClient를 비교해보자.","headline":"[Spring] HttpURLConnection, RestTemplate, WebClient","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/spring/2025-04-01-resttemplate/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/spring/2025-04-01-resttemplate/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-08T14:34:45+00:00',
+    INDEX_KEY: 'index--2025-04-08T15:15:53+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -226,7 +226,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Spring] RestTemplate
+        [Spring] HttpURLConnection, RestTemplate, WebClient
       
     </h1>
 
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T14:34:00+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T15:15:12+00:00">2025-04-08</time>
             </span>
           
         
@@ -261,7 +261,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자.
+      Java 환경에서 사용되는 HTTP 클라이언트인 <code class="language-plaintext highlighter-rouge">HttpURLConnection</code>, <code class="language-plaintext highlighter-rouge">RestTemplate</code>, <code class="language-plaintext highlighter-rouge">WebClient</code>를 비교해보자.
 
     </p>
   
@@ -271,64 +271,149 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#-resttemplate이란">RestTemplate이란?</a></li>
-  <li><a href="#-필요한-이유">필요한 이유</a></li>
-  <li><a href="#️-예시-코드-get-요청">예시 코드 (Get)</a></li>
-  <li><a href="#-주요-메서드들">주요 메서드들</a></li>
-  <li><a href="#-응답을-객체로-받기-json--java-객체">응답을 객체로 받기 (JSON → Java 객체)</a></li>
-  <li><a href="#-resttemplate-vs-webclient-핵심-비교"><code class="language-plaintext highlighter-rouge">RestTemplate</code> vs <code class="language-plaintext highlighter-rouge">WebClient</code> 핵심 비교</a></li>
-  <li><a href="#-코드로-비교">코드로 비교</a></li>
-  <li><a href="#-결론-언제-뭘-쓰면-좋을까">결론: 언제 뭘 쓰면 좋을까?</a></li>
+  <li><a href="#-먼저-한눈에-보는-비교표">한눈에 보는 비교표</a></li>
+  <li><a href="#-1-httpurlconnection--java-기본-클래스">1. HttpURLConnection</a></li>
+  <li><a href="#-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트">2. RestTemplate</a></li>
+  <li><a href="#-3-webclient--비동기--논블로킹-방식의-최신-http-클라이언트">3. WebClient</a></li>
+  <li><a href="#-현업-개발자들은-어떻게-생각할까">현업 개발자들은 어떻게 생각할까?</a></li>
+  <li><a href="#-간단-정리-">간단 정리</a></li>
+  <li><a href="#-선택-가이드">선택 가이드</a></li>
 </ul>
 
 <hr />
 
-<h2 id="-resttemplate이란">✅ RestTemplate이란?</h2>
+<h2 id="java-환경에서-사용되는-http-클라이언트인-httpurlconnection-resttemplate-webclient-비교">Java 환경에서 사용되는 HTTP 클라이언트인 <code class="language-plaintext highlighter-rouge">HttpURLConnection</code>, <code class="language-plaintext highlighter-rouge">RestTemplate</code>, <code class="language-plaintext highlighter-rouge">WebClient</code> 비교</h2>
 
-<p><code class="language-plaintext highlighter-rouge">RestTemplate</code>은 <strong>Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트</strong>.</p>
+<h3 id="-1-httpurlconnection-자바-기본-제공">🧱 1. <code class="language-plaintext highlighter-rouge">HttpURLConnection</code> (자바 기본 제공)</h3>
 
-<p>즉, 서버끼리 통신할 때:</p>
+<h3 id="-2-resttemplate-spring-제공-동기">🚗 2. <code class="language-plaintext highlighter-rouge">RestTemplate</code> (Spring 제공, 동기)</h3>
 
-<ul>
-  <li>다른 서버에 요청을 보내고(<code class="language-plaintext highlighter-rouge">GET</code>, <code class="language-plaintext highlighter-rouge">POST</code>, <code class="language-plaintext highlighter-rouge">PUT</code>, <code class="language-plaintext highlighter-rouge">DELETE</code> 등),</li>
-  <li>그 응답을 받아서 처리할 수 있도록 도와주는 <strong>도구</strong></li>
-</ul>
+<h3 id="-3-webclient-spring-webflux-제공-비동기--논블로킹">🛸 3. <code class="language-plaintext highlighter-rouge">WebClient</code> (Spring WebFlux 제공, 비동기 &amp; 논블로킹)</h3>
 
 <hr />
 
-<h2 id="-필요한-이유">🧠 필요한 이유</h2>
+<h2 id="-먼저-한눈에-보는-비교표">📌 먼저, 한눈에 보는 비교표</h2>
 
-<p>웹 애플리케이션을 만들다 보면,</p>
-
-<ul>
-  <li>다른 서버에 있는 데이터를 가져오거나 (예: Kakao Map API, 날씨 API)</li>
-  <li>다른 서버에 정보를 보내야 할 때</li>
-</ul>
-
-<p>이때 <code class="language-plaintext highlighter-rouge">RestTemplate</code>이 <strong>HTTP 요청/응답을 대신 처리</strong>해주는 역할을 함.</p>
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th><code class="language-plaintext highlighter-rouge">HttpURLConnection</code></th>
+      <th><code class="language-plaintext highlighter-rouge">RestTemplate</code></th>
+      <th><code class="language-plaintext highlighter-rouge">WebClient</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>제공</td>
+      <td>Java SE 표준</td>
+      <td>Spring Web (3.x~)</td>
+      <td>Spring WebFlux (5.x~)</td>
+    </tr>
+    <tr>
+      <td>방식</td>
+      <td>동기 + 블로킹</td>
+      <td>동기 + 블로킹</td>
+      <td><strong>비동기 + 논블로킹</strong></td>
+    </tr>
+    <tr>
+      <td>쓰기 쉬움</td>
+      <td>❌ 불편하고 코드 길다</td>
+      <td>✅ 간결함</td>
+      <td>✅ (조금 복잡하지만 유연함)</td>
+    </tr>
+    <tr>
+      <td>권장도</td>
+      <td>❌ 현업에서 거의 안 씀</td>
+      <td>⚠️ Spring 5부터 비권장</td>
+      <td>✅ 최신 표준</td>
+    </tr>
+    <tr>
+      <td>성능</td>
+      <td>느림, 커넥션 재활용 어려움</td>
+      <td>괜찮음, 단순 요청에는 충분 (블로킹)</td>
+      <td>고성능 (Netty 기반), MSA에서 더 좋음</td>
+    </tr>
+    <tr>
+      <td>활용</td>
+      <td>Java 기본 네트워크 통신</td>
+      <td>간단한 API 호출</td>
+      <td>MSA, API Gateway, 대규모 호출 등</td>
+    </tr>
+    <tr>
+      <td>미래 방향</td>
+      <td>-</td>
+      <td><strong>Deprecated 예정</strong> (Spring 6에서는 제거될 수 있음)</td>
+      <td>Spring이 권장하는 <strong>표준 방식</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
-<h2 id="️-예시-코드-get-요청">⚙️ 예시 코드 (GET 요청)</h2>
+<h2 id="-1-httpurlconnection--java-기본-클래스">✅ 1. <code class="language-plaintext highlighter-rouge">HttpURLConnection</code> — Java 기본 클래스</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.web.client.RestTemplate</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://api.example.com/data"</span><span class="o">);</span>
+<span class="nc">HttpURLConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">url</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+<span class="n">conn</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">RestTemplate</span> <span class="n">restTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span>
+<span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="n">conn</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+<span class="nc">String</span> <span class="n">inputLine</span><span class="o">;</span>
+<span class="nc">StringBuilder</span> <span class="n">content</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
 
-        <span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.agify.io/?name=seongwoo"</span><span class="o">;</span>  <span class="c1">// 이름을 넣으면 예상 나이를 알려주는 무료 API</span>
-        <span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
-        <span class="c1">// 출력 예: {"name":"seongwoo","age":27,"count":1123}</span>
-    <span class="o">}</span>
+<span class="k">while</span> <span class="o">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">content</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">inputLine</span><span class="o">);</span>
 <span class="o">}</span>
+
+<span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="n">conn</span><span class="o">.</span><span class="na">disconnect</span><span class="o">();</span>
 </code></pre></div></div>
 
-<p>여기서 <code class="language-plaintext highlighter-rouge">getForObject()</code>는 <code class="language-plaintext highlighter-rouge">GET</code> 요청을 보내고, 결과를 <code class="language-plaintext highlighter-rouge">String</code> 타입으로 받아오는 함수.</p>
+<h3 id="-단점">❌ 단점</h3>
+
+<ul>
+  <li>코드가 <strong>너무 장황</strong>하고 귀찮음</li>
+  <li>커넥션 풀도 없음 (직접 관리해야 함)</li>
+  <li>에러 핸들링이 불편함</li>
+</ul>
+
+<h3 id="-장점">✅ 장점</h3>
+
+<ul>
+  <li><strong>Spring 없이도 동작</strong> (가벼운 프로젝트, 시험용 앱에 쓸 수 있음)</li>
+</ul>
+
+<blockquote>
+  <p>🚨 <strong>실무에선 거의 안 씀. RestTemplate/WebClient로 대체.</strong></p>
+</blockquote>
 
 <hr />
+
+<h2 id="-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트">✅ 2. <code class="language-plaintext highlighter-rouge">RestTemplate</code> — 동기 &amp; 블로킹 방식의 Spring HTTP 클라이언트</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">RestTemplate</span> <span class="n">restTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span>
+<span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="s">"https://api.example.com/data"</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>→ 응답이 올 때까지 <strong>기다림</strong>. 동기 처리.</p>
+
+<h3 id="-장점-1">✅ 장점</h3>
+
+<ul>
+  <li>코드가 아주 <strong>간단함</strong></li>
+  <li>Spring 기반이라 다양한 옵션 (converter, interceptor 등) 연동 쉬움</li>
+</ul>
+
+<h3 id="️-단점">⚠️ 단점</h3>
+
+<ul>
+  <li><strong>동기 + 블로킹</strong>이라, 요청 수가 많으면 쓰레드 고갈 위험</li>
+  <li>Spring 5 이후로 <strong>점점 사용 비권장됨</strong>
+    <blockquote>
+      <p>📢 Spring 공식 문서: <em>“RestTemplate은 더 이상 발전하지 않으며, WebClient 사용을 권장함.”</em></p>
+    </blockquote>
+  </li>
+</ul>
 
 <h2 id="-주요-메서드들">🔧 주요 메서드들</h2>
 
@@ -371,154 +456,77 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 <hr />
 
-<h2 id="-응답을-객체로-받기-json--java-객체">📦 응답을 객체로 받기 (JSON → Java 객체)</h2>
+<h2 id="-3-webclient--비동기--논블로킹-방식의-최신-http-클라이언트">✅ 3. <code class="language-plaintext highlighter-rouge">WebClient</code> — 비동기 &amp; 논블로킹 방식의 최신 HTTP 클라이언트</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AgifyResponse</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
-
-    <span class="c1">// 꼭! Getter/Setter 만들어줘야 함 (Lombok 써도 됨)</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">RestTemplate</span> <span class="n">restTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span>
-<span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.agify.io/?name=seongwoo"</span><span class="o">;</span>
-
-<span class="nc">AgifyResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="nc">AgifyResponse</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getAge</span><span class="o">());</span>  <span class="c1">// 예: 27</span>
-</code></pre></div></div>
-
-<p>→ JSON 데이터를 Java 객체로 자동으로 바꿔줌! (<code class="language-plaintext highlighter-rouge">Jackson</code> 같은 라이브러리를 내부에서 사용함)</p>
-
-<hr />
-
-<h2 id="-resttemplate-특징-요약">💡 RestTemplate 특징 요약</h2>
-
-<ul>
-  <li>동기 방식이다 (요청을 보내고 응답 올 때까지 기다림)</li>
-  <li>간단한 API 호출엔 유용하지만, <strong>요즘은 WebClient 사용이 증가</strong> (비동기 처리, reactive 프로그래밍에 적합)</li>
-  <li>Spring 5 이후로는 <code class="language-plaintext highlighter-rouge">RestTemplate</code>은 <strong>점점 deprecated 방향</strong>이지만, 여전히 많이 사용됨</li>
-</ul>
-
-<hr />
-
-<h2 id="-resttemplate-vs-webclient-핵심-비교">🆚 <code class="language-plaintext highlighter-rouge">RestTemplate</code> vs <code class="language-plaintext highlighter-rouge">WebClient</code> 핵심 비교</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>RestTemplate</th>
-      <th>WebClient</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>방식</td>
-      <td><strong>동기(Synchronous)</strong></td>
-      <td><strong>비동기(Asynchronous)</strong> (동기도 가능)</td>
-    </tr>
-    <tr>
-      <td>등장 시기</td>
-      <td>오래됨 (Spring 3.x부터)</td>
-      <td>최신 (Spring 5, WebFlux부터 등장)</td>
-    </tr>
-    <tr>
-      <td>쓰레드 처리</td>
-      <td>요청 → 응답 올 때까지 <strong>쓰레드 점유</strong></td>
-      <td>응답 기다리는 동안 <strong>쓰레드 반환</strong>, 더 효율적</td>
-    </tr>
-    <tr>
-      <td>성능</td>
-      <td>단순 요청에는 충분</td>
-      <td>고성능 시스템, MSA에서 더 좋음</td>
-    </tr>
-    <tr>
-      <td>사용성</td>
-      <td>코드가 간단하고 직관적</td>
-      <td>비동기라 처음엔 약간 복잡할 수 있음</td>
-    </tr>
-    <tr>
-      <td>미래 방향</td>
-      <td><strong>Deprecated 예정</strong> (Spring 6에서는 제거될 수 있음)</td>
-      <td>Spring이 권장하는 <strong>표준 방식</strong></td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-코드로-비교">🔧 코드로 비교</h2>
-
-<h3 id="1️⃣-resttemplate-예시-동기">1️⃣ RestTemplate 예시 (동기)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">RestTemplate</span> <span class="n">restTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span>
-<span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.agify.io/?name=seongwoo"</span><span class="o">;</span>
-
-<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>→ 응답이 올 때까지 <strong>기다림</strong>. 동기 처리.</p>
-
-<hr />
-
-<h3 id="2️⃣-webclient-예시-비동기--동기화-처리-가능">2️⃣ WebClient 예시 (비동기 + 동기화 처리 가능)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.web.reactive.function.client.WebClient</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">reactor.core.publisher.Mono</span><span class="o">;</span>
-
-<span class="nc">WebClient</span> <span class="n">webClient</span> <span class="o">=</span> <span class="nc">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
-<span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.agify.io/?name=seongwoo"</span><span class="o">;</span>
-
-<span class="c1">// 비동기 방식 → block()을 붙이면 동기처럼 동작</span>
-<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">webClient</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="n">url</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">retrieve</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">block</span><span class="o">();</span>  <span class="c1">// 이게 바로 응답 받을 때까지 기다리는 코드 (동기화)</span>
-
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>→ WebClient는 원래 비동기지만, <code class="language-plaintext highlighter-rouge">.block()</code>을 붙이면 동기처럼 사용할 수도 있음.</p>
-
-<hr />
-
-<h2 id="-비동기-방식으로-진짜-쓰고-싶다면">💬 비동기 방식으로 진짜 쓰고 싶다면?</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">webClient</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="n">url</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">WebClient</span> <span class="n">webClient</span> <span class="o">=</span> <span class="nc">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
+<span class="n">webClient</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"https://api.example.com/data"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">retrieve</span><span class="o">()</span>
     <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">result</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"결과: "</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
-    <span class="o">});</span>
+    <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">result</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"결과: "</span> <span class="o">+</span> <span class="n">result</span><span class="o">));</span>
 
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"여긴 먼저 실행됨!"</span><span class="o">);</span>  <span class="c1">// 비동기니까 이게 먼저 출력될 수도 있음</span>
 </code></pre></div></div>
 
+<h3 id="-장점-2">✅ 장점</h3>
+
+<ul>
+  <li><strong>논블로킹 + 비동기</strong> 처리</li>
+  <li>대규모 트래픽 처리에 유리</li>
+  <li>기능 확장도 쉬움 (OAuth2, Retry, Timeout 등)</li>
+</ul>
+
+<h3 id="-단점-1">❗ 단점</h3>
+
+<ul>
+  <li>처음 배울 땐 리액티브 스트림(Mono/Flux)이 좀 낯설 수 있음</li>
+</ul>
+
+<blockquote>
+  <p>🌐 <strong>현업에서는 WebClient가 기본</strong>이 되고 있어! 특히 MSA(마이크로서비스) 환경에서는 거의 필수!</p>
+</blockquote>
+
 <hr />
 
-<h2 id="-결론-언제-뭘-쓰면-좋을까">✅ 결론: 언제 뭘 쓰면 좋을까?</h2>
+<h2 id="-현업-개발자들은-어떻게-생각할까">🔍 현업 개발자들은 어떻게 생각할까?</h2>
+
+<ul>
+  <li>“<code class="language-plaintext highlighter-rouge">HttpURLConnection</code>은 진짜로 아무것도 없을 때 테스트용으로만 씀”</li>
+  <li>“<code class="language-plaintext highlighter-rouge">RestTemplate</code>은 작고 단순한 서비스에서는 아직도 많이 씀”</li>
+  <li>“<code class="language-plaintext highlighter-rouge">WebClient</code>는 대규모 시스템이나 MSA, API Gateway에서 표준처럼 쓰이고 있음”</li>
+</ul>
+
+<hr />
+
+<h2 id="-간단-정리-">🧑‍💻 간단 정리 :</h2>
+
+<blockquote>
+  <p>“HttpURLConnection은 Java에서 기본 제공하는 HTTP 클라이언트지만, 코드가 장황하고 관리가 어렵기 때문에 Spring에서는 RestTemplate이나 WebClient를 사용합니다. RestTemplate은 동기 방식으로 간단한 API 호출에는 적합하지만, Spring 5부터는 WebClient처럼 비동기 + 논블로킹 방식을 사용하는 것이 대세입니다.”</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-선택-가이드">🎁 선택 가이드</h2>
 
 <table>
   <thead>
     <tr>
-      <th>상황</th>
-      <th>추천</th>
+      <th>사용 상황</th>
+      <th>추천 방식</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>간단한 테스트, 외부 API 한두 번 호출할 때</td>
-      <td>RestTemplate (빠르게 개발 가능)</td>
+      <td>가볍게 테스트용 API 호출</td>
+      <td><code class="language-plaintext highlighter-rouge">RestTemplate</code> or <code class="language-plaintext highlighter-rouge">WebClient.block()</code></td>
     </tr>
     <tr>
-      <td>마이크로서비스 간 통신, 대용량 처리, reactive 시스템</td>
-      <td>WebClient (성능과 확장성 좋음)</td>
+      <td>복잡한 서비스 간 통신, 고성능 서버</td>
+      <td><code class="language-plaintext highlighter-rouge">WebClient</code></td>
+    </tr>
+    <tr>
+      <td>Java만 사용하는 초간단 도구 개발</td>
+      <td><code class="language-plaintext highlighter-rouge">HttpURLConnection</code> (단, 실무에는 비권장)</td>
     </tr>
     <tr>
       <td>Spring 5 이상 + 새로운 프로젝트</td>
@@ -526,6 +534,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     </tr>
   </tbody>
 </table>
+
+<hr />
 
   
 </article>

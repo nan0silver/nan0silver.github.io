@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-08T14:34:45+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-08T15:15:53+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] JPA vs MyBatis</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] JPA vs MyBatis" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-04-08T14:34:00+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] JPA vs MyBatis</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] JPA vs MyBatis" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-04-08T15:15:12+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
   <li><a href="#-jpa란-java-persistence-api">JPA란?</a></li>
   <li><a href="#-mybatis란">MyBatis란?</a></li>
   <li><a href="#-jpa-vs-mybatis">🔍 JPA vs MyBatis</a></li>
@@ -352,7 +352,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <p>“JPA는 객체 중심의 ORM 프레임워크로, DB와의 데이터 처리를 추상화해 코드 생산성을 높여줍니다. 반면 MyBatis는 SQL 중심의 프레임워크로, 복잡한 쿼리나 성능 튜닝이 필요한 경우에 유리합니다. 프로젝트 성격에 따라 두 기술을 선택하거나 병행할 수 있습니다.”</p>
 </blockquote>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.]]></summary></entry><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-08T14:34:00+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.]]></summary></entry><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-08T15:15:12+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
   <li><a href="#dto-vs-vo-vs-entity">DTO vs VO vs Entity</a></li>
   <li><a href="#-dto-vs-vo">📦 DTO vs VO</a></li>
   <li><a href="#-entity-vs-vo">📦 Entity vs VO</a></li>
@@ -678,65 +678,150 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   <li><strong>값 객체(VO)</strong>를 표현할 때 <strong>record는 아주 강력한 도구</strong></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] RestTemplate</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] RestTemplate" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-08T14:34:00+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
-  <li><a href="#-resttemplate이란">RestTemplate이란?</a></li>
-  <li><a href="#-필요한-이유">필요한 이유</a></li>
-  <li><a href="#️-예시-코드-get-요청">예시 코드 (Get)</a></li>
-  <li><a href="#-주요-메서드들">주요 메서드들</a></li>
-  <li><a href="#-응답을-객체로-받기-json--java-객체">응답을 객체로 받기 (JSON → Java 객체)</a></li>
-  <li><a href="#-resttemplate-vs-webclient-핵심-비교"><code class="language-plaintext highlighter-rouge">RestTemplate</code> vs <code class="language-plaintext highlighter-rouge">WebClient</code> 핵심 비교</a></li>
-  <li><a href="#-코드로-비교">코드로 비교</a></li>
-  <li><a href="#-결론-언제-뭘-쓰면-좋을까">결론: 언제 뭘 쓰면 좋을까?</a></li>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] HttpURLConnection, RestTemplate, WebClient</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] HttpURLConnection, RestTemplate, WebClient" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-08T15:15:12+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
+  <li><a href="#-먼저-한눈에-보는-비교표">한눈에 보는 비교표</a></li>
+  <li><a href="#-1-httpurlconnection--java-기본-클래스">1. HttpURLConnection</a></li>
+  <li><a href="#-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트">2. RestTemplate</a></li>
+  <li><a href="#-3-webclient--비동기--논블로킹-방식의-최신-http-클라이언트">3. WebClient</a></li>
+  <li><a href="#-현업-개발자들은-어떻게-생각할까">현업 개발자들은 어떻게 생각할까?</a></li>
+  <li><a href="#-간단-정리-">간단 정리</a></li>
+  <li><a href="#-선택-가이드">선택 가이드</a></li>
 </ul>
 
 <hr />
 
-<h2 id="-resttemplate이란">✅ RestTemplate이란?</h2>
+<h2 id="java-환경에서-사용되는-http-클라이언트인-httpurlconnection-resttemplate-webclient-비교">Java 환경에서 사용되는 HTTP 클라이언트인 <code class="language-plaintext highlighter-rouge">HttpURLConnection</code>, <code class="language-plaintext highlighter-rouge">RestTemplate</code>, <code class="language-plaintext highlighter-rouge">WebClient</code> 비교</h2>
 
-<p><code class="language-plaintext highlighter-rouge">RestTemplate</code>은 <strong>Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트</strong>.</p>
+<h3 id="-1-httpurlconnection-자바-기본-제공">🧱 1. <code class="language-plaintext highlighter-rouge">HttpURLConnection</code> (자바 기본 제공)</h3>
 
-<p>즉, 서버끼리 통신할 때:</p>
+<h3 id="-2-resttemplate-spring-제공-동기">🚗 2. <code class="language-plaintext highlighter-rouge">RestTemplate</code> (Spring 제공, 동기)</h3>
 
-<ul>
-  <li>다른 서버에 요청을 보내고(<code class="language-plaintext highlighter-rouge">GET</code>, <code class="language-plaintext highlighter-rouge">POST</code>, <code class="language-plaintext highlighter-rouge">PUT</code>, <code class="language-plaintext highlighter-rouge">DELETE</code> 등),</li>
-  <li>그 응답을 받아서 처리할 수 있도록 도와주는 <strong>도구</strong></li>
-</ul>
+<h3 id="-3-webclient-spring-webflux-제공-비동기--논블로킹">🛸 3. <code class="language-plaintext highlighter-rouge">WebClient</code> (Spring WebFlux 제공, 비동기 &amp; 논블로킹)</h3>
 
 <hr />
 
-<h2 id="-필요한-이유">🧠 필요한 이유</h2>
+<h2 id="-먼저-한눈에-보는-비교표">📌 먼저, 한눈에 보는 비교표</h2>
 
-<p>웹 애플리케이션을 만들다 보면,</p>
-
-<ul>
-  <li>다른 서버에 있는 데이터를 가져오거나 (예: Kakao Map API, 날씨 API)</li>
-  <li>다른 서버에 정보를 보내야 할 때</li>
-</ul>
-
-<p>이때 <code class="language-plaintext highlighter-rouge">RestTemplate</code>이 <strong>HTTP 요청/응답을 대신 처리</strong>해주는 역할을 함.</p>
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th><code class="language-plaintext highlighter-rouge">HttpURLConnection</code></th>
+      <th><code class="language-plaintext highlighter-rouge">RestTemplate</code></th>
+      <th><code class="language-plaintext highlighter-rouge">WebClient</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>제공</td>
+      <td>Java SE 표준</td>
+      <td>Spring Web (3.x~)</td>
+      <td>Spring WebFlux (5.x~)</td>
+    </tr>
+    <tr>
+      <td>방식</td>
+      <td>동기 + 블로킹</td>
+      <td>동기 + 블로킹</td>
+      <td><strong>비동기 + 논블로킹</strong></td>
+    </tr>
+    <tr>
+      <td>쓰기 쉬움</td>
+      <td>❌ 불편하고 코드 길다</td>
+      <td>✅ 간결함</td>
+      <td>✅ (조금 복잡하지만 유연함)</td>
+    </tr>
+    <tr>
+      <td>권장도</td>
+      <td>❌ 현업에서 거의 안 씀</td>
+      <td>⚠️ Spring 5부터 비권장</td>
+      <td>✅ 최신 표준</td>
+    </tr>
+    <tr>
+      <td>성능</td>
+      <td>느림, 커넥션 재활용 어려움</td>
+      <td>괜찮음, 단순 요청에는 충분 (블로킹)</td>
+      <td>고성능 (Netty 기반), MSA에서 더 좋음</td>
+    </tr>
+    <tr>
+      <td>활용</td>
+      <td>Java 기본 네트워크 통신</td>
+      <td>간단한 API 호출</td>
+      <td>MSA, API Gateway, 대규모 호출 등</td>
+    </tr>
+    <tr>
+      <td>미래 방향</td>
+      <td>-</td>
+      <td><strong>Deprecated 예정</strong> (Spring 6에서는 제거될 수 있음)</td>
+      <td>Spring이 권장하는 <strong>표준 방식</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
-<h2 id="️-예시-코드-get-요청">⚙️ 예시 코드 (GET 요청)</h2>
+<h2 id="-1-httpurlconnection--java-기본-클래스">✅ 1. <code class="language-plaintext highlighter-rouge">HttpURLConnection</code> — Java 기본 클래스</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.web.client.RestTemplate</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://api.example.com/data"</span><span class="o">);</span>
+<span class="nc">HttpURLConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">url</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+<span class="n">conn</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">RestTemplate</span> <span class="n">restTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span>
+<span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="n">conn</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+<span class="nc">String</span> <span class="n">inputLine</span><span class="o">;</span>
+<span class="nc">StringBuilder</span> <span class="n">content</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
 
-        <span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.agify.io/?name=seongwoo"</span><span class="o">;</span>  <span class="c1">// 이름을 넣으면 예상 나이를 알려주는 무료 API</span>
-        <span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
-        <span class="c1">// 출력 예: {"name":"seongwoo","age":27,"count":1123}</span>
-    <span class="o">}</span>
+<span class="k">while</span> <span class="o">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">content</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">inputLine</span><span class="o">);</span>
 <span class="o">}</span>
+
+<span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="n">conn</span><span class="o">.</span><span class="na">disconnect</span><span class="o">();</span>
 </code></pre></div></div>
 
-<p>여기서 <code class="language-plaintext highlighter-rouge">getForObject()</code>는 <code class="language-plaintext highlighter-rouge">GET</code> 요청을 보내고, 결과를 <code class="language-plaintext highlighter-rouge">String</code> 타입으로 받아오는 함수.</p>
+<h3 id="-단점">❌ 단점</h3>
+
+<ul>
+  <li>코드가 <strong>너무 장황</strong>하고 귀찮음</li>
+  <li>커넥션 풀도 없음 (직접 관리해야 함)</li>
+  <li>에러 핸들링이 불편함</li>
+</ul>
+
+<h3 id="-장점">✅ 장점</h3>
+
+<ul>
+  <li><strong>Spring 없이도 동작</strong> (가벼운 프로젝트, 시험용 앱에 쓸 수 있음)</li>
+</ul>
+
+<blockquote>
+  <p>🚨 <strong>실무에선 거의 안 씀. RestTemplate/WebClient로 대체.</strong></p>
+</blockquote>
 
 <hr />
+
+<h2 id="-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트">✅ 2. <code class="language-plaintext highlighter-rouge">RestTemplate</code> — 동기 &amp; 블로킹 방식의 Spring HTTP 클라이언트</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">RestTemplate</span> <span class="n">restTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span>
+<span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="s">"https://api.example.com/data"</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>→ 응답이 올 때까지 <strong>기다림</strong>. 동기 처리.</p>
+
+<h3 id="-장점-1">✅ 장점</h3>
+
+<ul>
+  <li>코드가 아주 <strong>간단함</strong></li>
+  <li>Spring 기반이라 다양한 옵션 (converter, interceptor 등) 연동 쉬움</li>
+</ul>
+
+<h3 id="️-단점">⚠️ 단점</h3>
+
+<ul>
+  <li><strong>동기 + 블로킹</strong>이라, 요청 수가 많으면 쓰레드 고갈 위험</li>
+  <li>Spring 5 이후로 <strong>점점 사용 비권장됨</strong>
+    <blockquote>
+      <p>📢 Spring 공식 문서: <em>“RestTemplate은 더 이상 발전하지 않으며, WebClient 사용을 권장함.”</em></p>
+    </blockquote>
+  </li>
+</ul>
 
 <h2 id="-주요-메서드들">🔧 주요 메서드들</h2>
 
@@ -779,161 +864,86 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
 
 <hr />
 
-<h2 id="-응답을-객체로-받기-json--java-객체">📦 응답을 객체로 받기 (JSON → Java 객체)</h2>
+<h2 id="-3-webclient--비동기--논블로킹-방식의-최신-http-클라이언트">✅ 3. <code class="language-plaintext highlighter-rouge">WebClient</code> — 비동기 &amp; 논블로킹 방식의 최신 HTTP 클라이언트</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AgifyResponse</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
-
-    <span class="c1">// 꼭! Getter/Setter 만들어줘야 함 (Lombok 써도 됨)</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">RestTemplate</span> <span class="n">restTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span>
-<span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.agify.io/?name=seongwoo"</span><span class="o">;</span>
-
-<span class="nc">AgifyResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="nc">AgifyResponse</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getAge</span><span class="o">());</span>  <span class="c1">// 예: 27</span>
-</code></pre></div></div>
-
-<p>→ JSON 데이터를 Java 객체로 자동으로 바꿔줌! (<code class="language-plaintext highlighter-rouge">Jackson</code> 같은 라이브러리를 내부에서 사용함)</p>
-
-<hr />
-
-<h2 id="-resttemplate-특징-요약">💡 RestTemplate 특징 요약</h2>
-
-<ul>
-  <li>동기 방식이다 (요청을 보내고 응답 올 때까지 기다림)</li>
-  <li>간단한 API 호출엔 유용하지만, <strong>요즘은 WebClient 사용이 증가</strong> (비동기 처리, reactive 프로그래밍에 적합)</li>
-  <li>Spring 5 이후로는 <code class="language-plaintext highlighter-rouge">RestTemplate</code>은 <strong>점점 deprecated 방향</strong>이지만, 여전히 많이 사용됨</li>
-</ul>
-
-<hr />
-
-<h2 id="-resttemplate-vs-webclient-핵심-비교">🆚 <code class="language-plaintext highlighter-rouge">RestTemplate</code> vs <code class="language-plaintext highlighter-rouge">WebClient</code> 핵심 비교</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>RestTemplate</th>
-      <th>WebClient</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>방식</td>
-      <td><strong>동기(Synchronous)</strong></td>
-      <td><strong>비동기(Asynchronous)</strong> (동기도 가능)</td>
-    </tr>
-    <tr>
-      <td>등장 시기</td>
-      <td>오래됨 (Spring 3.x부터)</td>
-      <td>최신 (Spring 5, WebFlux부터 등장)</td>
-    </tr>
-    <tr>
-      <td>쓰레드 처리</td>
-      <td>요청 → 응답 올 때까지 <strong>쓰레드 점유</strong></td>
-      <td>응답 기다리는 동안 <strong>쓰레드 반환</strong>, 더 효율적</td>
-    </tr>
-    <tr>
-      <td>성능</td>
-      <td>단순 요청에는 충분</td>
-      <td>고성능 시스템, MSA에서 더 좋음</td>
-    </tr>
-    <tr>
-      <td>사용성</td>
-      <td>코드가 간단하고 직관적</td>
-      <td>비동기라 처음엔 약간 복잡할 수 있음</td>
-    </tr>
-    <tr>
-      <td>미래 방향</td>
-      <td><strong>Deprecated 예정</strong> (Spring 6에서는 제거될 수 있음)</td>
-      <td>Spring이 권장하는 <strong>표준 방식</strong></td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-코드로-비교">🔧 코드로 비교</h2>
-
-<h3 id="1️⃣-resttemplate-예시-동기">1️⃣ RestTemplate 예시 (동기)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">RestTemplate</span> <span class="n">restTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span>
-<span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.agify.io/?name=seongwoo"</span><span class="o">;</span>
-
-<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>→ 응답이 올 때까지 <strong>기다림</strong>. 동기 처리.</p>
-
-<hr />
-
-<h3 id="2️⃣-webclient-예시-비동기--동기화-처리-가능">2️⃣ WebClient 예시 (비동기 + 동기화 처리 가능)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.web.reactive.function.client.WebClient</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">reactor.core.publisher.Mono</span><span class="o">;</span>
-
-<span class="nc">WebClient</span> <span class="n">webClient</span> <span class="o">=</span> <span class="nc">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
-<span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.agify.io/?name=seongwoo"</span><span class="o">;</span>
-
-<span class="c1">// 비동기 방식 → block()을 붙이면 동기처럼 동작</span>
-<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">webClient</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="n">url</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">retrieve</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">block</span><span class="o">();</span>  <span class="c1">// 이게 바로 응답 받을 때까지 기다리는 코드 (동기화)</span>
-
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>→ WebClient는 원래 비동기지만, <code class="language-plaintext highlighter-rouge">.block()</code>을 붙이면 동기처럼 사용할 수도 있음.</p>
-
-<hr />
-
-<h2 id="-비동기-방식으로-진짜-쓰고-싶다면">💬 비동기 방식으로 진짜 쓰고 싶다면?</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">webClient</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="n">url</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">WebClient</span> <span class="n">webClient</span> <span class="o">=</span> <span class="nc">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
+<span class="n">webClient</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"https://api.example.com/data"</span><span class="o">)</span>
     <span class="o">.</span><span class="na">retrieve</span><span class="o">()</span>
     <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">result</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"결과: "</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
-    <span class="o">});</span>
+    <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">result</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"결과: "</span> <span class="o">+</span> <span class="n">result</span><span class="o">));</span>
 
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"여긴 먼저 실행됨!"</span><span class="o">);</span>  <span class="c1">// 비동기니까 이게 먼저 출력될 수도 있음</span>
 </code></pre></div></div>
 
+<h3 id="-장점-2">✅ 장점</h3>
+
+<ul>
+  <li><strong>논블로킹 + 비동기</strong> 처리</li>
+  <li>대규모 트래픽 처리에 유리</li>
+  <li>기능 확장도 쉬움 (OAuth2, Retry, Timeout 등)</li>
+</ul>
+
+<h3 id="-단점-1">❗ 단점</h3>
+
+<ul>
+  <li>처음 배울 땐 리액티브 스트림(Mono/Flux)이 좀 낯설 수 있음</li>
+</ul>
+
+<blockquote>
+  <p>🌐 <strong>현업에서는 WebClient가 기본</strong>이 되고 있어! 특히 MSA(마이크로서비스) 환경에서는 거의 필수!</p>
+</blockquote>
+
 <hr />
 
-<h2 id="-결론-언제-뭘-쓰면-좋을까">✅ 결론: 언제 뭘 쓰면 좋을까?</h2>
+<h2 id="-현업-개발자들은-어떻게-생각할까">🔍 현업 개발자들은 어떻게 생각할까?</h2>
+
+<ul>
+  <li>“<code class="language-plaintext highlighter-rouge">HttpURLConnection</code>은 진짜로 아무것도 없을 때 테스트용으로만 씀”</li>
+  <li>“<code class="language-plaintext highlighter-rouge">RestTemplate</code>은 작고 단순한 서비스에서는 아직도 많이 씀”</li>
+  <li>“<code class="language-plaintext highlighter-rouge">WebClient</code>는 대규모 시스템이나 MSA, API Gateway에서 표준처럼 쓰이고 있음”</li>
+</ul>
+
+<hr />
+
+<h2 id="-간단-정리-">🧑‍💻 간단 정리 :</h2>
+
+<blockquote>
+  <p>“HttpURLConnection은 Java에서 기본 제공하는 HTTP 클라이언트지만, 코드가 장황하고 관리가 어렵기 때문에 Spring에서는 RestTemplate이나 WebClient를 사용합니다. RestTemplate은 동기 방식으로 간단한 API 호출에는 적합하지만, Spring 5부터는 WebClient처럼 비동기 + 논블로킹 방식을 사용하는 것이 대세입니다.”</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-선택-가이드">🎁 선택 가이드</h2>
 
 <table>
   <thead>
     <tr>
-      <th>상황</th>
-      <th>추천</th>
+      <th>사용 상황</th>
+      <th>추천 방식</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>간단한 테스트, 외부 API 한두 번 호출할 때</td>
-      <td>RestTemplate (빠르게 개발 가능)</td>
+      <td>가볍게 테스트용 API 호출</td>
+      <td><code class="language-plaintext highlighter-rouge">RestTemplate</code> or <code class="language-plaintext highlighter-rouge">WebClient.block()</code></td>
     </tr>
     <tr>
-      <td>마이크로서비스 간 통신, 대용량 처리, reactive 시스템</td>
-      <td>WebClient (성능과 확장성 좋음)</td>
+      <td>복잡한 서비스 간 통신, 고성능 서버</td>
+      <td><code class="language-plaintext highlighter-rouge">WebClient</code></td>
+    </tr>
+    <tr>
+      <td>Java만 사용하는 초간단 도구 개발</td>
+      <td><code class="language-plaintext highlighter-rouge">HttpURLConnection</code> (단, 실무에는 비권장)</td>
     </tr>
     <tr>
       <td>Spring 5 이상 + 새로운 프로젝트</td>
       <td>WebClient를 사용하는 게 <strong>미래지향적</strong></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 💣 SQL Injection</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" rel="alternate" type="text/html" title="[Etc] 💣 SQL Injection" /><published>2025-03-31T00:00:00+00:00</published><updated>2025-04-08T14:34:00+00:00</updated><id>https://nan0silver.github.io/miscellaneous/sql-injection</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"><![CDATA[<ul>
+</table>
+
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Java 환경에서 사용되는 HTTP 클라이언트인 `HttpURLConnection`, `RestTemplate`, `WebClient`를 비교해보자.]]></summary></entry><entry><title type="html">[Etc] 💣 SQL Injection</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" rel="alternate" type="text/html" title="[Etc] 💣 SQL Injection" /><published>2025-03-31T00:00:00+00:00</published><updated>2025-04-08T15:15:12+00:00</updated><id>https://nan0silver.github.io/miscellaneous/sql-injection</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"><![CDATA[<ul>
   <li><a href="#sql-injection이란">SQL Injection이란?</a></li>
   <li><a href="#-spring-관점에서-sql-injection-방지법">Spring 관점에서 SQL Injection 방지법</a></li>
   <li><a href="#-spring-배우는-입장에서-조심할-포인트-요약">요약</a></li>
@@ -1066,7 +1076,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   <li><strong>ORM(JPA) + 파라미터 바인딩</strong> 방식으로 작성하면 거의 대부분 안전하게 막을 수 있음</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-04-08T14:34:00+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-04-08T15:15:12+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
   <li><a href="#1️⃣-기본-소수-판별-on">기본 소수 판별</a></li>
   <li><a href="#2️⃣-에라토스테네스의-체-on-log-log-n">에라토스테네스의 체</a></li>
   <li><a href="#3️⃣-miller-rabin-소수판별법-olog-n">Miller-Rabin 소수 판별법</a></li>
@@ -1224,7 +1234,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isPrime</span><span class="o">(</span><span class="mi">1000000008</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span> <span class="c1">// false (합성수)</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-08T14:34:00+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-08T15:15:12+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
   <li><a href="#레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</a></li>
   <li><a href="#mvc란">MVC란?</a></li>
   <li><a href="#레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</a></li>
@@ -1363,7 +1373,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
 
 <ul>
   <li>MVC는 역할을 분리하고, 레이어드 아키텍처는 각 계층을 더 체계적으로 조직화하여 유지보수성과 확장성을 높인다</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Spring VS Servlet</title><link href="https://nan0silver.github.io/spring/2025-03-17-servlet-vs-spring/" rel="alternate" type="text/html" title="[Spring] Spring VS Servlet" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-08T14:34:00+00:00</updated><id>https://nan0silver.github.io/spring/servlet-vs-spring</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-03-17-servlet-vs-spring/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Spring VS Servlet</title><link href="https://nan0silver.github.io/spring/2025-03-17-servlet-vs-spring/" rel="alternate" type="text/html" title="[Spring] Spring VS Servlet" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-08T15:15:12+00:00</updated><id>https://nan0silver.github.io/spring/servlet-vs-spring</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-03-17-servlet-vs-spring/"><![CDATA[<ul>
   <li><a href="#-servlet과-spring의-차이-쉽게-이해하기">Servlet과 Spring의 차이</a></li>
   <li><a href="#servlet-직접-요청을-처리하는-원시적인-방식">Servlet</a></li>
   <li><a href="#spring-웹-개발을-쉽게-만들어주는-프레임워크">Spring</a></li>
@@ -1509,7 +1519,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
 <h2 id="-결론-spring이-servlet보다-훨씬-편리하다">🚀 <strong>결론: Spring이 Servlet보다 훨씬 편리하다!</strong></h2>
 
 <p>Servlet은 기본적인 웹 요청 처리를 할 수 있지만, 직접 HTML을 만들고 보안, 데이터베이스 연결 등을 다 처리해야 함.<br />
-Spring은 이런 것들을 <strong>자동화</strong>해주기 때문에 개발이 훨씬 쉬워지고, 유지보수도 편하다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring과 Servlet의 차이 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-08T14:34:00+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
+Spring은 이런 것들을 <strong>자동화</strong>해주기 때문에 개발이 훨씬 쉬워지고, 유지보수도 편하다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring과 Servlet의 차이 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-08T15:15:12+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
   <li><a href="#java에서-동시성">JAVA에서 동시성</a></li>
   <li><a href="#스레드-thread">스레드 (Thread)</a></li>
   <li><a href="#비동기-처리-async">비동기 처리 (Aysnc)</a></li>
@@ -1680,7 +1690,7 @@ Spring은 이런 것들을 <strong>자동화</strong>해주기 때문에 개발�
 <ul>
   <li>Redis, Kafka, 클러스터</li>
   <li>분산처리는 프랜차이즈이다. 큰 가게 하나보다 작은 여러 가게가 효율적이고 비용도 절감된다.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[JAVA] record</title><link href="https://nan0silver.github.io/java/2025-03-09-record/" rel="alternate" type="text/html" title="[JAVA] record" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-08T14:34:00+00:00</updated><id>https://nan0silver.github.io/java/record</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-record/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[JAVA] record</title><link href="https://nan0silver.github.io/java/2025-03-09-record/" rel="alternate" type="text/html" title="[JAVA] record" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-08T15:15:12+00:00</updated><id>https://nan0silver.github.io/java/record</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-record/"><![CDATA[<ul>
   <li><a href="#-record란-java-14">record란?</a></li>
   <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
   <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
@@ -1936,7 +1946,7 @@ Spring은 이런 것들을 <strong>자동화</strong>해주기 때문에 개발�
 
 <hr />
 
-<h3 id="-결론-record를-사용하면-불변-객체를-쉽게-만들-수-있으며-dto나-vo-같은-데이터-클래스를-훨씬-간결하게-표현할-수-있다-">🚀 <strong>결론: <code class="language-plaintext highlighter-rouge">record</code>를 사용하면 불변 객체를 쉽게 만들 수 있으며, DTO나 VO 같은 데이터 클래스를 훨씬 간결하게 표현할 수 있다!</strong> 🚀</h3>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[Etc] immutable, final, constant</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/" rel="alternate" type="text/html" title="[Etc] immutable, final, constant" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-04-08T14:34:00+00:00</updated><id>https://nan0silver.github.io/miscellaneous/immutable</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/"><![CDATA[<ul>
+<h3 id="-결론-record를-사용하면-불변-객체를-쉽게-만들-수-있으며-dto나-vo-같은-데이터-클래스를-훨씬-간결하게-표현할-수-있다-">🚀 <strong>결론: <code class="language-plaintext highlighter-rouge">record</code>를 사용하면 불변 객체를 쉽게 만들 수 있으며, DTO나 VO 같은 데이터 클래스를 훨씬 간결하게 표현할 수 있다!</strong> 🚀</h3>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[Etc] immutable, final, constant</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/" rel="alternate" type="text/html" title="[Etc] immutable, final, constant" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-04-08T15:15:12+00:00</updated><id>https://nan0silver.github.io/miscellaneous/immutable</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/"><![CDATA[<ul>
   <li><a href="#immutable-불변"><code class="language-plaintext highlighter-rouge">Immutable</code></a></li>
   <li><a href="#final-최종-변경-불가"><code class="language-plaintext highlighter-rouge">final</code></a></li>
   <li><a href="#const-상수"><code class="language-plaintext highlighter-rouge">const</code></a></li>
