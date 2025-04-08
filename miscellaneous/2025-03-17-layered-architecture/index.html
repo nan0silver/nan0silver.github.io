@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[Etc] 🤖 Layered Architecture &amp; MVC pattern" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T08:53:56+00:00","datePublished":"2025-03-17T00:00:00+00:00","description":"레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.","headline":"[Etc] 🤖 Layered Architecture &amp; MVC pattern","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T12:28:34+00:00","datePublished":"2025-03-17T00:00:00+00:00","description":"레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.","headline":"[Etc] 🤖 Layered Architecture &amp; MVC pattern","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-08T08:54:38+00:00',
+    INDEX_KEY: 'index--2025-04-08T12:29:17+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T08:53:56+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T12:28:34+00:00">2025-04-08</time>
             </span>
           
         
@@ -281,14 +281,47 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <h2 id="레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</h2>
 
 <ul>
-  <li>여러 수평 레이어가 수직적으로 쌓인 구조 (상위 레이어에서 하위 레이어로 단방향 의존성)
-    <ul>
-      <li>프레젠테이션 레이어 : 1층로비, 방문객 맞이하고 안내</li>
-      <li>비즈니스 레이어 : 실제 회사 업무 설계 및 규칙 수립</li>
-      <li>서비스 레이어 : 비즈니스 레이어의 명령 실행</li>
-      <li>데이터 접근 레이어 : 필요한 정보 저장 및 검색</li>
-      <li>각 층은 자신의 역할만 수행, 보통 아래층에만 의존</li>
-    </ul>
+  <li>여러 수평 레이어가 수직적으로 쌓인 구조 (상위 레이어에서 하위 레이어로 단방향 의존성)</li>
+  <li>
+    <p>각 계층이 명확한 역할을 가지며, 하위 계층만 접근할 수 있도록 설계하여 유지보수성과 확장성을 높이는 것이 목적</p>
+
+    <ol>
+      <li>
+        <p>Presentation Layer (프레젠테이션 계층) : 1층로비, 방문객 맞이하고 안내</p>
+
+        <blockquote>
+          <p>예시: Spring Boot의 <code class="language-plaintext highlighter-rouge">Controller</code></p>
+        </blockquote>
+
+        <ul>
+          <li><strong>사용자와 직접 상호작용</strong>하는 계층 (예: 웹 UI, API 컨트롤러)</li>
+          <li>사용자의 입력을 받아 <strong>비즈니스 로직을 호출</strong>하고, 응답을 반환</li>
+        </ul>
+      </li>
+      <li>Business Logic Layer (비즈니스 로직 계층) : 실제 회사 업무 설계 및 규칙 수립
+        <blockquote>
+          <p>예시: Spring Boot의 <code class="language-plaintext highlighter-rouge">Service</code></p>
+        </blockquote>
+        <ul>
+          <li>핵심 비즈니스 로직을 처리하는 계층</li>
+          <li>도메인 규칙을 적용하여 데이터 검증 및 가공 수행</li>
+        </ul>
+      </li>
+      <li>Data Access Layer (데이터 접근 계층) : 비즈니스 레이어의 명령 실행
+        <blockquote>
+          <p>예시: Spring Boot의 <code class="language-plaintext highlighter-rouge">Repository</code></p>
+        </blockquote>
+        <ul>
+          <li>데이터베이스와 직접 상호작용하는 계층</li>
+          <li>DAO(Repository)를 통해 데이터를 저장하고 조회하는 역할</li>
+        </ul>
+      </li>
+      <li>Database Layer (데이터베이스 계층) : 필요한 정보 저장 및 검색
+        <ul>
+          <li>실제 데이터를 저장하는 <strong>물리적 데이터베이스</strong> (MySQL, PostgreSQL 등)</li>
+        </ul>
+      </li>
+    </ol>
   </li>
   <li>데이터 흐름
     <ul>
@@ -303,6 +336,26 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     </ul>
   </li>
 </ul>
+
+<h3 id="레이어-간-관계">레이어 간 관계</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[클라이언트]
+    ↓
+[Presentation Layer]  →  Controller
+    ↓
+[Business Logic Layer]  →  Service
+    ↓
+[Data Access Layer]  →  Repository (DAO)
+    ↓
+[Database Layer]  →  DB (MySQL, PostgreSQL)
+</code></pre></div></div>
+
+<ul>
+  <li>상위 계층(Presentation)은 <strong>하위 계층(Business Logic)만 호출</strong>할 수 있음.</li>
+  <li>데이터베이스 관련 로직이 <strong>비즈니스 로직과 분리</strong>되어 유지보수가 쉬움.</li>
+</ul>
+
+<hr />
 
 <h2 id="mvc란">MVC란?</h2>
 
