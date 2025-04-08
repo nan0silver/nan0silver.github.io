@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-08T12:29:17+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-08T12:59:48+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] JPA vs MyBatis</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] JPA vs MyBatis" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-04-08T12:28:34+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] JPA vs MyBatis</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] JPA vs MyBatis" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-04-08T12:59:06+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
   <li><a href="#-jpa란-java-persistence-api">JPA란?</a></li>
   <li><a href="#-mybatis란">MyBatis란?</a></li>
   <li><a href="#-jpa-vs-mybatis">🔍 JPA vs MyBatis</a></li>
@@ -352,7 +352,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <p>“JPA는 객체 중심의 ORM 프레임워크로, DB와의 데이터 처리를 추상화해 코드 생산성을 높여줍니다. 반면 MyBatis는 SQL 중심의 프레임워크로, 복잡한 쿼리나 성능 튜닝이 필요한 경우에 유리합니다. 프로젝트 성격에 따라 두 기술을 선택하거나 병행할 수 있습니다.”</p>
 </blockquote>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.]]></summary></entry><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-08T12:28:34+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.]]></summary></entry><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-08T12:59:06+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
   <li><a href="#dto-vs-vo-vs-entity">DTO vs VO vs Entity</a></li>
   <li><a href="#-dto-vs-vo">📦 DTO vs VO</a></li>
   <li><a href="#-entity-vs-vo">📦 Entity vs VO</a></li>
@@ -678,7 +678,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   <li><strong>값 객체(VO)</strong>를 표현할 때 <strong>record는 아주 강력한 도구</strong></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] RestTemplate</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] RestTemplate" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-08T12:28:34+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] RestTemplate</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] RestTemplate" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-08T12:59:06+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
   <li><a href="#-resttemplate이란">RestTemplate이란?</a></li>
   <li><a href="#-필요한-이유">필요한 이유</a></li>
   <li><a href="#️-예시-코드-get-요청">예시 코드 (Get)</a></li>
@@ -933,7 +933,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
       <td>WebClient를 사용하는 게 <strong>미래지향적</strong></td>
     </tr>
   </tbody>
-</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 💣 SQL Injection</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" rel="alternate" type="text/html" title="[Etc] 💣 SQL Injection" /><published>2025-03-31T00:00:00+00:00</published><updated>2025-04-08T12:28:34+00:00</updated><id>https://nan0silver.github.io/miscellaneous/sql-injection</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"><![CDATA[<ul>
+</table>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 다른 서버의 REST API와 통신할 수 있도록 도와주는 HTTP 클라이언트인 RestTemplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] 💣 SQL Injection</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" rel="alternate" type="text/html" title="[Etc] 💣 SQL Injection" /><published>2025-03-31T00:00:00+00:00</published><updated>2025-04-08T12:59:06+00:00</updated><id>https://nan0silver.github.io/miscellaneous/sql-injection</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"><![CDATA[<ul>
   <li><a href="#sql-injection이란">SQL Injection이란?</a></li>
   <li><a href="#-spring-관점에서-sql-injection-방지법">Spring 관점에서 SQL Injection 방지법</a></li>
   <li><a href="#-spring-배우는-입장에서-조심할-포인트-요약">요약</a></li>
@@ -1066,7 +1066,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   <li><strong>ORM(JPA) + 파라미터 바인딩</strong> 방식으로 작성하면 거의 대부분 안전하게 막을 수 있음</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-04-08T12:28:34+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-04-08T12:59:06+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
   <li><a href="#1️⃣-기본-소수-판별-on">기본 소수 판별</a></li>
   <li><a href="#2️⃣-에라토스테네스의-체-on-log-log-n">에라토스테네스의 체</a></li>
   <li><a href="#3️⃣-miller-rabin-소수판별법-olog-n">Miller-Rabin 소수 판별법</a></li>
@@ -1224,7 +1224,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isPrime</span><span class="o">(</span><span class="mi">1000000008</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span> <span class="c1">// false (합성수)</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-08T12:28:34+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-08T12:59:06+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
   <li><a href="#레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</a></li>
   <li><a href="#mvc란">MVC란?</a></li>
   <li><a href="#레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</a></li>
@@ -1363,7 +1363,153 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
 
 <ul>
   <li>MVC는 역할을 분리하고, 레이어드 아키텍처는 각 계층을 더 체계적으로 조직화하여 유지보수성과 확장성을 높인다</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-08T12:28:34+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Spring VS Servlet</title><link href="https://nan0silver.github.io/spring/2025-03-17-servlet-vs-spring/" rel="alternate" type="text/html" title="[Spring] Spring VS Servlet" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-08T12:59:06+00:00</updated><id>https://nan0silver.github.io/spring/servlet-vs-spring</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-03-17-servlet-vs-spring/"><![CDATA[<ul>
+  <li><a href="#-servlet과-spring의-차이-쉽게-이해하기">Servlet과 Spring의 차이</a></li>
+  <li><a href="#servlet-직접-요청을-처리하는-원시적인-방식">Servlet</a></li>
+  <li><a href="#spring-웹-개발을-쉽게-만들어주는-프레임워크">Spring</a></li>
+  <li><a href="#servlet-vs-spring-비교-정리">Servlet vs Spring 비교 정리 표</a></li>
+  <li><a href="#-결론-spring이-servlet보다-훨씬-편리하다">결론</a></li>
+</ul>
+
+<hr />
+
+<h2 id="-servlet과-spring의-차이-쉽게-이해하기">🌐 <strong>Servlet과 Spring의 차이: 쉽게 이해하기</strong></h2>
+
+<ul>
+  <li>Servlet과 Spring은 <strong>Java로 웹 애플리케이션을 개발할 때 사용하는 기술</strong></li>
+  <li>하지만 <strong>Servlet은 아주 기본적인 웹 기술</strong>이고, <strong>Spring은 이를 확장한 강력한 프레임워크</strong></li>
+</ul>
+
+<hr />
+
+<h3 id="️-비유-레스토랑-운영-방식으로-이해하기">🍽️ <strong>비유: 레스토랑 운영 방식으로 이해하기</strong></h3>
+
+<blockquote>
+  <p><strong>Servlet</strong> = “직접 주문받고 요리하고 서빙하는 작은 식당”<br />
+<strong>Spring</strong> = “자동 주문 시스템과 직원이 있는 대형 레스토랑”</p>
+</blockquote>
+
+<hr />
+
+<h2 id="servlet-직접-요청을-처리하는-원시적인-방식">Servlet: 직접 요청을 처리하는 원시적인 방식</h2>
+
+<ul>
+  <li>Servlet은 <strong>웹 요청을 처리하는 가장 기본적인 방법</strong></li>
+  <li>
+    <p>개발자가 <strong>요청을 받고, 응답을 만들고, HTML을 직접 작성해야 함</strong>.</p>
+  </li>
+  <li>
+    <p><strong>Servlet의 특징</strong></p>
+
+    <ul>
+      <li>✅ 웹 요청을 직접 받아서 응답을 생성함.</li>
+      <li>✅ 하지만 HTML 응답을 직접 만들어야 해서 코드가 길어짐.</li>
+      <li>✅ 데이터베이스 연결, 보안 등 추가 기능을 직접 구현해야 함.</li>
+    </ul>
+  </li>
+  <li><strong>Servlet 예제 (Java 코드로 HTML 만들기)</strong></li>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nd">@WebServlet</span><span class="o">(</span><span class="s">"/hello"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloServlet</span> <span class="kd">extends</span> <span class="nc">HttpServlet</span> <span class="o">{</span>
+      <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span>
+              <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+          <span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">"text/html"</span><span class="o">);</span>
+          <span class="nc">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+          <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;html&gt;&lt;body&gt;"</span><span class="o">);</span>
+          <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;h1&gt;Hello, Servlet!&lt;/h1&gt;"</span><span class="o">);</span>
+          <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;/body&gt;&lt;/html&gt;"</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>문제점</strong>:
+    <ul>
+      <li>HTML을 직접 만들고 응답을 구성해야 해서 코드가 길고 불편함</li>
+      <li>데이터베이스 연결이나 보안 기능을 추가하려면 개발자가 직접 구현해야 함.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="spring-웹-개발을-쉽게-만들어주는-프레임워크">Spring: 웹 개발을 쉽게 만들어주는 프레임워크</h2>
+
+<ul>
+  <li>Spring은 <strong>Servlet을 더 쉽게 사용할 수 있도록</strong> 만든 프레임워크</li>
+  <li>
+    <p>기본적인 요청 처리는 Servlet과 비슷하지만, Spring을 사용하면 <strong>자동화된 기능이 많아서 개발이 편리</strong>.</p>
+  </li>
+  <li>
+    <p><strong>Spring의 특징</strong></p>
+
+    <ul>
+      <li>✅ 요청을 쉽게 처리할 수 있도록 <code class="language-plaintext highlighter-rouge">@Controller</code>와 <code class="language-plaintext highlighter-rouge">@RestController</code> 제공.</li>
+      <li>✅ HTML을 직접 만들지 않고, JSON이나 템플릿을 사용해서 응답을 쉽게 생성할 수 있음.</li>
+      <li>✅ 데이터베이스 연결, 보안 기능, API 호출 등을 자동으로 지원함.</li>
+    </ul>
+  </li>
+  <li><strong>Spring 예제 (더 간단한 코드)</strong></li>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nd">@RestController</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloController</span> <span class="o">{</span>
+        <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/hello"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="nc">String</span> <span class="nf">sayHello</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="s">"Hello, Spring!"</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="err">```</span>
+<span class="err">🚀</span> <span class="o">**</span><span class="nc">Spring을</span> <span class="n">사용하면</span> <span class="nc">Servlet보다</span> <span class="n">훨씬</span> <span class="n">간결하고</span> <span class="n">직관적이다</span><span class="o">.**</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="servlet-vs-spring-비교-정리"><strong>Servlet vs Spring 비교 정리</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Servlet</th>
+      <th>Spring</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>요청 처리 방식</td>
+      <td>직접 요청을 받고 응답을 작성</td>
+      <td><code class="language-plaintext highlighter-rouge">@Controller</code>와 <code class="language-plaintext highlighter-rouge">@RestController</code>로 간단하게 처리</td>
+    </tr>
+    <tr>
+      <td>코드 복잡도</td>
+      <td>HTML을 직접 만들어야 해서 복잡</td>
+      <td>JSON이나 템플릿 사용 가능 (코드가 간결)</td>
+    </tr>
+    <tr>
+      <td>데이터베이스 연결</td>
+      <td>직접 구현해야 함</td>
+      <td>JPA, MyBatis 등의 지원</td>
+    </tr>
+    <tr>
+      <td>보안 및 인증</td>
+      <td>직접 구현해야 함</td>
+      <td>Spring Security 제공</td>
+    </tr>
+    <tr>
+      <td>개발 속도</td>
+      <td>설정이 많고 코드가 길다</td>
+      <td>자동 설정 덕분에 개발이 빠름</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-결론-spring이-servlet보다-훨씬-편리하다">🚀 <strong>결론: Spring이 Servlet보다 훨씬 편리하다!</strong></h2>
+
+<p>Servlet은 기본적인 웹 요청 처리를 할 수 있지만, 직접 HTML을 만들고 보안, 데이터베이스 연결 등을 다 처리해야 함.<br />
+Spring은 이런 것들을 <strong>자동화</strong>해주기 때문에 개발이 훨씬 쉬워지고, 유지보수도 편하다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring과 Servlet의 차이 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-08T12:59:06+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
   <li><a href="#java에서-동시성">JAVA에서 동시성</a></li>
   <li><a href="#스레드-thread">스레드 (Thread)</a></li>
   <li><a href="#비동기-처리-async">비동기 처리 (Aysnc)</a></li>
@@ -1534,7 +1680,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
 <ul>
   <li>Redis, Kafka, 클러스터</li>
   <li>분산처리는 프랜차이즈이다. 큰 가게 하나보다 작은 여러 가게가 효율적이고 비용도 절감된다.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[JAVA] record</title><link href="https://nan0silver.github.io/java/2025-03-09-record/" rel="alternate" type="text/html" title="[JAVA] record" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-08T12:28:34+00:00</updated><id>https://nan0silver.github.io/java/record</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-record/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[JAVA] record</title><link href="https://nan0silver.github.io/java/2025-03-09-record/" rel="alternate" type="text/html" title="[JAVA] record" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-08T12:59:06+00:00</updated><id>https://nan0silver.github.io/java/record</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-record/"><![CDATA[<ul>
   <li><a href="#-record란-java-14">record란?</a></li>
   <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
   <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
@@ -1790,7 +1936,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
 
 <hr />
 
-<h3 id="-결론-record를-사용하면-불변-객체를-쉽게-만들-수-있으며-dto나-vo-같은-데이터-클래스를-훨씬-간결하게-표현할-수-있다-">🚀 <strong>결론: <code class="language-plaintext highlighter-rouge">record</code>를 사용하면 불변 객체를 쉽게 만들 수 있으며, DTO나 VO 같은 데이터 클래스를 훨씬 간결하게 표현할 수 있다!</strong> 🚀</h3>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[Etc] 🎞️ Boilerplate</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/" rel="alternate" type="text/html" title="[Etc] 🎞️ Boilerplate" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-04-08T12:28:34+00:00</updated><id>https://nan0silver.github.io/miscellaneous/boiler-plate</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/"><![CDATA[<ul>
+<h3 id="-결론-record를-사용하면-불변-객체를-쉽게-만들-수-있으며-dto나-vo-같은-데이터-클래스를-훨씬-간결하게-표현할-수-있다-">🚀 <strong>결론: <code class="language-plaintext highlighter-rouge">record</code>를 사용하면 불변 객체를 쉽게 만들 수 있으며, DTO나 VO 같은 데이터 클래스를 훨씬 간결하게 표현할 수 있다!</strong> 🚀</h3>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자.]]></summary></entry><entry><title type="html">[Etc] 🎞️ Boilerplate</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/" rel="alternate" type="text/html" title="[Etc] 🎞️ Boilerplate" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-04-08T12:59:06+00:00</updated><id>https://nan0silver.github.io/miscellaneous/boiler-plate</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-boiler-plate/"><![CDATA[<ul>
   <li><a href="#보일러플레이트boilerplate란">보일러플레이트(Boilerplate)란?</a></li>
   <li><a href="#보일러플레이트의-특징">보일러플레이트의 특징</a></li>
   <li><a href="#예제-코드">예제 코드</a></li>
@@ -1856,136 +2002,4 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
         <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">MyApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.]]></summary></entry><entry><title type="html">[Etc] immutable, final, constant</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/" rel="alternate" type="text/html" title="[Etc] immutable, final, constant" /><published>2025-03-06T00:00:00+00:00</published><updated>2025-04-08T12:28:34+00:00</updated><id>https://nan0silver.github.io/miscellaneous/immutable</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/"><![CDATA[<ul>
-  <li><a href="#immutable-불변"><code class="language-plaintext highlighter-rouge">Immutable</code></a></li>
-  <li><a href="#final-최종-변경-불가"><code class="language-plaintext highlighter-rouge">final</code></a></li>
-  <li><a href="#const-상수"><code class="language-plaintext highlighter-rouge">const</code></a></li>
-</ul>
-
-<hr />
-
-<h2 id="immutable-불변"><code class="language-plaintext highlighter-rouge">Immutable</code> (불변)</h2>
-
-<blockquote>
-  <p>생성 후 객체 자체의 상태를 변경할 수 없음
-Java의 키워드는 아님, 다양한 언어에서 사용되는 객체의 속성 개념</p>
-</blockquote>
-
-<ul>
-  <li>객체와 관련됨</li>
-  <li>특징
-    <ul>
-      <li>모든 필드가 <code class="language-plaintext highlighter-rouge">final</code>이고 <code class="language-plaintext highlighter-rouge">private</code></li>
-      <li>setter 메서드가 없음</li>
-      <li>모든 가변 참조 필드가 방어적 복사를 통해 보호됨</li>
-    </ul>
-  </li>
-  <li>중요한 점
-    <ul>
-      <li>불변 객체는 멀티 스레드 환경에서 안전하게 사용 가능</li>
-      <li>내부 상태를 변경하는 메서드를 제공하지 않아야 함.</li>
-    </ul>
-  </li>
-  <li>예 : String, Integer, BigDecimal
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">String</code> 클래스는 자바에서 대표적인 불변 객체
-        <blockquote>
-          <p><code class="language-plaintext highlighter-rouge">String</code>객체를 한 번 생성하면 내부 값이 변경되지 않음.
-새로운 값을 할당하려면 새로운 객체가 만들어짐.</p>
-        </blockquote>
-        <ul>
-          <li>
-            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nc">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span>
-  <span class="nc">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">concat</span><span class="o">(</span><span class="s">" World"</span><span class="o">);</span>
-  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s1</span><span class="o">);</span> <span class="c1">// 여전히 "Hello"</span>
-</code></pre></div>            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="final-최종-변경-불가"><code class="language-plaintext highlighter-rouge">Final</code> (최종, 변경 불가)</h2>
-
-<blockquote>
-  <p>한 번 할당되면 값을 변경할 수 없는 변수 또는 참조
-Java의 키워드</p>
-</blockquote>
-
-<ul>
-  <li>특징
-    <ul>
-      <li>변수에 사용 : 초기화 후 재할당 불가</li>
-      <li>메서드에 사용 : 오버라이딩 불가</li>
-      <li>클래스에 사용 : 상속 불가</li>
-    </ul>
-  </li>
-  <li>중요한 점
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">final</code>은 참조의 변경을 막지만, 참조가 가리키는 객체의 내용 변경은 막지 않음</li>
-    </ul>
-  </li>
-  <li>실무에서 활용
-    <ol>
-      <li>메서드 파라미터
-        <ul>
-          <li>메서드 내에서 파라미터 값이 변경되지 않도록 보장</li>
-          <li>
-            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processUser</span><span class="o">(</span><span class="kd">final</span> <span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
-</code></pre></div>            </div>
-          </li>
-        </ul>
-      </li>
-      <li>람다 표현식
-        <ul>
-          <li>람다에서 외부 변수를 사용할 때는 반드시 <code class="language-plaintext highlighter-rouge">final</code> 또는 <code class="language-plaintext highlighter-rouge">effectively final</code>이어야 함</li>
-          <li>
-            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">final</span> <span class="nc">String</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s">"User-"</span><span class="o">;</span>
-  <span class="n">userList</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-      <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">user</span> <span class="o">-&gt;</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">())</span>
-      <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-</code></pre></div>            </div>
-          </li>
-        </ul>
-      </li>
-      <li>스레드 안정성
-        <ul>
-          <li>멀티스레드 환경에서 불변성 보장에 도움</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-</ul>
-
-<h2 id="const-상수"><code class="language-plaintext highlighter-rouge">Const</code> (상수)</h2>
-
-<blockquote>
-  <p>프로그램 전체에서 변경되지 않는 고정 값
-Java의 키워드</p>
-</blockquote>
-
-<ul>
-  <li>특징
-    <ul>
-      <li>일반적으로 <code class="language-plaintext highlighter-rouge">static final</code>로 선언</li>
-      <li>클래스 로딩 시점에 초기화</li>
-      <li>관례적으로 대문자와 언더스코어 사용 (UPPER_SNAKE_CASE)</li>
-      <li>예
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">public static final int MAX_USERS = 100;</code></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">static</code>
-    <ul>
-      <li>상수(<code class="language-plaintext highlighter-rouge">const</code>)와 자주 함께 사용되는 변수</li>
-      <li>클래스 수준에서 사용되며, 객체가 아닌 클래스에 종속됨
-        <ul>
-          <li>클래스 로딩 시 한 번만 초기화되며 모든 객체가 공유</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자.]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.]]></summary></entry></feed>
