@@ -8,9 +8,9 @@ sitemap: false
 
 # [Etc] immutable, final, constant
 
-- [`Immutable`](#보일러플레이트boilerplate란)
-- [`final`](#보일러플레이트의-특징)
-- [`const`](#예제-코드)
+- [`Immutable`](#immutable-불변)
+- [`final`](#final-최종-변경-불가)
+- [`const`](#const-상수)
 
 ---
 
