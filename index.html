@@ -46,7 +46,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="Blog" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T05:39:39+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","name":"NAHYUN BLOG","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T05:46:00+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","name":"NAHYUN BLOG","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -109,7 +109,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-08T05:40:21+00:00',
+    INDEX_KEY: 'index--2025-04-08T05:46:41+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -436,7 +436,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   <header>
     <h1 class="post-title flip-project-title">
       <a href="/spring/2025-04-05-jpa-mybatis/" class="flip-title">
-        [Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)
+        [Spring] JPA vs MyBatis
       </a>
     </h1>
 
@@ -455,7 +455,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T05:46:00+00:00">2025-04-08</time>
             </span>
           
         
@@ -481,7 +481,15 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#스프링-콘셉트">스프링 콘셉트</a></li>
+  <li><a href="#-jpa란-java-persistence-api">JPA란?</a></li>
+  <li><a href="#-mybatis란">MyBatis란?</a></li>
+  <li><a href="#-jpa-vs-mybatis">🔍 JPA vs MyBatis</a></li>
+  <li><a href="#jpa-vs-mybatis-비유로-이해하기">JPA vs MyBatis 비유로 이해하기</a></li>
+  <li><a href="#-jpa-vs-mybatis-코드로-비교하기">JPA vs MyBatis 코드로 비교하기</a></li>
+  <li><a href="#-사용-방식-차이-요약">사용 방식 차이 요약</a></li>
+  <li><a href="#-장단점-비교">장단점 비교</a></li>
+  <li><a href="#-실무에-쓰는-방법">실무에 쓰는 방법</a></li>
+  <li><a href="#-한줄-정리">한줄 정리</a></li>
 </ul>
 
 
@@ -490,7 +498,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/spring/2025-04-05-jpa-mybatis/">[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)</a>
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-05-jpa-mybatis/">[Spring] JPA vs MyBatis</a>
 
       </p>
     </footer>
@@ -527,7 +535,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T05:46:00+00:00">2025-04-08</time>
             </span>
           
         
@@ -605,7 +613,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T05:46:00+00:00">2025-04-08</time>
             </span>
           
         
@@ -684,7 +692,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T05:46:00+00:00">2025-04-08</time>
             </span>
           
         
@@ -758,7 +766,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T05:46:00+00:00">2025-04-08</time>
             </span>
           
         
@@ -832,7 +840,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T05:46:00+00:00">2025-04-08</time>
             </span>
           
         
@@ -906,7 +914,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T05:46:00+00:00">2025-04-08</time>
             </span>
           
         
@@ -982,7 +990,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T05:46:00+00:00">2025-04-08</time>
             </span>
           
         
@@ -1056,7 +1064,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T05:46:00+00:00">2025-04-08</time>
             </span>
           
         
@@ -1132,7 +1140,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T05:46:00+00:00">2025-04-08</time>
             </span>
           
         

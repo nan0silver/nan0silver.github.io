@@ -32,9 +32,9 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA) | NAHYUN BLOG</title>
+<title>[Spring] JPA vs MyBatis | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)" />
+<meta property="og:title" content="[Spring] JPA vs MyBatis" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
 <meta name="description" content="스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다." />
@@ -45,10 +45,10 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-04-05T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)" />
+<meta property="twitter:title" content="[Spring] JPA vs MyBatis" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T05:39:39+00:00","datePublished":"2025-04-05T00:00:00+00:00","description":"스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.","headline":"[Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T05:46:00+00:00","datePublished":"2025-04-05T00:00:00+00:00","description":"스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.","headline":"[Spring] JPA vs MyBatis","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-08T05:40:21+00:00',
+    INDEX_KEY: 'index--2025-04-08T05:46:41+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -226,7 +226,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Spring] Spring Framework의 주요 개념 (IoC, DI, AOP, PSA)
+        [Spring] JPA vs MyBatis
       
     </h1>
 
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-08T05:39:39+00:00">2025-04-08</time>
+              <time datetime="2025-04-08T05:46:00+00:00">2025-04-08</time>
             </span>
           
         
@@ -271,7 +271,15 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#스프링-콘셉트">스프링 콘셉트</a></li>
+  <li><a href="#-jpa란-java-persistence-api">JPA란?</a></li>
+  <li><a href="#-mybatis란">MyBatis란?</a></li>
+  <li><a href="#-jpa-vs-mybatis">🔍 JPA vs MyBatis</a></li>
+  <li><a href="#jpa-vs-mybatis-비유로-이해하기">JPA vs MyBatis 비유로 이해하기</a></li>
+  <li><a href="#-jpa-vs-mybatis-코드로-비교하기">JPA vs MyBatis 코드로 비교하기</a></li>
+  <li><a href="#-사용-방식-차이-요약">사용 방식 차이 요약</a></li>
+  <li><a href="#-장단점-비교">장단점 비교</a></li>
+  <li><a href="#-실무에-쓰는-방법">실무에 쓰는 방법</a></li>
+  <li><a href="#-한줄-정리">한줄 정리</a></li>
 </ul>
 
 <hr />
