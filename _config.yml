@@ -65,7 +65,7 @@ menu:
     url: /javascript/
   - title: Algorithm (11)
     url: /algorithm/
-  - title: Java (10)
+  - title: Java (11)
     url: /java/
   - title: Git (3)
     url: /git/
@@ -73,9 +73,9 @@ menu:
     url: /aws/
   - title: Flask (2)
     url: /flask/
-  - title: Spring (2)
+  - title: Spring (8)
     url: /spring/
-  - title: Miscellaneous (11)
+  - title: Miscellaneous (13)
     url: /miscellaneous/
 
 # Add links to the footer.
