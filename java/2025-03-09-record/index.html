@@ -48,7 +48,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="[JAVA] record" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-09T01:15:03+00:00","datePublished":"2025-03-09T00:00:00+00:00","description":"Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자.","headline":"[JAVA] record","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2025-03-09-record/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/java/2025-03-09-record/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-09T01:52:40+00:00","datePublished":"2025-03-09T00:00:00+00:00","description":"Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자.","headline":"[JAVA] record","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2025-03-09-record/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/java/2025-03-09-record/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-09T01:15:45+00:00',
+    INDEX_KEY: 'index--2025-04-09T01:53:22+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 09 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-09T01:15:03+00:00">2025-04-09</time>
+              <time datetime="2025-04-09T01:52:40+00:00">2025-04-09</time>
             </span>
           
         
@@ -470,6 +470,55 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <span class="c1">// 오류: record는 상속할 수 없음</span>
 <span class="kd">class</span> <span class="nc">Child</span> <span class="kd">extends</span> <span class="nc">Parent</span> <span class="o">{}</span>  <span class="c1">// ❌ 컴파일 오류</span>
 </code></pre></div></div>
+
+<blockquote>
+  <p>왜 Java는 <code class="language-plaintext highlighter-rouge">record</code>를 final로 만든걸까?</p>
+</blockquote>
+
+<ol>
+  <li>불변성(Immutable)을 유지하려고
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">record</code>는 모든 필드가 <code class="language-plaintext highlighter-rouge">final</code>이고, 생성 이후 변경이 불가능함</li>
+      <li>누가 상속해서 setter를 추가하거나, 내부 상태를 바꾸면
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">record</code>의 의도가 무너짐!</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>자동 생성된 메서드의 안정성 보장
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">equals()</code>, <code class="language-plaintext highlighter-rouge">hashCode()</code>, <code class="language-plaintext highlighter-rouge">toString()</code>등을 자동 생성해주는데, 누가 상속해서 <code class="language-plaintext highlighter-rouge">equals()</code>만 살짝 바꾸면 일관성이 깨짐 -&gt; 버그의 근원</li>
+    </ul>
+  </li>
+  <li>Java에서 상속은 “행위” 확장에 적합
+    <ul>
+      <li>하지만 <code class="language-plaintext highlighter-rouge">record</code>는 “데이터”만 표현하고 싶을때 쓰는 구조</li>
+      <li>즉, 철학이 다르다.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">record</code>는 <code class="language-plaintext highlighter-rouge">POJO</code>(Plain Old Java Object)보다 더 “데이터 그 자체”에 집중</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>🔴 하지만 인터페이스는 구현 가능</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">Printable</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">print</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="n">record</span> <span class="nf">User</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="kd">implements</span> <span class="nc">Printable</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"User: "</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">", "</span> <span class="o">+</span> <span class="n">age</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>행위를 정의하는 인터페이스는 데이터 구조와 상관없기 때문에 구현할 수 있다!</li>
+</ul>
 
 <hr />
 
