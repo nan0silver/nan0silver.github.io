@@ -1,9 +1,9 @@
 ---
 layout: post
-collection: miscellaneous
-title: 스프링 콘셉트
+collection: spring
+title: JPA vs MyBatis
 description: >
-  스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.
+  JPA vs MyBatis에 대 알아보자.
 sitemap: false
 ---
 
