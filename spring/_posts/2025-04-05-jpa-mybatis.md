@@ -166,6 +166,8 @@ Member m = memberMapper.findMemberById(1L);
 - 객체 지향적으로 설계 가능
 - 유지보수 편함 (쿼리 덜 바꿈)
 - 캐싱, 지연 로딩, 영속성 컨텍스트 등 부가기능 풍부
+- `JapRepository`를 상속하면 Spring Data JPA가 자동으로 구현체를 만들어서 사용할 수 있게 해줌
+  - 자세히 정리한 포스트 👉 [JPA Query Method](https://nan0silver.github.io/spring/2025-04-17-query-method/)
 
 ---
 
