@@ -32,23 +32,23 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Algorithm] 깊이 우선 탐색 | NAHYUN BLOG</title>
+<title>[Spring] JPA Query Method | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Algorithm] 깊이 우선 탐색" />
+<meta property="og:title" content="[Spring] JPA Query Method" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)" />
-<meta property="og:description" content="Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)" />
-<link rel="canonical" href="https://nan0silver.github.io/algorithm/2024-07-12-day5/" />
-<meta property="og:url" content="https://nan0silver.github.io/algorithm/2024-07-12-day5/" />
+<meta name="description" content="JPA의 Query Method에 대해 알아보자." />
+<meta property="og:description" content="JPA의 Query Method에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/spring/2025-04-17-query-method/" />
+<meta property="og:url" content="https://nan0silver.github.io/spring/2025-04-17-query-method/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-07-12T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-04-17T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Algorithm] 깊이 우선 탐색" />
+<meta property="twitter:title" content="[Spring] JPA Query Method" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-17T06:18:04+00:00","datePublished":"2024-07-12T00:00:00+00:00","description":"Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)","headline":"[Algorithm] 깊이 우선 탐색","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2024-07-12-day5/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/algorithm/2024-07-12-day5/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-17T06:18:04+00:00","datePublished":"2025-04-17T00:00:00+00:00","description":"JPA의 Query Method에 대해 알아보자.","headline":"[Spring] JPA Query Method","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/spring/2025-04-17-query-method/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/spring/2025-04-17-query-method/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -76,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/algorithm/2024-07-12-day5/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/spring/2025-04-17-query-method/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -198,14 +198,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/algorithm/">algorithm</a>
+          <a href="/spring/">spring</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2024-07-12-day5</span>
+          <span>2025-04-17-query-method</span>
         
       </li>
     
@@ -222,31 +222,23 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-algorithm-day5" class="page post mb6" role="article">
+<article id="post-spring-query-method" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Algorithm] 깊이 우선 탐색
+        [Spring] JPA Query Method
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2024-07-12T00:00:00+00:00">12 Jul 2024</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
+        <time datetime="2025-04-17T00:00:00+00:00">17 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
       </span>
       
         
           
           
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Apr 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-04-17T06:18:04+00:00">2025-04-17</time>
-            </span>
           
         
       
@@ -261,7 +253,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      Elice Algorithm Code Challenge - Day 5 (깊이 우선 탐색)
+      JPA의 Query Method에 대해 알아보자.
 
     </p>
   
@@ -270,78 +262,238 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <p>목차</p>
-<ol>
-  <li><a href="#dfs란depth-first-search">DFS란?</a></li>
-  <li><a href="#dfs-특징">DFS특징</a></li>
-  <li><a href="#dfs-시간-복잡도">DFS 시간 복잡도</a></li>
-</ol>
+    <ul>
+  <li><a href="#jparepository-상속">JpaRepository 상속</a></li>
+  <li><a href="#-그렇다면-커스텀-쿼리는-어떻게-할까">그렇다면 커스텀 쿼리는 어떻게 할까?</a></li>
+  <li><a href="#-개발자-관점-팁">개발자 관점 팁</a></li>
+</ul>
 
 <hr />
 
-<h2 id="깊이-우선-탐색-dfs">깊이 우선 탐색 (DFS)</h2>
+<h2 id="jparepository-상속"><code class="language-plaintext highlighter-rouge">JpaRepository</code> 상속</h2>
 
-<h3 id="dfs란depth-first-search">DFS란?(Depth First Search)</h3>
 <ul>
-  <li>특정 정점(노드)에서 시작해서 트리나 그래프에서 한 가지 경로를 최대한 깊게 탐색하고, 해당 경로를 끝까지 탐색한 후 다른 경로로 이동</li>
-  <li>미로를 탐색할 때 한 방향으로 갈 수 있을 때까지 계속 가다가, 더 이상 갈 수 없게 되면 다시 가장 가까운 갈림길로 돌아와서 다른 방향으로 다시 탐색을 진행하는 방법과 유사</li>
-  <li>모든 정점을 방문하고자 하는 경우에 사용</li>
-</ul>
-
-<h3 id="dfs-특징">DFS 특징</h3>
-<ul>
-  <li>일반적으로 재귀 함수 사용
+  <li><code class="language-plaintext highlighter-rouge">JpaRepository</code>를 상속한 Repository 인터페이스는 여러 기능이 내장된 상태가 된다.
     <ul>
-      <li>Stack으로도 구현 가능</li>
+      <li>예시 : <code class="language-plaintext highlighter-rouge">public interface UserRepository extends JpaRepository&lt;User, Long&gt; {}</code></li>
     </ul>
   </li>
-  <li>모든 경우의 수에 대해 탐색을 진행</li>
-  <li>사이클이 있는 경우, 무한 루프에 빠지지 않도록 방문 체크 해줘야함</li>
-  <li>BFS보다 깊은 경로를 빠르게 찾는데 용이</li>
-  <li>진행 순서
+  <li>이 경우, <code class="language-plaintext highlighter-rouge">findById()</code> 같은 기능은 이미 내장되어 편리하게 사용할 수 있다.</li>
+  <li>
+    <p>내장 함수</p>
+
     <ul>
-      <li><img src="/algorithm/image/day5_image.png" alt="Full-width image" /></li>
-    </ul>
-  </li>
-  <li>구현
-    <ul>
+      <li><code class="language-plaintext highlighter-rouge">JpaReposiroty</code>가 상속하고 있는 인터페이스 중, <code class="language-plaintext highlighter-rouge">CrudRepository</code>가 아래와 같이 기본 CRUD 메서드를 가지고 있어 직접 구현하지 않아도 사용할 수 있음.</li>
       <li>
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  함수 DFS(now):
-      현재 노드를 방문한 것으로 표시
-      현재 노드를 출력
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CrudRepository</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">ID</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="nc">Repository</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">ID</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="o">&lt;</span><span class="no">S</span> <span class="kd">extends</span> <span class="no">T</span><span class="o">&gt;</span> <span class="no">S</span> <span class="nf">save</span><span class="o">(</span><span class="no">S</span> <span class="n">entity</span><span class="o">);</span>
 
-      모든 이웃노드 'next'에 대해서 반복:
-          만약 'next'를 아직 방문하지 않았다면:
-              DFS(next)
+    <span class="o">&lt;</span><span class="no">S</span> <span class="kd">extends</span> <span class="no">T</span><span class="o">&gt;</span> <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">S</span><span class="o">&gt;</span> <span class="nf">saveAll</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">S</span><span class="o">&gt;</span> <span class="n">entities</span><span class="o">);</span>
+
+    <span class="nc">Optional</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findById</span><span class="o">(</span><span class="no">ID</span> <span class="n">id</span><span class="o">);</span>
+
+    <span class="kt">boolean</span> <span class="nf">existsById</span><span class="o">(</span><span class="no">ID</span> <span class="n">id</span><span class="o">);</span>
+
+    <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">();</span>
+
+    <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findAllById</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">ID</span><span class="o">&gt;</span> <span class="n">ids</span><span class="o">);</span>
+
+    <span class="kt">long</span> <span class="nf">count</span><span class="o">();</span>
+
+    <span class="kt">void</span> <span class="nf">deleteById</span><span class="o">(</span><span class="no">ID</span> <span class="n">id</span><span class="o">);</span>
+
+    <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="no">T</span> <span class="n">entity</span><span class="o">);</span>
+
+    <span class="kt">void</span> <span class="nf">deleteAllById</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="no">ID</span><span class="o">&gt;</span> <span class="n">ids</span><span class="o">);</span>
+
+    <span class="kt">void</span> <span class="nf">deleteAll</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="no">T</span><span class="o">&gt;</span> <span class="n">entities</span><span class="o">);</span>
+
+    <span class="kt">void</span> <span class="nf">deleteAll</span><span class="o">();</span>
+   <span class="o">}</span>
 </code></pre></div>        </div>
       </li>
     </ul>
   </li>
 </ul>
 
-<h3 id="dfs-시간-복잡도">DFS 시간 복잡도</h3>
+<h2 id="-그렇다면-커스텀-쿼리는-어떻게-할까">🤔 그렇다면 커스텀 쿼리는 어떻게 할까?</h2>
+
 <ul>
-  <li>V : 정점(노드)의 수, E : 간선의 수</li>
-  <li>인접 리스트로 표현된 그래프
+  <li>Spring Data JPA는 메서드 이름만으로 쿼리를 만들어줌
     <ul>
-      <li>O(V+E)</li>
-      <li><img src="/algorithm/image/day5_image-1.png" alt="Full-width image" /></li>
-    </ul>
-  </li>
-  <li>인접 행렬로 표현된 그래프
-    <ul>
-      <li>O(V^2)</li>
-      <li><img src="/algorithm/image/day5_image-2.png" alt="Full-width image" /></li>
-    </ul>
-  </li>
-  <li>희소 그래프
-    <ul>
-      <li>Sparse Graph</li>
-      <li>그래프 내에 적은 숫자의 간선만을 가지는 그래프</li>
-      <li>인접 행렬보다 인접 리스트 사용이 유리</li>
+      <li><code class="language-plaintext highlighter-rouge">List&lt;User&gt; findByAgeGreaterThan(int n);</code> -&gt; age &gt; n인 유저들</li>
     </ul>
   </li>
 </ul>
+
+<h3 id="예시">예시:</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByName</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 메서드를 호출하면 JPA는 이런 SQL을 자동으로 만든다:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">user</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="o">?</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="1-다양한-조건-연산자">1. 다양한 조건 연산자</h3>
+
+<ul>
+  <li>사용 가능한 키워드들:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>키워드</th>
+      <th>의미</th>
+      <th>예시</th>
+      <th>SQL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">And</code></td>
+      <td>AND 조건</td>
+      <td><code class="language-plaintext highlighter-rouge">findByNameAndAge</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE name=? AND age=?</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Or</code></td>
+      <td>OR 조건</td>
+      <td><code class="language-plaintext highlighter-rouge">findByNameOrEmail</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE name=? OR email=?</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Between</code></td>
+      <td>사이 값</td>
+      <td><code class="language-plaintext highlighter-rouge">findByAgeBetween(int a, int b)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE age BETWEEN ? AND ?</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">LessThan</code> / <code class="language-plaintext highlighter-rouge">GreaterThan</code></td>
+      <td>부등호</td>
+      <td><code class="language-plaintext highlighter-rouge">findByAgeGreaterThan(20)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE age &gt; 20</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">IsNull</code> / <code class="language-plaintext highlighter-rouge">IsNotNull</code></td>
+      <td>널 여부</td>
+      <td><code class="language-plaintext highlighter-rouge">findByEmailIsNull()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE email IS NULL</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">In</code></td>
+      <td>여러 값</td>
+      <td><code class="language-plaintext highlighter-rouge">findByNameIn(List&lt;String&gt; names)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE name IN (?, ?, ...)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Like</code></td>
+      <td>부분일치</td>
+      <td><code class="language-plaintext highlighter-rouge">findByNameLike("%woo%")</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE name LIKE ?</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">StartingWith</code> / <code class="language-plaintext highlighter-rouge">EndingWith</code> / <code class="language-plaintext highlighter-rouge">Containing</code></td>
+      <td>문자열 검색</td>
+      <td><code class="language-plaintext highlighter-rouge">findByNameStartingWith("s")</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE name LIKE 's%'</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="2-정렬과-페이징도-가능">2. 정렬과 페이징도 가능!</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByAgeGreaterThanOrderByNameAsc</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>SQL: <code class="language-plaintext highlighter-rouge">SELECT * FROM user WHERE age &gt; ? ORDER BY name ASC</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Page</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByNameContaining</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">Pageable</span> <span class="n">pageable</span><span class="o">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>페이징 처리까지 자동으로 해줌!</li>
+</ul>
+
+<hr />
+
+<h3 id="3-존재-여부만-알고-싶다면">3. 존재 여부만 알고 싶다면?</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">boolean</span> <span class="nf">existsByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>SQL: <code class="language-plaintext highlighter-rouge">SELECT COUNT(*) FROM user WHERE email = ?</code></li>
+  <li>결과: 해당 이메일이 존재하면 <code class="language-plaintext highlighter-rouge">true</code>, 없으면 <code class="language-plaintext highlighter-rouge">false</code></li>
+</ul>
+
+<hr />
+
+<h3 id="4-리턴-타입도-다양하게-지원한다">4. 리턴 타입도 다양하게 지원한다.</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>리턴 타입</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">User</code></td>
+      <td>단일 객체 (없으면 <code class="language-plaintext highlighter-rouge">null</code>)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Optional&lt;User&gt;</code></td>
+      <td>단일 객체 (안전하게 Optional로 감쌈)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">List&lt;User&gt;</code></td>
+      <td>여러 개</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Page&lt;User&gt;</code></td>
+      <td>페이징 결과</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td>존재 여부 확인</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="5-규칙을-안-지키면-어떻게-될까">5. 규칙을 안 지키면 어떻게 될까?</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">findByWhatIsThis</span><span class="o">()</span> <span class="c1">// ← 엔티티에 없는 필드명이면 컴파일은 되지만 실행 시 에러</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">No property whatIsThis found for type User!</code> 같은 예외 발생</li>
+</ul>
+
+<hr />
+
+<h2 id="-개발자-관점-팁">🧠 개발자 관점 팁</h2>
+
+<ul>
+  <li>메서드 이름이 너무 길어지면 <strong><code class="language-plaintext highlighter-rouge">@Query</code>를 써서 직접 JPQL 작성</strong>하는 게 낫다.</li>
+  <li><strong>자동 생성 쿼리 → 빠르게 CRUD 만들 때 유용</strong></li>
+  <li><strong>복잡한 조건</strong> → <code class="language-plaintext highlighter-rouge">@Query</code> 또는 <code class="language-plaintext highlighter-rouge">QueryDSL</code>, <code class="language-plaintext highlighter-rouge">Specification</code> 권장</li>
+</ul>
+
+<hr />
 
   
 </article>
@@ -468,7 +620,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/spring/2025-04-17-query-method/" class="flip-title"><span>[Spring] JPA Query Method</span></a>  <time class="faded fine" datetime="2025-04-17T00:00:00+00:00">17 Apr 2025</time></li>                        <li class="h4">  <a href="/spring/2025-04-09-thymeleaf/" class="flip-title"><span>[Spring] Thymeleaf</span></a>  <time class="faded fine" datetime="2025-04-09T00:00:00+00:00">09 Apr 2025</time></li>                        <li class="h4">  <a href="/spring/2025-04-09-non-blocking/" class="flip-title"><span>[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</span></a>  <time class="faded fine" datetime="2025-04-09T00:00:00+00:00">09 Apr 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/spring/2025-04-09-thymeleaf/" class="flip-title"><span>[Spring] Thymeleaf</span></a>  <time class="faded fine" datetime="2025-04-09T00:00:00+00:00">09 Apr 2025</time></li>                        <li class="h4">  <a href="/spring/2025-04-09-non-blocking/" class="flip-title"><span>[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</span></a>  <time class="faded fine" datetime="2025-04-09T00:00:00+00:00">09 Apr 2025</time></li>                        <li class="h4">  <a href="/spring/2025-04-05-jpa-mybatis/" class="flip-title"><span>[Spring] JPA vs MyBatis</span></a>  <time class="faded fine" datetime="2025-04-05T00:00:00+00:00">05 Apr 2025</time></li>            </ul></aside>
 
   
 

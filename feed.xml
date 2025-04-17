@@ -1,7 +1,238 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-09T07:38:43+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-17T06:18:46+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-09T07:37:57+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-04-17T06:18:04+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
+  <li><a href="#jparepository-상속">JpaRepository 상속</a></li>
+  <li><a href="#-그렇다면-커스텀-쿼리는-어떻게-할까">그렇다면 커스텀 쿼리는 어떻게 할까?</a></li>
+  <li><a href="#-개발자-관점-팁">개발자 관점 팁</a></li>
+</ul>
+
+<hr />
+
+<h2 id="jparepository-상속"><code class="language-plaintext highlighter-rouge">JpaRepository</code> 상속</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">JpaRepository</code>를 상속한 Repository 인터페이스는 여러 기능이 내장된 상태가 된다.
+    <ul>
+      <li>예시 : <code class="language-plaintext highlighter-rouge">public interface UserRepository extends JpaRepository&lt;User, Long&gt; {}</code></li>
+    </ul>
+  </li>
+  <li>이 경우, <code class="language-plaintext highlighter-rouge">findById()</code> 같은 기능은 이미 내장되어 편리하게 사용할 수 있다.</li>
+  <li>
+    <p>내장 함수</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">JpaReposiroty</code>가 상속하고 있는 인터페이스 중, <code class="language-plaintext highlighter-rouge">CrudRepository</code>가 아래와 같이 기본 CRUD 메서드를 가지고 있어 직접 구현하지 않아도 사용할 수 있음.</li>
+      <li>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CrudRepository</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">ID</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="nc">Repository</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">ID</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="o">&lt;</span><span class="no">S</span> <span class="kd">extends</span> <span class="no">T</span><span class="o">&gt;</span> <span class="no">S</span> <span class="nf">save</span><span class="o">(</span><span class="no">S</span> <span class="n">entity</span><span class="o">);</span>
+
+    <span class="o">&lt;</span><span class="no">S</span> <span class="kd">extends</span> <span class="no">T</span><span class="o">&gt;</span> <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">S</span><span class="o">&gt;</span> <span class="nf">saveAll</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">S</span><span class="o">&gt;</span> <span class="n">entities</span><span class="o">);</span>
+
+    <span class="nc">Optional</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findById</span><span class="o">(</span><span class="no">ID</span> <span class="n">id</span><span class="o">);</span>
+
+    <span class="kt">boolean</span> <span class="nf">existsById</span><span class="o">(</span><span class="no">ID</span> <span class="n">id</span><span class="o">);</span>
+
+    <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">();</span>
+
+    <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findAllById</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">ID</span><span class="o">&gt;</span> <span class="n">ids</span><span class="o">);</span>
+
+    <span class="kt">long</span> <span class="nf">count</span><span class="o">();</span>
+
+    <span class="kt">void</span> <span class="nf">deleteById</span><span class="o">(</span><span class="no">ID</span> <span class="n">id</span><span class="o">);</span>
+
+    <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="no">T</span> <span class="n">entity</span><span class="o">);</span>
+
+    <span class="kt">void</span> <span class="nf">deleteAllById</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="no">ID</span><span class="o">&gt;</span> <span class="n">ids</span><span class="o">);</span>
+
+    <span class="kt">void</span> <span class="nf">deleteAll</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="no">T</span><span class="o">&gt;</span> <span class="n">entities</span><span class="o">);</span>
+
+    <span class="kt">void</span> <span class="nf">deleteAll</span><span class="o">();</span>
+   <span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="-그렇다면-커스텀-쿼리는-어떻게-할까">🤔 그렇다면 커스텀 쿼리는 어떻게 할까?</h2>
+
+<ul>
+  <li>Spring Data JPA는 메서드 이름만으로 쿼리를 만들어줌
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">List&lt;User&gt; findByAgeGreaterThan(int n);</code> -&gt; age &gt; n인 유저들</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="예시">예시:</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByName</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 메서드를 호출하면 JPA는 이런 SQL을 자동으로 만든다:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">user</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="o">?</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="1-다양한-조건-연산자">1. 다양한 조건 연산자</h3>
+
+<ul>
+  <li>사용 가능한 키워드들:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>키워드</th>
+      <th>의미</th>
+      <th>예시</th>
+      <th>SQL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">And</code></td>
+      <td>AND 조건</td>
+      <td><code class="language-plaintext highlighter-rouge">findByNameAndAge</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE name=? AND age=?</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Or</code></td>
+      <td>OR 조건</td>
+      <td><code class="language-plaintext highlighter-rouge">findByNameOrEmail</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE name=? OR email=?</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Between</code></td>
+      <td>사이 값</td>
+      <td><code class="language-plaintext highlighter-rouge">findByAgeBetween(int a, int b)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE age BETWEEN ? AND ?</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">LessThan</code> / <code class="language-plaintext highlighter-rouge">GreaterThan</code></td>
+      <td>부등호</td>
+      <td><code class="language-plaintext highlighter-rouge">findByAgeGreaterThan(20)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE age &gt; 20</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">IsNull</code> / <code class="language-plaintext highlighter-rouge">IsNotNull</code></td>
+      <td>널 여부</td>
+      <td><code class="language-plaintext highlighter-rouge">findByEmailIsNull()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE email IS NULL</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">In</code></td>
+      <td>여러 값</td>
+      <td><code class="language-plaintext highlighter-rouge">findByNameIn(List&lt;String&gt; names)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE name IN (?, ?, ...)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Like</code></td>
+      <td>부분일치</td>
+      <td><code class="language-plaintext highlighter-rouge">findByNameLike("%woo%")</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE name LIKE ?</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">StartingWith</code> / <code class="language-plaintext highlighter-rouge">EndingWith</code> / <code class="language-plaintext highlighter-rouge">Containing</code></td>
+      <td>문자열 검색</td>
+      <td><code class="language-plaintext highlighter-rouge">findByNameStartingWith("s")</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WHERE name LIKE 's%'</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="2-정렬과-페이징도-가능">2. 정렬과 페이징도 가능!</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByAgeGreaterThanOrderByNameAsc</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>SQL: <code class="language-plaintext highlighter-rouge">SELECT * FROM user WHERE age &gt; ? ORDER BY name ASC</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Page</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByNameContaining</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">Pageable</span> <span class="n">pageable</span><span class="o">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>페이징 처리까지 자동으로 해줌!</li>
+</ul>
+
+<hr />
+
+<h3 id="3-존재-여부만-알고-싶다면">3. 존재 여부만 알고 싶다면?</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">boolean</span> <span class="nf">existsByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>SQL: <code class="language-plaintext highlighter-rouge">SELECT COUNT(*) FROM user WHERE email = ?</code></li>
+  <li>결과: 해당 이메일이 존재하면 <code class="language-plaintext highlighter-rouge">true</code>, 없으면 <code class="language-plaintext highlighter-rouge">false</code></li>
+</ul>
+
+<hr />
+
+<h3 id="4-리턴-타입도-다양하게-지원한다">4. 리턴 타입도 다양하게 지원한다.</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>리턴 타입</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">User</code></td>
+      <td>단일 객체 (없으면 <code class="language-plaintext highlighter-rouge">null</code>)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Optional&lt;User&gt;</code></td>
+      <td>단일 객체 (안전하게 Optional로 감쌈)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">List&lt;User&gt;</code></td>
+      <td>여러 개</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Page&lt;User&gt;</code></td>
+      <td>페이징 결과</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td>존재 여부 확인</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="5-규칙을-안-지키면-어떻게-될까">5. 규칙을 안 지키면 어떻게 될까?</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">findByWhatIsThis</span><span class="o">()</span> <span class="c1">// ← 엔티티에 없는 필드명이면 컴파일은 되지만 실행 시 에러</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">No property whatIsThis found for type User!</code> 같은 예외 발생</li>
+</ul>
+
+<hr />
+
+<h2 id="-개발자-관점-팁">🧠 개발자 관점 팁</h2>
+
+<ul>
+  <li>메서드 이름이 너무 길어지면 <strong><code class="language-plaintext highlighter-rouge">@Query</code>를 써서 직접 JPQL 작성</strong>하는 게 낫다.</li>
+  <li><strong>자동 생성 쿼리 → 빠르게 CRUD 만들 때 유용</strong></li>
+  <li><strong>복잡한 조건</strong> → <code class="language-plaintext highlighter-rouge">@Query</code> 또는 <code class="language-plaintext highlighter-rouge">QueryDSL</code>, <code class="language-plaintext highlighter-rouge">Specification</code> 권장</li>
+</ul>
+
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-17T06:18:04+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
   <li><a href="#-논블로킹non-blocking이란">논블로킹이란?</a></li>
   <li><a href="#-실생활-비유로-논블로킹-이해하기">실생활 비유로 논블로킹 이해하기</a></li>
   <li><a href="#-블로킹-vs-논블로킹-기술적-요점-정리">블로킹 vs 논블로킹 기술적 요점 정리</a></li>
@@ -446,7 +677,7 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[논블로킹과 비동기에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Thymeleaf</title><link href="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/" rel="alternate" type="text/html" title="[Spring] Thymeleaf" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-09T07:37:57+00:00</updated><id>https://nan0silver.github.io/spring/thymeleaf</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[논블로킹과 비동기에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Thymeleaf</title><link href="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/" rel="alternate" type="text/html" title="[Spring] Thymeleaf" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-17T06:18:04+00:00</updated><id>https://nan0silver.github.io/spring/thymeleaf</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/"><![CDATA[<ul>
   <li><a href="#-1-thymeleaf는-왜-쓰는-걸까">Thymeleaf는 왜 쓰는 걸까?</a></li>
   <li><a href="#-2-기본-문법-정리">기본 문법 정리</a></li>
   <li><a href="#-3-전체-흐름-예시">전체 흐름 예시</a></li>
@@ -617,7 +848,7 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] JPA vs MyBatis</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] JPA vs MyBatis" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-04-09T07:37:57+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] JPA vs MyBatis</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] JPA vs MyBatis" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-04-17T06:18:04+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
   <li><a href="#-jpa란-java-persistence-api">JPA란?</a></li>
   <li><a href="#-mybatis란">MyBatis란?</a></li>
   <li><a href="#-jpa-vs-mybatis">🔍 JPA vs MyBatis</a></li>
@@ -968,7 +1199,7 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   <p>“JPA는 객체 중심의 ORM 프레임워크로, DB와의 데이터 처리를 추상화해 코드 생산성을 높여줍니다. 반면 MyBatis는 SQL 중심의 프레임워크로, 복잡한 쿼리나 성능 튜닝이 필요한 경우에 유리합니다. 프로젝트 성격에 따라 두 기술을 선택하거나 병행할 수 있습니다.”</p>
 </blockquote>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA vs MyBatis에 대 알아보자.]]></summary></entry><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-09T07:37:57+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA vs MyBatis에 대 알아보자.]]></summary></entry><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-17T06:18:04+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
   <li><a href="#dto-vs-vo-vs-entity">DTO vs VO vs Entity</a></li>
   <li><a href="#-dto-vs-vo">📦 DTO vs VO</a></li>
   <li><a href="#-entity-vs-vo">📦 Entity vs VO</a></li>
@@ -1294,7 +1525,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   <li><strong>값 객체(VO)</strong>를 표현할 때 <strong>record는 아주 강력한 도구</strong></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] HttpURLConnection, RestTemplate, WebClient</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] HttpURLConnection, RestTemplate, WebClient" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-09T07:37:57+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] HttpURLConnection, RestTemplate, WebClient</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] HttpURLConnection, RestTemplate, WebClient" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-17T06:18:04+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
   <li><a href="#-먼저-한눈에-보는-비교표">한눈에 보는 비교표</a></li>
   <li><a href="#-1-httpurlconnection--java-기본-클래스">1. HttpURLConnection</a></li>
   <li><a href="#-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트">2. RestTemplate</a></li>
@@ -1559,7 +1790,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Java 환경에서 사용되는 HTTP 클라이언트인 `HttpURLConnection`, `RestTemplate`, `WebClient`를 비교해보자.]]></summary></entry><entry><title type="html">[Etc] 💣 SQL Injection</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" rel="alternate" type="text/html" title="[Etc] 💣 SQL Injection" /><published>2025-03-31T00:00:00+00:00</published><updated>2025-04-09T07:37:57+00:00</updated><id>https://nan0silver.github.io/miscellaneous/sql-injection</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Java 환경에서 사용되는 HTTP 클라이언트인 `HttpURLConnection`, `RestTemplate`, `WebClient`를 비교해보자.]]></summary></entry><entry><title type="html">[Etc] 💣 SQL Injection</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" rel="alternate" type="text/html" title="[Etc] 💣 SQL Injection" /><published>2025-03-31T00:00:00+00:00</published><updated>2025-04-17T06:18:04+00:00</updated><id>https://nan0silver.github.io/miscellaneous/sql-injection</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"><![CDATA[<ul>
   <li><a href="#sql-injection이란">SQL Injection이란?</a></li>
   <li><a href="#-spring-관점에서-sql-injection-방지법">Spring 관점에서 SQL Injection 방지법</a></li>
   <li><a href="#-spring-배우는-입장에서-조심할-포인트-요약">요약</a></li>
@@ -1692,7 +1923,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   <li><strong>ORM(JPA) + 파라미터 바인딩</strong> 방식으로 작성하면 거의 대부분 안전하게 막을 수 있음</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-04-09T07:37:57+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-04-17T06:18:04+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
   <li><a href="#1️⃣-기본-소수-판별-on">기본 소수 판별</a></li>
   <li><a href="#2️⃣-에라토스테네스의-체-on-log-log-n">에라토스테네스의 체</a></li>
   <li><a href="#3️⃣-miller-rabin-소수판별법-olog-n">Miller-Rabin 소수 판별법</a></li>
@@ -1850,7 +2081,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isPrime</span><span class="o">(</span><span class="mi">1000000008</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span> <span class="c1">// false (합성수)</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-09T07:37:57+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-17T06:18:04+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
   <li><a href="#레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</a></li>
   <li><a href="#mvc란">MVC란?</a></li>
   <li><a href="#레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</a></li>
@@ -1989,7 +2220,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
 
 <ul>
   <li>MVC는 역할을 분리하고, 레이어드 아키텍처는 각 계층을 더 체계적으로 조직화하여 유지보수성과 확장성을 높인다</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Spring VS Servlet</title><link href="https://nan0silver.github.io/spring/2025-03-17-servlet-vs-spring/" rel="alternate" type="text/html" title="[Spring] Spring VS Servlet" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-09T07:37:57+00:00</updated><id>https://nan0silver.github.io/spring/servlet-vs-spring</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-03-17-servlet-vs-spring/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Spring VS Servlet</title><link href="https://nan0silver.github.io/spring/2025-03-17-servlet-vs-spring/" rel="alternate" type="text/html" title="[Spring] Spring VS Servlet" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-17T06:18:04+00:00</updated><id>https://nan0silver.github.io/spring/servlet-vs-spring</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-03-17-servlet-vs-spring/"><![CDATA[<ul>
   <li><a href="#-servlet과-spring의-차이-쉽게-이해하기">Servlet과 Spring의 차이</a></li>
   <li><a href="#servlet-직접-요청을-처리하는-원시적인-방식">Servlet</a></li>
   <li><a href="#spring-웹-개발을-쉽게-만들어주는-프레임워크">Spring</a></li>
@@ -2135,175 +2366,4 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
 <h2 id="-결론-spring이-servlet보다-훨씬-편리하다">🚀 <strong>결론: Spring이 Servlet보다 훨씬 편리하다!</strong></h2>
 
 <p>Servlet은 기본적인 웹 요청 처리를 할 수 있지만, 직접 HTML을 만들고 보안, 데이터베이스 연결 등을 다 처리해야 함.<br />
-Spring은 이런 것들을 <strong>자동화</strong>해주기 때문에 개발이 훨씬 쉬워지고, 유지보수도 편하다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring과 Servlet의 차이 대해 알아보자.]]></summary></entry><entry><title type="html">[JAVA] 동시성 처리 (Concurrency)</title><link href="https://nan0silver.github.io/java/2025-03-09-concurrency/" rel="alternate" type="text/html" title="[JAVA] 동시성 처리 (Concurrency)" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-04-09T07:37:57+00:00</updated><id>https://nan0silver.github.io/java/concurrency</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-03-09-concurrency/"><![CDATA[<ul>
-  <li><a href="#java에서-동시성">JAVA에서 동시성</a></li>
-  <li><a href="#스레드-thread">스레드 (Thread)</a></li>
-  <li><a href="#비동기-처리-async">비동기 처리 (Aysnc)</a></li>
-  <li><a href="#분산-처리-distributed">분산 처리 (Distribute)</a></li>
-  <li><a href="#핵심-키워드-및-정리">핵심 키워드 및 정리</a></li>
-</ul>
-
-<hr />
-
-<h2 id="java에서-동시성">JAVA에서 동시성</h2>
-
-<ul>
-  <li>여러 작업을 동시에 겹쳐서 처리하는 것</li>
-  <li>한 번에 여러 일을 수행하며 일의 효율성을 높임</li>
-  <li>크게 3가지 관점에서 접근 가능하다.
-    <ol>
-      <li>스레드 (Thread)</li>
-      <li>비동기 (Async)</li>
-      <li>분산 (Distributed)</li>
-    </ol>
-  </li>
-</ul>
-
-<h2 id="스레드-thread">스레드 (Thread)</h2>
-
-<ul>
-  <li>스레드는 프로세스 내에서 실제 작업을 수행하는 작업 단위</li>
-  <li>한 개의 프로그램(프로세스)은 여러 개의 스레드를 가질 수 있음</li>
-  <li>멀티 스레드 (Multi-thread)
-    <ul>
-      <li>하나의 프로세스에서 여러 스레드를 동시에 실행하는 방식</li>
-      <li>자바에서는 주로 JVM(Java Virtual Machine)이 여러 스레드를 관리해줌
-        <ul>
-          <li>ex) 웹 서버(Servlet, Spring)에서는 사용자 요청마다 별도의 스레드를 생성해서 동시에 많은 요청을 처리할 수 있게 함</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>🔥 중요한 이유
-    <ul>
-      <li>효율성 향상
-        <ul>
-          <li>CPU 자원을 최대한 활용할 수 있음</li>
-        </ul>
-      </li>
-      <li>응답성 향상
-        <ul>
-          <li>동시에 여러 요청을 처리할 수 있음</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>하지만 최근 자바 프레임워크(Spring)는 스레드를 자동으로 관리해주기 때문에 개발자가 직접 스레드를 관리할 일이 많지 않음
-    <ul>
-      <li>JVM과 프레임워크가 이미 효율적으로 관리해줌</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="비동기-처리-async">비동기 처리 (Async)</h2>
-
-<ul>
-  <li>비동기란 “요청을 보낸 뒤 결과를 기다리지 않고 다음 작업을 진행”하는 방식
-    <ul>
-      <li>동기 (Synchronous)
-        <ul>
-          <li>하나의 요청이 끝날 때까지 기다림</li>
-        </ul>
-      </li>
-      <li>비동기 (Asynchronous)
-        <ul>
-          <li>요청이 처리되는 동안 다른 작업 수행</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>자바에서 비동기 처리를 지원하는 방법
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">CompletableFuture</code> : 자바 비동기 처리 클래스</li>
-      <li>자바스크립트의 async/await와 비슷한 방식</li>
-    </ul>
-  </li>
-  <li>🔥 중요한 이유
-    <ul>
-      <li>빠른 응답성
-        <ul>
-          <li>요청 처리 중에도 사용자가 대기하지 않고, 시스템의 다른 작업 수행 가능</li>
-        </ul>
-      </li>
-      <li>높은 확장성
-        <ul>
-          <li>비동기 처리를 하면 서버가 많은 요청을 효율적으로 관리 가능</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="분산-처리-distributed">분산 처리 (Distributed)</h2>
-
-<ul>
-  <li>분산처리는 “하나의 서버가 아닌, 여러 대의 서버가 나누어서 작업을 처리하는 방식”
-    <ul>
-      <li>서버 하나만 운영하는 것부다 작은 여러 서버(클러스터)를 운영하면 비용이 줄어듬</li>
-      <li>대규모 서비스나 성장한 서비스에서 자주 사용됨</li>
-    </ul>
-  </li>
-  <li>분산 환경에서 자주 사용되는 기술
-    <ul>
-      <li>Redis
-        <ul>
-          <li>메모리 기반 데이터 저장소로, 분산락(Distributed Lock)울 구현할 때 사용</li>
-          <li>예를 들어, 여러 서버가 하나의 데이터를 동시에 수정하지 못하게 관리하는 방식</li>
-        </ul>
-      </li>
-      <li>Kafka
-        <ul>
-          <li>메시지 큐(Message Queue)로, 서버간 메시지를 주고받고, 작업을 순차적으로 처리할 때 사용됨</li>
-        </ul>
-      </li>
-      <li>클러스터(Cluster)
-        <ul>
-          <li>여러 대의 서버가 협력하여 요청을 나누어 처리 (MSA와 비슷한 개념)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>🔥 중요한 이유
-    <ul>
-      <li>비용 효율성
-        <ul>
-          <li>큰 서버 하나보다 여러 작은 서버가 경제적</li>
-        </ul>
-      </li>
-      <li>안정성 및 확장성
-        <ul>
-          <li>한 서버가 문제가 생기더라도 서비스는 계속 운영됨</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="핵심-키워드-및-정리">핵심 키워드 및 정리</h2>
-
-<ol>
-  <li>스레스 (Thread)</li>
-</ol>
-
-<ul>
-  <li>멀티 스레드 -&gt; JVM, Servlet, Spring</li>
-  <li>스레드는 직원이다. 회사(JVM, Servlet, Spring)가 직원(스레드)을 잘 관리하면, 일(요청 처리)이 효율적이다.</li>
-</ul>
-
-<ol>
-  <li>비동기 (Async)</li>
-</ol>
-
-<ul>
-  <li>CompletableFuture, async/await</li>
-  <li>비동기는 배달앱이다. 주문을 넣고 기다리지 않고, 다음 일을 진행한다.</li>
-</ul>
-
-<ol>
-  <li>분산처리 (Distributed)</li>
-</ol>
-
-<ul>
-  <li>Redis, Kafka, 클러스터</li>
-  <li>분산처리는 프랜차이즈이다. 큰 가게 하나보다 작은 여러 가게가 효율적이고 비용도 절감된다.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[동시성 처리에 관한 3가지 관점에 대해 이야기해보자.]]></summary></entry></feed>
+Spring은 이런 것들을 <strong>자동화</strong>해주기 때문에 개발이 훨씬 쉬워지고, 유지보수도 편하다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring과 Servlet의 차이 대해 알아보자.]]></summary></entry></feed>
