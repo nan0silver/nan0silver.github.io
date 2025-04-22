@@ -6,7 +6,7 @@ layout: list
 title: ProjectDiary
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: project_diary
+slug: projectdiary
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
@@ -20,7 +20,7 @@ description: >
 sitemap: false
 ---
 
-{% for post in site.project_diary %}
+{% for post in site.projectdiary %}
 
   <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
   <p>{{ post.excerpt }}</p>
