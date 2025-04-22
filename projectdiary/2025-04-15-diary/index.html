@@ -32,9 +32,9 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[버티] 프로젝트 시 문제 상황 | NAHYUN BLOG</title>
+<title>[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[버티] 프로젝트 시 문제 상황" />
+<meta property="og:title" content="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
 <meta name="description" content="테스트" />
@@ -45,10 +45,10 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-04-15T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[버티] 프로젝트 시 문제 상황" />
+<meta property="twitter:title" content="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-22T02:05:20+00:00","datePublished":"2025-04-15T00:00:00+00:00","description":"테스트","headline":"[버티] 프로젝트 시 문제 상황","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-04-15-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-04-15-diary/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-22T03:27:06+00:00","datePublished":"2025-04-15T00:00:00+00:00","description":"테스트","headline":"[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-04-15-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-04-15-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-22T02:06:01+00:00',
+    INDEX_KEY: 'index--2025-04-22T03:27:48+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -226,7 +226,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   <header>
     <h1 class="post-title flip-project-title">
       
-        [버티] 프로젝트 시 문제 상황
+        [버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기
       
     </h1>
 
@@ -245,7 +245,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-22T02:05:20+00:00">2025-04-22</time>
+              <time datetime="2025-04-22T03:27:06+00:00">2025-04-22</time>
             </span>
           
         
@@ -270,7 +270,221 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    
+    <ul>
+  <li><a href="#1-swagger-문서-접근-제한-이슈">1. Swagger 문서 접근 제한 이슈</a></li>
+  <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
+  <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
+  <li><a href="#4-실무-관점에서의-swagger-접근-관리-전략">4. 실무 관점에서의 Swagger 접근 관리 전략</a></li>
+  <li><a href="#5-정리하며">5. 정리하며</a></li>
+</ul>
+
+<hr />
+
+<h1 id="버티-spring-security와-swagger-통합-시-발생한-이슈-해결기">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</h1>
+
+<ul>
+  <li><a href="#1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</a></li>
+  <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
+  <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
+  <li><a href="#4-swagger-ui에-authorization-설정-추가">4. Swagger UI에 Authorization 설정 추가</a></li>
+  <li><a href="#5-실무-관점에서의-swagger-접근-관리-전략">5. 실무 관점에서의 Swagger 접근 관리 전략</a></li>
+  <li><a href="#6-정리하며">6. 정리하며</a></li>
+</ul>
+
+<hr />
+
+<p>Spring Boot와 Spring Security, 그리고 Swagger(OpenAPI)를 함께 사용하기 위해 공부하고 구현하며 여러 이슈가 발생했습니다. 따라서 제가 프로젝트를 수행하며 “소셜 로그인 기능을 구현하면서 Swagger와 관련된 문제들을 어떻게 인지하고 해결했는지”를 기록해 보았습니다.</p>
+
+<hr />
+
+<h2 id="1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</h2>
+
+<h3 id="11-문제-상황">1.1. 문제 상황</h3>
+
+<p>Spring Security 환경에서 Swagger 문서(<code class="language-plaintext highlighter-rouge">/swagger-ui/index.html</code>, <code class="language-plaintext highlighter-rouge">/v3/api-docs</code>)에 접근하려면 인증이 필요한 상황이 발생하였습니다. 이는 프론트엔드 개발자와 API 명세를 공유하고 협업하는 데 불편을 초래할 것이라 판단했습니다. 로그인 과정을 거치지 않으면 Swagger UI 자체가 열리지 않았기 때문에, 프론트엔드가 API 테스트를 원활히 진행할 수 없었습니다.</p>
+
+<p>그래서 <strong>개발 환경(dev profile)</strong> 에 한해 Swagger 관련 인증을 해제했습니다. 이렇게 하니 Swagger 문서를 보다 자유롭게 접근할 수 있었고, API 확인과 테스트 속도도 한결 빨라졌습니다.</p>
+
+<p>다만 이러한 설정을 그대로 운영 환경에 적용할 경우, 민감한 정보 노출의 위험이 있기 때문에, <strong>배포 시에는 Swagger 접근을 차단하거나 관리자만 접근 가능하도록 제한</strong>할 계획입니다. 이처럼 환경에 따라 적절하게 보안 수준을 조절하는 방식은 실제 현업에서도 자주 사용하는 전략이기도 합니다.</p>
+
+<p>추가적으로, 설정 과정 중 다음과 같은 오류가 발생했습니다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IllegalStateException: Can't configure mvcMatchers after anyRequest.
+</code></pre></div></div>
+
+<h3 id="12--원인-분석">1.2. 👀 원인 분석</h3>
+
+<ol>
+  <li>Spring Security는 기본적으로 모든 요청에 대해 보안 필터를 적용하여, 인증되지 않은 사용자의 접근을 차단합니다. Swagger 문서 관련 URL 또한 별도의 예외 처리를 하지 않으면 일반적인 보호 대상 경로로 인식되어 접근이 제한됩니다.</li>
+  <li>Spring Security에서 <code class="language-plaintext highlighter-rouge">.anyRequest()</code> 호출 이후 <code class="language-plaintext highlighter-rouge">.requestMatchers()</code>를 선언한 것이 문제
+    <ul>
+      <li>URL 매칭 규칙상 구체적인 경로를 먼저 선언하고, 마지막에 <code class="language-plaintext highlighter-rouge">anyRequest()</code>를 사용해야 합니다</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="13-해결-방법">1.3. 해결 방법</h3>
+
+<p><code class="language-plaintext highlighter-rouge">SecurityConfig</code> 클래스에서 Swagger 관련 경로에 대한 접근을 허용하도록 다음과 같이 설정했습니다:</p>
+
+<ul>
+  <li>Swagger 관련 경로를 먼저 선언한 후, 마지막에 <code class="language-plaintext highlighter-rouge">anyRequest()</code>를 설정하는 방식으로 해결했습니다:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">securityFilterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="n">http</span>
+        <span class="o">.</span><span class="na">authorizeHttpRequests</span><span class="o">(</span><span class="n">authorize</span> <span class="o">-&gt;</span> <span class="n">authorize</span>
+            <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span>
+                <span class="s">"/swagger-ui/**"</span><span class="o">,</span>
+                <span class="s">"/swagger-resources/**"</span><span class="o">,</span>
+                <span class="s">"/v2/api-docs"</span><span class="o">,</span>
+                <span class="s">"/v3/api-docs"</span><span class="o">,</span>
+                <span class="s">"/webjars/**"</span>
+            <span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">()</span>
+        <span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 설정으로 인해 Swagger 문서에 로그인 없이 접근 가능하게 되었으며, 프론트엔드와의 협업도 원활해졌습니다.</p>
+
+<blockquote>
+  <p>“개발 생산성과 보안의 균형”이라는 관점에 대해 생각하게 되었습니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</h2>
+
+<h3 id="21-문제-상황">2.1. 문제 상황</h3>
+
+<p>Spring Security가 자동으로 생성해주는 OAuth2 엔드포인트(<code class="language-plaintext highlighter-rouge">/oauth2/authorize/{provider}</code>, <code class="language-plaintext highlighter-rouge">/login/oauth2/code/{provider}</code>)는 컨트롤러 기반이 아니기 때문에 Swagger 문서에 자동으로 포함되지 않았습니다.</p>
+
+<h3 id="22--원인">2.2. 👀 원인</h3>
+
+<p>Swagger는 기본적으로 <code class="language-plaintext highlighter-rouge">@RestController</code> 및 <code class="language-plaintext highlighter-rouge">@RequestMapping</code> 애노테이션이 붙은 메서드를 기준으로 API 문서를 생성합니다. 하지만 Spring Security의 OAuth2 로그인 경로는 Security 설정 내부에서 동적으로 구성되기 때문에 Swagger가 자동으로 인식할 수 없습니다.</p>
+
+<h3 id="23-해결-방법">2.3. 해결 방법</h3>
+
+<p>SwaggerConfig에서 수동으로 OpenAPI 객체에 경로를 등록하여 문서화했습니다:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SwaggerConfig</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">OpenAPI</span> <span class="nf">customOpenAPI</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">OpenAPI</span> <span class="n">openAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OpenAPI</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="k">new</span> <span class="nc">Info</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">"Burty Server API"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">version</span><span class="o">(</span><span class="s">"1.0.0"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">description</span><span class="o">(</span><span class="s">"버티 서버 API 문서"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">paths</span><span class="o">(</span><span class="k">new</span> <span class="nc">Paths</span><span class="o">());</span>
+
+        <span class="n">openAPI</span><span class="o">.</span><span class="na">getPaths</span><span class="o">().</span><span class="na">addPathItem</span><span class="o">(</span><span class="s">"/oauth2/authorize/{provider}"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">PathItem</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="k">new</span> <span class="nc">Operation</span><span class="o">().</span><span class="na">summary</span><span class="o">(</span><span class="s">"OAuth2 인증 요청"</span><span class="o">)));</span>
+        <span class="n">openAPI</span><span class="o">.</span><span class="na">getPaths</span><span class="o">().</span><span class="na">addPathItem</span><span class="o">(</span><span class="s">"/login/oauth2/code/{provider}"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">PathItem</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="k">new</span> <span class="nc">Operation</span><span class="o">().</span><span class="na">summary</span><span class="o">(</span><span class="s">"OAuth2 로그인 콜백"</span><span class="o">)));</span>
+
+        <span class="k">return</span> <span class="n">openAPI</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</h2>
+
+<h3 id="31-문제-상황">3.1. 문제 상황</h3>
+
+<p>Swagger UI에서 각 API가 <code class="language-plaintext highlighter-rouge">default</code>라는 그룹으로 묶여 가독성이 떨어졌습니다.</p>
+
+<h3 id="32--원인">3.2. 👀 원인</h3>
+
+<p>Swagger는 명시적으로 <code class="language-plaintext highlighter-rouge">@Tag</code> 애노테이션이 부여되지 않은 컨트롤러의 경우, 자동으로 <code class="language-plaintext highlighter-rouge">default</code>라는 태그로 묶어 표시합니다. 이는 다양한 기능의 API가 하나의 그룹으로 합쳐져 구분이 어렵게 됩니다.</p>
+
+<h3 id="33-해결-방법">3.3. 해결 방법</h3>
+
+<p>컨트롤러에 <code class="language-plaintext highlighter-rouge">@Tag</code> 애노테이션을 추가하고, 각 API에 <code class="language-plaintext highlighter-rouge">tags</code>를 명시함으로써 그룹을 명확하게 분리했습니다:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Tag</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"인증"</span><span class="o">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s">"사용자 인증 관련 API"</span><span class="o">)</span>
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/auth"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthController</span> <span class="o">{</span>
+
+    <span class="nd">@Operation</span><span class="o">(</span><span class="n">summary</span> <span class="o">=</span> <span class="s">"카카오 로그인 URL 반환"</span><span class="o">,</span> <span class="n">tags</span> <span class="o">=</span> <span class="o">{</span><span class="s">"인증"</span><span class="o">})</span>
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/kakao"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">kakaoLogin</span><span class="o">()</span> <span class="o">{</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-swagger-ui에-authorization-설정-추가">4. Swagger UI에 Authorization 설정 추가</h2>
+
+<h3 id="41-문제-상황">4.1. 문제 상황</h3>
+
+<p>프론트엔드에서 JWT 인증이 필요한 API를 Swagger UI로 테스트하고자 했으나, Authorization 정보를 입력할 수 있는 UI가 없었습니다.</p>
+
+<h3 id="42--원인-분석">4.2. 👀 원인 분석</h3>
+
+<ul>
+  <li>Swagger 기본 설정에는 Authorization 헤더 입력 기능이 포함되어 있지 않습니다.
+    <ul>
+      <li>JWT 기반 인증이 필요한 API에도 별도의 인증 설정을 명시하지 않으면 Swagger UI에서 테스트가 불가능합니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>따라서 개발 및 테스트 과정에서 프론트엔드가 토큰을 포함한 요청을 손쉽게 재현할 수 있도록 하기 위해 보안 스키마 설정이 필요했습니다.</p>
+  </li>
+  <li>프론트엔드에서 JWT 인증이 필요한 API를 Swagger UI로 테스트하고자 했으나, Authorization 정보를 입력할 수 있는 UI가 없었습니다.</li>
+</ul>
+
+<h3 id="43-해결-방법">4.3. 해결 방법</h3>
+
+<h4 id="1-전역-보안-스키마-정의">1) 전역 보안 스키마 정의</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="nd">@SecurityScheme</span><span class="o">(</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s">"bearerAuth"</span><span class="o">,</span>
+        <span class="n">type</span> <span class="o">=</span> <span class="nc">SecuritySchemeType</span><span class="o">.</span><span class="na">HTTP</span><span class="o">,</span>
+        <span class="n">scheme</span> <span class="o">=</span> <span class="s">"bearer"</span><span class="o">,</span>
+        <span class="n">bearerFormat</span> <span class="o">=</span> <span class="s">"JWT"</span>
+<span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OpenApiConfig</span> <span class="o">{</span>
+    <span class="c1">// 어노테이션으로 설정</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="2-개별-api에-적용">2) 개별 API에 적용</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Operation</span><span class="o">(</span><span class="n">security</span> <span class="o">=</span> <span class="o">{</span> <span class="nd">@SecurityRequirement</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"bearerAuth"</span><span class="o">)</span> <span class="o">})</span>
+<span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/profile"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">updateUserProfile</span><span class="o">(...)</span> <span class="o">{</span>
+    <span class="c1">// 메서드 구현</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 설정을 통해 Swagger UI에서도 인증이 필요한 API를 명확히 구분하고, 테스트 시 토큰을 직접 입력할 수 있도록 구성할 수 있었습니다.</p>
+
+<hr />
+
+<h2 id="5-실무-관점에서의-swagger-접근-관리-전략">5. 실무 관점에서의 Swagger 접근 관리 전략</h2>
+
+<ul>
+  <li>개발 환경에서는 Swagger 접근을 자유롭게 열어두고 프론트엔드 테스트를 용이하게 함</li>
+  <li>운영 환경에서는 보안을 위해 관리자 인증 또는 방화벽 제한을 적용하는 것이 일반적</li>
+  <li>JWT 기반 인증 API는 Swagger UI에서도 Authorization 헤더를 통해 테스트할 수 있도록 설정</li>
+</ul>
+
+<hr />
+
+<h2 id="6-정리하며">6. 정리하며</h2>
+
+<p>Swagger와 Spring Security를 함께 사용할 때 마주친 실제적인 문제들을 해결하면서, 보안과 개발 편의성 사이에서 균형을 맞추는 경험을 할 수 있었습니다. 특히 프론트엔드 협업 관점에서 Swagger 인증 해제와 JWT 연동 설정은 협업 효율을 높이는 핵심 포인트였습니다.</p>
+
+<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>
 
   
 </article>
@@ -397,7 +611,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/spring/2025-04-17-query-method/" class="flip-title"><span>[Spring] JPA Query Method</span></a>  <time class="faded fine" datetime="2025-04-17T00:00:00+00:00">17 Apr 2025</time></li>                        <li class="h4">  <a href="/spring/2025-04-09-thymeleaf/" class="flip-title"><span>[Spring] Thymeleaf</span></a>  <time class="faded fine" datetime="2025-04-09T00:00:00+00:00">09 Apr 2025</time></li>                        <li class="h4">  <a href="/spring/2025-04-09-non-blocking/" class="flip-title"><span>[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</span></a>  <time class="faded fine" datetime="2025-04-09T00:00:00+00:00">09 Apr 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/spring/2025-04-17-query-method/" class="flip-title"><span>[Spring] JPA Query Method</span></a>  <time class="faded fine" datetime="2025-04-17T00:00:00+00:00">17 Apr 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-04-17-diary/" class="flip-title"><span>[버티] 프로젝트 개발 중 마주한 사소한 이슈들</span></a>  <time class="faded fine" datetime="2025-04-17T00:00:00+00:00">17 Apr 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-04-16-diary/" class="flip-title"><span>[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</span></a>  <time class="faded fine" datetime="2025-04-16T00:00:00+00:00">16 Apr 2025</time></li>            </ul></aside>
 
   
 

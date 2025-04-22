@@ -1,7 +1,133 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-22T02:06:01+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-22T03:27:48+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-04-22T02:05:20+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-04-22T03:27:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
+  <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
+  <li><a href="#2-카카오-소셜-로그인-이메일-누락-문제">카카오 소셜 로그인 이메일 누락 문제</a></li>
+  <li><a href="#3-oauth2-인증-요청-정보-손실-문제">OAuth2 인증 요청 정보 손실 문제</a></li>
+</ul>
+
+<hr />
+
+<p>이 문서는 “버티” 프로젝트를 개발하면서 마주쳤던 비교적 사소하지만, 실제 구현 과정에서는 꽤나 시간을 잡아먹거나 시행착오를 유발했던 문제들을 기록해두는 공간입니다.</p>
+
+<p>단순한 에러라기보다는 “한 번쯤은 헷갈릴 수 있는 포인트들”을 중심으로 정리하여, 나중에 유지보수하거나 다른 프로젝트에서 재사용할 때 참고할 수 있도록 작성합니다.</p>
+
+<hr />
+
+<h2 id="1-jjwt-라이브러리-버전에-따른-변경-사항">1. JJWT 라이브러리 버전에 따른 변경 사항</h2>
+
+<p>JJWT 라이브러리의 업데이트로 인해 토큰 생성 및 파싱 방식이 크게 변경되었습니다. 기존 방식으로 작성된 코드는 더 이상 컴파일되지 않거나 실행 시 에러가 발생할 수 있습니다.</p>
+
+<h3 id="-기존-코드-구버전-jjwt">🔧 기존 코드 (구버전 JJWT)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">secretKey</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">secretKey</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+<span class="nc">Claims</span> <span class="n">claims</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">claims</span><span class="o">().</span><span class="na">setSubject</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getNickname</span><span class="o">());</span>
+<span class="nc">String</span> <span class="n">accessToken</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">setHeaderParam</span><span class="o">(</span><span class="nc">Header</span><span class="o">.</span><span class="na">TYPE</span><span class="o">,</span> <span class="nc">Header</span><span class="o">.</span><span class="na">JWT_TYPE</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setClaims</span><span class="o">(</span><span class="n">claims</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setIssuedAt</span><span class="o">(</span><span class="n">now</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setExpiration</span><span class="o">(</span><span class="k">new</span> <span class="nc">Date</span><span class="o">(</span><span class="n">now</span><span class="o">.</span><span class="na">getTime</span><span class="o">()</span> <span class="o">+</span> <span class="no">ACCESS_TOKEN_VALID_MILLISECOND</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">signWith</span><span class="o">(</span><span class="nc">SignatureAlgorithm</span><span class="o">.</span><span class="na">HS256</span><span class="o">,</span> <span class="n">secretKey</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">compact</span><span class="o">();</span>
+<span class="nc">Claims</span> <span class="n">parsedClaims</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">parser</span><span class="o">().</span><span class="na">setSigningKey</span><span class="o">(</span><span class="n">secretKey</span><span class="o">).</span><span class="na">parseClaimsJws</span><span class="o">(</span><span class="n">accessToken</span><span class="o">).</span><span class="na">getBody</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h3 id="-변경-코드-최신-jjwt">✅ 변경 코드 (최신 JJWT)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">SecretKey</span> <span class="n">secretKey</span> <span class="o">=</span> <span class="nc">Keys</span><span class="o">.</span><span class="na">hmacShaKeyFor</span><span class="o">(</span><span class="n">secretKeyStr</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+<span class="nc">Claims</span> <span class="n">claims</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">claims</span><span class="o">().</span><span class="na">subject</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getNickname</span><span class="o">()).</span><span class="na">build</span><span class="o">();</span>
+<span class="nc">String</span> <span class="n">accessToken</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">claims</span><span class="o">(</span><span class="n">claims</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">header</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="s">"JWT"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">issuedAt</span><span class="o">(</span><span class="n">now</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">expiration</span><span class="o">(</span><span class="k">new</span> <span class="nc">Date</span><span class="o">(</span><span class="n">now</span><span class="o">.</span><span class="na">getTime</span><span class="o">()</span> <span class="o">+</span> <span class="no">ACCESS_TOKEN_VALID_MILLISECOND</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">signWith</span><span class="o">(</span><span class="n">secretKey</span><span class="o">,</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">SIG</span><span class="o">.</span><span class="na">HS256</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">compact</span><span class="o">();</span>
+<span class="nc">Claims</span> <span class="n">parsedClaims</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">parser</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">verifyWith</span><span class="o">(</span><span class="n">secretKey</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">parseSignedClaims</span><span class="o">(</span><span class="n">accessToken</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">getPayload</span><span class="o">();</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-카카오-소셜-로그인-이메일-누락-문제">2. 카카오 소셜 로그인 이메일 누락 문제</h2>
+
+<h3 id="-문제-상황">🧩 문제 상황</h3>
+
+<p>카카오 로그인 시 사용자 이메일이 제공되지 않아 <code class="language-plaintext highlighter-rouge">InternalAuthenticationServiceException</code> 이 발생하는 문제가 있었습니다.</p>
+
+<h3 id="-해결-방법">✅ 해결 방법</h3>
+
+<p>카카오 계정에 이메일 정보가 없을 경우 자동으로 생성된 이메일을 부여하도록 로직을 보완했습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// KakaoOAuth2UserInfo 클래스</span>
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getEmail</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">attributes</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"kakao_account"</span><span class="o">))</span> <span class="o">{</span>
+        <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">kakaoAccount</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;)</span> <span class="n">attributes</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"kakao_account"</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">kakaoAccount</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">kakaoAccount</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"email"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span> <span class="n">kakaoAccount</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"email"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// 상위 메소드에서 처리</span>
+<span class="o">}</span>
+
+<span class="c1">// OAuth2UserService 클래스</span>
+<span class="kd">private</span> <span class="nc">OAuth2User</span> <span class="nf">processOAuth2User</span><span class="o">(...)</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">email</span> <span class="o">=</span> <span class="n">oAuth2UserInfo</span><span class="o">.</span><span class="na">getEmail</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">email</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">email</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">registrationId</span> <span class="o">+</span> <span class="s">"_"</span> <span class="o">+</span> <span class="n">oAuth2UserInfo</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">"@example.com"</span><span class="o">;</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"이메일 정보가 없어 생성된 이메일: {}"</span><span class="o">,</span> <span class="n">email</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 나머지 사용자 생성/업데이트 로직</span>
+    <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-oauth2-인증-요청-정보-손실-문제">3. OAuth2 인증 요청 정보 손실 문제</h2>
+
+<h3 id="-문제-상황-1">🧩 문제 상황</h3>
+
+<p>로그인 시 다음과 같은 오류가 발생했습니다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oauth2LoginException: authorization_request_not_found
+</code></pre></div></div>
+
+<p>이유는 Security 설정에서 다음과 같이 세션 생성을 완전히 차단했기 때문입니다:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">.</span><span class="na">sessionManagement</span><span class="o">().</span><span class="na">sessionCreationPolicy</span><span class="o">(</span><span class="nc">SessionCreationPolicy</span><span class="o">.</span><span class="na">STATELESS</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>OAuth2 로그인 과정은 내부적으로 세션에 인증 요청 정보를 저장하여 인증을 이어가는데, 해당 설정으로 인해 정보가 손실되었습니다.</p>
+
+<h3 id="-해결-방법-1">✅ 해결 방법</h3>
+
+<p>개발 초기에는 단순화를 위해 다음과 같이 설정을 변경했습니다:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">.</span><span class="na">sessionManagement</span><span class="o">().</span><span class="na">sessionCreationPolicy</span><span class="o">(</span><span class="nc">SessionCreationPolicy</span><span class="o">.</span><span class="na">IF_REQUIRED</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>이를 통해 OAuth2 인증 플로우 중 세션을 사용할 수 있도록 하여 문제를 해결했습니다.</p>
+
+<h3 id="-추가-구현-리프레시-토큰">💡 추가 구현: 리프레시 토큰</h3>
+
+<p>보안성과 사용자 경험을 위해 리프레시 토큰도 함께 구현했습니다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">RefreshToken</code> 엔티티 및 리포지토리 생성</li>
+  <li>토큰 갱신 서비스 및 API 엔드포인트 구현</li>
+  <li>액세스 토큰과 리프레시 토큰을 분리 관리하여 보안성 강화</li>
+</ul>
+
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-04-22T03:27:06+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
   <li><a href="#jparepository-상속">JpaRepository 상속</a></li>
   <li><a href="#-그렇다면-커스텀-쿼리는-어떻게-할까">그렇다면 커스텀 쿼리는 어떻게 할까?</a></li>
   <li><a href="#-개발자-관점-팁">개발자 관점 팁</a></li>
@@ -232,7 +358,336 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li><strong>복잡한 조건</strong> → <code class="language-plaintext highlighter-rouge">@Query</code> 또는 <code class="language-plaintext highlighter-rouge">QueryDSL</code>, <code class="language-plaintext highlighter-rouge">Specification</code> 권장</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 프로젝트 시 문제 상황</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 시 문제 상황" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-04-22T02:05:20+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-22T02:05:20+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-04-22T03:27:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
+  <p>저번 프로젝트에서는 로그아웃을 구현하지 않고, 토큰 만료를 사용했는데 로그아웃을 구현해달라는 요청이 있었어서 이번 프로젝트에서는 제대로 알아보고 구현해보기로 하였다.</p>
+</blockquote>
+
+<ul>
+  <li>JWT는 기본적으로 상태를 저장하지 않아(stateless) 로그아웃 처리에 어려움이 있다.</li>
+  <li>
+    <p>로그아웃을 구현하는 방법에는 크게 3가지가 있다.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 프론트엔트에서 토큰 삭제
+   - 가장 구현이 간단하다.
+   - 클라이언트 측에서 토큰을 삭제하여 로그아웃을 구현하는 방법
+   - 이 방법이 토큰의 `Stateless`한 특징을 최대한 살린 방식
+     &gt; 'Stateful` : 데이터베이스에 정보를 저장하고 조회하는 경우
+</code></pre></div>    </div>
+
+    <p>‘Stateless`: 데이터베이스를 사용하지 않는 방식</p>
+    <blockquote>
+
+      <blockquote>
+        <p>JWT는 데이터베이스에 저장 및 조회가 필요없기 때문에<code class="language-plaintext highlighter-rouge">Stateless</code>한 특징을 가지고 있다.</p>
+      </blockquote>
+    </blockquote>
+
+    <ul>
+      <li>단점 : 서버에선 토큰이 유효하기 때문에, 토큰이 노출되면 보안 문제가 생길 수 있음.</li>
+    </ul>
+
+    <ol>
+      <li>토큰 블랙리스트 관리
+        <ul>
+          <li>JWT가 만료되지 않은 상태에서 로그아웃 요청이 오는 경우, 서버에서 해당 토큰을 블랙리스트 DB에 넣어 처리</li>
+          <li>인증 필터에서 매 요청마다 토큰이 블랙리스트에 해당하는 토큰인지 확인해야한다.</li>
+          <li>서버에서 토큰을 효과적으로 관리할 수 있지만, 매 요청마다 블랙리스트를 확인해야하기 때문에 <code class="language-plaintext highlighter-rouge">stateless</code>한 JWT의 장점이 없어진다.</li>
+        </ul>
+      </li>
+      <li>Refresh Token 기간 만료 처리
+        <ul>
+          <li>사용자가 로그아웃을 요청할 때 리프레시 토큰을 무효화해 해당 사용자가 더 이상 새로운 엑세스 토큰을 발급받지 못하도록 하는 방식</li>
+          <li>사용자의 로그아웃 요청에 대해 서버 측에서 적극적으로 대응할 수 있다는 장점이 있다.</li>
+          <li>엑세스 토큰 재발급의 연속성을 차단해 보안을 강화할 수도 있다.</li>
+          <li>하지만 리프레시 토큰 확인 과정에서 JWT의 <code class="language-plaintext highlighter-rouge">Stateless</code>한 장점이 사라진다.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>2번 VS 3번 비교
+    <ul>
+      <li>2번의 경우, 블랙리스트 DB 혹은 Redis를 사용해 서버 상태를 관리해야 한다.</li>
+      <li>또한 <code class="language-plaintext highlighter-rouge">Stateless</code>성이 완전히 깨지고 (모은 요청 시 DB확인이 필요하기 때문에!) 성능 이슈가 생길 수 있다.</li>
+      <li>하지만 3번의 경우, 리프레시 토큰만 관리하면 되기 때문에 상대적으로 가볍다.
+        <ul>
+          <li>리프레시 토큰만 서버 저장 및 관리하면 된다!</li>
+        </ul>
+      </li>
+      <li>또한 3번은 <code class="language-plaintext highlighter-rouge">Stateless</code>를 부분적으로 유지 가능하다. (액세스 토큰은 여전히 <code class="language-plaintext highlighter-rouge">Stateless</code>)</li>
+    </ul>
+  </li>
+  <li>일단은 3번 방법을 선택해서 로그아웃을 구현해보기로 결정하였다.
+    <ul>
+      <li>어플리케이션이 그렇게 무거운 프로젝트가 아니기 때문에, 블랙 리스트 방식처럼 서버 자원을 지속적으로 소모하는 설계보다는 토큰 생명주기를 명확히 관리할 수 있는 방식이 더 적합할 것 같다고 판단했다.</li>
+      <li>또한 리프레시 토큰 구현으로 토큰의 생명 주기에 대해 이해해볼 수 있을 것 같아 선택하게 되었다.</li>
+      <li>이번 프로젝트는 데이터베이스 사용이 많은 구조이기 때문에, 불필요한 토큰 상태 관리를 피하고 전체 시스템의 부하를 줄이기 위한 의도도 있었다.
+        <blockquote>
+          <p>리프레시 토큰의 발급 및 만료 흐름을 직접 설계함으로써, JWT 기반 인증 시스템의 구조와 보안 설계에 대한 이해도를 높이는 기회로 삼고자 한다.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-04-22T03:27:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
+  <li><a href="#1-swagger-문서-접근-제한-이슈">1. Swagger 문서 접근 제한 이슈</a></li>
+  <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
+  <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
+  <li><a href="#4-실무-관점에서의-swagger-접근-관리-전략">4. 실무 관점에서의 Swagger 접근 관리 전략</a></li>
+  <li><a href="#5-정리하며">5. 정리하며</a></li>
+</ul>
+
+<hr />
+
+<h1 id="버티-spring-security와-swagger-통합-시-발생한-이슈-해결기">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</h1>
+
+<ul>
+  <li><a href="#1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</a></li>
+  <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
+  <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
+  <li><a href="#4-swagger-ui에-authorization-설정-추가">4. Swagger UI에 Authorization 설정 추가</a></li>
+  <li><a href="#5-실무-관점에서의-swagger-접근-관리-전략">5. 실무 관점에서의 Swagger 접근 관리 전략</a></li>
+  <li><a href="#6-정리하며">6. 정리하며</a></li>
+</ul>
+
+<hr />
+
+<p>Spring Boot와 Spring Security, 그리고 Swagger(OpenAPI)를 함께 사용하기 위해 공부하고 구현하며 여러 이슈가 발생했습니다. 따라서 제가 프로젝트를 수행하며 “소셜 로그인 기능을 구현하면서 Swagger와 관련된 문제들을 어떻게 인지하고 해결했는지”를 기록해 보았습니다.</p>
+
+<hr />
+
+<h2 id="1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</h2>
+
+<h3 id="11-문제-상황">1.1. 문제 상황</h3>
+
+<p>Spring Security 환경에서 Swagger 문서(<code class="language-plaintext highlighter-rouge">/swagger-ui/index.html</code>, <code class="language-plaintext highlighter-rouge">/v3/api-docs</code>)에 접근하려면 인증이 필요한 상황이 발생하였습니다. 이는 프론트엔드 개발자와 API 명세를 공유하고 협업하는 데 불편을 초래할 것이라 판단했습니다. 로그인 과정을 거치지 않으면 Swagger UI 자체가 열리지 않았기 때문에, 프론트엔드가 API 테스트를 원활히 진행할 수 없었습니다.</p>
+
+<p>그래서 <strong>개발 환경(dev profile)</strong> 에 한해 Swagger 관련 인증을 해제했습니다. 이렇게 하니 Swagger 문서를 보다 자유롭게 접근할 수 있었고, API 확인과 테스트 속도도 한결 빨라졌습니다.</p>
+
+<p>다만 이러한 설정을 그대로 운영 환경에 적용할 경우, 민감한 정보 노출의 위험이 있기 때문에, <strong>배포 시에는 Swagger 접근을 차단하거나 관리자만 접근 가능하도록 제한</strong>할 계획입니다. 이처럼 환경에 따라 적절하게 보안 수준을 조절하는 방식은 실제 현업에서도 자주 사용하는 전략이기도 합니다.</p>
+
+<p>추가적으로, 설정 과정 중 다음과 같은 오류가 발생했습니다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IllegalStateException: Can't configure mvcMatchers after anyRequest.
+</code></pre></div></div>
+
+<h3 id="12--원인-분석">1.2. 👀 원인 분석</h3>
+
+<ol>
+  <li>Spring Security는 기본적으로 모든 요청에 대해 보안 필터를 적용하여, 인증되지 않은 사용자의 접근을 차단합니다. Swagger 문서 관련 URL 또한 별도의 예외 처리를 하지 않으면 일반적인 보호 대상 경로로 인식되어 접근이 제한됩니다.</li>
+  <li>Spring Security에서 <code class="language-plaintext highlighter-rouge">.anyRequest()</code> 호출 이후 <code class="language-plaintext highlighter-rouge">.requestMatchers()</code>를 선언한 것이 문제
+    <ul>
+      <li>URL 매칭 규칙상 구체적인 경로를 먼저 선언하고, 마지막에 <code class="language-plaintext highlighter-rouge">anyRequest()</code>를 사용해야 합니다</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="13-해결-방법">1.3. 해결 방법</h3>
+
+<p><code class="language-plaintext highlighter-rouge">SecurityConfig</code> 클래스에서 Swagger 관련 경로에 대한 접근을 허용하도록 다음과 같이 설정했습니다:</p>
+
+<ul>
+  <li>Swagger 관련 경로를 먼저 선언한 후, 마지막에 <code class="language-plaintext highlighter-rouge">anyRequest()</code>를 설정하는 방식으로 해결했습니다:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">securityFilterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="n">http</span>
+        <span class="o">.</span><span class="na">authorizeHttpRequests</span><span class="o">(</span><span class="n">authorize</span> <span class="o">-&gt;</span> <span class="n">authorize</span>
+            <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span>
+                <span class="s">"/swagger-ui/**"</span><span class="o">,</span>
+                <span class="s">"/swagger-resources/**"</span><span class="o">,</span>
+                <span class="s">"/v2/api-docs"</span><span class="o">,</span>
+                <span class="s">"/v3/api-docs"</span><span class="o">,</span>
+                <span class="s">"/webjars/**"</span>
+            <span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">()</span>
+        <span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 설정으로 인해 Swagger 문서에 로그인 없이 접근 가능하게 되었으며, 프론트엔드와의 협업도 원활해졌습니다.</p>
+
+<blockquote>
+  <p>“개발 생산성과 보안의 균형”이라는 관점에 대해 생각하게 되었습니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</h2>
+
+<h3 id="21-문제-상황">2.1. 문제 상황</h3>
+
+<p>Spring Security가 자동으로 생성해주는 OAuth2 엔드포인트(<code class="language-plaintext highlighter-rouge">/oauth2/authorize/{provider}</code>, <code class="language-plaintext highlighter-rouge">/login/oauth2/code/{provider}</code>)는 컨트롤러 기반이 아니기 때문에 Swagger 문서에 자동으로 포함되지 않았습니다.</p>
+
+<h3 id="22--원인">2.2. 👀 원인</h3>
+
+<p>Swagger는 기본적으로 <code class="language-plaintext highlighter-rouge">@RestController</code> 및 <code class="language-plaintext highlighter-rouge">@RequestMapping</code> 애노테이션이 붙은 메서드를 기준으로 API 문서를 생성합니다. 하지만 Spring Security의 OAuth2 로그인 경로는 Security 설정 내부에서 동적으로 구성되기 때문에 Swagger가 자동으로 인식할 수 없습니다.</p>
+
+<h3 id="23-해결-방법">2.3. 해결 방법</h3>
+
+<p>SwaggerConfig에서 수동으로 OpenAPI 객체에 경로를 등록하여 문서화했습니다:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SwaggerConfig</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">OpenAPI</span> <span class="nf">customOpenAPI</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">OpenAPI</span> <span class="n">openAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OpenAPI</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="k">new</span> <span class="nc">Info</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">"Burty Server API"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">version</span><span class="o">(</span><span class="s">"1.0.0"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">description</span><span class="o">(</span><span class="s">"버티 서버 API 문서"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">paths</span><span class="o">(</span><span class="k">new</span> <span class="nc">Paths</span><span class="o">());</span>
+
+        <span class="n">openAPI</span><span class="o">.</span><span class="na">getPaths</span><span class="o">().</span><span class="na">addPathItem</span><span class="o">(</span><span class="s">"/oauth2/authorize/{provider}"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">PathItem</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="k">new</span> <span class="nc">Operation</span><span class="o">().</span><span class="na">summary</span><span class="o">(</span><span class="s">"OAuth2 인증 요청"</span><span class="o">)));</span>
+        <span class="n">openAPI</span><span class="o">.</span><span class="na">getPaths</span><span class="o">().</span><span class="na">addPathItem</span><span class="o">(</span><span class="s">"/login/oauth2/code/{provider}"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">PathItem</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="k">new</span> <span class="nc">Operation</span><span class="o">().</span><span class="na">summary</span><span class="o">(</span><span class="s">"OAuth2 로그인 콜백"</span><span class="o">)));</span>
+
+        <span class="k">return</span> <span class="n">openAPI</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</h2>
+
+<h3 id="31-문제-상황">3.1. 문제 상황</h3>
+
+<p>Swagger UI에서 각 API가 <code class="language-plaintext highlighter-rouge">default</code>라는 그룹으로 묶여 가독성이 떨어졌습니다.</p>
+
+<h3 id="32--원인">3.2. 👀 원인</h3>
+
+<p>Swagger는 명시적으로 <code class="language-plaintext highlighter-rouge">@Tag</code> 애노테이션이 부여되지 않은 컨트롤러의 경우, 자동으로 <code class="language-plaintext highlighter-rouge">default</code>라는 태그로 묶어 표시합니다. 이는 다양한 기능의 API가 하나의 그룹으로 합쳐져 구분이 어렵게 됩니다.</p>
+
+<h3 id="33-해결-방법">3.3. 해결 방법</h3>
+
+<p>컨트롤러에 <code class="language-plaintext highlighter-rouge">@Tag</code> 애노테이션을 추가하고, 각 API에 <code class="language-plaintext highlighter-rouge">tags</code>를 명시함으로써 그룹을 명확하게 분리했습니다:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Tag</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"인증"</span><span class="o">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s">"사용자 인증 관련 API"</span><span class="o">)</span>
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/auth"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthController</span> <span class="o">{</span>
+
+    <span class="nd">@Operation</span><span class="o">(</span><span class="n">summary</span> <span class="o">=</span> <span class="s">"카카오 로그인 URL 반환"</span><span class="o">,</span> <span class="n">tags</span> <span class="o">=</span> <span class="o">{</span><span class="s">"인증"</span><span class="o">})</span>
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/kakao"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">kakaoLogin</span><span class="o">()</span> <span class="o">{</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-swagger-ui에-authorization-설정-추가">4. Swagger UI에 Authorization 설정 추가</h2>
+
+<h3 id="41-문제-상황">4.1. 문제 상황</h3>
+
+<p>프론트엔드에서 JWT 인증이 필요한 API를 Swagger UI로 테스트하고자 했으나, Authorization 정보를 입력할 수 있는 UI가 없었습니다.</p>
+
+<h3 id="42--원인-분석">4.2. 👀 원인 분석</h3>
+
+<ul>
+  <li>Swagger 기본 설정에는 Authorization 헤더 입력 기능이 포함되어 있지 않습니다.
+    <ul>
+      <li>JWT 기반 인증이 필요한 API에도 별도의 인증 설정을 명시하지 않으면 Swagger UI에서 테스트가 불가능합니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>따라서 개발 및 테스트 과정에서 프론트엔드가 토큰을 포함한 요청을 손쉽게 재현할 수 있도록 하기 위해 보안 스키마 설정이 필요했습니다.</p>
+  </li>
+  <li>프론트엔드에서 JWT 인증이 필요한 API를 Swagger UI로 테스트하고자 했으나, Authorization 정보를 입력할 수 있는 UI가 없었습니다.</li>
+</ul>
+
+<h3 id="43-해결-방법">4.3. 해결 방법</h3>
+
+<h4 id="1-전역-보안-스키마-정의">1) 전역 보안 스키마 정의</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="nd">@SecurityScheme</span><span class="o">(</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s">"bearerAuth"</span><span class="o">,</span>
+        <span class="n">type</span> <span class="o">=</span> <span class="nc">SecuritySchemeType</span><span class="o">.</span><span class="na">HTTP</span><span class="o">,</span>
+        <span class="n">scheme</span> <span class="o">=</span> <span class="s">"bearer"</span><span class="o">,</span>
+        <span class="n">bearerFormat</span> <span class="o">=</span> <span class="s">"JWT"</span>
+<span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OpenApiConfig</span> <span class="o">{</span>
+    <span class="c1">// 어노테이션으로 설정</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="2-개별-api에-적용">2) 개별 API에 적용</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Operation</span><span class="o">(</span><span class="n">security</span> <span class="o">=</span> <span class="o">{</span> <span class="nd">@SecurityRequirement</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"bearerAuth"</span><span class="o">)</span> <span class="o">})</span>
+<span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/profile"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">updateUserProfile</span><span class="o">(...)</span> <span class="o">{</span>
+    <span class="c1">// 메서드 구현</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 설정을 통해 Swagger UI에서도 인증이 필요한 API를 명확히 구분하고, 테스트 시 토큰을 직접 입력할 수 있도록 구성할 수 있었습니다.</p>
+
+<hr />
+
+<h2 id="5-실무-관점에서의-swagger-접근-관리-전략">5. 실무 관점에서의 Swagger 접근 관리 전략</h2>
+
+<ul>
+  <li>개발 환경에서는 Swagger 접근을 자유롭게 열어두고 프론트엔드 테스트를 용이하게 함</li>
+  <li>운영 환경에서는 보안을 위해 관리자 인증 또는 방화벽 제한을 적용하는 것이 일반적</li>
+  <li>JWT 기반 인증 API는 Swagger UI에서도 Authorization 헤더를 통해 테스트할 수 있도록 설정</li>
+</ul>
+
+<hr />
+
+<h2 id="6-정리하며">6. 정리하며</h2>
+
+<p>Swagger와 Spring Security를 함께 사용할 때 마주친 실제적인 문제들을 해결하면서, 보안과 개발 편의성 사이에서 균형을 맞추는 경험을 할 수 있었습니다. 특히 프론트엔드 협업 관점에서 Swagger 인증 해제와 JWT 연동 설정은 협업 효율을 높이는 핵심 포인트였습니다.</p>
+
+<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-04-22T03:27:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
+
+<p>프로젝트를 처음 시작할 때 가장 고민했던 부분 중 하나는 <strong>전체 구조를 어떻게 잡을 것인가</strong>였습니다. 단순한 CRUD를 넘어서 소셜 로그인, 커뮤니티, AI 기반 정착 리포트 등 다양한 기능을 포함할 예정이었기 때문에, 기능이 늘어나더라도 유지보수가 쉽고, 각 도메인이 명확하게 분리되도록 설계하고 싶었습니다.</p>
+
+<p>처음엔 기능 중심으로 폴더를 나눌까도 생각했지만, 여러 기능이 얽혀 있을 때 책임이 명확하지 않고 코드가 뒤섞일 우려가 있었습니다. 그래서 고민 끝에 <strong>도메인 주도 설계(Domain-Driven Design, DDD)</strong> 와 <strong>MVC 구조</strong>, 그리고 <strong>레이어드 아키텍처(Layered Architecture)</strong> 를 조합한 형태로 프로젝트 구조를 설계하기로 했습니다.</p>
+
+<h3 id="-도메인-주도-설계란">💡 도메인 주도 설계란?</h3>
+
+<p>DDD는 비즈니스의 복잡한 요구사항을 도메인 중심으로 풀어가는 소프트웨어 설계 방법입니다. 코드 구조가 실제 도메인 모델과 맞닿아 있어 유지보수가 용이하고, 비즈니스 개념을 중심으로 기능을 구현할 수 있도록 도와줍니다. 핵심은 <strong>‘도메인을 기준으로 책임을 분리’</strong>하는 것입니다.</p>
+
+<p>또한 레이어드 아키텍처는 기능을 계층별로 나누어 역할을 분리함으로써 각 계층 간의 결합도를 낮추고 테스트와 유지보수를 용이하게 합니다. 대표적으로는 Controller → Service → Repository 계층 구조를 따릅니다.</p>
+
+<hr />
+
+<p>최종적으로 다음과 같은 구조를 구성했습니다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org.example.burtyserver/
+ ├── domain/                  # 도메인 중심 패키지
+ │   ├── auth/                # 인증 관련 기능
+ │   │   ├── controller/      # API 컨트롤러 (Presentation Layer)
+ │   │   └── dto/             # 데이터 전송 객체
+ │   │
+ │   └── user/                # 사용자 관련 기능
+ │       ├── entity/          # 엔티티 클래스 (Domain Layer)
+ │       ├── repository/      # 데이터 접근 계층 (Persistence Layer)
+ │       └── service/         # 비즈니스 로직 (Application Layer)
+ │
+ ├── global/                  # 공통/전역 기능
+ │   ├── config/              # 설정 클래스
+ │   ├── exception/           # 예외 처리
+ │   └── security/            # 보안 관련 클래스
+ │       ├── jwt/             # JWT 관련 클래스
+ │       ├── oauth2/          # OAuth2 관련 클래스
+ │       └── dto/             # 보안 관련 DTO
+ │
+ └── BurtyServerApplication.java   # 애플리케이션 진입점
+</code></pre></div></div>
+
+<p>-&gt; 아직 개발중!</p>
+
+<p>이 구조는 기능별 분리보다 도메인별 분리를 우선시했으며, 각 도메인이 자신의 책임과 역할에 따라 나뉘도록 구성했습니다. 공통 설정이나 보안 로직처럼 여러 도메인에서 공유되는 요소들은 <code class="language-plaintext highlighter-rouge">global</code>이라는 전역 패키지에 따로 관리하여 관심사 분리를 명확히 했습니다.</p>
+
+<p>실제로 프로젝트를 진행하면서 새로운 기능이 추가될 때마다 이 구조 덕분에 확장이 훨씬 수월했습니다. 예를 들어 AI 정착 리포트 기능을 추가할 때도 <code class="language-plaintext highlighter-rouge">settlement</code>라는 도메인을 추가해 기존 구조에 영향을 주지 않고도 자연스럽게 통합할 수 있었습니다.</p>
+
+<p>도메인 주도 설계를 기반으로 구조를 잡는 과정은 단순히 코드를 예쁘게 나누는 것을 넘어서, 기능과 비즈니스 로직의 맥락(Context)을 코드 레벨에서 표현하는 데 큰 도움이 되었습니다. 또한 레이어드 아키텍처를 통해 각 계층의 역할이 명확해져 협업 시 작업 분담이나 코드 리뷰도 훨씬 효율적으로 이루어졌습니다.</p>
+
+<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-22T03:27:06+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
   <li><a href="#-논블로킹non-blocking이란">논블로킹이란?</a></li>
   <li><a href="#-실생활-비유로-논블로킹-이해하기">실생활 비유로 논블로킹 이해하기</a></li>
   <li><a href="#-블로킹-vs-논블로킹-기술적-요점-정리">블로킹 vs 논블로킹 기술적 요점 정리</a></li>
@@ -677,7 +1132,7 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[논블로킹과 비동기에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Thymeleaf</title><link href="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/" rel="alternate" type="text/html" title="[Spring] Thymeleaf" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-22T02:05:20+00:00</updated><id>https://nan0silver.github.io/spring/thymeleaf</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[논블로킹과 비동기에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Thymeleaf</title><link href="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/" rel="alternate" type="text/html" title="[Spring] Thymeleaf" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-22T03:27:06+00:00</updated><id>https://nan0silver.github.io/spring/thymeleaf</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/"><![CDATA[<ul>
   <li><a href="#-1-thymeleaf는-왜-쓰는-걸까">Thymeleaf는 왜 쓰는 걸까?</a></li>
   <li><a href="#-2-기본-문법-정리">기본 문법 정리</a></li>
   <li><a href="#-3-전체-흐름-예시">전체 흐름 예시</a></li>
@@ -848,7 +1303,7 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] JPA vs MyBatis</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] JPA vs MyBatis" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-04-22T02:05:20+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] JPA vs MyBatis</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] JPA vs MyBatis" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-04-22T03:27:06+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
   <li><a href="#-jpa란-java-persistence-api">JPA란?</a></li>
   <li><a href="#-mybatis란">MyBatis란?</a></li>
   <li><a href="#-jpa-vs-mybatis">🔍 JPA vs MyBatis</a></li>
@@ -1204,7 +1659,7 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   <p>“JPA는 객체 중심의 ORM 프레임워크로, DB와의 데이터 처리를 추상화해 코드 생산성을 높여줍니다. 반면 MyBatis는 SQL 중심의 프레임워크로, 복잡한 쿼리나 성능 튜닝이 필요한 경우에 유리합니다. 프로젝트 성격에 따라 두 기술을 선택하거나 병행할 수 있습니다.”</p>
 </blockquote>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA vs MyBatis에 대 알아보자.]]></summary></entry><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-22T02:05:20+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA vs MyBatis에 대 알아보자.]]></summary></entry><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-22T03:27:06+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
   <li><a href="#dto-vs-vo-vs-entity">DTO vs VO vs Entity</a></li>
   <li><a href="#-dto-vs-vo">📦 DTO vs VO</a></li>
   <li><a href="#-entity-vs-vo">📦 Entity vs VO</a></li>
@@ -1530,7 +1985,7 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   <li><strong>값 객체(VO)</strong>를 표현할 때 <strong>record는 아주 강력한 도구</strong></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] HttpURLConnection, RestTemplate, WebClient</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] HttpURLConnection, RestTemplate, WebClient" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-22T02:05:20+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] HttpURLConnection, RestTemplate, WebClient</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] HttpURLConnection, RestTemplate, WebClient" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-22T03:27:06+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
   <li><a href="#-먼저-한눈에-보는-비교표">한눈에 보는 비교표</a></li>
   <li><a href="#-1-httpurlconnection--java-기본-클래스">1. HttpURLConnection</a></li>
   <li><a href="#-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트">2. RestTemplate</a></li>
@@ -1795,434 +2250,4 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Java 환경에서 사용되는 HTTP 클라이언트인 `HttpURLConnection`, `RestTemplate`, `WebClient`를 비교해보자.]]></summary></entry><entry><title type="html">[Etc] 💣 SQL Injection</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/" rel="alternate" type="text/html" title="[Etc] 💣 SQL Injection" /><published>2025-03-31T00:00:00+00:00</published><updated>2025-04-22T02:05:20+00:00</updated><id>https://nan0silver.github.io/miscellaneous/sql-injection</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-31-sql-injection/"><![CDATA[<ul>
-  <li><a href="#sql-injection이란">SQL Injection이란?</a></li>
-  <li><a href="#-spring-관점에서-sql-injection-방지법">Spring 관점에서 SQL Injection 방지법</a></li>
-  <li><a href="#-spring-배우는-입장에서-조심할-포인트-요약">요약</a></li>
-</ul>
-
-<hr />
-
-<h2 id="sql-injection이란">SQL Injection이란?</h2>
-
-<blockquote>
-  <p><strong>SQL Injection</strong>이란, 사용자가 입력한 값을 통해 <strong>원래 의도하지 않은 SQL문을 실행하게 만들어</strong><br />
-<strong>데이터베이스의 데이터를 탈취하거나 조작하는 공격</strong></p>
-</blockquote>
-
-<h3 id="-예시-spring-쓰기-전-일반-jdbc-코드-기준">🔍 예시 (Spring 쓰기 전 일반 JDBC 코드 기준):</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT * FROM users WHERE username = '"</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s">"'"</span><span class="o">;</span>
-</code></pre></div></div>
-
-<p>만약 <code class="language-plaintext highlighter-rouge">username</code>에 아래와 같은 값을 입력하면?</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>' OR '1'='1
-</code></pre></div></div>
-
-<p>그러면 쿼리가 이렇게 바뀜:</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">username</span> <span class="o">=</span> <span class="s1">''</span> <span class="k">OR</span> <span class="s1">'1'</span><span class="o">=</span><span class="s1">'1'</span>
-</code></pre></div></div>
-
-<p>→ 모든 유저 정보가 다 조회됨 😱<br />
-→ 비밀번호 없이 로그인도 가능해짐</p>
-
-<hr />
-
-<h2 id="-spring-관점에서-sql-injection-방지법">🔐 Spring 관점에서 SQL Injection 방지법</h2>
-
-<h3 id="-1-jdbc-직접-사용-시-preparedstatement-필수">✅ 1. <strong>JDBC 직접 사용 시: PreparedStatement 필수!</strong></h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT * FROM users WHERE username = ?"</span><span class="o">;</span>
-<span class="nc">PreparedStatement</span> <span class="n">pstmt</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">prepareStatement</span><span class="o">(</span><span class="n">sql</span><span class="o">);</span>
-<span class="n">pstmt</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">username</span><span class="o">);</span>  <span class="c1">// 자동으로 문자열 escape 처리</span>
-</code></pre></div></div>
-
-<p>이렇게 하면 <code class="language-plaintext highlighter-rouge">' OR '1'='1</code> 같은 입력도 그냥 문자열로 인식되므로 안전하다.</p>
-
-<hr />
-
-<h3 id="-2-spring-jdbc-template-사용-시">✅ 2. <strong>Spring JDBC Template 사용 시</strong></h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT * FROM users WHERE username = ?"</span><span class="o">;</span>
-<span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">queryForObject</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Object</span><span class="o">[]{</span><span class="n">username</span><span class="o">},</span> <span class="n">userRowMapper</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>여기서도 <code class="language-plaintext highlighter-rouge">?</code>를 사용해서 바인딩하면 PreparedStatement가 적용되므로 안전하다.</p>
-
-<hr />
-
-<h3 id="-3-jpa--spring-data-jpa-사용-시">✅ 3. <strong>JPA / Spring Data JPA 사용 시</strong></h3>
-
-<p>JPA는 SQL을 직접 작성하지 않고 엔티티 중심으로 데이터를 다루기 때문에 <strong>기본적으로 SQL Injection에 강함</strong>!</p>
-
-<h4 id="-예시">🔸 예시:</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findByUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>이런 방식은 내부적으로 PreparedStatement를 사용하기 때문에 안전함.</p>
-
-<h4 id="-커스텀-jpql-사용-시에도-파라미터-바인딩-필수">🔸 커스텀 JPQL 사용 시에도 파라미터 바인딩 필수!</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"SELECT u FROM User u WHERE u.username = :username"</span><span class="o">)</span>
-<span class="nc">User</span> <span class="nf">findByUsername</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"username"</span><span class="o">)</span> <span class="nc">String</span> <span class="n">username</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>✅ <code class="language-plaintext highlighter-rouge">:username</code> 형태로 파라미터 바인딩하면 OK<br />
-❌ 아래처럼 문자열 직접 연결하면 위험:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"SELECT u FROM User u WHERE u.username = '"</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s">"'"</span><span class="o">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="-spring-배우는-입장에서-조심할-포인트-요약">🚨 Spring 배우는 입장에서 조심할 포인트 요약</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>상황</th>
-      <th>안전한 방법</th>
-      <th>주의할 점</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>JDBC 직접 사용</td>
-      <td><code class="language-plaintext highlighter-rouge">PreparedStatement</code></td>
-      <td>문자열 직접 연결 ❌</td>
-    </tr>
-    <tr>
-      <td>JdbcTemplate</td>
-      <td><code class="language-plaintext highlighter-rouge">?</code> 자리 바인딩 사용</td>
-      <td>쿼리 조합 ❌</td>
-    </tr>
-    <tr>
-      <td>JPA / Spring Data JPA</td>
-      <td>파라미터 바인딩 (<code class="language-plaintext highlighter-rouge">:param</code>)</td>
-      <td>JPQL 문자열 직접 붙이기 ❌</td>
-    </tr>
-    <tr>
-      <td>QueryDSL</td>
-      <td>완전 안전 (타입 기반 쿼리)</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>사용자 입력값 처리</td>
-      <td>입력 검증, 길이 제한</td>
-      <td>필터 없이 바로 사용 ❌</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-마무리-요약">🎯 마무리 요약</h2>
-
-<ul>
-  <li>SQL Injection = <strong>사용자가 입력한 값을 통해 악성 SQL 실행</strong></li>
-  <li>Spring에서는 기본적으로 <strong>PreparedStatement</strong> 방식이므로 잘 쓰면 안전함</li>
-  <li>하지만 <strong>직접 쿼리 짜거나, 문자열로 SQL을 조합</strong>하는 경우 주의!</li>
-  <li><strong>ORM(JPA) + 파라미터 바인딩</strong> 방식으로 작성하면 거의 대부분 안전하게 막을 수 있음</li>
-</ul>
-
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.]]></summary></entry><entry><title type="html">[Algorithm] 소수 빠르게 찾는 법</title><link href="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/" rel="alternate" type="text/html" title="[Algorithm] 소수 빠르게 찾는 법" /><published>2025-03-20T00:00:00+00:00</published><updated>2025-04-22T02:05:20+00:00</updated><id>https://nan0silver.github.io/algorithm/is-prime</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-03-20-is-prime/"><![CDATA[<ol>
-  <li><a href="#1️⃣-기본-소수-판별-on">기본 소수 판별</a></li>
-  <li><a href="#2️⃣-에라토스테네스의-체-on-log-log-n">에라토스테네스의 체</a></li>
-  <li><a href="#3️⃣-miller-rabin-소수판별법-olog-n">Miller-Rabin 소수 판별법</a></li>
-</ol>
-
-<hr />
-
-<h2 id="1️⃣-기본-소수-판별-on">1️⃣ 기본 소수 판별 (O(√N))</h2>
-
-<ul>
-  <li>어떤 숫자 N이 소수인지 판별하는 가장 기본적인 방법은 1과 자기 자신을 제외한 다른 수로 나누어떨어지는지 확인하는 것</li>
-  <li>🔥 2부터 √N까지 나누어보자!
-    <ul>
-      <li>소수가 아니라면 작은 약수를 가지고 있기 때문</li>
-    </ul>
-  </li>
-  <li>코드 예제</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrimeCheck</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isPrime</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">n</span><span class="o">);</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isPrime</span><span class="o">(</span><span class="mi">29</span><span class="o">));</span> <span class="c1">//true</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isPrime</span><span class="o">(</span><span class="mi">100</span><span class="o">));</span> <span class="c1">//false</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="2️⃣-에라토스테네스의-체-on-log-log-n">2️⃣ 에라토스테네스의 체 (O(N log log N))</h2>
-
-<blockquote>
-  <p>여러 개의 소수를 빠르게 찾는 방법</p>
-</blockquote>
-
-<ul>
-  <li>1부터 N까지의 수 중에서 소수를 모두 찾아야 하는 경우</li>
-  <li>🔥 방법
-    <ol>
-      <li>2부터 시작해서 배수들을 모두 제거</li>
-      <li>남은 수들만 소수로 판별</li>
-    </ol>
-  </li>
-  <li>장점
-    <ul>
-      <li>한 번 계산해 두면 특정 범위 내에서 빠르게 소수 여부를 판별할 수 있음.</li>
-    </ul>
-  </li>
-  <li>코드 예제</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SieveOfEratosthenes</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">sieveOfEratosthenes</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">boolean</span><span class="o">[]</span> <span class="n">isPrime</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
-        <span class="nc">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">isPrime</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-        <span class="n">isPrime</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">isPrime</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">isPrime</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
-                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span> <span class="o">+=</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">isPrime</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-
-        <span class="c1">//소수 리스트 생성</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="3️⃣-miller-rabin-소수판별법-olog-n">3️⃣ Miller-Rabin 소수판별법 (O(log N))</h2>
-
-<blockquote>
-  <p>소수 판별이 자주 필요할 때</p>
-</blockquote>
-
-<ul>
-  <li>N이 엄청 크면 밀러-라빈 소수판별법을 사용해야함
-    <ul>
-      <li>10^18이상의 큰 수가 소수인지 판별할 때</li>
-      <li>암후학, 해시 관련 문제에서 사용</li>
-    </ul>
-  </li>
-  <li>🔥 확률적 알고리즘</li>
-  <li>코드 예제</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MillerRabin</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isPrime</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// k는 테스트 횟수</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-
-        <span class="c1">// n - 1 = 2^r * d 형태로 변환</span>
-        <span class="kt">long</span> <span class="n">d</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">d</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">r</span><span class="o">++;</span>
-            <span class="n">d</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="nc">Random</span> <span class="n">rand</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
-
-        <span class="c1">// Miller-Rabin 테스트 실행</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="kt">long</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">rand</span><span class="o">.</span><span class="na">nextLong</span><span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">3</span><span class="o">);</span> <span class="c1">// 2 ≤ a ≤ n-2</span>
-            <span class="kt">long</span> <span class="n">x</span> <span class="o">=</span> <span class="n">powerMod</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">d</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span> <span class="c1">// x = a^d % n</span>
-
-            <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">x</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="k">continue</span><span class="o">;</span>
-
-            <span class="kt">boolean</span> <span class="n">isComposite</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-                <span class="n">x</span> <span class="o">=</span> <span class="n">powerMod</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span> <span class="c1">// x = x^2 % n</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">isComposite</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-                    <span class="k">break</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-
-            <span class="k">if</span> <span class="o">(</span><span class="n">isComposite</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> <span class="c1">// 합성수 판별</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="c1">// 소수 판별</span>
-    <span class="o">}</span>
-
-    <span class="c1">// (base^exp) % mod 연산 (빠른 거듭제곱)</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">powerMod</span><span class="o">(</span><span class="kt">long</span> <span class="n">base</span><span class="o">,</span> <span class="kt">long</span> <span class="n">exp</span><span class="o">,</span> <span class="kt">long</span> <span class="n">mod</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">long</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="n">base</span> <span class="o">%=</span> <span class="n">mod</span><span class="o">;</span>
-
-        <span class="k">while</span> <span class="o">(</span><span class="n">exp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">((</span><span class="n">exp</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 홀수 지수 처리</span>
-                <span class="n">result</span> <span class="o">=</span> <span class="o">(</span><span class="n">result</span> <span class="o">*</span> <span class="n">base</span><span class="o">)</span> <span class="o">%</span> <span class="n">mod</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="n">base</span> <span class="o">=</span> <span class="o">(</span><span class="n">base</span> <span class="o">*</span> <span class="n">base</span><span class="o">)</span> <span class="o">%</span> <span class="n">mod</span><span class="o">;</span> <span class="c1">// 제곱</span>
-            <span class="n">exp</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 지수 나누기 2</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isPrime</span><span class="o">(</span><span class="mi">15485863</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span>  <span class="c1">// true (소수)</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isPrime</span><span class="o">(</span><span class="mi">1000000007</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span> <span class="c1">// true (소수)</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isPrime</span><span class="o">(</span><span class="mi">1000000008</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span> <span class="c1">// false (합성수)</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자]]></summary></entry><entry><title type="html">[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern</title><link href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" rel="alternate" type="text/html" title="[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-04-22T02:05:20+00:00</updated><id>https://nan0silver.github.io/miscellaneous/layered-architecture</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"><![CDATA[<ul>
-  <li><a href="#레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</a></li>
-  <li><a href="#mvc란">MVC란?</a></li>
-  <li><a href="#레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</a></li>
-</ul>
-
-<hr />
-
-<h2 id="레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</h2>
-
-<ul>
-  <li>여러 수평 레이어가 수직적으로 쌓인 구조 (상위 레이어에서 하위 레이어로 단방향 의존성)</li>
-  <li>
-    <p>각 계층이 명확한 역할을 가지며, 하위 계층만 접근할 수 있도록 설계하여 유지보수성과 확장성을 높이는 것이 목적</p>
-
-    <ol>
-      <li>
-        <p>Presentation Layer (프레젠테이션 계층) : 1층로비, 방문객 맞이하고 안내</p>
-
-        <blockquote>
-          <p>예시: Spring Boot의 <code class="language-plaintext highlighter-rouge">Controller</code></p>
-        </blockquote>
-
-        <ul>
-          <li><strong>사용자와 직접 상호작용</strong>하는 계층 (예: 웹 UI, API 컨트롤러)</li>
-          <li>사용자의 입력을 받아 <strong>비즈니스 로직을 호출</strong>하고, 응답을 반환</li>
-        </ul>
-      </li>
-      <li>Business Logic Layer (비즈니스 로직 계층) : 실제 회사 업무 설계 및 규칙 수립
-        <blockquote>
-          <p>예시: Spring Boot의 <code class="language-plaintext highlighter-rouge">Service</code></p>
-        </blockquote>
-        <ul>
-          <li>핵심 비즈니스 로직을 처리하는 계층</li>
-          <li>도메인 규칙을 적용하여 데이터 검증 및 가공 수행</li>
-        </ul>
-      </li>
-      <li>Data Access Layer (데이터 접근 계층) : 비즈니스 레이어의 명령 실행
-        <blockquote>
-          <p>예시: Spring Boot의 <code class="language-plaintext highlighter-rouge">Repository</code></p>
-        </blockquote>
-        <ul>
-          <li>데이터베이스와 직접 상호작용하는 계층</li>
-          <li>DAO(Repository)를 통해 데이터를 저장하고 조회하는 역할</li>
-        </ul>
-      </li>
-      <li>Database Layer (데이터베이스 계층) : 필요한 정보 저장 및 검색
-        <ul>
-          <li>실제 데이터를 저장하는 <strong>물리적 데이터베이스</strong> (MySQL, PostgreSQL 등)</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-  <li>데이터 흐름
-    <ul>
-      <li>요청 → 컨트롤러 → 서비스 → 레포지토리</li>
-    </ul>
-  </li>
-  <li>사용 이유
-    <ul>
-      <li><strong>모듈화:</strong> 각 레이어가 독립적이라 변경 사항이 영향을 최소화</li>
-      <li><strong>유지보수성:</strong> 비즈니스 로직(Service)과 DB 접근(Repository)을 분리</li>
-      <li><strong>테스트 용이:</strong> 단위 테스트 작성이 쉬움 (ex: Service 레이어만 Mock 테스트 가능)</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="레이어-간-관계">레이어 간 관계</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[클라이언트]
-    ↓
-[Presentation Layer]  →  Controller
-    ↓
-[Business Logic Layer]  →  Service
-    ↓
-[Data Access Layer]  →  Repository (DAO)
-    ↓
-[Database Layer]  →  DB (MySQL, PostgreSQL)
-</code></pre></div></div>
-
-<ul>
-  <li>상위 계층(Presentation)은 <strong>하위 계층(Business Logic)만 호출</strong>할 수 있음.</li>
-  <li>데이터베이스 관련 로직이 <strong>비즈니스 로직과 분리</strong>되어 유지보수가 쉬움.</li>
-</ul>
-
-<hr />
-
-<h2 id="mvc란">MVC란?</h2>
-
-<ul>
-  <li>Model-View-Controller
-    <ul>
-      <li>Model : 요리사가 실제 음식을 준비하고 만드는 작업</li>
-      <li>View : 음식의 플레이팅</li>
-      <li>Controller : 고객의 주문을 받고, 요리사에게 전달하여 완성된 요리를 테이블에 서빙 (백엔드)</li>
-      <li>3개의 요소가 유기적으로 협력</li>
-    </ul>
-  </li>
-  <li>사용자 인터페이스와 비즈니스 로직 분리</li>
-  <li>데이터 흐름
-    <ul>
-      <li>요청 → 컨트롤러 → 모델 → 뷰</li>
-    </ul>
-  </li>
-  <li>사용 이유
-    <ul>
-      <li><strong>역할 분리:</strong> View, Model, Controller가 독립적으로 동작하여 유지보수 용이</li>
-      <li><strong>유연한 확장:</strong> UI 변경(View)이나 비즈니스 로직(Model)을 따로 수정 가능</li>
-      <li><strong>재사용성 증가:</strong> 같은 Model을 여러 View에서 사용 가능</li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-03-17-image.png?raw=true" alt="Layered Architecture &amp; MVC pattern" /></p>
-
-<h2 id="레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</h2>
-
-<ul>
-  <li><strong>둘을 함께 사용하면 유지보수성과 확장성이 좋아진다.</strong>
-    <ul>
-      <li><strong>Controller는 최대한 가볍게 (Thin Controller, Fat Service)</strong></li>
-      <li><strong>비즈니스 로직은 Service Layer에서 처리 (SRP 원칙 준수)</strong></li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="둘을-함께-사용했을-때-관계-흐름-요청--응답">둘을 함께 사용했을 때 관계 흐름 (요청 → 응답)</h3>
-
-<ol>
-  <li>사용자 (Client) 가 요청을 보냄</li>
-  <li>Controller (입력 처리, 요청 매핑)</li>
-  <li>Service (비즈니스 로직 처리)</li>
-  <li>Repository (데이터베이스 접근)</li>
-  <li>Service → Controller 로 응답 반환</li>
-  <li>Controller → View (또는 JSON)</li>
-</ol>
-
-<ul>
-  <li>MVC는 역할을 분리하고, 레이어드 아키텍처는 각 계층을 더 체계적으로 조직화하여 유지보수성과 확장성을 높인다</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><summary type="html"><![CDATA[레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.]]></summary></entry></feed>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Java 환경에서 사용되는 HTTP 클라이언트인 `HttpURLConnection`, `RestTemplate`, `WebClient`를 비교해보자.]]></summary></entry></feed>

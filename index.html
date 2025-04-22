@@ -46,7 +46,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="Blog" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-22T02:05:20+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","name":"NAHYUN BLOG","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-22T03:27:06+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","name":"NAHYUN BLOG","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -109,7 +109,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-22T02:06:01+00:00',
+    INDEX_KEY: 'index--2025-04-22T03:27:48+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -455,7 +455,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-22T02:05:20+00:00">2025-04-22</time>
+              <time datetime="2025-04-22T03:27:06+00:00">2025-04-22</time>
             </span>
           
         
@@ -509,15 +509,15 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/projectdiary/2025-04-15-diary/" class="flip-title">
-        [버티] 프로젝트 시 문제 상황
+      <a href="/projectdiary/2025-04-17-diary/" class="flip-title">
+        [버티] 프로젝트 개발 중 마주한 사소한 이슈들
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-04-15T00:00:00+00:00">15 Apr 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+        <time datetime="2025-04-17T00:00:00+00:00">17 Apr 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -529,7 +529,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-22T02:05:20+00:00">2025-04-22</time>
+              <time datetime="2025-04-22T03:27:06+00:00">2025-04-22</time>
             </span>
           
         
@@ -554,14 +554,237 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    
+    <ul>
+  <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
+  <li><a href="#2-카카오-소셜-로그인-이메일-누락-문제">카카오 소셜 로그인 이메일 누락 문제</a></li>
+  <li><a href="#3-oauth2-인증-요청-정보-손실-문제">OAuth2 인증 요청 정보 손실 문제</a></li>
+</ul>
+
 
 
     
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/projectdiary/2025-04-15-diary/">[버티] 프로젝트 시 문제 상황</a>
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-04-17-diary/">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/projectdiary/2025-04-16-diary/" class="flip-title">
+        [버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-04-16T00:00:00+00:00">16 Apr 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-04-22T03:27:06+00:00">2025-04-22</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      테스트
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>저번 프로젝트에서는 로그아웃을 구현하지 않고, 토큰 만료를 사용했는데 로그아웃을 구현해달라는 요청이 있었어서 이번 프로젝트에서는 제대로 알아보고 구현해보기로 하였다.</p>
+</blockquote>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-04-16-diary/">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/projectdiary/2025-04-15-diary/" class="flip-title">
+        [버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-04-15T00:00:00+00:00">15 Apr 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-04-22T03:27:06+00:00">2025-04-22</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      테스트
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#1-swagger-문서-접근-제한-이슈">1. Swagger 문서 접근 제한 이슈</a></li>
+  <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
+  <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
+  <li><a href="#4-실무-관점에서의-swagger-접근-관리-전략">4. 실무 관점에서의 Swagger 접근 관리 전략</a></li>
+  <li><a href="#5-정리하며">5. 정리하며</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-04-15-diary/">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/projectdiary/2025-04-14-diary/" class="flip-title">
+        [버티] 프로젝트 구조 설계 고민과 선택
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-04-14T00:00:00+00:00">14 Apr 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-04-22T03:27:06+00:00">2025-04-22</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      테스트
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <hr />
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-04-14-diary/">[버티] 프로젝트 구조 설계 고민과 선택</a>
 
       </p>
     </footer>
@@ -598,7 +821,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-22T02:05:20+00:00">2025-04-22</time>
+              <time datetime="2025-04-22T03:27:06+00:00">2025-04-22</time>
             </span>
           
         
@@ -674,7 +897,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-22T02:05:20+00:00">2025-04-22</time>
+              <time datetime="2025-04-22T03:27:06+00:00">2025-04-22</time>
             </span>
           
         
@@ -752,7 +975,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-22T02:05:20+00:00">2025-04-22</time>
+              <time datetime="2025-04-22T03:27:06+00:00">2025-04-22</time>
             </span>
           
         
@@ -832,7 +1055,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-22T02:05:20+00:00">2025-04-22</time>
+              <time datetime="2025-04-22T03:27:06+00:00">2025-04-22</time>
             </span>
           
         
@@ -910,7 +1133,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-22T02:05:20+00:00">2025-04-22</time>
+              <time datetime="2025-04-22T03:27:06+00:00">2025-04-22</time>
             </span>
           
         
@@ -952,230 +1175,6 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/spring/2025-04-01-resttemplate/">[Spring] HttpURLConnection, RestTemplate, WebClient</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-miscellaneous-sql-injection" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-03-31-sql-injection/" class="flip-title">
-        [Etc] 💣 SQL Injection
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-03-31T00:00:00+00:00">31 Mar 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-04-22T02:05:20+00:00">2025-04-22</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#sql-injection이란">SQL Injection이란?</a></li>
-  <li><a href="#-spring-관점에서-sql-injection-방지법">Spring 관점에서 SQL Injection 방지법</a></li>
-  <li><a href="#-spring-배우는-입장에서-조심할-포인트-요약">요약</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-03-31-sql-injection/">[Etc] 💣 SQL Injection</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-algorithm-is-prime" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/algorithm/2025-03-20-is-prime/" class="flip-title">
-        [Algorithm] 소수 빠르게 찾는 법
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-03-20T00:00:00+00:00">20 Mar 2025</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-04-22T02:05:20+00:00">2025-04-22</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ol>
-  <li><a href="#1️⃣-기본-소수-판별-on">기본 소수 판별</a></li>
-  <li><a href="#2️⃣-에라토스테네스의-체-on-log-log-n">에라토스테네스의 체</a></li>
-  <li><a href="#3️⃣-miller-rabin-소수판별법-olog-n">Miller-Rabin 소수 판별법</a></li>
-</ol>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/algorithm/2025-03-20-is-prime/">[Algorithm] 소수 빠르게 찾는 법</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-spring-servlet-vs-spring" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/spring/2025-03-17-servlet-vs-spring/" class="flip-title">
-        [Spring] Spring VS Servlet
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-03-17T00:00:00+00:00">17 Mar 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-04-22T02:05:20+00:00">2025-04-22</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      Spring과 Servlet의 차이 대해 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#-servlet과-spring의-차이-쉽게-이해하기">Servlet과 Spring의 차이</a></li>
-  <li><a href="#servlet-직접-요청을-처리하는-원시적인-방식">Servlet</a></li>
-  <li><a href="#spring-웹-개발을-쉽게-만들어주는-프레임워크">Spring</a></li>
-  <li><a href="#servlet-vs-spring-비교-정리">Servlet vs Spring 비교 정리 표</a></li>
-  <li><a href="#-결론-spring이-servlet보다-훨씬-편리하다">결론</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/spring/2025-03-17-servlet-vs-spring/">[Spring] Spring VS Servlet</a>
 
       </p>
     </footer>
