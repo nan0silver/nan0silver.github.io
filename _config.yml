@@ -69,8 +69,6 @@ menu:
     url: /java/
   - title: Git (3)
     url: /git/
-  - title: aws (1)
-    url: /aws/
   - title: Flask (2)
     url: /flask/
   - title: Spring (9)
@@ -78,7 +76,7 @@ menu:
   - title: Miscellaneous (13)
     url: /miscellaneous/
   - title: 프로젝트 일기 (1)
-    url: /project_diary/
+    url: /projectdiary/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
