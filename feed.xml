@@ -1,7 +1,184 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-22T03:43:23+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-04-28T11:12:50+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-04-22T03:42:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사</title><link href="https://nan0silver.github.io/projectdiary/2025-04-28-diary/" rel="alternate" type="text/html" title="[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사" /><published>2025-04-28T00:00:00+00:00</published><updated>2025-04-28T11:12:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-28-diary/"><![CDATA[<ul>
+  <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
+  <li><a href="#2-카카오-소셜-로그인-이메일-누락-문제">카카오 소셜 로그인 이메일 누락 문제</a></li>
+  <li><a href="#3-oauth2-인증-요청-정보-손실-문제">OAuth2 인증 요청 정보 손실 문제</a></li>
+</ul>
+
+<hr />
+
+<blockquote>
+  <p>현재 버티 서비스는 백엔드 서버의 도메인이 2개로 되어있다. 프론트와 연동을 하기 직전 과정에서 CORS 문제 해결과 이 과정에서 Render배포의 리소스 제약 문제를 어떤 식으로 해결하는 것이 좋은지 아래 내용과 같이 조사해보았다.</p>
+</blockquote>
+
+<h2 id="1-현재-버티-서비스-상황-분석">1. 현재 버티 서비스 상황 분석</h2>
+
+<ul>
+  <li><strong>서버 구조</strong>: 서버 도메인 URL이 2개 (회원 정보는 한쪽에만 존재)</li>
+  <li><strong>프론트엔드</strong>: 도메인 URL이 1개</li>
+  <li><strong>인증 방식</strong>: JWT 기반 인증 구현 중</li>
+  <li><strong>문제점</strong>:
+    <ul>
+      <li>사용자 프로필 업데이트 기능이 있어 JWT에 프로필 정보 포함 어려움</li>
+      <li>프론트엔드와 백엔드 간 CORS 이슈 발생 가능</li>
+      <li>Render 프리티어 환경으로 리소스 제약 존재</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="2-msa-구현-방안">2. MSA 구현 방안</h2>
+
+<h3 id="21-api-gateway-패턴-도입">2.1 API Gateway 패턴 도입</h3>
+
+<ul>
+  <li><strong>목적</strong>: 프론트엔드에 단일 진입점 제공, CORS 문제 해결</li>
+  <li><strong>구현 방식</strong>: Spring Cloud Gateway 활용</li>
+  <li><strong>장점</strong>:
+    <ul>
+      <li>단일 도메인으로 프론트엔드 요청 처리</li>
+      <li>중앙화된 인증/인가 처리</li>
+      <li>요청 라우팅 관리 용이</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="22-회원-정보-공유-방식">2.2 회원 정보 공유 방식</h3>
+
+<p>현재 버티 서비스는 JWT에 프로필 정보를 포함하기 어려운 상황이므로:
+(로그인 후 사용자 프로필을 업데이트 하기 때문)</p>
+
+<h4 id="서비스-간-직접-통신-방식">서비스 간 직접 통신 방식</h4>
+
+<ul>
+  <li><strong>기본 개념</strong>: 회원 정보가 필요할 때 회원 서비스의 API를 직접 호출하여 최신 정보를 가져오는 방식</li>
+  <li><strong>구현 내용</strong>:
+    <ul>
+      <li>회원 서비스에 내부용 API 엔드포인트 추가 (예: <code class="language-plaintext highlighter-rouge">/api/internal/users/{userId}</code>)</li>
+      <li>이 API는 외부 접근이 아닌 서비스 간 통신용으로만 사용</li>
+      <li>기능 서비스에서 특정 사용자 정보가 필요할 때 이 API를 호출하여 최신 정보 획득</li>
+      <li>내부 API 키를 사용해 인증 (서비스 간 통신이 안전하게 이루어지도록)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="캐싱-전략-적용">캐싱 전략 적용</h4>
+
+<ul>
+  <li><strong>문제점</strong>: 매번 API를 호출하면 Render 프리티어 환경에서 성능 저하 발생</li>
+  <li><strong>해결책</strong>:
+    <ul>
+      <li>자주 조회되는 회원 정보를 메모리에 임시 저장(캐싱)</li>
+      <li>첫 번째 조회 시에만 API 호출, 이후에는 캐시에서 빠르게 조회</li>
+      <li>정해진 시간(예: 15분) 후 캐시 만료하여 일정 주기로 최신 정보 반영</li>
+      <li>사용자가 프로필을 업데이트하면 해당 사용자의 캐시만 즉시 무효화하는 API 호출</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="장애-대응-방안">장애 대응 방안</h4>
+
+<ul>
+  <li><strong>문제점</strong>: 회원 서비스가 일시적으로 장애가 발생하면 기능 서비스도 영향 받음</li>
+  <li><strong>해결책</strong>:
+    <ul>
+      <li>Circuit Breaker 패턴: 회원 서비스 장애 감지 시 API 호출을 일시 중단하고 기본 정보 반환</li>
+      <li>예를 들어, 회원 이름을 조회할 수 없으면 “Guest”와 같은 기본값 사용</li>
+      <li>재시도 제한 및 타임아웃 설정으로 불필요한 대기 시간 방지</li>
+    </ul>
+  </li>
+</ul>
+
+<p>이 방식을 통해 JWT에 모든 회원 정보를 담지 않아도 최신 정보를 안전하게 공유하고, 성능과 안정성을 확보할 수 있습니다.</p>
+
+<h2 id="3-render-프리티어-환경-최적화-방안">3. Render 프리티어 환경 최적화 방안</h2>
+
+<p>리소스 제약이 있는 Render 프리티어 환경에 맞춘 최적화 전략:</p>
+
+<ul>
+  <li>
+    <p><strong>경량화된 MSA 구조</strong>:</p>
+
+    <ul>
+      <li>필수적인 도메인만 분리 (회원 서비스 + 기능 서비스)</li>
+      <li>최소한의 서비스 디스커버리 구조 사용</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>성능 최적화</strong>:</p>
+
+    <ul>
+      <li>데이터베이스 커넥션 풀 크기 제한 (5-10개)</li>
+      <li>API 요청 타임아웃 짧게 설정 (3초 내외)</li>
+      <li>캐시 크기 제한 (500 항목 이내)</li>
+      <li>Lazy Loading 적용하여 필요한 데이터만 로딩</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>에러 처리 강화</strong>:</p>
+    <ul>
+      <li>서비스 간 통신 실패 시 폴백(fallback) 메커니즘 구현</li>
+      <li>재시도 횟수 제한 (최대 3회)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="4-단계적-구현-전략">4. 단계적 구현 전략</h2>
+
+<p>Burty 서비스에 MSA를 점진적으로 도입하기 위한 단계:</p>
+
+<h3 id="41-1단계-api-gateway-구현">4.1 1단계: API Gateway 구현</h3>
+
+<ul>
+  <li>Spring Cloud Gateway 기반 게이트웨이 서비스 구축</li>
+  <li>라우팅 규칙 설정 (회원/기능 서비스 분리)</li>
+  <li>JWT 토큰 검증 필터 구현</li>
+  <li>CORS 설정 적용</li>
+</ul>
+
+<h3 id="42-2단계-서비스-간-통신-구현">4.2 2단계: 서비스 간 통신 구현</h3>
+
+<ul>
+  <li>회원 서비스에 내부 API 엔드포인트 추가</li>
+  <li>기능 서비스에 RestTemplate 설정</li>
+  <li>서비스 간 인증 메커니즘 적용</li>
+</ul>
+
+<h3 id="43-3단계-캐싱-적용">4.3 3단계: 캐싱 적용</h3>
+
+<ul>
+  <li>인메모리 캐시 설정</li>
+  <li>회원 정보 캐싱 서비스 구현</li>
+  <li>캐시 무효화 API 구현</li>
+</ul>
+
+<h3 id="44-4단계-장애-대응-패턴-적용">4.4 4단계: 장애 대응 패턴 적용</h3>
+
+<ul>
+  <li>Circuit Breaker 패턴 구현</li>
+  <li>재시도 메커니즘 추가</li>
+  <li>로깅 및 모니터링 강화</li>
+</ul>
+
+<h2 id="5-결론">5. 결론</h2>
+
+<p>Burty 서비스의 현재 상황과 Render 프리티어 환경을 고려할 때:</p>
+
+<ol>
+  <li>
+    <p>JWT만으로는 회원 정보 공유에 한계가 있으므로, 서비스 간 API 통신과 캐싱을 조합하는 것이 적합</p>
+  </li>
+  <li>
+    <p>API Gateway 패턴을 통해 프론트엔드의 CORS 문제 해결 및 단일 진입점 제공</p>
+  </li>
+  <li>
+    <p>리소스 제약을 고려한 경량화된 MSA 구조와 성능 최적화 필요</p>
+  </li>
+  <li>
+    <p>단계적 구현을 통해 점진적으로 MSA 아키텍처로 전환</p>
+  </li>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-04-28T11:12:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
   <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
   <li><a href="#2-카카오-소셜-로그인-이메일-누락-문제">카카오 소셜 로그인 이메일 누락 문제</a></li>
   <li><a href="#3-oauth2-인증-요청-정보-손실-문제">OAuth2 인증 요청 정보 손실 문제</a></li>
@@ -134,7 +311,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li>액세스 토큰과 리프레시 토큰을 분리 관리하여 보안성 강화</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-04-22T03:42:41+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-04-28T11:12:06+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
   <li><a href="#jparepository-상속">JpaRepository 상속</a></li>
   <li><a href="#-그렇다면-커스텀-쿼리는-어떻게-할까">그렇다면 커스텀 쿼리는 어떻게 할까?</a></li>
   <li><a href="#-개발자-관점-팁">개발자 관점 팁</a></li>
@@ -365,7 +542,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li><strong>복잡한 조건</strong> → <code class="language-plaintext highlighter-rouge">@Query</code> 또는 <code class="language-plaintext highlighter-rouge">QueryDSL</code>, <code class="language-plaintext highlighter-rouge">Specification</code> 권장</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-04-22T03:42:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-04-28T11:12:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
   <p>저번 프로젝트에서는 로그아웃을 구현하지 않고, 토큰 만료를 사용했는데 로그아웃을 구현해달라는 요청이 있었어서 이번 프로젝트에서는 제대로 알아보고 구현해보기로 하였다.</p>
 </blockquote>
 
@@ -441,19 +618,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <ul>
   <li><a href="https://upcurvewave.tistory.com/611">JWT 토큰 기반의 상태 관리시 로그아웃 처리 문제</a></li>
   <li><a href="https://engineerinsight.tistory.com/232#google_vignette">[우테코] JWT 방식에서 로그아웃, Refresh Token 만들기(1)</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-04-22T03:42:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
-  <li><a href="#1-swagger-문서-접근-제한-이슈">1. Swagger 문서 접근 제한 이슈</a></li>
-  <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
-  <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
-  <li><a href="#4-실무-관점에서의-swagger-접근-관리-전략">4. 실무 관점에서의 Swagger 접근 관리 전략</a></li>
-  <li><a href="#5-정리하며">5. 정리하며</a></li>
-</ul>
-
-<hr />
-
-<h1 id="버티-spring-security와-swagger-통합-시-발생한-이슈-해결기">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</h1>
-
-<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-04-28T11:12:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
   <li><a href="#1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</a></li>
   <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
   <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
@@ -655,7 +820,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 <p>Swagger와 Spring Security를 함께 사용할 때 마주친 실제적인 문제들을 해결하면서, 보안과 개발 편의성 사이에서 균형을 맞추는 경험을 할 수 있었습니다. 특히 프론트엔드 협업 관점에서 Swagger 인증 해제와 JWT 연동 설정은 협업 효율을 높이는 핵심 포인트였습니다.</p>
 
-<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-04-22T03:42:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
+<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-04-28T11:12:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
 
 <p>프로젝트를 처음 시작할 때 가장 고민했던 부분 중 하나는 <strong>전체 구조를 어떻게 잡을 것인가</strong>였습니다. 단순한 CRUD를 넘어서 소셜 로그인, 커뮤니티, AI 기반 정착 리포트 등 다양한 기능을 포함할 예정이었기 때문에, 기능이 늘어나더라도 유지보수가 쉽고, 각 도메인이 명확하게 분리되도록 설계하고 싶었습니다.</p>
 
@@ -701,7 +866,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 <p>도메인 주도 설계를 기반으로 구조를 잡는 과정은 단순히 코드를 예쁘게 나누는 것을 넘어서, 기능과 비즈니스 로직의 맥락(Context)을 코드 레벨에서 표현하는 데 큰 도움이 되었습니다. 또한 레이어드 아키텍처를 통해 각 계층의 역할이 명확해져 협업 시 작업 분담이나 코드 리뷰도 훨씬 효율적으로 이루어졌습니다.</p>
 
-<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-22T03:42:41+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
+<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-28T11:12:06+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
   <li><a href="#-논블로킹non-blocking이란">논블로킹이란?</a></li>
   <li><a href="#-실생활-비유로-논블로킹-이해하기">실생활 비유로 논블로킹 이해하기</a></li>
   <li><a href="#-블로킹-vs-논블로킹-기술적-요점-정리">블로킹 vs 논블로킹 기술적 요점 정리</a></li>
@@ -1146,7 +1311,7 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[논블로킹과 비동기에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Thymeleaf</title><link href="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/" rel="alternate" type="text/html" title="[Spring] Thymeleaf" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-22T03:42:41+00:00</updated><id>https://nan0silver.github.io/spring/thymeleaf</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[논블로킹과 비동기에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Thymeleaf</title><link href="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/" rel="alternate" type="text/html" title="[Spring] Thymeleaf" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-28T11:12:06+00:00</updated><id>https://nan0silver.github.io/spring/thymeleaf</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/"><![CDATA[<ul>
   <li><a href="#-1-thymeleaf는-왜-쓰는-걸까">Thymeleaf는 왜 쓰는 걸까?</a></li>
   <li><a href="#-2-기본-문법-정리">기본 문법 정리</a></li>
   <li><a href="#-3-전체-흐름-예시">전체 흐름 예시</a></li>
@@ -1317,7 +1482,7 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] JPA vs MyBatis</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] JPA vs MyBatis" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-04-22T03:42:41+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] JPA vs MyBatis</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] JPA vs MyBatis" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-04-28T11:12:06+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
   <li><a href="#-jpa란-java-persistence-api">JPA란?</a></li>
   <li><a href="#-mybatis란">MyBatis란?</a></li>
   <li><a href="#-jpa-vs-mybatis">🔍 JPA vs MyBatis</a></li>
@@ -1673,7 +1838,7 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   <p>“JPA는 객체 중심의 ORM 프레임워크로, DB와의 데이터 처리를 추상화해 코드 생산성을 높여줍니다. 반면 MyBatis는 SQL 중심의 프레임워크로, 복잡한 쿼리나 성능 튜닝이 필요한 경우에 유리합니다. 프로젝트 성격에 따라 두 기술을 선택하거나 병행할 수 있습니다.”</p>
 </blockquote>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA vs MyBatis에 대 알아보자.]]></summary></entry><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-22T03:42:41+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA vs MyBatis에 대 알아보자.]]></summary></entry><entry><title type="html">[Spring] DTO vs VO vs Entity</title><link href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/" rel="alternate" type="text/html" title="[Spring] DTO vs VO vs Entity" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-04-28T11:12:06+00:00</updated><id>https://nan0silver.github.io/spring/dto-vo</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-02-dto-vo/"><![CDATA[<ul>
   <li><a href="#dto-vs-vo-vs-entity">DTO vs VO vs Entity</a></li>
   <li><a href="#-dto-vs-vo">📦 DTO vs VO</a></li>
   <li><a href="#-entity-vs-vo">📦 Entity vs VO</a></li>
@@ -1999,269 +2164,4 @@ Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
   <li><strong>값 객체(VO)</strong>를 표현할 때 <strong>record는 아주 강력한 도구</strong></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] HttpURLConnection, RestTemplate, WebClient</title><link href="https://nan0silver.github.io/spring/2025-04-01-resttemplate/" rel="alternate" type="text/html" title="[Spring] HttpURLConnection, RestTemplate, WebClient" /><published>2025-04-01T00:00:00+00:00</published><updated>2025-04-22T03:42:41+00:00</updated><id>https://nan0silver.github.io/spring/resttemplate</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-01-resttemplate/"><![CDATA[<ul>
-  <li><a href="#-먼저-한눈에-보는-비교표">한눈에 보는 비교표</a></li>
-  <li><a href="#-1-httpurlconnection--java-기본-클래스">1. HttpURLConnection</a></li>
-  <li><a href="#-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트">2. RestTemplate</a></li>
-  <li><a href="#-3-webclient--비동기--논블로킹-방식의-최신-http-클라이언트">3. WebClient</a></li>
-  <li><a href="#-현업-개발자들은-어떻게-생각할까">현업 개발자들은 어떻게 생각할까?</a></li>
-  <li><a href="#-간단-정리-">간단 정리</a></li>
-  <li><a href="#-선택-가이드">선택 가이드</a></li>
-</ul>
-
-<hr />
-
-<h2 id="java-환경에서-사용되는-http-클라이언트인-httpurlconnection-resttemplate-webclient-비교">Java 환경에서 사용되는 HTTP 클라이언트인 <code class="language-plaintext highlighter-rouge">HttpURLConnection</code>, <code class="language-plaintext highlighter-rouge">RestTemplate</code>, <code class="language-plaintext highlighter-rouge">WebClient</code> 비교</h2>
-
-<h3 id="-1-httpurlconnection-자바-기본-제공">🧱 1. <code class="language-plaintext highlighter-rouge">HttpURLConnection</code> (자바 기본 제공)</h3>
-
-<h3 id="-2-resttemplate-spring-제공-동기">🚗 2. <code class="language-plaintext highlighter-rouge">RestTemplate</code> (Spring 제공, 동기)</h3>
-
-<h3 id="-3-webclient-spring-webflux-제공-비동기--논블로킹">🛸 3. <code class="language-plaintext highlighter-rouge">WebClient</code> (Spring WebFlux 제공, 비동기 &amp; 논블로킹)</h3>
-
-<hr />
-
-<h2 id="-먼저-한눈에-보는-비교표">📌 먼저, 한눈에 보는 비교표</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th><code class="language-plaintext highlighter-rouge">HttpURLConnection</code></th>
-      <th><code class="language-plaintext highlighter-rouge">RestTemplate</code></th>
-      <th><code class="language-plaintext highlighter-rouge">WebClient</code></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>제공</td>
-      <td>Java SE 표준</td>
-      <td>Spring Web (3.x~)</td>
-      <td>Spring WebFlux (5.x~)</td>
-    </tr>
-    <tr>
-      <td>방식</td>
-      <td>동기 + 블로킹</td>
-      <td>동기 + 블로킹</td>
-      <td><strong>비동기 + 논블로킹</strong></td>
-    </tr>
-    <tr>
-      <td>쓰기 쉬움</td>
-      <td>❌ 불편하고 코드 길다</td>
-      <td>✅ 간결함</td>
-      <td>✅ (조금 복잡하지만 유연함)</td>
-    </tr>
-    <tr>
-      <td>권장도</td>
-      <td>❌ 현업에서 거의 안 씀</td>
-      <td>⚠️ Spring 5부터 비권장</td>
-      <td>✅ 최신 표준</td>
-    </tr>
-    <tr>
-      <td>성능</td>
-      <td>느림, 커넥션 재활용 어려움</td>
-      <td>괜찮음, 단순 요청에는 충분 (블로킹)</td>
-      <td>고성능 (Netty 기반), MSA에서 더 좋음</td>
-    </tr>
-    <tr>
-      <td>활용</td>
-      <td>Java 기본 네트워크 통신</td>
-      <td>간단한 API 호출</td>
-      <td>MSA, API Gateway, 대규모 호출 등</td>
-    </tr>
-    <tr>
-      <td>미래 방향</td>
-      <td>-</td>
-      <td><strong>Deprecated 예정</strong> (Spring 6에서는 제거될 수 있음)</td>
-      <td>Spring이 권장하는 <strong>표준 방식</strong></td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-1-httpurlconnection--java-기본-클래스">✅ 1. <code class="language-plaintext highlighter-rouge">HttpURLConnection</code> — Java 기본 클래스</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://api.example.com/data"</span><span class="o">);</span>
-<span class="nc">HttpURLConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">url</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
-<span class="n">conn</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
-
-<span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="n">conn</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
-<span class="nc">String</span> <span class="n">inputLine</span><span class="o">;</span>
-<span class="nc">StringBuilder</span> <span class="n">content</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
-
-<span class="k">while</span> <span class="o">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">content</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">inputLine</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-<span class="n">conn</span><span class="o">.</span><span class="na">disconnect</span><span class="o">();</span>
-</code></pre></div></div>
-
-<h3 id="-단점">❌ 단점</h3>
-
-<ul>
-  <li>코드가 <strong>너무 장황</strong>하고 귀찮음</li>
-  <li>커넥션 풀도 없음 (직접 관리해야 함)</li>
-  <li>에러 핸들링이 불편함</li>
-</ul>
-
-<h3 id="-장점">✅ 장점</h3>
-
-<ul>
-  <li><strong>Spring 없이도 동작</strong> (가벼운 프로젝트, 시험용 앱에 쓸 수 있음)</li>
-</ul>
-
-<blockquote>
-  <p>🚨 <strong>실무에선 거의 안 씀. RestTemplate/WebClient로 대체.</strong></p>
-</blockquote>
-
-<hr />
-
-<h2 id="-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트">✅ 2. <code class="language-plaintext highlighter-rouge">RestTemplate</code> — 동기 &amp; 블로킹 방식의 Spring HTTP 클라이언트</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">RestTemplate</span> <span class="n">restTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span>
-<span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="s">"https://api.example.com/data"</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>→ 응답이 올 때까지 <strong>기다림</strong>. 동기 처리.</p>
-
-<h3 id="-장점-1">✅ 장점</h3>
-
-<ul>
-  <li>코드가 아주 <strong>간단함</strong></li>
-  <li>Spring 기반이라 다양한 옵션 (converter, interceptor 등) 연동 쉬움</li>
-</ul>
-
-<h3 id="️-단점">⚠️ 단점</h3>
-
-<ul>
-  <li><strong>동기 + 블로킹</strong>이라, 요청 수가 많으면 쓰레드 고갈 위험</li>
-  <li>Spring 5 이후로 <strong>점점 사용 비권장됨</strong>
-    <blockquote>
-      <p>📢 Spring 공식 문서: <em>“RestTemplate은 더 이상 발전하지 않으며, WebClient 사용을 권장함.”</em></p>
-    </blockquote>
-  </li>
-</ul>
-
-<h2 id="-주요-메서드들">🔧 주요 메서드들</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>메서드</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">getForObject()</code></td>
-      <td>GET 요청 후, 결과를 객체로 받음</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">getForEntity()</code></td>
-      <td>GET 요청 후, 전체 응답(ResponseEntity) 받음</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">postForObject()</code></td>
-      <td>POST 요청 후, 결과를 객체로 받음</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">postForEntity()</code></td>
-      <td>POST 요청 후, 전체 응답 받음</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">put()</code></td>
-      <td>PUT 요청 (응답 없음)</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">delete()</code></td>
-      <td>DELETE 요청</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-04-01-spring-resttemplate.png?raw=true" /></p>
-
-<hr />
-
-<h2 id="-3-webclient--비동기--논블로킹-방식의-최신-http-클라이언트">✅ 3. <code class="language-plaintext highlighter-rouge">WebClient</code> — 비동기 &amp; 논블로킹 방식의 최신 HTTP 클라이언트</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">WebClient</span> <span class="n">webClient</span> <span class="o">=</span> <span class="nc">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
-<span class="n">webClient</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"https://api.example.com/data"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">retrieve</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">result</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"결과: "</span> <span class="o">+</span> <span class="n">result</span><span class="o">));</span>
-
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"여긴 먼저 실행됨!"</span><span class="o">);</span>  <span class="c1">// 비동기니까 이게 먼저 출력될 수도 있음</span>
-</code></pre></div></div>
-
-<h3 id="-장점-2">✅ 장점</h3>
-
-<ul>
-  <li><strong>논블로킹 + 비동기</strong> 처리</li>
-  <li>대규모 트래픽 처리에 유리</li>
-  <li>기능 확장도 쉬움 (OAuth2, Retry, Timeout 등)</li>
-</ul>
-
-<h3 id="-단점-1">❗ 단점</h3>
-
-<ul>
-  <li>처음 배울 땐 리액티브 스트림(Mono/Flux)이 좀 낯설 수 있음</li>
-</ul>
-
-<blockquote>
-  <p>🌐 <strong>현업에서는 WebClient가 기본</strong>이 되고 있어! 특히 MSA(마이크로서비스) 환경에서는 거의 필수!</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-현업-개발자들은-어떻게-생각할까">🔍 현업 개발자들은 어떻게 생각할까?</h2>
-
-<ul>
-  <li>“<code class="language-plaintext highlighter-rouge">HttpURLConnection</code>은 진짜로 아무것도 없을 때 테스트용으로만 씀”</li>
-  <li>“<code class="language-plaintext highlighter-rouge">RestTemplate</code>은 작고 단순한 서비스에서는 아직도 많이 씀”</li>
-  <li>“<code class="language-plaintext highlighter-rouge">WebClient</code>는 대규모 시스템이나 MSA, API Gateway에서 표준처럼 쓰이고 있음”</li>
-</ul>
-
-<hr />
-
-<h2 id="-간단-정리-">🧑‍💻 간단 정리 :</h2>
-
-<blockquote>
-  <p>“HttpURLConnection은 Java에서 기본 제공하는 HTTP 클라이언트지만, 코드가 장황하고 관리가 어렵기 때문에 Spring에서는 RestTemplate이나 WebClient를 사용합니다. RestTemplate은 동기 방식으로 간단한 API 호출에는 적합하지만, Spring 5부터는 WebClient처럼 비동기 + 논블로킹 방식을 사용하는 것이 대세입니다.”</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-선택-가이드">🎁 선택 가이드</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>사용 상황</th>
-      <th>추천 방식</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>가볍게 테스트용 API 호출</td>
-      <td><code class="language-plaintext highlighter-rouge">RestTemplate</code> or <code class="language-plaintext highlighter-rouge">WebClient.block()</code></td>
-    </tr>
-    <tr>
-      <td>복잡한 서비스 간 통신, 고성능 서버</td>
-      <td><code class="language-plaintext highlighter-rouge">WebClient</code></td>
-    </tr>
-    <tr>
-      <td>Java만 사용하는 초간단 도구 개발</td>
-      <td><code class="language-plaintext highlighter-rouge">HttpURLConnection</code> (단, 실무에는 비권장)</td>
-    </tr>
-    <tr>
-      <td>Spring 5 이상 + 새로운 프로젝트</td>
-      <td>WebClient를 사용하는 게 <strong>미래지향적</strong></td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Java 환경에서 사용되는 HTTP 클라이언트인 `HttpURLConnection`, `RestTemplate`, `WebClient`를 비교해보자.]]></summary></entry></feed>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.]]></summary></entry></feed>

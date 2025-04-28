@@ -4,6 +4,19 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>https://nan0silver.github.io/projectdiary/2025-04-28-diary/</loc>
+        
+        <lastmod>2025-04-28T00:00:00+00:00</lastmod>
+        
+        
+        <changefreq>weekly</changefreq>
+        
+        
+        <priority>0.5</priority>
+        
+    </url>
+    
+    <url>
         <loc>https://nan0silver.github.io/spring/2025-04-17-query-method/</loc>
         
         <lastmod>2025-04-17T00:00:00+00:00</lastmod>
