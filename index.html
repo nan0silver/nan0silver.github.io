@@ -46,7 +46,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="Blog" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-28T11:12:06+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","name":"NAHYUN BLOG","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-28T11:16:44+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","name":"NAHYUN BLOG","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -109,7 +109,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-04-28T11:12:50+00:00',
+    INDEX_KEY: 'index--2025-04-28T11:17:28+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -473,9 +473,13 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
-  <li><a href="#2-카카오-소셜-로그인-이메일-누락-문제">카카오 소셜 로그인 이메일 누락 문제</a></li>
-  <li><a href="#3-oauth2-인증-요청-정보-손실-문제">OAuth2 인증 요청 정보 손실 문제</a></li>
+  <li><a href="#1-현재-버티-서비스-상황-분석">1. 현재 버티 서비스 상황 분석</a></li>
+  <li><a href="#2-msa-구현-방안">2. MSA 구현 방안</a></li>
+  <li><a href="#21-api-gateway-패턴-도입">2.1 API Gateway 패턴 도입</a></li>
+  <li><a href="#22-회원-정보-공유-방식">2.2 회원 정보 공유 방식</a></li>
+  <li><a href="#3-render-프리티어-환경-최적화-방안">3. Render 프리티어 환경 최적화 방안</a></li>
+  <li><a href="#4-단계적-구현-전략">4. 단계적 구현 전략</a></li>
+  <li><a href="#5-결론">5. 결론</a></li>
 </ul>
 
 
@@ -521,7 +525,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 28 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-28T11:12:06+00:00">2025-04-28</time>
+              <time datetime="2025-04-28T11:16:44+00:00">2025-04-28</time>
             </span>
           
         
@@ -595,7 +599,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 28 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-28T11:12:06+00:00">2025-04-28</time>
+              <time datetime="2025-04-28T11:16:44+00:00">2025-04-28</time>
             </span>
           
         
@@ -669,7 +673,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 28 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-28T11:12:06+00:00">2025-04-28</time>
+              <time datetime="2025-04-28T11:16:44+00:00">2025-04-28</time>
             </span>
           
         
@@ -741,7 +745,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 28 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-28T11:12:06+00:00">2025-04-28</time>
+              <time datetime="2025-04-28T11:16:44+00:00">2025-04-28</time>
             </span>
           
         
@@ -818,7 +822,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 28 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-28T11:12:06+00:00">2025-04-28</time>
+              <time datetime="2025-04-28T11:16:44+00:00">2025-04-28</time>
             </span>
           
         
@@ -888,7 +892,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 28 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-28T11:12:06+00:00">2025-04-28</time>
+              <time datetime="2025-04-28T11:16:44+00:00">2025-04-28</time>
             </span>
           
         
@@ -964,7 +968,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 28 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-28T11:12:06+00:00">2025-04-28</time>
+              <time datetime="2025-04-28T11:16:44+00:00">2025-04-28</time>
             </span>
           
         
@@ -1042,7 +1046,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 28 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-28T11:12:06+00:00">2025-04-28</time>
+              <time datetime="2025-04-28T11:16:44+00:00">2025-04-28</time>
             </span>
           
         
@@ -1122,7 +1126,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 28 Apr 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-28T11:12:06+00:00">2025-04-28</time>
+              <time datetime="2025-04-28T11:16:44+00:00">2025-04-28</time>
             </span>
           
         
