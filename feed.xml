@@ -1,7 +1,205 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-05-02T02:35:08+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-05-21T07:24:04+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사</title><link href="https://nan0silver.github.io/projectdiary/2025-04-28-diary/" rel="alternate" type="text/html" title="[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사" /><published>2025-04-28T00:00:00+00:00</published><updated>2025-05-02T02:34:25+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-28-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?</title><link href="https://nan0silver.github.io/spring/2025-04-30-dto-division/" rel="alternate" type="text/html" title="[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?" /><published>2025-04-30T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/spring/dto-division</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-30-dto-division/"><![CDATA[<ul>
+  <li><a href="#-api-응답을-위한-dto는-왜-나눠야-하는가">API 응답을 위한 DTO는 왜 나눠야 하는가?</a></li>
+  <li><a href="#1️⃣-하나의-도메인-여러-개의-응답-목적">1. 하나의 도메인, 여러 개의 응답 목적</a></li>
+  <li><a href="#2️⃣-필드-수가-아니라-의도로-판단해야-한다">2. “필드 수”가 아니라 “의도”로 판단해야 한다</a></li>
+  <li><a href="#3️⃣-dto-설계는-view-기반이어야-한다">3. DTO 설계는 “View 기반”이어야 한다</a></li>
+  <li><a href="#4️⃣-dto-분리의-장점--실무-중심으로-요약">4. DTO 분리의 장점 – 실무 중심으로 요약</a></li>
+  <li><a href="#-결론-api-목적--dto-목적">결론</a></li>
+</ul>
+
+<hr />
+
+<h2 id="-api-응답을-위한-dto는-왜-나눠야-하는가">✅ API 응답을 위한 DTO는 왜 나눠야 하는가?</h2>
+
+<p>서비스 개발을 하다 보면 DTO(Data Transfer Object)를 여러 개 만들게 된다.
+처음에는 같은 도메인 모델에서 파생되는 응답 DTO라면 <strong>하나로 통일할 수 있지 않을까?</strong> 하는 생각이 들기도 한다.
+하지만 실제로 API를 설계하고 클라이언트와 연동하는 과정을 겪어보면, <strong>DTO를 목적에 따라 나눠야 하는 이유</strong>가 분명히 보이기 시작한다.</p>
+
+<hr />
+
+<h3 id="1️⃣-하나의-도메인-여러-개의-응답-목적">1️⃣ 하나의 도메인, 여러 개의 응답 목적</h3>
+
+<p>실제로 <code class="language-plaintext highlighter-rouge">PeerReview</code>라는 동일한 도메인을 기반으로 하더라도, API마다 응답 목적이 전혀 다르다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>클래스</th>
+      <th>목적</th>
+      <th>사용되는 API</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PeerReviewDetailResponse</code></td>
+      <td>단일 리뷰의 상세 정보 제공</td>
+      <td>리뷰 생성 응답, 리뷰 상세 조회</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">UserReviewSummaryResponse</code></td>
+      <td>특정 사용자의 리뷰 통계 요약</td>
+      <td>사용자 리뷰 평균 조회</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ProjectReviewStatusResponse</code></td>
+      <td>프로젝트 리뷰 진행 상태 확인</td>
+      <td>프로젝트별 리뷰 완료 여부 확인</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이처럼 <strong>동일한 도메인 모델이더라도 응답의 대상, 범위, 표현 방식이 다르면 DTO는 분리되어야 한다</strong>.
+하나의 <code class="language-plaintext highlighter-rouge">PeerReviewResponse</code>에 모든 필드를 때려넣고 공통으로 쓰다 보면,</p>
+
+<ul>
+  <li>어떤 API는 <strong>불필요한 데이터</strong>가 너무 많이 오가고,</li>
+  <li>어떤 API는 <strong>필요한 정보가 빠져 있어</strong> 클라이언트가 혼란을 겪는다.</li>
+</ul>
+
+<blockquote>
+  <p>❗️ <em>“DTO 하나로 합쳐도 되지 않나요?”</em> → 되긴 하지만, <strong>API의 명확한 역할과 응답 일관성</strong>을 해친다.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="2️⃣-필드-수가-아니라-의도로-판단해야-한다">2️⃣ “필드 수”가 아니라 “의도”로 판단해야 한다</h3>
+
+<p>DTO를 나눌 때 흔히 하는 실수 중 하나가</p>
+
+<blockquote>
+  <p>“필드가 너무 적은데 굳이 따로 DTO로 만들어야 해?”
+라는 의문이다.</p>
+
+  <blockquote>
+    <p>내가 프로젝트를 하며 이런 고민을 계속 하고, 실제로 다른 사람들은 어떤 기준을 가지는지 찾아보다 이 글을 작성하게 되었다.</p>
+  </blockquote>
+</blockquote>
+
+<p>하지만 <strong>DTO는 포함된 데이터의 양이 아니라, 응답의 의도에 따라 나뉘어야 한다</strong>.</p>
+
+<h4 id="예시-비교">예시 비교</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>클래스</th>
+      <th>주요 필드</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">UserReviewSummaryResponse</code></td>
+      <td>평균 점수, 리뷰 개수</td>
+      <td>사용자 요약 통계</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PeerReviewDetailResponse</code></td>
+      <td>리뷰 항목별 점수, 작성자 정보, 날짜</td>
+      <td>상세 정보 조회용</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이 두 DTO는 필드 수만 보면 합칠 수 있을 것 같지만,</p>
+
+<blockquote>
+  <p>하나는 <strong>요약 정보 (Summary)</strong>,
+하나는 <strong>상세 정보 (Detail)</strong> 제공이라는 <strong>근본적인 목적이 다르다.</strong></p>
+</blockquote>
+
+<p>또한, Summary는 추후 <code class="language-plaintext highlighter-rouge">차트</code>, <code class="language-plaintext highlighter-rouge">히스토그램</code>, <code class="language-plaintext highlighter-rouge">트렌드</code> 같은 <strong>집계 데이터를 추가하기에 더 적합한 형태</strong>이고,
+Detail은 사용자 경험 개선을 위한 <strong>리치한 UI 렌더링</strong>에 최적화된 형태로 확장될 수 있다.</p>
+
+<hr />
+
+<h3 id="3️⃣-dto-설계는-view-기반이어야-한다">3️⃣ DTO 설계는 “View 기반”이어야 한다</h3>
+
+<p>DTO는 도메인을 있는 그대로 노출하는 것이 아니라,
+<strong>API View Layer의 역할과 책임에 맞게 정보를 재가공해 전달</strong>하는 것이 목적이다.</p>
+
+<p>즉, “어떤 정보를 어떻게 보여줄지”에 따라 설계되어야 한다.</p>
+
+<h4 id="잘못된-설계-예">잘못된 설계 예</h4>
+
+<ul>
+  <li>불필요하게 내부 ID, 시스템 시간, 관리자용 정보 등을 포함한 DTO</li>
+  <li>클라이언트에 노출되면 혼란을 주거나, 보안상 문제될 수 있는 필드 포함</li>
+</ul>
+
+<h4 id="좋은-설계-예">좋은 설계 예</h4>
+
+<ul>
+  <li>사용자에게 필요한 정보만 간결하게 포함</li>
+  <li>실제 프론트 UI와 일치하는 정보 구조</li>
+  <li>데이터의 “의미”와 “구성 방식”이 API 목적과 맞아떨어짐</li>
+</ul>
+
+<blockquote>
+  <p>🧠 DTO는 단순히 데이터를 전달하는 구조체가 아니라,
+**“API 응답 설계 그 자체”**라는 것을 항상 기억해야 한다.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="4️⃣-dto-분리의-장점--실무-중심으로-요약">4️⃣ DTO 분리의 장점 – 실무 중심으로 요약</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>이유</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>명확한 책임 분리</strong></td>
+      <td>각 API의 목적에 따라 DTO도 명확히 구분되어 유지보수가 쉬움</td>
+    </tr>
+    <tr>
+      <td><strong>클라이언트 연동 안정성</strong></td>
+      <td>응답 구조가 고정되기 때문에 프론트엔드와의 계약(Contract)이 안정됨</td>
+    </tr>
+    <tr>
+      <td><strong>확장성</strong></td>
+      <td>새로운 요구사항이 생겼을 때 불필요한 필드 추가 없이 필요한 DTO만 수정하면 됨</td>
+    </tr>
+    <tr>
+      <td><strong>성능 최적화</strong></td>
+      <td>불필요한 필드 제거로 응답 크기 감소 → 네트워크 비용 감소</td>
+    </tr>
+    <tr>
+      <td><strong>테스트 단순화</strong></td>
+      <td>DTO 단위 테스트, API 응답 테스트가 더 명확하고 간결해짐</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-결론-api-목적--dto-목적">✅ 결론: API 목적 = DTO 목적</h2>
+
+<ul>
+  <li>하나의 API가 명확한 역할을 가지듯,</li>
+  <li>그 API가 사용하는 DTO도 <strong>명확한 책임</strong>을 가져야 한다.</li>
+</ul>
+
+<p>DTO는 설계의 산물이면서, 동시에 클라이언트와의 약속이다.
+따라서 <strong>필드 개수가 적다고 DTO를 합치는 건 설계적 실수</strong>일 수 있으며,
+<strong>응답 데이터는 목적, 의미, 유지보수, 확장성 관점에서 설계</strong>되어야 한다.</p>
+
+<hr />
+
+<h2 id="️-마무리-한-줄-요약">✍️ 마무리 한 줄 요약</h2>
+
+<blockquote>
+  <p><strong>DTO는 “얼마나 많은 데이터를 담는가”보다 “어떤 목적의 데이터를 담는가”가 더 중요하다.</strong></p>
+</blockquote>
+
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[DTO를 나누는 기준에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사</title><link href="https://nan0silver.github.io/projectdiary/2025-04-28-diary/" rel="alternate" type="text/html" title="[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사" /><published>2025-04-28T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-28-diary/"><![CDATA[<ul>
   <li><a href="#1-현재-버티-서비스-상황-분석">1. 현재 버티 서비스 상황 분석</a></li>
   <li><a href="#2-msa-구현-방안">2. MSA 구현 방안</a></li>
   <li><a href="#21-api-gateway-패턴-도입">2.1 API Gateway 패턴 도입</a></li>
@@ -182,7 +380,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li>
     <p>단계적 구현을 통해 점진적으로 MSA 아키텍처로 전환</p>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] PATCH vs PUT</title><link href="https://nan0silver.github.io/spring/2025-04-21-patch-put/" rel="alternate" type="text/html" title="[Spring] PATCH vs PUT" /><published>2025-04-21T00:00:00+00:00</published><updated>2025-05-02T02:34:25+00:00</updated><id>https://nan0silver.github.io/spring/patch-put</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-21-patch-put/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] PATCH vs PUT</title><link href="https://nan0silver.github.io/spring/2025-04-21-patch-put/" rel="alternate" type="text/html" title="[Spring] PATCH vs PUT" /><published>2025-04-21T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/spring/patch-put</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-21-patch-put/"><![CDATA[<ul>
   <li><a href="#-1-기본-개념">1. 기본 개념</a></li>
   <li><a href="#-2-예시로-비교해보기">2. 예시로 비교해보기</a></li>
   <li><a href="#-3-핵심-차이-정리">3. 핵심 차이 정리</a></li>
@@ -330,7 +528,7 @@ Content-Type: application/json
 <ul>
   <li><strong>클라이언트가 전체 데이터를 항상 알고 있고, 전체 리소스를 대체해야 할 경우 → <code class="language-plaintext highlighter-rouge">PUT</code></strong></li>
   <li><strong>일부 필드만 수정할 때 → <code class="language-plaintext highlighter-rouge">PATCH</code></strong></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[PATCH와 PUT의 공통점과 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-02T02:34:25+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[PATCH와 PUT의 공통점과 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
   <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
   <li><a href="#2-카카오-소셜-로그인-이메일-누락-문제">카카오 소셜 로그인 이메일 누락 문제</a></li>
   <li><a href="#3-oauth2-인증-요청-정보-손실-문제">OAuth2 인증 요청 정보 손실 문제</a></li>
@@ -463,7 +661,7 @@ Content-Type: application/json
   <li>액세스 토큰과 리프레시 토큰을 분리 관리하여 보안성 강화</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-02T02:34:25+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
   <li><a href="#jparepository-상속">JpaRepository 상속</a></li>
   <li><a href="#-그렇다면-커스텀-쿼리는-어떻게-할까">그렇다면 커스텀 쿼리는 어떻게 할까?</a></li>
   <li><a href="#-개발자-관점-팁">개발자 관점 팁</a></li>
@@ -694,7 +892,7 @@ Content-Type: application/json
   <li><strong>복잡한 조건</strong> → <code class="language-plaintext highlighter-rouge">@Query</code> 또는 <code class="language-plaintext highlighter-rouge">QueryDSL</code>, <code class="language-plaintext highlighter-rouge">Specification</code> 권장</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-05-02T02:34:25+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
   <p>저번 프로젝트에서는 로그아웃을 구현하지 않고, 토큰 만료를 사용했는데 로그아웃을 구현해달라는 요청이 있었어서 이번 프로젝트에서는 제대로 알아보고 구현해보기로 하였다.</p>
 </blockquote>
 
@@ -770,7 +968,7 @@ Content-Type: application/json
 <ul>
   <li><a href="https://upcurvewave.tistory.com/611">JWT 토큰 기반의 상태 관리시 로그아웃 처리 문제</a></li>
   <li><a href="https://engineerinsight.tistory.com/232#google_vignette">[우테코] JWT 방식에서 로그아웃, Refresh Token 만들기(1)</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-05-02T02:34:25+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
   <li><a href="#1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</a></li>
   <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
   <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
@@ -972,7 +1170,7 @@ Content-Type: application/json
 
 <p>Swagger와 Spring Security를 함께 사용할 때 마주친 실제적인 문제들을 해결하면서, 보안과 개발 편의성 사이에서 균형을 맞추는 경험을 할 수 있었습니다. 특히 프론트엔드 협업 관점에서 Swagger 인증 해제와 JWT 연동 설정은 협업 효율을 높이는 핵심 포인트였습니다.</p>
 
-<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-05-02T02:34:25+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
+<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
 
 <p>프로젝트를 처음 시작할 때 가장 고민했던 부분 중 하나는 <strong>전체 구조를 어떻게 잡을 것인가</strong>였습니다. 단순한 CRUD를 넘어서 소셜 로그인, 커뮤니티, AI 기반 정착 리포트 등 다양한 기능을 포함할 예정이었기 때문에, 기능이 늘어나더라도 유지보수가 쉽고, 각 도메인이 명확하게 분리되도록 설계하고 싶었습니다.</p>
 
@@ -1018,7 +1216,7 @@ Content-Type: application/json
 
 <p>도메인 주도 설계를 기반으로 구조를 잡는 과정은 단순히 코드를 예쁘게 나누는 것을 넘어서, 기능과 비즈니스 로직의 맥락(Context)을 코드 레벨에서 표현하는 데 큰 도움이 되었습니다. 또한 레이어드 아키텍처를 통해 각 계층의 역할이 명확해져 협업 시 작업 분담이나 코드 리뷰도 훨씬 효율적으로 이루어졌습니다.</p>
 
-<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-05-02T02:34:25+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
+<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
   <li><a href="#-논블로킹non-blocking이란">논블로킹이란?</a></li>
   <li><a href="#-실생활-비유로-논블로킹-이해하기">실생활 비유로 논블로킹 이해하기</a></li>
   <li><a href="#-블로킹-vs-논블로킹-기술적-요점-정리">블로킹 vs 논블로킹 기술적 요점 정리</a></li>
@@ -1388,7 +1586,8 @@ Content-Type: application/json
 <h2 id="-2-webclient로-진짜-논블로킹--비동기">🛸 2. <code class="language-plaintext highlighter-rouge">WebClient</code>로 진짜 논블로킹 + 비동기</h2>
 
 <blockquote>
-  <p>의존성 필요:</p>
+  <p>의존성 필요:
+<a href="https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux">mvn repository</a></p>
 </blockquote>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- build.gradle 혹은 pom.xml --&gt;</span>
@@ -1463,7 +1662,7 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[논블로킹과 비동기에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Thymeleaf</title><link href="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/" rel="alternate" type="text/html" title="[Spring] Thymeleaf" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-05-02T02:34:25+00:00</updated><id>https://nan0silver.github.io/spring/thymeleaf</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[논블로킹과 비동기에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Thymeleaf</title><link href="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/" rel="alternate" type="text/html" title="[Spring] Thymeleaf" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/spring/thymeleaf</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/"><![CDATA[<ul>
   <li><a href="#-1-thymeleaf는-왜-쓰는-걸까">Thymeleaf는 왜 쓰는 걸까?</a></li>
   <li><a href="#-2-기본-문법-정리">기본 문법 정리</a></li>
   <li><a href="#-3-전체-흐름-예시">전체 흐름 예시</a></li>
@@ -1634,360 +1833,4 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] JPA vs MyBatis</title><link href="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/" rel="alternate" type="text/html" title="[Spring] JPA vs MyBatis" /><published>2025-04-05T00:00:00+00:00</published><updated>2025-05-02T02:34:25+00:00</updated><id>https://nan0silver.github.io/spring/jpa-mybatis</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-05-jpa-mybatis/"><![CDATA[<ul>
-  <li><a href="#-jpa란-java-persistence-api">JPA란?</a></li>
-  <li><a href="#-mybatis란">MyBatis란?</a></li>
-  <li><a href="#-jpa-vs-mybatis">🔍 JPA vs MyBatis</a></li>
-  <li><a href="#jpa-vs-mybatis-비유로-이해하기">JPA vs MyBatis 비유로 이해하기</a></li>
-  <li><a href="#-jpa-vs-mybatis-코드로-비교하기">JPA vs MyBatis 코드로 비교하기</a></li>
-  <li><a href="#-사용-방식-차이-요약">사용 방식 차이 요약</a></li>
-  <li><a href="#-장단점-비교">장단점 비교</a></li>
-  <li><a href="#-실무에-쓰는-방법">실무에 쓰는 방법</a></li>
-  <li><a href="#-한줄-정리">한줄 정리</a></li>
-</ul>
-
-<hr />
-
-<h2 id="-jpa란-java-persistence-api">📌 JPA란? (Java Persistence API)</h2>
-
-<ul>
-  <li><strong>자바에서 관계형 데이터베이스(RDB)를 객체로 다룰 수 있게 해주는 표준 API</strong>.</li>
-  <li>SQL을 직접 작성하지 않아도 객체처럼 DB 데이터를 저장/조회/수정/삭제 가능.</li>
-  <li>구현체 중 가장 유명한 것은 <strong>Hibernate</strong>고, Spring에서 주로 이걸 씀.</li>
-</ul>
-
-<hr />
-
-<h2 id="jpa-핵심-용어">JPA 핵심 용어</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>용어</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Entity</strong></td>
-      <td>DB 테이블과 매핑되는 자바 클래스</td>
-    </tr>
-    <tr>
-      <td><strong>EntityManager</strong></td>
-      <td>JPA의 핵심! DB와 객체 사이의 작업을 처리하는 도구</td>
-    </tr>
-    <tr>
-      <td><strong>Persistence Context (영속성 컨텍스트)</strong></td>
-      <td>엔티티를 관리하는 JPA 내부 메모리 공간</td>
-    </tr>
-    <tr>
-      <td><strong>JPQL (Java Persistence Query Language)</strong></td>
-      <td>객체 지향 쿼리 언어. SQL과 유사하지만, 테이블이 아닌 클래스/필드 단위로 작동</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-mybatis란">📌 MyBatis란?</h2>
-
-<ul>
-  <li><strong>자바에서 SQL을 직접 작성해서 데이터베이스와 통신할 수 있게 해주는 프레임워크.</strong></li>
-  <li>SQL 중심의 프로그래밍이 가능하고, <strong>복잡하고 세밀한 쿼리 제어</strong>에 유리함.</li>
-  <li>XML 또는 어노테이션 기반으로 SQL을 작성하고, <strong>쿼리 결과를 자바 객체와 매핑</strong>해줌.</li>
-  <li><strong>Spring과도 쉽게 통합 가능</strong>하며, 실무에서는 여전히 널리 사용됨.</li>
-</ul>
-
-<hr />
-
-<h2 id="mybatis-핵심-용어">MyBatis 핵심 용어</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>용어</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Mapper 인터페이스</strong></td>
-      <td>SQL 문장을 호출하는 자바 인터페이스. XML과 1:1 매칭되어 동작함</td>
-    </tr>
-    <tr>
-      <td><strong>Mapper XML</strong></td>
-      <td>실제 SQL이 작성되는 파일. <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;insert&gt;</code> 등 태그로 구성됨</td>
-    </tr>
-    <tr>
-      <td><strong>SqlSession</strong></td>
-      <td>DB 연결과 SQL 실행을 담당하는 핵심 객체 (JDBC의 Connection 역할)</td>
-    </tr>
-    <tr>
-      <td><strong>ResultMap</strong></td>
-      <td>쿼리 결과를 자바 객체에 <strong>정밀하게 매핑</strong>할 때 사용하는 설정</td>
-    </tr>
-    <tr>
-      <td><strong>#{} / ${}</strong></td>
-      <td>SQL 파라미터 바인딩 방식. <code class="language-plaintext highlighter-rouge">#{}</code>는 안전한 바인딩, <code class="language-plaintext highlighter-rouge">${}</code>는 SQL 인젝션 주의</td>
-    </tr>
-    <tr>
-      <td><strong>TypeAlias</strong></td>
-      <td>자바 클래스의 이름을 짧게 별칭으로 사용할 수 있도록 하는 기능</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-jpa-vs-mybatis">🔍 JPA vs MyBatis</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>JPA</th>
-      <th>MyBatis</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>개발 방식</td>
-      <td><strong>자동 매핑</strong> (객체 중심)</td>
-      <td><strong>수동 매핑</strong> (SQL 중심)</td>
-    </tr>
-    <tr>
-      <td>핵심 개념</td>
-      <td>객체를 DB에 자동 매핑</td>
-      <td>직접 SQL 작성 + 매핑</td>
-    </tr>
-    <tr>
-      <td>학습 곡선</td>
-      <td>좀 더 높음 (추상화 많음)</td>
-      <td>비교적 쉬움 (SQL 그대로 작성)</td>
-    </tr>
-    <tr>
-      <td>유연성</td>
-      <td>추상화 많아 덜 유연함</td>
-      <td>SQL 작성 자유로움</td>
-    </tr>
-    <tr>
-      <td>성능 제어</td>
-      <td>ORM에 맡김 (튜닝 어려움)</td>
-      <td>직접 SQL 작성으로 제어 쉬움</td>
-    </tr>
-    <tr>
-      <td>대표 도구</td>
-      <td>Hibernate (JPA 구현체)</td>
-      <td>MyBatis 프레임워크</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="jpa-vs-mybatis-비유로-이해하기">JPA vs MyBatis 비유로 이해하기</h2>
-
-<h3 id="️-jpa--자동세탁기-">☝️ JPA = 자동세탁기 👕</h3>
-
-<ul>
-  <li><strong>세탁기 안에 옷(객체)</strong>을 넣으면<br />
-→ 알아서 물(쿼리) 넣고, 빨고, 말리고<br />
-→ 깨끗한 결과(조회된 객체)를 자동으로 꺼내줌!</li>
-</ul>
-
-<blockquote>
-  <p>→ 개발자는 <strong>“옷만 넣고 결과만 받으면 됨”</strong><br />
-→ 단, 세탁 방식은 기계가 알아서 함 (튜닝 어려움)</p>
-</blockquote>
-
-<hr />
-
-<h3 id="️-mybatis--손빨래-">✌️ MyBatis = 손빨래 🧼</h3>
-
-<ul>
-  <li><strong>개발자가 직접</strong> 물 붓고, 비비고, 헹구고</li>
-  <li>어떤 SQL 쿼리를 쓰고, 어떤 칼럼을 어떤 필드에 넣을지도 <strong>직접 지정</strong></li>
-</ul>
-
-<blockquote>
-  <p>→ 개발자는 <strong>“컨트롤을 많이 할 수 있음”</strong><br />
-→ 다만 <strong>귀찮고 실수할 가능성 있음</strong></p>
-</blockquote>
-
-<hr />
-
-<h2 id="-jpa-vs-mybatis-코드로-비교하기">🧩 JPA vs MyBatis 코드로 비교하기</h2>
-
-<h3 id="-jpa-예제-hibernate-기반">✅ JPA 예제 (Hibernate 기반)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
-    <span class="nd">@Id</span>
-    <span class="nd">@GeneratedValue</span>
-    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
-
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 저장</span>
-<span class="nc">Member</span> <span class="n">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">(</span><span class="s">"Sungwoo"</span><span class="o">);</span>
-<span class="n">entityManager</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">m</span><span class="o">);</span>
-
-<span class="c1">// 조회</span>
-<span class="nc">Member</span> <span class="n">result</span> <span class="o">=</span> <span class="n">entityManager</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">m</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
-</code></pre></div></div>
-
-<p>👉 SQL 없이 객체만 조작하면 됨!<br />
-→ <code class="language-plaintext highlighter-rouge">INSERT</code>, <code class="language-plaintext highlighter-rouge">SELECT</code>, <code class="language-plaintext highlighter-rouge">UPDATE</code>, <code class="language-plaintext highlighter-rouge">DELETE</code>를 <strong>자동으로 처리</strong></p>
-
-<hr />
-
-<h3 id="-mybatis-예제">✅ MyBatis 예제</h3>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- mapper.xml --&gt;</span>
-<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"findMemberById"</span> <span class="na">parameterType=</span><span class="s">"long"</span> <span class="na">resultType=</span><span class="s">"Member"</span><span class="nt">&gt;</span>
-  SELECT id, name FROM members WHERE id = #{id}
-<span class="nt">&lt;/select&gt;</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 자바 코드</span>
-<span class="nc">Member</span> <span class="n">m</span> <span class="o">=</span> <span class="n">memberMapper</span><span class="o">.</span><span class="na">findMemberById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>👉 SQL을 내가 직접 작성함<br />
-→ DB 구조가 복잡하거나 튜닝이 필요할 땐 <strong>더 유리</strong></p>
-
-<hr />
-
-<h2 id="-사용-방식-차이-요약">✅ 사용 방식 차이 요약</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>JPA</th>
-      <th>MyBatis</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>SQL 작성</td>
-      <td>❌ 안 함 (자동)</td>
-      <td>✅ 직접 함</td>
-    </tr>
-    <tr>
-      <td>객체 ↔ DB 매핑</td>
-      <td>자동 처리</td>
-      <td>명시적 지정</td>
-    </tr>
-    <tr>
-      <td>코드 양</td>
-      <td>적음</td>
-      <td>많음</td>
-    </tr>
-    <tr>
-      <td>유지보수</td>
-      <td>테이블 구조 바뀌면 자동 적용</td>
-      <td>SQL 전부 수정해야 함</td>
-    </tr>
-    <tr>
-      <td>복잡한 쿼리</td>
-      <td>어려움 (JPQL, QueryDSL)</td>
-      <td>자유롭고 세밀하게 가능</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-장단점-비교">✅ 장단점 비교</h2>
-
-<h3 id="-jpa의-장점">🟢 JPA의 장점</h3>
-
-<ul>
-  <li>생산성 높음 (코드 적게 작성)</li>
-  <li>객체 지향적으로 설계 가능</li>
-  <li>유지보수 편함 (쿼리 덜 바꿈)</li>
-  <li>캐싱, 지연 로딩, 영속성 컨텍스트 등 부가기능 풍부</li>
-  <li><code class="language-plaintext highlighter-rouge">JapRepository</code>를 상속하면 Spring Data JPA가 자동으로 구현체를 만들어서 사용할 수 있게 해줌
-    <ul>
-      <li>자세히 정리한 포스트 👉 <a href="https://nan0silver.github.io/spring/2025-04-17-query-method/">JPA Query Method</a></li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="-jpa의-단점">🔴 JPA의 단점</h3>
-
-<ul>
-  <li>처음 배울 때 어렵고 추상화가 깊음</li>
-  <li>성능 튜닝 어려움</li>
-  <li>복잡한 쿼리 작성이 불편함 (<code class="language-plaintext highlighter-rouge">JOIN</code>, <code class="language-plaintext highlighter-rouge">GROUP BY</code> 등)</li>
-</ul>
-
-<hr />
-
-<h3 id="-mybatis의-장점">🟢 MyBatis의 장점</h3>
-
-<ul>
-  <li>SQL을 자유롭게 짤 수 있어 → DB 성능 튜닝 유리</li>
-  <li>복잡한 쿼리나 데이터 조작에 강함</li>
-  <li>개발자 컨트롤이 높음</li>
-</ul>
-
-<hr />
-
-<h3 id="-mybatis의-단점">🔴 MyBatis의 단점</h3>
-
-<ul>
-  <li>반복 코드 많음 (SQL + 매핑 따로)</li>
-  <li>유지보수 힘듦 (테이블 구조 바뀌면 SQL 전부 바꿔야 함)</li>
-  <li>객체 지향 구조 만들기 어렵고, 연결이 느슨함</li>
-</ul>
-
-<hr />
-
-<h2 id="-실무에-쓰는-방법">✅ 실무에 쓰는 방법</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>상황</th>
-      <th>실무 선택</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>단순한 CRUD 위주의 서비스</td>
-      <td>JPA (빠르고 코드 간결)</td>
-    </tr>
-    <tr>
-      <td>복잡한 SQL 다루는 시스템</td>
-      <td>MyBatis</td>
-    </tr>
-    <tr>
-      <td>대기업/공공 시스템</td>
-      <td>아직도 MyBatis 많음</td>
-    </tr>
-    <tr>
-      <td>스타트업/신규 프로젝트</td>
-      <td>JPA + QueryDSL 조합 인기</td>
-    </tr>
-    <tr>
-      <td>둘 다 필요</td>
-      <td>일부는 JPA, 일부는 MyBatis 혼용 (실제로 많음)</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-한줄-정리">📌 한줄 정리</h2>
-
-<blockquote>
-  <p>“JPA는 객체 중심의 ORM 프레임워크로, DB와의 데이터 처리를 추상화해 코드 생산성을 높여줍니다. 반면 MyBatis는 SQL 중심의 프레임워크로, 복잡한 쿼리나 성능 튜닝이 필요한 경우에 유리합니다. 프로젝트 성격에 따라 두 기술을 선택하거나 병행할 수 있습니다.”</p>
-</blockquote>
-
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA vs MyBatis에 대 알아보자.]]></summary></entry></feed>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.]]></summary></entry></feed>
