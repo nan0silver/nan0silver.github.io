@@ -247,6 +247,7 @@ public class AsyncWithCompletableFuture {
 ## 🛸 2. `WebClient`로 진짜 논블로킹 + 비동기
 
 > 의존성 필요:
+> [mvn repository](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux)
 
 ```xml
 <!-- build.gradle 혹은 pom.xml -->
