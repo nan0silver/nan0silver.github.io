@@ -71,11 +71,11 @@ menu:
     url: /git/
   - title: Flask (2)
     url: /flask/
-  - title: Spring (10)
+  - title: Spring (12)
     url: /spring/
   - title: Miscellaneous (14)
     url: /miscellaneous/
-  - title: 프로젝트 일기 (4)
+  - title: 프로젝트 일기 (6)
     url: /projectdiary/
 
 # Add links to the footer.
