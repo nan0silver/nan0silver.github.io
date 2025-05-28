@@ -1,7 +1,132 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-05-21T07:24:04+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-05-28T00:52:11+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?</title><link href="https://nan0silver.github.io/spring/2025-04-30-dto-division/" rel="alternate" type="text/html" title="[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?" /><published>2025-04-30T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/spring/dto-division</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-30-dto-division/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">AI Tech 2025 참석 후기</title><link href="https://nan0silver.github.io/projectdiary/2025-05-15-diary/" rel="alternate" type="text/html" title="AI Tech 2025 참석 후기" /><published>2025-05-15T00:00:00+00:00</published><updated>2025-05-28T00:51:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-05-15-diary/"><![CDATA[<blockquote>
+  <p>실무자 중심의 AI 도입 이후 전략, 오케스트레이션 구조, 에이전트 협업 사례 중심</p>
+</blockquote>
+
+<hr />
+
+<h2 id="1-행사-개요">1. 행사 개요</h2>
+
+<p><strong>AI Tech 2025</strong>는 단순한 모델 개발이나 비전 소개를 넘어서,<br />
+<strong>“AI를 어떻게 현업에 도입하고 운영할 것인가”</strong>를 주제로 구성된 실무 중심의 컨퍼런스였다.<br />
+다양한 기업과 기술 리더들이 실제 적용 사례, 인프라 설계, 오케스트레이션 전략을 공유했으며,<br />
+AI 도입 이후 단계에서 실질적인 생산성을 확보하기 위한 전략들이 인상 깊었다.</p>
+
+<hr />
+
+<h2 id="2-키노트-요약-embodied-ai와-기술-진화-방향">2. 키노트 요약: Embodied AI와 기술 진화 방향</h2>
+
+<p>서울대 장병탁 교수의 기조연설에서는 <strong>AI의 진화 방향</strong>이 강조되었다.</p>
+
+<ul>
+  <li>기존: 디지털 정보 공간 내 추론 중심의 AI</li>
+  <li>변화: <strong>실세계와 상호작용하며 학습·판단·행동하는 Embodied AI</strong></li>
+</ul>
+
+<blockquote>
+  <p>Embodied AI는 물리적 환경을 인식하고 그에 반응할 수 있는 에이전트로, 강화학습 및 체화 학습을 통해 자율성을 확보한다.</p>
+</blockquote>
+
+<p><img src="https://github.com/user-attachments/assets/76d2879b-b852-4e1e-95b9-715a1a9c824a" alt="Embodied AI 개념 이미지" /><br />
+<em>Figure: Embodied AI – 환경 인지, 판단, 행동이 통합된 AI 시스템</em></p>
+
+<hr />
+
+<h2 id="3-a2a-시대의-도래-agent-협업-구조">3. A2A 시대의 도래: Agent 협업 구조</h2>
+
+<h3 id="-a2aagent-to-agent-protocol">🔍 A2A(Agent-to-Agent Protocol)</h3>
+
+<p>이번 행사에서 가장 빈번하게 언급된 개념 중 하나는 <strong>A2A</strong>였다.</p>
+
+<ul>
+  <li><strong>의미</strong>: 에이전트 간 데이터 공유 및 협업을 위한 통신 프로토콜</li>
+  <li><strong>기능</strong>: 목적 지향형 대화, 작업 분담, 협업형 워크플로우 구성</li>
+  <li><strong>사례</strong>: 문서 요약 에이전트 → 일정 정리 에이전트로 결과 전달</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>요약 에이전트 → 분석 결과 전달 → 일정 에이전트가 회의 제안 자동화
+</code></pre></div></div>
+
+<h3 id="-관련-개념">🧩 관련 개념</h3>
+
+<ul>
+  <li>
+    <p><strong>Agent Hub</strong>: 에이전트 설계/운영 통합 플랫폼</p>
+
+    <ul>
+      <li>ADK: Agent Design Kit</li>
+      <li>Agent Engine: 배포 및 실행 환경</li>
+      <li>Agent Garden: 에이전트 레지스트리/관리</li>
+    </ul>
+  </li>
+</ul>
+
+<p>이와 같은 구조는 기존 **MSA(마이크로서비스 아키텍처)**와 유사하게,
+AI 시스템에서도 <strong>다수의 특화 에이전트가 상호작용하는 구조적 전환</strong>을 의미한다.</p>
+
+<hr />
+
+<h2 id="4-ai는-이제-운영의-시대">4. AI는 이제 운영의 시대</h2>
+
+<p>기술보다 중요한 건 <strong>운영과 조율</strong>이다. 특히 다음과 같은 통찰이 강조되었다.</p>
+
+<ul>
+  <li>AGI는 단일 모델이 아닌, <strong>여러 특화 에이전트의 조합</strong></li>
+  <li>이 조합을 조율하는 <strong>AI 오케스트레이션 계층</strong>이 핵심</li>
+  <li>개발자는 모델 사용자에서 <strong>AI 아키텍처 설계자</strong>로 역할 확장 필요</li>
+</ul>
+
+<p>A2A는 단순한 API 호출이 아니라, <strong>에이전트 간 협업 흐름을 구성하는 전략적 도구</strong>로 자리잡고 있다.</p>
+
+<hr />
+
+<h2 id="5-실무-적용-사례-및-전략">5. 실무 적용 사례 및 전략</h2>
+
+<h3 id="-주요-사례">📌 주요 사례</h3>
+
+<ul>
+  <li><strong>한화생명</strong>: 보험 상담 자동화 (LLM + RAG 기반 챗봇 운영)</li>
+  <li><strong>KT</strong>: 기관 문서 기반 검색 시스템 구축</li>
+  <li><strong>MARA</strong>: 자산 시장 분석 자동화</li>
+  <li><strong>Nota AI</strong>: 엣지 디바이스용 AI 모델 경량화 및 배포</li>
+</ul>
+
+<p>이 외에도 다양한 기업들이 AI를 ‘기능’으로서가 아닌,
+<strong>문제 해결 도구</strong>로서 어떻게 전략적으로 운영하고 있는지를 소개했다.</p>
+
+<hr />
+
+<h2 id="6-기술-인사이트">6. 기술 인사이트</h2>
+
+<h3 id="️-실용-기술">🛠️ 실용 기술</h3>
+
+<ul>
+  <li><strong>Structured Pruning</strong>: 불필요한 파라미터 제거로 경량화</li>
+  <li><strong>Filter Decomposition</strong>: 병렬 연산을 직렬화하여 성능 최적화</li>
+  <li><strong>RAG 기반 검색</strong>: 문서 기반 답변 정확도 향상</li>
+  <li><strong>Agent Workflow</strong>: 도메인 특화 다중 에이전트 협업 구성</li>
+</ul>
+
+<hr />
+
+<h2 id="7-결론">7. 결론</h2>
+
+<p>AI 시스템은 이제 단일 모델의 정확도보다,
+<strong>어떻게 운영되고 협업 구조를 갖추는가</strong>가 더 중요해지고 있다.</p>
+
+<p>이번 컨퍼런스를 통해 확인한 핵심은 다음과 같다:</p>
+
+<ul>
+  <li><strong>AI는 플랫폼이다</strong>: 단일 모델보다 다중 에이전트의 구조화된 조율이 핵심</li>
+  <li><strong>A2A는 미래의 기본 요소</strong>: 마이크로서비스처럼 에이전트 협업이 표준화될 것</li>
+  <li><strong>운영 전략이 곧 성패를 가른다</strong>: 기술보다 프로덕션 환경 최적화가 우선시됨</li>
+</ul>
+
+<blockquote>
+  <p>기술을 넘어 전략으로서의 AI를 고민하게 된 의미 있는 자리였다.</p>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[AI Tech 2025 컨퍼런스에서 확인한 LLMOps, A2A, Embodied AI 등 최신 AI 시스템 운영 전략]]></summary></entry><entry><title type="html">[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?</title><link href="https://nan0silver.github.io/spring/2025-04-30-dto-division/" rel="alternate" type="text/html" title="[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?" /><published>2025-04-30T00:00:00+00:00</published><updated>2025-05-28T00:51:29+00:00</updated><id>https://nan0silver.github.io/spring/dto-division</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-30-dto-division/"><![CDATA[<ul>
   <li><a href="#-api-응답을-위한-dto는-왜-나눠야-하는가">API 응답을 위한 DTO는 왜 나눠야 하는가?</a></li>
   <li><a href="#1️⃣-하나의-도메인-여러-개의-응답-목적">1. 하나의 도메인, 여러 개의 응답 목적</a></li>
   <li><a href="#2️⃣-필드-수가-아니라-의도로-판단해야-한다">2. “필드 수”가 아니라 “의도”로 판단해야 한다</a></li>
@@ -199,7 +324,7 @@ Detail은 사용자 경험 개선을 위한 <strong>리치한 UI 렌더링</stro
   <p><strong>DTO는 “얼마나 많은 데이터를 담는가”보다 “어떤 목적의 데이터를 담는가”가 더 중요하다.</strong></p>
 </blockquote>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[DTO를 나누는 기준에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사</title><link href="https://nan0silver.github.io/projectdiary/2025-04-28-diary/" rel="alternate" type="text/html" title="[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사" /><published>2025-04-28T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-28-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[DTO를 나누는 기준에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사</title><link href="https://nan0silver.github.io/projectdiary/2025-04-28-diary/" rel="alternate" type="text/html" title="[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사" /><published>2025-04-28T00:00:00+00:00</published><updated>2025-05-28T00:51:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-28-diary/"><![CDATA[<ul>
   <li><a href="#1-현재-버티-서비스-상황-분석">1. 현재 버티 서비스 상황 분석</a></li>
   <li><a href="#2-msa-구현-방안">2. MSA 구현 방안</a></li>
   <li><a href="#21-api-gateway-패턴-도입">2.1 API Gateway 패턴 도입</a></li>
@@ -380,7 +505,7 @@ Detail은 사용자 경험 개선을 위한 <strong>리치한 UI 렌더링</stro
   <li>
     <p>단계적 구현을 통해 점진적으로 MSA 아키텍처로 전환</p>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] PATCH vs PUT</title><link href="https://nan0silver.github.io/spring/2025-04-21-patch-put/" rel="alternate" type="text/html" title="[Spring] PATCH vs PUT" /><published>2025-04-21T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/spring/patch-put</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-21-patch-put/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Boot MSA 구현 방식 조사]]></summary></entry><entry><title type="html">[Spring] PATCH vs PUT</title><link href="https://nan0silver.github.io/spring/2025-04-21-patch-put/" rel="alternate" type="text/html" title="[Spring] PATCH vs PUT" /><published>2025-04-21T00:00:00+00:00</published><updated>2025-05-28T00:51:29+00:00</updated><id>https://nan0silver.github.io/spring/patch-put</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-21-patch-put/"><![CDATA[<ul>
   <li><a href="#-1-기본-개념">1. 기본 개념</a></li>
   <li><a href="#-2-예시로-비교해보기">2. 예시로 비교해보기</a></li>
   <li><a href="#-3-핵심-차이-정리">3. 핵심 차이 정리</a></li>
@@ -528,7 +653,7 @@ Content-Type: application/json
 <ul>
   <li><strong>클라이언트가 전체 데이터를 항상 알고 있고, 전체 리소스를 대체해야 할 경우 → <code class="language-plaintext highlighter-rouge">PUT</code></strong></li>
   <li><strong>일부 필드만 수정할 때 → <code class="language-plaintext highlighter-rouge">PATCH</code></strong></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[PATCH와 PUT의 공통점과 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[PATCH와 PUT의 공통점과 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-28T00:51:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
   <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
   <li><a href="#2-카카오-소셜-로그인-이메일-누락-문제">카카오 소셜 로그인 이메일 누락 문제</a></li>
   <li><a href="#3-oauth2-인증-요청-정보-손실-문제">OAuth2 인증 요청 정보 손실 문제</a></li>
@@ -661,7 +786,7 @@ Content-Type: application/json
   <li>액세스 토큰과 리프레시 토큰을 분리 관리하여 보안성 강화</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 개발 중 마주한 사소한 이슈들 정리]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-28T00:51:29+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
   <li><a href="#jparepository-상속">JpaRepository 상속</a></li>
   <li><a href="#-그렇다면-커스텀-쿼리는-어떻게-할까">그렇다면 커스텀 쿼리는 어떻게 할까?</a></li>
   <li><a href="#-개발자-관점-팁">개발자 관점 팁</a></li>
@@ -892,7 +1017,7 @@ Content-Type: application/json
   <li><strong>복잡한 조건</strong> → <code class="language-plaintext highlighter-rouge">@Query</code> 또는 <code class="language-plaintext highlighter-rouge">QueryDSL</code>, <code class="language-plaintext highlighter-rouge">Specification</code> 권장</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-05-28T00:51:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
   <p>저번 프로젝트에서는 로그아웃을 구현하지 않고, 토큰 만료를 사용했는데 로그아웃을 구현해달라는 요청이 있었어서 이번 프로젝트에서는 제대로 알아보고 구현해보기로 하였다.</p>
 </blockquote>
 
@@ -968,7 +1093,7 @@ Content-Type: application/json
 <ul>
   <li><a href="https://upcurvewave.tistory.com/611">JWT 토큰 기반의 상태 관리시 로그아웃 처리 문제</a></li>
   <li><a href="https://engineerinsight.tistory.com/232#google_vignette">[우테코] JWT 방식에서 로그아웃, Refresh Token 만들기(1)</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[JWT 로그인 구현 시 로그아웃 방법 고민..]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-05-28T00:51:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
   <li><a href="#1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</a></li>
   <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
   <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
@@ -1170,7 +1295,7 @@ Content-Type: application/json
 
 <p>Swagger와 Spring Security를 함께 사용할 때 마주친 실제적인 문제들을 해결하면서, 보안과 개발 편의성 사이에서 균형을 맞추는 경험을 할 수 있었습니다. 특히 프론트엔드 협업 관점에서 Swagger 인증 해제와 JWT 연동 설정은 협업 효율을 높이는 핵심 포인트였습니다.</p>
 
-<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
+<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Security와 Swagger 통합 이슈]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-05-28T00:51:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
 
 <p>프로젝트를 처음 시작할 때 가장 고민했던 부분 중 하나는 <strong>전체 구조를 어떻게 잡을 것인가</strong>였습니다. 단순한 CRUD를 넘어서 소셜 로그인, 커뮤니티, AI 기반 정착 리포트 등 다양한 기능을 포함할 예정이었기 때문에, 기능이 늘어나더라도 유지보수가 쉽고, 각 도메인이 명확하게 분리되도록 설계하고 싶었습니다.</p>
 
@@ -1216,7 +1341,7 @@ Content-Type: application/json
 
 <p>도메인 주도 설계를 기반으로 구조를 잡는 과정은 단순히 코드를 예쁘게 나누는 것을 넘어서, 기능과 비즈니스 로직의 맥락(Context)을 코드 레벨에서 표현하는 데 큰 도움이 되었습니다. 또한 레이어드 아키텍처를 통해 각 계층의 역할이 명확해져 협업 시 작업 분담이나 코드 리뷰도 훨씬 효율적으로 이루어졌습니다.</p>
 
-<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[테스트]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
+<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 구조 설계 고민과 선택]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-05-28T00:51:29+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
   <li><a href="#-논블로킹non-blocking이란">논블로킹이란?</a></li>
   <li><a href="#-실생활-비유로-논블로킹-이해하기">실생활 비유로 논블로킹 이해하기</a></li>
   <li><a href="#-블로킹-vs-논블로킹-기술적-요점-정리">블로킹 vs 논블로킹 기술적 요점 정리</a></li>
@@ -1662,175 +1787,4 @@ implementation 'org.springframework.boot:spring-boot-starter-webflux'
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[논블로킹과 비동기에 대해 알아보자.]]></summary></entry><entry><title type="html">[Spring] Thymeleaf</title><link href="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/" rel="alternate" type="text/html" title="[Spring] Thymeleaf" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-05-21T07:23:19+00:00</updated><id>https://nan0silver.github.io/spring/thymeleaf</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-thymeleaf/"><![CDATA[<ul>
-  <li><a href="#-1-thymeleaf는-왜-쓰는-걸까">Thymeleaf는 왜 쓰는 걸까?</a></li>
-  <li><a href="#-2-기본-문법-정리">기본 문법 정리</a></li>
-  <li><a href="#-3-전체-흐름-예시">전체 흐름 예시</a></li>
-  <li><a href="#-4-어디에-파일을-넣어야-할까">어디에 파일을 넣어야 할까?</a></li>
-  <li><a href="#-요약">요약</a></li>
-</ul>
-
-<hr />
-
-<h2 id="-1-thymeleaf는-왜-쓰는-걸까">🌱 1. Thymeleaf는 왜 쓰는 걸까?</h2>
-
-<blockquote>
-  <p>Spring Boot에서 매우 자주 사용되는 <strong>서버 사이드 템플릿 엔진</strong></p>
-</blockquote>
-
-<ul>
-  <li>HTML을 그저 정적인 파일로만 쓰는 게 아니라,<br />
-<strong>Spring Controller에서 전달한 데이터를 HTML에서 동적으로 표현하고 싶을 때</strong> Thymeleaf를 사용 - HTML에서 Java 객체나 데이터들을 <strong>동적으로 바인딩</strong>해서 화면에 보여줌.</li>
-</ul>
-
-<p>예를 들어,<br />
-사용자 이름을 동적으로 보여주려면 이런 식으로:</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p</span> <span class="na">th:text=</span><span class="s">"${user.name}"</span><span class="nt">&gt;</span>홍길동<span class="nt">&lt;/p&gt;</span>
-</code></pre></div></div>
-
-<p>Spring Controller에서 <code class="language-plaintext highlighter-rouge">user</code>라는 객체를 넘기면, <code class="language-plaintext highlighter-rouge">user.name</code>이 자동으로 대체돼서 HTML에 출력된다.</p>
-
-<hr />
-
-<h2 id="-2-기본-문법-정리">🧩 2. 기본 문법 정리</h2>
-
-<h3 id="-thtext--텍스트-출력">① <code class="language-plaintext highlighter-rouge">th:text</code> — 텍스트 출력</h3>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p</span> <span class="na">th:text=</span><span class="s">"${message}"</span><span class="nt">&gt;&lt;/p&gt;</span>
-</code></pre></div></div>
-
-<p>→ <code class="language-plaintext highlighter-rouge">${message}</code>의 값을 이 <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> 태그 안에 출력해줌.</p>
-
-<hr />
-
-<h3 id="-theach--반복문">② <code class="language-plaintext highlighter-rouge">th:each</code> — 반복문</h3>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;li</span> <span class="na">th:each=</span><span class="s">"item : ${items}"</span> <span class="na">th:text=</span><span class="s">"${item}"</span><span class="nt">&gt;&lt;/li&gt;</span>
-</code></pre></div></div>
-
-<p>→ <code class="language-plaintext highlighter-rouge">items</code> 리스트를 하나씩 꺼내서 <code class="language-plaintext highlighter-rouge">item</code>으로 반복해 <code class="language-plaintext highlighter-rouge">&lt;li&gt;</code>들을 만든다.</p>
-
-<hr />
-
-<h3 id="-thif-thunless--조건문">③ <code class="language-plaintext highlighter-rouge">th:if</code>, <code class="language-plaintext highlighter-rouge">th:unless</code> — 조건문</h3>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p</span> <span class="na">th:if=</span><span class="s">"${user != null}"</span><span class="nt">&gt;</span>로그인 성공<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;p</span> <span class="na">th:unless=</span><span class="s">"${user != null}"</span><span class="nt">&gt;</span>로그인 해주세요<span class="nt">&lt;/p&gt;</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="-thhref-thsrc--링크나-이미지-경로-바인딩">④ <code class="language-plaintext highlighter-rouge">th:href</code>, <code class="language-plaintext highlighter-rouge">th:src</code> — 링크나 이미지 경로 바인딩</h3>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/home}"</span><span class="nt">&gt;</span>홈으로<span class="nt">&lt;/a&gt;</span> <span class="nt">&lt;img</span> <span class="na">th:src=</span><span class="s">"@{/images/logo.png}"</span> <span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">@{/home}</code>은 <code class="language-plaintext highlighter-rouge">/home</code> 경로를 의미해. 상대경로, 쿼리스트링도 가능하다.</li>
-</ul>
-
-<hr />
-
-<h3 id="-thaction--form-전송-주소">⑤ <code class="language-plaintext highlighter-rouge">th:action</code> — form 전송 주소</h3>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/submit}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;&lt;/form&gt;</span>
-</code></pre></div></div>
-
-<p>→ <code class="language-plaintext highlighter-rouge">/submit</code>로 POST 요청을 보냄.</p>
-
-<hr />
-
-<h3 id="-thobject--thfield--폼-객체-바인딩">⑥ <code class="language-plaintext highlighter-rouge">th:object</code> + <code class="language-plaintext highlighter-rouge">th:field</code> — 폼 객체 바인딩</h3>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">th:object=</span><span class="s">"${userForm}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">th:field=</span><span class="s">"*{name}"</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
-</code></pre></div></div>
-
-<p>→ <code class="language-plaintext highlighter-rouge">userForm.getName()</code>과 연결돼서, 입력하면 자동으로 매핑됨.</p>
-
-<hr />
-
-<h2 id="-3-전체-흐름-예시">🧠 3. 전체 흐름 예시</h2>
-
-<h3 id="-controller">✅ Controller</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/hello"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="nc">String</span> <span class="nf">hello</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"message"</span><span class="o">,</span> <span class="s">"안녕하세요!"</span><span class="o">);</span>
-    <span class="k">return</span> <span class="s">"hello"</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="-html-hellohtml">✅ HTML (hello.html)</h3>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Hello<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;/head&gt;</span>
-  <span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;p</span> <span class="na">th:text=</span><span class="s">"${message}"</span><span class="nt">&gt;</span>기본 메시지<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre></div></div>
-
-<p>결과적으로는 <code class="language-plaintext highlighter-rouge">&lt;p&gt;안녕하세요!&lt;/p&gt;</code>가 출력된다.</p>
-
-<hr />
-
-<h2 id="-4-어디에-파일을-넣어야-할까">🧪 4. 어디에 파일을 넣어야 할까?</h2>
-
-<p>Thymeleaf 템플릿 파일들은 이곳에 넣는다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/main/resources/templates/
-</code></pre></div></div>
-
-<p>여기 안에 <code class="language-plaintext highlighter-rouge">hello.html</code>, <code class="language-plaintext highlighter-rouge">index.html</code> 같은 HTML 파일들을 넣으면 됨.<br />
-이 파일들은 Spring MVC의 Controller에서 return으로 연결할 수 있음</p>
-
-<hr />
-
-<h2 id="-요약">✨ 요약</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>기능</th>
-      <th>문법 예시</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>텍스트 출력</td>
-      <td><code class="language-plaintext highlighter-rouge">th:text="${data}"</code></td>
-    </tr>
-    <tr>
-      <td>반복</td>
-      <td><code class="language-plaintext highlighter-rouge">th:each="item : ${items}"</code></td>
-    </tr>
-    <tr>
-      <td>조건문</td>
-      <td><code class="language-plaintext highlighter-rouge">th:if</code>, <code class="language-plaintext highlighter-rouge">th:unless</code></td>
-    </tr>
-    <tr>
-      <td>링크 경로</td>
-      <td><code class="language-plaintext highlighter-rouge">th:href="@{/path}"</code></td>
-    </tr>
-    <tr>
-      <td>이미지 경로</td>
-      <td><code class="language-plaintext highlighter-rouge">th:src="@{/img/logo.png}"</code></td>
-    </tr>
-    <tr>
-      <td>폼 전송 경로</td>
-      <td><code class="language-plaintext highlighter-rouge">th:action="@{/submit}"</code></td>
-    </tr>
-    <tr>
-      <td>폼 객체 바인딩</td>
-      <td><code class="language-plaintext highlighter-rouge">th:object</code>, <code class="language-plaintext highlighter-rouge">th:field</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.]]></summary></entry></feed>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[논블로킹과 비동기에 대해 알아보자.]]></summary></entry></feed>
