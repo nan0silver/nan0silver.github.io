@@ -1,7 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-05-28T01:08:51+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-05-28T01:15:31+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[컨퍼런스] AI Tech 2025 참석 후기</title><link href="https://nan0silver.github.io/projectdiary/2025-05-15-diary/" rel="alternate" type="text/html" title="[컨퍼런스] AI Tech 2025 참석 후기" /><published>2025-05-15T00:00:00+00:00</published><updated>2025-05-28T01:08:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-05-15-diary/"><![CDATA[<blockquote>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[컨퍼런스] AI Tech 2025 참석 후기</title><link href="https://nan0silver.github.io/projectdiary/2025-05-15-diary/" rel="alternate" type="text/html" title="[컨퍼런스] AI Tech 2025 참석 후기" /><published>2025-05-15T00:00:00+00:00</published><updated>2025-05-28T01:14:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-05-15-diary/"><![CDATA[<ul>
+  <li><a href="#1-행사-개요">1. 행사 개요</a></li>
+  <li><a href="#2-키노트-요약-embodied-ai와-기술-진화-방향">2. 키노트 요약: Embodied AI와 기술 진화 방향</a></li>
+  <li><a href="#3-a2a-시대의-도래-agent-협업-구조">3. A2A 시대의 도래: Agent 협업 구조</a></li>
+  <li><a href="#4-ai는-이제-운영의-시대">4. AI는 이제 운영의 시대</a></li>
+  <li><a href="#5-실무-적용-사례-및-전략">5. 실무 적용 사례 및 전략</a></li>
+  <li><a href="#6-기술-인사이트">6. 기술 인사이트</a></li>
+  <li><a href="#7-결론">7. 결론</a></li>
+</ul>
+
+<blockquote>
   <p>실무자 중심의 AI 도입 이후 전략, 오케스트레이션 구조, 에이전트 협업 사례 중심</p>
 </blockquote>
 
@@ -29,7 +39,7 @@ AI 도입 이후 단계에서 실질적인 생산성을 확보하기 위한 전�
   <p>Embodied AI는 물리적 환경을 인식하고 그에 반응할 수 있는 에이전트로, 강화학습 및 체화 학습을 통해 자율성을 확보한다.</p>
 </blockquote>
 
-<p><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/82145661/448164887-76d2879b-b852-4e1e-95b9-715a1a9c824a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250528%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250528T010443Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=3e1da1f9900847a113d2f60899f7bde3f20244757464ad5a77b3ec544728e0ed&amp;X-Amz-SignedHeaders=host" alt="Embodied AI 개념 이미지" /><br />
+<p><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/82145661/448164887-76d2879b-b852-4e1e-95b9-715a1a9c824a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250528%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250528T010443Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=3e1da1f9900847a113d2f60899f7bde3f20244757464ad5a77b3ec544728e0ed&amp;X-Amz-SignedHeaders=host" /><br />
 <em>Figure: Embodied AI – 환경 인지, 판단, 행동이 통합된 AI 시스템</em></p>
 
 <hr />
@@ -126,7 +136,7 @@ AI 시스템에서도 <strong>다수의 특화 에이전트가 상호작용하�
 
 <blockquote>
   <p>기술을 넘어 전략으로서의 AI를 고민하게 된 의미 있는 자리였다.</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[AI Tech 2025 컨퍼런스에서 확인한 LLMOps, A2A, Embodied AI 등 최신 AI 시스템 운영 전략]]></summary></entry><entry><title type="html">[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?</title><link href="https://nan0silver.github.io/spring/2025-04-30-dto-division/" rel="alternate" type="text/html" title="[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?" /><published>2025-04-30T00:00:00+00:00</published><updated>2025-05-28T01:08:08+00:00</updated><id>https://nan0silver.github.io/spring/dto-division</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-30-dto-division/"><![CDATA[<ul>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[AI Tech 2025 컨퍼런스에서 확인한 LLMOps, A2A, Embodied AI 등 최신 AI 시스템 운영 전략]]></summary></entry><entry><title type="html">[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?</title><link href="https://nan0silver.github.io/spring/2025-04-30-dto-division/" rel="alternate" type="text/html" title="[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?" /><published>2025-04-30T00:00:00+00:00</published><updated>2025-05-28T01:14:50+00:00</updated><id>https://nan0silver.github.io/spring/dto-division</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-30-dto-division/"><![CDATA[<ul>
   <li><a href="#-api-응답을-위한-dto는-왜-나눠야-하는가">API 응답을 위한 DTO는 왜 나눠야 하는가?</a></li>
   <li><a href="#1️⃣-하나의-도메인-여러-개의-응답-목적">1. 하나의 도메인, 여러 개의 응답 목적</a></li>
   <li><a href="#2️⃣-필드-수가-아니라-의도로-판단해야-한다">2. “필드 수”가 아니라 “의도”로 판단해야 한다</a></li>
@@ -324,7 +334,7 @@ Detail은 사용자 경험 개선을 위한 <strong>리치한 UI 렌더링</stro
   <p><strong>DTO는 “얼마나 많은 데이터를 담는가”보다 “어떤 목적의 데이터를 담는가”가 더 중요하다.</strong></p>
 </blockquote>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[DTO를 나누는 기준에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사</title><link href="https://nan0silver.github.io/projectdiary/2025-04-28-diary/" rel="alternate" type="text/html" title="[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사" /><published>2025-04-28T00:00:00+00:00</published><updated>2025-05-28T01:08:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-28-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[DTO를 나누는 기준에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사</title><link href="https://nan0silver.github.io/projectdiary/2025-04-28-diary/" rel="alternate" type="text/html" title="[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사" /><published>2025-04-28T00:00:00+00:00</published><updated>2025-05-28T01:14:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-28-diary/"><![CDATA[<ul>
   <li><a href="#1-현재-버티-서비스-상황-분석">1. 현재 버티 서비스 상황 분석</a></li>
   <li><a href="#2-msa-구현-방안">2. MSA 구현 방안</a></li>
   <li><a href="#21-api-gateway-패턴-도입">2.1 API Gateway 패턴 도입</a></li>
@@ -505,7 +515,7 @@ Detail은 사용자 경험 개선을 위한 <strong>리치한 UI 렌더링</stro
   <li>
     <p>단계적 구현을 통해 점진적으로 MSA 아키텍처로 전환</p>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Boot MSA 구현 방식 조사]]></summary></entry><entry><title type="html">[Spring] PATCH vs PUT</title><link href="https://nan0silver.github.io/spring/2025-04-21-patch-put/" rel="alternate" type="text/html" title="[Spring] PATCH vs PUT" /><published>2025-04-21T00:00:00+00:00</published><updated>2025-05-28T01:08:08+00:00</updated><id>https://nan0silver.github.io/spring/patch-put</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-21-patch-put/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Boot MSA 구현 방식 조사]]></summary></entry><entry><title type="html">[Spring] PATCH vs PUT</title><link href="https://nan0silver.github.io/spring/2025-04-21-patch-put/" rel="alternate" type="text/html" title="[Spring] PATCH vs PUT" /><published>2025-04-21T00:00:00+00:00</published><updated>2025-05-28T01:14:50+00:00</updated><id>https://nan0silver.github.io/spring/patch-put</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-21-patch-put/"><![CDATA[<ul>
   <li><a href="#-1-기본-개념">1. 기본 개념</a></li>
   <li><a href="#-2-예시로-비교해보기">2. 예시로 비교해보기</a></li>
   <li><a href="#-3-핵심-차이-정리">3. 핵심 차이 정리</a></li>
@@ -653,7 +663,7 @@ Content-Type: application/json
 <ul>
   <li><strong>클라이언트가 전체 데이터를 항상 알고 있고, 전체 리소스를 대체해야 할 경우 → <code class="language-plaintext highlighter-rouge">PUT</code></strong></li>
   <li><strong>일부 필드만 수정할 때 → <code class="language-plaintext highlighter-rouge">PATCH</code></strong></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[PATCH와 PUT의 공통점과 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-28T01:08:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[PATCH와 PUT의 공통점과 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-28T01:14:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
   <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
   <li><a href="#2-카카오-소셜-로그인-이메일-누락-문제">카카오 소셜 로그인 이메일 누락 문제</a></li>
   <li><a href="#3-oauth2-인증-요청-정보-손실-문제">OAuth2 인증 요청 정보 손실 문제</a></li>
@@ -786,7 +796,7 @@ Content-Type: application/json
   <li>액세스 토큰과 리프레시 토큰을 분리 관리하여 보안성 강화</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 개발 중 마주한 사소한 이슈들 정리]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-28T01:08:08+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 개발 중 마주한 사소한 이슈들 정리]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-28T01:14:50+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
   <li><a href="#jparepository-상속">JpaRepository 상속</a></li>
   <li><a href="#-그렇다면-커스텀-쿼리는-어떻게-할까">그렇다면 커스텀 쿼리는 어떻게 할까?</a></li>
   <li><a href="#-개발자-관점-팁">개발자 관점 팁</a></li>
@@ -1017,7 +1027,7 @@ Content-Type: application/json
   <li><strong>복잡한 조건</strong> → <code class="language-plaintext highlighter-rouge">@Query</code> 또는 <code class="language-plaintext highlighter-rouge">QueryDSL</code>, <code class="language-plaintext highlighter-rouge">Specification</code> 권장</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-05-28T01:08:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-05-28T01:14:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
   <p>저번 프로젝트에서는 로그아웃을 구현하지 않고, 토큰 만료를 사용했는데 로그아웃을 구현해달라는 요청이 있었어서 이번 프로젝트에서는 제대로 알아보고 구현해보기로 하였다.</p>
 </blockquote>
 
@@ -1093,7 +1103,7 @@ Content-Type: application/json
 <ul>
   <li><a href="https://upcurvewave.tistory.com/611">JWT 토큰 기반의 상태 관리시 로그아웃 처리 문제</a></li>
   <li><a href="https://engineerinsight.tistory.com/232#google_vignette">[우테코] JWT 방식에서 로그아웃, Refresh Token 만들기(1)</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[JWT 로그인 구현 시 로그아웃 방법 고민..]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-05-28T01:08:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[JWT 로그인 구현 시 로그아웃 방법 고민..]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-05-28T01:14:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
   <li><a href="#1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</a></li>
   <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
   <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
@@ -1295,7 +1305,7 @@ Content-Type: application/json
 
 <p>Swagger와 Spring Security를 함께 사용할 때 마주친 실제적인 문제들을 해결하면서, 보안과 개발 편의성 사이에서 균형을 맞추는 경험을 할 수 있었습니다. 특히 프론트엔드 협업 관점에서 Swagger 인증 해제와 JWT 연동 설정은 협업 효율을 높이는 핵심 포인트였습니다.</p>
 
-<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Security와 Swagger 통합 이슈]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-05-28T01:08:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
+<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Security와 Swagger 통합 이슈]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-05-28T01:14:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
 
 <p>프로젝트를 처음 시작할 때 가장 고민했던 부분 중 하나는 <strong>전체 구조를 어떻게 잡을 것인가</strong>였습니다. 단순한 CRUD를 넘어서 소셜 로그인, 커뮤니티, AI 기반 정착 리포트 등 다양한 기능을 포함할 예정이었기 때문에, 기능이 늘어나더라도 유지보수가 쉽고, 각 도메인이 명확하게 분리되도록 설계하고 싶었습니다.</p>
 
@@ -1341,7 +1351,7 @@ Content-Type: application/json
 
 <p>도메인 주도 설계를 기반으로 구조를 잡는 과정은 단순히 코드를 예쁘게 나누는 것을 넘어서, 기능과 비즈니스 로직의 맥락(Context)을 코드 레벨에서 표현하는 데 큰 도움이 되었습니다. 또한 레이어드 아키텍처를 통해 각 계층의 역할이 명확해져 협업 시 작업 분담이나 코드 리뷰도 훨씬 효율적으로 이루어졌습니다.</p>
 
-<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 구조 설계 고민과 선택]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-05-28T01:08:08+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
+<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 구조 설계 고민과 선택]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-05-28T01:14:50+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
   <li><a href="#-논블로킹non-blocking이란">논블로킹이란?</a></li>
   <li><a href="#-실생활-비유로-논블로킹-이해하기">실생활 비유로 논블로킹 이해하기</a></li>
   <li><a href="#-블로킹-vs-논블로킹-기술적-요점-정리">블로킹 vs 논블로킹 기술적 요점 정리</a></li>
