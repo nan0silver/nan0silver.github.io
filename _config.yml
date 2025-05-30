@@ -59,8 +59,6 @@ menu:
   #   url:               /docs/
   - title: About
     url: /about/
-  - title: Flutter (2)
-    url: /flutter/
   - title: JavaScript (8)
     url: /javascript/
   - title: Algorithm (11)
@@ -73,7 +71,7 @@ menu:
     url: /flask/
   - title: Spring (12)
     url: /spring/
-  - title: Miscellaneous (14)
+  - title: Miscellaneous (16)
     url: /miscellaneous/
   - title: 프로젝트 일기 (6)
     url: /projectdiary/
