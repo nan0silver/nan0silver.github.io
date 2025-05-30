@@ -75,6 +75,8 @@ menu:
     url: /miscellaneous/
   - title: 프로젝트 일기 (6)
     url: /projectdiary/
+  - title: TIL (2)
+    url: /til/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
