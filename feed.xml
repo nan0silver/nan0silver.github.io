@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-05-30T07:39:03+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-05-30T07:51:17+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[컨퍼런스] AI Tech 2025 참석 후기</title><link href="https://nan0silver.github.io/projectdiary/2025-05-15-diary/" rel="alternate" type="text/html" title="[컨퍼런스] AI Tech 2025 참석 후기" /><published>2025-05-15T00:00:00+00:00</published><updated>2025-05-30T07:38:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-05-15-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[TIL] first til</title><link href="https://nan0silver.github.io/til/2025-05-30-til/" rel="alternate" type="text/html" title="[TIL] first til" /><published>2025-05-30T00:00:00+00:00</published><updated>2025-05-30T07:50:33+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-30-til/"><![CDATA[]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[2025.05.30 TIL]]></summary></entry><entry><title type="html">[컨퍼런스] AI Tech 2025 참석 후기</title><link href="https://nan0silver.github.io/projectdiary/2025-05-15-diary/" rel="alternate" type="text/html" title="[컨퍼런스] AI Tech 2025 참석 후기" /><published>2025-05-15T00:00:00+00:00</published><updated>2025-05-30T07:50:33+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-05-15-diary/"><![CDATA[<ul>
   <li><a href="#1-행사-개요">1. 행사 개요</a></li>
   <li><a href="#2-키노트-요약-embodied-ai와-기술-진화-방향">2. 키노트 요약: Embodied AI와 기술 진화 방향</a></li>
   <li><a href="#3-a2a-시대의-도래-agent-협업-구조">3. A2A 시대의 도래: Agent 협업 구조</a></li>
@@ -136,7 +136,7 @@ AI 시스템에서도 <strong>다수의 특화 에이전트가 상호작용하�
 
 <blockquote>
   <p>기술을 넘어 전략으로서의 AI를 고민하게 된 의미 있는 자리였다.</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[AI Tech 2025 컨퍼런스에서 확인한 LLMOps, A2A, Embodied AI 등 최신 AI 시스템 운영 전략]]></summary></entry><entry><title type="html">[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?</title><link href="https://nan0silver.github.io/spring/2025-04-30-dto-division/" rel="alternate" type="text/html" title="[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?" /><published>2025-04-30T00:00:00+00:00</published><updated>2025-05-30T07:38:17+00:00</updated><id>https://nan0silver.github.io/spring/dto-division</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-30-dto-division/"><![CDATA[<ul>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[AI Tech 2025 컨퍼런스에서 확인한 LLMOps, A2A, Embodied AI 등 최신 AI 시스템 운영 전략]]></summary></entry><entry><title type="html">[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?</title><link href="https://nan0silver.github.io/spring/2025-04-30-dto-division/" rel="alternate" type="text/html" title="[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?" /><published>2025-04-30T00:00:00+00:00</published><updated>2025-05-30T07:50:33+00:00</updated><id>https://nan0silver.github.io/spring/dto-division</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-30-dto-division/"><![CDATA[<ul>
   <li><a href="#-api-응답을-위한-dto는-왜-나눠야-하는가">API 응답을 위한 DTO는 왜 나눠야 하는가?</a></li>
   <li><a href="#1️⃣-하나의-도메인-여러-개의-응답-목적">1. 하나의 도메인, 여러 개의 응답 목적</a></li>
   <li><a href="#2️⃣-필드-수가-아니라-의도로-판단해야-한다">2. “필드 수”가 아니라 “의도”로 판단해야 한다</a></li>
@@ -334,7 +334,7 @@ Detail은 사용자 경험 개선을 위한 <strong>리치한 UI 렌더링</stro
   <p><strong>DTO는 “얼마나 많은 데이터를 담는가”보다 “어떤 목적의 데이터를 담는가”가 더 중요하다.</strong></p>
 </blockquote>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[DTO를 나누는 기준에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사</title><link href="https://nan0silver.github.io/projectdiary/2025-04-28-diary/" rel="alternate" type="text/html" title="[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사" /><published>2025-04-28T00:00:00+00:00</published><updated>2025-05-30T07:38:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-28-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[DTO를 나누는 기준에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사</title><link href="https://nan0silver.github.io/projectdiary/2025-04-28-diary/" rel="alternate" type="text/html" title="[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사" /><published>2025-04-28T00:00:00+00:00</published><updated>2025-05-30T07:50:33+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-28-diary/"><![CDATA[<ul>
   <li><a href="#1-현재-버티-서비스-상황-분석">1. 현재 버티 서비스 상황 분석</a></li>
   <li><a href="#2-msa-구현-방안">2. MSA 구현 방안</a></li>
   <li><a href="#21-api-gateway-패턴-도입">2.1 API Gateway 패턴 도입</a></li>
@@ -515,7 +515,7 @@ Detail은 사용자 경험 개선을 위한 <strong>리치한 UI 렌더링</stro
   <li>
     <p>단계적 구현을 통해 점진적으로 MSA 아키텍처로 전환</p>
   </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Boot MSA 구현 방식 조사]]></summary></entry><entry><title type="html">[Spring] PATCH vs PUT</title><link href="https://nan0silver.github.io/spring/2025-04-21-patch-put/" rel="alternate" type="text/html" title="[Spring] PATCH vs PUT" /><published>2025-04-21T00:00:00+00:00</published><updated>2025-05-30T07:38:17+00:00</updated><id>https://nan0silver.github.io/spring/patch-put</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-21-patch-put/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Boot MSA 구현 방식 조사]]></summary></entry><entry><title type="html">[Spring] PATCH vs PUT</title><link href="https://nan0silver.github.io/spring/2025-04-21-patch-put/" rel="alternate" type="text/html" title="[Spring] PATCH vs PUT" /><published>2025-04-21T00:00:00+00:00</published><updated>2025-05-30T07:50:33+00:00</updated><id>https://nan0silver.github.io/spring/patch-put</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-21-patch-put/"><![CDATA[<ul>
   <li><a href="#-1-기본-개념">1. 기본 개념</a></li>
   <li><a href="#-2-예시로-비교해보기">2. 예시로 비교해보기</a></li>
   <li><a href="#-3-핵심-차이-정리">3. 핵심 차이 정리</a></li>
@@ -663,7 +663,7 @@ Content-Type: application/json
 <ul>
   <li><strong>클라이언트가 전체 데이터를 항상 알고 있고, 전체 리소스를 대체해야 할 경우 → <code class="language-plaintext highlighter-rouge">PUT</code></strong></li>
   <li><strong>일부 필드만 수정할 때 → <code class="language-plaintext highlighter-rouge">PATCH</code></strong></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[PATCH와 PUT의 공통점과 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-30T07:38:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[PATCH와 PUT의 공통점과 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-30T07:50:33+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
   <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
   <li><a href="#2-카카오-소셜-로그인-이메일-누락-문제">카카오 소셜 로그인 이메일 누락 문제</a></li>
   <li><a href="#3-oauth2-인증-요청-정보-손실-문제">OAuth2 인증 요청 정보 손실 문제</a></li>
@@ -796,7 +796,7 @@ Content-Type: application/json
   <li>액세스 토큰과 리프레시 토큰을 분리 관리하여 보안성 강화</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 개발 중 마주한 사소한 이슈들 정리]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-30T07:38:17+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 개발 중 마주한 사소한 이슈들 정리]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-30T07:50:33+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
   <li><a href="#jparepository-상속">JpaRepository 상속</a></li>
   <li><a href="#-그렇다면-커스텀-쿼리는-어떻게-할까">그렇다면 커스텀 쿼리는 어떻게 할까?</a></li>
   <li><a href="#-개발자-관점-팁">개발자 관점 팁</a></li>
@@ -1027,7 +1027,7 @@ Content-Type: application/json
   <li><strong>복잡한 조건</strong> → <code class="language-plaintext highlighter-rouge">@Query</code> 또는 <code class="language-plaintext highlighter-rouge">QueryDSL</code>, <code class="language-plaintext highlighter-rouge">Specification</code> 권장</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-05-30T07:38:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-05-30T07:50:33+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
   <p>저번 프로젝트에서는 로그아웃을 구현하지 않고, 토큰 만료를 사용했는데 로그아웃을 구현해달라는 요청이 있었어서 이번 프로젝트에서는 제대로 알아보고 구현해보기로 하였다.</p>
 </blockquote>
 
@@ -1103,7 +1103,7 @@ Content-Type: application/json
 <ul>
   <li><a href="https://upcurvewave.tistory.com/611">JWT 토큰 기반의 상태 관리시 로그아웃 처리 문제</a></li>
   <li><a href="https://engineerinsight.tistory.com/232#google_vignette">[우테코] JWT 방식에서 로그아웃, Refresh Token 만들기(1)</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[JWT 로그인 구현 시 로그아웃 방법 고민..]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-05-30T07:38:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[JWT 로그인 구현 시 로그아웃 방법 고민..]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-05-30T07:50:33+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
   <li><a href="#1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</a></li>
   <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
   <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
@@ -1305,7 +1305,7 @@ Content-Type: application/json
 
 <p>Swagger와 Spring Security를 함께 사용할 때 마주친 실제적인 문제들을 해결하면서, 보안과 개발 편의성 사이에서 균형을 맞추는 경험을 할 수 있었습니다. 특히 프론트엔드 협업 관점에서 Swagger 인증 해제와 JWT 연동 설정은 협업 효율을 높이는 핵심 포인트였습니다.</p>
 
-<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Security와 Swagger 통합 이슈]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-05-30T07:38:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
+<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Security와 Swagger 통합 이슈]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-05-30T07:50:33+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
 
 <p>프로젝트를 처음 시작할 때 가장 고민했던 부분 중 하나는 <strong>전체 구조를 어떻게 잡을 것인가</strong>였습니다. 단순한 CRUD를 넘어서 소셜 로그인, 커뮤니티, AI 기반 정착 리포트 등 다양한 기능을 포함할 예정이었기 때문에, 기능이 늘어나더라도 유지보수가 쉽고, 각 도메인이 명확하게 분리되도록 설계하고 싶었습니다.</p>
 
@@ -1351,450 +1351,4 @@ Content-Type: application/json
 
 <p>도메인 주도 설계를 기반으로 구조를 잡는 과정은 단순히 코드를 예쁘게 나누는 것을 넘어서, 기능과 비즈니스 로직의 맥락(Context)을 코드 레벨에서 표현하는 데 큰 도움이 되었습니다. 또한 레이어드 아키텍처를 통해 각 계층의 역할이 명확해져 협업 시 작업 분담이나 코드 리뷰도 훨씬 효율적으로 이루어졌습니다.</p>
 
-<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 구조 설계 고민과 선택]]></summary></entry><entry><title type="html">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</title><link href="https://nan0silver.github.io/spring/2025-04-09-non-blocking/" rel="alternate" type="text/html" title="[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-05-30T07:38:17+00:00</updated><id>https://nan0silver.github.io/spring/non-blocking</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-09-non-blocking/"><![CDATA[<ul>
-  <li><a href="#-논블로킹non-blocking이란">논블로킹이란?</a></li>
-  <li><a href="#-실생활-비유로-논블로킹-이해하기">실생활 비유로 논블로킹 이해하기</a></li>
-  <li><a href="#-블로킹-vs-논블로킹-기술적-요점-정리">블로킹 vs 논블로킹 기술적 요점 정리</a></li>
-  <li><a href="#-논블로킹이-중요한-이유">논블로킹이 중요한 이유</a></li>
-  <li><a href="#️-어디서-논블로킹이-쓰이냐">어디서 논블로킹이 쓰이냐?</a></li>
-  <li><a href="#논블로킹non-blocking이랑-비동기asynchronous-비교">논블로킹(Non-blocking) 비동기(Asynchronous) 비교</a></li>
-  <li><a href="#completablefuture-webclient-코드-예시">CompletableFuture, WebClient 코드 예시</a></li>
-</ul>
-
-<hr />
-
-<h2 id="-논블로킹non-blocking이란">✅ 논블로킹(Non-blocking)이란?</h2>
-
-<h3 id="먼저-블로킹blocking이-뭔지부터-알아보자">먼저, 블로킹(Blocking)이 뭔지부터 알아보자</h3>
-
-<ul>
-  <li><strong>블로킹 방식</strong>은 어떤 작업이 끝날 때까지 프로그램이 <strong>멈춰서 기다리는 것</strong></li>
-  <li>웹 서버라면, DB 응답이나 외부 API 요청이 끝날 때까지 <strong>쓰레드가 잡혀서 못 움직임.</strong></li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 블로킹 방식 (예: RestTemplate)</span>
-<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="s">"http://api.example.com"</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="c1">// → 이 줄에서 응답이 올 때까지 멈춤</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"응답 받음!"</span><span class="o">);</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="-논블로킹-방식은">🚀 논블로킹 방식은?</h3>
-
-<ul>
-  <li><strong>기다리지 않는다.</strong> 요청을 보내고, 바로 다음 작업을 처리한다.</li>
-  <li>응답이 나중에 오면, 그때 콜백(또는 리액티브 스트림)을 통해 처리</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 논블로킹 방식 (예: WebClient)</span>
-<span class="n">webClient</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"http://api.example.com"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">retrieve</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">result</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"응답 받음! → "</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
-    <span class="o">});</span>
-
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"바로 다음 코드 실행됨!"</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>👆 여기서 중요한 건:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">subscribe()</code> 안에 있는 코드만 나중에 실행되고</li>
-  <li>서버 쓰레드는 그동안 다른 요청을 처리할 수 있다는 것</li>
-</ul>
-
-<hr />
-
-<h2 id="-실생활-비유로-논블로킹-이해하기">🍜 실생활 비유로 논블로킹 이해하기</h2>
-
-<h3 id="-블로킹-방식-짜장면집-주방장-1명">✅ 블로킹 방식: 짜장면집 주방장 1명</h3>
-
-<blockquote>
-  <p>손님이 주문 → 짜장면 끓이는 동안 주방장이 다음 주문을 못 받음<br />
-5명 동시에 오면? 4명은 그냥 기다림 (쓰레드 낭비, 느림)</p>
-</blockquote>
-
-<h3 id="-논블로킹-방식-주방장--자동면로봇">✅ 논블로킹 방식: 주방장 + 자동면로봇</h3>
-
-<blockquote>
-  <p>손님이 주문 → 기계에 넣고 대기표 발급 → 주방장은 다른 주문 처리<br />
-→ 주문 100개가 와도 효율적으로 동시에 처리 가능! (고성능, 확장성)</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-블로킹-vs-논블로킹-기술적-요점-정리">🧠 블로킹 vs 논블로킹 기술적 요점 정리</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>블로킹 방식</th>
-      <th>논블로킹 방식</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>처리 방식</td>
-      <td>요청 → 대기 → 응답</td>
-      <td>요청 → 바로 다음 처리 → 응답 오면 콜백</td>
-    </tr>
-    <tr>
-      <td>쓰레드 사용</td>
-      <td><strong>요청 1건당 쓰레드 1개</strong></td>
-      <td><strong>요청 수백건도 쓰레드 몇 개</strong>로 처리 가능</td>
-    </tr>
-    <tr>
-      <td>성능</td>
-      <td>낮은 동시성 처리</td>
-      <td>높은 동시성, 고성능</td>
-    </tr>
-    <tr>
-      <td>코드</td>
-      <td>간단하고 직관적</td>
-      <td>콜백이나 리액티브 스트림 필요</td>
-    </tr>
-    <tr>
-      <td>예시</td>
-      <td>RestTemplate, JDBC</td>
-      <td>WebClient, R2DBC, Netty 등</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-논블로킹이-중요한-이유">💡 논블로킹이 중요한 이유</h2>
-
-<h3 id="️-1-고성능-서버-만들기">✔️ 1. 고성능 서버 만들기</h3>
-
-<ul>
-  <li>수천~수만 명이 동시에 요청을 보내도 효율적으로 처리 가능</li>
-</ul>
-
-<h3 id="️-2-외부-api-많이-쓰는-서비스에서-유리">✔️ 2. 외부 API 많이 쓰는 서비스에서 유리</h3>
-
-<ul>
-  <li>다른 서비스의 응답을 기다리는 동안, 서버 리소스를 낭비하지 않음</li>
-</ul>
-
-<h3 id="️-3-msa-마이크로서비스-아키텍처에서-필수">✔️ 3. MSA (마이크로서비스 아키텍처)에서 필수</h3>
-
-<ul>
-  <li>서로 요청 주고받는 일이 많기 때문에 <strong>논블로킹 API가 매우 효율적</strong></li>
-</ul>
-
-<hr />
-
-<h2 id="️-어디서-논블로킹이-쓰이냐">🛠️ 어디서 논블로킹이 쓰이냐?</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>기술</th>
-      <th>논블로킹 여부</th>
-      <th>비고</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">WebClient</code></td>
-      <td>✅</td>
-      <td>REST API 호출</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Reactor Netty</code></td>
-      <td>✅</td>
-      <td>웹서버 / 클라이언트 엔진</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">R2DBC</code></td>
-      <td>✅</td>
-      <td>논블로킹 DB 클라이언트 (JDBC는 블로킹)</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Spring WebFlux</code></td>
-      <td>✅</td>
-      <td>전체 논블로킹 웹 프레임워크</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="논블로킹non-blocking이랑-비동기asynchronous-비교">“논블로킹(Non-blocking)”이랑 “비동기(Asynchronous)” 비교</h2>
-
-<blockquote>
-  <p>❌ <strong>같은 말 아님</strong>.<br />
-✅ <strong>서로 관련 있지만, 개념적으로 다르다.</strong></p>
-</blockquote>
-
-<h3 id="-핵심-차이-요약">🔍 핵심 차이 요약</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>비동기 (Asynchronous)</th>
-      <th>논블로킹 (Non-blocking)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>개념</td>
-      <td><strong>작업을 요청하고 바로 다음 코드 실행</strong> (응답 기다리지 않음)</td>
-      <td><strong>리소스(쓰레드 등)를 점유하지 않음</strong></td>
-    </tr>
-    <tr>
-      <td>초점</td>
-      <td><strong>시간(언제 실행될지 모름)</strong></td>
-      <td><strong>리소스 사용 여부</strong></td>
-    </tr>
-    <tr>
-      <td>예시</td>
-      <td>콜백, Future, Promise, Mono</td>
-      <td><code class="language-plaintext highlighter-rouge">read()</code> 호출 시 즉시 리턴</td>
-    </tr>
-    <tr>
-      <td>관련성</td>
-      <td>비동기 처리는 대부분 논블로킹 방식으로 구현됨</td>
-      <td>논블로킹이 항상 비동기인 건 아님</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="-비유로-설명">🎯 비유로 설명</h3>
-
-<h4 id="-비동기란">🍜 비동기란?</h4>
-
-<blockquote>
-  <p>“너 짜장면 하나, 그리고 바로 다음 손님 주세요~”</p>
-</blockquote>
-
-<ul>
-  <li>주문 받고 <strong>즉시 다음 손님 주문을 받는</strong> 방식</li>
-  <li>짜장면이 나올 때까지 <strong>기다리지 않음</strong></li>
-  <li>나중에 “주문하신 짜장면 나왔습니다~” 하고 <strong>알림이 옴 (콜백)</strong></li>
-</ul>
-
-<p>✅ 즉, “작업이 완료될 때까지 기다리지 않고 <strong>나중에 처리</strong>“가 핵심</p>
-
-<hr />
-
-<h4 id="-논블로킹이란">🥡 논블로킹이란?</h4>
-
-<blockquote>
-  <p>“면 삶는 동안 <strong>주방 공간을 계속 점유하지 않음</strong>”</p>
-</blockquote>
-
-<ul>
-  <li>요리를 맡긴 뒤 주방 공간을 <strong>즉시 다른 요리사에게 넘겨줌</strong></li>
-  <li>결과가 나올 때까지 그 <strong>리소스를 점유하지 않음</strong></li>
-</ul>
-
-<p>✅ 즉, <strong>요청을 처리 중인 동안에도 시스템 리소스를 점유하지 않음</strong>이 핵심</p>
-
-<hr />
-
-<h2 id="-코드-예시-비교">🧠 코드 예시 비교</h2>
-
-<h3 id="-블로킹--동기-가장-기본">🧱 블로킹 + 동기 (가장 기본)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="c1">// 이 줄에서 서버 응답이 올 때까지 기다림 (쓰레드 점유 O, 시간도 대기 O)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="-논블로킹--동기">🧱 논블로킹 + 동기</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="na">readNonBlocking</span><span class="o">();</span>  <span class="c1">// 지금 읽을 수 있는 데이터만 읽고 즉시 리턴</span>
-</code></pre></div></div>
-
-<ul>
-  <li>당장 읽을 게 없으면 빈 값만 주고 <strong>쓰레드는 곧바로 다음 작업 가능</strong></li>
-  <li>하지만 <strong>이 결과로 바로 처리함</strong> → <strong>동기적</strong></li>
-</ul>
-
-<hr />
-
-<h3 id="-논블로킹--비동기-진짜-고성능-시스템-핵심">🧱 논블로킹 + 비동기 (진짜 고성능 시스템 핵심!)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">webClient</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"/data"</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">retrieve</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">data</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"데이터 도착: "</span> <span class="o">+</span> <span class="n">data</span><span class="o">);</span>
-<span class="o">});</span>
-</code></pre></div></div>
-
-<ul>
-  <li>요청 후 <strong>바로 다음 코드 실행됨</strong> (비동기)</li>
-  <li><strong>쓰레드를 점유하지 않음</strong> (논블로킹)</li>
-  <li>응답이 왔을 때만 콜백으로 실행됨</li>
-</ul>
-
-<hr />
-
-<h3 id="-정리하자면">💡 정리하자면</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>설명</th>
-      <th>예</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>비동기</td>
-      <td>요청 → 응답 기다리지 않고 다른 작업함</td>
-      <td>콜백, <code class="language-plaintext highlighter-rouge">subscribe</code>, <code class="language-plaintext highlighter-rouge">Future</code>, <code class="language-plaintext highlighter-rouge">CompletableFuture</code></td>
-    </tr>
-    <tr>
-      <td>논블로킹</td>
-      <td>시스템 리소스를 점유하지 않음</td>
-      <td>WebClient, R2DBC, Netty</td>
-    </tr>
-    <tr>
-      <td>블로킹</td>
-      <td>결과 나올 때까지 멈춤</td>
-      <td>RestTemplate, JDBC</td>
-    </tr>
-    <tr>
-      <td>비동기 + 논블로킹</td>
-      <td>성능 최상 조합</td>
-      <td>WebFlux + Netty + R2DBC</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="completablefuture-webclient-코드-예시">CompletableFuture, WebClient 코드 예시</h2>
-
-<h3 id="-1-completablefuture로-비동기-스레드는-점유함--논블로킹-아님">✅ 1. <code class="language-plaintext highlighter-rouge">CompletableFuture</code>로 비동기 (스레드는 점유함 = 논블로킹 아님)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.concurrent.CompletableFuture</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutionException</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AsyncWithCompletableFuture</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ExecutionException</span><span class="o">,</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"비동기 시작"</span><span class="o">);</span>
-
-        <span class="nc">CompletableFuture</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">future</span> <span class="o">=</span> <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">supplyAsync</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
-            <span class="c1">// 시간이 오래 걸리는 작업 (예: API 호출 시뮬레이션)</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">2000</span><span class="o">);</span> <span class="c1">// 2초 대기 (스레드 점유)</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-            <span class="o">}</span>
-            <span class="k">return</span> <span class="s">"API 결과값"</span><span class="o">;</span>
-        <span class="o">});</span>
-
-        <span class="c1">// 다른 작업 수행</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"다른 작업 수행 중..."</span><span class="o">);</span>
-
-        <span class="c1">// 결과 기다리기</span>
-        <span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="na">get</span><span class="o">();</span> <span class="c1">// 여기서 block됨</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"결과: "</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="-포인트">📌 포인트:</h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">CompletableFuture</code>는 비동기처럼 보이지만 <strong>실제로는 별도 스레드를 점유</strong>함.</li>
-  <li><code class="language-plaintext highlighter-rouge">.get()</code>을 호출하면 <strong>결과를 기다리는 동안 block</strong>됨.</li>
-</ul>
-
-<hr />
-
-<h2 id="-2-webclient로-진짜-논블로킹--비동기">🛸 2. <code class="language-plaintext highlighter-rouge">WebClient</code>로 진짜 논블로킹 + 비동기</h2>
-
-<blockquote>
-  <p>의존성 필요:
-<a href="https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux">mvn repository</a></p>
-</blockquote>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- build.gradle 혹은 pom.xml --&gt;</span>
-implementation 'org.springframework.boot:spring-boot-starter-webflux'
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.web.reactive.function.client.WebClient</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">reactor.core.publisher.Mono</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AsyncWithWebClient</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">WebClient</span> <span class="n">client</span> <span class="o">=</span> <span class="nc">WebClient</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
-
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"WebClient 비동기 호출 시작"</span><span class="o">);</span>
-
-        <span class="nc">Mono</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"https://jsonplaceholder.typicode.com/todos/1"</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">retrieve</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-
-        <span class="n">response</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">body</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"응답 도착: "</span> <span class="o">+</span> <span class="n">body</span><span class="o">));</span>
-
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"다른 작업 수행 중..."</span><span class="o">);</span>
-
-        <span class="c1">// 실제로 메인 스레드가 먼저 종료될 수 있어서 약간 대기</span>
-        <span class="k">try</span> <span class="o">{</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">3000</span><span class="o">);</span> <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="-포인트-1">📌 포인트:</h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">WebClient</code>는 진짜 논블로킹 (스레드 점유 X)</li>
-  <li><code class="language-plaintext highlighter-rouge">.subscribe()</code>로 <strong>콜백 기반 응답 처리</strong></li>
-  <li><strong>메인 스레드는 응답 기다리지 않음</strong>, 논블로킹 체험 가능</li>
-</ul>
-
-<hr />
-
-<h2 id="️-비교-요약">⚖️ 비교 요약</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th><code class="language-plaintext highlighter-rouge">CompletableFuture</code></th>
-      <th><code class="language-plaintext highlighter-rouge">WebClient</code> (WebFlux)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>스레드 점유</td>
-      <td>O (다른 스레드가 일 함)</td>
-      <td>X (논블로킹 방식)</td>
-    </tr>
-    <tr>
-      <td>비동기 처리 방식</td>
-      <td>Future 기반</td>
-      <td>리액티브 스트림 (Mono/Flux)</td>
-    </tr>
-    <tr>
-      <td>논블로킹 체험 가능 여부</td>
-      <td>부분적으로 (Thread 풀에 의존)</td>
-      <td>O (진짜 논블로킹)</td>
-    </tr>
-    <tr>
-      <td>사용 목적</td>
-      <td>간단한 비동기 로직</td>
-      <td>고성능, 동시성 높은 네트워크 호출</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[논블로킹과 비동기에 대해 알아보자.]]></summary></entry></feed>
+<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 구조 설계 고민과 선택]]></summary></entry></feed>
