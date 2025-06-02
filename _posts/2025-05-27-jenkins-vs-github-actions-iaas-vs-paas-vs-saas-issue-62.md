@@ -1,0 +1,100 @@
+---
+layout: post
+title: "Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS"
+description: >
+  Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS에 대한 TIL 기록
+categories: ["git"]
+tags: ["TIL", "Git", "DevOps"]
+date: 2025-05-27 00:00:00
+last_modified_at: 2025-05-28 00:36:49
+github_issue: 62
+github_url: https://github.com/nan0silver/TIL/issues/62
+sitemap: false
+---
+
+> 📝 **TIL (Today I Learned)**  
+> 🔗 **원본 이슈**: [#62](https://github.com/nan0silver/TIL/issues/62)  
+> 📅 **작성일**: 2025-05-27  
+> 🔄 **최종 수정**: 2025년 05월 28일
+
+---
+
+## 🍀 새롭게 배운 것
+
+- AI Tech 2025 : AI 융합 비즈니스 개발 컨퍼런스 후기 작성 완료!
+  - [Tistory](https://silvernh.tistory.com/3)
+
+### 1️⃣ **Jenkins vs GitHub Actions**
+
+둘 다 \*\*CI/CD(지속적 통합/지속적 배포)\*\*를 자동화하는 도구다.
+개발자가 코드를 push하면 **자동으로 빌드하고, 테스트하고, 배포**까지 해주는 파이프라인 역할.
+
+| 항목            | Jenkins                                 | GitHub Actions                             |
+| --------------- | --------------------------------------- | ------------------------------------------ |
+| 배포 방식       | 직접 서버에 설치 (온프레미스, 클라우드) | GitHub 내장 서비스 (클라우드 기반)         |
+| 파이프라인 구성 | Groovy 기반 DSL (Jenkinsfile)           | YAML 기반 설정 (.github/workflows/)        |
+| UI/플러그인     | 수많은 플러그인과 커스터마이징 가능     | GitHub 생태계에 최적화된 워크플로우        |
+| 설정 난이도     | 다소 복잡 (서버 관리 필요)              | 상대적으로 간단하고 빠른 적용 가능         |
+| 장점            | 유연한 환경 설정, 다양한 툴 연동 가능   | GitHub와 완벽하게 통합, 설정이 간단        |
+| 단점            | 서버 유지보수 필요, 러닝커브 있음       | GitHub 내에서만 동작 (GitLab, Bitbucket X) |
+
+> ✅ GitHub Actions는 빠르게 CI/CD를 도입하고 싶은 팀에 좋고,
+> ✅ Jenkins는 복잡한 환경이나 내부망에서의 CI/CD가 필요할 때 적합하다.
+
+---å
+
+### 🧪 간단 예시 – GitHub Actions
+
+```yaml
+# .github/workflows/deploy.yml
+name: Build and Deploy
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: ./gradlew build
+```
+
+---
+
+### 2️⃣ **IaaS vs PaaS vs SaaS**
+
+클라우드 서비스 모델을 구분할 때 자주 등장하는 세 가지 개념.
+"내가 어디까지 책임지고, 어디서부터는 제공자가 해주는가?"가 핵심.
+
+#### ✅ 개념 요약
+
+| 구분                               | 설명                                    | 예시                              |
+| ---------------------------------- | --------------------------------------- | --------------------------------- |
+| IaaS (Infrastructure as a Service) | 인프라만 제공받고, OS부터 직접 설치     | AWS EC2, Google Compute Engine    |
+| PaaS (Platform as a Service)       | 실행 환경까지 제공, 앱 코드만 올리면 됨 | Heroku, Google App Engine, Render |
+| SaaS (Software as a Service)       | 소프트웨어 완제품 사용                  | Gmail, Notion, Slack              |
+
+#### ✅ 비교 예시
+
+| 항목        | IaaS                    | PaaS               | SaaS                       |
+| ----------- | ----------------------- | ------------------ | -------------------------- |
+| 서버 관리   | 내가 함                 | 클라우드가 함      | 필요 없음                  |
+| 개발 유연성 | 높음                    | 중간               | 거의 없음                  |
+| 배포 편의성 | 낮음 (직접 설정)        | 높음 (코드만 배포) | 매우 높음 (사용만 하면 됨) |
+| 대상 사용자 | 인프라 엔지니어, DevOps | 백엔드 개발자      | 일반 사용자, 마케터 등     |
+
+---
+
+### 🧠 요약 정리
+
+| 질문                                      | 답변                                                 |
+| ----------------------------------------- | ---------------------------------------------------- |
+| Jenkins랑 GitHub Actions 중 뭐가 더 쉽지? | GitHub Actions! 설정이 YAML이고 GitHub랑 연동이 편함 |
+| IaaS는 언제 써야 해?                      | 서버에 대해 완전히 커스터마이징이 필요할 때          |
+| SaaS는 어떤 거야?                         | 구글 드라이브, 노션, 슬랙처럼 바로 쓰는 서비스       |
+
+---
+
+> 오늘의 핵심:
+> ✅ CI/CD 도구는 "내가 코드를 어떻게 자동화할지"에 따라 고르고,
+> ✅ 클라우드 서비스 모델은 "어디까지 직접 관리할지"에 따라 고른다.

@@ -1,0 +1,101 @@
+---
+layout: post
+title: "RPM, 앙상블, 비용, WSL, Windows Subsystem for Linux 2, Phoenix vs Snowflake"
+description: >
+  RPM, 앙상블, 비용, WSL, Windows Subsystem for Linux 2, Phoenix vs Snowflake에 대한 TIL 기록
+categories: ["miscellaneous"]
+tags: ["TIL"]
+date: 2025-05-21 00:00:00
+last_modified_at: 2025-05-27 03:53:22
+github_issue: 58
+github_url: https://github.com/nan0silver/TIL/issues/58
+sitemap: false
+---
+
+> 📝 **TIL (Today I Learned)**  
+> 🔗 **원본 이슈**: [#58](https://github.com/nan0silver/TIL/issues/58)  
+> 📅 **작성일**: 2025-05-21  
+> 🔄 **최종 수정**: 2025년 05월 27일
+
+---
+
+## 🍀 새롭게 배운 것
+
+### 1️⃣ **RPM, 앙상블, 비용**
+
+- **RPM (Revolutions Per Minute)**
+
+  - 원래는 하드디스크나 모터 회전 속도를 나타내는 단위지만, \*\*웹/앱 분석에서는 보통 "Revenue Per Mille(천 회당 수익)"\*\*로 사용된다.
+  - 광고 업계에서는 광고가 **1,000번 노출될 때 수익이 얼마인지**를 뜻함.
+
+    - 예: RPM = 5라면, 1,000번 광고 노출 시 수익이 \$5
+
+  - 수익성을 평가하는 지표로 자주 사용됨.
+
+- **앙상블 (Ensemble)**
+
+  - 머신러닝에서 여러 모델을 조합해 **예측 정확도를 향상시키는 기법**
+  - 주요 기법:
+
+    - **Bagging** (ex. Random Forest)
+    - **Boosting** (ex. XGBoost, LightGBM)
+    - **Stacking** (모델들의 출력값을 다시 모델에 입력)
+
+  - 하나의 모델보다 성능이 좋을 가능성이 높고, 특히 Kaggle 등 실전 대회에서 필수 전략임.
+
+- **비용 (Cost)**
+
+  - 머신러닝에서의 비용은 보통 **오차(error)를 수치화한 값**
+  - 목표는 이 비용(Cost)을 **최소화하는 모델 파라미터를 찾는 것**
+
+    - 예: 회귀에서는 **MSE (Mean Squared Error)**
+    - 분류에서는 **Cross Entropy** 같은 손실 함수 사용
+
+---
+
+### 2️⃣ **WSL, Windows Subsystem for Linux 2**
+
+- **WSL (Windows Subsystem for Linux)**
+
+  - Windows에서 Linux 환경을 사용할 수 있게 해주는 Microsoft의 호환 계층
+  - WSL2는 WSL1과 달리 **실제 Linux 커널을 가상 머신 위에 구동**시킴
+
+    - 더 빠르고 호환성이 뛰어남 (ex. Docker 사용 가능)
+
+  - 개발자가 **Mac 없이도 Unix/Linux 개발 환경**을 Windows에서 구성할 수 있어 유용함
+
+- **UNIX vs MacOS vs WSL2 vs Tux**
+
+  - **UNIX**: OS 설계 철학/표준, 안정성과 보안성으로 서버 환경에서 많이 사용됨
+  - **MacOS**: BSD 계열의 UNIX 기반 OS → 터미널 환경이 UNIX 명령어와 유사
+  - **WSL2**: 윈도우 안에서 리눅스 환경을 제공해, 리눅스 개발 도구 사용 가능
+  - **Tux**: 리눅스의 공식 마스코트 펭귄 이름 🐧
+
+> 요약: Mac이나 Linux 서버가 없더라도 WSL2를 쓰면 로컬에서 UNIX 개발 환경을 손쉽게 세팅할 수 있다.
+
+---
+
+### 3️⃣ **Phoenix vs Snowflake**
+
+- 이 두 용어는 **데이터 웨어하우스 시스템** 및 **클라우드 아키텍처** 문맥에서 자주 사용됨.
+
+#### 🔥 Phoenix Server (불사조 서버)
+
+- 시스템을 중단하지 않고 **점진적으로 설정, 코드, 인프라를 바꾸는 방식**
+- “죽지 않는 서버”
+- 실시간으로 코드를 수정하거나, 배포 중에도 유저에게 영향을 주지 않음
+- 하지만 시간이 지날수록 **기술 부채**가 쌓일 수 있음
+
+#### ❄️ Snowflake Server (눈송이 서버)
+
+- 수작업 설정이 많고, **특정 환경에서만 작동하는 불안정한 서버**
+- 배포마다 설정이 조금씩 달라서, 한번 망가지면 **복원하기 어려움**
+- 반의어로 **Immutable Infrastructure** (변경 불가능한 인프라)가 선호됨
+
+  - 예: 컨테이너 기반 인프라 (Docker + CI/CD)
+
+> 요약:
+>
+> - **Phoenix 서버**는 장기적으로 위험이 쌓이고,
+> - **Snowflake 서버**는 설정 의존도가 높아 불안정하며,
+> - \*\*이 둘을 피하기 위해 IaC(Infrastructure as Code)\*\*와 컨테이너, 배포 자동화를 쓰는 것이 최신 DevOps 흐름이다.
