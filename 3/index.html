@@ -30,7 +30,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Page 3 of 7 for Blog | NAHYUN BLOG</title>
+<title>Page 3 of 8 for Blog | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Blog" />
 <meta name="author" content="Nahyun Eun 은나현" />
@@ -47,7 +47,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="Blog" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-06-02T08:37:07+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/3/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-06-02T08:39:34+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/3/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -110,7 +110,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-06-02T08:37:50+00:00',
+    INDEX_KEY: 'index--2025-06-02T08:40:18+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -443,11 +443,699 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-java-concurrency" class="page post mb6" role="article">
+<article id="post-spring-thymeleaf" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/java/2025-03-09-concurrency/" class="flip-title">
-        [JAVA] 동시성 처리 (Concurrency)
+      <a href="/spring/2025-04-09-thymeleaf/" class="flip-title">
+        [Spring] Thymeleaf
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-04-09T00:00:00+00:00">09 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-06-02T08:39:34+00:00">2025-06-02</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#-1-thymeleaf는-왜-쓰는-걸까">Thymeleaf는 왜 쓰는 걸까?</a></li>
+  <li><a href="#-2-기본-문법-정리">기본 문법 정리</a></li>
+  <li><a href="#-3-전체-흐름-예시">전체 흐름 예시</a></li>
+  <li><a href="#-4-어디에-파일을-넣어야-할까">어디에 파일을 넣어야 할까?</a></li>
+  <li><a href="#-요약">요약</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-09-thymeleaf/">[Spring] Thymeleaf</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-spring-non-blocking" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/spring/2025-04-09-non-blocking/" class="flip-title">
+        [Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-04-09T00:00:00+00:00">09 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-06-02T08:39:34+00:00">2025-06-02</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      논블로킹과 비동기에 대해 알아보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#-논블로킹non-blocking이란">논블로킹이란?</a></li>
+  <li><a href="#-실생활-비유로-논블로킹-이해하기">실생활 비유로 논블로킹 이해하기</a></li>
+  <li><a href="#-블로킹-vs-논블로킹-기술적-요점-정리">블로킹 vs 논블로킹 기술적 요점 정리</a></li>
+  <li><a href="#-논블로킹이-중요한-이유">논블로킹이 중요한 이유</a></li>
+  <li><a href="#️-어디서-논블로킹이-쓰이냐">어디서 논블로킹이 쓰이냐?</a></li>
+  <li><a href="#논블로킹non-blocking이랑-비동기asynchronous-비교">논블로킹(Non-blocking) 비동기(Asynchronous) 비교</a></li>
+  <li><a href="#completablefuture-webclient-코드-예시">CompletableFuture, WebClient 코드 예시</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-09-non-blocking/">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-spring-jpa-mybatis" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/spring/2025-04-05-jpa-mybatis/" class="flip-title">
+        [Spring] JPA vs MyBatis
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-04-05T00:00:00+00:00">05 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-06-02T08:39:34+00:00">2025-06-02</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      JPA vs MyBatis에 대 알아보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#-jpa란-java-persistence-api">JPA란?</a></li>
+  <li><a href="#-mybatis란">MyBatis란?</a></li>
+  <li><a href="#-jpa-vs-mybatis">🔍 JPA vs MyBatis</a></li>
+  <li><a href="#jpa-vs-mybatis-비유로-이해하기">JPA vs MyBatis 비유로 이해하기</a></li>
+  <li><a href="#-jpa-vs-mybatis-코드로-비교하기">JPA vs MyBatis 코드로 비교하기</a></li>
+  <li><a href="#-사용-방식-차이-요약">사용 방식 차이 요약</a></li>
+  <li><a href="#-장단점-비교">장단점 비교</a></li>
+  <li><a href="#-실무에-쓰는-방법">실무에 쓰는 방법</a></li>
+  <li><a href="#-한줄-정리">한줄 정리</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-05-jpa-mybatis/">[Spring] JPA vs MyBatis</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-spring-dto-vo" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/spring/2025-04-02-dto-vo/" class="flip-title">
+        [Spring] DTO vs VO vs Entity
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-04-02T00:00:00+00:00">02 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-06-02T08:39:34+00:00">2025-06-02</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#dto-vs-vo-vs-entity">DTO vs VO vs Entity</a></li>
+  <li><a href="#-dto-vs-vo">📦 DTO vs VO</a></li>
+  <li><a href="#-entity-vs-vo">📦 Entity vs VO</a></li>
+  <li><a href="#-entity와-dto로-분리해야하는-이유">📦 Entity와 DTO로 분리해야하는 이유</a></li>
+  <li><a href="#코드-예제">코드 예제</a></li>
+  <li><a href="#-면접-시-설명-예시">💬 면접 시 설명 예시</a></li>
+  <li><a href="#-java-17부터는-record로-vo를-만들기-더-쉬워짐">🚀 Java 17부터는 <code class="language-plaintext highlighter-rouge">record</code>로 VO를 만들기 더 쉬워짐!</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-02-dto-vo/">[Spring] DTO vs VO vs Entity</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-spring-resttemplate" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/spring/2025-04-01-resttemplate/" class="flip-title">
+        [Spring] HttpURLConnection, RestTemplate, WebClient
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-04-01T00:00:00+00:00">01 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-06-02T08:39:34+00:00">2025-06-02</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Java 환경에서 사용되는 HTTP 클라이언트인 <code class="language-plaintext highlighter-rouge">HttpURLConnection</code>, <code class="language-plaintext highlighter-rouge">RestTemplate</code>, <code class="language-plaintext highlighter-rouge">WebClient</code>를 비교해보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#-먼저-한눈에-보는-비교표">한눈에 보는 비교표</a></li>
+  <li><a href="#-1-httpurlconnection--java-기본-클래스">1. HttpURLConnection</a></li>
+  <li><a href="#-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트">2. RestTemplate</a></li>
+  <li><a href="#-3-webclient--비동기--논블로킹-방식의-최신-http-클라이언트">3. WebClient</a></li>
+  <li><a href="#-현업-개발자들은-어떻게-생각할까">현업 개발자들은 어떻게 생각할까?</a></li>
+  <li><a href="#-간단-정리-">간단 정리</a></li>
+  <li><a href="#-선택-가이드">선택 가이드</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-01-resttemplate/">[Spring] HttpURLConnection, RestTemplate, WebClient</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-miscellaneous-sql-injection" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/miscellaneous/2025-03-31-sql-injection/" class="flip-title">
+        [Etc] 💣 SQL Injection
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-03-31T00:00:00+00:00">31 Mar 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-06-02T08:39:34+00:00">2025-06-02</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#sql-injection이란">SQL Injection이란?</a></li>
+  <li><a href="#-spring-관점에서-sql-injection-방지법">Spring 관점에서 SQL Injection 방지법</a></li>
+  <li><a href="#-spring-배우는-입장에서-조심할-포인트-요약">요약</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-03-31-sql-injection/">[Etc] 💣 SQL Injection</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-algorithm-is-prime" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/algorithm/2025-03-20-is-prime/" class="flip-title">
+        [Algorithm] 소수 빠르게 찾는 법
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-03-20T00:00:00+00:00">20 Mar 2025</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-06-02T08:39:34+00:00">2025-06-02</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ol>
+  <li><a href="#1️⃣-기본-소수-판별-on">기본 소수 판별</a></li>
+  <li><a href="#2️⃣-에라토스테네스의-체-on-log-log-n">에라토스테네스의 체</a></li>
+  <li><a href="#3️⃣-miller-rabin-소수판별법-olog-n">Miller-Rabin 소수 판별법</a></li>
+</ol>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/algorithm/2025-03-20-is-prime/">[Algorithm] 소수 빠르게 찾는 법</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-spring-servlet-vs-spring" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/spring/2025-03-17-servlet-vs-spring/" class="flip-title">
+        [Spring] Spring VS Servlet
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-03-17T00:00:00+00:00">17 Mar 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-06-02T08:39:34+00:00">2025-06-02</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Spring과 Servlet의 차이 대해 알아보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#-servlet과-spring의-차이-쉽게-이해하기">Servlet과 Spring의 차이</a></li>
+  <li><a href="#servlet-직접-요청을-처리하는-원시적인-방식">Servlet</a></li>
+  <li><a href="#spring-웹-개발을-쉽게-만들어주는-프레임워크">Spring</a></li>
+  <li><a href="#servlet-vs-spring-비교-정리">Servlet vs Spring 비교 정리 표</a></li>
+  <li><a href="#-결론-spring이-servlet보다-훨씬-편리하다">결론</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/spring/2025-03-17-servlet-vs-spring/">[Spring] Spring VS Servlet</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-miscellaneous-layered-architecture" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/miscellaneous/2025-03-17-layered-architecture/" class="flip-title">
+        [Etc] 🤖 Layered Architecture &amp; MVC pattern
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-03-17T00:00:00+00:00">17 Mar 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-06-02T08:39:34+00:00">2025-06-02</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</a></li>
+  <li><a href="#mvc란">MVC란?</a></li>
+  <li><a href="#레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-03-17-layered-architecture/">[Etc] 🤖 Layered Architecture &amp; MVC pattern</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-java-record" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/java/2025-03-09-record/" class="flip-title">
+        [JAVA] record
       </a>
     </h1>
 
@@ -466,7 +1154,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-06-02T08:37:07+00:00">2025-06-02</time>
+              <time datetime="2025-06-02T08:39:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -482,7 +1170,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      동시성 처리에 관한 3가지 관점에 대해 이야기해보자.
+      Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자.
 
     </p>
   
@@ -492,11 +1180,13 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#java에서-동시성">JAVA에서 동시성</a></li>
-  <li><a href="#스레드-thread">스레드 (Thread)</a></li>
-  <li><a href="#비동기-처리-async">비동기 처리 (Aysnc)</a></li>
-  <li><a href="#분산-처리-distributed">분산 처리 (Distribute)</a></li>
-  <li><a href="#핵심-키워드-및-정리">핵심 키워드 및 정리</a></li>
+  <li><a href="#-record란-java-14">record란?</a></li>
+  <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
+  <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
+  <li><a href="#3️⃣-record의-내부-동작">record 내부 동작</a></li>
+  <li><a href="#4️⃣-record의-주요-기능">record 주요 기능</a></li>
+  <li><a href="#5️⃣-record를-언제-사용할까">record 사용 방법</a></li>
+  <li><a href="#6️⃣-정리">정리</a></li>
 </ul>
 
 
@@ -505,696 +1195,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/java/2025-03-09-concurrency/">[JAVA] 동시성 처리 (Concurrency)</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-spring-boiler-plate" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/spring/2025-03-06-boiler-plate/" class="flip-title">
-        [Etc] 🎞️ Boilerplate와 Lombok
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-03-06T00:00:00+00:00">06 Mar 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-06-02T08:37:07+00:00">2025-06-02</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#보일러플레이트boilerplate란">보일러플레이트(Boilerplate)란?</a></li>
-  <li><a href="#보일러플레이트의-특징">보일러플레이트의 특징</a></li>
-  <li><a href="#예제-코드">예제 코드</a></li>
-  <li><a href="#lombok">Lombok</a></li>
-  <li><a href="#-롬복의-장점">롬복의 장점</a></li>
-  <li><a href="#spring에서의-보일러플레이트-해결-구조">Spring에서의 보일러플레이트 해결 구조</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/spring/2025-03-06-boiler-plate/">[Etc] 🎞️ Boilerplate와 Lombok</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-miscellaneous-immutable" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-03-06-immutable/" class="flip-title">
-        [Etc] immutable, final, constant
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-03-06T00:00:00+00:00">06 Mar 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-06-02T08:37:07+00:00">2025-06-02</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#immutable-불변"><code class="language-plaintext highlighter-rouge">Immutable</code></a></li>
-  <li><a href="#final-최종-변경-불가"><code class="language-plaintext highlighter-rouge">final</code></a></li>
-  <li><a href="#const-상수"><code class="language-plaintext highlighter-rouge">const</code></a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-03-06-immutable/">[Etc] immutable, final, constant</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-java-arraylist-array" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/java/2025-02-25-arraylist-array/" class="flip-title">
-        [JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-02-25T00:00:00+00:00">25 Feb 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-06-02T08:37:07+00:00">2025-06-02</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      ArrayList와 배열(int[])의 성능을 비교해보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#-arraylistinteger는-언제-더-유리할까"><code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code>는 언제 더 유리할까?</a></li>
-  <li><a href="#-int-배열이-더-유리한-경우"><code class="language-plaintext highlighter-rouge">int[] 배열</code>이 더 유리한 경우</a></li>
-  <li><a href="#-성능-비교-실험-java">성능 비교 실험 (Java)</a></li>
-  <li><a href="#-결론-언제-arraylist를-쓰고-언제-배열int을-써야-할까">결론: 언제 <code class="language-plaintext highlighter-rouge">ArrayList</code>를 쓰고, 언제 <code class="language-plaintext highlighter-rouge">배열(int[])</code>을 써야 할까?</a></li>
-  <li><a href="#추가--hashmapinteger-integer와의-성능-비교">추가 : HashMap&lt;Integer, Integer&gt;와의 성능 비교</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/java/2025-02-25-arraylist-array/">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-java-solid" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/java/2025-02-23-solid/" class="flip-title">
-        [JAVA] SOLID 원칙
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-02-23T00:00:00+00:00">23 Feb 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-06-02T08:37:07+00:00">2025-06-02</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#1-srp-single-responsibility-principle">1. 단일 책임 원칙</a></li>
-  <li><a href="#2-ocp-openclosed-principle">2. 개방-폐쇄 원칙</a></li>
-  <li><a href="#3-lsp-liskov-substitution-principle">3. 리스코프 치환 원칙</a></li>
-  <li><a href="#4-isp-interface-segregation-principle">4. 인터페이스 분리 원칙</a></li>
-  <li><a href="#5-dip-dependency-inversion-principle">5. 의존성 역전 원칙</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/java/2025-02-23-solid/">[JAVA] SOLID 원칙</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-miscellaneous-token" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-02-22-token/" class="flip-title">
-        [Etc] 🔑 Access Token과 Refresh Token 완벽 정리
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-02-22T00:00:00+00:00">22 Feb 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-06-02T08:37:07+00:00">2025-06-02</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
-  <li><a href="#2-access-token">Access Token</a></li>
-  <li><a href="#3-refresh-token">Refresh Token</a></li>
-  <li><a href="#4-access-token-vs-refresh-token-비교">Access Token vs. Refresh Token 비교</a></li>
-  <li><a href="#5-access-token과-refresh-token을-사용하는-이유">Access Token과 Refresh Token을 사용하는 이유</a></li>
-  <li><a href="#6-access-token과-refresh-token을-활용한-인증-흐름">Access Token과 Refresh Token을 활용한 인증 흐름</a></li>
-  <li><a href="#7-access-token--refresh-token-보안-고려-사항">Access Token &amp; Refresh Token 보안 고려 사항</a></li>
-  <li><a href="#8-access-token--refresh-token-실제-코드-구현-java-spring-security">실제 코드 구현 (Java, Spring Security)</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-02-22-token/">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-miscellaneous-OAuth" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-02-20-OAuth/" class="flip-title">
-        [Etc] OAuth란?
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-02-20T00:00:00+00:00">20 Feb 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-06-02T08:37:07+00:00">2025-06-02</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#1-oauth-개념과-특징">OAuth 개념과 특징</a></li>
-  <li><a href="#2-oauth-10-vs-oauth-20">OAuth 1.0 vs. OAuth 2.0</a></li>
-  <li><a href="#3-oauth-20-상세-동작-방식">OAuth 2.0 상세 동작 방식</a></li>
-  <li><a href="#4-oauth-20-grant-types-인증-방식">OAuth 2.0 Grant Types (인증 방식)</a></li>
-  <li><a href="#5-oauth-20의-주요-용어">OAuth 2.0의 주요 용어</a></li>
-  <li><a href="#6-oauth-20을-실제-코드로-구현">OAuth 2.0을 실제 코드로 구현</a></li>
-  <li><a href="#7-oauth의-장점--단점">OAuth의 장점 &amp; 단점</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-02-20-OAuth/">[Etc] OAuth란?</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-git-git-commit" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/git/2025-02-19-git-commit/" class="flip-title">
-        [Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-02-19T00:00:00+00:00">19 Feb 2025</time> in <a href="/git/" class="flip-title">GIT</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-06-02T08:37:07+00:00">2025-06-02</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#commit-단위를-결정-짓는-요소">Commit 단위를 결정 짓는 요소</a></li>
-  <li><a href="#udacity-style">Udacity style</a></li>
-  <li><a href="#rebase를-잘쓰자">Rebase를 잘쓰자!</a></li>
-  <li><a href="#conflict를-해결하는-방법-reset--force-push">conflict를 해결하는 방법</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/git/2025-02-19-git-commit/">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-javascript-dom-bom" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/javascript/2025-02-05-dom-bom/" class="flip-title">
-        [JavaScript] DOM &amp; BOM
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-02-05T00:00:00+00:00">05 Feb 2025</time> in <a href="/javascript/" class="flip-title">JavaScript</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-06-02T08:37:07+00:00">2025-06-02</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      JavaScript의 DOM과 BOM에 대해 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#dom-document-object-model">DOM (Document Object Model)</a></li>
-  <li><a href="#dom-기본-구조">DOM 기본 구조</a></li>
-  <li><a href="#dom의-특징">DOM의 특징</a></li>
-  <li><a href="#dom을-활용한-사례">DOM을 활용한 사례</a></li>
-  <li><a href="#bom-browser-object-model">BOM (Browser Object Model)</a></li>
-  <li><a href="#bom의-특징">BOM의 특징</a></li>
-  <li><a href="#bom-주요-객체-사용-예제">BOM 주요 객체 사용 예제</a></li>
-  <li><a href="#dom과-bom의-차이점">DOM과 BOM의 차이점</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/javascript/2025-02-05-dom-bom/">[JavaScript] DOM &amp; BOM</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-miscellaneous-serialization" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-02-04-serialization/" class="flip-title">
-        [Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-02-04T00:00:00+00:00">04 Feb 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-06-02T08:37:07+00:00">2025-06-02</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#직렬화serialization과-역직렬화deserialization--️-">직렬화와 역직렬화</a></li>
-  <li><a href="#직렬화-serialization-이란-">직렬화란? 📦</a></li>
-  <li><a href="#역직렬화-deserialization-이란--️-">역직렬화란? 📦 ➡️ 💻</a></li>
-  <li><a href="#언어별-직렬화-및-역직렬화-예시">언어별 직렬화 및 역직렬화 예시</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-02-04-serialization/">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</a>
+        Continue reading <a class="heading flip-title" href="/java/2025-03-09-record/">[JAVA] record</a>
 
       </p>
     </footer>

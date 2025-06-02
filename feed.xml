@@ -1,1354 +1,1539 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-06-02T08:37:50+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-06-02T08:40:18+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[TIL] first til</title><link href="https://nan0silver.github.io/til/2025-05-30-til/" rel="alternate" type="text/html" title="[TIL] first til" /><published>2025-05-30T00:00:00+00:00</published><updated>2025-06-02T08:37:07+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-30-til/"><![CDATA[]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[2025.05.30 TIL]]></summary></entry><entry><title type="html">[컨퍼런스] AI Tech 2025 참석 후기</title><link href="https://nan0silver.github.io/projectdiary/2025-05-15-diary/" rel="alternate" type="text/html" title="[컨퍼런스] AI Tech 2025 참석 후기" /><published>2025-05-15T00:00:00+00:00</published><updated>2025-06-02T08:37:07+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-05-15-diary/"><![CDATA[<ul>
-  <li><a href="#1-행사-개요">1. 행사 개요</a></li>
-  <li><a href="#2-키노트-요약-embodied-ai와-기술-진화-방향">2. 키노트 요약: Embodied AI와 기술 진화 방향</a></li>
-  <li><a href="#3-a2a-시대의-도래-agent-협업-구조">3. A2A 시대의 도래: Agent 협업 구조</a></li>
-  <li><a href="#4-ai는-이제-운영의-시대">4. AI는 이제 운영의 시대</a></li>
-  <li><a href="#5-실무-적용-사례-및-전략">5. 실무 적용 사례 및 전략</a></li>
-  <li><a href="#6-기술-인사이트">6. 기술 인사이트</a></li>
-  <li><a href="#7-결론">7. 결론</a></li>
-</ul>
-
-<blockquote>
-  <p>실무자 중심의 AI 도입 이후 전략, 오케스트레이션 구조, 에이전트 협업 사례 중심</p>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html"></title><link href="https://nan0silver.github.io/til/2025-06-02-2025-05-08-til/" rel="alternate" type="text/html" title="" /><published>2025-06-02T08:40:18+00:00</published><updated>2025-06-02T08:39:34+00:00</updated><id>https://nan0silver.github.io/til/2025-05-08-til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-06-02-2025-05-08-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/53">#53</a><br />
+📅 <strong>작성일</strong>: 2025-05-08<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
 </blockquote>
 
 <hr />
 
-<h2 id="1-행사-개요">1. 행사 개요</h2>
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
 
-<p><strong>AI Tech 2025</strong>는 단순한 모델 개발이나 비전 소개를 넘어서,<br />
-<strong>“AI를 어떻게 현업에 도입하고 운영할 것인가”</strong>를 주제로 구성된 실무 중심의 컨퍼런스였다.<br />
-다양한 기업과 기술 리더들이 실제 적용 사례, 인프라 설계, 오케스트레이션 전략을 공유했으며,<br />
-AI 도입 이후 단계에서 실질적인 생산성을 확보하기 위한 전략들이 인상 깊었다.</p>
-
-<hr />
-
-<h2 id="2-키노트-요약-embodied-ai와-기술-진화-방향">2. 키노트 요약: Embodied AI와 기술 진화 방향</h2>
-
-<p>서울대 장병탁 교수의 기조연설에서는 <strong>AI의 진화 방향</strong>이 강조되었다.</p>
+<h3 id="1️⃣-sequence-diagram">1️⃣ Sequence diagram</h3>
 
 <ul>
-  <li>기존: 디지털 정보 공간 내 추론 중심의 AI</li>
-  <li>변화: <strong>실세계와 상호작용하며 학습·판단·행동하는 Embodied AI</strong></li>
+  <li>시스템 안에서 객체(또는 컴포넌트)들이 시간 흐름에 따라 어떤 메시지를 주고받는지를 표현한 다이어그램
+    <ul>
+      <li>누가 누구에게 언제 어떤 동작을 요청하는지 한눈에 보여줌</li>
+    </ul>
+  </li>
+  <li>백엔드 실무에서 중요한 이유
+    <ul>
+      <li>내가 만든 API가 어떤 흐름으로 동작하는지 설명할 수 있게 해줌</li>
+      <li>팀원과 비즈니스 로직을 공유할 때 빠르게 파악 가능</li>
+      <li>복잡한 시스템에서도 디버깅/확장/테스트의 기반 자료가 됨</li>
+    </ul>
+  </li>
+  <li>예시 : <img src="image.png" alt="alt text" /></li>
 </ul>
 
-<blockquote>
-  <p>Embodied AI는 물리적 환경을 인식하고 그에 반응할 수 있는 에이전트로, 강화학습 및 체화 학습을 통해 자율성을 확보한다.</p>
+<h3 id="2️⃣-아키텍처-다이어그래밍">2️⃣ 아키텍처 다이어그래밍</h3>
+
+<ul>
+  <li>시스템 전체 구성과 컴포넌트 간 관계를 그림으로 표현한 것</li>
+  <li>백엔드에서는 서버, DB, API 게이트웨이, 클라이언틑 등 시스템 전체 구조를 말함</li>
+  <li>그리는 도구
+    <ul>
+      <li>draw.io</li>
+      <li>Lucidchart</li>
+      <li>https://aws.amazon.com/ko/what-is/architecture-diagramming/ -<img src="image-1.png" alt="alt text" /></li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[📝 TIL (Today I Learned) 🔗 원본 이슈: #53 📅 작성일: 2025-05-08 🔄 최종 수정: 2025년 05월 22일]]></summary></entry><entry><title type="html"></title><link href="https://nan0silver.github.io/til/2025-06-02-2025-05-10-til/" rel="alternate" type="text/html" title="" /><published>2025-06-02T08:40:18+00:00</published><updated>2025-06-02T08:39:34+00:00</updated><id>https://nan0silver.github.io/til/2025-05-10-til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-06-02-2025-05-10-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/54">#54</a><br />
+📅 <strong>작성일</strong>: 2025-05-10<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
 </blockquote>
 
-<p><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/82145661/448164887-76d2879b-b852-4e1e-95b9-715a1a9c824a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250528%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250528T010443Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=3e1da1f9900847a113d2f60899f7bde3f20244757464ad5a77b3ec544728e0ed&amp;X-Amz-SignedHeaders=host" /><br />
-<em>Figure: Embodied AI – 환경 인지, 판단, 행동이 통합된 AI 시스템</em></p>
-
 <hr />
 
-<h2 id="3-a2a-시대의-도래-agent-협업-구조">3. A2A 시대의 도래: Agent 협업 구조</h2>
-
-<h3 id="-a2aagent-to-agent-protocol">🔍 A2A(Agent-to-Agent Protocol)</h3>
-
-<p>이번 행사에서 가장 빈번하게 언급된 개념 중 하나는 <strong>A2A</strong>였다.</p>
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
 
 <ul>
-  <li><strong>의미</strong>: 에이전트 간 데이터 공유 및 협업을 위한 통신 프로토콜</li>
-  <li><strong>기능</strong>: 목적 지향형 대화, 작업 분담, 협업형 워크플로우 구성</li>
-  <li><strong>사례</strong>: 문서 요약 에이전트 → 일정 정리 에이전트로 결과 전달</li>
+  <li><strong>순환 참조 문제 (Infinite Recursion in JSON Serialization)</strong></li>
 </ul>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>요약 에이전트 → 분석 결과 전달 → 일정 에이전트가 회의 제안 자동화
+<p>오늘은 API 응답을 구성하는 과정에서 발생한 <strong>무한 재귀 직렬화 오류</strong>를 해결하며 순환 참조(Circular Reference)에 대해 학습했다.
+문제의 핵심은 <strong>Entity 간 양방향 참조</strong>가 존재할 때, JSON 직렬화 과정에서 객체 간 호출이 끝없이 반복되어 StackOverflowError가 발생하는 현상이었다.</p>
+
+<h3 id="️-문제-상황">⚠️ 문제 상황</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">PeerReview</code> → <code class="language-plaintext highlighter-rouge">Post</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Post</code> → <code class="language-plaintext highlighter-rouge">Member</code>, <code class="language-plaintext highlighter-rouge">postMembers</code></li>
+  <li><code class="language-plaintext highlighter-rouge">PostMember</code> → 다시 <code class="language-plaintext highlighter-rouge">Post</code></li>
+</ul>
+
+<p>이렇게 서로 참조하는 구조로 인해 <strong>JSON 직렬화 중 무한 루프</strong>가 발생했다.</p>
+
+<h3 id="-해결-방법">🔍 해결 방법</h3>
+
+<h4 id="-1-dto-패턴-사용-권장">✅ 1. <strong>DTO 패턴 사용 (권장)</strong></h4>
+
+<ul>
+  <li>가장 바람직한 해결책은 Entity를 그대로 반환하지 않고, 필요한 정보만 담은 <strong>Response DTO</strong>를 만들어 응답하는 방식이다.</li>
+  <li>예를 들어 <code class="language-plaintext highlighter-rouge">PeerReviewResponse</code>에서는 <code class="language-plaintext highlighter-rouge">Post</code> 전체 객체를 넘기지 않고, <code class="language-plaintext highlighter-rouge">postId</code>, <code class="language-plaintext highlighter-rouge">postTitle</code>만 넘기도록 변경했다.</li>
+  <li>같은 방식으로 <code class="language-plaintext highlighter-rouge">UserReviewCommentResponse</code>도 수정했다.</li>
+</ul>
+
+<p>이렇게 DTO를 사용하면 다음과 같은 장점이 있다:</p>
+
+<ul>
+  <li>불필요한 Entity 참조 제거 → <strong>순환 참조 문제 해결</strong></li>
+  <li>필요한 데이터만 전달 → <strong>응답 성능 향상</strong></li>
+  <li>Entity와 API 응답 로직 분리 → <strong>유지보수성 향상</strong></li>
+  <li><strong>보안상 안전</strong> (내부 필드 노출 방지)</li>
+</ul>
+
+<h4 id="️-2-jackson-어노테이션-사용-보완적참고용">🛠️ 2. Jackson 어노테이션 사용 (보완적/참고용)</h4>
+
+<ul>
+  <li>만약 어쩔 수 없이 Entity를 직접 반환해야 한다면 <code class="language-plaintext highlighter-rouge">@JsonManagedReference</code>, <code class="language-plaintext highlighter-rouge">@JsonBackReference</code> 또는 <code class="language-plaintext highlighter-rouge">@JsonIgnore</code>를 사용하는 방식도 있다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Post.java</span>
+<span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"post"</span><span class="o">)</span>
+<span class="nd">@JsonManagedReference</span>
+<span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PostMember</span><span class="o">&gt;</span> <span class="n">postMembers</span><span class="o">;</span>
+
+<span class="c1">// PostMember.java</span>
+<span class="nd">@ManyToOne</span>
+<span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"post_id"</span><span class="o">)</span>
+<span class="nd">@JsonBackReference</span>
+<span class="kd">private</span> <span class="nc">Post</span> <span class="n">post</span><span class="o">;</span>
 </code></pre></div></div>
 
-<h3 id="-관련-개념">🧩 관련 개념</h3>
+<ul>
+  <li>하지만 이 방법은 API와 Entity 계층이 강하게 결합되므로, 장기적으로는 유지보수나 테스트 측면에서 불리하다.</li>
+</ul>
+
+<hr />
+
+<blockquote>
+  <p>오늘의 핵심 교훈: <strong>Entity는 절대 API 응답용으로 직접 사용하지 말자!</strong>
+Response DTO를 따로 만들어 사용하는 습관이 순환 참조를 방지하고, 더 안전하고 명확한 API를 만들 수 있는 길이다.</p>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[📝 TIL (Today I Learned) 🔗 원본 이슈: #54 📅 작성일: 2025-05-10 🔄 최종 수정: 2025년 05월 22일]]></summary></entry><entry><title type="html"></title><link href="https://nan0silver.github.io/til/2025-06-02-2025-05-11-til/" rel="alternate" type="text/html" title="" /><published>2025-06-02T08:40:18+00:00</published><updated>2025-06-02T08:39:34+00:00</updated><id>https://nan0silver.github.io/til/2025-05-11-til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-06-02-2025-05-11-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/55">#55</a><br />
+📅 <strong>작성일</strong>: 2025-05-11<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<ul>
+  <li><strong>UUID와 Auto Increment PK는 언제 사용할까?</strong></li>
+</ul>
+
+<p>오늘은 엔티티의 기본 키(primary key)를 정의할 때 <strong>UUID</strong>와 <strong>Auto Increment(Long 타입)</strong> 중 어떤 것을 선택할지에 대해 정리해보았다.</p>
+
+<h3 id="-auto-increment-일반적인-정수형-pk">✅ Auto Increment (일반적인 정수형 PK)</h3>
 
 <ul>
   <li>
-    <p><strong>Agent Hub</strong>: 에이전트 설계/운영 통합 플랫폼</p>
+    <p>특징</p>
 
     <ul>
-      <li>ADK: Agent Design Kit</li>
-      <li>Agent Engine: 배포 및 실행 환경</li>
-      <li>Agent Garden: 에이전트 레지스트리/관리</li>
+      <li><code class="language-plaintext highlighter-rouge">@GeneratedValue(strategy = GenerationType.IDENTITY)</code> 형태로 많이 사용</li>
+      <li>DB가 자동으로 증가시키며 관리</li>
+      <li>숫자 기반이라 인덱싱 속도가 빠르고, 저장 공간도 적게 차지함</li>
+    </ul>
+  </li>
+  <li>
+    <p>사용에 적합한 경우</p>
+
+    <ul>
+      <li>내부 시스템용 데이터</li>
+      <li>데이터 유출 시에도 ID 자체로는 식별 불가 → 보안 문제가 크지 않은 경우</li>
+      <li>검색/조회 성능이 중요한 경우</li>
+    </ul>
+  </li>
+  <li>
+    <p>단점</p>
+
+    <ul>
+      <li>순차적으로 증가하는 ID는 보안상 예측 가능성이 있음 (특히 API 경로에 노출될 경우 위험)</li>
+      <li>시스템 간 병합 시 충돌 가능성 있음 (ex. 여러 서버에서 동시에 데이터를 생성하는 분산 환경)</li>
     </ul>
   </li>
 </ul>
 
-<p>이와 같은 구조는 기존 **MSA(마이크로서비스 아키텍처)**와 유사하게,
-AI 시스템에서도 <strong>다수의 특화 에이전트가 상호작용하는 구조적 전환</strong>을 의미한다.</p>
-
 <hr />
 
-<h2 id="4-ai는-이제-운영의-시대">4. AI는 이제 운영의 시대</h2>
-
-<p>기술보다 중요한 건 <strong>운영과 조율</strong>이다. 특히 다음과 같은 통찰이 강조되었다.</p>
+<h3 id="-uuid-범용-고유-식별자">✅ UUID (범용 고유 식별자)</h3>
 
 <ul>
-  <li>AGI는 단일 모델이 아닌, <strong>여러 특화 에이전트의 조합</strong></li>
-  <li>이 조합을 조율하는 <strong>AI 오케스트레이션 계층</strong>이 핵심</li>
-  <li>개발자는 모델 사용자에서 <strong>AI 아키텍처 설계자</strong>로 역할 확장 필요</li>
-</ul>
+  <li>
+    <p>특징</p>
 
-<p>A2A는 단순한 API 호출이 아니라, <strong>에이전트 간 협업 흐름을 구성하는 전략적 도구</strong>로 자리잡고 있다.</p>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@GeneratedValue(strategy = GenerationType.AUTO)</code> 또는 <code class="language-plaintext highlighter-rouge">UUID.randomUUID()</code> 사용</li>
+      <li>128비트의 랜덤 고유값 (예: <code class="language-plaintext highlighter-rouge">d290f1ee-6c54-4b01-90e6-d701748f0851</code>)</li>
+      <li>전역적으로 충돌 가능성이 거의 없음 → <strong>분산 시스템에 적합</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>사용에 적합한 경우</p>
 
-<hr />
+    <ul>
+      <li>외부에 노출되는 식별자(API, 클라이언트 전송 등)</li>
+      <li>데이터 생성 주체가 분산되어 있어 충돌을 방지해야 할 때</li>
+      <li>보안상 ID 노출을 피하고 싶을 때</li>
+    </ul>
+  </li>
+  <li>
+    <p>단점</p>
 
-<h2 id="5-실무-적용-사례-및-전략">5. 실무 적용 사례 및 전략</h2>
-
-<h3 id="-주요-사례">📌 주요 사례</h3>
-
-<ul>
-  <li><strong>한화생명</strong>: 보험 상담 자동화 (LLM + RAG 기반 챗봇 운영)</li>
-  <li><strong>KT</strong>: 기관 문서 기반 검색 시스템 구축</li>
-  <li><strong>MARA</strong>: 자산 시장 분석 자동화</li>
-  <li><strong>Nota AI</strong>: 엣지 디바이스용 AI 모델 경량화 및 배포</li>
-</ul>
-
-<p>이 외에도 다양한 기업들이 AI를 ‘기능’으로서가 아닌,
-<strong>문제 해결 도구</strong>로서 어떻게 전략적으로 운영하고 있는지를 소개했다.</p>
-
-<hr />
-
-<h2 id="6-기술-인사이트">6. 기술 인사이트</h2>
-
-<h3 id="️-실용-기술">🛠️ 실용 기술</h3>
-
-<ul>
-  <li><strong>Structured Pruning</strong>: 불필요한 파라미터 제거로 경량화</li>
-  <li><strong>Filter Decomposition</strong>: 병렬 연산을 직렬화하여 성능 최적화</li>
-  <li><strong>RAG 기반 검색</strong>: 문서 기반 답변 정확도 향상</li>
-  <li><strong>Agent Workflow</strong>: 도메인 특화 다중 에이전트 협업 구성</li>
+    <ul>
+      <li>길이가 길고 가독성이 떨어짐</li>
+      <li>저장 시 공간 낭비 (VARCHAR or BINARY 타입)</li>
+      <li>인덱싱 성능이 낮음 → 대량 데이터일수록 성능 저하 가능</li>
+    </ul>
+  </li>
 </ul>
 
 <hr />
 
-<h2 id="7-결론">7. 결론</h2>
-
-<p>AI 시스템은 이제 단일 모델의 정확도보다,
-<strong>어떻게 운영되고 협업 구조를 갖추는가</strong>가 더 중요해지고 있다.</p>
-
-<p>이번 컨퍼런스를 통해 확인한 핵심은 다음과 같다:</p>
-
-<ul>
-  <li><strong>AI는 플랫폼이다</strong>: 단일 모델보다 다중 에이전트의 구조화된 조율이 핵심</li>
-  <li><strong>A2A는 미래의 기본 요소</strong>: 마이크로서비스처럼 에이전트 협업이 표준화될 것</li>
-  <li><strong>운영 전략이 곧 성패를 가른다</strong>: 기술보다 프로덕션 환경 최적화가 우선시됨</li>
-</ul>
-
-<blockquote>
-  <p>기술을 넘어 전략으로서의 AI를 고민하게 된 의미 있는 자리였다.</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[AI Tech 2025 컨퍼런스에서 확인한 LLMOps, A2A, Embodied AI 등 최신 AI 시스템 운영 전략]]></summary></entry><entry><title type="html">[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?</title><link href="https://nan0silver.github.io/spring/2025-04-30-dto-division/" rel="alternate" type="text/html" title="[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?" /><published>2025-04-30T00:00:00+00:00</published><updated>2025-06-02T08:37:07+00:00</updated><id>https://nan0silver.github.io/spring/dto-division</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-30-dto-division/"><![CDATA[<ul>
-  <li><a href="#-api-응답을-위한-dto는-왜-나눠야-하는가">API 응답을 위한 DTO는 왜 나눠야 하는가?</a></li>
-  <li><a href="#1️⃣-하나의-도메인-여러-개의-응답-목적">1. 하나의 도메인, 여러 개의 응답 목적</a></li>
-  <li><a href="#2️⃣-필드-수가-아니라-의도로-판단해야-한다">2. “필드 수”가 아니라 “의도”로 판단해야 한다</a></li>
-  <li><a href="#3️⃣-dto-설계는-view-기반이어야-한다">3. DTO 설계는 “View 기반”이어야 한다</a></li>
-  <li><a href="#4️⃣-dto-분리의-장점--실무-중심으로-요약">4. DTO 분리의 장점 – 실무 중심으로 요약</a></li>
-  <li><a href="#-결론-api-목적--dto-목적">결론</a></li>
-</ul>
-
-<hr />
-
-<h2 id="-api-응답을-위한-dto는-왜-나눠야-하는가">✅ API 응답을 위한 DTO는 왜 나눠야 하는가?</h2>
-
-<p>서비스 개발을 하다 보면 DTO(Data Transfer Object)를 여러 개 만들게 된다.
-처음에는 같은 도메인 모델에서 파생되는 응답 DTO라면 <strong>하나로 통일할 수 있지 않을까?</strong> 하는 생각이 들기도 한다.
-하지만 실제로 API를 설계하고 클라이언트와 연동하는 과정을 겪어보면, <strong>DTO를 목적에 따라 나눠야 하는 이유</strong>가 분명히 보이기 시작한다.</p>
-
-<hr />
-
-<h3 id="1️⃣-하나의-도메인-여러-개의-응답-목적">1️⃣ 하나의 도메인, 여러 개의 응답 목적</h3>
-
-<p>실제로 <code class="language-plaintext highlighter-rouge">PeerReview</code>라는 동일한 도메인을 기반으로 하더라도, API마다 응답 목적이 전혀 다르다.</p>
+<h3 id="-결론-어떤-상황에-어떤-걸-쓸까">💡 결론: 어떤 상황에 어떤 걸 쓸까?</h3>
 
 <table>
   <thead>
     <tr>
-      <th>클래스</th>
-      <th>목적</th>
-      <th>사용되는 API</th>
+      <th>상황</th>
+      <th>추천 방식</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">PeerReviewDetailResponse</code></td>
-      <td>단일 리뷰의 상세 정보 제공</td>
-      <td>리뷰 생성 응답, 리뷰 상세 조회</td>
+      <td>단일 서버, 내부 관리 중심 서비스</td>
+      <td>Auto Increment</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">UserReviewSummaryResponse</code></td>
-      <td>특정 사용자의 리뷰 통계 요약</td>
-      <td>사용자 리뷰 평균 조회</td>
+      <td>외부 노출 ID가 필요하거나, 분산 환경에서 생성되는 데이터</td>
+      <td>UUID</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ProjectReviewStatusResponse</code></td>
-      <td>프로젝트 리뷰 진행 상태 확인</td>
-      <td>프로젝트별 리뷰 완료 여부 확인</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>이처럼 <strong>동일한 도메인 모델이더라도 응답의 대상, 범위, 표현 방식이 다르면 DTO는 분리되어야 한다</strong>.
-하나의 <code class="language-plaintext highlighter-rouge">PeerReviewResponse</code>에 모든 필드를 때려넣고 공통으로 쓰다 보면,</p>
-
-<ul>
-  <li>어떤 API는 <strong>불필요한 데이터</strong>가 너무 많이 오가고,</li>
-  <li>어떤 API는 <strong>필요한 정보가 빠져 있어</strong> 클라이언트가 혼란을 겪는다.</li>
-</ul>
-
-<blockquote>
-  <p>❗️ <em>“DTO 하나로 합쳐도 되지 않나요?”</em> → 되긴 하지만, <strong>API의 명확한 역할과 응답 일관성</strong>을 해친다.</p>
-</blockquote>
-
-<hr />
-
-<h3 id="2️⃣-필드-수가-아니라-의도로-판단해야-한다">2️⃣ “필드 수”가 아니라 “의도”로 판단해야 한다</h3>
-
-<p>DTO를 나눌 때 흔히 하는 실수 중 하나가</p>
-
-<blockquote>
-  <p>“필드가 너무 적은데 굳이 따로 DTO로 만들어야 해?”
-라는 의문이다.</p>
-
-  <blockquote>
-    <p>내가 프로젝트를 하며 이런 고민을 계속 하고, 실제로 다른 사람들은 어떤 기준을 가지는지 찾아보다 이 글을 작성하게 되었다.</p>
-  </blockquote>
-</blockquote>
-
-<p>하지만 <strong>DTO는 포함된 데이터의 양이 아니라, 응답의 의도에 따라 나뉘어야 한다</strong>.</p>
-
-<h4 id="예시-비교">예시 비교</h4>
-
-<table>
-  <thead>
-    <tr>
-      <th>클래스</th>
-      <th>주요 필드</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">UserReviewSummaryResponse</code></td>
-      <td>평균 점수, 리뷰 개수</td>
-      <td>사용자 요약 통계</td>
+      <td>민감한 정보 식별자 (예: 사용자 ID, 주문 번호 등)</td>
+      <td>UUID</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">PeerReviewDetailResponse</code></td>
-      <td>리뷰 항목별 점수, 작성자 정보, 날짜</td>
-      <td>상세 정보 조회용</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>이 두 DTO는 필드 수만 보면 합칠 수 있을 것 같지만,</p>
-
-<blockquote>
-  <p>하나는 <strong>요약 정보 (Summary)</strong>,
-하나는 <strong>상세 정보 (Detail)</strong> 제공이라는 <strong>근본적인 목적이 다르다.</strong></p>
-</blockquote>
-
-<p>또한, Summary는 추후 <code class="language-plaintext highlighter-rouge">차트</code>, <code class="language-plaintext highlighter-rouge">히스토그램</code>, <code class="language-plaintext highlighter-rouge">트렌드</code> 같은 <strong>집계 데이터를 추가하기에 더 적합한 형태</strong>이고,
-Detail은 사용자 경험 개선을 위한 <strong>리치한 UI 렌더링</strong>에 최적화된 형태로 확장될 수 있다.</p>
-
-<hr />
-
-<h3 id="3️⃣-dto-설계는-view-기반이어야-한다">3️⃣ DTO 설계는 “View 기반”이어야 한다</h3>
-
-<p>DTO는 도메인을 있는 그대로 노출하는 것이 아니라,
-<strong>API View Layer의 역할과 책임에 맞게 정보를 재가공해 전달</strong>하는 것이 목적이다.</p>
-
-<p>즉, “어떤 정보를 어떻게 보여줄지”에 따라 설계되어야 한다.</p>
-
-<h4 id="잘못된-설계-예">잘못된 설계 예</h4>
-
-<ul>
-  <li>불필요하게 내부 ID, 시스템 시간, 관리자용 정보 등을 포함한 DTO</li>
-  <li>클라이언트에 노출되면 혼란을 주거나, 보안상 문제될 수 있는 필드 포함</li>
-</ul>
-
-<h4 id="좋은-설계-예">좋은 설계 예</h4>
-
-<ul>
-  <li>사용자에게 필요한 정보만 간결하게 포함</li>
-  <li>실제 프론트 UI와 일치하는 정보 구조</li>
-  <li>데이터의 “의미”와 “구성 방식”이 API 목적과 맞아떨어짐</li>
-</ul>
-
-<blockquote>
-  <p>🧠 DTO는 단순히 데이터를 전달하는 구조체가 아니라,
-**“API 응답 설계 그 자체”**라는 것을 항상 기억해야 한다.</p>
-</blockquote>
-
-<hr />
-
-<h3 id="4️⃣-dto-분리의-장점--실무-중심으로-요약">4️⃣ DTO 분리의 장점 – 실무 중심으로 요약</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>이유</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>명확한 책임 분리</strong></td>
-      <td>각 API의 목적에 따라 DTO도 명확히 구분되어 유지보수가 쉬움</td>
-    </tr>
-    <tr>
-      <td><strong>클라이언트 연동 안정성</strong></td>
-      <td>응답 구조가 고정되기 때문에 프론트엔드와의 계약(Contract)이 안정됨</td>
-    </tr>
-    <tr>
-      <td><strong>확장성</strong></td>
-      <td>새로운 요구사항이 생겼을 때 불필요한 필드 추가 없이 필요한 DTO만 수정하면 됨</td>
-    </tr>
-    <tr>
-      <td><strong>성능 최적화</strong></td>
-      <td>불필요한 필드 제거로 응답 크기 감소 → 네트워크 비용 감소</td>
-    </tr>
-    <tr>
-      <td><strong>테스트 단순화</strong></td>
-      <td>DTO 단위 테스트, API 응답 테스트가 더 명확하고 간결해짐</td>
+      <td>빠른 정렬/검색이 중요한 대량 데이터</td>
+      <td>Auto Increment (with caution)</td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-<h2 id="-결론-api-목적--dto-목적">✅ 결론: API 목적 = DTO 목적</h2>
-
-<ul>
-  <li>하나의 API가 명확한 역할을 가지듯,</li>
-  <li>그 API가 사용하는 DTO도 <strong>명확한 책임</strong>을 가져야 한다.</li>
-</ul>
-
-<p>DTO는 설계의 산물이면서, 동시에 클라이언트와의 약속이다.
-따라서 <strong>필드 개수가 적다고 DTO를 합치는 건 설계적 실수</strong>일 수 있으며,
-<strong>응답 데이터는 목적, 의미, 유지보수, 확장성 관점에서 설계</strong>되어야 한다.</p>
-
-<hr />
-
-<h2 id="️-마무리-한-줄-요약">✍️ 마무리 한 줄 요약</h2>
-
 <blockquote>
-  <p><strong>DTO는 “얼마나 많은 데이터를 담는가”보다 “어떤 목적의 데이터를 담는가”가 더 중요하다.</strong></p>
+  <p>오늘의 교훈: “보안성과 확장성”이 중요한 시스템이라면 UUID,
+“성능과 단순함”이 중요하다면 Auto Increment를 고려하자.
+다만 외부에 노출될 수 있는 ID는 무조건 UUID나 별도의 난수 토큰을 사용하는 것이 안전하다!</p>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[📝 TIL (Today I Learned) 🔗 원본 이슈: #55 📅 작성일: 2025-05-11 🔄 최종 수정: 2025년 05월 22일]]></summary></entry><entry><title type="html"></title><link href="https://nan0silver.github.io/til/2025-06-02-2025-05-12-til/" rel="alternate" type="text/html" title="" /><published>2025-06-02T08:40:18+00:00</published><updated>2025-06-02T08:39:34+00:00</updated><id>https://nan0silver.github.io/til/2025-05-12-til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-06-02-2025-05-12-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/56">#56</a><br />
+📅 <strong>작성일</strong>: 2025-05-12<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
 </blockquote>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[DTO를 나누는 기준에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사</title><link href="https://nan0silver.github.io/projectdiary/2025-04-28-diary/" rel="alternate" type="text/html" title="[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사" /><published>2025-04-28T00:00:00+00:00</published><updated>2025-06-02T08:37:07+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-28-diary/"><![CDATA[<ul>
-  <li><a href="#1-현재-버티-서비스-상황-분석">1. 현재 버티 서비스 상황 분석</a></li>
-  <li><a href="#2-msa-구현-방안">2. MSA 구현 방안</a></li>
-  <li><a href="#21-api-gateway-패턴-도입">2.1 API Gateway 패턴 도입</a></li>
-  <li><a href="#22-회원-정보-공유-방식">2.2 회원 정보 공유 방식</a></li>
-  <li><a href="#3-render-프리티어-환경-최적화-방안">3. Render 프리티어 환경 최적화 방안</a></li>
-  <li><a href="#4-단계적-구현-전략">4. 단계적 구현 전략</a></li>
-  <li><a href="#5-결론">5. 결론</a></li>
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<ul>
+  <li>spring-boot-starter-validation</li>
+  <li>테스트 코드 모니터링 툴</li>
 </ul>
 
-<hr />
+<h3 id="1️⃣-spring-boot-starter-validation">1️⃣ <code class="language-plaintext highlighter-rouge">spring-boot-starter-validation</code></h3>
 
 <blockquote>
-  <p>현재 버티 서비스는 백엔드 서버의 도메인이 2개로 되어있다. 프론트와 연동을 하기 직전 과정에서 CORS 문제 해결과 이 과정에서 Render배포의 리소스 제약 문제를 어떤 식으로 해결하는 것이 좋은지 아래 내용과 같이 조사해보았다.</p>
+  <p><strong>Spring Boot에서 사용자 입력 값(요청 바디 등)을 검증</strong>할 수 있게 해주는 의존성 패키지
+내부적으로는 <code class="language-plaintext highlighter-rouge">javax.validation</code> (JSR-380)이나 <code class="language-plaintext highlighter-rouge">jakarta.validation</code> API를 기반으로 동작</p>
 </blockquote>
 
-<h2 id="1-현재-버티-서비스-상황-분석">1. 현재 버티 서비스 상황 분석</h2>
-
 <ul>
-  <li><strong>서버 구조</strong>: 서버 도메인 URL이 2개 (회원 정보는 한쪽에만 존재)</li>
-  <li><strong>프론트엔드</strong>: 도메인 URL이 1개</li>
-  <li><strong>인증 방식</strong>: JWT 기반 인증 구현 중</li>
-  <li><strong>문제점</strong>:
+  <li>주로 아래와 같은 상황에 동작
     <ul>
-      <li>사용자 프로필 업데이트 기능이 있어 JWT에 프로필 정보 포함 어려움</li>
-      <li>프론트엔드와 백엔드 간 CORS 이슈 발생 가능</li>
-      <li>Render 프리티어 환경으로 리소스 제약 존재</li>
+      <li>사용자가 회원가입을 할 때</li>
+      <li>게시글을 작성할 때</li>
+      <li>비밀번호 변경할 때 등</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="2-msa-구현-방안">2. MSA 구현 방안</h2>
-
-<h3 id="21-api-gateway-패턴-도입">2.1 API Gateway 패턴 도입</h3>
+<p><strong>프론트엔드에서 필터링한다고 해도, 백엔드에서는 무조건 검증이 필요</strong></p>
 
 <ul>
-  <li><strong>목적</strong>: 프론트엔드에 단일 진입점 제공, CORS 문제 해결</li>
-  <li><strong>구현 방식</strong>: Spring Cloud Gateway 활용</li>
-  <li><strong>장점</strong>:
+  <li>신뢰할 수 없는 요청이나 보안 위험을 방지하기 위해서 (프론트는 우회가 가능하므로) 백엔드 검증은 필수!</li>
+  <li>검증 애너테이션
     <ul>
-      <li>단일 도메인으로 프론트엔드 요청 처리</li>
-      <li>중앙화된 인증/인가 처리</li>
-      <li>요청 라우팅 관리 용이</li>
+      <li><code class="language-plaintext highlighter-rouge">@NotNull</code>, <code class="language-plaintext highlighter-rouge">@NotBlank</code>, <code class="language-plaintext highlighter-rouge">@Size</code>, <code class="language-plaintext highlighter-rouge">@Email</code>, <code class="language-plaintext highlighter-rouge">@Min</code>, <code class="language-plaintext highlighter-rouge">@Max</code> 등</li>
+    </ul>
+  </li>
+  <li>검증 실패 시
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@ControllerAdvice</code>와 <code class="language-plaintext highlighter-rouge">@ExceptionHandler</code>를 이용해 에러 메시지 사용</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="22-회원-정보-공유-방식">2.2 회원 정보 공유 방식</h3>
+<h4 id="1-의존성-추가-buildgradle">1. 의존성 추가 (<code class="language-plaintext highlighter-rouge">build.gradle</code>)</h4>
 
-<p>현재 버티 서비스는 JWT에 프로필 정보를 포함하기 어려운 상황이므로:
-(로그인 후 사용자 프로필을 업데이트 하기 때문)</p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'org.springframework.boot:spring-boot-starter-validation'</span>
+</code></pre></div></div>
 
-<h4 id="서비스-간-직접-통신-방식">서비스 간 직접 통신 방식</h4>
+<h4 id="2-dto-클래스에-검증-어노테이션-달기">2. DTO 클래스에 검증 어노테이션 달기</h4>
 
-<ul>
-  <li><strong>기본 개념</strong>: 회원 정보가 필요할 때 회원 서비스의 API를 직접 호출하여 최신 정보를 가져오는 방식</li>
-  <li><strong>구현 내용</strong>:
-    <ul>
-      <li>회원 서비스에 내부용 API 엔드포인트 추가 (예: <code class="language-plaintext highlighter-rouge">/api/internal/users/{userId}</code>)</li>
-      <li>이 API는 외부 접근이 아닌 서비스 간 통신용으로만 사용</li>
-      <li>기능 서비스에서 특정 사용자 정보가 필요할 때 이 API를 호출하여 최신 정보 획득</li>
-      <li>내부 API 키를 사용해 인증 (서비스 간 통신이 안전하게 이루어지도록)</li>
-    </ul>
-  </li>
-</ul>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">jakarta.validation.constraints.NotBlank</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.Size</span><span class="o">;</span>
 
-<h4 id="캐싱-전략-적용">캐싱 전략 적용</h4>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SignupRequestDto</span> <span class="o">{</span>
 
-<ul>
-  <li><strong>문제점</strong>: 매번 API를 호출하면 Render 프리티어 환경에서 성능 저하 발생</li>
-  <li><strong>해결책</strong>:
-    <ul>
-      <li>자주 조회되는 회원 정보를 메모리에 임시 저장(캐싱)</li>
-      <li>첫 번째 조회 시에만 API 호출, 이후에는 캐시에서 빠르게 조회</li>
-      <li>정해진 시간(예: 15분) 후 캐시 만료하여 일정 주기로 최신 정보 반영</li>
-      <li>사용자가 프로필을 업데이트하면 해당 사용자의 캐시만 즉시 무효화하는 API 호출</li>
-    </ul>
-  </li>
-</ul>
+    <span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"이메일은 필수입니다."</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
 
-<h4 id="장애-대응-방안">장애 대응 방안</h4>
+    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">8</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"비밀번호는 최소 8자 이상이어야 합니다."</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+
+    <span class="c1">// getter, setter</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="3-controller에서-검증-처리">3. Controller에서 검증 처리</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/signup"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">signup</span><span class="o">(</span><span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="nc">SignupRequestDto</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 통과 시 로직 실행</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <ul>
-  <li><strong>문제점</strong>: 회원 서비스가 일시적으로 장애가 발생하면 기능 서비스도 영향 받음</li>
-  <li><strong>해결책</strong>:
-    <ul>
-      <li>Circuit Breaker 패턴: 회원 서비스 장애 감지 시 API 호출을 일시 중단하고 기본 정보 반환</li>
-      <li>예를 들어, 회원 이름을 조회할 수 없으면 “Guest”와 같은 기본값 사용</li>
-      <li>재시도 제한 및 타임아웃 설정으로 불필요한 대기 시간 방지</li>
-    </ul>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">@Valid</code>가 붙은 객체에서 문제가 발생하면 자동으로 400 에러 발생.</li>
+  <li>에러 메시지는 <code class="language-plaintext highlighter-rouge">@ControllerAdvice</code>를 통해 커스터마이징도 가능.</li>
 </ul>
 
-<p>이 방식을 통해 JWT에 모든 회원 정보를 담지 않아도 최신 정보를 안전하게 공유하고, 성능과 안정성을 확보할 수 있습니다.</p>
-
-<h2 id="3-render-프리티어-환경-최적화-방안">3. Render 프리티어 환경 최적화 방안</h2>
-
-<p>리소스 제약이 있는 Render 프리티어 환경에 맞춘 최적화 전략:</p>
-
-<ul>
-  <li>
-    <p><strong>경량화된 MSA 구조</strong>:</p>
-
-    <ul>
-      <li>필수적인 도메인만 분리 (회원 서비스 + 기능 서비스)</li>
-      <li>최소한의 서비스 디스커버리 구조 사용</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>성능 최적화</strong>:</p>
-
-    <ul>
-      <li>데이터베이스 커넥션 풀 크기 제한 (5-10개)</li>
-      <li>API 요청 타임아웃 짧게 설정 (3초 내외)</li>
-      <li>캐시 크기 제한 (500 항목 이내)</li>
-      <li>Lazy Loading 적용하여 필요한 데이터만 로딩</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>에러 처리 강화</strong>:</p>
-    <ul>
-      <li>서비스 간 통신 실패 시 폴백(fallback) 메커니즘 구현</li>
-      <li>재시도 횟수 제한 (최대 3회)</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="4-단계적-구현-전략">4. 단계적 구현 전략</h2>
-
-<p>Burty 서비스에 MSA를 점진적으로 도입하기 위한 단계:</p>
-
-<h3 id="41-1단계-api-gateway-구현">4.1 1단계: API Gateway 구현</h3>
-
-<ul>
-  <li>Spring Cloud Gateway 기반 게이트웨이 서비스 구축</li>
-  <li>라우팅 규칙 설정 (회원/기능 서비스 분리)</li>
-  <li>JWT 토큰 검증 필터 구현</li>
-  <li>CORS 설정 적용</li>
-</ul>
-
-<h3 id="42-2단계-서비스-간-통신-구현">4.2 2단계: 서비스 간 통신 구현</h3>
-
-<ul>
-  <li>회원 서비스에 내부 API 엔드포인트 추가</li>
-  <li>기능 서비스에 RestTemplate 설정</li>
-  <li>서비스 간 인증 메커니즘 적용</li>
-</ul>
-
-<h3 id="43-3단계-캐싱-적용">4.3 3단계: 캐싱 적용</h3>
-
-<ul>
-  <li>인메모리 캐시 설정</li>
-  <li>회원 정보 캐싱 서비스 구현</li>
-  <li>캐시 무효화 API 구현</li>
-</ul>
-
-<h3 id="44-4단계-장애-대응-패턴-적용">4.4 4단계: 장애 대응 패턴 적용</h3>
-
-<ul>
-  <li>Circuit Breaker 패턴 구현</li>
-  <li>재시도 메커니즘 추가</li>
-  <li>로깅 및 모니터링 강화</li>
-</ul>
-
-<h2 id="5-결론">5. 결론</h2>
-
-<p>Burty 서비스의 현재 상황과 Render 프리티어 환경을 고려할 때:</p>
-
-<ol>
-  <li>
-    <p>JWT만으로는 회원 정보 공유에 한계가 있으므로, 서비스 간 API 통신과 캐싱을 조합하는 것이 적합</p>
-  </li>
-  <li>
-    <p>API Gateway 패턴을 통해 프론트엔드의 CORS 문제 해결 및 단일 진입점 제공</p>
-  </li>
-  <li>
-    <p>리소스 제약을 고려한 경량화된 MSA 구조와 성능 최적화 필요</p>
-  </li>
-  <li>
-    <p>단계적 구현을 통해 점진적으로 MSA 아키텍처로 전환</p>
-  </li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Boot MSA 구현 방식 조사]]></summary></entry><entry><title type="html">[Spring] PATCH vs PUT</title><link href="https://nan0silver.github.io/spring/2025-04-21-patch-put/" rel="alternate" type="text/html" title="[Spring] PATCH vs PUT" /><published>2025-04-21T00:00:00+00:00</published><updated>2025-06-02T08:37:07+00:00</updated><id>https://nan0silver.github.io/spring/patch-put</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-21-patch-put/"><![CDATA[<ul>
-  <li><a href="#-1-기본-개념">1. 기본 개념</a></li>
-  <li><a href="#-2-예시로-비교해보기">2. 예시로 비교해보기</a></li>
-  <li><a href="#-3-핵심-차이-정리">3. 핵심 차이 정리</a></li>
-  <li><a href="#-4-비유로-이해하기">4. 비유로 이해하기</a></li>
-  <li><a href="#-5-실무-팁">5. 실무 팁</a></li>
-</ul>
-
-<hr />
+<h3 id="2️⃣-테스트-코드-모니터링-툴">2️⃣ 테스트 코드 모니터링 툴</h3>
 
 <blockquote>
-  <p>둘 다 리소스를 수정할 때 사용하는 HTTP 메서드이지만 차이점이 있다.</p>
+  <p><strong>“테스트 코드의 품질과 실행 현황을 시각적으로 분석/모니터링하는 도구”</strong>
+즉, 테스트가 얼마나 잘 되어 있는지 **“숫자와 그래프”**로 보여주는 도구</p>
 </blockquote>
 
-<h2 id="-1-기본-개념">✅ 1. 기본 개념</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>메서드</th>
-      <th>의미</th>
-      <th>리소스를 어떻게 수정?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>PUT</strong></td>
-      <td>리소스를 “통째로 교체”</td>
-      <td>전체를 새 값으로 <strong>대체</strong></td>
-    </tr>
-    <tr>
-      <td><strong>PATCH</strong></td>
-      <td>리소스를 “부분만 수정”</td>
-      <td>바뀐 부분만 <strong>업데이트</strong></td>
-    </tr>
-  </tbody>
-</table>
+<ul>
+  <li>테스트 코드가 있다고 해도, **정말 전체 코드를 잘 테스트하고 있는지는 모름</li>
+  <li>그래서 “<strong>코드 커버리지</strong>”, “<strong>테스트 성공률</strong>”, “<strong>실행 시간</strong>” 같은 걸 측정해서 모니터링할 수 있어야 한다.
+    <ul>
+      <li>커버리지
+        <ul>
+          <li>코드의 품질과 신뢰성을 수치로 확인할 수 있는 지표</li>
+          <li>단순히 테스트를 작성하는 것보다, 커버리지를 보면서 blind spot 없이 테스트하는 게 중요!</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>🔧 대표적인 도구들
+| 도구 | 설명 |
+| ———————- | ———————————– |
+| <strong>JaCoCo</strong> | Java 프로젝트에서 가장 널리 쓰이는 코드 커버리지 측정 도구 |
+| <strong>SonarQube</strong> | 코드 품질, 보안 취약점, 커버리지까지 통합 분석 |
+| <strong>IntelliJ 자체 기능</strong> | 실행 후 커버리지를 하이라이팅으로 보여줌 |
+| <strong>Codecov, Coveralls</strong> | GitHub Actions와 연동해 커버리지 리포트 자동화 |</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[📝 TIL (Today I Learned) 🔗 원본 이슈: #56 📅 작성일: 2025-05-12 🔄 최종 수정: 2025년 05월 22일]]></summary></entry><entry><title type="html"></title><link href="https://nan0silver.github.io/til/2025-06-02-2025-05-20-til/" rel="alternate" type="text/html" title="" /><published>2025-06-02T08:40:18+00:00</published><updated>2025-06-02T08:39:34+00:00</updated><id>https://nan0silver.github.io/til/2025-05-20-til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-06-02-2025-05-20-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/57">#57</a><br />
+📅 <strong>작성일</strong>: 2025-05-20<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
+</blockquote>
 
 <hr />
 
-<h2 id="-2-예시로-비교해보기">✅ 2. 예시로 비교해보기</h2>
-
-<h3 id="-가상의-리소스--사용자-프로필">📦 가상의 리소스 – 사용자 프로필</h3>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sungwoo"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sungwoo@example.com"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h3 id="-put-요청-예시">🟩 PUT 요청 예시</h3>
-
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">PUT /users/1
-Content-Type: application/json
-
-{
-  "name": "Sungwoo",
-  "age": 28,
-  "email": "sungwoo@example.com"
-}
-</span></code></pre></div></div>
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
 
 <ul>
-  <li>이 요청은 <strong>기존 리소스를 통째로 대체</strong>함.</li>
-  <li>기존 값 중 하나라도 빠지면, 그 필드는 <strong>삭제된 것으로 간주</strong>될 수 있다.</li>
-</ul>
+  <li>
+    <p>Ollama</p>
 
-<h3 id="-patch-요청-예시">🟦 PATCH 요청 예시</h3>
+    <ul>
+      <li>로컬 머신에서 대규모 언어 모델(LLM)을 실행할 수 있게 해주는 오픈소스 도구</li>
+      <li>주요 특징
+        <ul>
+          <li>로컬 실행: 모든 처리가 로컬에서 이루어져 개인정보 보호가 가능</li>
+          <li>다양한 모델 지원: Llama, Mistral, Gemma 등 다양한 오픈소스 모델 지원</li>
+          <li>간단한 API: REST API를 통해 쉽게 통합 가능</li>
+          <li>CPU/GPU 지원: 다양한 하드웨어에서 실행 가능</li>
+          <li>크로스 플랫폼: Windows, macOS, Linux 지원</li>
+        </ul>
+      </li>
+      <li>Ollama 시작하기
+        <ol>
+          <li>ollama.com에서 OS에 맞는 버전 다운로드 및 설치</li>
+          <li>터미널에서 모델 다운로드 (예: ollama pull llama3.2)</li>
+          <li>모델 실행 (예: ollama run llama3.2)</li>
+        </ol>
+      </li>
+      <li>
+        <p>API 사용 방법</p>
 
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">PATCH /users/1
-Content-Type: application/json
+        <ul>
+          <li>Ollama는 http://localhost:11434에서 REST API를 제공합니다:</li>
+          <li>
+            <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1"># Python 예제
+</span>  <span class="kn">import</span> <span class="nn">requests</span>
 
-{
-  "age": 28
-}
-</span></code></pre></div></div>
+  <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://localhost:11434/api/generate'</span><span class="p">,</span>
+      <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+          <span class="s">'model'</span><span class="p">:</span> <span class="s">'llama3.2'</span><span class="p">,</span>
+          <span class="s">'prompt'</span><span class="p">:</span> <span class="s">'백엔드 개발에 필요한 기술은?'</span><span class="p">,</span>
+          <span class="s">'stream'</span><span class="p">:</span> <span class="bp">False</span>
+      <span class="p">})</span>
+
+  <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()[</span><span class="s">'response'</span><span class="p">])</span>
+</code></pre></div>            </div>
+          </li>
+          <li>
+            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// JavaScript 예제</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:11434/api/generate</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span> <span class="p">},</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+    <span class="na">model</span><span class="p">:</span> <span class="dl">"</span><span class="s2">llama3.2</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">prompt</span><span class="p">:</span> <span class="dl">"</span><span class="s2">백엔드 개발에 필요한 기술은?</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">stream</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="p">}),</span>
+<span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">));</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[📝 TIL (Today I Learned) 🔗 원본 이슈: #57 📅 작성일: 2025-05-20 🔄 최종 수정: 2025년 05월 22일]]></summary></entry><entry><title type="html"></title><link href="https://nan0silver.github.io/til/2025-06-02-2025-05-21-til/" rel="alternate" type="text/html" title="" /><published>2025-06-02T08:40:18+00:00</published><updated>2025-06-02T08:39:34+00:00</updated><id>https://nan0silver.github.io/til/2025-05-21-til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-06-02-2025-05-21-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/58">#58</a><br />
+📅 <strong>작성일</strong>: 2025-05-21<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 27일</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<h3 id="1️⃣-rpm-앙상블-비용">1️⃣ <strong>RPM, 앙상블, 비용</strong></h3>
 
 <ul>
-  <li>이 요청은 <strong>age 필드만 수정</strong>하고 나머지(<code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">email</code>)는 그대로 유지된다.</li>
+  <li>
+    <p><strong>RPM (Revolutions Per Minute)</strong></p>
+
+    <ul>
+      <li>원래는 하드디스크나 모터 회전 속도를 나타내는 단위지만, **웹/앱 분석에서는 보통 “Revenue Per Mille(천 회당 수익)”**로 사용된다.</li>
+      <li>
+        <p>광고 업계에서는 광고가 <strong>1,000번 노출될 때 수익이 얼마인지</strong>를 뜻함.</p>
+
+        <ul>
+          <li>예: RPM = 5라면, 1,000번 광고 노출 시 수익이 $5</li>
+        </ul>
+      </li>
+      <li>수익성을 평가하는 지표로 자주 사용됨.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>앙상블 (Ensemble)</strong></p>
+
+    <ul>
+      <li>머신러닝에서 여러 모델을 조합해 <strong>예측 정확도를 향상시키는 기법</strong></li>
+      <li>
+        <p>주요 기법:</p>
+
+        <ul>
+          <li><strong>Bagging</strong> (ex. Random Forest)</li>
+          <li><strong>Boosting</strong> (ex. XGBoost, LightGBM)</li>
+          <li><strong>Stacking</strong> (모델들의 출력값을 다시 모델에 입력)</li>
+        </ul>
+      </li>
+      <li>하나의 모델보다 성능이 좋을 가능성이 높고, 특히 Kaggle 등 실전 대회에서 필수 전략임.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>비용 (Cost)</strong></p>
+
+    <ul>
+      <li>머신러닝에서의 비용은 보통 <strong>오차(error)를 수치화한 값</strong></li>
+      <li>
+        <p>목표는 이 비용(Cost)을 <strong>최소화하는 모델 파라미터를 찾는 것</strong></p>
+
+        <ul>
+          <li>예: 회귀에서는 <strong>MSE (Mean Squared Error)</strong></li>
+          <li>분류에서는 <strong>Cross Entropy</strong> 같은 손실 함수 사용</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <hr />
 
-<h2 id="-3-핵심-차이-정리">✅ 3. 핵심 차이 정리</h2>
+<h3 id="2️⃣-wsl-windows-subsystem-for-linux-2">2️⃣ <strong>WSL, Windows Subsystem for Linux 2</strong></h3>
+
+<ul>
+  <li>
+    <p><strong>WSL (Windows Subsystem for Linux)</strong></p>
+
+    <ul>
+      <li>Windows에서 Linux 환경을 사용할 수 있게 해주는 Microsoft의 호환 계층</li>
+      <li>
+        <p>WSL2는 WSL1과 달리 <strong>실제 Linux 커널을 가상 머신 위에 구동</strong>시킴</p>
+
+        <ul>
+          <li>더 빠르고 호환성이 뛰어남 (ex. Docker 사용 가능)</li>
+        </ul>
+      </li>
+      <li>개발자가 <strong>Mac 없이도 Unix/Linux 개발 환경</strong>을 Windows에서 구성할 수 있어 유용함</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>UNIX vs MacOS vs WSL2 vs Tux</strong></p>
+
+    <ul>
+      <li><strong>UNIX</strong>: OS 설계 철학/표준, 안정성과 보안성으로 서버 환경에서 많이 사용됨</li>
+      <li><strong>MacOS</strong>: BSD 계열의 UNIX 기반 OS → 터미널 환경이 UNIX 명령어와 유사</li>
+      <li><strong>WSL2</strong>: 윈도우 안에서 리눅스 환경을 제공해, 리눅스 개발 도구 사용 가능</li>
+      <li><strong>Tux</strong>: 리눅스의 공식 마스코트 펭귄 이름 🐧</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>요약: Mac이나 Linux 서버가 없더라도 WSL2를 쓰면 로컬에서 UNIX 개발 환경을 손쉽게 세팅할 수 있다.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="3️⃣-phoenix-vs-snowflake">3️⃣ <strong>Phoenix vs Snowflake</strong></h3>
+
+<ul>
+  <li>이 두 용어는 <strong>데이터 웨어하우스 시스템</strong> 및 <strong>클라우드 아키텍처</strong> 문맥에서 자주 사용됨.</li>
+</ul>
+
+<h4 id="-phoenix-server-불사조-서버">🔥 Phoenix Server (불사조 서버)</h4>
+
+<ul>
+  <li>시스템을 중단하지 않고 <strong>점진적으로 설정, 코드, 인프라를 바꾸는 방식</strong></li>
+  <li>“죽지 않는 서버”</li>
+  <li>실시간으로 코드를 수정하거나, 배포 중에도 유저에게 영향을 주지 않음</li>
+  <li>하지만 시간이 지날수록 <strong>기술 부채</strong>가 쌓일 수 있음</li>
+</ul>
+
+<h4 id="️-snowflake-server-눈송이-서버">❄️ Snowflake Server (눈송이 서버)</h4>
+
+<ul>
+  <li>수작업 설정이 많고, <strong>특정 환경에서만 작동하는 불안정한 서버</strong></li>
+  <li>배포마다 설정이 조금씩 달라서, 한번 망가지면 <strong>복원하기 어려움</strong></li>
+  <li>
+    <p>반의어로 <strong>Immutable Infrastructure</strong> (변경 불가능한 인프라)가 선호됨</p>
+
+    <ul>
+      <li>예: 컨테이너 기반 인프라 (Docker + CI/CD)</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>요약:</p>
+
+  <ul>
+    <li><strong>Phoenix 서버</strong>는 장기적으로 위험이 쌓이고,</li>
+    <li><strong>Snowflake 서버</strong>는 설정 의존도가 높아 불안정하며,</li>
+    <li>**이 둘을 피하기 위해 IaC(Infrastructure as Code)**와 컨테이너, 배포 자동화를 쓰는 것이 최신 DevOps 흐름이다.</li>
+  </ul>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[📝 TIL (Today I Learned) 🔗 원본 이슈: #58 📅 작성일: 2025-05-21 🔄 최종 수정: 2025년 05월 27일]]></summary></entry><entry><title type="html"></title><link href="https://nan0silver.github.io/til/2025-06-02-2025-05-22-til/" rel="alternate" type="text/html" title="" /><published>2025-06-02T08:40:18+00:00</published><updated>2025-06-02T08:39:34+00:00</updated><id>https://nan0silver.github.io/til/2025-05-22-til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-06-02-2025-05-22-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/59">#59</a><br />
+📅 <strong>작성일</strong>: 2025-05-22<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 27일</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<h3 id="1️⃣-메테리얼-디자인material-design-vs-쿠퍼티노-디자인cupertino-design">1️⃣ <strong>메테리얼 디자인(Material Design) vs 쿠퍼티노 디자인(Cupertino Design)</strong></h3>
+
+<h4 id="-메테리얼-디자인-material-design">🎨 메테리얼 디자인 (Material Design)</h4>
+
+<ul>
+  <li>Google에서 만든 디자인 시스템</li>
+  <li>Android 앱에서 기본적으로 사용되는 UI 가이드라인</li>
+  <li>
+    <p>특징:</p>
+
+    <ul>
+      <li>실제 종이처럼 동작하는 “표면” 개념 → <strong>레이어, 그림자, 깊이감</strong></li>
+      <li><strong>굵은 색상, 명확한 애니메이션, 카드 UI</strong></li>
+      <li>일관된 컴포넌트 구조 (Button, Dialog 등)</li>
+      <li>다양한 화면 크기 및 접근성 고려가 잘 되어 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="-쿠퍼티노-디자인-cupertino-design">🍏 쿠퍼티노 디자인 (Cupertino Design)</h4>
+
+<ul>
+  <li>Apple이 만든 iOS용 디자인 철학</li>
+  <li>Flutter에서는 <code class="language-plaintext highlighter-rouge">CupertinoWidget</code>으로 구현</li>
+  <li>
+    <p>특징:</p>
+
+    <ul>
+      <li><strong>심플하고 정갈한 UI</strong>, 얇은 폰트, 미니멀한 구성</li>
+      <li>iOS의 네이티브한 느낌을 충실히 재현</li>
+      <li>스크롤, 네비게이션, 토글 스위치 등에서 iOS 특유의 인터랙션 존재</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="비교-요약">비교 요약:</h4>
 
 <table>
   <thead>
     <tr>
       <th>항목</th>
-      <th>PUT</th>
-      <th>PATCH</th>
+      <th>Material Design</th>
+      <th>Cupertino Design</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>전체 or 일부</strong></td>
-      <td>전체 대체</td>
-      <td>일부만 수정</td>
+      <td>주요 플랫폼</td>
+      <td>Android, Web, Desktop</td>
+      <td>iOS</td>
     </tr>
     <tr>
-      <td><strong>누락된 필드</strong></td>
-      <td>삭제될 수 있음</td>
-      <td>무시하고 유지됨</td>
+      <td>디자인 철학</td>
+      <td>종이+레이어+애니메이션</td>
+      <td>단순함+미려함+일관성</td>
     </tr>
     <tr>
-      <td><strong>멱등성(Idempotent)</strong></td>
-      <td>있음 (여러 번 해도 같은 결과)</td>
-      <td>보장 X (실행 방식에 따라 달라질 수 있음)</td>
+      <td>주요 사용 예</td>
+      <td>Google 앱, Android 앱</td>
+      <td>Apple 앱, iOS 앱</td>
     </tr>
     <tr>
-      <td><strong>용도</strong></td>
-      <td>새로운 리소스 생성 or 전체 업데이트</td>
-      <td>부분 업데이트에 특화됨</td>
+      <td>Flutter 적용</td>
+      <td><code class="language-plaintext highlighter-rouge">MaterialApp</code></td>
+      <td><code class="language-plaintext highlighter-rouge">CupertinoApp</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>요약: Android 앱은 Material 위주, iOS는 Cupertino 스타일을 따르며, <strong>Flutter는 둘 다 지원</strong>해 플랫폼에 맞는 UI를 쉽게 만들 수 있다!</p>
+</blockquote>
+
+<hr />
+
+<h3 id="2️⃣-log-vs-metrics">2️⃣ <strong>Log vs Metrics</strong></h3>
+
+<p>백엔드/운영 환경에서 시스템 상태를 추적할 때 자주 쓰이는 두 가지 개념을 비교해 보았다.</p>
+
+<h4 id="-로그-log">📄 로그 (Log)</h4>
+
+<ul>
+  <li>
+    <p><strong>시간 순으로 발생한 이벤트 기록</strong></p>
+  </li>
+  <li>
+    <p>보통 텍스트 기반이며, 문제가 발생했을 때 <strong>무슨 일이 있었는지</strong> 파악하는 데 유용</p>
+  </li>
+  <li>
+    <p>예:</p>
+
+    <ul>
+      <li>사용자가 로그인에 실패했습니다.</li>
+      <li>서버에서 500 에러가 발생했습니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>특징:</p>
+
+    <ul>
+      <li>구조화가 느슨함 (JSON 또는 단순 텍스트)</li>
+      <li>디버깅, 감사 추적에 용이</li>
+      <li><strong>사후 분석</strong>에 효과적</li>
+      <li>저장 공간 많이 차지할 수 있음</li>
+    </ul>
+  </li>
+  <li>
+    <p>예시:</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-05-13T12:45:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERROR"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Login failed for user ID 123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="-메트릭-metrics">📊 메트릭 (Metrics)</h4>
+
+<ul>
+  <li>
+    <p><strong>수치로 측정 가능한 시스템의 상태</strong></p>
+  </li>
+  <li>
+    <p>시간에 따라 변화하는 수치 → CPU 사용량, 요청 수, 응답 시간 등</p>
+  </li>
+  <li>
+    <p>예:</p>
+
+    <ul>
+      <li>서버 응답 시간 평균 120ms</li>
+      <li>현재 접속 사용자 수 300명</li>
+    </ul>
+  </li>
+  <li>
+    <p>특징:</p>
+
+    <ul>
+      <li>구조화된 데이터</li>
+      <li>시각화 및 대시보드 구성에 유리</li>
+      <li>알림(경고) 설정에 적합</li>
+      <li>보통 <strong>Prometheus</strong>, <strong>Grafana</strong>와 같이 사용됨</li>
+    </ul>
+  </li>
+  <li>
+    <p>예시:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http_requests_total{method="GET", status="200"} 3456
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="비교-요약-1">비교 요약:</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>로그(Log)</th>
+      <th>메트릭(Metrics)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>목적</td>
+      <td>이벤트 디버깅, 추적</td>
+      <td>상태 모니터링, 성능 추적</td>
+    </tr>
+    <tr>
+      <td>형식</td>
+      <td>텍스트 기반, 구조 유동적</td>
+      <td>수치 기반, 구조화됨</td>
+    </tr>
+    <tr>
+      <td>저장</td>
+      <td>로그 파일, ELK Stack</td>
+      <td>시계열 DB (Prometheus 등)</td>
+    </tr>
+    <tr>
+      <td>시각화</td>
+      <td>Kibana, Logtail 등</td>
+      <td>Grafana 등</td>
+    </tr>
+    <tr>
+      <td>실시간성</td>
+      <td>낮음 (분석 중심)</td>
+      <td>높음 (모니터링, 알림에 적합)</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>로그는 “<strong>무슨 일이 일어났는가</strong>”를 알려주고,
+메트릭은 “<strong>현재 시스템이 어떤 상태인가</strong>”를 알려준다.
+둘은 보완 관계로 함께 사용하는 것이 가장 효과적이다!</p>
+</blockquote>
+
+<h2 id="3️⃣-structured-logging-구조화된-로그">3️⃣ <strong>Structured Logging (구조화된 로그)</strong></h2>
+
+<h3 id="-개념">✅ 개념</h3>
+
+<ul>
+  <li>일반 로그는 텍스트 형식으로 사람이 읽기 쉽게 쓰는 반면,
+<strong>Structured Logging</strong>은 로그를 <strong>JSON 같은 구조화된 형태로 기록</strong>하는 방식입니다.</li>
+</ul>
+
+<h3 id="-예시-비교">🔍 예시 비교</h3>
+
+<p><strong>❌ 일반 로그 (Unstructured)</strong>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User 1234 failed to login due to wrong password
+</code></pre></div></div>
+
+<p><strong>✅ 구조화 로그 (Structured)</strong>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-05-13T10:42:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WARN"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"login_failed"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wrong_password"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="-장점">✨ 장점</h3>
+
+<ul>
+  <li>기계가 파싱하기 쉽고, <strong>검색/필터링/집계</strong>에 유리</li>
+  <li>로그 수집 도구(예: Elasticsearch, Datadog)와 연동할 때 편함</li>
+  <li>실시간 모니터링이나 <strong>경고 시스템</strong>과 연계 가능</li>
+</ul>
+
+<blockquote>
+  <p>구조화 로그는 결국 “<strong>로그도 데이터다</strong>”라는 관점에서 관리하는 것!</p>
+</blockquote>
+
+<hr />
+
+<h2 id="4️⃣-elk-vs-efk-스택">4️⃣ <strong>ELK vs EFK 스택</strong></h2>
+
+<h3 id="-공통-목적">✅ 공통 목적</h3>
+
+<ul>
+  <li><strong>분산 로그 수집, 저장, 분석, 시각화</strong>를 위한 스택입니다.</li>
+  <li>대규모 시스템에서 수많은 서버 로그를 한 곳으로 모아서 검색·분석하기 위해 사용합니다.</li>
+</ul>
+
+<hr />
+
+<h3 id="-elk-stack">🧩 <strong>ELK Stack</strong></h3>
+
+<ul>
+  <li><strong>E</strong>lasticsearch: 로그를 저장하고 검색 가능한 DB</li>
+  <li><strong>L</strong>ogstash: 로그 수집기. 다양한 소스에서 로그를 받아 필터링/변환</li>
+  <li><strong>K</strong>ibana: 시각화 도구 (대시보드, 검색 UI 등)</li>
+</ul>
+
+<h4 id="장점">장점</h4>
+
+<ul>
+  <li>오래된 구성으로 안정적이고 성숙함</li>
+  <li>다양한 입력 소스를 지원 (DB, 파일, MQ 등)</li>
+</ul>
+
+<h4 id="단점">단점</h4>
+
+<ul>
+  <li>Logstash가 무거움 → <strong>리소스 많이 사용</strong></li>
+  <li>설정 복잡함</li>
+</ul>
+
+<hr />
+
+<h3 id="-efk-stack">🧩 <strong>EFK Stack</strong></h3>
+
+<ul>
+  <li><strong>E</strong>lasticsearch</li>
+  <li><strong>F</strong>luentd: 경량 로그 수집기 (Logstash 대체)</li>
+  <li><strong>K</strong>ibana</li>
+</ul>
+
+<h4 id="장점-1">장점</h4>
+
+<ul>
+  <li><strong>Kubernetes 환경에 더 적합</strong></li>
+  <li>Fluentd는 가볍고 플러그인으로 유연하게 확장 가능</li>
+  <li>최근 클라우드 환경에서 더 많이 사용됨</li>
+</ul>
+
+<h4 id="단점-1">단점</h4>
+
+<ul>
+  <li>복잡한 변환/파이프라인 처리 시엔 Logstash보다 기능 제한 있음</li>
+</ul>
+
+<hr />
+
+<h3 id="비교-요약표">비교 요약표:</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>ELK</th>
+      <th>EFK</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>로그 수집기</td>
+      <td>Logstash (무거움)</td>
+      <td>Fluentd (가볍고 유연함)</td>
+    </tr>
+    <tr>
+      <td>시각화</td>
+      <td>Kibana</td>
+      <td>Kibana</td>
+    </tr>
+    <tr>
+      <td>주 사용 환경</td>
+      <td>온프레미스, 레거시 시스템</td>
+      <td>클라우드, Kubernetes</td>
+    </tr>
+    <tr>
+      <td>구성 난이도</td>
+      <td>다소 복잡</td>
+      <td>상대적으로 단순</td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-<h2 id="-4-비유로-이해하기">🎨 4. 비유로 이해하기</h2>
-
-<h3 id="-비유-이력서-제출하기">📘 비유: “이력서 제출하기”</h3>
-
-<ul>
-  <li>
-    <p><strong>PUT</strong>은 새로운 이력서 전체를 회사에 제출해서 기존 이력서를 <strong>완전히 교체</strong>하는 것.</p>
-
-    <blockquote>
-      <p>회사에 제출한 파일을 통째로 새로 바꾸는 느낌!</p>
-    </blockquote>
-  </li>
-  <li>
-    <p><strong>PATCH</strong>는 기존 이력서에서 <strong>전화번호 한 줄만 수정해서 보낸다</strong>고 생각하면 됨.</p>
-
-    <blockquote>
-      <p>“전화번호 바뀌었어요” 라고 알리는 식.</p>
-    </blockquote>
-  </li>
-</ul>
-
-<hr />
-
-<h2 id="-5-실무-팁">✅ 5. 실무 팁</h2>
-
-<ul>
-  <li><strong>클라이언트가 전체 데이터를 항상 알고 있고, 전체 리소스를 대체해야 할 경우 → <code class="language-plaintext highlighter-rouge">PUT</code></strong></li>
-  <li><strong>일부 필드만 수정할 때 → <code class="language-plaintext highlighter-rouge">PATCH</code></strong></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[PATCH와 PUT의 공통점과 차이점에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</title><link href="https://nan0silver.github.io/projectdiary/2025-04-17-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 개발 중 마주한 사소한 이슈들" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-06-02T08:37:07+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-17-diary/"><![CDATA[<ul>
-  <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
-  <li><a href="#2-카카오-소셜-로그인-이메일-누락-문제">카카오 소셜 로그인 이메일 누락 문제</a></li>
-  <li><a href="#3-oauth2-인증-요청-정보-손실-문제">OAuth2 인증 요청 정보 손실 문제</a></li>
-</ul>
-
-<hr />
-
-<p>이 문서는 “버티” 프로젝트를 개발하면서 마주쳤던 비교적 사소하지만, 실제 구현 과정에서는 꽤나 시간을 잡아먹거나 시행착오를 유발했던 문제들을 기록해두는 공간입니다.</p>
-
-<p>단순한 에러라기보다는 “한 번쯤은 헷갈릴 수 있는 포인트들”을 중심으로 정리하여, 나중에 유지보수하거나 다른 프로젝트에서 재사용할 때 참고할 수 있도록 작성합니다.</p>
-
-<hr />
-
-<h2 id="1-jjwt-라이브러리-버전에-따른-변경-사항">1. JJWT 라이브러리 버전에 따른 변경 사항</h2>
-
-<p>JJWT 라이브러리의 업데이트로 인해 토큰 생성 및 파싱 방식이 크게 변경되었습니다. 기존 방식으로 작성된 코드는 더 이상 컴파일되지 않거나 실행 시 에러가 발생할 수 있습니다.</p>
-
-<h3 id="-기존-코드-구버전-jjwt">🔧 기존 코드 (구버전 JJWT)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">secretKey</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">secretKey</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
-<span class="nc">Claims</span> <span class="n">claims</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">claims</span><span class="o">().</span><span class="na">setSubject</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getNickname</span><span class="o">());</span>
-<span class="nc">String</span> <span class="n">accessToken</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">setHeaderParam</span><span class="o">(</span><span class="nc">Header</span><span class="o">.</span><span class="na">TYPE</span><span class="o">,</span> <span class="nc">Header</span><span class="o">.</span><span class="na">JWT_TYPE</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">setClaims</span><span class="o">(</span><span class="n">claims</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">setIssuedAt</span><span class="o">(</span><span class="n">now</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">setExpiration</span><span class="o">(</span><span class="k">new</span> <span class="nc">Date</span><span class="o">(</span><span class="n">now</span><span class="o">.</span><span class="na">getTime</span><span class="o">()</span> <span class="o">+</span> <span class="no">ACCESS_TOKEN_VALID_MILLISECOND</span><span class="o">))</span>
-                <span class="o">.</span><span class="na">signWith</span><span class="o">(</span><span class="nc">SignatureAlgorithm</span><span class="o">.</span><span class="na">HS256</span><span class="o">,</span> <span class="n">secretKey</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">compact</span><span class="o">();</span>
-<span class="nc">Claims</span> <span class="n">parsedClaims</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">parser</span><span class="o">().</span><span class="na">setSigningKey</span><span class="o">(</span><span class="n">secretKey</span><span class="o">).</span><span class="na">parseClaimsJws</span><span class="o">(</span><span class="n">accessToken</span><span class="o">).</span><span class="na">getBody</span><span class="o">();</span>
-</code></pre></div></div>
-
-<h3 id="-변경-코드-최신-jjwt">✅ 변경 코드 (최신 JJWT)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">SecretKey</span> <span class="n">secretKey</span> <span class="o">=</span> <span class="nc">Keys</span><span class="o">.</span><span class="na">hmacShaKeyFor</span><span class="o">(</span><span class="n">secretKeyStr</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
-<span class="nc">Claims</span> <span class="n">claims</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">claims</span><span class="o">().</span><span class="na">subject</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getNickname</span><span class="o">()).</span><span class="na">build</span><span class="o">();</span>
-<span class="nc">String</span> <span class="n">accessToken</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">claims</span><span class="o">(</span><span class="n">claims</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">header</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="s">"JWT"</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">and</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">issuedAt</span><span class="o">(</span><span class="n">now</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">expiration</span><span class="o">(</span><span class="k">new</span> <span class="nc">Date</span><span class="o">(</span><span class="n">now</span><span class="o">.</span><span class="na">getTime</span><span class="o">()</span> <span class="o">+</span> <span class="no">ACCESS_TOKEN_VALID_MILLISECOND</span><span class="o">))</span>
-                <span class="o">.</span><span class="na">signWith</span><span class="o">(</span><span class="n">secretKey</span><span class="o">,</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">SIG</span><span class="o">.</span><span class="na">HS256</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">compact</span><span class="o">();</span>
-<span class="nc">Claims</span> <span class="n">parsedClaims</span> <span class="o">=</span> <span class="nc">Jwts</span><span class="o">.</span><span class="na">parser</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">verifyWith</span><span class="o">(</span><span class="n">secretKey</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">parseSignedClaims</span><span class="o">(</span><span class="n">accessToken</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">getPayload</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>참고 :</p>
-
-<ul>
-  <li><a href="https://myeongju00.tistory.com/112">Jwt.parserBuilder() Deprecated</a></li>
-  <li><a href="https://stackoverflow.com/questions/78805779/issue-with-parserbuilder-method-in-jjwt-library-for-jwt-token-validation">stack overflow</a></li>
-</ul>
-
-<hr />
-
-<h2 id="2-카카오-소셜-로그인-이메일-누락-문제">2. 카카오 소셜 로그인 이메일 누락 문제</h2>
-
-<h3 id="-문제-상황">🧩 문제 상황</h3>
-
-<p>카카오 로그인 시 사용자 이메일이 제공되지 않아 <code class="language-plaintext highlighter-rouge">InternalAuthenticationServiceException</code> 이 발생하는 문제가 있었습니다.</p>
-
-<h3 id="-해결-방법">✅ 해결 방법</h3>
-
-<p>카카오 계정에 이메일 정보가 없을 경우 자동으로 생성된 이메일을 부여하도록 로직을 보완했습니다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// KakaoOAuth2UserInfo 클래스</span>
-<span class="nd">@Override</span>
-<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getEmail</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">attributes</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"kakao_account"</span><span class="o">))</span> <span class="o">{</span>
-        <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">kakaoAccount</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;)</span> <span class="n">attributes</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"kakao_account"</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">kakaoAccount</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">kakaoAccount</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"email"</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span> <span class="n">kakaoAccount</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"email"</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// 상위 메소드에서 처리</span>
-<span class="o">}</span>
-
-<span class="c1">// OAuth2UserService 클래스</span>
-<span class="kd">private</span> <span class="nc">OAuth2User</span> <span class="nf">processOAuth2User</span><span class="o">(...)</span> <span class="o">{</span>
-    <span class="nc">String</span> <span class="n">email</span> <span class="o">=</span> <span class="n">oAuth2UserInfo</span><span class="o">.</span><span class="na">getEmail</span><span class="o">();</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">email</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">email</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
-        <span class="n">email</span> <span class="o">=</span> <span class="n">registrationId</span> <span class="o">+</span> <span class="s">"_"</span> <span class="o">+</span> <span class="n">oAuth2UserInfo</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">"@example.com"</span><span class="o">;</span>
-        <span class="n">log</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"이메일 정보가 없어 생성된 이메일: {}"</span><span class="o">,</span> <span class="n">email</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 나머지 사용자 생성/업데이트 로직</span>
-    <span class="o">...</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="3-oauth2-인증-요청-정보-손실-문제">3. OAuth2 인증 요청 정보 손실 문제</h2>
-
-<h3 id="-문제-상황-1">🧩 문제 상황</h3>
-
-<p>로그인 시 다음과 같은 오류가 발생했습니다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oauth2LoginException: authorization_request_not_found
-</code></pre></div></div>
-
-<p>이유는 Security 설정에서 다음과 같이 세션 생성을 완전히 차단했기 때문입니다:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">.</span><span class="na">sessionManagement</span><span class="o">().</span><span class="na">sessionCreationPolicy</span><span class="o">(</span><span class="nc">SessionCreationPolicy</span><span class="o">.</span><span class="na">STATELESS</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>OAuth2 로그인 과정은 내부적으로 세션에 인증 요청 정보를 저장하여 인증을 이어가는데, 해당 설정으로 인해 정보가 손실되었습니다.</p>
-
-<h3 id="-해결-방법-1">✅ 해결 방법</h3>
-
-<p>개발 초기에는 단순화를 위해 다음과 같이 설정을 변경했습니다:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">.</span><span class="na">sessionManagement</span><span class="o">().</span><span class="na">sessionCreationPolicy</span><span class="o">(</span><span class="nc">SessionCreationPolicy</span><span class="o">.</span><span class="na">IF_REQUIRED</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>이를 통해 OAuth2 인증 플로우 중 세션을 사용할 수 있도록 하여 문제를 해결했습니다.</p>
-
-<h3 id="-추가-구현-리프레시-토큰">💡 추가 구현: 리프레시 토큰</h3>
-
-<p>보안성과 사용자 경험을 위해 리프레시 토큰도 함께 구현했습니다.</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">RefreshToken</code> 엔티티 및 리포지토리 생성</li>
-  <li>토큰 갱신 서비스 및 API 엔드포인트 구현</li>
-  <li>액세스 토큰과 리프레시 토큰을 분리 관리하여 보안성 강화</li>
-</ul>
-
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 개발 중 마주한 사소한 이슈들 정리]]></summary></entry><entry><title type="html">[Spring] JPA Query Method</title><link href="https://nan0silver.github.io/spring/2025-04-17-query-method/" rel="alternate" type="text/html" title="[Spring] JPA Query Method" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-06-02T08:37:07+00:00</updated><id>https://nan0silver.github.io/spring/query-method</id><content type="html" xml:base="https://nan0silver.github.io/spring/2025-04-17-query-method/"><![CDATA[<ul>
-  <li><a href="#jparepository-상속">JpaRepository 상속</a></li>
-  <li><a href="#-그렇다면-커스텀-쿼리는-어떻게-할까">그렇다면 커스텀 쿼리는 어떻게 할까?</a></li>
-  <li><a href="#-개발자-관점-팁">개발자 관점 팁</a></li>
-</ul>
-
-<hr />
-
-<h2 id="jparepository-상속"><code class="language-plaintext highlighter-rouge">JpaRepository</code> 상속</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">JpaRepository</code>를 상속한 Repository 인터페이스는 여러 기능이 내장된 상태가 된다.
-    <ul>
-      <li>예시 : <code class="language-plaintext highlighter-rouge">public interface UserRepository extends JpaRepository&lt;User, Long&gt; {}</code></li>
-    </ul>
-  </li>
-  <li>이 경우, <code class="language-plaintext highlighter-rouge">findById()</code> 같은 기능은 이미 내장되어 편리하게 사용할 수 있다.</li>
-  <li>
-    <p>내장 함수</p>
-
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">JpaReposiroty</code>가 상속하고 있는 인터페이스 중, <code class="language-plaintext highlighter-rouge">CrudRepository</code>가 아래와 같이 기본 CRUD 메서드를 가지고 있어 직접 구현하지 않아도 사용할 수 있음.</li>
-      <li>
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CrudRepository</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">ID</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="nc">Repository</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">ID</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="o">&lt;</span><span class="no">S</span> <span class="kd">extends</span> <span class="no">T</span><span class="o">&gt;</span> <span class="no">S</span> <span class="nf">save</span><span class="o">(</span><span class="no">S</span> <span class="n">entity</span><span class="o">);</span>
-
-    <span class="o">&lt;</span><span class="no">S</span> <span class="kd">extends</span> <span class="no">T</span><span class="o">&gt;</span> <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">S</span><span class="o">&gt;</span> <span class="nf">saveAll</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">S</span><span class="o">&gt;</span> <span class="n">entities</span><span class="o">);</span>
-
-    <span class="nc">Optional</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findById</span><span class="o">(</span><span class="no">ID</span> <span class="n">id</span><span class="o">);</span>
-
-    <span class="kt">boolean</span> <span class="nf">existsById</span><span class="o">(</span><span class="no">ID</span> <span class="n">id</span><span class="o">);</span>
-
-    <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">();</span>
-
-    <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findAllById</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">ID</span><span class="o">&gt;</span> <span class="n">ids</span><span class="o">);</span>
-
-    <span class="kt">long</span> <span class="nf">count</span><span class="o">();</span>
-
-    <span class="kt">void</span> <span class="nf">deleteById</span><span class="o">(</span><span class="no">ID</span> <span class="n">id</span><span class="o">);</span>
-
-    <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="no">T</span> <span class="n">entity</span><span class="o">);</span>
-
-    <span class="kt">void</span> <span class="nf">deleteAllById</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="no">ID</span><span class="o">&gt;</span> <span class="n">ids</span><span class="o">);</span>
-
-    <span class="kt">void</span> <span class="nf">deleteAll</span><span class="o">(</span><span class="nc">Iterable</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="no">T</span><span class="o">&gt;</span> <span class="n">entities</span><span class="o">);</span>
-
-    <span class="kt">void</span> <span class="nf">deleteAll</span><span class="o">();</span>
-   <span class="o">}</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="-그렇다면-커스텀-쿼리는-어떻게-할까">🤔 그렇다면 커스텀 쿼리는 어떻게 할까?</h2>
-
-<ul>
-  <li>Spring Data JPA는 메서드 이름만으로 쿼리를 만들어줌
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">List&lt;User&gt; findByAgeGreaterThan(int n);</code> -&gt; age &gt; n인 유저들</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="예시">예시:</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByName</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>이 메서드를 호출하면 JPA는 이런 SQL을 자동으로 만든다:</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">user</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="o">?</span><span class="p">;</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="1-다양한-조건-연산자">1. 다양한 조건 연산자</h3>
-
-<ul>
-  <li>사용 가능한 키워드들:</li>
-</ul>
+<h2 id="-결론">📌 결론</h2>
 
 <table>
   <thead>
     <tr>
-      <th>키워드</th>
-      <th>의미</th>
-      <th>예시</th>
-      <th>SQL</th>
+      <th>상황</th>
+      <th>추천</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">And</code></td>
-      <td>AND 조건</td>
-      <td><code class="language-plaintext highlighter-rouge">findByNameAndAge</code></td>
-      <td><code class="language-plaintext highlighter-rouge">WHERE name=? AND age=?</code></td>
+      <td>Kubernetes 기반 마이크로서비스</td>
+      <td>✅ <strong>EFK Stack</strong></td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">Or</code></td>
-      <td>OR 조건</td>
-      <td><code class="language-plaintext highlighter-rouge">findByNameOrEmail</code></td>
-      <td><code class="language-plaintext highlighter-rouge">WHERE name=? OR email=?</code></td>
+      <td>다양한 로그 소스와 복잡한 처리 필요</td>
+      <td>✅ <strong>ELK Stack</strong></td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">Between</code></td>
-      <td>사이 값</td>
-      <td><code class="language-plaintext highlighter-rouge">findByAgeBetween(int a, int b)</code></td>
-      <td><code class="language-plaintext highlighter-rouge">WHERE age BETWEEN ? AND ?</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">LessThan</code> / <code class="language-plaintext highlighter-rouge">GreaterThan</code></td>
-      <td>부등호</td>
-      <td><code class="language-plaintext highlighter-rouge">findByAgeGreaterThan(20)</code></td>
-      <td><code class="language-plaintext highlighter-rouge">WHERE age &gt; 20</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">IsNull</code> / <code class="language-plaintext highlighter-rouge">IsNotNull</code></td>
-      <td>널 여부</td>
-      <td><code class="language-plaintext highlighter-rouge">findByEmailIsNull()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">WHERE email IS NULL</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">In</code></td>
-      <td>여러 값</td>
-      <td><code class="language-plaintext highlighter-rouge">findByNameIn(List&lt;String&gt; names)</code></td>
-      <td><code class="language-plaintext highlighter-rouge">WHERE name IN (?, ?, ...)</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Like</code></td>
-      <td>부분일치</td>
-      <td><code class="language-plaintext highlighter-rouge">findByNameLike("%woo%")</code></td>
-      <td><code class="language-plaintext highlighter-rouge">WHERE name LIKE ?</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">StartingWith</code> / <code class="language-plaintext highlighter-rouge">EndingWith</code> / <code class="language-plaintext highlighter-rouge">Containing</code></td>
-      <td>문자열 검색</td>
-      <td><code class="language-plaintext highlighter-rouge">findByNameStartingWith("s")</code></td>
-      <td><code class="language-plaintext highlighter-rouge">WHERE name LIKE 's%'</code></td>
+      <td>단순한 파일 로그 수집 및 시각화</td>
+      <td>✅ 둘 다 가능, 구조화 로그 필수</td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-<h3 id="2-정렬과-페이징도-가능">2. 정렬과 페이징도 가능!</h3>
+<blockquote>
+  <p>실제로는 <strong>EFK + Structured Logging</strong> 조합이 요즘 가장 트렌디한 방식입니다.
+로그를 JSON 형태로 남기고, Fluentd를 통해 Elasticsearch에 넣은 뒤 Kibana로 시각화하면 아주 강력한 로그 분석 시스템이 됩니다.</p>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[📝 TIL (Today I Learned) 🔗 원본 이슈: #59 📅 작성일: 2025-05-22 🔄 최종 수정: 2025년 05월 27일]]></summary></entry><entry><title type="html"></title><link href="https://nan0silver.github.io/til/2025-06-02-2025-05-23-til/" rel="alternate" type="text/html" title="" /><published>2025-06-02T08:40:18+00:00</published><updated>2025-06-02T08:39:34+00:00</updated><id>https://nan0silver.github.io/til/2025-05-23-til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-06-02-2025-05-23-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/60">#60</a><br />
+📅 <strong>작성일</strong>: 2025-05-23<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 27일</p>
+</blockquote>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByAgeGreaterThanOrderByNameAsc</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">);</span>
-</code></pre></div></div>
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<h3 id="1️⃣-grafana--prometheus--시계열-메트릭-시각화-도구">1️⃣ <strong>Grafana &amp; Prometheus – 시계열 메트릭 시각화 도구</strong></h3>
+
+<h4 id="-prometheus">📊 Prometheus</h4>
 
 <ul>
-  <li>SQL: <code class="language-plaintext highlighter-rouge">SELECT * FROM user WHERE age &gt; ? ORDER BY name ASC</code></li>
+  <li>CNCF(Cloud Native Computing Foundation)에서 관리하는 <strong>시계열 메트릭 수집 도구</strong></li>
+  <li>주로 <strong>인프라/애플리케이션 성능 모니터링</strong>에 사용됨</li>
+  <li><strong>Pull 방식</strong>으로 타겟 서버의 메트릭을 주기적으로 수집함</li>
+  <li>메트릭 쿼리 언어: <strong>PromQL</strong></li>
+  <li>내장된 시계열 DB에 메트릭 저장</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Page</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByNameContaining</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">Pageable</span> <span class="n">pageable</span><span class="o">);</span>
+<blockquote>
+  <p>예시 메트릭:</p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http_requests_total{method="GET", status="200"} 1523
+cpu_usage_seconds_total{core="1"} 82.3
 </code></pre></div></div>
 
+<h4 id="-grafana">📈 Grafana</h4>
+
 <ul>
-  <li>페이징 처리까지 자동으로 해줌!</li>
+  <li><strong>Prometheus 등의 시계열 데이터 소스를 시각화하는 대시보드 도구</strong></li>
+  <li>사용자가 커스터마이징 가능한 <strong>대시보드/그래프/알람</strong>을 만들 수 있음</li>
+  <li>Prometheus 외에도 <strong>Loki(로그), InfluxDB, MySQL, Elasticsearch 등 다양한 소스</strong>와 연동 가능</li>
+  <li>
+    <p>주요 사용 예:</p>
+
+    <ul>
+      <li>CPU/메모리/디스크 사용률 실시간 모니터링</li>
+      <li>서비스 요청 응답 시간 추적</li>
+      <li>메트릭 기반 알림 설정 (ex. 5분간 에러율이 5% 넘으면 슬랙 알림)</li>
+    </ul>
+  </li>
 </ul>
 
 <hr />
 
-<h3 id="3-존재-여부만-알고-싶다면">3. 존재 여부만 알고 싶다면?</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">boolean</span> <span class="nf">existsByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
-</code></pre></div></div>
-
-<ul>
-  <li>SQL: <code class="language-plaintext highlighter-rouge">SELECT COUNT(*) FROM user WHERE email = ?</code></li>
-  <li>결과: 해당 이메일이 존재하면 <code class="language-plaintext highlighter-rouge">true</code>, 없으면 <code class="language-plaintext highlighter-rouge">false</code></li>
-</ul>
-
-<hr />
-
-<h3 id="4-리턴-타입도-다양하게-지원한다">4. 리턴 타입도 다양하게 지원한다.</h3>
+<h3 id="-grafana--prometheus--devops-핵심-콤보">🧩 Grafana + Prometheus = DevOps 핵심 콤보</h3>
 
 <table>
   <thead>
     <tr>
-      <th>리턴 타입</th>
+      <th>도구</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Prometheus</td>
+      <td>메트릭 수집 및 저장</td>
+    </tr>
+    <tr>
+      <td>Grafana</td>
+      <td>메트릭 시각화 및 알람</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>두 도구는 함께 사용할 때 진가를 발휘한다.
+Prometheus가 메트릭 데이터를 모으고, Grafana가 이를 시각적으로 표현해준다.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="2️⃣-rolling-policy-로그-롤링-정책">2️⃣ <strong>Rolling Policy (로그 롤링 정책)</strong></h3>
+
+<h4 id="-개념">🧾 개념</h4>
+
+<ul>
+  <li>로그 파일이 커지거나 오래되었을 때, <strong>자동으로 새로운 파일로 교체하거나 백업</strong>하는 정책</li>
+  <li>로그 관리를 자동화해서 디스크 과부하를 방지하고, 오래된 로그를 보관하거나 삭제할 수 있게 해줌</li>
+</ul>
+
+<h4 id="-적용-예--logback-springxml-예시">📁 적용 예 – <code class="language-plaintext highlighter-rouge">logback-spring.xml</code> 예시:</h4>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;rollingPolicy</span> <span class="na">class=</span><span class="s">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;fileNamePattern&gt;</span>logs/app-%d{yyyy-MM-dd}.log<span class="nt">&lt;/fileNamePattern&gt;</span>
+    <span class="nt">&lt;maxHistory&gt;</span>30<span class="nt">&lt;/maxHistory&gt;</span> <span class="c">&lt;!-- 30일간 보관 --&gt;</span>
+<span class="nt">&lt;/rollingPolicy&gt;</span>
+</code></pre></div></div>
+
+<h4 id="️-주요-타입">🎛️ 주요 타입</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>정책 유형</th>
       <th>설명</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">User</code></td>
-      <td>단일 객체 (없으면 <code class="language-plaintext highlighter-rouge">null</code>)</td>
+      <td>TimeBasedRollingPolicy</td>
+      <td>날짜별로 로그 파일 분리 (<code class="language-plaintext highlighter-rouge">app-2025-05-14.log</code>)</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">Optional&lt;User&gt;</code></td>
-      <td>단일 객체 (안전하게 Optional로 감쌈)</td>
+      <td>SizeBasedTriggeringPolicy</td>
+      <td>특정 크기 초과 시 새로운 파일 생성 (<code class="language-plaintext highlighter-rouge">app.log.1</code>, <code class="language-plaintext highlighter-rouge">.2</code>…)</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">List&lt;User&gt;</code></td>
-      <td>여러 개</td>
+      <td>FixedWindowRollingPolicy</td>
+      <td>번호 기반 순환 롤링 (<code class="language-plaintext highlighter-rouge">app.1.log</code>, <code class="language-plaintext highlighter-rouge">app.2.log</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="-왜-중요한가">🚧 왜 중요한가?</h4>
+
+<ul>
+  <li>로그 파일이 무한히 커지지 않도록 제어</li>
+  <li>백업 및 운영에 필요한 로그만 유지 가능</li>
+  <li>ELK/EFK 스택과 연동할 때도 파일 기반 로그를 안정적으로 관리</li>
+</ul>
+
+<blockquote>
+  <p>정리하자면, **“로그를 무한정 쌓지 말고, 잘라서 보관하고, 오래된 건 지우자!”**는 개념이다.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="-오늘의-요약">📌 오늘의 요약</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>개념</th>
+      <th>핵심 기능</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Prometheus</td>
+      <td>메트릭 수집 및 저장 (시계열 DB)</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">Page&lt;User&gt;</code></td>
-      <td>페이징 결과</td>
+      <td>Grafana</td>
+      <td>메트릭 시각화 및 알림</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
-      <td>존재 여부 확인</td>
+      <td>Rolling Policy</td>
+      <td>로그 용량/시간 기준 자동 분할 및 관리</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="3️⃣--시계열-메트릭time-series-metrics이란">3️⃣ 🕐 시계열 메트릭(Time Series Metrics)이란?</h3>
+
+<ul>
+  <li><strong>시간(Time)</strong> + <strong>값(Value)</strong> 이 쌍으로 구성된 데이터</li>
+  <li>특정 지표가 <strong>시간에 따라 어떻게 변하는지</strong>를 보여줌</li>
+</ul>
+
+<h4 id="-예시">📊 예시:</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>시간</th>
+      <th>CPU 사용률 (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2025-05-14 10:00:00</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>2025-05-14 10:01:00</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <td>2025-05-14 10:02:00</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이처럼 “시간에 따른 수치 변화”를 기록한 데이터가 바로 <strong>시계열 메트릭</strong></p>
+
+<hr />
+
+<h4 id="-시계열-메트릭-수집-도구란">📦 시계열 메트릭 수집 도구란?</h4>
+
+<blockquote>
+  <p>이런 <strong>시간 기반 데이터</strong>를 <strong>자동으로 수집, 저장, 관리</strong>해주는 도구를 말합니다.</p>
+</blockquote>
+
+<ul>
+  <li>대표적인 도구:
+    <ul>
+      <li><strong>Prometheus</strong></li>
+      <li>InfluxDB</li>
+      <li>Graphite</li>
+      <li>OpenTSDB</li>
+    </ul>
+  </li>
+</ul>
+
+<p>이들은 서버나 애플리케이션에서 CPU, 메모리, 요청 수, 에러율 같은 수치를 <strong>주기적으로 수집</strong>해서 시계열 DB에 저장한다.</p>
+
+<h4 id="️-예를-들어-prometheus는">🛠️ 예를 들어 Prometheus는?</h4>
+
+<ul>
+  <li>15초마다 모든 서버의 CPU 사용률, HTTP 요청 수 등을 수집</li>
+  <li>내부에 <strong>시계열 전용 데이터베이스</strong>를 가지고 있어 시간 순서대로 저장</li>
+  <li>나중에 Grafana 같은 도구로 꺾은선 그래프를 그릴 수 있음</li>
+</ul>
+
+<h4 id="-정리">📌 정리</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>시계열 데이터</td>
+      <td>시간에 따라 변화하는 수치 데이터 (예: CPU 70% → 50%)</td>
+    </tr>
+    <tr>
+      <td>시계열 메트릭 도구</td>
+      <td>시간 기반 데이터를 주기적으로 수집/저장하는 시스템</td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-<h3 id="5-규칙을-안-지키면-어떻게-될까">5. 규칙을 안 지키면 어떻게 될까?</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">findByWhatIsThis</span><span class="o">()</span> <span class="c1">// ← 엔티티에 없는 필드명이면 컴파일은 되지만 실행 시 에러</span>
-</code></pre></div></div>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">No property whatIsThis found for type User!</code> 같은 예외 발생</li>
-</ul>
-
-<hr />
-
-<h2 id="-개발자-관점-팁">🧠 개발자 관점 팁</h2>
-
-<ul>
-  <li>메서드 이름이 너무 길어지면 <strong><code class="language-plaintext highlighter-rouge">@Query</code>를 써서 직접 JPQL 작성</strong>하는 게 낫다.</li>
-  <li><strong>자동 생성 쿼리 → 빠르게 CRUD 만들 때 유용</strong></li>
-  <li><strong>복잡한 조건</strong> → <code class="language-plaintext highlighter-rouge">@Query</code> 또는 <code class="language-plaintext highlighter-rouge">QueryDSL</code>, <code class="language-plaintext highlighter-rouge">Specification</code> 권장</li>
-</ul>
-
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="spring" /><summary type="html"><![CDATA[JPA의 Query Method에 대해 알아보자.]]></summary></entry><entry><title type="html">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</title><link href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" rel="alternate" type="text/html" title="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" /><published>2025-04-16T00:00:00+00:00</published><updated>2025-06-02T08:37:07+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-16-diary/"><![CDATA[<blockquote>
-  <p>저번 프로젝트에서는 로그아웃을 구현하지 않고, 토큰 만료를 사용했는데 로그아웃을 구현해달라는 요청이 있었어서 이번 프로젝트에서는 제대로 알아보고 구현해보기로 하였다.</p>
+<blockquote>
+  <p>시계열 메트릭 도구는 결국 **“시간의 흐름에 따라 시스템이 어떻게 작동하고 있는지 보여주는 도구”**</p>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[📝 TIL (Today I Learned) 🔗 원본 이슈: #60 📅 작성일: 2025-05-23 🔄 최종 수정: 2025년 05월 27일]]></summary></entry><entry><title type="html"></title><link href="https://nan0silver.github.io/til/2025-06-02-2025-05-24-til/" rel="alternate" type="text/html" title="" /><published>2025-06-02T08:40:18+00:00</published><updated>2025-06-02T08:39:34+00:00</updated><id>https://nan0silver.github.io/til/2025-05-24-til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-06-02-2025-05-24-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/61">#61</a><br />
+📅 <strong>작성일</strong>: 2025-05-24<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 27일</p>
 </blockquote>
 
-<ul>
-  <li>JWT는 기본적으로 상태를 저장하지 않아(stateless) 로그아웃 처리에 어려움이 있다.</li>
-  <li>
-    <p>로그아웃을 구현하는 방법에는 크게 3가지가 있다.</p>
+<hr />
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 프론트엔트에서 토큰 삭제
-   - 가장 구현이 간단하다.
-   - 클라이언트 측에서 토큰을 삭제하여 로그아웃을 구현하는 방법
-   - 이 방법이 토큰의 `Stateless`한 특징을 최대한 살린 방식
-     &gt; 'Stateful` : 데이터베이스에 정보를 저장하고 조회하는 경우
-</code></pre></div>    </div>
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
 
-    <p>‘Stateless`: 데이터베이스를 사용하지 않는 방식</p>
-
-    <blockquote>
-      <blockquote>
-        <p>JWT는 데이터베이스에 저장 및 조회가 필요없기 때문에<code class="language-plaintext highlighter-rouge">Stateless</code>한 특징을 가지고 있다.</p>
-      </blockquote>
-    </blockquote>
-
-    <ul>
-      <li>단점 : 서버에선 토큰이 유효하기 때문에, 토큰이 노출되면 보안 문제가 생길 수 있음.</li>
-    </ul>
-
-    <ol>
-      <li>토큰 블랙리스트 관리
-        <ul>
-          <li>JWT가 만료되지 않은 상태에서 로그아웃 요청이 오는 경우, 서버에서 해당 토큰을 블랙리스트 DB에 넣어 처리</li>
-          <li>인증 필터에서 매 요청마다 토큰이 블랙리스트에 해당하는 토큰인지 확인해야한다.</li>
-          <li>서버에서 토큰을 효과적으로 관리할 수 있지만, 매 요청마다 블랙리스트를 확인해야하기 때문에 <code class="language-plaintext highlighter-rouge">stateless</code>한 JWT의 장점이 없어진다.</li>
-        </ul>
-      </li>
-      <li>Refresh Token 기간 만료 처리
-        <ul>
-          <li>사용자가 로그아웃을 요청할 때 리프레시 토큰을 무효화해 해당 사용자가 더 이상 새로운 엑세스 토큰을 발급받지 못하도록 하는 방식</li>
-          <li>사용자의 로그아웃 요청에 대해 서버 측에서 적극적으로 대응할 수 있다는 장점이 있다.</li>
-          <li>엑세스 토큰 재발급의 연속성을 차단해 보안을 강화할 수도 있다.</li>
-          <li>하지만 리프레시 토큰 확인 과정에서 JWT의 <code class="language-plaintext highlighter-rouge">Stateless</code>한 장점이 사라진다.</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-  <li>2번 VS 3번 비교
-    <ul>
-      <li>2번의 경우, 블랙리스트 DB 혹은 Redis를 사용해 서버 상태를 관리해야 한다.</li>
-      <li>또한 <code class="language-plaintext highlighter-rouge">Stateless</code>성이 완전히 깨지고 (모은 요청 시 DB확인이 필요하기 때문에!) 성능 이슈가 생길 수 있다.</li>
-      <li>하지만 3번의 경우, 리프레시 토큰만 관리하면 되기 때문에 상대적으로 가볍다.
-        <ul>
-          <li>리프레시 토큰만 서버 저장 및 관리하면 된다!</li>
-        </ul>
-      </li>
-      <li>또한 3번은 <code class="language-plaintext highlighter-rouge">Stateless</code>를 부분적으로 유지 가능하다. (액세스 토큰은 여전히 <code class="language-plaintext highlighter-rouge">Stateless</code>)</li>
-    </ul>
-  </li>
-  <li>일단은 3번 방법을 선택해서 로그아웃을 구현해보기로 결정하였다.
-    <ul>
-      <li>어플리케이션이 그렇게 무거운 프로젝트가 아니기 때문에, 블랙 리스트 방식처럼 서버 자원을 지속적으로 소모하는 설계보다는 토큰 생명주기를 명확히 관리할 수 있는 방식이 더 적합할 것 같다고 판단했다.</li>
-      <li>또한 리프레시 토큰 구현으로 토큰의 생명 주기에 대해 이해해볼 수 있을 것 같아 선택하게 되었다.</li>
-      <li>이번 프로젝트는 데이터베이스 사용이 많은 구조이기 때문에, 불필요한 토큰 상태 관리를 피하고 전체 시스템의 부하를 줄이기 위한 의도도 있었다.
-        <blockquote>
-          <p>리프레시 토큰의 발급 및 만료 흐름을 직접 설계함으로써, JWT 기반 인증 시스템의 구조와 보안 설계에 대한 이해도를 높이는 기회로 삼고자 한다.</p>
-        </blockquote>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p>참고 :</p>
+<h3 id="1️⃣-nginx란">1️⃣ <strong>Nginx란?</strong></h3>
 
 <ul>
-  <li><a href="https://upcurvewave.tistory.com/611">JWT 토큰 기반의 상태 관리시 로그아웃 처리 문제</a></li>
-  <li><a href="https://engineerinsight.tistory.com/232#google_vignette">[우테코] JWT 방식에서 로그아웃, Refresh Token 만들기(1)</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[JWT 로그인 구현 시 로그아웃 방법 고민..]]></summary></entry><entry><title type="html">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</title><link href="https://nan0silver.github.io/projectdiary/2025-04-15-diary/" rel="alternate" type="text/html" title="[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기" /><published>2025-04-15T00:00:00+00:00</published><updated>2025-06-02T08:37:07+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-15-diary/"><![CDATA[<ul>
-  <li><a href="#1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</a></li>
-  <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
-  <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
-  <li><a href="#4-swagger-ui에-authorization-설정-추가">4. Swagger UI에 Authorization 설정 추가</a></li>
-  <li><a href="#5-실무-관점에서의-swagger-접근-관리-전략">5. 실무 관점에서의 Swagger 접근 관리 전략</a></li>
-  <li><a href="#6-정리하며">6. 정리하며</a></li>
+  <li>**Nginx(엔진엑스)**는 고성능 웹 서버 소프트웨어다.</li>
+  <li>원래는 정적 콘텐츠 제공을 위한 웹 서버였지만, 현재는 <strong>리버스 프록시</strong>, <strong>로드 밸런서</strong>, <strong>API Gateway</strong>, <strong>캐시 서버</strong> 등 다용도로 활용된다.</li>
 </ul>
 
 <hr />
 
-<p>Spring Boot와 Spring Security, 그리고 Swagger(OpenAPI)를 함께 사용하기 위해 공부하고 구현하며 여러 이슈가 발생했습니다. 따라서 제가 프로젝트를 수행하며 “소셜 로그인 기능을 구현하면서 Swagger와 관련된 문제들을 어떻게 인지하고 해결했는지”를 기록해 보았습니다.</p>
+<h3 id="-nginx의-주요-기능">✅ Nginx의 주요 기능</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>기능</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>웹 서버</td>
+      <td>HTML, CSS, JS 같은 <strong>정적 파일 제공</strong></td>
+    </tr>
+    <tr>
+      <td>리버스 프록시</td>
+      <td>클라이언트 요청을 <strong>내부 서버에 전달</strong></td>
+    </tr>
+    <tr>
+      <td>로드 밸런서</td>
+      <td>여러 서버에 트래픽을 <strong>분산</strong>하여 처리</td>
+    </tr>
+    <tr>
+      <td>캐시 서버</td>
+      <td>응답을 <strong>캐싱</strong>해 성능 향상</td>
+    </tr>
+    <tr>
+      <td>SSL 종단 처리</td>
+      <td>HTTPS 인증서 처리 (Let’s Encrypt 등과 연동)</td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
-<h2 id="1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</h2>
-
-<h3 id="11-문제-상황">1.1. 문제 상황</h3>
-
-<p>Spring Security 환경에서 Swagger 문서(<code class="language-plaintext highlighter-rouge">/swagger-ui/index.html</code>, <code class="language-plaintext highlighter-rouge">/v3/api-docs</code>)에 접근하려면 인증이 필요한 상황이 발생하였습니다. 이는 프론트엔드 개발자와 API 명세를 공유하고 협업하는 데 불편을 초래할 것이라 판단했습니다. 로그인 과정을 거치지 않으면 Swagger UI 자체가 열리지 않았기 때문에, 프론트엔드가 API 테스트를 원활히 진행할 수 없었습니다.</p>
-
-<p>그래서 <strong>개발 환경(dev profile)</strong> 에 한해 Swagger 관련 인증을 해제했습니다. 이렇게 하니 Swagger 문서를 보다 자유롭게 접근할 수 있었고, API 확인과 테스트 속도도 한결 빨라졌습니다.</p>
-
-<p>다만 이러한 설정을 그대로 운영 환경에 적용할 경우, 민감한 정보 노출의 위험이 있기 때문에, <strong>배포 시에는 Swagger 접근을 차단하거나 관리자만 접근 가능하도록 제한</strong>할 계획입니다. 이처럼 환경에 따라 적절하게 보안 수준을 조절하는 방식은 실제 현업에서도 자주 사용하는 전략이기도 합니다.</p>
-
-<p>추가적으로, 설정 과정 중 다음과 같은 오류가 발생했습니다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IllegalStateException: Can't configure mvcMatchers after anyRequest.
-</code></pre></div></div>
-
-<h3 id="12--원인-분석">1.2. 👀 원인 분석</h3>
-
-<ol>
-  <li>Spring Security는 기본적으로 모든 요청에 대해 보안 필터를 적용하여, 인증되지 않은 사용자의 접근을 차단합니다. Swagger 문서 관련 URL 또한 별도의 예외 처리를 하지 않으면 일반적인 보호 대상 경로로 인식되어 접근이 제한됩니다.</li>
-  <li>Spring Security에서 <code class="language-plaintext highlighter-rouge">.anyRequest()</code> 호출 이후 <code class="language-plaintext highlighter-rouge">.requestMatchers()</code>를 선언한 것이 문제
-    <ul>
-      <li>URL 매칭 규칙상 구체적인 경로를 먼저 선언하고, 마지막에 <code class="language-plaintext highlighter-rouge">anyRequest()</code>를 사용해야 합니다</li>
-    </ul>
-  </li>
-</ol>
-
-<h3 id="13-해결-방법">1.3. 해결 방법</h3>
-
-<p><code class="language-plaintext highlighter-rouge">SecurityConfig</code> 클래스에서 Swagger 관련 경로에 대한 접근을 허용하도록 다음과 같이 설정했습니다:</p>
+<h3 id="-리버스-프록시란">🔄 리버스 프록시란?</h3>
 
 <ul>
-  <li>Swagger 관련 경로를 먼저 선언한 후, 마지막에 <code class="language-plaintext highlighter-rouge">anyRequest()</code>를 설정하는 방식으로 해결했습니다:</li>
+  <li>클라이언트는 Nginx에 요청을 보내고, Nginx는 **백엔드 서버(Apache, Spring, Node 등)**에 요청을 전달한 후 응답을 다시 클라이언트에 전송한다.</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
-<span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">securityFilterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
-    <span class="n">http</span>
-        <span class="o">.</span><span class="na">authorizeHttpRequests</span><span class="o">(</span><span class="n">authorize</span> <span class="o">-&gt;</span> <span class="n">authorize</span>
-            <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span>
-                <span class="s">"/swagger-ui/**"</span><span class="o">,</span>
-                <span class="s">"/swagger-resources/**"</span><span class="o">,</span>
-                <span class="s">"/v2/api-docs"</span><span class="o">,</span>
-                <span class="s">"/v3/api-docs"</span><span class="o">,</span>
-                <span class="s">"/webjars/**"</span>
-            <span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">()</span>
-        <span class="o">);</span>
-
-    <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="o">}</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Client] → [Nginx] → [Spring Server]
 </code></pre></div></div>
 
-<p>이 설정으로 인해 Swagger 문서에 로그인 없이 접근 가능하게 되었으며, 프론트엔드와의 협업도 원활해졌습니다.</p>
+<ul>
+  <li>보안, 로드 밸런싱, 서버 분리 등 다양한 이유로 활용됨</li>
+</ul>
+
+<hr />
+
+<h3 id="️-로드-밸런서">⚖️ 로드 밸런서</h3>
+
+<ul>
+  <li>요청을 <strong>여러 서버에 고르게 분산</strong>시켜 트래픽 집중을 막고 <strong>가용성</strong>을 높임</li>
+</ul>
+
+<h4 id="nginx에서-로드-밸런싱-구성-예시">Nginx에서 로드 밸런싱 구성 예시:</h4>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">server</span> <span class="s">backend1.example.com</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">backend2.example.com</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://backend</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <blockquote>
-  <p>“개발 생산성과 보안의 균형”이라는 관점에 대해 생각하게 되었습니다.</p>
+  <p><code class="language-plaintext highlighter-rouge">upstream</code> 블록을 통해 백엔드 서버를 그룹핑하고, Nginx가 자동으로 라운드로빈 방식으로 분산 처리</p>
 </blockquote>
 
 <hr />
 
-<h2 id="2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</h2>
-
-<h3 id="21-문제-상황">2.1. 문제 상황</h3>
-
-<p>Spring Security가 자동으로 생성해주는 OAuth2 엔드포인트(<code class="language-plaintext highlighter-rouge">/oauth2/authorize/{provider}</code>, <code class="language-plaintext highlighter-rouge">/login/oauth2/code/{provider}</code>)는 컨트롤러 기반이 아니기 때문에 Swagger 문서에 자동으로 포함되지 않았습니다.</p>
-
-<h3 id="22--원인">2.2. 👀 원인</h3>
-
-<p>Swagger는 기본적으로 <code class="language-plaintext highlighter-rouge">@RestController</code> 및 <code class="language-plaintext highlighter-rouge">@RequestMapping</code> 애노테이션이 붙은 메서드를 기준으로 API 문서를 생성합니다. 하지만 Spring Security의 OAuth2 로그인 경로는 Security 설정 내부에서 동적으로 구성되기 때문에 Swagger가 자동으로 인식할 수 없습니다.</p>
-
-<h3 id="23-해결-방법">2.3. 해결 방법</h3>
-
-<p>SwaggerConfig에서 수동으로 OpenAPI 객체에 경로를 등록하여 문서화했습니다:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SwaggerConfig</span> <span class="o">{</span>
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="nc">OpenAPI</span> <span class="nf">customOpenAPI</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">OpenAPI</span> <span class="n">openAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OpenAPI</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="k">new</span> <span class="nc">Info</span><span class="o">()</span>
-                        <span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">"Burty Server API"</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">version</span><span class="o">(</span><span class="s">"1.0.0"</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">description</span><span class="o">(</span><span class="s">"버티 서버 API 문서"</span><span class="o">))</span>
-                <span class="o">.</span><span class="na">paths</span><span class="o">(</span><span class="k">new</span> <span class="nc">Paths</span><span class="o">());</span>
-
-        <span class="n">openAPI</span><span class="o">.</span><span class="na">getPaths</span><span class="o">().</span><span class="na">addPathItem</span><span class="o">(</span><span class="s">"/oauth2/authorize/{provider}"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">PathItem</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="k">new</span> <span class="nc">Operation</span><span class="o">().</span><span class="na">summary</span><span class="o">(</span><span class="s">"OAuth2 인증 요청"</span><span class="o">)));</span>
-        <span class="n">openAPI</span><span class="o">.</span><span class="na">getPaths</span><span class="o">().</span><span class="na">addPathItem</span><span class="o">(</span><span class="s">"/login/oauth2/code/{provider}"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">PathItem</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="k">new</span> <span class="nc">Operation</span><span class="o">().</span><span class="na">summary</span><span class="o">(</span><span class="s">"OAuth2 로그인 콜백"</span><span class="o">)));</span>
-
-        <span class="k">return</span> <span class="n">openAPI</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</h2>
-
-<h3 id="31-문제-상황">3.1. 문제 상황</h3>
-
-<p>Swagger UI에서 각 API가 <code class="language-plaintext highlighter-rouge">default</code>라는 그룹으로 묶여 가독성이 떨어졌습니다.</p>
-
-<h3 id="32--원인">3.2. 👀 원인</h3>
-
-<p>Swagger는 명시적으로 <code class="language-plaintext highlighter-rouge">@Tag</code> 애노테이션이 부여되지 않은 컨트롤러의 경우, 자동으로 <code class="language-plaintext highlighter-rouge">default</code>라는 태그로 묶어 표시합니다. 이는 다양한 기능의 API가 하나의 그룹으로 합쳐져 구분이 어렵게 됩니다.</p>
-
-<h3 id="33-해결-방법">3.3. 해결 방법</h3>
-
-<p>컨트롤러에 <code class="language-plaintext highlighter-rouge">@Tag</code> 애노테이션을 추가하고, 각 API에 <code class="language-plaintext highlighter-rouge">tags</code>를 명시함으로써 그룹을 명확하게 분리했습니다:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Tag</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"인증"</span><span class="o">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s">"사용자 인증 관련 API"</span><span class="o">)</span>
-<span class="nd">@RestController</span>
-<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/auth"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthController</span> <span class="o">{</span>
-
-    <span class="nd">@Operation</span><span class="o">(</span><span class="n">summary</span> <span class="o">=</span> <span class="s">"카카오 로그인 URL 반환"</span><span class="o">,</span> <span class="n">tags</span> <span class="o">=</span> <span class="o">{</span><span class="s">"인증"</span><span class="o">})</span>
-    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/kakao"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">kakaoLogin</span><span class="o">()</span> <span class="o">{</span>
-        <span class="o">...</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="4-swagger-ui에-authorization-설정-추가">4. Swagger UI에 Authorization 설정 추가</h2>
-
-<h3 id="41-문제-상황">4.1. 문제 상황</h3>
-
-<p>프론트엔드에서 JWT 인증이 필요한 API를 Swagger UI로 테스트하고자 했으나, Authorization 정보를 입력할 수 있는 UI가 없었습니다.</p>
-
-<h3 id="42--원인-분석">4.2. 👀 원인 분석</h3>
+<h3 id="-정적-파일-서버로의-활용">📦 정적 파일 서버로의 활용</h3>
 
 <ul>
-  <li>Swagger 기본 설정에는 Authorization 헤더 입력 기능이 포함되어 있지 않습니다.
+  <li>HTML/CSS/JS 파일을 빠르게 서빙할 수 있음</li>
+  <li>WAS(Spring, Node 등)에서 정적 리소스를 분리하면 서버 부하를 줄일 수 있음</li>
+</ul>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">root</span> <span class="n">/usr/share/nginx/html</span><span class="p">;</span>
+        <span class="kn">index</span> <span class="s">index.html</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-https-설정">🔒 HTTPS 설정</h3>
+
+<ul>
+  <li>Let’s Encrypt와 Certbot을 이용해 무료 SSL 인증서 발급 가능</li>
+  <li>HTTPS로 종단 보안(SSL Termination)을 적용하여 <strong>보안 강화</strong></li>
+</ul>
+
+<hr />
+
+<h2 id="-함께-알아두면-좋은-심화-키워드">🧠 함께 알아두면 좋은 심화 키워드</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>키워드</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>리버스 프록시</td>
+      <td>Nginx가 중간에 서서 내부 서버 대신 요청 응답 처리</td>
+    </tr>
+    <tr>
+      <td>포워드 프록시</td>
+      <td>사용자의 요청을 <strong>외부로 보낼 때</strong> 중개하는 프록시</td>
+    </tr>
+    <tr>
+      <td>CDN (Content Delivery Network)</td>
+      <td>정적 리소스를 전 세계에 분산 저장하여 빠르게 전송</td>
+    </tr>
+    <tr>
+      <td>캐싱 정책</td>
+      <td><code class="language-plaintext highlighter-rouge">Cache-Control</code>, <code class="language-plaintext highlighter-rouge">ETag</code>를 이용한 정적 자원 캐싱</td>
+    </tr>
+    <tr>
+      <td>Blue-Green Deployment</td>
+      <td>Nginx로 배포 서버를 스위칭하여 무중단 배포 실현</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-오늘의-요약">✍️ 오늘의 요약</h2>
+
+<ul>
+  <li>Nginx는 단순 웹 서버 그 이상으로, <strong>프론트와 백엔드 사이의 허브 역할</strong>을 한다.</li>
+  <li>리버스 프록시, 로드 밸런서, 정적 파일 서버, SSL 처리까지 담당할 수 있는 멀티플레이어</li>
+  <li>실제 운영 환경에서는 <strong>Spring Boot와 Nginx 연동</strong>, <strong>HTTPS 적용</strong>, <strong>EC2 배포 시 로드밸런싱 구성</strong> 등을 할 수 있도록 익숙해져야 한다</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[📝 TIL (Today I Learned) 🔗 원본 이슈: #61 📅 작성일: 2025-05-24 🔄 최종 수정: 2025년 05월 27일]]></summary></entry><entry><title type="html"></title><link href="https://nan0silver.github.io/til/2025-06-02-2025-05-27-til/" rel="alternate" type="text/html" title="" /><published>2025-06-02T08:40:18+00:00</published><updated>2025-06-02T08:39:34+00:00</updated><id>https://nan0silver.github.io/til/2025-05-27-til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-06-02-2025-05-27-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/62">#62</a><br />
+📅 <strong>작성일</strong>: 2025-05-27<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 28일</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<ul>
+  <li>AI Tech 2025 : AI 융합 비즈니스 개발 컨퍼런스 후기 작성 완료!
     <ul>
-      <li>JWT 기반 인증이 필요한 API에도 별도의 인증 설정을 명시하지 않으면 Swagger UI에서 테스트가 불가능합니다.</li>
+      <li><a href="https://silvernh.tistory.com/3">Tistory</a></li>
     </ul>
   </li>
-  <li>
-    <p>따라서 개발 및 테스트 과정에서 프론트엔드가 토큰을 포함한 요청을 손쉽게 재현할 수 있도록 하기 위해 보안 스키마 설정이 필요했습니다.</p>
-  </li>
-  <li>프론트엔드에서 JWT 인증이 필요한 API를 Swagger UI로 테스트하고자 했으나, Authorization 정보를 입력할 수 있는 UI가 없었습니다.</li>
 </ul>
 
-<h3 id="43-해결-방법">4.3. 해결 방법</h3>
+<h3 id="1️⃣-jenkins-vs-github-actions">1️⃣ <strong>Jenkins vs GitHub Actions</strong></h3>
 
-<h4 id="1-전역-보안-스키마-정의">1) 전역 보안 스키마 정의</h4>
+<p>둘 다 **CI/CD(지속적 통합/지속적 배포)**를 자동화하는 도구다.
+개발자가 코드를 push하면 <strong>자동으로 빌드하고, 테스트하고, 배포</strong>까지 해주는 파이프라인 역할.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
-<span class="nd">@SecurityScheme</span><span class="o">(</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s">"bearerAuth"</span><span class="o">,</span>
-        <span class="n">type</span> <span class="o">=</span> <span class="nc">SecuritySchemeType</span><span class="o">.</span><span class="na">HTTP</span><span class="o">,</span>
-        <span class="n">scheme</span> <span class="o">=</span> <span class="s">"bearer"</span><span class="o">,</span>
-        <span class="n">bearerFormat</span> <span class="o">=</span> <span class="s">"JWT"</span>
-<span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OpenApiConfig</span> <span class="o">{</span>
-    <span class="c1">// 어노테이션으로 설정</span>
-<span class="o">}</span>
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Jenkins</th>
+      <th>GitHub Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>배포 방식</td>
+      <td>직접 서버에 설치 (온프레미스, 클라우드)</td>
+      <td>GitHub 내장 서비스 (클라우드 기반)</td>
+    </tr>
+    <tr>
+      <td>파이프라인 구성</td>
+      <td>Groovy 기반 DSL (Jenkinsfile)</td>
+      <td>YAML 기반 설정 (.github/workflows/)</td>
+    </tr>
+    <tr>
+      <td>UI/플러그인</td>
+      <td>수많은 플러그인과 커스터마이징 가능</td>
+      <td>GitHub 생태계에 최적화된 워크플로우</td>
+    </tr>
+    <tr>
+      <td>설정 난이도</td>
+      <td>다소 복잡 (서버 관리 필요)</td>
+      <td>상대적으로 간단하고 빠른 적용 가능</td>
+    </tr>
+    <tr>
+      <td>장점</td>
+      <td>유연한 환경 설정, 다양한 툴 연동 가능</td>
+      <td>GitHub와 완벽하게 통합, 설정이 간단</td>
+    </tr>
+    <tr>
+      <td>단점</td>
+      <td>서버 유지보수 필요, 러닝커브 있음</td>
+      <td>GitHub 내에서만 동작 (GitLab, Bitbucket X)</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>✅ GitHub Actions는 빠르게 CI/CD를 도입하고 싶은 팀에 좋고,
+✅ Jenkins는 복잡한 환경이나 내부망에서의 CI/CD가 필요할 때 적합하다.</p>
+</blockquote>
+
+<p>—å</p>
+
+<h3 id="-간단-예시--github-actions">🧪 간단 예시 – GitHub Actions</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># .github/workflows/deploy.yml</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">Build and Deploy</span>
+
+<span class="na">on</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">push</span><span class="pi">]</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">./gradlew build</span>
 </code></pre></div></div>
-
-<h4 id="2-개별-api에-적용">2) 개별 API에 적용</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Operation</span><span class="o">(</span><span class="n">security</span> <span class="o">=</span> <span class="o">{</span> <span class="nd">@SecurityRequirement</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"bearerAuth"</span><span class="o">)</span> <span class="o">})</span>
-<span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/profile"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">updateUserProfile</span><span class="o">(...)</span> <span class="o">{</span>
-    <span class="c1">// 메서드 구현</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>이 설정을 통해 Swagger UI에서도 인증이 필요한 API를 명확히 구분하고, 테스트 시 토큰을 직접 입력할 수 있도록 구성할 수 있었습니다.</p>
 
 <hr />
 
-<h2 id="5-실무-관점에서의-swagger-접근-관리-전략">5. 실무 관점에서의 Swagger 접근 관리 전략</h2>
+<h3 id="2️⃣-iaas-vs-paas-vs-saas">2️⃣ <strong>IaaS vs PaaS vs SaaS</strong></h3>
 
-<ul>
-  <li>개발 환경에서는 Swagger 접근을 자유롭게 열어두고 프론트엔드 테스트를 용이하게 함</li>
-  <li>운영 환경에서는 보안을 위해 관리자 인증 또는 방화벽 제한을 적용하는 것이 일반적</li>
-  <li>JWT 기반 인증 API는 Swagger UI에서도 Authorization 헤더를 통해 테스트할 수 있도록 설정</li>
-</ul>
+<p>클라우드 서비스 모델을 구분할 때 자주 등장하는 세 가지 개념.
+“내가 어디까지 책임지고, 어디서부터는 제공자가 해주는가?”가 핵심.</p>
+
+<h4 id="-개념-요약">✅ 개념 요약</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>설명</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>IaaS (Infrastructure as a Service)</td>
+      <td>인프라만 제공받고, OS부터 직접 설치</td>
+      <td>AWS EC2, Google Compute Engine</td>
+    </tr>
+    <tr>
+      <td>PaaS (Platform as a Service)</td>
+      <td>실행 환경까지 제공, 앱 코드만 올리면 됨</td>
+      <td>Heroku, Google App Engine, Render</td>
+    </tr>
+    <tr>
+      <td>SaaS (Software as a Service)</td>
+      <td>소프트웨어 완제품 사용</td>
+      <td>Gmail, Notion, Slack</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="-비교-예시">✅ 비교 예시</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>IaaS</th>
+      <th>PaaS</th>
+      <th>SaaS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>서버 관리</td>
+      <td>내가 함</td>
+      <td>클라우드가 함</td>
+      <td>필요 없음</td>
+    </tr>
+    <tr>
+      <td>개발 유연성</td>
+      <td>높음</td>
+      <td>중간</td>
+      <td>거의 없음</td>
+    </tr>
+    <tr>
+      <td>배포 편의성</td>
+      <td>낮음 (직접 설정)</td>
+      <td>높음 (코드만 배포)</td>
+      <td>매우 높음 (사용만 하면 됨)</td>
+    </tr>
+    <tr>
+      <td>대상 사용자</td>
+      <td>인프라 엔지니어, DevOps</td>
+      <td>백엔드 개발자</td>
+      <td>일반 사용자, 마케터 등</td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
-<h2 id="6-정리하며">6. 정리하며</h2>
+<h3 id="-요약-정리">🧠 요약 정리</h3>
 
-<p>Swagger와 Spring Security를 함께 사용할 때 마주친 실제적인 문제들을 해결하면서, 보안과 개발 편의성 사이에서 균형을 맞추는 경험을 할 수 있었습니다. 특히 프론트엔드 협업 관점에서 Swagger 인증 해제와 JWT 연동 설정은 협업 효율을 높이는 핵심 포인트였습니다.</p>
-
-<p>이러한 설정 경험은 포트폴리오에 실질적인 문제 해결 능력으로 정리할 수 있었고, 실무에서도 유용하게 활용될 수 있는 기반이 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Spring Security와 Swagger 통합 이슈]]></summary></entry><entry><title type="html">[버티] 프로젝트 구조 설계 고민과 선택</title><link href="https://nan0silver.github.io/projectdiary/2025-04-14-diary/" rel="alternate" type="text/html" title="[버티] 프로젝트 구조 설계 고민과 선택" /><published>2025-04-14T00:00:00+00:00</published><updated>2025-06-02T08:37:07+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-04-14-diary/"><![CDATA[<hr />
-
-<p>프로젝트를 처음 시작할 때 가장 고민했던 부분 중 하나는 <strong>전체 구조를 어떻게 잡을 것인가</strong>였습니다. 단순한 CRUD를 넘어서 소셜 로그인, 커뮤니티, AI 기반 정착 리포트 등 다양한 기능을 포함할 예정이었기 때문에, 기능이 늘어나더라도 유지보수가 쉽고, 각 도메인이 명확하게 분리되도록 설계하고 싶었습니다.</p>
-
-<p>처음엔 기능 중심으로 폴더를 나눌까도 생각했지만, 여러 기능이 얽혀 있을 때 책임이 명확하지 않고 코드가 뒤섞일 우려가 있었습니다. 그래서 고민 끝에 <strong>도메인 주도 설계(Domain-Driven Design, DDD)</strong> 와 <strong>MVC 구조</strong>, 그리고 <strong>레이어드 아키텍처(Layered Architecture)</strong> 를 조합한 형태로 프로젝트 구조를 설계하기로 했습니다.</p>
-
-<h3 id="-도메인-주도-설계란">💡 도메인 주도 설계란?</h3>
-
-<p>DDD는 비즈니스의 복잡한 요구사항을 도메인 중심으로 풀어가는 소프트웨어 설계 방법입니다. 코드 구조가 실제 도메인 모델과 맞닿아 있어 유지보수가 용이하고, 비즈니스 개념을 중심으로 기능을 구현할 수 있도록 도와줍니다. 핵심은 <strong>‘도메인을 기준으로 책임을 분리’</strong>하는 것입니다.</p>
-
-<p>또한 레이어드 아키텍처는 기능을 계층별로 나누어 역할을 분리함으로써 각 계층 간의 결합도를 낮추고 테스트와 유지보수를 용이하게 합니다. 대표적으로는 Controller → Service → Repository 계층 구조를 따릅니다.</p>
+<table>
+  <thead>
+    <tr>
+      <th>질문</th>
+      <th>답변</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Jenkins랑 GitHub Actions 중 뭐가 더 쉽지?</td>
+      <td>GitHub Actions! 설정이 YAML이고 GitHub랑 연동이 편함</td>
+    </tr>
+    <tr>
+      <td>IaaS는 언제 써야 해?</td>
+      <td>서버에 대해 완전히 커스터마이징이 필요할 때</td>
+    </tr>
+    <tr>
+      <td>SaaS는 어떤 거야?</td>
+      <td>구글 드라이브, 노션, 슬랙처럼 바로 쓰는 서비스</td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
-<p>최종적으로 다음과 같은 구조를 구성했습니다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org.example.burtyserver/
- ├── domain/                  # 도메인 중심 패키지
- │   ├── auth/                # 인증 관련 기능
- │   │   ├── controller/      # API 컨트롤러 (Presentation Layer)
- │   │   └── dto/             # 데이터 전송 객체
- │   │
- │   └── user/                # 사용자 관련 기능
- │       ├── entity/          # 엔티티 클래스 (Domain Layer)
- │       ├── repository/      # 데이터 접근 계층 (Persistence Layer)
- │       └── service/         # 비즈니스 로직 (Application Layer)
- │
- ├── global/                  # 공통/전역 기능
- │   ├── config/              # 설정 클래스
- │   ├── exception/           # 예외 처리
- │   └── security/            # 보안 관련 클래스
- │       ├── jwt/             # JWT 관련 클래스
- │       ├── oauth2/          # OAuth2 관련 클래스
- │       └── dto/             # 보안 관련 DTO
- │
- └── BurtyServerApplication.java   # 애플리케이션 진입점
-</code></pre></div></div>
-
-<p>-&gt; 아직 개발중!</p>
-
-<p>이 구조는 기능별 분리보다 도메인별 분리를 우선시했으며, 각 도메인이 자신의 책임과 역할에 따라 나뉘도록 구성했습니다. 공통 설정이나 보안 로직처럼 여러 도메인에서 공유되는 요소들은 <code class="language-plaintext highlighter-rouge">global</code>이라는 전역 패키지에 따로 관리하여 관심사 분리를 명확히 했습니다.</p>
-
-<p>실제로 프로젝트를 진행하면서 새로운 기능이 추가될 때마다 이 구조 덕분에 확장이 훨씬 수월했습니다. 예를 들어 AI 정착 리포트 기능을 추가할 때도 <code class="language-plaintext highlighter-rouge">settlement</code>라는 도메인을 추가해 기존 구조에 영향을 주지 않고도 자연스럽게 통합할 수 있었습니다.</p>
-
-<p>도메인 주도 설계를 기반으로 구조를 잡는 과정은 단순히 코드를 예쁘게 나누는 것을 넘어서, 기능과 비즈니스 로직의 맥락(Context)을 코드 레벨에서 표현하는 데 큰 도움이 되었습니다. 또한 레이어드 아키텍처를 통해 각 계층의 역할이 명확해져 협업 시 작업 분담이나 코드 리뷰도 훨씬 효율적으로 이루어졌습니다.</p>
-
-<p>이 경험은 제가 프로젝트를 단순히 “만드는 것”을 넘어서, “운영 가능한 구조로 설계한다”는 감각을 키우는 데 결정적인 계기가 되었습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[버티 프로젝트 구조 설계 고민과 선택]]></summary></entry></feed>
+<blockquote>
+  <p>오늘의 핵심:
+✅ CI/CD 도구는 “내가 코드를 어떻게 자동화할지”에 따라 고르고,
+✅ 클라우드 서비스 모델은 “어디까지 직접 관리할지”에 따라 고른다.</p>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><summary type="html"><![CDATA[📝 TIL (Today I Learned) 🔗 원본 이슈: #62 📅 작성일: 2025-05-27 🔄 최종 수정: 2025년 05월 28일]]></summary></entry></feed>
