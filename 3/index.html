@@ -30,7 +30,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Page 3 of 7 for Blog | NAHYUN BLOG</title>
+<title>Page 3 of 9 for Blog | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Blog" />
 <meta name="author" content="Nahyun Eun 은나현" />
@@ -47,7 +47,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="Blog" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-05-30T07:54:12+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/3/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-06-02T08:16:34+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/3/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -110,7 +110,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-05-30T07:54:54+00:00',
+    INDEX_KEY: 'index--2025-06-02T08:17:18+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -443,18 +443,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-java-concurrency" class="page post mb6" role="article">
+<article id="post-projectdiary-sequence-diagram-아키텍처-다이어그래밍-issue-53" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/java/2025-03-09-concurrency/" class="flip-title">
-        [JAVA] 동시성 처리 (Concurrency)
+      <a href="/projectdiary/2025-05-08-sequence-diagram-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%98%EB%B0%8D-issue-53/" class="flip-title">
+        Sequence diagram, 아키텍처 다이어그래밍
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-03-09T00:00:00+00:00">09 Mar 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+        <time datetime="2025-05-08T00:00:00+00:00">08 May 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> on <span>Til</span>, <span>Project</span>
       </span>
       
         
@@ -463,10 +463,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 22 May 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-05-22T05:22:19+00:00">2025-05-22</time>
             </span>
           
         
@@ -482,7 +482,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      동시성 처리에 관한 3가지 관점에 대해 이야기해보자.
+      Sequence diagram, 아키텍처 다이어그래밍에 대한 TIL 기록
 
     </p>
   
@@ -491,13 +491,12 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <ul>
-  <li><a href="#java에서-동시성">JAVA에서 동시성</a></li>
-  <li><a href="#스레드-thread">스레드 (Thread)</a></li>
-  <li><a href="#비동기-처리-async">비동기 처리 (Aysnc)</a></li>
-  <li><a href="#분산-처리-distributed">분산 처리 (Distribute)</a></li>
-  <li><a href="#핵심-키워드-및-정리">핵심 키워드 및 정리</a></li>
-</ul>
+    <blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/53">#53</a><br />
+📅 <strong>작성일</strong>: 2025-05-08<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
+</blockquote>
 
 
 
@@ -505,7 +504,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/java/2025-03-09-concurrency/">[JAVA] 동시성 처리 (Concurrency)</a>
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-05-08-sequence-diagram-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%98%EB%B0%8D-issue-53/">Sequence diagram, 아키텍처 다이어그래밍</a>
 
       </p>
     </footer>
@@ -519,18 +518,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-spring-boiler-plate" class="page post mb6" role="article">
+<article id="post-projectdiary-sequence-diagram-아키텍처-다이어그래밍-issue-53" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/spring/2025-03-06-boiler-plate/" class="flip-title">
-        [Etc] 🎞️ Boilerplate와 Lombok
+      <a href="/projectdiary/2025-05-08-sequence-diagram-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%98%EB%B0%8D-issue-53/" class="flip-title">
+        Sequence diagram, 아키텍처 다이어그래밍
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-03-06T00:00:00+00:00">06 Mar 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
+        <time datetime="2025-05-08T00:00:00+00:00">08 May 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> on <span>Til</span>, <span>Project</span>
       </span>
       
         
@@ -539,10 +538,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 22 May 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-05-22T05:22:19+00:00">2025-05-22</time>
             </span>
           
         
@@ -558,7 +557,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      반복적으로 사용되는 기본 코드 템플릿인 Boilerplate에 대해 알아보자.
+      Sequence diagram, 아키텍처 다이어그래밍에 대한 TIL 기록
 
     </p>
   
@@ -567,14 +566,12 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <ul>
-  <li><a href="#보일러플레이트boilerplate란">보일러플레이트(Boilerplate)란?</a></li>
-  <li><a href="#보일러플레이트의-특징">보일러플레이트의 특징</a></li>
-  <li><a href="#예제-코드">예제 코드</a></li>
-  <li><a href="#lombok">Lombok</a></li>
-  <li><a href="#-롬복의-장점">롬복의 장점</a></li>
-  <li><a href="#spring에서의-보일러플레이트-해결-구조">Spring에서의 보일러플레이트 해결 구조</a></li>
-</ul>
+    <blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/53">#53</a><br />
+📅 <strong>작성일</strong>: 2025-05-08<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
+</blockquote>
 
 
 
@@ -582,7 +579,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/spring/2025-03-06-boiler-plate/">[Etc] 🎞️ Boilerplate와 Lombok</a>
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-05-08-sequence-diagram-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%98%EB%B0%8D-issue-53/">Sequence diagram, 아키텍처 다이어그래밍</a>
 
       </p>
     </footer>
@@ -596,18 +593,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-immutable" class="page post mb6" role="article">
+<article id="post-spring-dto-division" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-03-06-immutable/" class="flip-title">
-        [Etc] immutable, final, constant
+      <a href="/spring/2025-04-30-dto-division/" class="flip-title">
+        [Spring] DTO를 나누는 기준은 어떻게 고려해야할까?
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-03-06T00:00:00+00:00">06 Mar 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+        <time datetime="2025-04-30T00:00:00+00:00">30 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
       </span>
       
         
@@ -616,10 +613,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -635,7 +632,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자.
+      DTO를 나누는 기준에 대해 알아보자.
 
     </p>
   
@@ -645,9 +642,12 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#immutable-불변"><code class="language-plaintext highlighter-rouge">Immutable</code></a></li>
-  <li><a href="#final-최종-변경-불가"><code class="language-plaintext highlighter-rouge">final</code></a></li>
-  <li><a href="#const-상수"><code class="language-plaintext highlighter-rouge">const</code></a></li>
+  <li><a href="#-api-응답을-위한-dto는-왜-나눠야-하는가">API 응답을 위한 DTO는 왜 나눠야 하는가?</a></li>
+  <li><a href="#1️⃣-하나의-도메인-여러-개의-응답-목적">1. 하나의 도메인, 여러 개의 응답 목적</a></li>
+  <li><a href="#2️⃣-필드-수가-아니라-의도로-판단해야-한다">2. “필드 수”가 아니라 “의도”로 판단해야 한다</a></li>
+  <li><a href="#3️⃣-dto-설계는-view-기반이어야-한다">3. DTO 설계는 “View 기반”이어야 한다</a></li>
+  <li><a href="#4️⃣-dto-분리의-장점--실무-중심으로-요약">4. DTO 분리의 장점 – 실무 중심으로 요약</a></li>
+  <li><a href="#-결론-api-목적--dto-목적">결론</a></li>
 </ul>
 
 
@@ -656,7 +656,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-03-06-immutable/">[Etc] immutable, final, constant</a>
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-30-dto-division/">[Spring] DTO를 나누는 기준은 어떻게 고려해야할까?</a>
 
       </p>
     </footer>
@@ -670,18 +670,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-java-arraylist-array" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/java/2025-02-25-arraylist-array/" class="flip-title">
-        [JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교
+      <a href="/projectdiary/2025-04-28-diary/" class="flip-title">
+        [버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-25T00:00:00+00:00">25 Feb 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+        <time datetime="2025-04-28T00:00:00+00:00">28 Apr 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -690,10 +690,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -709,7 +709,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      ArrayList와 배열(int[])의 성능을 비교해보자.
+      Spring Boot MSA 구현 방식 조사
 
     </p>
   
@@ -719,11 +719,13 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#-arraylistinteger는-언제-더-유리할까"><code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code>는 언제 더 유리할까?</a></li>
-  <li><a href="#-int-배열이-더-유리한-경우"><code class="language-plaintext highlighter-rouge">int[] 배열</code>이 더 유리한 경우</a></li>
-  <li><a href="#-성능-비교-실험-java">성능 비교 실험 (Java)</a></li>
-  <li><a href="#-결론-언제-arraylist를-쓰고-언제-배열int을-써야-할까">결론: 언제 <code class="language-plaintext highlighter-rouge">ArrayList</code>를 쓰고, 언제 <code class="language-plaintext highlighter-rouge">배열(int[])</code>을 써야 할까?</a></li>
-  <li><a href="#추가--hashmapinteger-integer와의-성능-비교">추가 : HashMap&lt;Integer, Integer&gt;와의 성능 비교</a></li>
+  <li><a href="#1-현재-버티-서비스-상황-분석">1. 현재 버티 서비스 상황 분석</a></li>
+  <li><a href="#2-msa-구현-방안">2. MSA 구현 방안</a></li>
+  <li><a href="#21-api-gateway-패턴-도입">2.1 API Gateway 패턴 도입</a></li>
+  <li><a href="#22-회원-정보-공유-방식">2.2 회원 정보 공유 방식</a></li>
+  <li><a href="#3-render-프리티어-환경-최적화-방안">3. Render 프리티어 환경 최적화 방안</a></li>
+  <li><a href="#4-단계적-구현-전략">4. 단계적 구현 전략</a></li>
+  <li><a href="#5-결론">5. 결론</a></li>
 </ul>
 
 
@@ -732,7 +734,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/java/2025-02-25-arraylist-array/">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</a>
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-04-28-diary/">[버티] 버티 서비스를 위한 Spring Boot MSA 구현 방식 조사</a>
 
       </p>
     </footer>
@@ -746,18 +748,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-java-solid" class="page post mb6" role="article">
+<article id="post-spring-patch-put" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/java/2025-02-23-solid/" class="flip-title">
-        [JAVA] SOLID 원칙
+      <a href="/spring/2025-04-21-patch-put/" class="flip-title">
+        [Spring] PATCH vs PUT
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-23T00:00:00+00:00">23 Feb 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+        <time datetime="2025-04-21T00:00:00+00:00">21 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
       </span>
       
         
@@ -766,10 +768,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -785,7 +787,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.
+      PATCH와 PUT의 공통점과 차이점에 대해 알아보자.
 
     </p>
   
@@ -795,11 +797,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#1-srp-single-responsibility-principle">1. 단일 책임 원칙</a></li>
-  <li><a href="#2-ocp-openclosed-principle">2. 개방-폐쇄 원칙</a></li>
-  <li><a href="#3-lsp-liskov-substitution-principle">3. 리스코프 치환 원칙</a></li>
-  <li><a href="#4-isp-interface-segregation-principle">4. 인터페이스 분리 원칙</a></li>
-  <li><a href="#5-dip-dependency-inversion-principle">5. 의존성 역전 원칙</a></li>
+  <li><a href="#-1-기본-개념">1. 기본 개념</a></li>
+  <li><a href="#-2-예시로-비교해보기">2. 예시로 비교해보기</a></li>
+  <li><a href="#-3-핵심-차이-정리">3. 핵심 차이 정리</a></li>
+  <li><a href="#-4-비유로-이해하기">4. 비유로 이해하기</a></li>
+  <li><a href="#-5-실무-팁">5. 실무 팁</a></li>
 </ul>
 
 
@@ -808,7 +810,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/java/2025-02-23-solid/">[JAVA] SOLID 원칙</a>
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-21-patch-put/">[Spring] PATCH vs PUT</a>
 
       </p>
     </footer>
@@ -822,18 +824,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-token" class="page post mb6" role="article">
+<article id="post-spring-query-method" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-02-22-token/" class="flip-title">
-        [Etc] 🔑 Access Token과 Refresh Token 완벽 정리
+      <a href="/spring/2025-04-17-query-method/" class="flip-title">
+        [Spring] JPA Query Method
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-22T00:00:00+00:00">22 Feb 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+        <time datetime="2025-04-17T00:00:00+00:00">17 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
       </span>
       
         
@@ -842,10 +844,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -861,7 +863,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.
+      JPA의 Query Method에 대해 알아보자.
 
     </p>
   
@@ -871,14 +873,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
-  <li><a href="#2-access-token">Access Token</a></li>
-  <li><a href="#3-refresh-token">Refresh Token</a></li>
-  <li><a href="#4-access-token-vs-refresh-token-비교">Access Token vs. Refresh Token 비교</a></li>
-  <li><a href="#5-access-token과-refresh-token을-사용하는-이유">Access Token과 Refresh Token을 사용하는 이유</a></li>
-  <li><a href="#6-access-token과-refresh-token을-활용한-인증-흐름">Access Token과 Refresh Token을 활용한 인증 흐름</a></li>
-  <li><a href="#7-access-token--refresh-token-보안-고려-사항">Access Token &amp; Refresh Token 보안 고려 사항</a></li>
-  <li><a href="#8-access-token--refresh-token-실제-코드-구현-java-spring-security">실제 코드 구현 (Java, Spring Security)</a></li>
+  <li><a href="#jparepository-상속">JpaRepository 상속</a></li>
+  <li><a href="#-그렇다면-커스텀-쿼리는-어떻게-할까">그렇다면 커스텀 쿼리는 어떻게 할까?</a></li>
+  <li><a href="#-개발자-관점-팁">개발자 관점 팁</a></li>
 </ul>
 
 
@@ -887,7 +884,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-02-22-token/">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</a>
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-17-query-method/">[Spring] JPA Query Method</a>
 
       </p>
     </footer>
@@ -901,18 +898,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-OAuth" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-02-20-OAuth/" class="flip-title">
-        [Etc] OAuth란?
+      <a href="/projectdiary/2025-04-17-diary/" class="flip-title">
+        [버티] 프로젝트 개발 중 마주한 사소한 이슈들
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-20T00:00:00+00:00">20 Feb 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+        <time datetime="2025-04-17T00:00:00+00:00">17 Apr 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -921,10 +918,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -940,7 +937,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      인증 및 권한 부여 프로토콜인 OAuth에 대해 알아보자.
+      버티 프로젝트 개발 중 마주한 사소한 이슈들 정리
 
     </p>
   
@@ -950,13 +947,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#1-oauth-개념과-특징">OAuth 개념과 특징</a></li>
-  <li><a href="#2-oauth-10-vs-oauth-20">OAuth 1.0 vs. OAuth 2.0</a></li>
-  <li><a href="#3-oauth-20-상세-동작-방식">OAuth 2.0 상세 동작 방식</a></li>
-  <li><a href="#4-oauth-20-grant-types-인증-방식">OAuth 2.0 Grant Types (인증 방식)</a></li>
-  <li><a href="#5-oauth-20의-주요-용어">OAuth 2.0의 주요 용어</a></li>
-  <li><a href="#6-oauth-20을-실제-코드로-구현">OAuth 2.0을 실제 코드로 구현</a></li>
-  <li><a href="#7-oauth의-장점--단점">OAuth의 장점 &amp; 단점</a></li>
+  <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
+  <li><a href="#2-카카오-소셜-로그인-이메일-누락-문제">카카오 소셜 로그인 이메일 누락 문제</a></li>
+  <li><a href="#3-oauth2-인증-요청-정보-손실-문제">OAuth2 인증 요청 정보 손실 문제</a></li>
 </ul>
 
 
@@ -965,7 +958,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-02-20-OAuth/">[Etc] OAuth란?</a>
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-04-17-diary/">[버티] 프로젝트 개발 중 마주한 사소한 이슈들</a>
 
       </p>
     </footer>
@@ -979,18 +972,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-git-git-commit" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/git/2025-02-19-git-commit/" class="flip-title">
-        [Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법
+      <a href="/projectdiary/2025-04-16-diary/" class="flip-title">
+        [버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-19T00:00:00+00:00">19 Feb 2025</time> in <a href="/git/" class="flip-title">GIT</a> 
+        <time datetime="2025-04-16T00:00:00+00:00">16 Apr 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -999,10 +992,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -1018,7 +1011,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.
+      JWT 로그인 구현 시 로그아웃 방법 고민..
 
     </p>
   
@@ -1027,12 +1020,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <ul>
-  <li><a href="#commit-단위를-결정-짓는-요소">Commit 단위를 결정 짓는 요소</a></li>
-  <li><a href="#udacity-style">Udacity style</a></li>
-  <li><a href="#rebase를-잘쓰자">Rebase를 잘쓰자!</a></li>
-  <li><a href="#conflict를-해결하는-방법-reset--force-push">conflict를 해결하는 방법</a></li>
-</ul>
+    <blockquote>
+  <p>저번 프로젝트에서는 로그아웃을 구현하지 않고, 토큰 만료를 사용했는데 로그아웃을 구현해달라는 요청이 있었어서 이번 프로젝트에서는 제대로 알아보고 구현해보기로 하였다.</p>
+</blockquote>
 
 
 
@@ -1040,7 +1030,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/git/2025-02-19-git-commit/">[Git] 효율적인 Git commit 전략: 단위 결정, 스타일, 충돌 해결 방법</a>
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-04-16-diary/">[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?</a>
 
       </p>
     </footer>
@@ -1054,18 +1044,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-javascript-dom-bom" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/javascript/2025-02-05-dom-bom/" class="flip-title">
-        [JavaScript] DOM &amp; BOM
+      <a href="/projectdiary/2025-04-15-diary/" class="flip-title">
+        [버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-05T00:00:00+00:00">05 Feb 2025</time> in <a href="/javascript/" class="flip-title">JavaScript</a> 
+        <time datetime="2025-04-15T00:00:00+00:00">15 Apr 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -1074,10 +1064,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -1093,7 +1083,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      JavaScript의 DOM과 BOM에 대해 알아보자.
+      Spring Security와 Swagger 통합 이슈
 
     </p>
   
@@ -1103,14 +1093,12 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#dom-document-object-model">DOM (Document Object Model)</a></li>
-  <li><a href="#dom-기본-구조">DOM 기본 구조</a></li>
-  <li><a href="#dom의-특징">DOM의 특징</a></li>
-  <li><a href="#dom을-활용한-사례">DOM을 활용한 사례</a></li>
-  <li><a href="#bom-browser-object-model">BOM (Browser Object Model)</a></li>
-  <li><a href="#bom의-특징">BOM의 특징</a></li>
-  <li><a href="#bom-주요-객체-사용-예제">BOM 주요 객체 사용 예제</a></li>
-  <li><a href="#dom과-bom의-차이점">DOM과 BOM의 차이점</a></li>
+  <li><a href="#1-swagger-문서-접근-제한-및-인증-설정-이슈">1. Swagger 문서 접근 제한 및 인증 설정 이슈</a></li>
+  <li><a href="#2-oauth2-엔드포인트가-swagger에-표시되지-않는-문제">2. OAuth2 엔드포인트가 Swagger에 표시되지 않는 문제</a></li>
+  <li><a href="#3-swagger-ui-그룹명-default-표시-이슈">3. Swagger UI 그룹명 ‘default’ 표시 이슈</a></li>
+  <li><a href="#4-swagger-ui에-authorization-설정-추가">4. Swagger UI에 Authorization 설정 추가</a></li>
+  <li><a href="#5-실무-관점에서의-swagger-접근-관리-전략">5. 실무 관점에서의 Swagger 접근 관리 전략</a></li>
+  <li><a href="#6-정리하며">6. 정리하며</a></li>
 </ul>
 
 
@@ -1119,7 +1107,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/javascript/2025-02-05-dom-bom/">[JavaScript] DOM &amp; BOM</a>
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-04-15-diary/">[버티] Spring Security와 Swagger 통합 시 발생한 이슈 해결기</a>
 
       </p>
     </footer>
@@ -1133,18 +1121,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-serialization" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-02-04-serialization/" class="flip-title">
-        [Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)
+      <a href="/projectdiary/2025-04-14-diary/" class="flip-title">
+        [버티] 프로젝트 구조 설계 고민과 선택
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-04T00:00:00+00:00">04 Feb 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+        <time datetime="2025-04-14T00:00:00+00:00">14 Apr 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -1153,10 +1141,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -1172,7 +1160,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.
+      버티 프로젝트 구조 설계 고민과 선택
 
     </p>
   
@@ -1181,12 +1169,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <ul>
-  <li><a href="#직렬화serialization과-역직렬화deserialization--️-">직렬화와 역직렬화</a></li>
-  <li><a href="#직렬화-serialization-이란-">직렬화란? 📦</a></li>
-  <li><a href="#역직렬화-deserialization-이란--️-">역직렬화란? 📦 ➡️ 💻</a></li>
-  <li><a href="#언어별-직렬화-및-역직렬화-예시">언어별 직렬화 및 역직렬화 예시</a></li>
-</ul>
+    <hr />
 
 
 
@@ -1194,7 +1177,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-02-04-serialization/">[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)</a>
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-04-14-diary/">[버티] 프로젝트 구조 설계 고민과 선택</a>
 
       </p>
     </footer>

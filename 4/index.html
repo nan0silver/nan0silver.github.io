@@ -30,7 +30,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Page 4 of 7 for Blog | NAHYUN BLOG</title>
+<title>Page 4 of 9 for Blog | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Blog" />
 <meta name="author" content="Nahyun Eun 은나현" />
@@ -47,7 +47,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta property="twitter:title" content="Blog" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-05-30T07:54:12+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/4/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-06-02T08:16:34+00:00","description":"The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/4/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -110,7 +110,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-05-30T07:54:54+00:00',
+    INDEX_KEY: 'index--2025-06-02T08:17:18+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -443,18 +443,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-javascript-storage" class="page post mb6" role="article">
+<article id="post-spring-thymeleaf" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/javascript/2025-02-04-storage/" class="flip-title">
-        [JavaScript] 로컬 스토리지 VS 세션 스토리지
+      <a href="/spring/2025-04-09-thymeleaf/" class="flip-title">
+        [Spring] Thymeleaf
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-04T00:00:00+00:00">04 Feb 2025</time> in <a href="/javascript/" class="flip-title">JavaScript</a> 
+        <time datetime="2025-04-09T00:00:00+00:00">09 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
       </span>
       
         
@@ -463,10 +463,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -482,7 +482,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      JavaScript의 로컬 스토리지와 세션 스토리지에 대해 알아보자.
+      서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.
 
     </p>
   
@@ -492,11 +492,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#로컬-스토리지-local-storage-vs-세션-스토리지-session-storage">로컬 스토리지 VS 세션 스토리지</a></li>
-  <li><a href="#데이터-유지-기간">데이터 유지 기간</a></li>
-  <li><a href="#접근-범위">접근 범위</a></li>
-  <li><a href="#활용-예제">활용 예제</a></li>
-  <li><a href="#사용-방법-javascript">사용 방법 (JavaScript)</a></li>
+  <li><a href="#-1-thymeleaf는-왜-쓰는-걸까">Thymeleaf는 왜 쓰는 걸까?</a></li>
+  <li><a href="#-2-기본-문법-정리">기본 문법 정리</a></li>
+  <li><a href="#-3-전체-흐름-예시">전체 흐름 예시</a></li>
+  <li><a href="#-4-어디에-파일을-넣어야-할까">어디에 파일을 넣어야 할까?</a></li>
+  <li><a href="#-요약">요약</a></li>
 </ul>
 
 
@@ -505,7 +505,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/javascript/2025-02-04-storage/">[JavaScript] 로컬 스토리지 VS 세션 스토리지</a>
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-09-thymeleaf/">[Spring] Thymeleaf</a>
 
       </p>
     </footer>
@@ -519,18 +519,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-javascript-js-function" class="page post mb6" role="article">
+<article id="post-spring-non-blocking" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/javascript/2025-01-30-js-function/" class="flip-title">
-        [JavaScript] 함수
+      <a href="/spring/2025-04-09-non-blocking/" class="flip-title">
+        [Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-30T00:00:00+00:00">30 Jan 2025</time> in <a href="/javascript/" class="flip-title">JavaScript</a> 
+        <time datetime="2025-04-09T00:00:00+00:00">09 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
       </span>
       
         
@@ -539,10 +539,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -558,7 +558,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      JavaScript의 함수에 대해 알아보자.
+      논블로킹과 비동기에 대해 알아보자.
 
     </p>
   
@@ -568,10 +568,13 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#함수-function">함수 (function)</a></li>
-  <li><a href="#화살표-함수">화살표 함수</a></li>
-  <li><a href="#고차-함수">고차 함수 (map, filter, reduce)</a></li>
-  <li><a href="#구조-분해-할당">구조 분해 할당</a></li>
+  <li><a href="#-논블로킹non-blocking이란">논블로킹이란?</a></li>
+  <li><a href="#-실생활-비유로-논블로킹-이해하기">실생활 비유로 논블로킹 이해하기</a></li>
+  <li><a href="#-블로킹-vs-논블로킹-기술적-요점-정리">블로킹 vs 논블로킹 기술적 요점 정리</a></li>
+  <li><a href="#-논블로킹이-중요한-이유">논블로킹이 중요한 이유</a></li>
+  <li><a href="#️-어디서-논블로킹이-쓰이냐">어디서 논블로킹이 쓰이냐?</a></li>
+  <li><a href="#논블로킹non-blocking이랑-비동기asynchronous-비교">논블로킹(Non-blocking) 비동기(Asynchronous) 비교</a></li>
+  <li><a href="#completablefuture-webclient-코드-예시">CompletableFuture, WebClient 코드 예시</a></li>
 </ul>
 
 
@@ -580,7 +583,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/javascript/2025-01-30-js-function/">[JavaScript] 함수</a>
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-09-non-blocking/">[Spring] 논블로킹(Non-blocking) vs 비동기 (Asynchronous)</a>
 
       </p>
     </footer>
@@ -594,18 +597,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-java-generic" class="page post mb6" role="article">
+<article id="post-spring-jpa-mybatis" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/java/2025-01-29-generic/" class="flip-title">
-        [JAVA] Generic
+      <a href="/spring/2025-04-05-jpa-mybatis/" class="flip-title">
+        [Spring] JPA vs MyBatis
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-29T00:00:00+00:00">29 Jan 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+        <time datetime="2025-04-05T00:00:00+00:00">05 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
       </span>
       
         
@@ -614,10 +617,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -633,7 +636,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      java에서 Generic이 무엇인지 알아보자.
+      JPA vs MyBatis에 대 알아보자.
 
     </p>
   
@@ -643,9 +646,15 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#generic이란">Generic이란?</a></li>
-  <li><a href="#generic의-장점">Generic의 장점</a></li>
-  <li><a href="#generic-사용법">Generic 사용법</a></li>
+  <li><a href="#-jpa란-java-persistence-api">JPA란?</a></li>
+  <li><a href="#-mybatis란">MyBatis란?</a></li>
+  <li><a href="#-jpa-vs-mybatis">🔍 JPA vs MyBatis</a></li>
+  <li><a href="#jpa-vs-mybatis-비유로-이해하기">JPA vs MyBatis 비유로 이해하기</a></li>
+  <li><a href="#-jpa-vs-mybatis-코드로-비교하기">JPA vs MyBatis 코드로 비교하기</a></li>
+  <li><a href="#-사용-방식-차이-요약">사용 방식 차이 요약</a></li>
+  <li><a href="#-장단점-비교">장단점 비교</a></li>
+  <li><a href="#-실무에-쓰는-방법">실무에 쓰는 방법</a></li>
+  <li><a href="#-한줄-정리">한줄 정리</a></li>
 </ul>
 
 
@@ -654,7 +663,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/java/2025-01-29-generic/">[JAVA] Generic</a>
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-05-jpa-mybatis/">[Spring] JPA vs MyBatis</a>
 
       </p>
     </footer>
@@ -668,18 +677,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-tdd" class="page post mb6" role="article">
+<article id="post-spring-dto-vo" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-01-28-tdd/" class="flip-title">
-        [Etc] TDD (Test-Driven Development, 테스트 주도 개발)
+      <a href="/spring/2025-04-02-dto-vo/" class="flip-title">
+        [Spring] DTO vs VO vs Entity
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-28T00:00:00+00:00">28 Jan 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+        <time datetime="2025-04-02T00:00:00+00:00">02 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
       </span>
       
         
@@ -688,10 +697,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -707,7 +716,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      TDD (Test-Driven Development)에 대해 알아보자.
+      Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.
 
     </p>
   
@@ -717,14 +726,13 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#tdd-test-driven-development란">TDD란?</a></li>
-  <li><a href="#tdd의-주요-과정">TDD의 주요 과정</a></li>
-  <li><a href="#tdd의-장점">TDD의 장점</a></li>
-  <li><a href="#tdd-예제-java">TDD 예제 (Java)</a></li>
-  <li><a href="#tdd-vs-전통적인-개발-방식">TDD VS 전통적인 개발 방식</a></li>
-  <li><a href="#tdd가-필요한-경우">TDD가 필요한 경우</a></li>
-  <li><a href="#tdd의-단점">TDD의 단점</a></li>
-  <li><a href="#xunit">xUnit</a></li>
+  <li><a href="#dto-vs-vo-vs-entity">DTO vs VO vs Entity</a></li>
+  <li><a href="#-dto-vs-vo">📦 DTO vs VO</a></li>
+  <li><a href="#-entity-vs-vo">📦 Entity vs VO</a></li>
+  <li><a href="#-entity와-dto로-분리해야하는-이유">📦 Entity와 DTO로 분리해야하는 이유</a></li>
+  <li><a href="#코드-예제">코드 예제</a></li>
+  <li><a href="#-면접-시-설명-예시">💬 면접 시 설명 예시</a></li>
+  <li><a href="#-java-17부터는-record로-vo를-만들기-더-쉬워짐">🚀 Java 17부터는 <code class="language-plaintext highlighter-rouge">record</code>로 VO를 만들기 더 쉬워짐!</a></li>
 </ul>
 
 
@@ -733,7 +741,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-01-28-tdd/">[Etc] TDD (Test-Driven Development, 테스트 주도 개발)</a>
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-02-dto-vo/">[Spring] DTO vs VO vs Entity</a>
 
       </p>
     </footer>
@@ -747,18 +755,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-javascript-javascript-short-circuit-evaluation" class="page post mb6" role="article">
+<article id="post-spring-resttemplate" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/javascript/2025-01-27-javascript-short-circuit-evaluation/" class="flip-title">
-        [JavaScript] 단축 평가
+      <a href="/spring/2025-04-01-resttemplate/" class="flip-title">
+        [Spring] HttpURLConnection, RestTemplate, WebClient
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-27T00:00:00+00:00">27 Jan 2025</time> in <a href="/javascript/" class="flip-title">JavaScript</a> 
+        <time datetime="2025-04-01T00:00:00+00:00">01 Apr 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
       </span>
       
         
@@ -767,10 +775,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -786,7 +794,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      JavaScript 단축 평가 (Short-circuit evaluation)에 대해 알아보자.
+      Java 환경에서 사용되는 HTTP 클라이언트인 <code class="language-plaintext highlighter-rouge">HttpURLConnection</code>, <code class="language-plaintext highlighter-rouge">RestTemplate</code>, <code class="language-plaintext highlighter-rouge">WebClient</code>를 비교해보자.
 
     </p>
   
@@ -796,10 +804,13 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#단축-평가란">단축 평가란?</a></li>
-  <li><a href="#단축-평가-동작-방식">단축 평가 동작 방식</a></li>
-  <li><a href="#단축-평가-활용-예시">단축 평가 활용 예시</a></li>
-  <li><a href="#주의사항">주의사항</a></li>
+  <li><a href="#-먼저-한눈에-보는-비교표">한눈에 보는 비교표</a></li>
+  <li><a href="#-1-httpurlconnection--java-기본-클래스">1. HttpURLConnection</a></li>
+  <li><a href="#-2-resttemplate--동기--블로킹-방식의-spring-http-클라이언트">2. RestTemplate</a></li>
+  <li><a href="#-3-webclient--비동기--논블로킹-방식의-최신-http-클라이언트">3. WebClient</a></li>
+  <li><a href="#-현업-개발자들은-어떻게-생각할까">현업 개발자들은 어떻게 생각할까?</a></li>
+  <li><a href="#-간단-정리-">간단 정리</a></li>
+  <li><a href="#-선택-가이드">선택 가이드</a></li>
 </ul>
 
 
@@ -808,7 +819,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/javascript/2025-01-27-javascript-short-circuit-evaluation/">[JavaScript] 단축 평가</a>
+        Continue reading <a class="heading flip-title" href="/spring/2025-04-01-resttemplate/">[Spring] HttpURLConnection, RestTemplate, WebClient</a>
 
       </p>
     </footer>
@@ -822,18 +833,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-java-int-long" class="page post mb6" role="article">
+<article id="post-miscellaneous-sql-injection" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/java/2025-01-23-int-long/" class="flip-title">
-        [JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리
+      <a href="/miscellaneous/2025-03-31-sql-injection/" class="flip-title">
+        [Etc] 💣 SQL Injection
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-23T00:00:00+00:00">23 Jan 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+        <time datetime="2025-03-31T00:00:00+00:00">31 Mar 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
       </span>
       
         
@@ -842,10 +853,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -861,7 +872,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      프론트엔드 개발자 관점에서 Responsive와 Reactive의 뜻을 알아보자.
+      악의적인 사용자가 SQL 쿼리에 코드를 삽입해 DB정보를 탈취하거나 조작하는 것을 뜻하는 SQL Injection에 대해 알아보자.
 
     </p>
   
@@ -871,10 +882,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#int와-long의-차이">int와 long의 차이</a></li>
-  <li><a href="#int와-long의-입력값">int와 long의 입력값</a></li>
-  <li><a href="#연산-결과의-최대값-예상하기">연산 결과의 최대값 예상하기</a></li>
-  <li><a href="#문제를-보고-빠르게-판단하는-팁">문제를 보고 빠르게 판단하는 팁</a></li>
+  <li><a href="#sql-injection이란">SQL Injection이란?</a></li>
+  <li><a href="#-spring-관점에서-sql-injection-방지법">Spring 관점에서 SQL Injection 방지법</a></li>
+  <li><a href="#-spring-배우는-입장에서-조심할-포인트-요약">요약</a></li>
 </ul>
 
 
@@ -883,7 +893,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/java/2025-01-23-int-long/">[JAVA] int와 long의 차이 ➡️ 범위와 오버플로우 문제 완벽 정리</a>
+        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-03-31-sql-injection/">[Etc] 💣 SQL Injection</a>
 
       </p>
     </footer>
@@ -897,18 +907,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-git-git-rebase" class="page post mb6" role="article">
+<article id="post-algorithm-is-prime" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/git/2025-01-23-git-rebase/" class="flip-title">
-        [Git] git rebase
+      <a href="/algorithm/2025-03-20-is-prime/" class="flip-title">
+        [Algorithm] 소수 빠르게 찾는 법
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-23T00:00:00+00:00">23 Jan 2025</time> in <a href="/git/" class="flip-title">GIT</a> 
+        <time datetime="2025-03-20T00:00:00+00:00">20 Mar 2025</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
       </span>
       
         
@@ -917,10 +927,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -936,7 +946,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      git rebase의 동작 방식에 대해 알아보자.
+      소수를 빠르게 효율적으로 찾는 방법 3가지를 알아보자
 
     </p>
   
@@ -945,13 +955,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <ul>
-  <li><a href="#git-rebase">git rebase</a></li>
-  <li><a href="#git-rebase-vs-git-merge">git rebase VS git merge</a></li>
-  <li><a href="#git-rebase-사용법">git rebase 사용법</a></li>
-  <li><a href="#장점">장점</a></li>
-  <li><a href="#주의-사항">주의 사항</a></li>
-</ul>
+    <ol>
+  <li><a href="#1️⃣-기본-소수-판별-on">기본 소수 판별</a></li>
+  <li><a href="#2️⃣-에라토스테네스의-체-on-log-log-n">에라토스테네스의 체</a></li>
+  <li><a href="#3️⃣-miller-rabin-소수판별법-olog-n">Miller-Rabin 소수 판별법</a></li>
+</ol>
 
 
 
@@ -959,7 +967,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/git/2025-01-23-git-rebase/">[Git] git rebase</a>
+        Continue reading <a class="heading flip-title" href="/algorithm/2025-03-20-is-prime/">[Algorithm] 소수 빠르게 찾는 법</a>
 
       </p>
     </footer>
@@ -973,18 +981,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-naming-convention" class="page post mb6" role="article">
+<article id="post-spring-servlet-vs-spring" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/miscellaneous/2025-01-22-naming-convention/" class="flip-title">
-        [Etc] Naming Convention
+      <a href="/spring/2025-03-17-servlet-vs-spring/" class="flip-title">
+        [Spring] Spring VS Servlet
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-22T00:00:00+00:00">22 Jan 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+        <time datetime="2025-03-17T00:00:00+00:00">17 Mar 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
       </span>
       
         
@@ -993,10 +1001,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -1012,7 +1020,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.
+      Spring과 Servlet의 차이 대해 알아보자.
 
     </p>
   
@@ -1022,12 +1030,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
-  <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
-  <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
-  <li><a href="#3-스네이크-케이스-snake_case">스네이크 케이스 (snake_case)</a></li>
-  <li><a href="#4-파스칼-케이스-pascalcase">파스칼 케이스 (PascalCase)</a></li>
-  <li><a href="#선택-기준">선택 기준</a></li>
+  <li><a href="#-servlet과-spring의-차이-쉽게-이해하기">Servlet과 Spring의 차이</a></li>
+  <li><a href="#servlet-직접-요청을-처리하는-원시적인-방식">Servlet</a></li>
+  <li><a href="#spring-웹-개발을-쉽게-만들어주는-프레임워크">Spring</a></li>
+  <li><a href="#servlet-vs-spring-비교-정리">Servlet vs Spring 비교 정리 표</a></li>
+  <li><a href="#-결론-spring이-servlet보다-훨씬-편리하다">결론</a></li>
 </ul>
 
 
@@ -1036,7 +1043,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-01-22-naming-convention/">[Etc] Naming Convention</a>
+        Continue reading <a class="heading flip-title" href="/spring/2025-03-17-servlet-vs-spring/">[Spring] Spring VS Servlet</a>
 
       </p>
     </footer>
@@ -1050,18 +1057,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-git-git-clone-fork" class="page post mb6" role="article">
+<article id="post-miscellaneous-layered-architecture" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/git/2025-01-22-git-clone-fork/" class="flip-title">
-        [Git] git clone VS git fork
+      <a href="/miscellaneous/2025-03-17-layered-architecture/" class="flip-title">
+        [Etc] 🤖 Layered Architecture &amp; MVC pattern
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-22T00:00:00+00:00">22 Jan 2025</time> in <a href="/git/" class="flip-title">GIT</a> 
+        <time datetime="2025-03-17T00:00:00+00:00">17 Mar 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
       </span>
       
         
@@ -1070,10 +1077,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -1089,7 +1096,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      git clone과 git fork의 동작 방식에 대해 알아보자.
+      레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.
 
     </p>
   
@@ -1099,11 +1106,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#git-clone">git clone</a></li>
-  <li><a href="#git-fork">git fork</a></li>
-  <li><a href="#주요-차이점-정리">주요 차이점 정리</a></li>
-  <li><a href="#워크플로우">워크플로우</a></li>
-  <li><a href="#실전-예시">실전 예시</a></li>
+  <li><a href="#레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</a></li>
+  <li><a href="#mvc란">MVC란?</a></li>
+  <li><a href="#레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</a></li>
 </ul>
 
 
@@ -1112,7 +1117,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/git/2025-01-22-git-clone-fork/">[Git] git clone VS git fork</a>
+        Continue reading <a class="heading flip-title" href="/miscellaneous/2025-03-17-layered-architecture/">[Etc] 🤖 Layered Architecture &amp; MVC pattern</a>
 
       </p>
     </footer>
@@ -1126,18 +1131,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-javascript-css-flex" class="page post mb6" role="article">
+<article id="post-java-record" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/javascript/2025-01-21-css-flex/" class="flip-title">
-        [CSS] CSS Flex
+      <a href="/java/2025-03-09-record/" class="flip-title">
+        [JAVA] record
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-21T00:00:00+00:00">21 Jan 2025</time> in <a href="/javascript/" class="flip-title">JavaScript</a> 
+        <time datetime="2025-03-09T00:00:00+00:00">09 Mar 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
       </span>
       
         
@@ -1146,10 +1151,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 30 May 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 02 Jun 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-05-30T07:54:12+00:00">2025-05-30</time>
+              <time datetime="2025-06-02T08:16:34+00:00">2025-06-02</time>
             </span>
           
         
@@ -1165,7 +1170,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      웹 페이지의 컨테이너 내 아이템 간 공간 배분에 사용되는 CSS Flex에 대해 알아보자.
+      Java 14부터 도입된 새로운 클래스 유형인 record에 대해 이야기해보자.
 
     </p>
   
@@ -1175,10 +1180,13 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#flexflexbox">Flex(Flexbox)</a></li>
-  <li><a href="#주요-flexbox-속성">주요 Flexbox 속성 20개</a></li>
-  <li><a href="#예제-통합-코드">예제: 통합 코드</a></li>
-  <li><a href="#flex를-이용한-게임">flex를 이용한 게임</a></li>
+  <li><a href="#-record란-java-14">record란?</a></li>
+  <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
+  <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
+  <li><a href="#3️⃣-record의-내부-동작">record 내부 동작</a></li>
+  <li><a href="#4️⃣-record의-주요-기능">record 주요 기능</a></li>
+  <li><a href="#5️⃣-record를-언제-사용할까">record 사용 방법</a></li>
+  <li><a href="#6️⃣-정리">정리</a></li>
 </ul>
 
 
@@ -1187,7 +1195,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/javascript/2025-01-21-css-flex/">[CSS] CSS Flex</a>
+        Continue reading <a class="heading flip-title" href="/java/2025-03-09-record/">[JAVA] record</a>
 
       </p>
     </footer>
