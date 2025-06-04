@@ -170,6 +170,11 @@ defaults:
       seo:
         type: WebPage
   - scope:
+      type: til
+    values:
+      seo:
+        type: WebPage
+  - scope:
       type: featured_categories
     values:
       seo:
@@ -335,6 +340,10 @@ collections:
   javascript:
     output: true
     permalink: /javascript/:path/
+  
+  til:
+    output: true
+    permalink: /til/:path/
 
 # File inclusion/exclusion
 # ----------------------------------------------------------------------------------------
