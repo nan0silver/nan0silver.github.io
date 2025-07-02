@@ -54,8 +54,8 @@ var tipuesearch = {"pages": [{
     "tags": "projectdiary",
     "url": "/projectdiary/2025-05-15-diary/"
   },{
-    "title": "Sequence diagram, 아키텍처 다이어그래밍",
-    "text": "📝 TIL (Today I Learned) 🔗 원본 이슈: #53 📅 작성일: 2025-05-08 🔄 최종 수정: 2025년 05월 22일 [TIL]equence diagram, 아키텍처 다이어그래밍 🍀 새롭게 배운 것 1️⃣ Sequence diagram 시스템 안에서 객체(또는 컴포넌트)들이 시간 흐름에 따라 어떤 메시지를 주고받는지를 표현한 다이어그램 누가 누구에게 언제 어떤 동작을 요청하는지 한눈에 보여줌 백엔드 실무에서 중요한 이유 내가 만든 API가 어떤 흐름으로 동작하는지 설명할 수 있게 해줌 팀원과 비즈니스 로직을 공유할 때 빠르게 파악 가능 복잡한 시스템에서도 디버깅/확장/테스트의 기반 자료가 됨 예시 : 2️⃣ 아키텍처 다이어그래밍 시스템 전체 구성과 컴포넌트 간 관계를 그림으로 표현한 것 백엔드에서는 서버, DB, API 게이트웨이, 클라이언틑 등 시스템 전체 구조를 말함 그리는 도구 draw.io Lucidchart https://aws.amazon.com/ko/what-is/architecture-diagramming/ -",
+    "title": "[TIL] Sequence diagram, 아키텍처 다이어그래밍",
+    "text": "📝 TIL (Today I Learned) 🔗 원본 이슈: #53 📅 작성일: 2025-05-08 🔄 최종 수정: 2025년 05월 22일 🍀 새롭게 배운 것 1️⃣ Sequence diagram 시스템 안에서 객체(또는 컴포넌트)들이 시간 흐름에 따라 어떤 메시지를 주고받는지를 표현한 다이어그램 누가 누구에게 언제 어떤 동작을 요청하는지 한눈에 보여줌 백엔드 실무에서 중요한 이유 내가 만든 API가 어떤 흐름으로 동작하는지 설명할 수 있게 해줌 팀원과 비즈니스 로직을 공유할 때 빠르게 파악 가능 복잡한 시스템에서도 디버깅/확장/테스트의 기반 자료가 됨 예시 : 2️⃣ 아키텍처 다이어그래밍 시스템 전체 구성과 컴포넌트 간 관계를 그림으로 표현한 것 백엔드에서는 서버, DB, API 게이트웨이, 클라이언틑 등 시스템 전체 구조를 말함 그리는 도구 draw.io Lucidchart https://aws.amazon.com/ko/what-is/architecture-diagramming/ -",
     "tags": "TIL Project til",
     "url": "/til/2025-05-08-til/"
   },{
