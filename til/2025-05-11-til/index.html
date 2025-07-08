@@ -25,28 +25,30 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 
 
 
+  <meta name="robots" content="noindex">
+
 
 
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>NAHYUN BLOG | Welcome to Nahyun Devlog!</title>
+<title>[TIL] UUID와 Auto Increment PK는 언제 사용할까? | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="NAHYUN BLOG" />
+<meta property="og:title" content="[TIL] UUID와 Auto Increment PK는 언제 사용할까?" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="📝 TIL (Today I Learned) 🔗 원본 이슈: #57 📅 작성일: 2025-05-20 🔄 최종 수정: 2025년 05월 22일" />
-<meta property="og:description" content="📝 TIL (Today I Learned) 🔗 원본 이슈: #57 📅 작성일: 2025-05-20 🔄 최종 수정: 2025년 05월 22일" />
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-07-02-2025-05-20-til/" />
-<meta property="og:url" content="https://nan0silver.github.io/til/2025-07-02-2025-05-20-til/" />
+<meta name="description" content="2025-05-11 TIL" />
+<meta property="og:description" content="2025-05-11 TIL" />
+<link rel="canonical" href="https://nan0silver.github.io/til/2025-05-11-til/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2025-05-11-til/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-07-02T08:43:14+00:00" />
+<meta property="article:published_time" content="2025-05-11T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="NAHYUN BLOG" />
+<meta property="twitter:title" content="[TIL] UUID와 Auto Increment PK는 언제 사용할까?" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-07-02T08:42:32+00:00","datePublished":"2025-07-02T08:43:14+00:00","description":"📝 TIL (Today I Learned) 🔗 원본 이슈: #57 📅 작성일: 2025-05-20 🔄 최종 수정: 2025년 05월 22일","headline":"NAHYUN BLOG","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-07-02-2025-05-20-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-07-02-2025-05-20-til/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-05-22T05:26:48+00:00","datePublished":"2025-05-11T00:00:00+00:00","description":"2025-05-11 TIL","headline":"[TIL] UUID와 Auto Increment PK는 언제 사용할까?","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-05-11-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-05-11-til/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -74,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/til/2025-07-02-2025-05-20-til/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/til/2025-05-11-til/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -109,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-07-02T08:43:14+00:00',
+    INDEX_KEY: 'index--2025-07-08T00:16:08+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -203,7 +205,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         
           <span>/</span>
-          <span>2025-07-02-2025-05-20-til</span>
+          <span>2025-05-11-til</span>
         
       </li>
     
@@ -220,23 +222,31 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-til-2025-05-20-til" class="page post mb6" role="article">
+<article id="post-til-til" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        
+        [TIL] UUID와 Auto Increment PK는 언제 사용할까?
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-07-02T08:43:14+00:00">02 Jul 2025</time> in <a href="/til/" class="flip-title">TIL</a> 
+        <time datetime="2025-05-11T00:00:00+00:00">11 May 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>
       </span>
       
         
           
           
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 22 May 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-05-22T05:26:48+00:00">2025-05-22</time>
+            </span>
           
         
       
@@ -249,7 +259,12 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-  <div class="hr pb0"></div>
+  
+    <p class="note-sm" >
+      2025-05-11 TIL
+
+    </p>
+  
 
 
   </header>
@@ -257,8 +272,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   
     <blockquote>
   <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/57">#57</a><br />
-📅 <strong>작성일</strong>: 2025-05-20<br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/55">#55</a><br />
+📅 <strong>작성일</strong>: 2025-05-11<br />
 🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
 </blockquote>
 
@@ -267,66 +282,114 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
 
 <ul>
+  <li><strong>UUID와 Auto Increment PK는 언제 사용할까?</strong></li>
+</ul>
+
+<p>오늘은 엔티티의 기본 키(primary key)를 정의할 때 <strong>UUID</strong>와 <strong>Auto Increment(Long 타입)</strong> 중 어떤 것을 선택할지에 대해 정리해보았다.</p>
+
+<h3 id="-auto-increment-일반적인-정수형-pk">✅ Auto Increment (일반적인 정수형 PK)</h3>
+
+<ul>
   <li>
-    <p>Ollama</p>
+    <p>특징</p>
 
     <ul>
-      <li>로컬 머신에서 대규모 언어 모델(LLM)을 실행할 수 있게 해주는 오픈소스 도구</li>
-      <li>주요 특징
-        <ul>
-          <li>로컬 실행: 모든 처리가 로컬에서 이루어져 개인정보 보호가 가능</li>
-          <li>다양한 모델 지원: Llama, Mistral, Gemma 등 다양한 오픈소스 모델 지원</li>
-          <li>간단한 API: REST API를 통해 쉽게 통합 가능</li>
-          <li>CPU/GPU 지원: 다양한 하드웨어에서 실행 가능</li>
-          <li>크로스 플랫폼: Windows, macOS, Linux 지원</li>
-        </ul>
-      </li>
-      <li>Ollama 시작하기
-        <ol>
-          <li>ollama.com에서 OS에 맞는 버전 다운로드 및 설치</li>
-          <li>터미널에서 모델 다운로드 (예: ollama pull llama3.2)</li>
-          <li>모델 실행 (예: ollama run llama3.2)</li>
-        </ol>
-      </li>
-      <li>
-        <p>API 사용 방법</p>
+      <li><code class="language-plaintext highlighter-rouge">@GeneratedValue(strategy = GenerationType.IDENTITY)</code> 형태로 많이 사용</li>
+      <li>DB가 자동으로 증가시키며 관리</li>
+      <li>숫자 기반이라 인덱싱 속도가 빠르고, 저장 공간도 적게 차지함</li>
+    </ul>
+  </li>
+  <li>
+    <p>사용에 적합한 경우</p>
 
-        <ul>
-          <li>Ollama는 http://localhost:11434에서 REST API를 제공합니다:</li>
-          <li>
-            <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1"># Python 예제
-</span>  <span class="kn">import</span> <span class="nn">requests</span>
+    <ul>
+      <li>내부 시스템용 데이터</li>
+      <li>데이터 유출 시에도 ID 자체로는 식별 불가 → 보안 문제가 크지 않은 경우</li>
+      <li>검색/조회 성능이 중요한 경우</li>
+    </ul>
+  </li>
+  <li>
+    <p>단점</p>
 
-  <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://localhost:11434/api/generate'</span><span class="p">,</span>
-      <span class="n">json</span><span class="o">=</span><span class="p">{</span>
-          <span class="s">'model'</span><span class="p">:</span> <span class="s">'llama3.2'</span><span class="p">,</span>
-          <span class="s">'prompt'</span><span class="p">:</span> <span class="s">'백엔드 개발에 필요한 기술은?'</span><span class="p">,</span>
-          <span class="s">'stream'</span><span class="p">:</span> <span class="bp">False</span>
-      <span class="p">})</span>
-
-  <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()[</span><span class="s">'response'</span><span class="p">])</span>
-</code></pre></div>            </div>
-          </li>
-          <li>
-            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// JavaScript 예제</span>
-<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:11434/api/generate</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span> <span class="p">},</span>
-  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-    <span class="na">model</span><span class="p">:</span> <span class="dl">"</span><span class="s2">llama3.2</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">prompt</span><span class="p">:</span> <span class="dl">"</span><span class="s2">백엔드 개발에 필요한 기술은?</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">stream</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="p">}),</span>
-<span class="p">})</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">));</span>
-</code></pre></div>            </div>
-          </li>
-        </ul>
-      </li>
+    <ul>
+      <li>순차적으로 증가하는 ID는 보안상 예측 가능성이 있음 (특히 API 경로에 노출될 경우 위험)</li>
+      <li>시스템 간 병합 시 충돌 가능성 있음 (ex. 여러 서버에서 동시에 데이터를 생성하는 분산 환경)</li>
     </ul>
   </li>
 </ul>
+
+<hr />
+
+<h3 id="-uuid-범용-고유-식별자">✅ UUID (범용 고유 식별자)</h3>
+
+<ul>
+  <li>
+    <p>특징</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@GeneratedValue(strategy = GenerationType.AUTO)</code> 또는 <code class="language-plaintext highlighter-rouge">UUID.randomUUID()</code> 사용</li>
+      <li>128비트의 랜덤 고유값 (예: <code class="language-plaintext highlighter-rouge">d290f1ee-6c54-4b01-90e6-d701748f0851</code>)</li>
+      <li>전역적으로 충돌 가능성이 거의 없음 → <strong>분산 시스템에 적합</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>사용에 적합한 경우</p>
+
+    <ul>
+      <li>외부에 노출되는 식별자(API, 클라이언트 전송 등)</li>
+      <li>데이터 생성 주체가 분산되어 있어 충돌을 방지해야 할 때</li>
+      <li>보안상 ID 노출을 피하고 싶을 때</li>
+    </ul>
+  </li>
+  <li>
+    <p>단점</p>
+
+    <ul>
+      <li>길이가 길고 가독성이 떨어짐</li>
+      <li>저장 시 공간 낭비 (VARCHAR or BINARY 타입)</li>
+      <li>인덱싱 성능이 낮음 → 대량 데이터일수록 성능 저하 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="-결론-어떤-상황에-어떤-걸-쓸까">💡 결론: 어떤 상황에 어떤 걸 쓸까?</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>상황</th>
+      <th>추천 방식</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>단일 서버, 내부 관리 중심 서비스</td>
+      <td>Auto Increment</td>
+    </tr>
+    <tr>
+      <td>외부 노출 ID가 필요하거나, 분산 환경에서 생성되는 데이터</td>
+      <td>UUID</td>
+    </tr>
+    <tr>
+      <td>민감한 정보 식별자 (예: 사용자 ID, 주문 번호 등)</td>
+      <td>UUID</td>
+    </tr>
+    <tr>
+      <td>빠른 정렬/검색이 중요한 대량 데이터</td>
+      <td>Auto Increment (with caution)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<blockquote>
+  <p>오늘의 교훈: “보안성과 확장성”이 중요한 시스템이라면 UUID,
+“성능과 단순함”이 중요하다면 Auto Increment를 고려하자.
+다만 외부에 노출될 수 있는 ID는 무조건 UUID나 별도의 난수 토큰을 사용하는 것이 안전하다!</p>
+</blockquote>
 
   
 </article>
@@ -453,7 +516,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2025-07-02-2025-05-27-til/" class="flip-title"><span></span></a>  <time class="faded fine" datetime="2025-07-02T08:43:14+00:00">02 Jul 2025</time></li>                        <li class="h4">  <a href="/til/2025-07-02-2025-05-24-til/" class="flip-title"><span></span></a>  <time class="faded fine" datetime="2025-07-02T08:43:14+00:00">02 Jul 2025</time></li>                        <li class="h4">  <a href="/til/2025-07-02-2025-05-23-til/" class="flip-title"><span></span></a>  <time class="faded fine" datetime="2025-07-02T08:43:14+00:00">02 Jul 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2025-05-27-til/" class="flip-title"><span>[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS</span></a>  <time class="faded fine" datetime="2025-05-27T00:00:00+00:00">27 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-24-til/" class="flip-title"><span>[TIL] Nginx, 리버스 프록시, 로드 밸런서</span></a>  <time class="faded fine" datetime="2025-05-24T00:00:00+00:00">24 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-23-til/" class="flip-title"><span>[TIL] Grafana &amp; Prometheus, Rolling Policy, 시계열 메트릭</span></a>  <time class="faded fine" datetime="2025-05-23T00:00:00+00:00">23 May 2025</time></li>            </ul></aside>
 
   
 

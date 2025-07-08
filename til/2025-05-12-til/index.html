@@ -25,28 +25,30 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 
 
 
+  <meta name="robots" content="noindex">
+
 
 
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>NAHYUN BLOG | Welcome to Nahyun Devlog!</title>
+<title>[TIL] spring-boot-starter-validation, 테스트 코드 모니터링 툴 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="NAHYUN BLOG" />
+<meta property="og:title" content="[TIL] spring-boot-starter-validation, 테스트 코드 모니터링 툴" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="📝 TIL (Today I Learned) 🔗 원본 이슈: #61 📅 작성일: 2025-05-24 🔄 최종 수정: 2025년 05월 27일" />
-<meta property="og:description" content="📝 TIL (Today I Learned) 🔗 원본 이슈: #61 📅 작성일: 2025-05-24 🔄 최종 수정: 2025년 05월 27일" />
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-07-02-2025-05-24-til/" />
-<meta property="og:url" content="https://nan0silver.github.io/til/2025-07-02-2025-05-24-til/" />
+<meta name="description" content="2025-05-12 TIL" />
+<meta property="og:description" content="2025-05-12 TIL" />
+<link rel="canonical" href="https://nan0silver.github.io/til/2025-05-12-til/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2025-05-12-til/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-07-02T08:43:14+00:00" />
+<meta property="article:published_time" content="2025-05-12T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="NAHYUN BLOG" />
+<meta property="twitter:title" content="[TIL] spring-boot-starter-validation, 테스트 코드 모니터링 툴" />
 <meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-07-02T08:42:32+00:00","datePublished":"2025-07-02T08:43:14+00:00","description":"📝 TIL (Today I Learned) 🔗 원본 이슈: #61 📅 작성일: 2025-05-24 🔄 최종 수정: 2025년 05월 27일","headline":"NAHYUN BLOG","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-07-02-2025-05-24-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-07-02-2025-05-24-til/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-05-22T05:27:40+00:00","datePublished":"2025-05-12T00:00:00+00:00","description":"2025-05-12 TIL","headline":"[TIL] spring-boot-starter-validation, 테스트 코드 모니터링 툴","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-05-12-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-05-12-til/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -74,7 +76,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.1.6" />
 
 
-<link rel="alternate" href="https://nan0silver.github.io/til/2025-07-02-2025-05-24-til/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/til/2025-05-12-til/" hreflang="ko-kr, en-us">
 
 <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
@@ -109,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-07-02T08:43:14+00:00',
+    INDEX_KEY: 'index--2025-07-08T00:16:08+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -203,7 +205,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         
           <span>/</span>
-          <span>2025-07-02-2025-05-24-til</span>
+          <span>2025-05-12-til</span>
         
       </li>
     
@@ -220,23 +222,31 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-til-2025-05-24-til" class="page post mb6" role="article">
+<article id="post-til-til" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        
+        [TIL] spring-boot-starter-validation, 테스트 코드 모니터링 툴
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-07-02T08:43:14+00:00">02 Jul 2025</time> in <a href="/til/" class="flip-title">TIL</a> 
+        <time datetime="2025-05-12T00:00:00+00:00">12 May 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Spring</span>
       </span>
       
         
           
           
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 22 May 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-05-22T05:27:40+00:00">2025-05-22</time>
+            </span>
           
         
       
@@ -249,7 +259,12 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-  <div class="hr pb0"></div>
+  
+    <p class="note-sm" >
+      2025-05-12 TIL
+
+    </p>
+  
 
 
   </header>
@@ -257,168 +272,114 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   
     <blockquote>
   <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/61">#61</a><br />
-📅 <strong>작성일</strong>: 2025-05-24<br />
-🔄 <strong>최종 수정</strong>: 2025년 05월 27일</p>
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/56">#56</a><br />
+📅 <strong>작성일</strong>: 2025-05-12<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
 </blockquote>
 
 <hr />
 
 <h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
 
-<h3 id="1️⃣-nginx란">1️⃣ <strong>Nginx란?</strong></h3>
-
 <ul>
-  <li>**Nginx(엔진엑스)**는 고성능 웹 서버 소프트웨어다.</li>
-  <li>원래는 정적 콘텐츠 제공을 위한 웹 서버였지만, 현재는 <strong>리버스 프록시</strong>, <strong>로드 밸런서</strong>, <strong>API Gateway</strong>, <strong>캐시 서버</strong> 등 다용도로 활용된다.</li>
+  <li>spring-boot-starter-validation</li>
+  <li>테스트 코드 모니터링 툴</li>
 </ul>
 
-<hr />
-
-<h3 id="-nginx의-주요-기능">✅ Nginx의 주요 기능</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>기능</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>웹 서버</td>
-      <td>HTML, CSS, JS 같은 <strong>정적 파일 제공</strong></td>
-    </tr>
-    <tr>
-      <td>리버스 프록시</td>
-      <td>클라이언트 요청을 <strong>내부 서버에 전달</strong></td>
-    </tr>
-    <tr>
-      <td>로드 밸런서</td>
-      <td>여러 서버에 트래픽을 <strong>분산</strong>하여 처리</td>
-    </tr>
-    <tr>
-      <td>캐시 서버</td>
-      <td>응답을 <strong>캐싱</strong>해 성능 향상</td>
-    </tr>
-    <tr>
-      <td>SSL 종단 처리</td>
-      <td>HTTPS 인증서 처리 (Let’s Encrypt 등과 연동)</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="-리버스-프록시란">🔄 리버스 프록시란?</h3>
-
-<ul>
-  <li>클라이언트는 Nginx에 요청을 보내고, Nginx는 **백엔드 서버(Apache, Spring, Node 등)**에 요청을 전달한 후 응답을 다시 클라이언트에 전송한다.</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Client] → [Nginx] → [Spring Server]
-</code></pre></div></div>
-
-<ul>
-  <li>보안, 로드 밸런싱, 서버 분리 등 다양한 이유로 활용됨</li>
-</ul>
-
-<hr />
-
-<h3 id="️-로드-밸런서">⚖️ 로드 밸런서</h3>
-
-<ul>
-  <li>요청을 <strong>여러 서버에 고르게 분산</strong>시켜 트래픽 집중을 막고 <strong>가용성</strong>을 높임</li>
-</ul>
-
-<h4 id="nginx에서-로드-밸런싱-구성-예시">Nginx에서 로드 밸런싱 구성 예시:</h4>
-
-<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
-    <span class="kn">server</span> <span class="s">backend1.example.com</span><span class="p">;</span>
-    <span class="kn">server</span> <span class="s">backend2.example.com</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">server</span> <span class="p">{</span>
-    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
-        <span class="kn">proxy_pass</span> <span class="s">http://backend</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<h3 id="1️⃣-spring-boot-starter-validation">1️⃣ <code class="language-plaintext highlighter-rouge">spring-boot-starter-validation</code></h3>
 
 <blockquote>
-  <p><code class="language-plaintext highlighter-rouge">upstream</code> 블록을 통해 백엔드 서버를 그룹핑하고, Nginx가 자동으로 라운드로빈 방식으로 분산 처리</p>
+  <p><strong>Spring Boot에서 사용자 입력 값(요청 바디 등)을 검증</strong>할 수 있게 해주는 의존성 패키지
+내부적으로는 <code class="language-plaintext highlighter-rouge">javax.validation</code> (JSR-380)이나 <code class="language-plaintext highlighter-rouge">jakarta.validation</code> API를 기반으로 동작</p>
 </blockquote>
 
-<hr />
-
-<h3 id="-정적-파일-서버로의-활용">📦 정적 파일 서버로의 활용</h3>
-
 <ul>
-  <li>HTML/CSS/JS 파일을 빠르게 서빙할 수 있음</li>
-  <li>WAS(Spring, Node 등)에서 정적 리소스를 분리하면 서버 부하를 줄일 수 있음</li>
+  <li>주로 아래와 같은 상황에 동작
+    <ul>
+      <li>사용자가 회원가입을 할 때</li>
+      <li>게시글을 작성할 때</li>
+      <li>비밀번호 변경할 때 등</li>
+    </ul>
+  </li>
 </ul>
 
-<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
-    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
-    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
-        <span class="kn">root</span> <span class="n">/usr/share/nginx/html</span><span class="p">;</span>
-        <span class="kn">index</span> <span class="s">index.html</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p><strong>프론트엔드에서 필터링한다고 해도, 백엔드에서는 무조건 검증이 필요</strong></p>
+
+<ul>
+  <li>신뢰할 수 없는 요청이나 보안 위험을 방지하기 위해서 (프론트는 우회가 가능하므로) 백엔드 검증은 필수!</li>
+  <li>검증 애너테이션
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@NotNull</code>, <code class="language-plaintext highlighter-rouge">@NotBlank</code>, <code class="language-plaintext highlighter-rouge">@Size</code>, <code class="language-plaintext highlighter-rouge">@Email</code>, <code class="language-plaintext highlighter-rouge">@Min</code>, <code class="language-plaintext highlighter-rouge">@Max</code> 등</li>
+    </ul>
+  </li>
+  <li>검증 실패 시
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@ControllerAdvice</code>와 <code class="language-plaintext highlighter-rouge">@ExceptionHandler</code>를 이용해 에러 메시지 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="1-의존성-추가-buildgradle">1. 의존성 추가 (<code class="language-plaintext highlighter-rouge">build.gradle</code>)</h4>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'org.springframework.boot:spring-boot-starter-validation'</span>
 </code></pre></div></div>
 
-<hr />
+<h4 id="2-dto-클래스에-검증-어노테이션-달기">2. DTO 클래스에 검증 어노테이션 달기</h4>
 
-<h3 id="-https-설정">🔒 HTTPS 설정</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">jakarta.validation.constraints.NotBlank</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.Size</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SignupRequestDto</span> <span class="o">{</span>
+
+    <span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"이메일은 필수입니다."</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+
+    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">8</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"비밀번호는 최소 8자 이상이어야 합니다."</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+
+    <span class="c1">// getter, setter</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="3-controller에서-검증-처리">3. Controller에서 검증 처리</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/signup"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">signup</span><span class="o">(</span><span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="nc">SignupRequestDto</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 통과 시 로직 실행</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <ul>
-  <li>Let’s Encrypt와 Certbot을 이용해 무료 SSL 인증서 발급 가능</li>
-  <li>HTTPS로 종단 보안(SSL Termination)을 적용하여 <strong>보안 강화</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">@Valid</code>가 붙은 객체에서 문제가 발생하면 자동으로 400 에러 발생.</li>
+  <li>에러 메시지는 <code class="language-plaintext highlighter-rouge">@ControllerAdvice</code>를 통해 커스터마이징도 가능.</li>
 </ul>
 
-<hr />
+<h3 id="2️⃣-테스트-코드-모니터링-툴">2️⃣ 테스트 코드 모니터링 툴</h3>
 
-<h2 id="-함께-알아두면-좋은-심화-키워드">🧠 함께 알아두면 좋은 심화 키워드</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>키워드</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>리버스 프록시</td>
-      <td>Nginx가 중간에 서서 내부 서버 대신 요청 응답 처리</td>
-    </tr>
-    <tr>
-      <td>포워드 프록시</td>
-      <td>사용자의 요청을 <strong>외부로 보낼 때</strong> 중개하는 프록시</td>
-    </tr>
-    <tr>
-      <td>CDN (Content Delivery Network)</td>
-      <td>정적 리소스를 전 세계에 분산 저장하여 빠르게 전송</td>
-    </tr>
-    <tr>
-      <td>캐싱 정책</td>
-      <td><code class="language-plaintext highlighter-rouge">Cache-Control</code>, <code class="language-plaintext highlighter-rouge">ETag</code>를 이용한 정적 자원 캐싱</td>
-    </tr>
-    <tr>
-      <td>Blue-Green Deployment</td>
-      <td>Nginx로 배포 서버를 스위칭하여 무중단 배포 실현</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="️-오늘의-요약">✍️ 오늘의 요약</h2>
+<blockquote>
+  <p><strong>“테스트 코드의 품질과 실행 현황을 시각적으로 분석/모니터링하는 도구”</strong>
+즉, 테스트가 얼마나 잘 되어 있는지 **“숫자와 그래프”**로 보여주는 도구</p>
+</blockquote>
 
 <ul>
-  <li>Nginx는 단순 웹 서버 그 이상으로, <strong>프론트와 백엔드 사이의 허브 역할</strong>을 한다.</li>
-  <li>리버스 프록시, 로드 밸런서, 정적 파일 서버, SSL 처리까지 담당할 수 있는 멀티플레이어</li>
-  <li>실제 운영 환경에서는 <strong>Spring Boot와 Nginx 연동</strong>, <strong>HTTPS 적용</strong>, <strong>EC2 배포 시 로드밸런싱 구성</strong> 등을 할 수 있도록 익숙해져야 한다</li>
+  <li>테스트 코드가 있다고 해도, **정말 전체 코드를 잘 테스트하고 있는지는 모름</li>
+  <li>그래서 “<strong>코드 커버리지</strong>”, “<strong>테스트 성공률</strong>”, “<strong>실행 시간</strong>” 같은 걸 측정해서 모니터링할 수 있어야 한다.
+    <ul>
+      <li>커버리지
+        <ul>
+          <li>코드의 품질과 신뢰성을 수치로 확인할 수 있는 지표</li>
+          <li>단순히 테스트를 작성하는 것보다, 커버리지를 보면서 blind spot 없이 테스트하는 게 중요!</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>🔧 대표적인 도구들
+| 도구 | 설명 |
+| ———————- | ———————————– |
+| <strong>JaCoCo</strong> | Java 프로젝트에서 가장 널리 쓰이는 코드 커버리지 측정 도구 |
+| <strong>SonarQube</strong> | 코드 품질, 보안 취약점, 커버리지까지 통합 분석 |
+| <strong>IntelliJ 자체 기능</strong> | 실행 후 커버리지를 하이라이팅으로 보여줌 |
+| <strong>Codecov, Coveralls</strong> | GitHub Actions와 연동해 커버리지 리포트 자동화 |</li>
 </ul>
 
   
@@ -546,7 +507,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2025-07-02-2025-05-27-til/" class="flip-title"><span></span></a>  <time class="faded fine" datetime="2025-07-02T08:43:14+00:00">02 Jul 2025</time></li>                        <li class="h4">  <a href="/til/2025-07-02-2025-05-23-til/" class="flip-title"><span></span></a>  <time class="faded fine" datetime="2025-07-02T08:43:14+00:00">02 Jul 2025</time></li>                        <li class="h4">  <a href="/til/2025-07-02-2025-05-22-til/" class="flip-title"><span></span></a>  <time class="faded fine" datetime="2025-07-02T08:43:14+00:00">02 Jul 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2025-05-27-til/" class="flip-title"><span>[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS</span></a>  <time class="faded fine" datetime="2025-05-27T00:00:00+00:00">27 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-24-til/" class="flip-title"><span>[TIL] Nginx, 리버스 프록시, 로드 밸런서</span></a>  <time class="faded fine" datetime="2025-05-24T00:00:00+00:00">24 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-23-til/" class="flip-title"><span>[TIL] Grafana &amp; Prometheus, Rolling Policy, 시계열 메트릭</span></a>  <time class="faded fine" datetime="2025-05-23T00:00:00+00:00">23 May 2025</time></li>            </ul></aside>
 
   
 
