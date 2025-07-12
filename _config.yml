@@ -75,7 +75,7 @@ menu:
     url: /miscellaneous/
   - title: 프로젝트 일기 (6)
     url: /projectdiary/
-  - title: TIL (2)
+  - title: TIL (61)
     url: /til/
 
 # Add links to the footer.
@@ -340,7 +340,7 @@ collections:
   javascript:
     output: true
     permalink: /javascript/:path/
-  
+
   til:
     output: true
     permalink: /til/:path/
