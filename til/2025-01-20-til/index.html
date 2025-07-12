@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-07-12T02:39:22+00:00',
+    INDEX_KEY: 'index--2025-07-12T03:03:56+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -280,31 +280,105 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <hr />
 
 <h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<p>이번에는 그동안 ‘대충은 안다’고 생각했던 **CSS의 기본 개념들과 웹의 메타 정보 설정(OG)**에 대해 한층 더 깊이 있게 이해하게 되었다.</p>
+
+<h3 id="-css의-정의부터-세세한-단위까지">🧷 CSS의 정의부터 세세한 단위까지</h3>
+
 <ul>
-  <li>CSS의 세세한 지식
+  <li>
+    <p><strong>CSS (Cascading Style Sheets)</strong>
+HTML 구조에 ‘스타일’을 입히는 언어. 눈에 보이는 모든 웹의 디자인과 인터랙션을 담당하는 핵심 기술이다.</p>
+  </li>
+  <li>
+    <p><strong>단위 차이 – <code class="language-plaintext highlighter-rouge">em</code> vs <code class="language-plaintext highlighter-rouge">rem</code></strong></p>
+
     <ul>
-      <li>CSS의 정의, em, rem, float</li>
+      <li><code class="language-plaintext highlighter-rouge">em</code>: <strong>부모 요소의 font-size</strong>를 기준으로 계산됨. 중첩된 요소에서는 비율이 누적되기 때문에 예측이 어렵다.</li>
+      <li><code class="language-plaintext highlighter-rouge">rem</code>: <strong>루트 요소(html)의 font-size</strong>를 기준으로 계산. 전역적으로 일관된 크기 조절이 가능하다.
+➤ 실무에서는 대부분 <code class="language-plaintext highlighter-rouge">rem</code>을 기준으로 통일하는 추세!</li>
     </ul>
   </li>
-  <li>웹의 OG</li>
+  <li>
+    <p><strong>float 속성</strong></p>
+
+    <ul>
+      <li>요소를 좌우로 띄워 배치하는 방식이지만, modern CSS에서는 <strong>flexbox나 grid가 대체</strong>하고 있다.</li>
+      <li>다만, 여전히 레거시 코드나 간단한 배치에서는 <code class="language-plaintext highlighter-rouge">float</code>이 등장하기도 하므로 이해는 필수.</li>
+    </ul>
+  </li>
 </ul>
+
+<h3 id="-웹-og-open-graph">🌐 웹 OG (Open Graph)</h3>
+
+<ul>
+  <li>
+    <p>SNS에서 링크를 공유했을 때, <strong>썸네일 이미지 / 제목 / 설명</strong>이 미리보기로 보이는 기능은 OG 메타태그 덕분이다.</p>
+  </li>
+  <li>
+    <p>예시:</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:title"</span> <span class="na">content=</span><span class="s">"내 블로그 타이틀"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span>
+  <span class="na">property=</span><span class="s">"og:description"</span>
+  <span class="na">content=</span><span class="s">"유익한 개발 인사이트가 가득한 블로그"</span>
+<span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:image"</span> <span class="na">content=</span><span class="s">"https://myblog.com/images/thumbnail.png"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:url"</span> <span class="na">content=</span><span class="s">"https://myblog.com"</span> <span class="nt">/&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>SEO뿐 아니라 <strong>브랜딩과 클릭 유도</strong>에도 중요한 역할을 하므로, 웹 개발 시 꼭 챙겨야 할 부분.</p>
+  </li>
+</ul>
+
+<hr />
 
 <h2 id="-오늘의-문제-상황--해결-과정">🍎 오늘의 문제 상황 &amp; 해결 과정</h2>
+
+<h3 id="-문제-상황">🤔 문제 상황</h3>
+
+<p>CSS를 평소에 자주 쓰고 있어서 “이 정도는 알지!”라고 생각했지만, 실제로는 <code class="language-plaintext highlighter-rouge">em</code>, <code class="language-plaintext highlighter-rouge">rem</code>, <code class="language-plaintext highlighter-rouge">float</code>, <code class="language-plaintext highlighter-rouge">OG 태그</code>와 같은 용어들의 의미와 정확한 사용법을 <strong>막연히만</strong> 알고 있었다.</p>
+
+<h3 id="-해결-과정">🔧 해결 과정</h3>
+
 <ul>
-  <li>CSS에 대해 잘 알고 있다고 생각했는데, 세세하게 모르는 단어들이 있었다.
+  <li>개발 중 우연히 encountered 한 단어들을 그냥 넘기지 않고, <strong>바로바로 정리하고 문서화</strong>하는 습관을 시도해봤다.</li>
+  <li>VS Code + Markdown을 사용해서 개념을 정리하고, 블로그에 업로드할 수 있도록 요약까지 해보았다.</li>
+  <li>결과적으로 단지 “아는 느낌”이 아니라 <strong>필요할 때 꺼내쓸 수 있는 지식</strong>으로 바뀌었다.</li>
+</ul>
+
+<hr />
+
+<h2 id="-느낀-점">🦄 느낀 점</h2>
+
+<ul>
+  <li>
+    <p><strong>겉만 아는 것과 속까지 아는 것은 다르다.</strong></p>
+
     <ul>
-      <li>그때그때 정리해서 바로 내껄로 만들자!</li>
+      <li>CSS나 HTML은 쉬운 것처럼 느껴질 수 있지만, 막상 실제로 ‘왜 그렇게 되는지’를 설명하려고 하면 막히는 경우가 많다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>앞으로는 **모르는 개념을 마주쳤을 때 ‘그냥 넘기지 않기’**를 실천하려고 한다.</p>
+
+    <ul>
+      <li>✍️ “몰랐던 걸 내 언어로 정리하는 순간, 진짜 내 것이 된다.”</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="-느낀-점">🦄 느낀 점</h2>
-<ul>
-  <li>잘 알고있다고 생각해도 겉만 알고있는 경우가 많았다.</li>
-  <li>모르는건 그냥 넘어가지 말고 습득하고 넘어가는 습관을 들어야겠다.</li>
-</ul>
+<hr />
+
+<p>📌 <strong>Tip:</strong></p>
+
+<blockquote>
+  <p>개발자에게는 ‘검색력’도 중요하지만, <strong>“기억에 남게 정리하는 습관”은 더 강력한 무기</strong>가 될 수 있다.</p>
+</blockquote>
 
 <h2 id="-깃블로그-정리">🐬 깃블로그 정리</h2>
+
 <p>[CSS 기초] (https://nan0silver.github.io/miscellaneous/2025-01-18-css/)
 [CSS Float] (https://nan0silver.github.io/miscellaneous/2025-01-19-css-float/)</p>
 

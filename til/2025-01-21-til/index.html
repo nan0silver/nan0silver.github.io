@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-07-12T02:39:22+00:00',
+    INDEX_KEY: 'index--2025-07-12T03:03:56+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -280,34 +280,102 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <hr />
 
 <h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<p>이번에는 <strong>CSS 레이아웃의 핵심 개념들과 프론트엔드 개발자가 자주 접하는 실전 용어들</strong>에 대해 집중적으로 학습했다.</p>
+
+<h3 id="-css-position-flex-bootstrap">📌 CSS Position, Flex, Bootstrap</h3>
+
 <ul>
-  <li>CSS position, flex, bootstrap
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">position</code> 속성을 통해 요소의 정적/상대/절대 위치 설정 방식 이해
+(<code class="language-plaintext highlighter-rouge">static</code>, <code class="language-plaintext highlighter-rouge">relative</code>, <code class="language-plaintext highlighter-rouge">absolute</code>, <code class="language-plaintext highlighter-rouge">fixed</code>, <code class="language-plaintext highlighter-rouge">sticky</code> 각각의 차이점 체감)</p>
+  </li>
+  <li>
+    <p><strong>Flexbox</strong></p>
+
     <ul>
-      <li>https://flexboxfroggy.com 와 같은 게임을 통한 flex 의미 이해</li>
-      <li>문서를 통한 bootstrap 실습으로 개념 이해</li>
+      <li>처음 강의로만 접했을 땐 직관적으로 와닿지 않았지만,</li>
+      <li><a href="https://flexboxfroggy.com">Flexbox Froggy</a> 같은 게임을 하며 <strong>눈으로 보고 손으로 익히는 학습 방식</strong>이 큰 도움이 됨</li>
+      <li><code class="language-plaintext highlighter-rouge">justify-content</code>, <code class="language-plaintext highlighter-rouge">align-items</code>, <code class="language-plaintext highlighter-rouge">flex-grow</code> 등 실무에서 자주 쓰이는 속성들을 자연스럽게 체득</li>
     </ul>
   </li>
-  <li>프론트엔드 개발자 관점에서 responsive / reactive의 의미</li>
-  <li>PWA (Progressive Web Apps)</li>
+  <li>
+    <p><strong>Bootstrap 실습</strong></p>
+
+    <ul>
+      <li>문서를 보며 Grid 시스템과 반응형 유틸리티 클래스 실습</li>
+      <li>기존에 막연했던 <code class="language-plaintext highlighter-rouge">.container</code>, <code class="language-plaintext highlighter-rouge">.row</code>, <code class="language-plaintext highlighter-rouge">.col-md-*</code> 구조를 HTML에 적용해보며 정확하게 개념화</li>
+    </ul>
+  </li>
 </ul>
+
+<hr />
+
+<h3 id="-프론트엔드-개발자-관점에서-이해한-용어들">💡 프론트엔드 개발자 관점에서 이해한 용어들</h3>
+
+<ul>
+  <li>
+    <p><strong>Responsive vs Reactive</strong></p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">responsive</code>: 디바이스 크기에 따라 콘텐츠가 적절히 조절되는 UI (ex. 반응형 웹)</li>
+      <li><code class="language-plaintext highlighter-rouge">reactive</code>: 사용자 입력이나 데이터 변화에 실시간 반응하는 시스템 설계 (ex. 리액티브 프로그래밍, RxJS)</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>PWA (Progressive Web App)</strong></p>
+
+    <ul>
+      <li>웹 앱이 네이티브 앱처럼 동작하도록 만드는 기술</li>
+      <li>대표적 특징: 오프라인 지원, 홈 화면 추가, 빠른 로딩 속도</li>
+      <li>실제로 어떤 앱들이 PWA를 도입하고 있는지 찾아보며 가능성과 필요성을 체감</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
 
 <h2 id="-오늘의-문제-상황--해결-과정">🍎 오늘의 문제 상황 &amp; 해결 과정</h2>
+
+<h3 id="-문제-상황">🤔 문제 상황</h3>
+
+<p>처음 <code class="language-plaintext highlighter-rouge">flex</code>를 강의로 배울 때는 개념이 잘 들어오지 않았다.
+<code class="language-plaintext highlighter-rouge">justify-content</code>나 <code class="language-plaintext highlighter-rouge">flex-direction</code>처럼 말은 쉬워보이는데, 실제로 어떤 결과를 만드는지 바로 이해되지 않았다.</p>
+
+<h3 id="️-해결-과정">🛠️ 해결 과정</h3>
+
 <ul>
-  <li>flex에 대해 강의를 들을 때는 바로 이해가 되지 않았다.
-    <ul>
-      <li>직접 이것저것 실행하보고 flexboxfroggy를 통해 문제를 푸니 빠르게 이해할 수 있었다.</li>
-      <li>ChatGPT도 활용해 예시를 뽑아 실습에 사용하였다.</li>
-    </ul>
+  <li><strong>실행해보며 학습</strong>: 직접 HTML과 CSS 파일을 만들어 이것저것 시도해봄</li>
+  <li><strong>Flexbox Froggy 게임</strong>: 문제를 풀며 개념을 시각적으로 체득 → <code class="language-plaintext highlighter-rouge">"아 이런 구조가 되는 거구나"</code>라는 감이 생김</li>
+  <li><strong>ChatGPT로 예시 생성</strong>: <code class="language-plaintext highlighter-rouge">2열 레이아웃을 flex로 구현해줘</code> 같은 요청을 통해 다양한 예시 코드를 받아 실습에 활용</li>
+</ul>
+
+<hr />
+
+<h2 id="-느낀-점">🦄 느낀 점</h2>
+
+<ul>
+  <li>
+    <p><strong>CSS는 개념보다 체험이 먼저다.</strong>
+책이나 강의만으로는 막연하게 느껴지던 것들이, 직접 화면에서 변화하는 모습을 보면서 확실히 이해됐다.</p>
+  </li>
+  <li>
+    <p><strong>실무에서 나오는 단어들은 그냥 넘기지 말자.</strong>
+현직 개발자들이 무심코 던지는 단어들 — 예: “PWA 괜찮은데요”, “이건 responsive하게 짜야죠” — 이 안에 수많은 기술 개념이 숨어 있다는 걸 느꼈다.
+→ 익숙하지 않더라도 <strong>하나하나 찾아보고 내 것으로 만드는 습관이 중요하다.</strong></p>
   </li>
 </ul>
 
-<h2 id="-느낀-점">🦄 느낀 점</h2>
-<ul>
-  <li>CSS는 직접 실행해보는 것이 빠르게 이해할 수 있는 것 같다.</li>
-  <li>현직 개발자가 툭툭 던지는 얘기들은 하나하나 찾아볼 필요가 있는 것 같다. (PWA, responsive / reactive 등)</li>
-</ul>
+<hr />
+
+<p>📌 <strong>마무리 요약</strong></p>
+
+<blockquote>
+  <p>💬 <em>프론트엔드는 ‘보이는 것’이 전부가 아니다. 직접 만들고, 부딪히고, 튜닝하면서 체득하는 과정이 핵심이다.</em></p>
+</blockquote>
 
 <h2 id="-깃블로그-정리">🐬 깃블로그 정리</h2>
+
 <p>[responsive / reactive의 의미] (https://nan0silver.github.io/miscellaneous/2025-01-20-responsive/)
 [CSS Flex] (https://nan0silver.github.io/miscellaneous/2025-01-21-css-flex/)</p>
 

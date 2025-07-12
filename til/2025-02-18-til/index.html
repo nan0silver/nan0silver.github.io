@@ -111,7 +111,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-07-12T02:39:22+00:00',
+    INDEX_KEY: 'index--2025-07-12T03:03:56+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -280,42 +280,120 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <hr />
 
 <h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<p>이번에 Git에 대해 다시 공부하면서 두 가지 개념을 중점적으로 정리했다.</p>
+
 <ul>
-  <li>효율적인 Git commit 전략
+  <li>
+    <p><strong>효율적인 Git Commit 전략</strong></p>
+
     <ul>
-      <li>Udacity style</li>
-      <li>git rebase 확실히 알아보기</li>
+      <li>예전에는 커밋 메시지를 감으로 작성했지만, 최근엔 <strong>Udacity 스타일</strong>의 커밋 메시지 작성법을 적용해보려 하고 있다.
+예: <code class="language-plaintext highlighter-rouge">feat: 사용자 프로필 저장 기능 추가</code> 또는 <code class="language-plaintext highlighter-rouge">fix: API 응답 포맷 오류 수정</code></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">git rebase</code> 완전 정복하기</strong></p>
+
+    <ul>
+      <li>지금까지는 <code class="language-plaintext highlighter-rouge">git merge</code>만을 주로 사용해 협업을 해왔지만, <code class="language-plaintext highlighter-rouge">git rebase</code>의 개념은 늘 ‘들어만 봤던’ 상태였다.</li>
+      <li>이번 기회에 <code class="language-plaintext highlighter-rouge">git rebase</code>가 실제로 어떤 상황에서 유용하고, 어떤 흐름으로 작동하는지를 명확히 정리하게 되었다.</li>
     </ul>
   </li>
 </ul>
+
+<hr />
 
 <h2 id="-오늘의-문제-상황">🍎 오늘의 문제 상황</h2>
+
+<h3 id="-문제-인식">🔍 문제 인식</h3>
+
+<p>프로젝트를 진행하면서 Git 커밋 로그가 너무 산만하게 흐르는 것을 보며, 자연스럽게 Git 전략에 대한 고민이 생겼다. 특히 <code class="language-plaintext highlighter-rouge">git merge</code>만 사용하다 보니 <strong>히스토리가 복잡하게 얽히는 문제</strong>가 발생했다. 이때 떠오른 것이 <code class="language-plaintext highlighter-rouge">git rebase</code>였다.</p>
+
+<p>하지만 막상 스스로 설명하려 하니…</p>
+
+<blockquote>
+  <p>“내가 이걸 **‘제대로’ 아는 걸까?”
+라는 의문이 들었다.</p>
+</blockquote>
+
+<h3 id="-해결-과정">✅ 해결 과정</h3>
+
 <ul>
-  <li>git commit에 대해 다시 정리하면서 git rebase에 대해 스스로 정리해보려고 하는데 제대로 잘 모른다른 것을 알았다.
+  <li><strong>Git Merge vs Rebase 차이점 정리</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th><code class="language-plaintext highlighter-rouge">git merge</code></th>
+      <th><code class="language-plaintext highlighter-rouge">git rebase</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>브랜치 구조</td>
+      <td>브랜치가 병합되며 <strong>병합 커밋(Merge Commit)</strong> 생성</td>
+      <td>브랜치가 <strong>직선적</strong>으로 재배열됨</td>
+    </tr>
+    <tr>
+      <td>커밋 히스토리</td>
+      <td>복잡하지만 충돌 이력이 명확히 남음</td>
+      <td>깔끔하지만 충돌 해결 히스토리는 사라짐</td>
+    </tr>
+    <tr>
+      <td>협업 시기</td>
+      <td><strong>공식 배포 브랜치</strong> 병합 시 사용 권장</td>
+      <td><strong>개인 브랜치 정리용</strong>으로 주로 사용</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <p><strong>언제 rebase가 유용할까?</strong></p>
+
     <ul>
-      <li>프로젝트 협업 시 git merge만 사용하면서 git rebase에 대해 알고 있었지만 제대로 모르니까 못쓰는 것이였다..!</li>
-      <li>✅ 해결 과정
-        <ul>
-          <li>git rebase와 git merge의 차이점을 알아보면서 git rebase가 사용되는 방식을 제대로 알아보았다.</li>
-          <li>git rebase가 효율적인 방법이 되는 예시를 알아보며 제대로 생각해 볼 수 있었다.
-            <ul>
-              <li>작은 프로젝트에서는 필요성이 크게 느껴지지 않을 수 있지만 큰 프로젝트에서는 아주 효율적인 방법이 될 수 있겠다.</li>
-              <li>(작은 프로젝트만 해서 git merge로도 충분했던것..)</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
+      <li>큰 조직이나 다수의 협업자들이 있는 경우, 직선적인 커밋 히스토리는 디버깅과 리뷰에 큰 도움이 된다.</li>
+      <li>PR을 올리기 전 개인 브랜치의 커밋을 정리할 때 매우 유용하다. (<code class="language-plaintext highlighter-rouge">git rebase -i</code>로 커밋 합치기 등)</li>
     </ul>
+  </li>
+  <li>
+    <p><strong>작은 프로젝트에서는 merge만 써도 큰 불편은 없었지만</strong>, 실제 대규모 프로젝트에서는 rebase의 가치가 커진다는 것을 깨달았다.</p>
   </li>
 </ul>
 
+<hr />
+
 <h2 id="-느낀-점">🦄 느낀 점</h2>
+
 <ul>
-  <li>아는 것과 제대로 아는 것은 다르다..</li>
-  <li>제대로 알고 기억할 수 있도록 공부하는 것이 중요하다.</li>
+  <li>
+    <p>정말로 와닿은 문장:</p>
+
+    <blockquote>
+      <p>“아는 것과 <strong>제대로 아는 것</strong>은 다르다.”</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>나는 <code class="language-plaintext highlighter-rouge">git rebase</code>를 ‘안다고 생각했지만’, 정작 쓸 수는 없었다. 이번에 개념과 흐름을 정리하면서 ‘실제로 써먹을 수 있는 지식’으로 바뀌었다.</p>
+  </li>
+  <li>
+    <p>이제는 협업 시 git log를 깔끔하게 유지하는 것도 개발자의 중요한 역량이라는 걸 알게 되었고, 다음 협업에서는 <code class="language-plaintext highlighter-rouge">rebase</code>도 적극적으로 활용해보고 싶다.</p>
+  </li>
 </ul>
 
+<hr />
+
+<p>💬 <strong>TIP</strong></p>
+
+<blockquote>
+  <p>팀원들과 Git 전략을 공유할 때는 merge/rebase 전략을 사전에 정리하고, PR 전에는 <code class="language-plaintext highlighter-rouge">git rebase origin/main</code>을 통해 개인 브랜치를 정리해두는 습관이 중요하다!</p>
+</blockquote>
+
 <h2 id="-깃블로그-정리">🐬 깃블로그 정리</h2>
+
 <ul>
   <li>[효율적인 git commit 전략] (https://nan0silver.github.io/miscellaneous/2025-02-19-git-commit/)</li>
   <li>[git rebase] (https://nan0silver.github.io/miscellaneous/2025-01-23-git-rebase/)</li>
