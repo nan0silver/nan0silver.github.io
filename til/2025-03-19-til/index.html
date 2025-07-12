@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[TIL] Spring Boot 기반의 MSA에서 오류 처리 방식 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[TIL] Spring Boot 기반의 MSA에서 오류 처리 방식" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="2025-03-19 TIL" />
+<meta property="og:description" content="2025-03-19 TIL" />
+<link rel="canonical" href="https://nan0silver.github.io/til/2025-03-19-til/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2025-03-19-til/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-03-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[TIL] Spring Boot 기반의 MSA에서 오류 처리 방식" />
+<meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-08T13:58:08+00:00","datePublished":"2025-03-19T00:00:00+00:00","description":"2025-03-19 TIL","headline":"[TIL] Spring Boot 기반의 MSA에서 오류 처리 방식","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-03-19-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-03-19-til/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="NAHYUN BLOG">
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+
+<link rel="alternate" href="https://nan0silver.github.io/til/2025-03-19-til/" hreflang="ko-kr, en-us">
+
+<link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+
+
+
+
+<script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-07-12T02:30:00+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/til/">til</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-03-19-til</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-til-til" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [TIL] Spring Boot 기반의 MSA에서 오류 처리 방식
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-03-19T00:00:00+00:00">19 Mar 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Spring</span>, <span>Project</span>
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 08 Apr 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-04-08T13:58:08+00:00">2025-04-08</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      2025-03-19 TIL
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/29">#29</a><br />
+📅 <strong>작성일</strong>: 2025-03-19<br />
+🔄 <strong>최종 수정</strong>: 2025년 04월 08일</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<ul>
+  <li>Spring Boot 기반의 MSA(마이크로서비스 아키텍처)에서 오류 처리 방식</li>
+</ul>
+
+<h3 id="-오류error는-왜-발생할까">💥 오류(Error)는 왜 발생할까?</h3>
+
+<ol>
+  <li><strong>데이터베이스(DB) 장애</strong> → “내가 터질게!” (예: AWS RDS 다운)</li>
+  <li><strong>외부 API 장애</strong> → “FCM(푸시 서버) 안 돼요!” (예: 결제 서버 점검 중)</li>
+  <li><strong>서버 자체 장애</strong> → “레디스(캐시 DB)가 서버비 미납으로 종료”</li>
+  <li><strong>네트워크 문제</strong> → “WAS(웹 애플리케이션 서버) 연결 끊김”</li>
+  <li><strong>트래픽 과부하</strong> → “주식 거래 사이트 폭주!”</li>
+</ol>
+
+<hr />
+
+<h3 id="️-오류를-처리하는-방법-aop--msa-관점">⚙️ 오류를 처리하는 방법 (AOP &amp; MSA 관점)</h3>
+
+<h4 id="1-plan-b-대체-시스템을-사용">1. <strong>“Plan B” 대체 시스템을 사용</strong></h4>
+
+<p>서비스에서 DB나 API 장애가 발생하면, 다음과 같은 방법으로 처리합니다.</p>
+
+<ul>
+  <li><strong>대체 DB/API 호출</strong>: 메인 DB가 죽으면 백업 DB 사용</li>
+  <li><strong>캐시(Cache) 활용</strong>: Redis, Memcached 등으로 데이터를 빠르게 제공</li>
+  <li><strong>Failover 시스템</strong>: 다른 서버로 트래픽을 분산</li>
+</ul>
+
+<h4 id="예제-데이터베이스-장애-발생-시-대체-db-호출">예제: 데이터베이스 장애 발생 시 대체 DB 호출</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">mainDatabase</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="s">"SELECT * FROM users"</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">DatabaseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">backupDatabase</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="s">"SELECT * FROM users"</span><span class="o">);</span> <span class="c1">// 대체 DB 사용</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="2-오류-감지--처리-aop-exception-handling">2. <strong>오류 감지 &amp; 처리 (AOP, Exception Handling)</strong></h4>
+
+<blockquote>
+  <p>AOP(Aspect-Oriented Programming)로 공통 로직 처리
+<strong>AOP를 사용하면, 각 서비스에서 일일이 예외처리를 할 필요 없이 한 곳에서 관리</strong>할 수 있습니다.</p>
+</blockquote>
+
+<p>📌 <strong>예제: 오류를 자동 감지하고 로깅</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Aspect</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LoggingAspect</span> <span class="o">{</span>
+    <span class="nd">@Around</span><span class="o">(</span><span class="s">"execution(* com.example.service.*.*(..))"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">logErrors</span><span class="o">(</span><span class="nc">ProceedingJoinPoint</span> <span class="n">joinPoint</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Throwable</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">joinPoint</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"에러 발생: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="k">throw</span> <span class="n">e</span><span class="o">;</span> <span class="c1">// 오류를 컨트롤러까지 던짐</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="3-컨트롤러에서-최종-응답-처리">3. <strong>컨트롤러에서 최종 응답 처리</strong></h4>
+
+<p>서비스에서 처리할 수 없는 심각한 오류가 발생하면 컨트롤러에서 최종 결정합니다.</p>
+
+<p>📌 <strong>예제: HTTP 상태 코드 반환</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/user"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">getUser</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">userService</span><span class="o">.</span><span class="na">getUserData</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">DatabaseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">SERVICE_UNAVAILABLE</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="s">"DB 장애 발생!"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">INTERNAL_SERVER_ERROR</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="s">"서버 오류!"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>🛠 <strong>결과:</strong></p>
+
+<ul>
+  <li>정상: <strong>200 OK</strong></li>
+  <li>DB 장애: <strong>503 Service Unavailable</strong></li>
+  <li>서버 장애: <strong>500 Internal Server Error</strong></li>
+</ul>
+
+<hr />
+
+<h4 id="4-트래픽-증가-대응-스케일링">4. <strong>트래픽 증가 대응 (스케일링)</strong></h4>
+
+<p>사용자가 많아지면 서버가 버티지 못할 수도 있습니다.<br />
+이럴 때 <strong>오토 스케일링(Auto Scaling)</strong>을 사용합니다.</p>
+
+<ol>
+  <li><strong>Kubernetes(K8s) 활용</strong>: 컨테이너 단위로 서버 자동 확장</li>
+  <li><strong>HPA(Horizontal Pod Autoscaler)</strong>: CPU 사용량이 일정 수준 이상이면 자동으로 서버 개수를 늘림</li>
+  <li><strong>로드 밸런서 (LB, Load Balancer)</strong>: 트래픽을 여러 서버에 분산</li>
+</ol>
+
+<p>📌 <strong>예제: K8s에서 HPA 설정</strong></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">autoscaling/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">HorizontalPodAutoscaler</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">my-app-hpa</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">maxReplicas</span><span class="pi">:</span> <span class="m">5</span> <span class="c1"># 최대 5개 서버까지 확장</span>
+  <span class="na">minReplicas</span><span class="pi">:</span> <span class="m">2</span> <span class="c1"># 최소 2개 유지</span>
+  <span class="na">targetCPUUtilizationPercentage</span><span class="pi">:</span> <span class="m">80</span> <span class="c1"># CPU 사용량 80% 이상이면 서버 추가</span>
+</code></pre></div></div>
+
+<p>🛠 <strong>결과:</strong></p>
+
+<ul>
+  <li>사용자가 많아지면 → 서버 자동 증가</li>
+  <li>사용자가 줄어들면 → 서버 자동 축소</li>
+</ul>
+
+<hr />
+
+<h4 id="--전체적인-오류-처리-흐름">🔎 🔥 전체적인 오류 처리 흐름</h4>
+
+<p>📌 <strong>오류 발생 시 시스템이 어떻게 대처하는지 정리</strong><br />
+(각 단계에서 어떻게 대응하는지 확인)</p>
+
+<ol>
+  <li>서비스 실행</li>
+</ol>
+
+<ul>
+  <li>사용자가 웹사이트에 접속</li>
+  <li>요청을 컨트롤러가 서비스로 전달</li>
+</ul>
+
+<ol>
+  <li>예기치 못한 장애 발생</li>
+</ol>
+
+<ul>
+  <li><strong>데이터베이스 장애 발생!</strong></li>
+  <li><strong>결제 시스템 응답 없음!</strong></li>
+</ul>
+
+<ol>
+  <li>서비스 대응</li>
+</ol>
+
+<ul>
+  <li>대체 API/DB 호출</li>
+  <li>대체할 게 없다면 → 오류 던짐</li>
+</ul>
+
+<ol>
+  <li>컨트롤러에서 최종 오류 처리</li>
+</ol>
+
+<ul>
+  <li>500 에러 반환</li>
+  <li>사용자가 알아볼 수 있도록 “잠시 후 다시 시도하세요” 메시지 출력</li>
+</ul>
+
+<ol>
+  <li>스케일링 및 복구</li>
+</ol>
+
+<ul>
+  <li>K8s가 서버를 확장하여 복구 진행</li>
+  <li>시스템이 정상적으로 돌아옴</li>
+</ul>
+
+<hr />
+
+<h4 id="-한눈에-보는-아키텍처-개념도-시각화">📌 한눈에 보는 아키텍처 개념도 (시각화)</h4>
+
+<blockquote>
+  <p>📊 <strong>Spring Boot 3 &amp; MSA 아키텍처에서 오류 처리 및 대응 과정</strong></p>
+</blockquote>
+
+<p><strong>[ 시스템 오류 대응 흐름 ]</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[User]
+    ↓ 요청
+[Controller]
+    ↓
+[Service] ----&gt; [Database] ❌ 장애 발생!
+    ↓               ↓
+[대체 API/DB 호출] 🟢 정상 응답 or ❌ 대체 실패
+    ↓
+[Controller]  ⚠️ 오류 처리
+    ↓
+[View] "오류가 발생했습니다. 다시 시도하세요."
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="-결론-오류를-어떻게-효과적으로-처리할까">🏁 결론: 오류를 어떻게 효과적으로 처리할까?</h4>
+
+<ol>
+  <li>
+    <p>AOP를 활용해 예외처리를 한 곳에서 관리</p>
+
+    <ul>
+      <li>모든 서비스에 일일이 if-else 조건을 넣지 않고, <strong>공통으로 처리 가능</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>대체 시스템(Plan B) 준비</p>
+
+    <ul>
+      <li>DB 장애 시 <strong>백업 DB</strong> 사용</li>
+      <li>API 장애 시 <strong>캐시/대체 API</strong> 활용</li>
+    </ul>
+  </li>
+  <li>
+    <p>컨트롤러에서 최종 응답 제어</p>
+
+    <ul>
+      <li>사용자에게 적절한 오류 메시지를 제공</li>
+    </ul>
+  </li>
+  <li>
+    <p>트래픽 증가 시 자동 확장</p>
+
+    <ul>
+      <li>Kubernetes, HPA, 로드 밸런서를 활용하여 서버 자동 확장</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2025-05-27-til/" class="flip-title"><span>[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS</span></a>  <time class="faded fine" datetime="2025-05-27T00:00:00+00:00">27 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-24-til/" class="flip-title"><span>[TIL] Nginx, 리버스 프록시, 로드 밸런서</span></a>  <time class="faded fine" datetime="2025-05-24T00:00:00+00:00">24 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-23-til/" class="flip-title"><span>[TIL] Grafana &amp; Prometheus, Rolling Policy, 시계열 메트릭</span></a>  <time class="faded fine" datetime="2025-05-23T00:00:00+00:00">23 May 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (6)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (2)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnan0silver.github.io&count_bg=%23E786D8&title_bg=%237624DD&icon=waze.svg&icon_color=%23E7E7E7&title=%EC%A1%B0%ED%9A%8C%EC%88%98&edge_flat=false" alt="조회수 배치" width="120" height="20" loading="lazy"/></a>
+  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>
