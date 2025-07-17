@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[AWS] AWS 기초 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[AWS] AWS 기초" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="AWS의 기본 내용에 대해 알아본다." />
+<meta property="og:description" content="AWS의 기본 내용에 대해 알아본다." />
+<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2024-09-02-aws/" />
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2024-09-02-aws/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-09-02T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[AWS] AWS 기초" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-22T12:42:41+09:00","datePublished":"2024-09-02T00:00:00+09:00","description":"AWS의 기본 내용에 대해 알아본다.","headline":"[AWS] AWS 기초","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2024-09-02-aws/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2024-09-02-aws/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+ 
+<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/2024-09-02-aws/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+
+
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-07-17T13:03:52+09:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[AWS] AWS 기초",
+    "description": "AWS의 기본 내용에 대해 알아본다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2024-09-02T00:00:00+09:00",
+    "dateModified": "2025-04-22T12:42:41+09:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/miscellaneous/2024-09-02-aws/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2024-09-02-aws/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "miscellaneous",
+        "item": "https://nan0silver.github.io/miscellaneous/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[AWS] AWS 기초",
+        "item": "https://nan0silver.github.io/miscellaneous/2024-09-02-aws/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/miscellaneous/">miscellaneous</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2024-09-02-aws</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-miscellaneous-aws" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [AWS] AWS 기초
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2024-09-02T00:00:00+09:00">02 Sep 2024</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 22 Apr 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-04-22T12:42:41+09:00">2025-04-22</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      AWS의 기본 내용에 대해 알아본다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <p>목차</p>
+<ol>
+  <li><a href="#aws란">AWS란?</a></li>
+  <li><a href="#s3--cloudfront">S3 &amp; Cloudfront</a></li>
+  <li><a href="#aws-솔루션-실무-적용-사례">AWS 솔루션 실무 적용 사례</a></li>
+  <li><a href="#aws-클라우드-인프라의-구성-요소">AWS 클라우드 인프라의 구성 요소</a></li>
+  <li><a href="#aws-네트워크-구성-요소-설명-캠퍼스-예시로-이해하기">AWS 네트워크 구성 요소 설명: 캠퍼스 예시로 이해하기</a></li>
+  <li><a href="#aws-초기-설정-및-구성-시-주의점">AWS 초기 설정 및 구성 시 주의점</a></li>
+</ol>
+
+<hr />
+
+<h2 id="aws에-대한-기초-내용">AWS에 대한 기초 내용</h2>
+
+<h3 id="aws란">AWS란?</h3>
+<ul>
+  <li>Amazon Web Service</li>
+  <li>클라우드 컴퓨팅 플랫폼
+    <ul>
+      <li>인터넷을 통해 IT리소스(서버, 스토리지, 데이터베이스, 네트워킹 등)를 제공하고 관리하는 서비스</li>
+      <li>특징
+        <ol>
+          <li>확장성 (Scalability)
+            <ul>
+              <li>사용자가 필요에 따라 리소스를 쉽게 확장, 축소 가능</li>
+              <li>블랙 프라이데이에는 몇 배의 트래픽이 몰림. 이때마다 하드웨어를 사용하는건 비효율적, 이때만 자원을 사용하고 끝나면 반납할 수 있음</li>
+            </ul>
+          </li>
+          <li>유연성 (Flexibility)
+            <ul>
+              <li>다양한 IT 환경에 맞춰 손쉽게 맞춤화 가능</li>
+              <li>자바스크립트로 백엔드 많이 사용</li>
+            </ul>
+          </li>
+          <li>비용 효율성 (Cost Efficiency)
+            <ul>
+              <li>초기 자본 투자 없이, 사용한 만큼 지불하는 비용 구조</li>
+            </ul>
+          </li>
+          <li>가용성
+            <ul>
+              <li>높은 가용성과 자동 백업, 복구 기능으로 서비스 중간 최소화</li>
+              <li>람다 서비스를 처음 띄울 때 서울 4개의 구역에 띄워놓을 수 있음. 한 개의 구역에 오류가 나도 다른 구역에서는 잘 쓸 수 있음.</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>AWS 계정 만들어보기</li>
+  <li>AWS Cloud Practitioner Essentials (Korean)
+    <ul>
+      <li>Cloud Practitioner 자격증 있음
+        <ul>
+          <li>공부하는 것 추천함 (따는건 비쌈)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>큰 회사에서는 AWS 자격증이 크게 상관없겠지만, 작은 회사에서는 AWS역량이 필수적</li>
+</ul>
+
+<h3 id="s3--cloudfront">S3 &amp; Cloudfront</h3>
+<ul>
+  <li>S3
+    <ul>
+      <li>Simple Storage Service</li>
+      <li>AWS 최초의 서비스</li>
+      <li>클라우드 파일 저장소</li>
+      <li>AWS 사용하고 있는 회사라면 99%의 확률로 활용하고 있음</li>
+      <li>S3는 서버사이트 스크립팅(PHP, Python등)이 필요없는 정적 웹사이트에 최적</li>
+      <li>기본 개념
+        <ul>
+          <li>버킷 (Bucket)
+            <ul>
+              <li>S3에서 데이터를 저장하는 컨테이너</li>
+              <li>모든 S3객체는 반드시 하나의 버킷에 속해 있음</li>
+              <li>S3 스토리지의 최상위 계층이며, 사용자가 데이터를 저장하고 관리할 수 있는 폴더와 비슷
+                <ul>
+                  <li>컴퓨터에서 C드라이브와 비슷한 느낌</li>
+                </ul>
+              </li>
+              <li>각 버킷은 고유한 이름을 가짐(전세걔 유일)</li>
+              <li>데이터 저장 위치(region), 권한 설정, 버전 관리, 수명 주기 정책 등 관리 가능</li>
+            </ul>
+          </li>
+          <li>Key
+            <ul>
+              <li>S3버킷 내 객체(파일)를 고유하게 식별하는 문자열</li>
+              <li>버킷 내 키는 객체의 “경로”로 생각 가능</li>
+              <li>디렉토리 구조를 흉내낼 수 있도록 설계됨
+                <ul>
+                  <li>그냥 전체가 하나의 키임</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>사용 방법
+        <ul>
+          <li>AWS Console</li>
+          <li>AWS Cli</li>
+          <li>FTP 프로그램
+            <ul>
+              <li>file transfer protocol</li>
+              <li>사이버덕, 파일질라</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Cloudfront
+    <ul>
+      <li>AWS CDN 서비스
+        <ul>
+          <li>Contents Delivery Network</li>
+          <li>인터넷 사용자에게 웹 콘텐츠를 빠르고 효율적으로 제공하기 위해 설계된 분산형 서버 네트워크</li>
+        </ul>
+      </li>
+      <li>S3를 비롯한 AWS의 다른 서비스와 연동이 쉬움</li>
+      <li>AWS를 사용하는 회사라면 99% 사용</li>
+      <li>S3는 저장에 특화, Cloudfront는 전송에 특화
+        <ul>
+          <li>S3는 직접 접근으로 주로 내부 사용자나 제한된 사용자들에게 제공을 많이함</li>
+          <li>하지만 Cloudfront는 CDN을 통해 접근하기때문에 속도도 빠르고 캐싱도 됨</li>
+        </ul>
+      </li>
+      <li>S3 1GB당 약 0.117$, Cloudfront 1GB당 0.095$</li>
+      <li>CloudFront는 약정 계약이 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="aws-솔루션-실무-적용-사례">AWS 솔루션 실무 적용 사례</h3>
+
+<ol>
+  <li>이미지 리사이즈
+    <ul>
+      <li>대역폭 및 비용 감소할 수 있음</li>
+      <li>첫 번째 AWS 활용 포트폴리오
+        <ol>
+          <li>S3에 이미지가 업로드 되면 자동적으로 원하는 크기로 리사이징하여 저장하는 방법</li>
+          <li>원하는 사이즈의 이미지를 실시간으로 생성하는 방법
+            <ul>
+              <li>본인이 자신있는 프로그래밍 언어를 선택하여 AWS Lambda 기능을 활용해서 작성</li>
+              <li>‘aws cloudfront 이미지 리사이징’ 구글 검색</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>보안
+    <ul>
+      <li>민감정보 보호 방법
+        <ul>
+          <li>Signed URL
+            <ul>
+              <li>특정 사용자에게만 접근 권한을 부여하기 위해 URL에 만료 시간과 암호화된 서명을 포함한 URL</li>
+            </ul>
+          </li>
+          <li>Signed Cookie
+            <ul>
+              <li>특정 조건을 만족하는 사용자만 CloudFront를 통해 콘텐츠에 접근할 수 있도록 설정하는 보안 메커니즘</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="aws-클라우드-인프라의-구성-요소">AWS 클라우드 인프라의 구성 요소</h3>
+<ol>
+  <li>EC2 (Elastic Compute Cloud)
+    <ul>
+      <li>개발자가 클라우드 컴퓨팅 작업을 할 수 있도록 설계된 서비스</li>
+      <li>가상화된 서버를 하나의 인스턴스 형태로 제공하며, 컴퓨팅 요구사항에 맞게 용량 조절 가능</li>
+    </ul>
+  </li>
+  <li>IDC
+    <ul>
+      <li>Internet Data Center</li>
+      <li>물리적 인프라를 제공하는 시설</li>
+    </ul>
+  </li>
+  <li>리전 (Region)
+    <ul>
+      <li>물리적으로 분리된 지리적 위치</li>
+      <li>각 리전은 여러 개의 데이터 센터(Availability Zone, AZ)로 구성되어 있음</li>
+      <li>리전 간 데이터 전송은 네트워크 지연 시간(latency)이 발생할 수 있음</li>
+      <li>각 리전은 법적, 규제 요구 사항을 충족하도록 설계됨</li>
+    </ul>
+  </li>
+  <li>Availability Zone
+    <ul>
+      <li>리전 내에서 독립적으로 운영되는 데이터 센터</li>
+      <li>각 AZ는 하나 이상의 데이터 센터로 구성되어 있음</li>
+      <li>VPC (가상 사설 네트워크)
+        <ul>
+          <li>Virtual Private Cloud</li>
+          <li>네트워크
+            <ul>
+              <li>2개 이상의 컴퓨터나 장치가 서로 데이터를 주고 받을 수 있도록 연결된 시스템</li>
+            </ul>
+          </li>
+          <li>사설
+            <ul>
+              <li>공개되지 않은, 외부와 분리되느 특정 사용자나 조직만 접근할 수 있는</li>
+            </ul>
+          </li>
+          <li>가상
+            <ul>
+              <li>물리적인 하드웨어 장비나 네트워크 인프라 없이, 소프트웨어를 통해 논리적으로 격리</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="aws-네트워크-구성-요소-설명-캠퍼스-예시로-이해하기">AWS 네트워크 구성 요소 설명: 캠퍼스 예시로 이해하기</h3>
+<ul>
+  <li>퍼블릭 서브넷
+    <ul>
+      <li>Public Subnet
+        <ul>
+          <li>public : 인터넷과 직접 연결되어있다.</li>
+          <li>subnet : sub + network, 하나의 네트워크를 더 작은 단위의 네트워크로 (부분 집합)</li>
+        </ul>
+      </li>
+      <li>중앙 운동장, 도서관, 기념품샵 등등</li>
+    </ul>
+  </li>
+  <li>프라이빗 서브넷
+    <ul>
+      <li>Private Subnet
+        <ul>
+          <li>인터넷과 직접 연결되어있지 않다.</li>
+        </ul>
+      </li>
+      <li>교수 연구실, 실험실 (아무나 못들어가는)</li>
+    </ul>
+  </li>
+  <li>라우팅 / 라우팅 테이블
+    <ul>
+      <li>Routing Table
+        <ul>
+          <li>라우팅 : 경로, 네트워크 내에서 데이터가 이동할 경로를 결정</li>
+        </ul>
+      </li>
+      <li>캠퍼스 내 길 / 길 안내 지도</li>
+    </ul>
+  </li>
+  <li>인터넷 게이트웨이
+    <ul>
+      <li>학교 정문</li>
+    </ul>
+  </li>
+  <li>NAT 게이트웨이
+    <ul>
+      <li>Network Address Translation
+        <ul>
+          <li>Network Address : IP주소 (Internet Protocol)
+            <ul>
+              <li>네트워크 상에서 각 장치를 식별하기 위해 사용되는 고유한 숫자 주소</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>내부 네트워크의 사설 IP 주소를 공용 IP주소로 변환</li>
+      <li>경비실, 차량 차단기, 보안 검사대</li>
+    </ul>
+  </li>
+  <li>네트워크 ACL (Access Control List)
+    <ul>
+      <li>전체 구역 통제 시스템</li>
+      <li>서브넷 단위</li>
+      <li>Stateless, 상태 비기반, 독립적인 제어
+        <ul>
+          <li>들어올 때도 검사하고 나갈때도 검사함</li>
+        </ul>
+      </li>
+      <li>우선순위가 있음</li>
+      <li>차단기의 정책, 비행기 탈 때와 비슷</li>
+    </ul>
+  </li>
+  <li>보안 그룹 (Security Group)
+    <ul>
+      <li>개별 사무실 출입 통제 시스템</li>
+      <li>기본적으로 모든 트래픽은 차단하며 허용 규칙만 있음</li>
+      <li>stateful, 상태 기반 (신분증 제출하고 출입증 받아가는 느낌)</li>
+    </ul>
+  </li>
+  <li>라우팅 테이블에 인터넷 게이트웨이랑 <strong>퍼블릭 서브넷</strong>이 연결
+    <ul>
+      <li>반대로 생각하면 퍼블릭 서브넷과 프라이빗 서브넷을 구분짓는 중요한 요소가 됨</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="aws-초기-설정-및-구성-시-주의점">AWS 초기 설정 및 구성 시 주의점</h3>
+<ul>
+  <li>AWS에서 처음으로 제공해주는 VPC는 가급적으로 사용하지 말자</li>
+  <li>람다를 private 서브에 올리고 nat를 사용하는 것을 추천
+    <ul>
+      <li>람다는 실행할 때마다 ip가 바뀜, 문제가 될 수 있음</li>
+    </ul>
+  </li>
+</ul>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2025-05-27-til/" class="flip-title"><span>[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS</span></a>  <time class="faded fine" datetime="2025-05-27T09:00:00+09:00">27 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-24-til/" class="flip-title"><span>[TIL] Nginx, 리버스 프록시, 로드 밸런서</span></a>  <time class="faded fine" datetime="2025-05-24T09:00:00+09:00">24 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-23-til/" class="flip-title"><span>[TIL] Grafana &amp; Prometheus, Rolling Policy, 시계열 메트릭</span></a>  <time class="faded fine" datetime="2025-05-23T09:00:00+09:00">23 May 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (6)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (61)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnan0silver.github.io&count_bg=%23E786D8&title_bg=%237624DD&icon=waze.svg&icon_color=%23E7E7E7&title=%EC%A1%B0%ED%9A%8C%EC%88%98&edge_flat=false" alt="조회수 배치" width="120" height="20" loading="lazy"/></a>
+  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

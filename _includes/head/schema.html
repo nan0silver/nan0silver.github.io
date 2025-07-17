@@ -1,0 +1,74 @@
+{% comment %} Schema.org structured data for better SEO {% endcomment %} {% if
+page.layout == 'post' %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ page.title | escape }}",
+    "description": "{{ page.description | default: page.excerpt | strip_html | truncate: 160 | escape }}",
+    "author": {
+      "@type": "Person",
+      "name": "{{ site.author.name }}",
+      "url": "{{ site.url }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}{{ site.logo }}"
+      }
+    },
+    "datePublished": "{{ page.date | date_to_xmlschema }}",
+    "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ site.url }}{{ page.url }}"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}{{ page.image.path | default: site.logo }}"
+    },
+    "keywords": "{{ page.keywords | default: site.keywords | join: ',' }}"
+  }
+</script>
+{% endif %} {% if page.layout == 'about' %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ site.author.name }}",
+    "url": "{{ site.url }}",
+    "description": "{{ site.description | strip_html | truncate: 160 | escape }}",
+    "image": "{{ site.url }}{{ site.logo }}",
+    "sameAs": ["https://github.com/{{ site.author.github }}"],
+    "jobTitle": "Backend Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Student"
+    }
+  }
+</script>
+{% endif %} {% if page.layout == 'blog' or page.layout == 'index' %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "{{ site.title }}",
+    "description": "{{ site.description | strip_html | truncate: 160 | escape }}",
+    "url": "{{ site.url }}",
+    "author": {
+      "@type": "Person",
+      "name": "{{ site.author.name }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}{{ site.logo }}"
+      }
+    }
+  }
+</script>
+{% endif %}

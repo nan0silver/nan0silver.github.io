@@ -36,7 +36,19 @@ description: >
 tagline: Welcome to Nahyun Devlog!
 
 # A list of keywords for your blog
-keywords: []
+keywords:
+  [
+    개발,
+    프로그래밍,
+    Java,
+    Spring,
+    알고리즘,
+    백엔드,
+    웹개발,
+    기술블로그,
+    코딩,
+    학습,
+  ]
 
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
@@ -156,6 +168,22 @@ defaults:
       layout: plain
       sitemap: false
 
+  # Set default sitemap settings for posts
+  - scope:
+      type: posts
+    values:
+      sitemap: true
+      changefreq: weekly
+      priority: 0.7
+
+  # Set sitemap settings for pages
+  - scope:
+      type: pages
+    values:
+      sitemap: true
+      changefreq: monthly
+      priority: 0.5
+
   # # You can use the following to enable comments on all posts.
   - scope:
       type: posts
@@ -195,7 +223,8 @@ kramdown:
 
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
-# google_analytics:      UA-XXXXXXXX-X
+# Google Analytics 4 (GA4) 설정
+# google_analytics:      G-XXXXXXXXXX
 
 # Setting a disqus shortname will enable the comment section on
 # pages with `comments: true` in the front matter.
@@ -390,21 +419,20 @@ google_site_verification: nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ
 #   yandex:              <verification-id>
 
 # Used for twitter cards
-# twitter:
-#   username:            <username>
+twitter:
+  username: nan0silver
 
 # Used for facebook open graph
-# facebook:
-#   app_id:              <id>
-#   publisher:           <id>
-#   admins:              <id>
+facebook:
+  app_id:
+  publisher:
+  admins:
 
 # Used on index and about sites
-# social:
-#   name:                Nahyun Eun
-#   links:
-#     - https://twitter.com/<username>
-#     - https://github.com/nan0silver
+social:
+  name: Nahyun Eun
+  links:
+    - https://github.com/nan0silver
 
 # Plugin Configs
 # ---------------------------------------------------------------------------------------

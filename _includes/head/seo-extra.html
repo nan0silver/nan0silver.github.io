@@ -1,0 +1,61 @@
+{% comment %} Additional SEO meta tags for better search engine optimization {%
+endcomment %}
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
+<!-- Language alternates for multilingual content -->
+{% if page.lang %}
+<link
+  rel="alternate"
+  hreflang="{{ page.lang }}"
+  href="{{ site.url }}{{ page.url }}"
+/>
+{% endif %}
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="{{ site.title }} RSS Feed"
+  href="{{ site.url }}/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+{% if page.layout == 'post' %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "{{ site.url }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ page.categories.first | default: 'Blog' }}",
+        "item": "{{ site.url }}/{{ page.categories.first | default: 'blog' }}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ page.title }}",
+        "item": "{{ site.url }}{{ page.url }}"
+      }
+    ]
+  }
+</script>
+{% endif %}
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />

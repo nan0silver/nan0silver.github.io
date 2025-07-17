@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[TIL] 메테리얼 디자인 vs 쿠퍼티노 디자인, Log vs Metrics, Structure… | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[TIL] 메테리얼 디자인 vs 쿠퍼티노 디자인, Log vs Metrics, Structure…" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="2025-05-22 TIL" />
+<meta property="og:description" content="2025-05-22 TIL" />
+<link rel="canonical" href="https://nan0silver.github.io/til/2025-05-22-til/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2025-05-22-til/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-05-22T09:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[TIL] 메테리얼 디자인 vs 쿠퍼티노 디자인, Log vs Metrics, Structure…" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-05-27T12:54:57+09:00","datePublished":"2025-05-22T09:00:00+09:00","description":"2025-05-22 TIL","headline":"[TIL] 메테리얼 디자인 vs 쿠퍼티노 디자인, Log vs Metrics, Structure…","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-05-22-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-05-22-til/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+ 
+<link rel="alternate" href="https://nan0silver.github.io/til/2025-05-22-til/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+
+
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-07-17T13:03:52+09:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[TIL] 메테리얼 디자인 vs 쿠퍼티노 디자인, Log vs Metrics, Structure…",
+    "description": "2025-05-22 TIL
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2025-05-22T09:00:00+09:00",
+    "dateModified": "2025-05-27T12:54:57+09:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/til/2025-05-22-til/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/til/2025-05-22-til/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "til",
+        "item": "https://nan0silver.github.io/til/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[TIL] 메테리얼 디자인 vs 쿠퍼티노 디자인, Log vs Metrics, Structure…",
+        "item": "https://nan0silver.github.io/til/2025-05-22-til/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/til/">til</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-05-22-til</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-til-til" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [TIL] 메테리얼 디자인 vs 쿠퍼티노 디자인, Log vs Metrics, Structure…
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-05-22T09:00:00+09:00">22 May 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 27 May 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-05-27T12:54:57+09:00">2025-05-27</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      2025-05-22 TIL
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/59">#59</a><br />
+📅 <strong>작성일</strong>: 2025-05-22<br />
+🔄 <strong>최종 수정</strong>: 2025년 05월 27일</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<h3 id="1️⃣-메테리얼-디자인material-design-vs-쿠퍼티노-디자인cupertino-design">1️⃣ <strong>메테리얼 디자인(Material Design) vs 쿠퍼티노 디자인(Cupertino Design)</strong></h3>
+
+<h4 id="-메테리얼-디자인-material-design">🎨 메테리얼 디자인 (Material Design)</h4>
+
+<ul>
+  <li>Google에서 만든 디자인 시스템</li>
+  <li>Android 앱에서 기본적으로 사용되는 UI 가이드라인</li>
+  <li>
+    <p>특징:</p>
+
+    <ul>
+      <li>실제 종이처럼 동작하는 “표면” 개념 → <strong>레이어, 그림자, 깊이감</strong></li>
+      <li><strong>굵은 색상, 명확한 애니메이션, 카드 UI</strong></li>
+      <li>일관된 컴포넌트 구조 (Button, Dialog 등)</li>
+      <li>다양한 화면 크기 및 접근성 고려가 잘 되어 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="-쿠퍼티노-디자인-cupertino-design">🍏 쿠퍼티노 디자인 (Cupertino Design)</h4>
+
+<ul>
+  <li>Apple이 만든 iOS용 디자인 철학</li>
+  <li>Flutter에서는 <code class="language-plaintext highlighter-rouge">CupertinoWidget</code>으로 구현</li>
+  <li>
+    <p>특징:</p>
+
+    <ul>
+      <li><strong>심플하고 정갈한 UI</strong>, 얇은 폰트, 미니멀한 구성</li>
+      <li>iOS의 네이티브한 느낌을 충실히 재현</li>
+      <li>스크롤, 네비게이션, 토글 스위치 등에서 iOS 특유의 인터랙션 존재</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="비교-요약">비교 요약:</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Material Design</th>
+      <th>Cupertino Design</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>주요 플랫폼</td>
+      <td>Android, Web, Desktop</td>
+      <td>iOS</td>
+    </tr>
+    <tr>
+      <td>디자인 철학</td>
+      <td>종이+레이어+애니메이션</td>
+      <td>단순함+미려함+일관성</td>
+    </tr>
+    <tr>
+      <td>주요 사용 예</td>
+      <td>Google 앱, Android 앱</td>
+      <td>Apple 앱, iOS 앱</td>
+    </tr>
+    <tr>
+      <td>Flutter 적용</td>
+      <td><code class="language-plaintext highlighter-rouge">MaterialApp</code></td>
+      <td><code class="language-plaintext highlighter-rouge">CupertinoApp</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>요약: Android 앱은 Material 위주, iOS는 Cupertino 스타일을 따르며, <strong>Flutter는 둘 다 지원</strong>해 플랫폼에 맞는 UI를 쉽게 만들 수 있다!</p>
+</blockquote>
+
+<hr />
+
+<h3 id="2️⃣-log-vs-metrics">2️⃣ <strong>Log vs Metrics</strong></h3>
+
+<p>백엔드/운영 환경에서 시스템 상태를 추적할 때 자주 쓰이는 두 가지 개념을 비교해 보았다.</p>
+
+<h4 id="-로그-log">📄 로그 (Log)</h4>
+
+<ul>
+  <li>
+    <p><strong>시간 순으로 발생한 이벤트 기록</strong></p>
+  </li>
+  <li>
+    <p>보통 텍스트 기반이며, 문제가 발생했을 때 <strong>무슨 일이 있었는지</strong> 파악하는 데 유용</p>
+  </li>
+  <li>
+    <p>예:</p>
+
+    <ul>
+      <li>사용자가 로그인에 실패했습니다.</li>
+      <li>서버에서 500 에러가 발생했습니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>특징:</p>
+
+    <ul>
+      <li>구조화가 느슨함 (JSON 또는 단순 텍스트)</li>
+      <li>디버깅, 감사 추적에 용이</li>
+      <li><strong>사후 분석</strong>에 효과적</li>
+      <li>저장 공간 많이 차지할 수 있음</li>
+    </ul>
+  </li>
+  <li>
+    <p>예시:</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-05-13T12:45:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERROR"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Login failed for user ID 123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="-메트릭-metrics">📊 메트릭 (Metrics)</h4>
+
+<ul>
+  <li>
+    <p><strong>수치로 측정 가능한 시스템의 상태</strong></p>
+  </li>
+  <li>
+    <p>시간에 따라 변화하는 수치 → CPU 사용량, 요청 수, 응답 시간 등</p>
+  </li>
+  <li>
+    <p>예:</p>
+
+    <ul>
+      <li>서버 응답 시간 평균 120ms</li>
+      <li>현재 접속 사용자 수 300명</li>
+    </ul>
+  </li>
+  <li>
+    <p>특징:</p>
+
+    <ul>
+      <li>구조화된 데이터</li>
+      <li>시각화 및 대시보드 구성에 유리</li>
+      <li>알림(경고) 설정에 적합</li>
+      <li>보통 <strong>Prometheus</strong>, <strong>Grafana</strong>와 같이 사용됨</li>
+    </ul>
+  </li>
+  <li>
+    <p>예시:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http_requests_total{method="GET", status="200"} 3456
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="비교-요약-1">비교 요약:</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>로그(Log)</th>
+      <th>메트릭(Metrics)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>목적</td>
+      <td>이벤트 디버깅, 추적</td>
+      <td>상태 모니터링, 성능 추적</td>
+    </tr>
+    <tr>
+      <td>형식</td>
+      <td>텍스트 기반, 구조 유동적</td>
+      <td>수치 기반, 구조화됨</td>
+    </tr>
+    <tr>
+      <td>저장</td>
+      <td>로그 파일, ELK Stack</td>
+      <td>시계열 DB (Prometheus 등)</td>
+    </tr>
+    <tr>
+      <td>시각화</td>
+      <td>Kibana, Logtail 등</td>
+      <td>Grafana 등</td>
+    </tr>
+    <tr>
+      <td>실시간성</td>
+      <td>낮음 (분석 중심)</td>
+      <td>높음 (모니터링, 알림에 적합)</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>로그는 “<strong>무슨 일이 일어났는가</strong>”를 알려주고,
+메트릭은 “<strong>현재 시스템이 어떤 상태인가</strong>”를 알려준다.
+둘은 보완 관계로 함께 사용하는 것이 가장 효과적이다!</p>
+</blockquote>
+
+<h2 id="3️⃣-structured-logging-구조화된-로그">3️⃣ <strong>Structured Logging (구조화된 로그)</strong></h2>
+
+<h3 id="-개념">✅ 개념</h3>
+
+<ul>
+  <li>일반 로그는 텍스트 형식으로 사람이 읽기 쉽게 쓰는 반면,
+<strong>Structured Logging</strong>은 로그를 <strong>JSON 같은 구조화된 형태로 기록</strong>하는 방식입니다.</li>
+</ul>
+
+<h3 id="-예시-비교">🔍 예시 비교</h3>
+
+<p><strong>❌ 일반 로그 (Unstructured)</strong>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User 1234 failed to login due to wrong password
+</code></pre></div></div>
+
+<p><strong>✅ 구조화 로그 (Structured)</strong>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-05-13T10:42:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WARN"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"login_failed"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wrong_password"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="-장점">✨ 장점</h3>
+
+<ul>
+  <li>기계가 파싱하기 쉽고, <strong>검색/필터링/집계</strong>에 유리</li>
+  <li>로그 수집 도구(예: Elasticsearch, Datadog)와 연동할 때 편함</li>
+  <li>실시간 모니터링이나 <strong>경고 시스템</strong>과 연계 가능</li>
+</ul>
+
+<blockquote>
+  <p>구조화 로그는 결국 “<strong>로그도 데이터다</strong>”라는 관점에서 관리하는 것!</p>
+</blockquote>
+
+<hr />
+
+<h2 id="4️⃣-elk-vs-efk-스택">4️⃣ <strong>ELK vs EFK 스택</strong></h2>
+
+<h3 id="-공통-목적">✅ 공통 목적</h3>
+
+<ul>
+  <li><strong>분산 로그 수집, 저장, 분석, 시각화</strong>를 위한 스택입니다.</li>
+  <li>대규모 시스템에서 수많은 서버 로그를 한 곳으로 모아서 검색·분석하기 위해 사용합니다.</li>
+</ul>
+
+<hr />
+
+<h3 id="-elk-stack">🧩 <strong>ELK Stack</strong></h3>
+
+<ul>
+  <li><strong>E</strong>lasticsearch: 로그를 저장하고 검색 가능한 DB</li>
+  <li><strong>L</strong>ogstash: 로그 수집기. 다양한 소스에서 로그를 받아 필터링/변환</li>
+  <li><strong>K</strong>ibana: 시각화 도구 (대시보드, 검색 UI 등)</li>
+</ul>
+
+<h4 id="장점">장점</h4>
+
+<ul>
+  <li>오래된 구성으로 안정적이고 성숙함</li>
+  <li>다양한 입력 소스를 지원 (DB, 파일, MQ 등)</li>
+</ul>
+
+<h4 id="단점">단점</h4>
+
+<ul>
+  <li>Logstash가 무거움 → <strong>리소스 많이 사용</strong></li>
+  <li>설정 복잡함</li>
+</ul>
+
+<hr />
+
+<h3 id="-efk-stack">🧩 <strong>EFK Stack</strong></h3>
+
+<ul>
+  <li><strong>E</strong>lasticsearch</li>
+  <li><strong>F</strong>luentd: 경량 로그 수집기 (Logstash 대체)</li>
+  <li><strong>K</strong>ibana</li>
+</ul>
+
+<h4 id="장점-1">장점</h4>
+
+<ul>
+  <li><strong>Kubernetes 환경에 더 적합</strong></li>
+  <li>Fluentd는 가볍고 플러그인으로 유연하게 확장 가능</li>
+  <li>최근 클라우드 환경에서 더 많이 사용됨</li>
+</ul>
+
+<h4 id="단점-1">단점</h4>
+
+<ul>
+  <li>복잡한 변환/파이프라인 처리 시엔 Logstash보다 기능 제한 있음</li>
+</ul>
+
+<hr />
+
+<h3 id="비교-요약표">비교 요약표:</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>ELK</th>
+      <th>EFK</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>로그 수집기</td>
+      <td>Logstash (무거움)</td>
+      <td>Fluentd (가볍고 유연함)</td>
+    </tr>
+    <tr>
+      <td>시각화</td>
+      <td>Kibana</td>
+      <td>Kibana</td>
+    </tr>
+    <tr>
+      <td>주 사용 환경</td>
+      <td>온프레미스, 레거시 시스템</td>
+      <td>클라우드, Kubernetes</td>
+    </tr>
+    <tr>
+      <td>구성 난이도</td>
+      <td>다소 복잡</td>
+      <td>상대적으로 단순</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-결론">📌 결론</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>상황</th>
+      <th>추천</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Kubernetes 기반 마이크로서비스</td>
+      <td>✅ <strong>EFK Stack</strong></td>
+    </tr>
+    <tr>
+      <td>다양한 로그 소스와 복잡한 처리 필요</td>
+      <td>✅ <strong>ELK Stack</strong></td>
+    </tr>
+    <tr>
+      <td>단순한 파일 로그 수집 및 시각화</td>
+      <td>✅ 둘 다 가능, 구조화 로그 필수</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<blockquote>
+  <p>실제로는 <strong>EFK + Structured Logging</strong> 조합이 요즘 가장 트렌디한 방식입니다.
+로그를 JSON 형태로 남기고, Fluentd를 통해 Elasticsearch에 넣은 뒤 Kibana로 시각화하면 아주 강력한 로그 분석 시스템이 됩니다.</p>
+</blockquote>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2025-05-27-til/" class="flip-title"><span>[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS</span></a>  <time class="faded fine" datetime="2025-05-27T09:00:00+09:00">27 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-24-til/" class="flip-title"><span>[TIL] Nginx, 리버스 프록시, 로드 밸런서</span></a>  <time class="faded fine" datetime="2025-05-24T09:00:00+09:00">24 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-23-til/" class="flip-title"><span>[TIL] Grafana &amp; Prometheus, Rolling Policy, 시계열 메트릭</span></a>  <time class="faded fine" datetime="2025-05-23T09:00:00+09:00">23 May 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (6)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (61)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnan0silver.github.io&count_bg=%23E786D8&title_bg=%237624DD&icon=waze.svg&icon_color=%23E7E7E7&title=%EC%A1%B0%ED%9A%8C%EC%88%98&edge_flat=false" alt="조회수 배치" width="120" height="20" loading="lazy"/></a>
+  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

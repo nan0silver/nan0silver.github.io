@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[TIL] 오버플로우, 언더플로우, 버퍼 오버플로우 위험성 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[TIL] 오버플로우, 언더플로우, 버퍼 오버플로우 위험성" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="2025-04-03 TIL" />
+<meta property="og:description" content="2025-04-03 TIL" />
+<link rel="canonical" href="https://nan0silver.github.io/til/2025-04-03-til/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2025-04-03-til/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-04-03T09:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[TIL] 오버플로우, 언더플로우, 버퍼 오버플로우 위험성" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="nxV5kFd5-bFRoijHUz2Nu4O-INbbVu--kurzYsfCwGQ" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-09T10:41:13+09:00","datePublished":"2025-04-03T09:00:00+09:00","description":"2025-04-03 TIL","headline":"[TIL] 오버플로우, 언더플로우, 버퍼 오버플로우 위험성","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-04-03-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-04-03-til/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+ 
+<link rel="alternate" href="https://nan0silver.github.io/til/2025-04-03-til/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+
+
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-07-17T13:03:52+09:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[TIL] 오버플로우, 언더플로우, 버퍼 오버플로우 위험성",
+    "description": "2025-04-03 TIL
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2025-04-03T09:00:00+09:00",
+    "dateModified": "2025-04-09T10:41:13+09:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/til/2025-04-03-til/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/til/2025-04-03-til/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "til",
+        "item": "https://nan0silver.github.io/til/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[TIL] 오버플로우, 언더플로우, 버퍼 오버플로우 위험성",
+        "item": "https://nan0silver.github.io/til/2025-04-03-til/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/til/">til</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-04-03-til</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-til-til" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [TIL] 오버플로우, 언더플로우, 버퍼 오버플로우 위험성
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-04-03T09:00:00+09:00">03 Apr 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Apr 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-04-09T10:41:13+09:00">2025-04-09</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      2025-04-03 TIL
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/36">#36</a><br />
+📅 <strong>작성일</strong>: 2025-04-03<br />
+🔄 <strong>최종 수정</strong>: 2025년 04월 09일</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<ul>
+  <li>오버플로우, 언더플로우
+    <ul>
+      <li>버퍼 오버플로우가 왜 위험한지 궁금해서 이것도 알아보았다.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h1 id="-1-숫자에서의-오버플로우--언더플로우">🔷 1. 숫자에서의 오버플로우 &amp; 언더플로우</h1>
+
+<h3 id="️-정의">✔️ 정의</h3>
+
+<ul>
+  <li><strong>오버플로우 (Overflow)</strong>: <strong>값이 표현할 수 있는 범위를 초과</strong>한 경우</li>
+  <li><strong>언더플로우 (Underflow)</strong>: <strong>값이 표현할 수 있는 최솟값보다 작아지는</strong> 경우</li>
+</ul>
+
+<h3 id="️-예시-정수int의-범위-초과">✔️ 예시: 정수(int)의 범위 초과</h3>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// -&gt; x는 0이 됨! (오버플로우)</span>
+</code></pre></div></div>
+
+<h4 id="-왜-0이-될까">📌 왜 0이 될까?</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">unsigned char</code>은 0~255까지만 저장 가능 (8bit)</li>
+  <li>255 + 1 = 256 → 표현할 수 없음 → <strong>0부터 다시 시작</strong> (mod 256)</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">signed</span> <span class="kt">char</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">127</span><span class="p">;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// -&gt; y는 -128이 됨 (signed overflow)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="️-오버플로우-숫자-예시">✔️ 오버플로우 숫자 예시</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>타입</th>
+      <th>최대값</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">unsigned char</code></td>
+      <td>255 (2⁸-1)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">unsigned short</code></td>
+      <td>65535 (2¹⁶-1)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">unsigned int</code></td>
+      <td>약 42억 (2³²-1 = 4,294,967,295)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">signed int</code></td>
+      <td>-2,147,483,648 ~ 2,147,483,647</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="-2-스택-큐-리스트-등-자료구조에서의-오버언더플로우">🔷 2. 스택, 큐, 리스트 등 자료구조에서의 오버/언더플로우</h1>
+
+<h3 id="️-오버플로우">✔️ 오버플로우</h3>
+
+<ul>
+  <li><strong>스택이 가득 찬 상태에서 push</strong>하면 발생</li>
+  <li><strong>큐가 가득 찬 상태에서 enqueue</strong>하면 발생</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stack</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stack</span><span class="o">&lt;&gt;();</span>
+<span class="n">stack</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>  <span class="c1">// 최대 3개</span>
+
+<span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+<span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+<span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="mi">4</span><span class="o">);</span>  <span class="c1">// ❌ StackOverflowError</span>
+</code></pre></div></div>
+
+<h3 id="️-언더플로우">✔️ 언더플로우</h3>
+
+<ul>
+  <li><strong>스택에서 비어 있는데 pop</strong>하면 발생</li>
+  <li><strong>큐에서 요소 없는데 dequeue</strong>하면 발생</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Queue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">&lt;&gt;();</span>
+<span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>  <span class="c1">// 비었는데 빼면 null 반환 (언더플로우)</span>
+</code></pre></div></div>
+
+<h3 id="-비유">📌 비유</h3>
+
+<blockquote>
+  <p>오버플로우: 컵에 물을 넘치게 부음<br />
+언더플로우: 컵에서 물을 꺼내려 했는데, 이미 텅 비어 있음</p>
+</blockquote>
+
+<hr />
+
+<h1 id="-3-메모리에서의-오버플로우-stack-overflow-buffer-overflow">🔷 3. 메모리에서의 오버플로우 (Stack Overflow, Buffer Overflow)</h1>
+
+<p>이건 C/C++에서 <strong>아주 심각한 보안 문제</strong>를 일으키는 부분.</p>
+
+<hr />
+
+<h2 id="-스택-오버플로우-stack-overflow">💣 스택 오버플로우 (Stack Overflow)</h2>
+
+<ul>
+  <li><strong>함수를 재귀적으로 너무 많이 호출</strong>해서 스택 메모리를 넘쳐버림</li>
+</ul>
+
+<h2 id="-버퍼-오버플로우-buffer-overflow">💣 버퍼 오버플로우 (Buffer Overflow)</h2>
+
+<ul>
+  <li><strong>고정된 크기의 메모리 배열(buffer)을 넘어서 데이터를 쓰는 것</strong></li>
+  <li>공격자는 이걸 이용해서 <strong>악성 코드 실행</strong>, <strong>프로그램 흐름 장악</strong></li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>  <span class="c1">// 길이 확인 안함</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">vulnerable</span><span class="p">(</span><span class="s">"AAAAAAAAAAAAAAAAAAAAAAAAA"</span><span class="p">);</span>  <span class="c1">// 💥 buffer overflow</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-해킹의-대표-기술">📌 해킹의 대표 기술</h3>
+
+<blockquote>
+  <p>공격자가 <code class="language-plaintext highlighter-rouge">buf</code> 뒤에 있는 return address를 덮어씌워서, 자기 코드로 프로그램 흐름을 강제로 바꿔버림 → 시스템 장악</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-해결-방법-rust-언어-사용">🚫 해결 방법: Rust 언어 사용</h2>
+
+<ul>
+  <li><strong>C/C++의 위험한 메모리 접근을 차단</strong>하기 위해 미국 국무부(DoS)에서도 권장</li>
+  <li>Rust는 <strong>메모리 안전(memory safety)</strong>을 컴파일 타임에 강제함</li>
+</ul>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">v</span> <span class="o">=</span> <span class="nd">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">100</span><span class="p">]);</span>  <span class="c1">// panic! 런타임에서 안전하게 막아줌</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>배열 범위를 벗어나면 컴파일 또는 런타임에서 즉시 멈춰버림 (→ <strong>보안상 안전</strong>)</li>
+</ul>
+
+<hr />
+
+<h1 id="-전체-요약">✅ 전체 요약</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>범주</th>
+      <th>오버플로우</th>
+      <th>언더플로우</th>
+      <th>예시</th>
+      <th>문제</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>정수</td>
+      <td>범위 초과 → 값이 초기로 순환</td>
+      <td>최솟값보다 작음 → 값 왜곡</td>
+      <td><code class="language-plaintext highlighter-rouge">unsigned char x = 255 + 1</code></td>
+      <td>잘못된 계산</td>
+    </tr>
+    <tr>
+      <td>자료구조</td>
+      <td>공간 초과 시 push 등</td>
+      <td>비어 있는데 pop</td>
+      <td><code class="language-plaintext highlighter-rouge">stack.push(4)</code> when full</td>
+      <td>런타임 오류</td>
+    </tr>
+    <tr>
+      <td>메모리</td>
+      <td>스택 깊이 초과 / 버퍼 초과</td>
+      <td>거의 없음</td>
+      <td><code class="language-plaintext highlighter-rouge">char buf[10]; strcpy(buf, input);</code></td>
+      <td><strong>해킹 가능</strong></td>
+    </tr>
+    <tr>
+      <td>보안 대책</td>
+      <td>Rust, 메모리 안전 언어</td>
+      <td>컴파일러 경고, 타입 안전</td>
+      <td>Rust, Swift</td>
+      <td>OS/국가 차원 도입 중</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-1-왜-버퍼-오버플로우가-위험한가">🔥 1. 왜 버퍼 오버플로우가 위험한가?</h2>
+
+<h3 id="-메모리는-일렬로-연결된-공간이야">✅ 메모리는 일렬로 연결된 공간이야</h3>
+
+<p>함수를 실행하면 스택(stack)에 다음과 같은 순서로 저장돼:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[로컬 변수]
+[리턴 주소]  ← 함수가 끝난 뒤 어디로 돌아갈지 주소
+</code></pre></div></div>
+
+<p>이걸 공격자가 조작할 수 있다면?</p>
+
+<p>➡ <strong>함수가 끝난 뒤 돌아갈 주소를 자기 마음대로 바꿀 수 있어!</strong><br />
+➡ <strong>해커가 원하는 코드로 흐름을 바꿔버릴 수 있음!!</strong> 😱</p>
+
+<hr />
+
+<h2 id="-2-실전-예시로-보기-c-코드">💣 2. 실전 예시로 보기 (C 코드)</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>  <span class="c1">// 🔥 위험! 길이 체크 안 함</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="공격-입력">공격 입력:</h3>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vulnerable</span><span class="p">(</span><span class="s">"AAAAAAAAAA</span><span class="se">\x90\x90\x90\x90\xDE\xAD\xBE\xEF</span><span class="s">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">"AAAAAAAAAA"</code> → <code class="language-plaintext highlighter-rouge">buf[10]</code> 꽉 채움</li>
+  <li><code class="language-plaintext highlighter-rouge">\x90...\xEF</code> → <strong>리턴 주소를 덮어씀!</strong></li>
+</ul>
+
+<hr />
+
+<h2 id="-3-해커가-하는-짓">💀 3. 해커가 하는 짓</h2>
+
+<h3 id="-목적-리턴-주소를-조작해서-자신이-심어둔-쉘코드shellcode-로-흐름을-튼다">📌 목적: 리턴 주소를 조작해서 자신이 심어둔 <strong>쉘코드(shellcode)</strong> 로 흐름을 튼다!</h3>
+
+<pre><code class="language-assembly">jmp *shellcode_address  →  쉘 실행, 백도어 오픈
+</code></pre>
+
+<ul>
+  <li>공격자가 만든 악성 코드를 버퍼 바로 뒤에 몰래 숨겨두고</li>
+  <li>리턴 주소를 <strong>그 코드 위치로 덮어씀</strong></li>
+  <li>함수가 끝나는 순간 → <strong>해커 코드 실행</strong></li>
+</ul>
+
+<hr />
+
+<h2 id="-비유로-이해해보자">🧠 비유로 이해해보자</h2>
+
+<blockquote>
+  <p>너가 엘리베이터를 타고 10층(정상 리턴 주소)으로 가야 되는데,<br />
+누군가가 몰래 버튼 회로를 바꿔서 <strong>지하 해커실(해커 코드)</strong> 로 보내버린 것과 같아.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-왜-cc에서-잘-터지나">📍 왜 C/C++에서 잘 터지나?</h2>
+
+<ul>
+  <li><strong>포인터(pointer)</strong>, <strong>직접 메모리 접근</strong>, <strong>길이 체크 안함</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">strcpy()</code>, <code class="language-plaintext highlighter-rouge">gets()</code>, <code class="language-plaintext highlighter-rouge">sprintf()</code> 같은 함수들: 길이 제한이 없음 → 💥</li>
+</ul>
+
+<hr />
+
+<h2 id="️-대책-메모리-안전-언어-rust-swift-등">🛡️ 대책: 메모리 안전 언어 (Rust, Swift 등)</h2>
+
+<h3 id="rust-예시">Rust 예시:</h3>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">]);</span>  <span class="c1">// 컴파일 또는 런타임에서 panic!</span>
+</code></pre></div></div>
+
+<p>Rust는:</p>
+
+<ul>
+  <li>배열 접근 시 <strong>범위 검사(bound check)</strong> 함</li>
+  <li>포인터를 마음대로 조작 못함</li>
+  <li><strong>사용 후 자동으로 메모리 해제 (ownership)</strong></li>
+</ul>
+
+<p>➡ 해커가 <strong>리턴 주소에 접근 불가능</strong><br />
+➡ 버퍼 오버플로우로는 뚫을 수 없음</p>
+
+<hr />
+
+<h2 id="-실제-피해-사례">🔐 실제 피해 사례</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>해킹 사건</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MS Blaster 웜 (2003)</td>
+      <td>버퍼 오버플로우로 윈도우 서비스 제어</td>
+    </tr>
+    <tr>
+      <td>Heartbleed (2014)</td>
+      <td>OpenSSL에서 메모리 무단 접근</td>
+    </tr>
+    <tr>
+      <td>SolarWinds (2020)</td>
+      <td>내부 시스템 오염 후, 취약점 타고 들어감</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>➡ 대부분이 <strong>C/C++ 기반 시스템</strong>에서 발생</p>
+
+<hr />
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2025-05-27-til/" class="flip-title"><span>[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS</span></a>  <time class="faded fine" datetime="2025-05-27T09:00:00+09:00">27 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-24-til/" class="flip-title"><span>[TIL] Nginx, 리버스 프록시, 로드 밸런서</span></a>  <time class="faded fine" datetime="2025-05-24T09:00:00+09:00">24 May 2025</time></li>                        <li class="h4">  <a href="/til/2025-05-23-til/" class="flip-title"><span>[TIL] Grafana &amp; Prometheus, Rolling Policy, 시계열 메트릭</span></a>  <time class="faded fine" datetime="2025-05-23T09:00:00+09:00">23 May 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (6)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (61)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnan0silver.github.io&count_bg=%23E786D8&title_bg=%237624DD&icon=waze.svg&icon_color=%23E7E7E7&title=%EC%A1%B0%ED%9A%8C%EC%88%98&edge_flat=false" alt="조회수 배치" width="120" height="20" loading="lazy"/></a>
+  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

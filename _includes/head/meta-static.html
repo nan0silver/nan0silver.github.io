@@ -1,13 +1,56 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
 
-<meta name="mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes" />
 
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="{{ site.title }}">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="{{ site.title }}" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-<meta name="application-name" content="{{ site.title }}">
+<meta name="application-name" content="{{ site.title }}" />
 
 <meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="{% if page.layout == 'post' %}article{% else %}website{% endif %}"
+/>
+<meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+<meta
+  property="og:title"
+  content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}"
+/>
+<meta
+  property="og:description"
+  content="{% if page.description %}{{ page.description }}{% else %}{{ site.description | strip_html | truncate: 160 }}{% endif %}"
+/>
+<meta
+  property="og:image"
+  content="{{ site.url }}{% if page.image.path %}{{ page.image.path }}{% else %}{{ site.logo }}{% endif %}"
+/>
+<meta property="og:site_name" content="{{ site.title }}" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="{{ site.url }}{{ page.url }}" />
+<meta
+  property="twitter:title"
+  content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}"
+/>
+<meta
+  property="twitter:description"
+  content="{% if page.description %}{{ page.description }}{% else %}{{ site.description | strip_html | truncate: 160 }}{% endif %}"
+/>
+<meta
+  property="twitter:image"
+  content="{{ site.url }}{% if page.image.path %}{{ page.image.path }}{% else %}{{ site.logo }}{% endif %}"
+/>
+{% if site.twitter.username %}
+<meta property="twitter:creator" content="@{{ site.twitter.username }}" />
+{% endif %}
