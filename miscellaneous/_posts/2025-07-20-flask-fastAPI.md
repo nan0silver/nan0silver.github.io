@@ -12,6 +12,12 @@ sitemap: false
 
 # [Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교
 
+- [새롭게 배운 것](#-새롭게-배운-것)
+- [오늘의 문제 상황 & 해결 과정](#-오늘의-문제-상황--해결-과정)
+- [Pydantic이란?](#-pydantic이란)
+- [Spring Boot DTO와 Pydantic의 비교](#-spring-boot-dto와-pydantic의-비교)
+- [느낀 점](#-느낀-점)
+
 ---
 
 ## 🍀 새롭게 배운 것
