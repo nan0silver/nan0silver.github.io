@@ -39,7 +39,7 @@ Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 
 2021.05.08 　　　　　 숙명여자대학교 교내 알고리즘 경진대회 (SMUPC) 은상 <br>
 
-2018.08 ~ 2019.12 　　숙명여자대학교 IT공학전공 밴드 동아리 'Hello World' 소속, 19년도 부회장 역할 수행 <br>
+2018.08 ~ 2019.12 　　숙명여자대학교 IT공학전공 밴드 동아리 'Hello World' 소속, 19년도 부회장 <br>
 
 2018.03 ~ 2019.12 　　숙명여자대학교 IT공학전공 제3,4대 학생회 소속 <br>
 
