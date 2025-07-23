@@ -1,7 +1,173 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-07-19T14:23:21+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-07-23T07:08:38+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS</title><link href="https://nan0silver.github.io/til/2025-05-27-til/" rel="alternate" type="text/html" title="[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS" /><published>2025-05-27T00:00:00+00:00</published><updated>2025-05-28T00:36:49+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-27-til/"><![CDATA[<blockquote>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교</title><link href="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" rel="alternate" type="text/html" title="[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교" /><published>2025-07-20T00:00:00+00:00</published><updated>2025-07-23T16:30:00+00:00</updated><id>https://nan0silver.github.io/miscellaneous/til/flask-fastAPI</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"><![CDATA[<ul>
+  <li><a href="#-새롭게-배운-것">새롭게 배운 것</a></li>
+  <li><a href="#-오늘의-문제-상황--해결-과정">오늘의 문제 상황 &amp; 해결 과정</a></li>
+  <li><a href="#-pydantic이란">Pydantic이란?</a></li>
+  <li><a href="#-spring-boot-dto와-pydantic의-비교">Spring Boot DTO와 Pydantic의 비교</a></li>
+  <li><a href="#-느낀-점">느낀 점</a></li>
+</ul>
+
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<ul>
+  <li>Python 백엔드 프레임워크인 <strong>FastAPI</strong>와 <strong>Flask</strong>를 비교해보았다.</li>
+  <li>두 프레임워크 모두 경량 웹 서버를 빠르게 개발할 수 있도록 도와주지만, 철학과 기능 면에서 차이가 존재한다.</li>
+  <li>주요 비교 항목: 비동기 처리, 타입 힌트 지원, 성능, 문서 자동화, 커뮤니티 및 생태계 등</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th><strong>FastAPI</strong></th>
+      <th><strong>Flask</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>출시 연도</strong></td>
+      <td>2018</td>
+      <td>2010</td>
+    </tr>
+    <tr>
+      <td><strong>비동기 지원</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">async/await</code> 기반 비동기 처리 완전 지원</td>
+      <td>기본은 동기, 비동기 처리는 별도 패키지 필요</td>
+    </tr>
+    <tr>
+      <td><strong>타입 힌트</strong></td>
+      <td>필수적으로 사용하며, 자동 문서화 및 검증에 활용</td>
+      <td>선택적 사용, 검증은 외부 라이브러리 의존</td>
+    </tr>
+    <tr>
+      <td><strong>문서 자동화</strong></td>
+      <td>Swagger UI 및 Redoc 자동 생성</td>
+      <td>기본 제공 없음 (Flasgger 등으로 보완)</td>
+    </tr>
+    <tr>
+      <td><strong>성능</strong></td>
+      <td>매우 빠름 (Starlette 기반, Uvicorn 활용)</td>
+      <td>상대적으로 느림</td>
+    </tr>
+    <tr>
+      <td><strong>러닝 커브</strong></td>
+      <td>초기 진입 장벽이 다소 높음 (타입, Pydantic 등)</td>
+      <td>매우 쉬운 진입, 학습 곡선 완만</td>
+    </tr>
+    <tr>
+      <td><strong>커뮤니티</strong></td>
+      <td>빠르게 성장 중</td>
+      <td>매우 크고 안정적인 생태계</td>
+    </tr>
+    <tr>
+      <td><strong>데이터 검증</strong></td>
+      <td>Pydantic 기반의 자동 검증</td>
+      <td>별도 유효성 검사 코드 필요</td>
+    </tr>
+    <tr>
+      <td><strong>REST API 개발</strong></td>
+      <td>RESTful 설계에 최적화</td>
+      <td>자유도가 높음, 규칙이 느슨함</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-오늘의-문제-상황--해결-과정">🍎 오늘의 문제 상황 &amp; 해결 과정</h2>
+
+<ul>
+  <li>지금까지는 Flask의 간결함과 진입 장벽이 낮은 점이 마음에 들어 주로 Flask를 사용해왔다.</li>
+  <li>하지만 이번에는 FastAPI를 직접 적용해보고 싶어 새 프로젝트에 도입해보았다.</li>
+  <li>특히 <code class="language-plaintext highlighter-rouge">Pydantic</code> 모델이 처음엔 어렵게 느껴질까 걱정했지만, 막상 사용해보니 <strong>Spring Boot의 DTO와 매우 유사한 느낌</strong>이 들어 빠르게 익숙해졌다.</li>
+  <li>타입 기반 구조와 자동 검증, 문서화 덕분에 프로젝트가 자연스럽게 구조화되고 개발 속도도 빨랐다.</li>
+</ul>
+
+<hr />
+
+<h2 id="-pydantic이란">📌 Pydantic이란?</h2>
+
+<ul>
+  <li><strong>Pydantic</strong>은 FastAPI에서 입력/출력 데이터의 구조를 정의하고, 유효성을 검사하며, JSON 직렬화를 자동으로 처리하는 핵심 컴포넌트다.</li>
+  <li>Python의 <strong>타입 힌트(type hint)</strong>를 기반으로 동작하며, <code class="language-plaintext highlighter-rouge">BaseModel</code>을 상속하여 필드와 제약 조건을 선언할 수 있다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위와 같이 작성하면, FastAPI는 요청 데이터가 이 조건을 만족하는지 자동으로 검증하고, Swagger 문서까지 자동 생성해준다.</li>
+</ul>
+
+<hr />
+
+<h2 id="-spring-boot-dto와-pydantic의-비교">🔍 Spring Boot DTO와 Pydantic의 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Spring Boot DTO</th>
+      <th>FastAPI Pydantic Model</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>역할</strong></td>
+      <td>요청/응답 객체 정의 + 유효성 검사</td>
+      <td>요청/응답 객체 정의 + 유효성 검사</td>
+    </tr>
+    <tr>
+      <td><strong>유효성 검사 도구</strong></td>
+      <td>JSR 380 (e.g., <code class="language-plaintext highlighter-rouge">@NotNull</code>, <code class="language-plaintext highlighter-rouge">@Size</code>)</td>
+      <td>Pydantic (<code class="language-plaintext highlighter-rouge">Field</code>, <code class="language-plaintext highlighter-rouge">validator</code>)</td>
+    </tr>
+    <tr>
+      <td><strong>직렬화/역직렬화</strong></td>
+      <td>Jackson 사용</td>
+      <td>내장 기능으로 자동 처리</td>
+    </tr>
+    <tr>
+      <td><strong>중첩 구조 지원</strong></td>
+      <td>중첩 DTO 클래스</td>
+      <td>중첩 <code class="language-plaintext highlighter-rouge">BaseModel</code>을 통한 자연스러운 처리</td>
+    </tr>
+    <tr>
+      <td><strong>문서화 연동</strong></td>
+      <td>Swagger/OpenAPI 설정 필요</td>
+      <td>FastAPI에 자동 내장</td>
+    </tr>
+    <tr>
+      <td><strong>확장성</strong></td>
+      <td>Bean Validation 위주</td>
+      <td>타입 변환, 커스텀 직렬화 등 더 다양한 기능 내장</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>결론적으로 <strong>Pydantic은 Spring의 DTO와 유사한 사용 경험을 제공하면서도</strong>, 그 이상의 기능(데이터 직렬화, 문서화, 타입 변환 등)을 하나의 모델에서 처리할 수 있다는 점에서 <strong>DTO + Validator + Mapper + Serializer의 통합체</strong>로 볼 수 있다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-느낀-점">🦄 느낀 점</h2>
+
+<ul>
+  <li>Flask는 여전히 빠른 개발과 간단한 구조를 원할 때 유용한 선택지다.</li>
+  <li>반면 FastAPI는 프로젝트 구조를 더 명확히 하고, 자동화된 유효성 검사 및 문서화 기능까지 갖추고 있어 <strong>중·대형 규모 프로젝트나 협업 시에 훨씬 효율적</strong>이라는 점을 느꼈다.</li>
+  <li>개인적으로는 Pydantic이 예상보다 익숙했고, Spring Boot의 DTO를 써본 경험이 FastAPI 적응에 큰 도움이 되었다.</li>
+  <li>앞으로는 프로젝트의 성격에 따라 Flask와 FastAPI를 유연하게 선택하며, 각 도구의 장점을 상황에 맞게 활용할 계획이다.</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><category term="til" /><category term="TIL" /><category term="FastAPI" /><category term="Flask" /><category term="Backend" /><summary type="html"><![CDATA[2025-07-20 FastAPI vs Flask]]></summary></entry><entry><title type="html">[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS</title><link href="https://nan0silver.github.io/til/2025-05-27-til/" rel="alternate" type="text/html" title="[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS" /><published>2025-05-27T00:00:00+00:00</published><updated>2025-05-28T00:36:49+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-27-til/"><![CDATA[<blockquote>
   <p>📝 <strong>TIL (Today I Learned)</strong><br />
 🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/62">#62</a><br />
 📅 <strong>작성일</strong>: 2025-05-27<br />
@@ -1192,7 +1358,7 @@ Prometheus가 메트릭 데이터를 모으고, Grafana가 이를 시각적으�
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-20 TIL]]></summary></entry><entry><title type="html">[컨퍼런스] AI Tech 2025 참석 후기</title><link href="https://nan0silver.github.io/projectdiary/2025-05-15-diary/" rel="alternate" type="text/html" title="[컨퍼런스] AI Tech 2025 참석 후기" /><published>2025-05-15T00:00:00+00:00</published><updated>2025-07-19T14:22:39+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-05-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-20 TIL]]></summary></entry><entry><title type="html">[컨퍼런스] AI Tech 2025 참석 후기</title><link href="https://nan0silver.github.io/projectdiary/2025-05-15-diary/" rel="alternate" type="text/html" title="[컨퍼런스] AI Tech 2025 참석 후기" /><published>2025-05-15T00:00:00+00:00</published><updated>2025-07-23T07:07:48+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-05-15-diary/"><![CDATA[<ul>
   <li><a href="#1-행사-개요">1. 행사 개요</a></li>
   <li><a href="#2-키노트-요약-embodied-ai와-기술-진화-방향">2. 키노트 요약: Embodied AI와 기술 진화 방향</a></li>
   <li><a href="#3-a2a-시대의-도래-agent-협업-구조">3. A2A 시대의 도래: Agent 협업 구조</a></li>
@@ -1556,78 +1722,4 @@ AI 시스템에서도 <strong>다수의 특화 에이전트가 상호작용하�
   <p>오늘의 교훈: “보안성과 확장성”이 중요한 시스템이라면 UUID,
 “성능과 단순함”이 중요하다면 Auto Increment를 고려하자.
 다만 외부에 노출될 수 있는 ID는 무조건 UUID나 별도의 난수 토큰을 사용하는 것이 안전하다!</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-11 TIL]]></summary></entry><entry><title type="html">[TIL] 순환 참조 문제 (Infinite Recursion in JSON Serializat…</title><link href="https://nan0silver.github.io/til/2025-05-10-til/" rel="alternate" type="text/html" title="[TIL] 순환 참조 문제 (Infinite Recursion in JSON Serializat…" /><published>2025-05-10T00:00:00+00:00</published><updated>2025-05-22T05:25:08+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-10-til/"><![CDATA[<blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/54">#54</a><br />
-📅 <strong>작성일</strong>: 2025-05-10<br />
-🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<ul>
-  <li><strong>순환 참조 문제 (Infinite Recursion in JSON Serialization)</strong></li>
-</ul>
-
-<p>오늘은 API 응답을 구성하는 과정에서 발생한 <strong>무한 재귀 직렬화 오류</strong>를 해결하며 순환 참조(Circular Reference)에 대해 학습했다.
-문제의 핵심은 <strong>Entity 간 양방향 참조</strong>가 존재할 때, JSON 직렬화 과정에서 객체 간 호출이 끝없이 반복되어 StackOverflowError가 발생하는 현상이었다.</p>
-
-<h3 id="️-문제-상황">⚠️ 문제 상황</h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">PeerReview</code> → <code class="language-plaintext highlighter-rouge">Post</code></li>
-  <li><code class="language-plaintext highlighter-rouge">Post</code> → <code class="language-plaintext highlighter-rouge">Member</code>, <code class="language-plaintext highlighter-rouge">postMembers</code></li>
-  <li><code class="language-plaintext highlighter-rouge">PostMember</code> → 다시 <code class="language-plaintext highlighter-rouge">Post</code></li>
-</ul>
-
-<p>이렇게 서로 참조하는 구조로 인해 <strong>JSON 직렬화 중 무한 루프</strong>가 발생했다.</p>
-
-<h3 id="-해결-방법">🔍 해결 방법</h3>
-
-<h4 id="-1-dto-패턴-사용-권장">✅ 1. <strong>DTO 패턴 사용 (권장)</strong></h4>
-
-<ul>
-  <li>가장 바람직한 해결책은 Entity를 그대로 반환하지 않고, 필요한 정보만 담은 <strong>Response DTO</strong>를 만들어 응답하는 방식이다.</li>
-  <li>예를 들어 <code class="language-plaintext highlighter-rouge">PeerReviewResponse</code>에서는 <code class="language-plaintext highlighter-rouge">Post</code> 전체 객체를 넘기지 않고, <code class="language-plaintext highlighter-rouge">postId</code>, <code class="language-plaintext highlighter-rouge">postTitle</code>만 넘기도록 변경했다.</li>
-  <li>같은 방식으로 <code class="language-plaintext highlighter-rouge">UserReviewCommentResponse</code>도 수정했다.</li>
-</ul>
-
-<p>이렇게 DTO를 사용하면 다음과 같은 장점이 있다:</p>
-
-<ul>
-  <li>불필요한 Entity 참조 제거 → <strong>순환 참조 문제 해결</strong></li>
-  <li>필요한 데이터만 전달 → <strong>응답 성능 향상</strong></li>
-  <li>Entity와 API 응답 로직 분리 → <strong>유지보수성 향상</strong></li>
-  <li><strong>보안상 안전</strong> (내부 필드 노출 방지)</li>
-</ul>
-
-<h4 id="️-2-jackson-어노테이션-사용-보완적참고용">🛠️ 2. Jackson 어노테이션 사용 (보완적/참고용)</h4>
-
-<ul>
-  <li>만약 어쩔 수 없이 Entity를 직접 반환해야 한다면 <code class="language-plaintext highlighter-rouge">@JsonManagedReference</code>, <code class="language-plaintext highlighter-rouge">@JsonBackReference</code> 또는 <code class="language-plaintext highlighter-rouge">@JsonIgnore</code>를 사용하는 방식도 있다.</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Post.java</span>
-<span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"post"</span><span class="o">)</span>
-<span class="nd">@JsonManagedReference</span>
-<span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PostMember</span><span class="o">&gt;</span> <span class="n">postMembers</span><span class="o">;</span>
-
-<span class="c1">// PostMember.java</span>
-<span class="nd">@ManyToOne</span>
-<span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"post_id"</span><span class="o">)</span>
-<span class="nd">@JsonBackReference</span>
-<span class="kd">private</span> <span class="nc">Post</span> <span class="n">post</span><span class="o">;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>하지만 이 방법은 API와 Entity 계층이 강하게 결합되므로, 장기적으로는 유지보수나 테스트 측면에서 불리하다.</li>
-</ul>
-
-<hr />
-
-<blockquote>
-  <p>오늘의 핵심 교훈: <strong>Entity는 절대 API 응답용으로 직접 사용하지 말자!</strong>
-Response DTO를 따로 만들어 사용하는 습관이 순환 참조를 방지하고, 더 안전하고 명확한 API를 만들 수 있는 길이다.</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="JavaScript" /><summary type="html"><![CDATA[2025-05-10 TIL]]></summary></entry></feed>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-11 TIL]]></summary></entry></feed>
