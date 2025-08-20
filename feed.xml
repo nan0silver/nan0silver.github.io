@@ -1,7 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-08-07T15:52:01+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-08-20T04:35:49+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교</title><link href="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" rel="alternate" type="text/html" title="[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교" /><published>2025-07-20T00:00:00+00:00</published><updated>2025-07-23T16:30:00+00:00</updated><id>https://nan0silver.github.io/miscellaneous/til/flask-fastAPI</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-08-20T04:35:05+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
+  <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
+</ul>
+
+<hr />
+
+<blockquote>
+  <p>이번에는 서울 AI 허브 특강을 듣다가 알게 된 ML관련 논문을 읽고 지금 하고있는 “친구하자” 프로젝트의 어떤 부분에서 도움을 받을 수 있을지에 대해 알아보았다.</p>
+</blockquote>
+
+<p><strong>논문</strong>: [Hidden Technical Debt in Machine Learning Systems (NIPS 2015)]
+<strong>작성자</strong>: D. Sculley외 10인 (Google, Inc.)</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 논문 내용을 읽고 프로젝트 개발을 구체화한 내용입니다.]]></summary></entry><entry><title type="html">[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교</title><link href="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" rel="alternate" type="text/html" title="[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교" /><published>2025-07-20T00:00:00+00:00</published><updated>2025-07-23T16:30:00+00:00</updated><id>https://nan0silver.github.io/miscellaneous/til/flask-fastAPI</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"><![CDATA[<ul>
   <li><a href="#-새롭게-배운-것">새롭게 배운 것</a></li>
   <li><a href="#-오늘의-문제-상황--해결-과정">오늘의 문제 상황 &amp; 해결 과정</a></li>
   <li><a href="#-pydantic이란">Pydantic이란?</a></li>
@@ -363,7 +374,125 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <p>오늘의 핵심:
 ✅ CI/CD 도구는 “내가 코드를 어떻게 자동화할지”에 따라 고르고,
 ✅ 클라우드 서비스 모델은 “어디까지 직접 관리할지”에 따라 고른다.</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="DevOps" /><category term="Cloud" /><summary type="html"><![CDATA[2025-05-27 TIL]]></summary></entry><entry><title type="html">[TIL] Nginx, 리버스 프록시, 로드 밸런서</title><link href="https://nan0silver.github.io/til/2025-05-24-til/" rel="alternate" type="text/html" title="[TIL] Nginx, 리버스 프록시, 로드 밸런서" /><published>2025-05-24T00:00:00+00:00</published><updated>2025-05-27T05:35:43+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-24-til/"><![CDATA[<blockquote>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="DevOps" /><category term="Cloud" /><summary type="html"><![CDATA[2025-05-27 TIL]]></summary></entry><entry><title type="html">[TIL] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/til/2025-05-27-til/" rel="alternate" type="text/html" title="[TIL] Hidden Technical Debt in Machine Learning Systems" /><published>2025-05-27T00:00:00+00:00</published><updated>2025-05-28T00:36:49+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-27-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+📅 <strong>작성일</strong>: 2025-08-16<br />
+🔄 <strong>최종 수정</strong>: 2025년 08월 16일</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<p><strong>논문</strong>: [Hidden Technical Debt in Machine Learning Systems (NIPS 2015)]
+<strong>작성자</strong>: D. Sculley외 10인 (Google, Inc.)</p>
+
+<h3 id="1-오늘-읽은-내용-요약">1. 오늘 읽은 내용 요약</h3>
+
+<blockquote>
+  <p><strong>핵심 주제</strong>: 머신러닝 시스템에서 발생하는 <strong>숨은 기술 부채(hidden technical debt)</strong> 문제를 설명하고, 시스템 설계 단계에서 고려해야 할 위험 요소를 다룸.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><strong>기술 부채(Technical Debt) 개념</strong></p>
+
+    <ul>
+      <li>ML 시스템은 개발과 배포는 빠르지만 <strong>유지보수가 어렵고 비용이 많이 드는 구조적 특성</strong>을 가짐.</li>
+      <li>코드 수준의 문제보다 <strong>시스템 전반에서의 복잡성</strong>이 더 큰 원인.</li>
+      <li>숨은 부채는 누적되며, 발견 시에는 비용이 급격히 커짐.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>ML 시스템에서 기술 부채가 생기는 주요 원인</strong></p>
+
+    <ol>
+      <li><strong>경계 침식(Boundary Erosion)</strong>: 모델이 여러 신호를 섞어 사용하기 때문에 한 부분을 바꾸면 전체가 변함 (<strong>CACE 원칙: Changing Anything Changes Everything</strong>).</li>
+      <li><strong>데이터 의존성(Data Dependencies)</strong>: 불안정하거나 과도한 데이터 의존성으로 인해 작은 변화가 큰 장애를 일으킴.</li>
+      <li><strong>피드백 루프(Feedback Loops)</strong>: 모델이 자신의 입력 데이터를 간접적으로 바꾸는 경우 → 예측 정확도에 예기치 못한 영향을 미침.</li>
+      <li>
+        <p><strong>시스템 안티패턴(System Anti-Patterns)</strong>:</p>
+
+        <ul>
+          <li><strong>Glue Code</strong>: 다양한 패키지를 연결하는 코드가 과도해져 유지보수 비용 증가.</li>
+          <li><strong>Pipeline Jungles</strong>: 데이터 처리 파이프라인이 점점 복잡해져 관리가 어려워짐.</li>
+          <li><strong>Dead Experimental Codepaths</strong>: 실험을 위해 만든 코드가 방치되어 예기치 못한 오류를 유발.</li>
+        </ul>
+      </li>
+      <li><strong>구성(Configuration) 부채</strong>: 피처, 하이퍼파라미터, 로깅 설정 등 방대한 설정이 누적되어 관리가 어려워짐.</li>
+      <li><strong>외부 세계 변화</strong>: 환경, 사용자 행동, 시장 조건의 변화가 모델 성능에 직접적인 영향을 미침.</li>
+    </ol>
+  </li>
+  <li>
+    <p><strong>해결 방안</strong></p>
+
+    <ul>
+      <li>데이터 및 모델 <strong>의존성 관리 도구</strong> 구축 (버저닝, 자동화된 피처 관리 등).</li>
+      <li><strong>모니터링 &amp; 자동화 대응</strong> 필수.</li>
+      <li>실험적 코드 정리 및 중복 제거.</li>
+      <li>연구팀과 엔지니어링팀 간 <strong>하이브리드 협업 구조</strong> 필요.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="2-나에게-필요했던-이유">2. 나에게 필요했던 이유</h3>
+
+<blockquote>
+  <p>이에 대한 자세한 내용은 (깃블로그)[링크]에서 볼 수 있습니다.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>현재 진행 중인 <strong>AI 기반 발화/화행 분석 모델</strong>과 <strong>친구하자</strong> 서비스의 ML 시스템에 적용할 수 있음:</p>
+
+    <ul>
+      <li><strong>데이터 버저닝</strong> 필요성 → 감정 분석 모델 학습 시 <strong>피처 변경</strong>이 있을 경우 예기치 못한 성능 저하 방지.</li>
+      <li><strong>파이프라인 관리</strong> 중요성 → 통화 음성 데이터 → 스펙트로그램 변환 → 감정 분석 → 저장 단계에서 발생할 수 있는 <strong>Pipeline Jungle</strong> 방지.</li>
+      <li><strong>모델 업데이트 전략</strong> → 모델 개선이 실제 서비스에서 <strong>사용자 경험을 악화시킬 수 있는 위험</strong> 방지 필요.</li>
+      <li><strong>실시간 모니터링</strong> 필요 → 모델 성능 저하나 데이터 분포 변화에 빠르게 대응 가능해야 함.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="3-느낀-점--인사이트">3. 느낀 점 &amp; 인사이트</h3>
+
+<ul>
+  <li>단순히 모델 성능을 높이는 것보다, <strong>시스템 전반의 유지보수성</strong>과 <strong>데이터 흐름 관리</strong>가 훨씬 중요하다는 걸 깨달음.</li>
+  <li>
+    <p>특히 <strong>CACE 원칙</strong>은 실무에서 체감할 가능성이 큼:</p>
+
+    <blockquote>
+      <p>“하나 바꾸면 다 바뀐다” → 모델 입력 피처 변경 시 전체 시스템의 예측 성능이 흔들릴 수 있음.</p>
+    </blockquote>
+  </li>
+  <li>앞으로 <strong>AI 모델 성능 향상보다 안정적인 시스템 아키텍처 설계</strong>에 우선순위를 둬야겠다고 느낌.</li>
+  <li>
+    <p><strong>친구하자</strong> 서비스에서도:</p>
+
+    <ul>
+      <li>데이터 파이프라인 설계를 단순하게 유지.</li>
+      <li>모델을 <strong>엔드 투 엔드로 한 번에 학습</strong>하는 방법과 <strong>서브모델 앙상블 방식</strong>의 트레이드오프를 고려해야 함.</li>
+      <li>장기적으로 <strong>모델 버저닝 + 모니터링 시스템</strong>을 도입해 기술 부채를 최소화할 필요 있음.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="4-다음-액션-아이템">4. 다음 액션 아이템</h3>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />데이터 버저닝 전략 조사 및 설계 (e.g., DVC, MLflow)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />음성 데이터 파이프라인 단순화 → Glue Code 최소화</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />실시간 성능 모니터링 및 알림 시스템 설계</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />모델 업데이트 시 A/B 테스트 기반 롤아웃 전략 도입</li>
+</ul>
+
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-16 TIL]]></summary></entry><entry><title type="html">[TIL] Nginx, 리버스 프록시, 로드 밸런서</title><link href="https://nan0silver.github.io/til/2025-05-24-til/" rel="alternate" type="text/html" title="[TIL] Nginx, 리버스 프록시, 로드 밸런서" /><published>2025-05-24T00:00:00+00:00</published><updated>2025-05-27T05:35:43+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-24-til/"><![CDATA[<blockquote>
   <p>📝 <strong>TIL (Today I Learned)</strong><br />
 🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/61">#61</a><br />
 📅 <strong>작성일</strong>: 2025-05-24<br />
@@ -1358,7 +1487,7 @@ Prometheus가 메트릭 데이터를 모으고, Grafana가 이를 시각적으�
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-20 TIL]]></summary></entry><entry><title type="html">[컨퍼런스] AI Tech 2025 참석 후기</title><link href="https://nan0silver.github.io/projectdiary/2025-05-15-diary/" rel="alternate" type="text/html" title="[컨퍼런스] AI Tech 2025 참석 후기" /><published>2025-05-15T00:00:00+00:00</published><updated>2025-08-07T15:51:21+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-05-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-20 TIL]]></summary></entry><entry><title type="html">[컨퍼런스] AI Tech 2025 참석 후기</title><link href="https://nan0silver.github.io/projectdiary/2025-05-15-diary/" rel="alternate" type="text/html" title="[컨퍼런스] AI Tech 2025 참석 후기" /><published>2025-05-15T00:00:00+00:00</published><updated>2025-08-20T04:35:05+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-05-15-diary/"><![CDATA[<ul>
   <li><a href="#1-행사-개요">1. 행사 개요</a></li>
   <li><a href="#2-키노트-요약-embodied-ai와-기술-진화-방향">2. 키노트 요약: Embodied AI와 기술 진화 방향</a></li>
   <li><a href="#3-a2a-시대의-도래-agent-협업-구조">3. A2A 시대의 도래: Agent 협업 구조</a></li>
@@ -1493,233 +1622,4 @@ AI 시스템에서도 <strong>다수의 특화 에이전트가 상호작용하�
 
 <blockquote>
   <p>기술을 넘어 전략으로서의 AI를 고민하게 된 의미 있는 자리였다.</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[AI Tech 2025 컨퍼런스에서 확인한 LLMOps, A2A, Embodied AI 등 최신 AI 시스템 운영 전략]]></summary></entry><entry><title type="html">[TIL] spring-boot-starter-validation, 테스트 코드 모니터링 툴</title><link href="https://nan0silver.github.io/til/2025-05-12-til/" rel="alternate" type="text/html" title="[TIL] spring-boot-starter-validation, 테스트 코드 모니터링 툴" /><published>2025-05-12T00:00:00+00:00</published><updated>2025-05-22T05:27:40+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-12-til/"><![CDATA[<blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/56">#56</a><br />
-📅 <strong>작성일</strong>: 2025-05-12<br />
-🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<ul>
-  <li>spring-boot-starter-validation</li>
-  <li>테스트 코드 모니터링 툴</li>
-</ul>
-
-<h3 id="1️⃣-spring-boot-starter-validation">1️⃣ <code class="language-plaintext highlighter-rouge">spring-boot-starter-validation</code></h3>
-
-<blockquote>
-  <p><strong>Spring Boot에서 사용자 입력 값(요청 바디 등)을 검증</strong>할 수 있게 해주는 의존성 패키지
-내부적으로는 <code class="language-plaintext highlighter-rouge">javax.validation</code> (JSR-380)이나 <code class="language-plaintext highlighter-rouge">jakarta.validation</code> API를 기반으로 동작</p>
-</blockquote>
-
-<ul>
-  <li>주로 아래와 같은 상황에 동작
-    <ul>
-      <li>사용자가 회원가입을 할 때</li>
-      <li>게시글을 작성할 때</li>
-      <li>비밀번호 변경할 때 등</li>
-    </ul>
-  </li>
-</ul>
-
-<p><strong>프론트엔드에서 필터링한다고 해도, 백엔드에서는 무조건 검증이 필요</strong></p>
-
-<ul>
-  <li>신뢰할 수 없는 요청이나 보안 위험을 방지하기 위해서 (프론트는 우회가 가능하므로) 백엔드 검증은 필수!</li>
-  <li>검증 애너테이션
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">@NotNull</code>, <code class="language-plaintext highlighter-rouge">@NotBlank</code>, <code class="language-plaintext highlighter-rouge">@Size</code>, <code class="language-plaintext highlighter-rouge">@Email</code>, <code class="language-plaintext highlighter-rouge">@Min</code>, <code class="language-plaintext highlighter-rouge">@Max</code> 등</li>
-    </ul>
-  </li>
-  <li>검증 실패 시
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">@ControllerAdvice</code>와 <code class="language-plaintext highlighter-rouge">@ExceptionHandler</code>를 이용해 에러 메시지 사용</li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="1-의존성-추가-buildgradle">1. 의존성 추가 (<code class="language-plaintext highlighter-rouge">build.gradle</code>)</h4>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'org.springframework.boot:spring-boot-starter-validation'</span>
-</code></pre></div></div>
-
-<h4 id="2-dto-클래스에-검증-어노테이션-달기">2. DTO 클래스에 검증 어노테이션 달기</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">jakarta.validation.constraints.NotBlank</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.Size</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SignupRequestDto</span> <span class="o">{</span>
-
-    <span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"이메일은 필수입니다."</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
-
-    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">8</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"비밀번호는 최소 8자 이상이어야 합니다."</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
-
-    <span class="c1">// getter, setter</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="3-controller에서-검증-처리">3. Controller에서 검증 처리</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/signup"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">signup</span><span class="o">(</span><span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="nc">SignupRequestDto</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 통과 시 로직 실행</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">@Valid</code>가 붙은 객체에서 문제가 발생하면 자동으로 400 에러 발생.</li>
-  <li>에러 메시지는 <code class="language-plaintext highlighter-rouge">@ControllerAdvice</code>를 통해 커스터마이징도 가능.</li>
-</ul>
-
-<h3 id="2️⃣-테스트-코드-모니터링-툴">2️⃣ 테스트 코드 모니터링 툴</h3>
-
-<blockquote>
-  <p><strong>“테스트 코드의 품질과 실행 현황을 시각적으로 분석/모니터링하는 도구”</strong>
-즉, 테스트가 얼마나 잘 되어 있는지 **“숫자와 그래프”**로 보여주는 도구</p>
-</blockquote>
-
-<ul>
-  <li>테스트 코드가 있다고 해도, **정말 전체 코드를 잘 테스트하고 있는지는 모름</li>
-  <li>그래서 “<strong>코드 커버리지</strong>”, “<strong>테스트 성공률</strong>”, “<strong>실행 시간</strong>” 같은 걸 측정해서 모니터링할 수 있어야 한다.
-    <ul>
-      <li>커버리지
-        <ul>
-          <li>코드의 품질과 신뢰성을 수치로 확인할 수 있는 지표</li>
-          <li>단순히 테스트를 작성하는 것보다, 커버리지를 보면서 blind spot 없이 테스트하는 게 중요!</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>🔧 대표적인 도구들
-| 도구 | 설명 |
-| ———————- | ———————————– |
-| <strong>JaCoCo</strong> | Java 프로젝트에서 가장 널리 쓰이는 코드 커버리지 측정 도구 |
-| <strong>SonarQube</strong> | 코드 품질, 보안 취약점, 커버리지까지 통합 분석 |
-| <strong>IntelliJ 자체 기능</strong> | 실행 후 커버리지를 하이라이팅으로 보여줌 |
-| <strong>Codecov, Coveralls</strong> | GitHub Actions와 연동해 커버리지 리포트 자동화 |</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Spring" /><summary type="html"><![CDATA[2025-05-12 TIL]]></summary></entry><entry><title type="html">[TIL] UUID와 Auto Increment PK는 언제 사용할까?</title><link href="https://nan0silver.github.io/til/2025-05-11-til/" rel="alternate" type="text/html" title="[TIL] UUID와 Auto Increment PK는 언제 사용할까?" /><published>2025-05-11T00:00:00+00:00</published><updated>2025-05-22T05:26:48+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-11-til/"><![CDATA[<blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/55">#55</a><br />
-📅 <strong>작성일</strong>: 2025-05-11<br />
-🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<ul>
-  <li><strong>UUID와 Auto Increment PK는 언제 사용할까?</strong></li>
-</ul>
-
-<p>오늘은 엔티티의 기본 키(primary key)를 정의할 때 <strong>UUID</strong>와 <strong>Auto Increment(Long 타입)</strong> 중 어떤 것을 선택할지에 대해 정리해보았다.</p>
-
-<h3 id="-auto-increment-일반적인-정수형-pk">✅ Auto Increment (일반적인 정수형 PK)</h3>
-
-<ul>
-  <li>
-    <p>특징</p>
-
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">@GeneratedValue(strategy = GenerationType.IDENTITY)</code> 형태로 많이 사용</li>
-      <li>DB가 자동으로 증가시키며 관리</li>
-      <li>숫자 기반이라 인덱싱 속도가 빠르고, 저장 공간도 적게 차지함</li>
-    </ul>
-  </li>
-  <li>
-    <p>사용에 적합한 경우</p>
-
-    <ul>
-      <li>내부 시스템용 데이터</li>
-      <li>데이터 유출 시에도 ID 자체로는 식별 불가 → 보안 문제가 크지 않은 경우</li>
-      <li>검색/조회 성능이 중요한 경우</li>
-    </ul>
-  </li>
-  <li>
-    <p>단점</p>
-
-    <ul>
-      <li>순차적으로 증가하는 ID는 보안상 예측 가능성이 있음 (특히 API 경로에 노출될 경우 위험)</li>
-      <li>시스템 간 병합 시 충돌 가능성 있음 (ex. 여러 서버에서 동시에 데이터를 생성하는 분산 환경)</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="-uuid-범용-고유-식별자">✅ UUID (범용 고유 식별자)</h3>
-
-<ul>
-  <li>
-    <p>특징</p>
-
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">@GeneratedValue(strategy = GenerationType.AUTO)</code> 또는 <code class="language-plaintext highlighter-rouge">UUID.randomUUID()</code> 사용</li>
-      <li>128비트의 랜덤 고유값 (예: <code class="language-plaintext highlighter-rouge">d290f1ee-6c54-4b01-90e6-d701748f0851</code>)</li>
-      <li>전역적으로 충돌 가능성이 거의 없음 → <strong>분산 시스템에 적합</strong></li>
-    </ul>
-  </li>
-  <li>
-    <p>사용에 적합한 경우</p>
-
-    <ul>
-      <li>외부에 노출되는 식별자(API, 클라이언트 전송 등)</li>
-      <li>데이터 생성 주체가 분산되어 있어 충돌을 방지해야 할 때</li>
-      <li>보안상 ID 노출을 피하고 싶을 때</li>
-    </ul>
-  </li>
-  <li>
-    <p>단점</p>
-
-    <ul>
-      <li>길이가 길고 가독성이 떨어짐</li>
-      <li>저장 시 공간 낭비 (VARCHAR or BINARY 타입)</li>
-      <li>인덱싱 성능이 낮음 → 대량 데이터일수록 성능 저하 가능</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="-결론-어떤-상황에-어떤-걸-쓸까">💡 결론: 어떤 상황에 어떤 걸 쓸까?</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>상황</th>
-      <th>추천 방식</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>단일 서버, 내부 관리 중심 서비스</td>
-      <td>Auto Increment</td>
-    </tr>
-    <tr>
-      <td>외부 노출 ID가 필요하거나, 분산 환경에서 생성되는 데이터</td>
-      <td>UUID</td>
-    </tr>
-    <tr>
-      <td>민감한 정보 식별자 (예: 사용자 ID, 주문 번호 등)</td>
-      <td>UUID</td>
-    </tr>
-    <tr>
-      <td>빠른 정렬/검색이 중요한 대량 데이터</td>
-      <td>Auto Increment (with caution)</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<blockquote>
-  <p>오늘의 교훈: “보안성과 확장성”이 중요한 시스템이라면 UUID,
-“성능과 단순함”이 중요하다면 Auto Increment를 고려하자.
-다만 외부에 노출될 수 있는 ID는 무조건 UUID나 별도의 난수 토큰을 사용하는 것이 안전하다!</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-11 TIL]]></summary></entry></feed>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[AI Tech 2025 컨퍼런스에서 확인한 LLMOps, A2A, Embodied AI 등 최신 AI 시스템 운영 전략]]></summary></entry></feed>
