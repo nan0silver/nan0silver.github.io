@@ -29,6 +29,8 @@ Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 
 <h3>🔹Vita🔹</h3>
 
+2025.07 ~ 2025.08 서울 AI 허브 Say Track 영클럽 2기 수료 <br>
+
 2025.01 ~ 2025.07 프로그래머스 데브코스: 생성형AI 활용 백엔드 개발 1기 수료 <br>
 
 2025.01 2025 라스베가스 CES Korea Institute of Startup & Entrepreneurship Development 부스의 현장 커뮤니케이션 및 글로벌 네트워킹 지원<br>
