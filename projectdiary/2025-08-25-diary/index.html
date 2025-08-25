@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다." />
+<meta property="og:description" content="친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-08-25T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-08-25T06:17:39+00:00","datePublished":"2025-08-25T00:00:00+00:00","description":"친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다.","headline":"[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-08-25-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-08-25-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-08-25T06:18:23+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나",
+    "description": "친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2025-08-25T00:00:00+00:00",
+    "dateModified": "2025-08-25T06:17:39+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2025-08-25-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나",
+        "item": "https://nan0silver.github.io/projectdiary/2025-08-25-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-08-25-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-08-25T00:00:00+00:00">25 Aug 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#문제-배경">문제 배경</a></li>
+  <li><a href="#tldr">TL;DR</a></li>
+  <li><a href="#1-내가-왜-이런-고민을-하게-됐나-맥락">1. 내가 왜 이런 고민을 하게 됐나</a></li>
+  <li><a href="#2-현재-구현의-문제-정리-redis-단독일-때">2. 현재 구현의 문제 정리 (Redis 단독일 때)</a></li>
+  <li><a href="#3-하이브리드-설계-원칙">3. 하이브리드 설계 원칙</a></li>
+  <li><a href="#4-개선된-데이터-흐름">4. 개선된 데이터 흐름</a></li>
+  <li><a href="#5-redis-자료구조-선택과-이유">5. Redis 자료구조 선택과 이유</a></li>
+  <li><a href="#6-원자적-매칭-lua-스크립트-예시개념">6. 원자적 매칭: Lua 스크립트 예시(개념)</a></li>
+  <li><a href="#7-복구-메커니즘서버-재기동장애-대비">7. 복구 메커니즘(서버 재기동/장애 대비)</a></li>
+  <li><a href="#8-스키마인덱스-설계">8. 스키마/인덱스 설계</a></li>
+  <li><a href="#9-시스템-구성개념-아키텍처">9. 시스템 구성(개념 아키텍처)</a></li>
+  <li><a href="#10-실무에서의-선택지-비교">10. 실무에서의 선택지 비교</a></li>
+  <li><a href="#11-테스트운영-시나리오">11. 테스트/운영 시나리오</a></li>
+  <li><a href="#12-내가-배운-점--선택의-근거">12. 내가 배운 점 &amp; 선택의 근거</a></li>
+  <li><a href="#13-next-steps-로드맵">13. Next Steps (로드맵)</a></li>
+  <li><a href="#부록-a-코드-스니펫개념">부록 A. 코드 스니펫(개념)</a></li>
+</ul>
+
+<blockquote>
+  <p>“대기열=실시간성, 기록/분석/복구=영속성.”
+이 두 욕심을 동시에 만족시키려다 보니 하이브리드(DB+Redis)가 자연스럽게 답이 되었다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="문제-배경">문제 배경</h2>
+
+<ul>
+  <li>친구하자 구현 중 핵심인 통화 매칭 부분을 구현하는 중이였다.</li>
+  <li>초반 설계에서는 Redis만 사용해서 구현하기로 하여 하고있었는데, 이렇게 하면 대기열 기록이 되지않아 나중에 시스템 분석 및 복구에 어려움이 있어보였다.</li>
+  <li>따라서 DB와 함께 구현하는 방식이 많이 사용되는 방식인지, 어떤 부분에 장단점이 있고 고려해야하는 부분은 어떤 것인지 궁금했다.</li>
+  <li>또한 관련되서 더 심화된 기술은 어떤 것이 있는지 알아보고싶었다.</li>
+</ul>
+
+<hr />
+
+<h2 id="tldr">TL;DR</h2>
+
+<ul>
+  <li><strong>문제의식</strong>: Redis만 쓰면 빠르지만 휘발성·운영/분석/복구가 약하다. DB만 쓰면 영속적이지만 지연·경합에 취약하다.</li>
+  <li><strong>결론</strong>: <strong>DB(사실의 원천, 이력/분석/복구) + Redis(실시간 대기열/매칭)</strong> 를 분리한 하이브리드 구조.</li>
+  <li><strong>실무 팁</strong>: 아웃박스 패턴으로 <strong>이중 쓰기 일관성</strong>, Redis <strong>ZSET</strong>+<strong>Lua</strong>로 <strong>원자적 매칭</strong>, <strong>멱등키/TTL/청소잡/AOF+복제</strong>로 운영 내구성 확보.</li>
+  <li><strong>대안</strong>: 규모·요구사항에 따라 Redis Streams, RabbitMQ, Kafka, SQS, Postgres SKIP LOCKED도 선택지.</li>
+</ul>
+
+<hr />
+
+<h2 id="1-내가-왜-이런-고민을-하게-됐나-맥락">1) 내가 왜 이런 고민을 하게 됐나 (맥락)</h2>
+
+<p>친구하자는 <strong>1분 내 매칭</strong> 같은 <strong>저지연 실시간성</strong>이 핵심이다. 그래서 처음엔 <strong>Redis 단독</strong>이 끌렸다.
+하지만 곧바로 다음 현실에 부딪혔다.</p>
+
+<ul>
+  <li><strong>휘발성 vs 영속성</strong>: Redis는 빠르지만(메모리) 장애/재시작 시 <strong>데이터 유실</strong> 리스크.</li>
+  <li><strong>운영/디버깅</strong>: 매칭 실패/타임아웃/취소 이슈를 <strong>재현</strong>하고 <strong>원인 추적</strong>하려면 <strong>이력 테이블</strong>이 꼭 필요.</li>
+  <li><strong>통계/제품개선</strong>: 카테고리별 대기시간·매칭률·시간대 부하 같은 <strong>지표</strong>는 DB가 편하다.</li>
+  <li><strong>복구 시나리오</strong>: 서버/Redis 재기동 시 <strong>“누가 줄에 서 있었나?”</strong> 를 복원하려면 DB에 근거가 있어야 한다.</li>
+</ul>
+
+<p>결국 “<strong>실시간 처리=Redis</strong>”, “<strong>이력/분석/복구=DB</strong>”로 역할을 나누는 하이브리드가 합리적이라는 결론에 도달했다.</p>
+
+<hr />
+
+<h2 id="2-현재-구현의-문제-정리-redis-단독일-때">2) 현재 구현의 문제 정리 (Redis 단독일 때)</h2>
+
+<ol>
+  <li><strong>데이터 영속성</strong>: 서버/Redis 재시작 시 대기열 유실 가능</li>
+  <li><strong>통계/분석 취약</strong>: 매칭 히스토리/패턴 분석이 어려움</li>
+  <li><strong>디버깅 곤란</strong>: 실패 재현·CS 대응 근거 부족</li>
+  <li><strong>복구 어려움</strong>: 장애 시 대기열/상태 재구성이 힘듦</li>
+</ol>
+
+<hr />
+
+<h2 id="3-하이브리드-설계-원칙">3) 하이브리드 설계 원칙</h2>
+
+<h3 id="1-단일-출처single-source-of-truth-sot-명확화">(1) 단일 출처(Single Source of Truth, SOT) 명확화</h3>
+
+<ul>
+  <li><strong>대기열의 SOT = Redis</strong> (실시간 기준)</li>
+  <li><strong>이력/상태의 SOT = DB</strong> (사실 기준)</li>
+</ul>
+
+<h3 id="2-일관성-경계-정의">(2) 일관성 경계 정의</h3>
+
+<ul>
+  <li>두 저장소에 <strong>언제/어떤 순서로</strong> 쓸지 고정.</li>
+  <li>권장: <strong>DB 트랜잭션</strong>으로 <code class="language-plaintext highlighter-rouge">matching_queue(WAITING)</code> + <strong>아웃박스 이벤트</strong>를 함께 기록 → 워커가 <strong>Redis에 enqueue</strong> (재시도 가능)</li>
+</ul>
+
+<h3 id="3-멱등성중복-방지">(3) 멱등성/중복 방지</h3>
+
+<ul>
+  <li>사용자 중복 등록 방지: <code class="language-plaintext highlighter-rouge">SET user:{id}:queued 1 NX EX 600</code></li>
+  <li>매칭 결과 멱등 업데이트: <code class="language-plaintext highlighter-rouge">match_id</code> <strong>UNIQUE</strong> 제약 등</li>
+</ul>
+
+<hr />
+
+<h2 id="4-개선된-데이터-흐름">4) 개선된 데이터 흐름</h2>
+
+<ol>
+  <li><strong>참가(Enqueue)</strong>:</li>
+</ol>
+
+<ul>
+  <li>DB 트랜잭션: <code class="language-plaintext highlighter-rouge">matching_queue(WAITING)</code> + <code class="language-plaintext highlighter-rouge">outbox(enqueue_event)</code></li>
+  <li>Outbox Consumer가 Redis <strong>ZSET</strong>에 등록</li>
+</ul>
+
+<ol>
+  <li><strong>매칭(Match)</strong>:</li>
+</ol>
+
+<ul>
+  <li>Redis에서 <strong>원자적으로 두 명을 Pop</strong> (Lua 스크립트)</li>
+  <li>DB에 <code class="language-plaintext highlighter-rouge">MATCHING → MATCHED</code> 상태 전이(멱등)</li>
+</ul>
+
+<ol>
+  <li><strong>통계/리포트</strong>:</li>
+</ol>
+
+<ul>
+  <li>DB 이력 기반 분석/대시보드</li>
+</ul>
+
+<ol>
+  <li><strong>실시간 조회</strong>:</li>
+</ol>
+
+<ul>
+  <li>Redis 대기열 길이, 평균 대기시간(샘플링) 즉시 응답</li>
+</ul>
+
+<hr />
+
+<h2 id="5-redis-자료구조-선택과-이유">5) Redis 자료구조 선택과 이유</h2>
+
+<ul>
+  <li>
+    <p><strong>ZSET(정렬집합)</strong> 권장</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">score = 대기 시작 시각 or 우선순위</code></li>
+      <li><strong>공정성(FCFS)/우선순위</strong>/타임아웃 처리 쉽다.</li>
+      <li>꺼낼 때 <strong>원자성</strong>을 위해 Lua 스크립트 사용.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>덧붙임</strong></p>
+
+    <ul>
+      <li><strong>SET NX</strong>로 중복 등록 방지</li>
+      <li><strong>HASH</strong>(<code class="language-plaintext highlighter-rouge">queue:{queueId}</code>)로 사용자·카테고리·TTL 메타 저장</li>
+      <li><strong>TTL + 정리잡</strong>으로 고아 항목 청소</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>단순 리스트(LLEN/LPOP)는 쉽지만 공정성·타임아웃·중복 제어를 구조적으로 풀기 어렵다.
+<strong>Streams</strong>는 컨슈머 그룹/ACK로 내구성이 좋지만 매칭 “쌍짓기”엔 별도 설계가 필요.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="6-원자적-매칭-lua-스크립트-예시개념">6) 원자적 매칭: Lua 스크립트 예시(개념)</h2>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- KEYS[1]=zset key, ARGV[1]=score(복원용)</span>
+<span class="kd">local</span> <span class="n">k</span> <span class="o">=</span> <span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="kd">local</span> <span class="n">a</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZRANGE'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">if</span> <span class="o">#</span><span class="n">a</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">then</span> <span class="k">return</span> <span class="p">{}</span> <span class="k">end</span>
+<span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZREM'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="kd">local</span> <span class="n">b</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZRANGE'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">if</span> <span class="o">#</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">then</span>
+  <span class="c1">-- 짝이 없으면 되돌리기</span>
+  <span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZADD'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+  <span class="k">return</span> <span class="p">{}</span>
+<span class="k">end</span>
+<span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZREM'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1">-- 필요 시 락/마킹/TTL 등 추가</span>
+<span class="k">return</span> <span class="p">{</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>실전에서는 <strong>되돌리기/락/타임아웃/카테고리 필터</strong>까지 넣어야 한다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="7-복구-메커니즘서버-재기동장애-대비">7) 복구 메커니즘(서버 재기동/장애 대비)</h2>
+
+<ul>
+  <li>Redis는 <strong>AOF(append-only)</strong> + <strong>영속 볼륨</strong> + <strong>복제/센티넬</strong>로 내구성 강화</li>
+  <li>그래도 안전망으로 <strong>“최근 WAITING만 DB→Redis 재적재”</strong> 수행</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 서버 기동 시 안전 복구(개념)</span>
+<span class="nd">@PostConstruct</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">recoverQueuesFromDatabase</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">var</span> <span class="n">active</span> <span class="o">=</span> <span class="n">matchingQueueRepository</span><span class="o">.</span><span class="na">findByQueueStatusAndCreatedAtAfter</span><span class="o">(</span>
+        <span class="nc">QueueStatus</span><span class="o">.</span><span class="na">WAITING</span><span class="o">,</span>
+        <span class="nc">LocalDateTime</span><span class="o">.</span><span class="na">now</span><span class="o">().</span><span class="na">minusMinutes</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+    <span class="o">);</span>
+    <span class="n">active</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">queue</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="c1">// Redis 재적재 로직(ZSET + 메타 HSET 등)</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>운영에선 <strong>ApplicationRunner + 분산락</strong>으로 <strong>중복 복구 방지</strong>를 권장.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="8-스키마인덱스-설계">8) 스키마/인덱스 설계</h2>
+
+<p><strong>matching_queue</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">id, user_id, category, status(WAITING/MATCHING/MATCHED/EXPIRED/CANCELLED), created_at, updated_at</code></li>
+  <li>인덱스: <code class="language-plaintext highlighter-rouge">(status, created_at)</code>, <code class="language-plaintext highlighter-rouge">(user_id, status)</code></li>
+</ul>
+
+<p><strong>match_events</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">match_id(UNIQUE), user_a, user_b, started_at, ended_at, result, reason</code></li>
+  <li>멱등키: <code class="language-plaintext highlighter-rouge">match_id UNIQUE</code></li>
+</ul>
+
+<p><strong>outbox</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">event_id, type, payload, created_at, processed_at NULLABLE</code></li>
+  <li>워커가 <code class="language-plaintext highlighter-rouge">processed_at IS NULL</code>만 읽고 성공 시 채움(재시도 가능)</li>
+</ul>
+
+<hr />
+
+<h2 id="9-시스템-구성개념-아키텍처">9) 시스템 구성(개념 아키텍처)</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[API] ──(Tx)──&gt; [DB] ──(Outbox)──&gt; [Outbox Consumer] ──&gt; [Redis ZSET]
+  │                                              │
+  └──────────────(조회/이력)──────────────────────┘
+
+[Matching Worker] &lt;──&gt; [Redis ZSET + Lua + TTL]
+      │                            │
+      └────(멱등 업데이트)──────&gt; [DB: 상태/이력]
+</code></pre></div></div>
+
+<p>운영 필수 체크:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Redis <strong>AOF + 복제/센티넬</strong></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>아웃박스/재시도</strong>로 DB↔Redis <strong>일관성 보장</strong></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>SET NX/TTL/청소잡/분산락</strong></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>대기열 길이/평균 대기시간/타임아웃률/매칭 성공률</strong> 메트릭</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>enqueue/match/cancel/timeout</strong> 이벤트 로깅</li>
+</ul>
+
+<hr />
+
+<h2 id="10-실무에서의-선택지-비교">10) 실무에서의 선택지 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>시나리오</th>
+      <th>권장 스택</th>
+      <th>핵심 포인트</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>저지연 실시간 매칭 (MVP~중규모)</strong></td>
+      <td><strong>Redis (ZSET/Streams) + DB</strong></td>
+      <td>속도·복잡도 밸런스 좋음</td>
+    </tr>
+    <tr>
+      <td><strong>내구성 높은 큐/재처리/다중소비자</strong></td>
+      <td><strong>Redis Streams</strong> or <strong>RabbitMQ</strong> + DB</td>
+      <td>ACK/리트라이/가시성 타임아웃 쉬움</td>
+    </tr>
+    <tr>
+      <td><strong>대규모 분산/리플레이</strong></td>
+      <td><strong>Kafka</strong> (+ Redis 캐시)</td>
+      <td>파티셔닝·재처리 강점, 매칭 로직은 앱에서</td>
+    </tr>
+    <tr>
+      <td><strong>아주 단순/저QPS</strong></td>
+      <td><strong>Postgres</strong> (<code class="language-plaintext highlighter-rouge">FOR UPDATE SKIP LOCKED</code>)</td>
+      <td>운영 단순, 지연·경합은 감수</td>
+    </tr>
+    <tr>
+      <td><strong>관리형 간단 큐</strong></td>
+      <td><strong>SQS</strong></td>
+      <td>쉬움+내구성, 초저지연 매칭은 보완 필요</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>친구하자의 <strong>“1분 내 매칭·공정성·운영 용이성”</strong> 기준에선 현재 <strong>Redis ZSET + DB</strong>가 가장 적합. 추후 트래픽 급증 시 <strong>Streams/Kafka</strong>로 확장 가능.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="11-테스트운영-시나리오">11) 테스트/운영 시나리오</h2>
+
+<ul>
+  <li><strong>부하 테스트</strong>: 카테고리별 동시 1k~5k 등록, 평균/95p 대기시간, 매칭 성공률 측정</li>
+  <li><strong>경합 테스트</strong>: 동시 매칭 워커 2~10개, 중복 매칭/유실 여부</li>
+  <li><strong>장애 시나리오</strong>: Redis 재시작, 네트워크 분리, DB 쓰기 실패 시 재시도 동작</li>
+  <li><strong>복구 리허설</strong>: DB→Redis 재적재 로직의 <strong>멱등성/중복 방지</strong> 검증</li>
+</ul>
+
+<hr />
+
+<h2 id="12-내가-배운-점--선택의-근거">12) 내가 배운 점 &amp; 선택의 근거</h2>
+
+<ul>
+  <li>실시간성만 보면 Redis 단독이 매력적이지만, <strong>운영·분석·복구</strong>까지 생각하면 <strong>DB 하이브리드</strong>가 필수.</li>
+  <li><strong>단일 출처</strong>를 나누고(<strong>대기열=Redis, 이력=DB</strong>), <strong>이중 쓰기 일관성</strong>(아웃박스/재시도)을 확보하면 MVP 이후에도 <strong>확장 가능한 길</strong>이 열린다.</li>
+  <li>Redis에선 <strong>ZSET + Lua</strong>가 <strong>공정성/타임아웃/원자성</strong>을 한 번에 잡는 실전 해법이었다.</li>
+</ul>
+
+<hr />
+
+<h2 id="13-next-steps-로드맵">13) Next Steps (로드맵)</h2>
+
+<ol>
+  <li><strong>아웃박스 컨슈머</strong> 도입 및 재시도/백오프</li>
+  <li><strong>Lua 스크립트</strong>에 락/타임아웃/복원 로직 보강</li>
+  <li><strong>AOF+복제/센티넬</strong> 운영화</li>
+  <li><strong>메트릭/알람</strong>: 대기열 길이·대기시간·타임아웃률·에러율</li>
+  <li>트래픽 증가 시 <strong>Streams</strong> 도입 검토(컨슈머 그룹 기반), 더 커지면 <strong>Kafka</strong> 병행</li>
+</ol>
+
+<hr />
+
+<h3 id="부록-a-코드-스니펫개념">부록 A. 코드 스니펫(개념)</h3>
+
+<p><strong>DB → Outbox 트랜잭션</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="o">(</span><span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">category</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">MatchingQueue</span> <span class="n">q</span> <span class="o">=</span> <span class="n">matchingQueueRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span>
+        <span class="nc">MatchingQueue</span><span class="o">.</span><span class="na">waiting</span><span class="o">(</span><span class="n">userId</span><span class="o">,</span> <span class="n">category</span><span class="o">)</span>
+    <span class="o">);</span>
+    <span class="n">outboxRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="nc">OutboxEvent</span><span class="o">.</span><span class="na">enqueue</span><span class="o">(</span><span class="n">q</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">category</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Outbox Consumer → Redis</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="nc">OutboxEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">key</span> <span class="o">=</span> <span class="s">"mq:"</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getCategory</span><span class="o">();</span>
+    <span class="c1">// 중복 방지</span>
+    <span class="nc">Boolean</span> <span class="n">ok</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="na">setIfAbsent</span><span class="o">(</span><span class="s">"user:"</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getUserId</span><span class="o">()</span> <span class="o">+</span> <span class="s">":queued"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">,</span> <span class="nc">Duration</span><span class="o">.</span><span class="na">ofMinutes</span><span class="o">(</span><span class="mi">10</span><span class="o">));</span>
+    <span class="k">if</span> <span class="o">(</span><span class="nc">Boolean</span><span class="o">.</span><span class="na">TRUE</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">ok</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">redis</span><span class="o">.</span><span class="na">zAdd</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getEnqueuedAt</span><span class="o">().</span><span class="na">toEpochSecond</span><span class="o">(</span><span class="nc">ZoneOffset</span><span class="o">.</span><span class="na">UTC</span><span class="o">),</span> <span class="n">e</span><span class="o">.</span><span class="na">getQueueId</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="n">outboxRepository</span><span class="o">.</span><span class="na">markProcessed</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p>이번 설계는 “<strong>현재 요구(저지연)</strong>”와 “<strong>미래 요구(운영/분석/복구/확장)</strong>”를 동시에 충족시키기 위한 <strong>균형점</strong>을 찾는 과정이었다.
+<strong>DB+Redis 하이브리드</strong>는 그 균형점 위에서 <strong>실무적으로 검증된 길</strong>이며, MVP에서 시작해 <strong>Streams/Kafka</strong>로 확장 가능한 <strong>진화 경로</strong>를 갖는다.
+친구하자의 성격(실시간 매칭 + 장기 운영/분석 필요)에 <strong>정합한 선택</strong>이라고 생각한다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/java/2025-08-25-queue-int/" class="flip-title"><span>[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</span></a>  <time class="faded fine" datetime="2025-08-25T00:00:00+00:00">25 Aug 2025</time></li>                        <li class="h4">  <a href="/til/2025-08-23-til/" class="flip-title"><span>[TIL] A/B 테스트</span></a>  <time class="faded fine" datetime="2025-08-23T00:00:00+00:00">23 Aug 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-08-17-diary/" class="flip-title"><span>[친구하자] Hidden Technical Debt in Machine Learning Systems</span></a>  <time class="faded fine" datetime="2025-08-17T00:00:00+00:00">17 Aug 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (6)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (61)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnan0silver.github.io&count_bg=%23E786D8&title_bg=%237624DD&icon=waze.svg&icon_color=%23E7E7E7&title=%EC%A1%B0%ED%9A%8C%EC%88%98&edge_flat=false" alt="조회수 배치" width="120" height="20" loading="lazy"/></a>
+  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

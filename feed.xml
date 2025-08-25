@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-08-25T01:23:56+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-08-25T06:18:23+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-08-25T01:23:18+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-08-25T06:17:39+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
   <li><a href="#-record란-java-14">record란?</a></li>
   <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
   <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
@@ -239,7 +239,384 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 <h2 id="마무리">마무리</h2>
 
-<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[TIL] A/B 테스트</title><link href="https://nan0silver.github.io/til/2025-08-23-til/" rel="alternate" type="text/html" title="[TIL] A/B 테스트" /><published>2025-08-23T00:00:00+00:00</published><updated>2025-08-23T00:36:49+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-08-23-til/"><![CDATA[<blockquote>
+<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-08-25T06:17:39+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
+  <li><a href="#문제-배경">문제 배경</a></li>
+  <li><a href="#tldr">TL;DR</a></li>
+  <li><a href="#1-내가-왜-이런-고민을-하게-됐나-맥락">1. 내가 왜 이런 고민을 하게 됐나</a></li>
+  <li><a href="#2-현재-구현의-문제-정리-redis-단독일-때">2. 현재 구현의 문제 정리 (Redis 단독일 때)</a></li>
+  <li><a href="#3-하이브리드-설계-원칙">3. 하이브리드 설계 원칙</a></li>
+  <li><a href="#4-개선된-데이터-흐름">4. 개선된 데이터 흐름</a></li>
+  <li><a href="#5-redis-자료구조-선택과-이유">5. Redis 자료구조 선택과 이유</a></li>
+  <li><a href="#6-원자적-매칭-lua-스크립트-예시개념">6. 원자적 매칭: Lua 스크립트 예시(개념)</a></li>
+  <li><a href="#7-복구-메커니즘서버-재기동장애-대비">7. 복구 메커니즘(서버 재기동/장애 대비)</a></li>
+  <li><a href="#8-스키마인덱스-설계">8. 스키마/인덱스 설계</a></li>
+  <li><a href="#9-시스템-구성개념-아키텍처">9. 시스템 구성(개념 아키텍처)</a></li>
+  <li><a href="#10-실무에서의-선택지-비교">10. 실무에서의 선택지 비교</a></li>
+  <li><a href="#11-테스트운영-시나리오">11. 테스트/운영 시나리오</a></li>
+  <li><a href="#12-내가-배운-점--선택의-근거">12. 내가 배운 점 &amp; 선택의 근거</a></li>
+  <li><a href="#13-next-steps-로드맵">13. Next Steps (로드맵)</a></li>
+  <li><a href="#부록-a-코드-스니펫개념">부록 A. 코드 스니펫(개념)</a></li>
+</ul>
+
+<blockquote>
+  <p>“대기열=실시간성, 기록/분석/복구=영속성.”
+이 두 욕심을 동시에 만족시키려다 보니 하이브리드(DB+Redis)가 자연스럽게 답이 되었다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="문제-배경">문제 배경</h2>
+
+<ul>
+  <li>친구하자 구현 중 핵심인 통화 매칭 부분을 구현하는 중이였다.</li>
+  <li>초반 설계에서는 Redis만 사용해서 구현하기로 하여 하고있었는데, 이렇게 하면 대기열 기록이 되지않아 나중에 시스템 분석 및 복구에 어려움이 있어보였다.</li>
+  <li>따라서 DB와 함께 구현하는 방식이 많이 사용되는 방식인지, 어떤 부분에 장단점이 있고 고려해야하는 부분은 어떤 것인지 궁금했다.</li>
+  <li>또한 관련되서 더 심화된 기술은 어떤 것이 있는지 알아보고싶었다.</li>
+</ul>
+
+<hr />
+
+<h2 id="tldr">TL;DR</h2>
+
+<ul>
+  <li><strong>문제의식</strong>: Redis만 쓰면 빠르지만 휘발성·운영/분석/복구가 약하다. DB만 쓰면 영속적이지만 지연·경합에 취약하다.</li>
+  <li><strong>결론</strong>: <strong>DB(사실의 원천, 이력/분석/복구) + Redis(실시간 대기열/매칭)</strong> 를 분리한 하이브리드 구조.</li>
+  <li><strong>실무 팁</strong>: 아웃박스 패턴으로 <strong>이중 쓰기 일관성</strong>, Redis <strong>ZSET</strong>+<strong>Lua</strong>로 <strong>원자적 매칭</strong>, <strong>멱등키/TTL/청소잡/AOF+복제</strong>로 운영 내구성 확보.</li>
+  <li><strong>대안</strong>: 규모·요구사항에 따라 Redis Streams, RabbitMQ, Kafka, SQS, Postgres SKIP LOCKED도 선택지.</li>
+</ul>
+
+<hr />
+
+<h2 id="1-내가-왜-이런-고민을-하게-됐나-맥락">1) 내가 왜 이런 고민을 하게 됐나 (맥락)</h2>
+
+<p>친구하자는 <strong>1분 내 매칭</strong> 같은 <strong>저지연 실시간성</strong>이 핵심이다. 그래서 처음엔 <strong>Redis 단독</strong>이 끌렸다.
+하지만 곧바로 다음 현실에 부딪혔다.</p>
+
+<ul>
+  <li><strong>휘발성 vs 영속성</strong>: Redis는 빠르지만(메모리) 장애/재시작 시 <strong>데이터 유실</strong> 리스크.</li>
+  <li><strong>운영/디버깅</strong>: 매칭 실패/타임아웃/취소 이슈를 <strong>재현</strong>하고 <strong>원인 추적</strong>하려면 <strong>이력 테이블</strong>이 꼭 필요.</li>
+  <li><strong>통계/제품개선</strong>: 카테고리별 대기시간·매칭률·시간대 부하 같은 <strong>지표</strong>는 DB가 편하다.</li>
+  <li><strong>복구 시나리오</strong>: 서버/Redis 재기동 시 <strong>“누가 줄에 서 있었나?”</strong> 를 복원하려면 DB에 근거가 있어야 한다.</li>
+</ul>
+
+<p>결국 “<strong>실시간 처리=Redis</strong>”, “<strong>이력/분석/복구=DB</strong>”로 역할을 나누는 하이브리드가 합리적이라는 결론에 도달했다.</p>
+
+<hr />
+
+<h2 id="2-현재-구현의-문제-정리-redis-단독일-때">2) 현재 구현의 문제 정리 (Redis 단독일 때)</h2>
+
+<ol>
+  <li><strong>데이터 영속성</strong>: 서버/Redis 재시작 시 대기열 유실 가능</li>
+  <li><strong>통계/분석 취약</strong>: 매칭 히스토리/패턴 분석이 어려움</li>
+  <li><strong>디버깅 곤란</strong>: 실패 재현·CS 대응 근거 부족</li>
+  <li><strong>복구 어려움</strong>: 장애 시 대기열/상태 재구성이 힘듦</li>
+</ol>
+
+<hr />
+
+<h2 id="3-하이브리드-설계-원칙">3) 하이브리드 설계 원칙</h2>
+
+<h3 id="1-단일-출처single-source-of-truth-sot-명확화">(1) 단일 출처(Single Source of Truth, SOT) 명확화</h3>
+
+<ul>
+  <li><strong>대기열의 SOT = Redis</strong> (실시간 기준)</li>
+  <li><strong>이력/상태의 SOT = DB</strong> (사실 기준)</li>
+</ul>
+
+<h3 id="2-일관성-경계-정의">(2) 일관성 경계 정의</h3>
+
+<ul>
+  <li>두 저장소에 <strong>언제/어떤 순서로</strong> 쓸지 고정.</li>
+  <li>권장: <strong>DB 트랜잭션</strong>으로 <code class="language-plaintext highlighter-rouge">matching_queue(WAITING)</code> + <strong>아웃박스 이벤트</strong>를 함께 기록 → 워커가 <strong>Redis에 enqueue</strong> (재시도 가능)</li>
+</ul>
+
+<h3 id="3-멱등성중복-방지">(3) 멱등성/중복 방지</h3>
+
+<ul>
+  <li>사용자 중복 등록 방지: <code class="language-plaintext highlighter-rouge">SET user:{id}:queued 1 NX EX 600</code></li>
+  <li>매칭 결과 멱등 업데이트: <code class="language-plaintext highlighter-rouge">match_id</code> <strong>UNIQUE</strong> 제약 등</li>
+</ul>
+
+<hr />
+
+<h2 id="4-개선된-데이터-흐름">4) 개선된 데이터 흐름</h2>
+
+<ol>
+  <li><strong>참가(Enqueue)</strong>:</li>
+</ol>
+
+<ul>
+  <li>DB 트랜잭션: <code class="language-plaintext highlighter-rouge">matching_queue(WAITING)</code> + <code class="language-plaintext highlighter-rouge">outbox(enqueue_event)</code></li>
+  <li>Outbox Consumer가 Redis <strong>ZSET</strong>에 등록</li>
+</ul>
+
+<ol>
+  <li><strong>매칭(Match)</strong>:</li>
+</ol>
+
+<ul>
+  <li>Redis에서 <strong>원자적으로 두 명을 Pop</strong> (Lua 스크립트)</li>
+  <li>DB에 <code class="language-plaintext highlighter-rouge">MATCHING → MATCHED</code> 상태 전이(멱등)</li>
+</ul>
+
+<ol>
+  <li><strong>통계/리포트</strong>:</li>
+</ol>
+
+<ul>
+  <li>DB 이력 기반 분석/대시보드</li>
+</ul>
+
+<ol>
+  <li><strong>실시간 조회</strong>:</li>
+</ol>
+
+<ul>
+  <li>Redis 대기열 길이, 평균 대기시간(샘플링) 즉시 응답</li>
+</ul>
+
+<hr />
+
+<h2 id="5-redis-자료구조-선택과-이유">5) Redis 자료구조 선택과 이유</h2>
+
+<ul>
+  <li>
+    <p><strong>ZSET(정렬집합)</strong> 권장</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">score = 대기 시작 시각 or 우선순위</code></li>
+      <li><strong>공정성(FCFS)/우선순위</strong>/타임아웃 처리 쉽다.</li>
+      <li>꺼낼 때 <strong>원자성</strong>을 위해 Lua 스크립트 사용.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>덧붙임</strong></p>
+
+    <ul>
+      <li><strong>SET NX</strong>로 중복 등록 방지</li>
+      <li><strong>HASH</strong>(<code class="language-plaintext highlighter-rouge">queue:{queueId}</code>)로 사용자·카테고리·TTL 메타 저장</li>
+      <li><strong>TTL + 정리잡</strong>으로 고아 항목 청소</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>단순 리스트(LLEN/LPOP)는 쉽지만 공정성·타임아웃·중복 제어를 구조적으로 풀기 어렵다.
+<strong>Streams</strong>는 컨슈머 그룹/ACK로 내구성이 좋지만 매칭 “쌍짓기”엔 별도 설계가 필요.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="6-원자적-매칭-lua-스크립트-예시개념">6) 원자적 매칭: Lua 스크립트 예시(개념)</h2>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- KEYS[1]=zset key, ARGV[1]=score(복원용)</span>
+<span class="kd">local</span> <span class="n">k</span> <span class="o">=</span> <span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="kd">local</span> <span class="n">a</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZRANGE'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">if</span> <span class="o">#</span><span class="n">a</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">then</span> <span class="k">return</span> <span class="p">{}</span> <span class="k">end</span>
+<span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZREM'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="kd">local</span> <span class="n">b</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZRANGE'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">if</span> <span class="o">#</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">then</span>
+  <span class="c1">-- 짝이 없으면 되돌리기</span>
+  <span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZADD'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+  <span class="k">return</span> <span class="p">{}</span>
+<span class="k">end</span>
+<span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZREM'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1">-- 필요 시 락/마킹/TTL 등 추가</span>
+<span class="k">return</span> <span class="p">{</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>실전에서는 <strong>되돌리기/락/타임아웃/카테고리 필터</strong>까지 넣어야 한다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="7-복구-메커니즘서버-재기동장애-대비">7) 복구 메커니즘(서버 재기동/장애 대비)</h2>
+
+<ul>
+  <li>Redis는 <strong>AOF(append-only)</strong> + <strong>영속 볼륨</strong> + <strong>복제/센티넬</strong>로 내구성 강화</li>
+  <li>그래도 안전망으로 <strong>“최근 WAITING만 DB→Redis 재적재”</strong> 수행</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 서버 기동 시 안전 복구(개념)</span>
+<span class="nd">@PostConstruct</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">recoverQueuesFromDatabase</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">var</span> <span class="n">active</span> <span class="o">=</span> <span class="n">matchingQueueRepository</span><span class="o">.</span><span class="na">findByQueueStatusAndCreatedAtAfter</span><span class="o">(</span>
+        <span class="nc">QueueStatus</span><span class="o">.</span><span class="na">WAITING</span><span class="o">,</span>
+        <span class="nc">LocalDateTime</span><span class="o">.</span><span class="na">now</span><span class="o">().</span><span class="na">minusMinutes</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+    <span class="o">);</span>
+    <span class="n">active</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">queue</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="c1">// Redis 재적재 로직(ZSET + 메타 HSET 등)</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>운영에선 <strong>ApplicationRunner + 분산락</strong>으로 <strong>중복 복구 방지</strong>를 권장.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="8-스키마인덱스-설계">8) 스키마/인덱스 설계</h2>
+
+<p><strong>matching_queue</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">id, user_id, category, status(WAITING/MATCHING/MATCHED/EXPIRED/CANCELLED), created_at, updated_at</code></li>
+  <li>인덱스: <code class="language-plaintext highlighter-rouge">(status, created_at)</code>, <code class="language-plaintext highlighter-rouge">(user_id, status)</code></li>
+</ul>
+
+<p><strong>match_events</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">match_id(UNIQUE), user_a, user_b, started_at, ended_at, result, reason</code></li>
+  <li>멱등키: <code class="language-plaintext highlighter-rouge">match_id UNIQUE</code></li>
+</ul>
+
+<p><strong>outbox</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">event_id, type, payload, created_at, processed_at NULLABLE</code></li>
+  <li>워커가 <code class="language-plaintext highlighter-rouge">processed_at IS NULL</code>만 읽고 성공 시 채움(재시도 가능)</li>
+</ul>
+
+<hr />
+
+<h2 id="9-시스템-구성개념-아키텍처">9) 시스템 구성(개념 아키텍처)</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[API] ──(Tx)──&gt; [DB] ──(Outbox)──&gt; [Outbox Consumer] ──&gt; [Redis ZSET]
+  │                                              │
+  └──────────────(조회/이력)──────────────────────┘
+
+[Matching Worker] &lt;──&gt; [Redis ZSET + Lua + TTL]
+      │                            │
+      └────(멱등 업데이트)──────&gt; [DB: 상태/이력]
+</code></pre></div></div>
+
+<p>운영 필수 체크:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Redis <strong>AOF + 복제/센티넬</strong></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>아웃박스/재시도</strong>로 DB↔Redis <strong>일관성 보장</strong></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>SET NX/TTL/청소잡/분산락</strong></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>대기열 길이/평균 대기시간/타임아웃률/매칭 성공률</strong> 메트릭</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>enqueue/match/cancel/timeout</strong> 이벤트 로깅</li>
+</ul>
+
+<hr />
+
+<h2 id="10-실무에서의-선택지-비교">10) 실무에서의 선택지 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>시나리오</th>
+      <th>권장 스택</th>
+      <th>핵심 포인트</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>저지연 실시간 매칭 (MVP~중규모)</strong></td>
+      <td><strong>Redis (ZSET/Streams) + DB</strong></td>
+      <td>속도·복잡도 밸런스 좋음</td>
+    </tr>
+    <tr>
+      <td><strong>내구성 높은 큐/재처리/다중소비자</strong></td>
+      <td><strong>Redis Streams</strong> or <strong>RabbitMQ</strong> + DB</td>
+      <td>ACK/리트라이/가시성 타임아웃 쉬움</td>
+    </tr>
+    <tr>
+      <td><strong>대규모 분산/리플레이</strong></td>
+      <td><strong>Kafka</strong> (+ Redis 캐시)</td>
+      <td>파티셔닝·재처리 강점, 매칭 로직은 앱에서</td>
+    </tr>
+    <tr>
+      <td><strong>아주 단순/저QPS</strong></td>
+      <td><strong>Postgres</strong> (<code class="language-plaintext highlighter-rouge">FOR UPDATE SKIP LOCKED</code>)</td>
+      <td>운영 단순, 지연·경합은 감수</td>
+    </tr>
+    <tr>
+      <td><strong>관리형 간단 큐</strong></td>
+      <td><strong>SQS</strong></td>
+      <td>쉬움+내구성, 초저지연 매칭은 보완 필요</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>친구하자의 <strong>“1분 내 매칭·공정성·운영 용이성”</strong> 기준에선 현재 <strong>Redis ZSET + DB</strong>가 가장 적합. 추후 트래픽 급증 시 <strong>Streams/Kafka</strong>로 확장 가능.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="11-테스트운영-시나리오">11) 테스트/운영 시나리오</h2>
+
+<ul>
+  <li><strong>부하 테스트</strong>: 카테고리별 동시 1k~5k 등록, 평균/95p 대기시간, 매칭 성공률 측정</li>
+  <li><strong>경합 테스트</strong>: 동시 매칭 워커 2~10개, 중복 매칭/유실 여부</li>
+  <li><strong>장애 시나리오</strong>: Redis 재시작, 네트워크 분리, DB 쓰기 실패 시 재시도 동작</li>
+  <li><strong>복구 리허설</strong>: DB→Redis 재적재 로직의 <strong>멱등성/중복 방지</strong> 검증</li>
+</ul>
+
+<hr />
+
+<h2 id="12-내가-배운-점--선택의-근거">12) 내가 배운 점 &amp; 선택의 근거</h2>
+
+<ul>
+  <li>실시간성만 보면 Redis 단독이 매력적이지만, <strong>운영·분석·복구</strong>까지 생각하면 <strong>DB 하이브리드</strong>가 필수.</li>
+  <li><strong>단일 출처</strong>를 나누고(<strong>대기열=Redis, 이력=DB</strong>), <strong>이중 쓰기 일관성</strong>(아웃박스/재시도)을 확보하면 MVP 이후에도 <strong>확장 가능한 길</strong>이 열린다.</li>
+  <li>Redis에선 <strong>ZSET + Lua</strong>가 <strong>공정성/타임아웃/원자성</strong>을 한 번에 잡는 실전 해법이었다.</li>
+</ul>
+
+<hr />
+
+<h2 id="13-next-steps-로드맵">13) Next Steps (로드맵)</h2>
+
+<ol>
+  <li><strong>아웃박스 컨슈머</strong> 도입 및 재시도/백오프</li>
+  <li><strong>Lua 스크립트</strong>에 락/타임아웃/복원 로직 보강</li>
+  <li><strong>AOF+복제/센티넬</strong> 운영화</li>
+  <li><strong>메트릭/알람</strong>: 대기열 길이·대기시간·타임아웃률·에러율</li>
+  <li>트래픽 증가 시 <strong>Streams</strong> 도입 검토(컨슈머 그룹 기반), 더 커지면 <strong>Kafka</strong> 병행</li>
+</ol>
+
+<hr />
+
+<h3 id="부록-a-코드-스니펫개념">부록 A. 코드 스니펫(개념)</h3>
+
+<p><strong>DB → Outbox 트랜잭션</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="o">(</span><span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">category</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">MatchingQueue</span> <span class="n">q</span> <span class="o">=</span> <span class="n">matchingQueueRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span>
+        <span class="nc">MatchingQueue</span><span class="o">.</span><span class="na">waiting</span><span class="o">(</span><span class="n">userId</span><span class="o">,</span> <span class="n">category</span><span class="o">)</span>
+    <span class="o">);</span>
+    <span class="n">outboxRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="nc">OutboxEvent</span><span class="o">.</span><span class="na">enqueue</span><span class="o">(</span><span class="n">q</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">category</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Outbox Consumer → Redis</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="nc">OutboxEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">key</span> <span class="o">=</span> <span class="s">"mq:"</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getCategory</span><span class="o">();</span>
+    <span class="c1">// 중복 방지</span>
+    <span class="nc">Boolean</span> <span class="n">ok</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="na">setIfAbsent</span><span class="o">(</span><span class="s">"user:"</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getUserId</span><span class="o">()</span> <span class="o">+</span> <span class="s">":queued"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">,</span> <span class="nc">Duration</span><span class="o">.</span><span class="na">ofMinutes</span><span class="o">(</span><span class="mi">10</span><span class="o">));</span>
+    <span class="k">if</span> <span class="o">(</span><span class="nc">Boolean</span><span class="o">.</span><span class="na">TRUE</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">ok</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">redis</span><span class="o">.</span><span class="na">zAdd</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getEnqueuedAt</span><span class="o">().</span><span class="na">toEpochSecond</span><span class="o">(</span><span class="nc">ZoneOffset</span><span class="o">.</span><span class="na">UTC</span><span class="o">),</span> <span class="n">e</span><span class="o">.</span><span class="na">getQueueId</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="n">outboxRepository</span><span class="o">.</span><span class="na">markProcessed</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p>이번 설계는 “<strong>현재 요구(저지연)</strong>”와 “<strong>미래 요구(운영/분석/복구/확장)</strong>”를 동시에 충족시키기 위한 <strong>균형점</strong>을 찾는 과정이었다.
+<strong>DB+Redis 하이브리드</strong>는 그 균형점 위에서 <strong>실무적으로 검증된 길</strong>이며, MVP에서 시작해 <strong>Streams/Kafka</strong>로 확장 가능한 <strong>진화 경로</strong>를 갖는다.
+친구하자의 성격(실시간 매칭 + 장기 운영/분석 필요)에 <strong>정합한 선택</strong>이라고 생각한다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[TIL] A/B 테스트</title><link href="https://nan0silver.github.io/til/2025-08-23-til/" rel="alternate" type="text/html" title="[TIL] A/B 테스트" /><published>2025-08-23T00:00:00+00:00</published><updated>2025-08-23T00:36:49+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-08-23-til/"><![CDATA[<blockquote>
   <p>📝 <strong>TIL (Today I Learned)</strong><br />
 📅 <strong>작성일</strong>: 2025-08-23<br />
 🔄 <strong>최종 수정</strong>: 2025년 08월 25일</p>
@@ -424,8 +801,12 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li><strong>빈도주의</strong>: p-value/신뢰구간, 고정 표본 설계에 적합.</li>
   <li><strong>베이즈</strong>: “B가 A보다 좋을 확률”처럼 <strong>직관적 해석</strong>과 <strong>순차적 의사결정</strong>에 유리.
 둘 다 장단점 있어요—팀의 익숙함/툴링에 따라 선택.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-08-25T01:23:18+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
-  <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-08-25T06:17:39+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
+  <li><a href="#1-오늘-읽은-내용-요약">1. 오늘 읽은 내용 요약</a></li>
+  <li><a href="#2-나에게-필요했던-이유--친구하자-적용-사례">2. 나에게 필요했던 이유 — <strong>친구하자</strong> 적용 사례</a></li>
+  <li><a href="#3-느낀-점--인사이트">3. 느낀 점 &amp; 인사이트</a></li>
+  <li><a href="#4-다음-액션-아이템">4. 다음 액션 아이템</a></li>
+  <li><a href="#-핵심-요약">💡 핵심 요약</a></li>
 </ul>
 
 <hr />
@@ -1891,142 +2272,4 @@ Prometheus가 메트릭 데이터를 모으고, Grafana가 이를 시각적으�
 <blockquote>
   <p>실제로는 <strong>EFK + Structured Logging</strong> 조합이 요즘 가장 트렌디한 방식입니다.
 로그를 JSON 형태로 남기고, Fluentd를 통해 Elasticsearch에 넣은 뒤 Kibana로 시각화하면 아주 강력한 로그 분석 시스템이 됩니다.</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-22 TIL]]></summary></entry><entry><title type="html">[TIL] RPM, 앙상블, 비용, WSL, Windows Subsystem for Linux …</title><link href="https://nan0silver.github.io/til/2025-05-21-til/" rel="alternate" type="text/html" title="[TIL] RPM, 앙상블, 비용, WSL, Windows Subsystem for Linux …" /><published>2025-05-21T00:00:00+00:00</published><updated>2025-05-27T03:53:22+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-21-til/"><![CDATA[<blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/58">#58</a><br />
-📅 <strong>작성일</strong>: 2025-05-21<br />
-🔄 <strong>최종 수정</strong>: 2025년 05월 27일</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<h3 id="1️⃣-rpm-앙상블-비용">1️⃣ <strong>RPM, 앙상블, 비용</strong></h3>
-
-<ul>
-  <li>
-    <p><strong>RPM (Revolutions Per Minute)</strong></p>
-
-    <ul>
-      <li>원래는 하드디스크나 모터 회전 속도를 나타내는 단위지만, **웹/앱 분석에서는 보통 “Revenue Per Mille(천 회당 수익)”**로 사용된다.</li>
-      <li>
-        <p>광고 업계에서는 광고가 <strong>1,000번 노출될 때 수익이 얼마인지</strong>를 뜻함.</p>
-
-        <ul>
-          <li>예: RPM = 5라면, 1,000번 광고 노출 시 수익이 $5</li>
-        </ul>
-      </li>
-      <li>수익성을 평가하는 지표로 자주 사용됨.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>앙상블 (Ensemble)</strong></p>
-
-    <ul>
-      <li>머신러닝에서 여러 모델을 조합해 <strong>예측 정확도를 향상시키는 기법</strong></li>
-      <li>
-        <p>주요 기법:</p>
-
-        <ul>
-          <li><strong>Bagging</strong> (ex. Random Forest)</li>
-          <li><strong>Boosting</strong> (ex. XGBoost, LightGBM)</li>
-          <li><strong>Stacking</strong> (모델들의 출력값을 다시 모델에 입력)</li>
-        </ul>
-      </li>
-      <li>하나의 모델보다 성능이 좋을 가능성이 높고, 특히 Kaggle 등 실전 대회에서 필수 전략임.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>비용 (Cost)</strong></p>
-
-    <ul>
-      <li>머신러닝에서의 비용은 보통 <strong>오차(error)를 수치화한 값</strong></li>
-      <li>
-        <p>목표는 이 비용(Cost)을 <strong>최소화하는 모델 파라미터를 찾는 것</strong></p>
-
-        <ul>
-          <li>예: 회귀에서는 <strong>MSE (Mean Squared Error)</strong></li>
-          <li>분류에서는 <strong>Cross Entropy</strong> 같은 손실 함수 사용</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="2️⃣-wsl-windows-subsystem-for-linux-2">2️⃣ <strong>WSL, Windows Subsystem for Linux 2</strong></h3>
-
-<ul>
-  <li>
-    <p><strong>WSL (Windows Subsystem for Linux)</strong></p>
-
-    <ul>
-      <li>Windows에서 Linux 환경을 사용할 수 있게 해주는 Microsoft의 호환 계층</li>
-      <li>
-        <p>WSL2는 WSL1과 달리 <strong>실제 Linux 커널을 가상 머신 위에 구동</strong>시킴</p>
-
-        <ul>
-          <li>더 빠르고 호환성이 뛰어남 (ex. Docker 사용 가능)</li>
-        </ul>
-      </li>
-      <li>개발자가 <strong>Mac 없이도 Unix/Linux 개발 환경</strong>을 Windows에서 구성할 수 있어 유용함</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>UNIX vs MacOS vs WSL2 vs Tux</strong></p>
-
-    <ul>
-      <li><strong>UNIX</strong>: OS 설계 철학/표준, 안정성과 보안성으로 서버 환경에서 많이 사용됨</li>
-      <li><strong>MacOS</strong>: BSD 계열의 UNIX 기반 OS → 터미널 환경이 UNIX 명령어와 유사</li>
-      <li><strong>WSL2</strong>: 윈도우 안에서 리눅스 환경을 제공해, 리눅스 개발 도구 사용 가능</li>
-      <li><strong>Tux</strong>: 리눅스의 공식 마스코트 펭귄 이름 🐧</li>
-    </ul>
-  </li>
-</ul>
-
-<blockquote>
-  <p>요약: Mac이나 Linux 서버가 없더라도 WSL2를 쓰면 로컬에서 UNIX 개발 환경을 손쉽게 세팅할 수 있다.</p>
-</blockquote>
-
-<hr />
-
-<h3 id="3️⃣-phoenix-vs-snowflake">3️⃣ <strong>Phoenix vs Snowflake</strong></h3>
-
-<ul>
-  <li>이 두 용어는 <strong>데이터 웨어하우스 시스템</strong> 및 <strong>클라우드 아키텍처</strong> 문맥에서 자주 사용됨.</li>
-</ul>
-
-<h4 id="-phoenix-server-불사조-서버">🔥 Phoenix Server (불사조 서버)</h4>
-
-<ul>
-  <li>시스템을 중단하지 않고 <strong>점진적으로 설정, 코드, 인프라를 바꾸는 방식</strong></li>
-  <li>“죽지 않는 서버”</li>
-  <li>실시간으로 코드를 수정하거나, 배포 중에도 유저에게 영향을 주지 않음</li>
-  <li>하지만 시간이 지날수록 <strong>기술 부채</strong>가 쌓일 수 있음</li>
-</ul>
-
-<h4 id="️-snowflake-server-눈송이-서버">❄️ Snowflake Server (눈송이 서버)</h4>
-
-<ul>
-  <li>수작업 설정이 많고, <strong>특정 환경에서만 작동하는 불안정한 서버</strong></li>
-  <li>배포마다 설정이 조금씩 달라서, 한번 망가지면 <strong>복원하기 어려움</strong></li>
-  <li>
-    <p>반의어로 <strong>Immutable Infrastructure</strong> (변경 불가능한 인프라)가 선호됨</p>
-
-    <ul>
-      <li>예: 컨테이너 기반 인프라 (Docker + CI/CD)</li>
-    </ul>
-  </li>
-</ul>
-
-<blockquote>
-  <p>요약:</p>
-
-  <ul>
-    <li><strong>Phoenix 서버</strong>는 장기적으로 위험이 쌓이고,</li>
-    <li><strong>Snowflake 서버</strong>는 설정 의존도가 높아 불안정하며,</li>
-    <li>**이 둘을 피하기 위해 IaC(Infrastructure as Code)**와 컨테이너, 배포 자동화를 쓰는 것이 최신 DevOps 흐름이다.</li>
-  </ul>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-21 TIL]]></summary></entry></feed>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-22 TIL]]></summary></entry></feed>
