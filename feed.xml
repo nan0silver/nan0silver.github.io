@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-08-25T06:18:23+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-08-25T06:24:14+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-08-25T06:17:39+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-08-25T06:23:33+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
   <li><a href="#-record란-java-14">record란?</a></li>
   <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
   <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
@@ -239,7 +239,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 <h2 id="마무리">마무리</h2>
 
-<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-08-25T06:17:39+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
+<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-08-25T06:23:33+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
   <li><a href="#문제-배경">문제 배경</a></li>
   <li><a href="#tldr">TL;DR</a></li>
   <li><a href="#1-내가-왜-이런-고민을-하게-됐나-맥락">1. 내가 왜 이런 고민을 하게 됐나</a></li>
@@ -342,38 +342,36 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <h2 id="4-개선된-데이터-흐름">4) 개선된 데이터 흐름</h2>
 
 <ol>
-  <li><strong>참가(Enqueue)</strong>:</li>
+  <li>
+    <p><strong>참가(Enqueue)</strong>:</p>
+
+    <ul>
+      <li>DB 트랜잭션: <code class="language-plaintext highlighter-rouge">matching_queue(WAITING)</code> + <code class="language-plaintext highlighter-rouge">outbox(enqueue_event)</code></li>
+      <li>Outbox Consumer가 Redis <strong>ZSET</strong>에 등록</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>매칭(Match)</strong>:</p>
+
+    <ul>
+      <li>Redis에서 <strong>원자적으로 두 명을 Pop</strong> (Lua 스크립트)</li>
+      <li>DB에 <code class="language-plaintext highlighter-rouge">MATCHING → MATCHED</code> 상태 전이(멱등)</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>통계/리포트</strong>:</p>
+
+    <ul>
+      <li>DB 이력 기반 분석/대시보드</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>실시간 조회</strong>:</p>
+    <ul>
+      <li>Redis 대기열 길이, 평균 대기시간(샘플링) 즉시 응답</li>
+    </ul>
+  </li>
 </ol>
-
-<ul>
-  <li>DB 트랜잭션: <code class="language-plaintext highlighter-rouge">matching_queue(WAITING)</code> + <code class="language-plaintext highlighter-rouge">outbox(enqueue_event)</code></li>
-  <li>Outbox Consumer가 Redis <strong>ZSET</strong>에 등록</li>
-</ul>
-
-<ol>
-  <li><strong>매칭(Match)</strong>:</li>
-</ol>
-
-<ul>
-  <li>Redis에서 <strong>원자적으로 두 명을 Pop</strong> (Lua 스크립트)</li>
-  <li>DB에 <code class="language-plaintext highlighter-rouge">MATCHING → MATCHED</code> 상태 전이(멱등)</li>
-</ul>
-
-<ol>
-  <li><strong>통계/리포트</strong>:</li>
-</ol>
-
-<ul>
-  <li>DB 이력 기반 분석/대시보드</li>
-</ul>
-
-<ol>
-  <li><strong>실시간 조회</strong>:</li>
-</ol>
-
-<ul>
-  <li>Redis 대기열 길이, 평균 대기시간(샘플링) 즉시 응답</li>
-</ul>
 
 <hr />
 
@@ -801,7 +799,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li><strong>빈도주의</strong>: p-value/신뢰구간, 고정 표본 설계에 적합.</li>
   <li><strong>베이즈</strong>: “B가 A보다 좋을 확률”처럼 <strong>직관적 해석</strong>과 <strong>순차적 의사결정</strong>에 유리.
 둘 다 장단점 있어요—팀의 익숙함/툴링에 따라 선택.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-08-25T06:17:39+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-08-25T06:23:33+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
   <li><a href="#1-오늘-읽은-내용-요약">1. 오늘 읽은 내용 요약</a></li>
   <li><a href="#2-나에게-필요했던-이유--친구하자-적용-사례">2. 나에게 필요했던 이유 — <strong>친구하자</strong> 적용 사례</a></li>
   <li><a href="#3-느낀-점--인사이트">3. 느낀 점 &amp; 인사이트</a></li>

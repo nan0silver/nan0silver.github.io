@@ -46,7 +46,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-08-25T06:17:39+00:00","datePublished":"2025-08-25T00:00:00+00:00","description":"친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다.","headline":"[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-08-25-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-08-25-diary/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-08-25T06:23:33+00:00","datePublished":"2025-08-25T00:00:00+00:00","description":"친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다.","headline":"[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-08-25-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-08-25-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -186,7 +186,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-08-25T06:18:23+00:00',
+    INDEX_KEY: 'index--2025-08-25T06:24:14+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -236,7 +236,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       }
     },
     "datePublished": "2025-08-25T00:00:00+00:00",
-    "dateModified": "2025-08-25T06:17:39+00:00",
+    "dateModified": "2025-08-25T06:23:33+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://nan0silver.github.io/projectdiary/2025-08-25-diary/"
@@ -525,38 +525,36 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <h2 id="4-개선된-데이터-흐름">4) 개선된 데이터 흐름</h2>
 
 <ol>
-  <li><strong>참가(Enqueue)</strong>:</li>
+  <li>
+    <p><strong>참가(Enqueue)</strong>:</p>
+
+    <ul>
+      <li>DB 트랜잭션: <code class="language-plaintext highlighter-rouge">matching_queue(WAITING)</code> + <code class="language-plaintext highlighter-rouge">outbox(enqueue_event)</code></li>
+      <li>Outbox Consumer가 Redis <strong>ZSET</strong>에 등록</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>매칭(Match)</strong>:</p>
+
+    <ul>
+      <li>Redis에서 <strong>원자적으로 두 명을 Pop</strong> (Lua 스크립트)</li>
+      <li>DB에 <code class="language-plaintext highlighter-rouge">MATCHING → MATCHED</code> 상태 전이(멱등)</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>통계/리포트</strong>:</p>
+
+    <ul>
+      <li>DB 이력 기반 분석/대시보드</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>실시간 조회</strong>:</p>
+    <ul>
+      <li>Redis 대기열 길이, 평균 대기시간(샘플링) 즉시 응답</li>
+    </ul>
+  </li>
 </ol>
-
-<ul>
-  <li>DB 트랜잭션: <code class="language-plaintext highlighter-rouge">matching_queue(WAITING)</code> + <code class="language-plaintext highlighter-rouge">outbox(enqueue_event)</code></li>
-  <li>Outbox Consumer가 Redis <strong>ZSET</strong>에 등록</li>
-</ul>
-
-<ol>
-  <li><strong>매칭(Match)</strong>:</li>
-</ol>
-
-<ul>
-  <li>Redis에서 <strong>원자적으로 두 명을 Pop</strong> (Lua 스크립트)</li>
-  <li>DB에 <code class="language-plaintext highlighter-rouge">MATCHING → MATCHED</code> 상태 전이(멱등)</li>
-</ul>
-
-<ol>
-  <li><strong>통계/리포트</strong>:</li>
-</ol>
-
-<ul>
-  <li>DB 이력 기반 분석/대시보드</li>
-</ul>
-
-<ol>
-  <li><strong>실시간 조회</strong>:</li>
-</ol>
-
-<ul>
-  <li>Redis 대기열 길이, 평균 대기시간(샘플링) 즉시 응답</li>
-</ul>
 
 <hr />
 
