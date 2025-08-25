@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-08-25T01:12:14+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-08-25T01:23:56+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-08-25T01:11:29+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-08-25T01:23:18+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
   <li><a href="#-record란-java-14">record란?</a></li>
   <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
   <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
@@ -239,7 +239,192 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 <h2 id="마무리">마무리</h2>
 
-<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-08-25T01:11:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
+<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[TIL] A/B 테스트</title><link href="https://nan0silver.github.io/til/2025-08-23-til/" rel="alternate" type="text/html" title="[TIL] A/B 테스트" /><published>2025-08-23T00:00:00+00:00</published><updated>2025-08-23T00:36:49+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-08-23-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+📅 <strong>작성일</strong>: 2025-08-23<br />
+🔄 <strong>최종 수정</strong>: 2025년 08월 25일</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<h1 id="ab-테스트란">A/B 테스트란?</h1>
+
+<ul>
+  <li><strong>정의</strong>: 같은 목표를 두고 <strong>두 버전(A=기준, B=변경안)</strong> 을 <strong>동시에 무작위로</strong> 사용자에게 나눠 보여준 뒤, <strong>어느 쪽이 더 성과가 좋은지</strong> 통계적으로 비교하는 실험.</li>
+  <li><strong>목적</strong>: 느낌/감이 아니라 <strong>데이터로 의사결정</strong>. 버튼 문구, 화면 배치, 가격 제안, 푸시 타이밍 등 “실제로” 지표가 개선되는지 검증.</li>
+</ul>
+
+<h1 id="기본-용어">기본 용어</h1>
+
+<ul>
+  <li><strong>변수(Variant)</strong>: A(컨트롤) vs B(실험안). 3개 이상이면 A/B/n.</li>
+  <li><strong>지표(Metric)</strong>: 실험의 <strong>목표</strong>(예: 등록 전환율, 1일차 잔존, 통화 완료율).</li>
+  <li><strong>유의수준 α</strong>: 오탐 허용(보통 0.05).</li>
+  <li><strong>검정력 Power(1−β)</strong>: 진짜 차이가 있을 때 잡아낼 확률(보통 0.8).</li>
+  <li><strong>MDE</strong>(최소 검출 가능 효과): “이 정도 차이는 나야 성공이라 본다” 최소 개선 폭(예: +2%p).</li>
+</ul>
+
+<h1 id="어떻게-하는가-실전-절차-7단계">어떻게 하는가 (실전 절차 7단계)</h1>
+
+<ol>
+  <li>
+    <p><strong>가설 세우기</strong></p>
+
+    <ul>
+      <li>예) “대기시간 안내 문구를 바꾸면 <strong>매칭 시작 클릭률</strong>이 ↑한다.”</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>지표 딱 하나만 주지표로</strong></p>
+
+    <ul>
+      <li>주지표: 매칭 시작 클릭률</li>
+      <li>보조지표(가드레일): 이탈률, 고객불만 접수율 등 “부작용 체크”</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>표본수(기간) 계획</strong></p>
+
+    <ul>
+      <li>대략의 규칙: <strong>차이를 작게 보고 싶을수록, 베이스 전환율이 낮을수록 → 더 많은 트래픽/기간</strong>이 필요.</li>
+      <li>
+        <p>(참고 공식 – <strong>이해만</strong>):</p>
+
+        <ul>
+          <li>
+            <p>비율형 지표의 각 그룹 표본수 n ≈ <code class="language-plaintext highlighter-rouge">2 * (zα/2 + zβ)^2 * p̄(1-p̄) / Δ^2</code></p>
+
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">p̄</code>: 기준 전환율 추정, <code class="language-plaintext highlighter-rouge">Δ</code>: 검증하고 싶은 차이(절대값)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>무작위 배정 &amp; 고정</strong></p>
+
+    <ul>
+      <li><strong>사용자 단위</strong>로 50/50 랜덤 분배(세션/페이지뷰 단위 X).</li>
+      <li>실험 중엔 <strong>변형하지 말기</strong>(중간에 디자인을 또 바꾸지 않기).</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>정확한 로깅</strong></p>
+
+    <ul>
+      <li>모든 이벤트에 <code class="language-plaintext highlighter-rouge">experiment_id</code>, <code class="language-plaintext highlighter-rouge">variant</code>(A/B) 파라미터를 함께 로깅.</li>
+      <li><strong>SRM</strong>(sample ratio mismatch) 체크: 50/50이 크게 깨지면(예: 60/40) 실험 무효.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>기간 고정 &amp; ‘엿보기’ 금지</strong></p>
+
+    <ul>
+      <li><strong>종료 조건 전</strong>에 유의성만 보고 중단하면 거짓 양성↑.</li>
+      <li>꼭 필요하면 <strong>사전 정의된 순차검정</strong>(group-sequential)이나 <strong>베이즈 접근</strong>을 사용.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>해석 &amp; 롤아웃</strong></p>
+
+    <ul>
+      <li>통계 유의 + <strong>실무 유의</strong>(임팩트/비용/부작용) 함께 본 뒤, 점진적 롤아웃(예: 10%→30%→100%).</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="ga4앱에서-바로-쓰는-구성-팁">GA4/앱에서 바로 쓰는 구성 팁</h1>
+
+<ul>
+  <li>
+    <p>이벤트 설계 예:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">event_name: start_match_click</code></li>
+      <li>
+        <p>파라미터:</p>
+
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">experiment_id: "wait_copy_v1"</code></li>
+          <li><code class="language-plaintext highlighter-rouge">variant: "A"|"B"</code></li>
+          <li>사용자 ID 또는 설치 ID(사용자 기준 배정 유지)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>빅쿼리 연동</strong> 시 쿼리로 <code class="language-plaintext highlighter-rouge">variant</code>별 전환율 비교가 쉬워짐.</li>
+  <li><strong>SRM 빠른 체킹</strong>: 실시간 대시보드에서 A/B 트래픽이 49–51% 근처인지 확인.</li>
+</ul>
+
+<h1 id="ab-테스트-3가지-예시">A/B 테스트 3가지 예시</h1>
+
+<ol>
+  <li>
+    <p><strong>대기시간 안내 문구</strong></p>
+
+    <ul>
+      <li>A: “곧 연결됩니다”</li>
+      <li>B: “평균 30초 내 연결됩니다 · 취소 가능”</li>
+      <li>주지표: <code class="language-plaintext highlighter-rouge">start_match_click / 방문자</code></li>
+      <li>가드레일: 즉시 이탈률, 고객불만</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>통화 후 피드백 수집 방식</strong></p>
+
+    <ul>
+      <li>A: 5점 척도만</li>
+      <li>B: 5점 + “칭찬 한마디” 한줄 텍스트</li>
+      <li>주지표: 피드백 제출률</li>
+      <li>가드레일: 피드백 작성 시간, 다음날 재방문율</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>안심케어(유료) 소개 타이밍</strong></p>
+
+    <ul>
+      <li>A: 첫 3회 통화 후 페이월</li>
+      <li>B: 첫 1회 통화 후 페이월</li>
+      <li>주지표: 7일 내 결제 전환율</li>
+      <li>가드레일: 7일 유지율, 평균 통화시간 변화</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="설계-체크리스트-붙여넣어-쓰기">설계 체크리스트 (붙여넣어 쓰기)</h1>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />가설과 <strong>주지표 1개</strong> 명확</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>MDE</strong>와 <strong>기간/표본수</strong> 사전 정의</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>사용자 단위 랜덤</strong> 배정 + 고정</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>experiment_id / variant</strong> 로깅</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>SRM</strong> 모니터링</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />중도 엿보기 금지(혹은 순차검정 채택)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />통계 유의 + <strong>비즈니스 유의</strong> 함께 판단</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />롤아웃/롤백 플랜 준비</li>
+</ul>
+
+<h1 id="자주-하는-실수">자주 하는 실수</h1>
+
+<ul>
+  <li>여러 요소를 한꺼번에 바꾸기 → <strong>원인 분리 불가</strong></li>
+  <li>주지표를 여러 개로 두기 → 해석 혼란</li>
+  <li>세션/페이지뷰 단위 랜덤화 → 사용자 경험이 섞여 <strong>오염</strong></li>
+  <li>주중/주말, 마케팅 캠페인 겹침 <strong>시즌성 영향</strong> 무시</li>
+  <li>결과가 좋게 나올 때까지만 <strong>계속 엿보기</strong></li>
+</ul>
+
+<h1 id="참고-빈도주의-vs-베이즈">(참고) 빈도주의 vs 베이즈</h1>
+
+<ul>
+  <li><strong>빈도주의</strong>: p-value/신뢰구간, 고정 표본 설계에 적합.</li>
+  <li><strong>베이즈</strong>: “B가 A보다 좋을 확률”처럼 <strong>직관적 해석</strong>과 <strong>순차적 의사결정</strong>에 유리.
+둘 다 장단점 있어요—팀의 익숙함/툴링에 따라 선택.</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-08-25T01:23:18+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
   <li><a href="#1-jjwt-라이브러리-버전에-따른-변경-사항">JJWT 라이브러리 버전에 따른 변경 사항</a></li>
 </ul>
 
@@ -1844,75 +2029,4 @@ Prometheus가 메트릭 데이터를 모으고, Grafana가 이를 시각적으�
     <li><strong>Snowflake 서버</strong>는 설정 의존도가 높아 불안정하며,</li>
     <li>**이 둘을 피하기 위해 IaC(Infrastructure as Code)**와 컨테이너, 배포 자동화를 쓰는 것이 최신 DevOps 흐름이다.</li>
   </ul>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-21 TIL]]></summary></entry><entry><title type="html">[TIL] Ollama</title><link href="https://nan0silver.github.io/til/2025-05-20-til/" rel="alternate" type="text/html" title="[TIL] Ollama" /><published>2025-05-20T00:00:00+00:00</published><updated>2025-05-22T05:33:07+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-20-til/"><![CDATA[<blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/57">#57</a><br />
-📅 <strong>작성일</strong>: 2025-05-20<br />
-🔄 <strong>최종 수정</strong>: 2025년 05월 22일</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<ul>
-  <li>
-    <p>Ollama</p>
-
-    <ul>
-      <li>로컬 머신에서 대규모 언어 모델(LLM)을 실행할 수 있게 해주는 오픈소스 도구</li>
-      <li>주요 특징
-        <ul>
-          <li>로컬 실행: 모든 처리가 로컬에서 이루어져 개인정보 보호가 가능</li>
-          <li>다양한 모델 지원: Llama, Mistral, Gemma 등 다양한 오픈소스 모델 지원</li>
-          <li>간단한 API: REST API를 통해 쉽게 통합 가능</li>
-          <li>CPU/GPU 지원: 다양한 하드웨어에서 실행 가능</li>
-          <li>크로스 플랫폼: Windows, macOS, Linux 지원</li>
-        </ul>
-      </li>
-      <li>Ollama 시작하기
-        <ol>
-          <li>ollama.com에서 OS에 맞는 버전 다운로드 및 설치</li>
-          <li>터미널에서 모델 다운로드 (예: ollama pull llama3.2)</li>
-          <li>모델 실행 (예: ollama run llama3.2)</li>
-        </ol>
-      </li>
-      <li>
-        <p>API 사용 방법</p>
-
-        <ul>
-          <li>Ollama는 http://localhost:11434에서 REST API를 제공합니다:</li>
-          <li>
-            <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1"># Python 예제
-</span>  <span class="kn">import</span> <span class="nn">requests</span>
-
-  <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://localhost:11434/api/generate'</span><span class="p">,</span>
-      <span class="n">json</span><span class="o">=</span><span class="p">{</span>
-          <span class="s">'model'</span><span class="p">:</span> <span class="s">'llama3.2'</span><span class="p">,</span>
-          <span class="s">'prompt'</span><span class="p">:</span> <span class="s">'백엔드 개발에 필요한 기술은?'</span><span class="p">,</span>
-          <span class="s">'stream'</span><span class="p">:</span> <span class="bp">False</span>
-      <span class="p">})</span>
-
-  <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()[</span><span class="s">'response'</span><span class="p">])</span>
-</code></pre></div>            </div>
-          </li>
-          <li>
-            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// JavaScript 예제</span>
-<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:11434/api/generate</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span> <span class="p">},</span>
-  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-    <span class="na">model</span><span class="p">:</span> <span class="dl">"</span><span class="s2">llama3.2</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">prompt</span><span class="p">:</span> <span class="dl">"</span><span class="s2">백엔드 개발에 필요한 기술은?</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">stream</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="p">}),</span>
-<span class="p">})</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">));</span>
-</code></pre></div>            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-20 TIL]]></summary></entry></feed>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><summary type="html"><![CDATA[2025-05-21 TIL]]></summary></entry></feed>
