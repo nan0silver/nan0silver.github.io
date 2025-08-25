@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[JAVA] Queue는 왜 안되고 Queue는 왜 될까? | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="“왜 Queue는 안 되는데 Queue는 되지?&quot;에 대한 이유를 설명합니다." />
+<meta property="og:description" content="“왜 Queue는 안 되는데 Queue는 되지?&quot;에 대한 이유를 설명합니다." />
+<link rel="canonical" href="https://nan0silver.github.io/java/2025-08-25-queue-int/" />
+<meta property="og:url" content="https://nan0silver.github.io/java/2025-08-25-queue-int/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-08-25T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-08-25T01:11:29+00:00","datePublished":"2025-08-25T00:00:00+00:00","description":"“왜 Queue는 안 되는데 Queue는 되지?&quot;에 대한 이유를 설명합니다.","headline":"[JAVA] Queue는 왜 안되고 Queue는 왜 될까?","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2025-08-25-queue-int/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/java/2025-08-25-queue-int/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/java/2025-08-25-queue-int/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-08-25T01:12:14+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[JAVA] Queue는 왜 안되고 Queue는 왜 될까?",
+    "description": "&quot;왜 Queue는 안 되는데 Queue는 되지?&quot;에 대한 이유를 설명합니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2025-08-25T00:00:00+00:00",
+    "dateModified": "2025-08-25T01:11:29+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/java/2025-08-25-queue-int/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/java/2025-08-25-queue-int/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "java",
+        "item": "https://nan0silver.github.io/java/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[JAVA] Queue는 왜 안되고 Queue는 왜 될까?",
+        "item": "https://nan0silver.github.io/java/2025-08-25-queue-int/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/java/">java</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-08-25-queue-int</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-java-queue-int" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [JAVA] Queue는 왜 안되고 Queue는 왜 될까?
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-08-25T00:00:00+00:00">25 Aug 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      “왜 Queue<int>는 안 되는데 Queue<Integer>는 되지?"에 대한 이유를 설명합니다.</Integer></int>
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#-record란-java-14">record란?</a></li>
+  <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
+  <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
+  <li><a href="#3️⃣-record의-내부-동작">record 내부 동작</a></li>
+  <li><a href="#4️⃣-record의-주요-기능">record 주요 기능</a></li>
+  <li><a href="#5️⃣-record를-언제-사용할까">record 사용 방법</a></li>
+  <li><a href="#6️⃣-정리">정리</a></li>
+</ul>
+
+<hr />
+
+<h1 id="왜-queueint는-안-되고-queueinteger는-될까">왜 <code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>는 안 되고 <code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code>는 될까?</h1>
+
+<p>Java 제네릭을 쓰다 보면 한 번씩 멈칫하게 되는 질문입니다. “왜 <code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>는 안 되는데 <code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code>는 되지?” 이 글은 그 이유를 **타입 소거(type erasure)**와 <strong>참조 타입만 허용하는 제네릭 규칙</strong>에서 차근차근 풀어 설명합니다. 실전 성능 팁과 BFS 같은 알고리즘 코드 패턴도 함께 담았습니다.</p>
+
+<hr />
+
+<h2 id="정리">정리</h2>
+
+<ul>
+  <li><strong>제네릭 타입 인자(T)는 참조 타입만 가능</strong>합니다. (<code class="language-plaintext highlighter-rouge">T extends Object</code>가 암묵적 전제)</li>
+  <li><strong>타입 소거</strong>로 인해 런타임에는 제네릭 정보가 지워지고, 메서드 시그니처가 사실상 <code class="language-plaintext highlighter-rouge">Object</code> 기반으로 동작합니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">int</code> 같은 <strong>원시 타입(primitive)</strong> 은 <code class="language-plaintext highlighter-rouge">Object</code>가 아니므로 <strong>제네릭 인자로 쓸 수 없습니다.</strong> ⇒ <code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code> 금지</li>
+  <li><strong>배열은 참조 타입</strong>이므로 <code class="language-plaintext highlighter-rouge">Queue&lt;int[]&gt;</code>는 가능합니다. (배열 자체는 객체)</li>
+  <li>알고리즘 큐에는 <strong><code class="language-plaintext highlighter-rouge">int[]</code> 또는 <code class="language-plaintext highlighter-rouge">record/class</code>로 상태를 묶어</strong> 넣으면 <strong>박싱 없이</strong> 빠르고 메모리 친화적입니다.</li>
+</ul>
+
+<hr />
+
+<h2 id="1-제네릭은-왜-쓰나">1) 제네릭은 왜 쓰나?</h2>
+
+<p>컴파일 타임에 타입을 체크해 <strong>타입 안전성</strong>을 높이고, 캐스트를 없애 <strong>가독성</strong>과 <strong>유지보수성</strong>을 올리기 위해서입니다.
+<a href="https://nan0silver.github.io/java/2025-01-29-generic/">제네릭에 대해 정리한 블로그 글 참고</a></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 제네릭 없음: 캐스트 필요</span>
+<span class="nc">List</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"hi"</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">x</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+<span class="c1">// 제네릭 사용: 컴파일 타임에 체크, 캐스트 제거</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">list2</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"hi"</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">y</span> <span class="o">=</span> <span class="n">list2</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-타입-소거type-erasure란">2) 타입 소거(type erasure)란?</h2>
+
+<p>자바의 제네릭은 <strong>런타임에 사라집니다.</strong> 컴파일러가 제네릭 코드를 검사·보정한 뒤, <strong>실행 시점에는 타입 매개변수를 지운(Object로 대체한)</strong> 형태로 동작합니다.</p>
+
+<p>개념적으로 다음과 같습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 원본</span>
+<span class="kd">class</span> <span class="nc">Box</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="no">T</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span> <span class="cm">/* ... */</span> <span class="o">}</span>
+  <span class="no">T</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span> <span class="cm">/* ... */</span> <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// (개념적) 컴파일 후 - T가 지워지고 Object 중심으로</span>
+<span class="kd">class</span> <span class="nc">Box</span> <span class="o">{</span>
+  <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="nc">Object</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span> <span class="cm">/* ... */</span> <span class="o">}</span>
+  <span class="nc">Object</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span> <span class="cm">/* ... */</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>컴파일러가 <strong>캐스트 삽입</strong>과 <strong>오토박싱/언박싱</strong>으로 타입 안전을 보정해 줍니다(필요 시 브리지 메서드도 생성).</p>
+
+<hr />
+
+<h2 id="3-t는-왜-참조-타입만-될-수-있나">3) T는 왜 ‘참조 타입’만 될 수 있나?</h2>
+
+<p>자바 언어 규칙상 **모든 타입 매개변수는 암묵적으로 <code class="language-plaintext highlighter-rouge">T extends Object</code>**로 취급됩니다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Integer</code>, <code class="language-plaintext highlighter-rouge">String</code>, <code class="language-plaintext highlighter-rouge">MyClass</code> 같은 <strong>참조 타입(reference type)</strong> 은 <code class="language-plaintext highlighter-rouge">Object</code>의 하위 타입이므로 OK.</li>
+  <li><code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">double</code>, <code class="language-plaintext highlighter-rouge">boolean</code> 같은 <strong>원시 타입(primitive)</strong> 은 <code class="language-plaintext highlighter-rouge">Object</code>가 아니므로 <strong>제네릭 타입 인자로 금지</strong>됩니다.</li>
+</ul>
+
+<p>즉, <code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>는 <strong>언어 차원에서 성립하지 않습니다.</strong></p>
+
+<blockquote>
+  <p>포인트: <strong>타입 소거 후의 세계는 <code class="language-plaintext highlighter-rouge">Object</code> 중심</strong>이라, 그 세계로 들어올 수 있는 타입(=참조 타입)만 제네릭 인자가 될 수 있습니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="4-그렇다면-queueinteger는-왜-되나">4) 그렇다면 <code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code>는 왜 되나?</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Integer</code>는 <code class="language-plaintext highlighter-rouge">int</code>의 <strong>래퍼 클래스</strong>(참조 타입)입니다. 제네릭 인자로 쓸 수 있고, <code class="language-plaintext highlighter-rouge">q.offer(1)</code>처럼 쓰면 <strong>오토박싱</strong>이 자동으로 일어나 <code class="language-plaintext highlighter-rouge">int -&gt; Integer</code>가 됩니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Queue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayDeque</span><span class="o">&lt;&gt;();</span>
+<span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>      <span class="c1">// int가 Integer로 오토박싱</span>
+<span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span> <span class="c1">// Integer가 int로 언박싱</span>
+</code></pre></div></div>
+
+<p>단, 이 과정은 <strong>객체 할당/GC 비용</strong>이 들 수 있습니다. 대량 연산에서는 체감될 수 있어요.</p>
+
+<hr />
+
+<h2 id="5-queueint는-왜-가능한가">5) <code class="language-plaintext highlighter-rouge">Queue&lt;int[]&gt;</code>는 왜 가능한가?</h2>
+
+<p>배열은 <strong>항상 참조 타입</strong>입니다. 원소가 원시 타입이든 말든, <strong>배열 자체는 힙 객체</strong>니까 제네릭 인자로 사용 가능해요.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayDeque</span><span class="o">&lt;&gt;();</span>
+<span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">});</span> <span class="c1">// 배열 참조를 넣음</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-성능메모리-관점-오토박싱을-피하자">6) 성능·메모리 관점: 오토박싱을 피하자</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code>는 <strong>원소마다 <code class="language-plaintext highlighter-rouge">Integer</code> 객체</strong>가 생길 수 있어</p>
+
+    <ul>
+      <li>오토박싱/언박싱 비용</li>
+      <li>객체 헤더 + 포인터 오버헤드</li>
+      <li>GC 부담
+이 발생합니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>알고리즘(특히 BFS/DFS, 다익스트라 등)에서는 <strong>박싱을 피하는 게 유리</strong>합니다.</p>
+  </li>
+</ul>
+
+<h3 id="권장-1-int로-상태-묶기-가볍고-빠름">권장 1) <code class="language-plaintext highlighter-rouge">int[]</code>로 상태 묶기 (가볍고 빠름)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// {r, c, breakUsed, dist}</span>
+<span class="nc">ArrayDeque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayDeque</span><span class="o">&lt;&gt;();</span>
+<span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">});</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+<span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+</code></pre></div></div>
+
+<h3 id="권장-2-record로-가독성--java-16">권장 2) <code class="language-plaintext highlighter-rouge">record</code>로 가독성 ↑ (Java 16+)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">record</span> <span class="nf">State</span><span class="o">(</span><span class="kt">int</span> <span class="n">r</span><span class="o">,</span> <span class="kt">int</span> <span class="n">c</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">,</span> <span class="kt">int</span> <span class="n">d</span><span class="o">)</span> <span class="o">{}</span>
+<span class="nc">ArrayDeque</span><span class="o">&lt;</span><span class="nc">State</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayDeque</span><span class="o">&lt;&gt;();</span>
+<span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="nc">State</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">));</span>
+<span class="nc">State</span> <span class="n">s</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>팁: 큐 구현체는 **<code class="language-plaintext highlighter-rouge">ArrayDeque</code>**가 일반적으로 <code class="language-plaintext highlighter-rouge">LinkedList</code>보다 빠르고 메모리 효율적입니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="7-실전-faq">7) 실전 FAQ</h2>
+
+<p><strong>Q1. “런타임에 진짜 <code class="language-plaintext highlighter-rouge">Queue&lt;Object&gt;</code>로 동작하나요?”</strong>
+개념적으로는 <strong>그와 유사</strong>합니다(타입 소거). 실제로는 컴파일러가 캐스트/브리지 메서드 등으로 타입 안전을 맞춰 줍니다. 핵심은 <strong>런타임에 타입 인자 정보가 없고 <code class="language-plaintext highlighter-rouge">Object</code> 중심으로 호출</strong>된다는 점입니다.</p>
+
+<p><strong>Q2. 그렇다면 왜 컴파일러가 <code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>도 자동으로 <code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code>로 바꿔주지 않나요?</strong>
+언어 규칙상 <strong>제네릭 인자는 참조 타입만</strong> 허용합니다. 타입 인자 자체를 바꾸는 묵시적 변환은 <strong>설계상 모호성과 함정</strong>(예: <code class="language-plaintext highlighter-rouge">T</code>가 원시로 선언됐는데 실제론 참조로 다뤄짐)을 낳기에 금지됩니다. 명시적으로 <code class="language-plaintext highlighter-rouge">Integer</code>를 써 주세요.</p>
+
+<p><strong>Q3. 원시 타입 컬렉션이 꼭 필요합니다. 방법이 없나요?</strong>
+표준 라이브러리는 제공하지 않지만, <strong>전용 라이브러리</strong>가 있습니다.</p>
+
+<ul>
+  <li>fastutil (<code class="language-plaintext highlighter-rouge">IntArrayList</code>, <code class="language-plaintext highlighter-rouge">IntOpenHashSet</code>, …)</li>
+  <li>HPPC (High Performance Primitive Collections)</li>
+  <li>Eclipse Collections (primitive collections)
+대량 데이터·고성능 시나리오에서 유용합니다.</li>
+</ul>
+
+<hr />
+
+<h2 id="8-bfs-예시-박싱-없이-깔끔하게">8) BFS 예시: 박싱 없이 깔끔하게</h2>
+
+<p>아래는 “벽을 한 번만 부술 수 있는” BFS 패턴입니다. <code class="language-plaintext highlighter-rouge">int[]</code>로 상태를 묶어 <strong>박싱을 회피</strong>합니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">dr</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">};</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">dc</span> <span class="o">=</span> <span class="o">{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">};</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+        <span class="nc">StringTokenizer</span> <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringTokenizer</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+        <span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+        <span class="kt">int</span> <span class="no">M</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">N</span><span class="o">][</span><span class="no">M</span><span class="o">];</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="no">M</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="n">map</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kt">boolean</span><span class="o">[][][]</span> <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="no">N</span><span class="o">][</span><span class="no">M</span><span class="o">][</span><span class="mi">2</span><span class="o">];</span>
+        <span class="nc">ArrayDeque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayDeque</span><span class="o">&lt;&gt;();</span>
+        <span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">});</span> <span class="c1">// r, c, breakUsed, dist</span>
+        <span class="n">visited</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(!</span><span class="n">q</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="kt">int</span><span class="o">[]</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">2</span><span class="o">],</span> <span class="n">d</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">r</span> <span class="o">==</span> <span class="no">N</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">==</span> <span class="no">M</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">d</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span> <span class="o">}</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">nr</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">dr</span><span class="o">[</span><span class="n">k</span><span class="o">],</span> <span class="n">nc</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="n">dc</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">nr</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">nr</span> <span class="o">&gt;=</span> <span class="no">N</span> <span class="o">||</span> <span class="n">nc</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">nc</span> <span class="o">&gt;=</span> <span class="no">M</span><span class="o">)</span> <span class="k">continue</span><span class="o">;</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">map</span><span class="o">[</span><span class="n">nr</span><span class="o">][</span><span class="n">nc</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(!</span><span class="n">visited</span><span class="o">[</span><span class="n">nr</span><span class="o">][</span><span class="n">nc</span><span class="o">][</span><span class="n">b</span><span class="o">])</span> <span class="o">{</span> <span class="n">visited</span><span class="o">[</span><span class="n">nr</span><span class="o">][</span><span class="n">nc</span><span class="o">][</span><span class="n">b</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span> <span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nr</span><span class="o">,</span> <span class="n">nc</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="o">});</span> <span class="o">}</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">visited</span><span class="o">[</span><span class="n">nr</span><span class="o">][</span><span class="n">nc</span><span class="o">][</span><span class="mi">1</span><span class="o">])</span> <span class="o">{</span>
+                    <span class="n">visited</span><span class="o">[</span><span class="n">nr</span><span class="o">][</span><span class="n">nc</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span> <span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nr</span><span class="o">,</span> <span class="n">nc</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="o">});</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ans</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="9-한눈에-요약-체크리스트">9) 한눈에 요약 체크리스트</h2>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />제네릭 인자 = <strong>참조 타입만</strong> (암묵적 <code class="language-plaintext highlighter-rouge">T extends Object</code>)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />런타임 = <strong>타입 소거</strong> (제네릭 정보 없음, <code class="language-plaintext highlighter-rouge">Object</code> 중심)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code> ❌, <code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code> ⭕</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">Queue&lt;int[]&gt;</code> ⭕ (배열은 참조 타입)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />성능 중요: <strong>박싱 피하기</strong> (가능하면 <code class="language-plaintext highlighter-rouge">int[]</code>/<code class="language-plaintext highlighter-rouge">record</code> 사용)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />큐 구현체는 보통 <strong><code class="language-plaintext highlighter-rouge">ArrayDeque</code></strong> 추천</li>
+</ul>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-08-17-diary/" class="flip-title"><span>[친구하자] Hidden Technical Debt in Machine Learning Systems</span></a>  <time class="faded fine" datetime="2025-08-17T00:00:00+00:00">17 Aug 2025</time></li>                        <li class="h4">  <a href="/til/2025-08-16-til/" class="flip-title"><span>[TIL] Hidden Technical Debt in Machine Learning Systems</span></a>  <time class="faded fine" datetime="2025-08-16T00:00:00+00:00">16 Aug 2025</time></li>                        <li class="h4">  <a href="/miscellaneous/til/2025-07-20-flask-fastAPI/" class="flip-title"><span>[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교</span></a>  <time class="faded fine" datetime="2025-07-20T00:00:00+00:00">20 Jul 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (11)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (6)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (61)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnan0silver.github.io&count_bg=%23E786D8&title_bg=%237624DD&icon=waze.svg&icon_color=%23E7E7E7&title=%EC%A1%B0%ED%9A%8C%EC%88%98&edge_flat=false" alt="조회수 배치" width="120" height="20" loading="lazy"/></a>
+  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

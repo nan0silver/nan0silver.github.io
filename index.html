@@ -44,7 +44,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-08-24T07:12:38+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-08-25T01:11:29+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -184,7 +184,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-08-24T07:13:26+00:00',
+    INDEX_KEY: 'index--2025-08-25T01:12:14+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -554,6 +554,76 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 
 
+<article id="post-java-queue-int" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/java/2025-08-25-queue-int/" class="flip-title">
+        [JAVA] Queue는 왜 안되고 Queue는 왜 될까?
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-08-25T00:00:00+00:00">25 Aug 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      “왜 Queue<int>는 안 되는데 Queue<Integer>는 되지?"에 대한 이유를 설명합니다.</Integer></int>
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#-record란-java-14">record란?</a></li>
+  <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
+  <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
+  <li><a href="#3️⃣-record의-내부-동작">record 내부 동작</a></li>
+  <li><a href="#4️⃣-record의-주요-기능">record 주요 기능</a></li>
+  <li><a href="#5️⃣-record를-언제-사용할까">record 사용 방법</a></li>
+  <li><a href="#6️⃣-정리">정리</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/java/2025-08-25-queue-int/">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -574,10 +644,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 24 Aug 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 25 Aug 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-08-24T07:12:38+00:00">2025-08-24</time>
+              <time datetime="2025-08-25T01:11:29+00:00">2025-08-25</time>
             </span>
           
         
@@ -1205,84 +1275,6 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/til/2025-05-20-til/">[TIL] Ollama</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-projectdiary-diary" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/projectdiary/2025-05-15-diary/" class="flip-title">
-        [컨퍼런스] AI Tech 2025 참석 후기
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-05-15T00:00:00+00:00">15 May 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 24 Aug 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-08-24T07:12:38+00:00">2025-08-24</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      AI Tech 2025 컨퍼런스에서 확인한 LLMOps, A2A, Embodied AI 등 최신 AI 시스템 운영 전략
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#1-행사-개요">1. 행사 개요</a></li>
-  <li><a href="#2-키노트-요약-embodied-ai와-기술-진화-방향">2. 키노트 요약: Embodied AI와 기술 진화 방향</a></li>
-  <li><a href="#3-a2a-시대의-도래-agent-협업-구조">3. A2A 시대의 도래: Agent 협업 구조</a></li>
-  <li><a href="#4-ai는-이제-운영의-시대">4. AI는 이제 운영의 시대</a></li>
-  <li><a href="#5-실무-적용-사례-및-전략">5. 실무 적용 사례 및 전략</a></li>
-  <li><a href="#6-기술-인사이트">6. 기술 인사이트</a></li>
-  <li><a href="#7-결론">7. 결론</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/projectdiary/2025-05-15-diary/">[컨퍼런스] AI Tech 2025 참석 후기</a>
 
       </p>
     </footer>
