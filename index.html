@@ -44,7 +44,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-08-25T06:23:33+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-08-31T05:07:52+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -184,7 +184,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-08-25T06:24:14+00:00',
+    INDEX_KEY: 'index--2025-08-31T05:08:33+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -557,6 +557,79 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
+      <a href="/projectdiary/2025-08-29-diary/" class="flip-title">
+        배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지 — 실전 회고
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-08-29T00:00:00+00:00">29 Aug 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 31 Aug 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-08-31T05:07:52+00:00">2025-08-31</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>“카테고리별 2인 랜덤 매칭”을 스케줄러로 돌리는데, 한 카테고리에서 예외가 나면 <strong>전체 루프가 롤백</strong>될 수 있다는 얘기를 듣고 시작된 고민.
+그 결과 <code class="language-plaintext highlighter-rouge">@Transactional(propagation = REQUIRES_NEW)</code>를 채택했고, 다시 <strong>self-invocation</strong> 문제를 만나 리팩터링까지 갔던 과정을 정리했습니다.</p>
+</blockquote>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-08-29-diary/">배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지 — 실전 회고</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
       <a href="/projectdiary/2025-08-25-diary/" class="flip-title">
         [친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나
       </a>
@@ -571,6 +644,14 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
         
           
           
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 31 Aug 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-08-31T05:07:52+00:00">2025-08-31</time>
+            </span>
           
         
       
@@ -650,6 +731,14 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
         
           
           
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 31 Aug 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-08-31T05:07:52+00:00">2025-08-31</time>
+            </span>
           
         
       
@@ -789,10 +878,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 25 Aug 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 31 Aug 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-08-25T06:23:33+00:00">2025-08-25</time>
+              <time datetime="2025-08-31T05:07:52+00:00">2025-08-31</time>
             </span>
           
         
@@ -1199,81 +1288,6 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/til/2025-05-23-til/">[TIL] Grafana &amp; Prometheus, Rolling Policy, 시계열 메트릭</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-til-til" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/til/2025-05-22-til/" class="flip-title">
-        [TIL] 메테리얼 디자인 vs 쿠퍼티노 디자인, Log vs Metrics, Structure…
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-05-22T00:00:00+00:00">22 May 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 27 May 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-05-27T03:54:57+00:00">2025-05-27</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      2025-05-22 TIL
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/59">#59</a><br />
-📅 <strong>작성일</strong>: 2025-05-22<br />
-🔄 <strong>최종 수정</strong>: 2025년 05월 27일</p>
-</blockquote>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/til/2025-05-22-til/">[TIL] 메테리얼 디자인 vs 쿠퍼티노 디자인, Log vs Metrics, Structure…</a>
 
       </p>
     </footer>
