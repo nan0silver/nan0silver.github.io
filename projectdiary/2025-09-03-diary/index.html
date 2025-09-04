@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Algorithm] 너비 우선 탐색 &amp; 다익스트라 알고리즘 | NAHYUN BLOG</title>
+<title>[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편) | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Algorithm] 너비 우선 탐색 &amp; 다익스트라 알고리즘" />
+<meta property="og:title" content="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)" />
-<meta property="og:description" content="Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)" />
-<link rel="canonical" href="https://nan0silver.github.io/algorithm/2024-07-15-day6/" />
-<meta property="og:url" content="https://nan0silver.github.io/algorithm/2024-07-15-day6/" />
+<meta name="description" content="친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다." />
+<meta property="og:description" content="친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-07-15T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-09-03T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Algorithm] 너비 우선 탐색 &amp; 다익스트라 알고리즘" />
+<meta property="twitter:title" content="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-09-04T08:00:55+00:00","datePublished":"2024-07-15T00:00:00+00:00","description":"Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)","headline":"[Algorithm] 너비 우선 탐색 &amp; 다익스트라 알고리즘","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2024-07-15-day6/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/algorithm/2024-07-15-day6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-09-04T08:00:55+00:00","datePublished":"2025-09-03T00:00:00+00:00","description":"친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.","headline":"[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-09-03-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-09-03-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/algorithm/2024-07-15-day6/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[Algorithm] 너비 우선 탐색 &amp;amp; 다익스트라 알고리즘",
-    "description": "Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)
+    "headline": "[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)",
+    "description": "친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2024-07-15T00:00:00+00:00",
+    "datePublished": "2025-09-03T00:00:00+00:00",
     "dateModified": "2025-09-04T08:00:55+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/algorithm/2024-07-15-day6/"
+      "@id": "https://nan0silver.github.io/projectdiary/2025-09-03-diary/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/algorithm/2024-07-15-day6/" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "algorithm",
-        "item": "https://nan0silver.github.io/algorithm/"
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[Algorithm] 너비 우선 탐색 &amp; 다익스트라 알고리즘",
-        "item": "https://nan0silver.github.io/algorithm/2024-07-15-day6/"
+        "name": "[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)",
+        "item": "https://nan0silver.github.io/projectdiary/2025-09-03-diary/"
       }
     ]
   }
@@ -358,14 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/algorithm/">algorithm</a>
+          <a href="/projectdiary/">projectdiary</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2024-07-15-day6</span>
+          <span>2025-09-03-diary</span>
         
       </li>
     
@@ -382,18 +382,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-algorithm-day6" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Algorithm] 너비 우선 탐색 &amp; 다익스트라 알고리즘
+        [친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2024-07-15T00:00:00+00:00">15 Jul 2024</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
+        <time datetime="2025-09-03T00:00:00+00:00">03 Sep 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -421,7 +421,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      Elice Algorithm Code Challenge - Day 6 (너비 우선 탐색)
+      친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.
 
     </p>
   
@@ -430,236 +430,240 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <p>목차</p>
-
-<ol>
-  <li><a href="#너비-우선-탐색-bfs">너비 우선 탐색 BFS</a></li>
-  <li><a href="#다익스트라-dijkstra-알고리즘">다익스트라 Dijkstra 알고리즘</a></li>
-</ol>
+    <blockquote>
+  <p>카테고리별 2인 매칭을 구현하며 실제로 쓴(또는 고민했던) 명령어들을 짧게 정리.
+예시 키는 <code class="language-plaintext highlighter-rouge">{cat:123}</code> 해시태그로 Redis Cluster 슬롯을 고정하는 패턴을 사용.</p>
+</blockquote>
 
 <hr />
 
-<h2 id="너비-우선-탐색-bfs">너비 우선 탐색 (BFS)</h2>
-
-<h3 id="bfs-breadth-first-search">BFS (Breadth First Search)</h3>
+<h2 id="zset-sorted-set--순번대기시간우선순위가-필요할-때">ZSET (Sorted Set) — 순번/대기시간/우선순위가 필요할 때</h2>
 
 <ul>
-  <li>하나의 정점으로부터 시작하여 차례대로 모든 정점들을 한 번씩 방문하는 것</li>
-  <li>루트 노드 (혹은 다른 임의의 노드)에서 시작해서 인접한 노드를 먼저 탐색하는 방법</li>
-  <li>두 노드 사이의 최단 경로 혹은 임의의 경로를 찾고 싶을 때 사용</li>
-</ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ZADD key score member [score member ...]</code>
+멤버 추가/갱신. <strong>score</strong>가 작을수록 앞쪽.</p>
 
-<h3 id="bfs의-특징">BFS의 특징</h3>
-
-<ul>
-  <li>재귀적으로 동작하는 DFS와 달리, BFS는 주로 큐(Queue) 사용</li>
-  <li>사이클이 있는 경우, 무한 루프에 빠지지 않도록 방문하는 방문 체크를 해주어야 함</li>
-  <li>물웅덩이에 돌멩이를 하나 던지면, 파동이 전체 방향으로 퍼져나가는 동심원의 형태로 탐색이 진행</li>
-</ul>
-
-<h3 id="bfs의-동작-순서">BFS의 동작 순서</h3>
-
-<ul>
-  <li><img src="/algorithm/image/day6_image.png" alt="Full-width image" /></li>
-</ul>
-
-<h3 id="bfs의-구현">BFS의 구현</h3>
-
-<ul>
-  <li>빈 큐 q 및 visited 배열 생성</li>
-  <li>시작 노드 ‘st’를 큐 q에 삽입</li>
-  <li>노드 ‘st’를 방문한 것으로 표시</li>
-  <li>큐 q가 비어있지 않은 동안 다음을 반복 :
-    <ul>
-      <li>큐의 맨 앞에서 요소를 꺼내 ‘now’에 저장</li>
-      <li>큐의 맨 앞의 요소를 제거</li>
-      <li>‘now’의 값을 출력하고 뒤에 공백을 붙임</li>
-      <li>노드 ‘now’의 인접 리스트 v에서 각 이웃 ‘next’에 대해
-        <ul>
-          <li>만약 ‘next’가 아직 방문하지 않은 노드인 경우 :
-            <ul>
-              <li>노드 ‘next’를 방문한 것으로 표시</li>
-              <li>‘next’를 큐 q에 넣음</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><img src="/algorithm/image/day6_image-1.png" alt="Full-width image" /></li>
-</ul>
-
-<h3 id="bfs의-시간복잡도">BFS의 시간복잡도</h3>
-
-<ul>
-  <li>V : 정점(노드)의 수, E : 간선의 수</li>
-  <li>인접 리스트로 표현된 그래프
-    <ul>
-      <li>O(V+E)</li>
-    </ul>
+    <pre><code class="language-redis">ZADD wait:z:{cat:123} 1725430000123 101
+</code></pre>
   </li>
   <li>
-    <p>인접 행렬로 표현된 그래프</p>
+    <p><code class="language-plaintext highlighter-rouge">ZRANGE key start stop [WITHSCORES | REV | BYSCORE ...]</code>
+<strong>정렬 순서대로 조회</strong>. 삭제는 아님!</p>
 
-    <ul>
-      <li>O(V^2)</li>
-    </ul>
+    <pre><code class="language-redis">ZRANGE wait:z:{cat:123} 0 1              # 가장 오래 기다린 2명
+ZRANGE wait:z:{cat:123} 0 9 WITHSCORES    # 상위 10명 + score
+</code></pre>
   </li>
   <li>
-    <p>DFS와 BFS의 공통점과 차이점</p>
+    <p><code class="language-plaintext highlighter-rouge">ZRANK key member</code>
+멤버의 <strong>순위(0-base)</strong>.</p>
 
-    <ul>
-      <li>
-        <p>공통점</p>
+    <pre><code class="language-redis">ZRANK wait:z:{cat:123} 101               # 0이면 1번째
+</code></pre>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ZSCORE key member</code>
+멤버의 score(대기 시작 시각 등).</p>
 
-        <ul>
-          <li>그래프에서 시작 노드로부터 목적지 노드까지 도달하거니 특정 정보를 찾는 것이 목표</li>
-          <li>방문 기록을 체크해 이미 방문한 노드를 다시 방문하지 않게 하여 무한 루프 방지</li>
-          <li>DFS, BFS 두 방식 모드 조건 내의 모든 노드를 검색한다는 점에서 시간 복잡도는 동일</li>
-        </ul>
-      </li>
-      <li>
-        <p>차이점</p>
+    <pre><code class="language-redis">ZSCORE wait:z:{cat:123} 101
+</code></pre>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ZCARD key</code>
+멤버 수.</p>
 
-        <ul>
-          <li>DFS는 주로 재귀로 구현하지만, BFS는 큐(queue) 자료구조를 활용하여 구현
-            <ul>
-              <li>일반적으로 DFS보다 BFS가 조금 더 빠르게 동작</li>
-            </ul>
-          </li>
-          <li>동작 순서 상 DFS는 트리를 탐색할 때 자주 사용, BFS는 최단 경로 탐색에서 자주 사용</li>
-        </ul>
-      </li>
-      <li>
-        <p>시간 복잡도</p>
-        <ul>
-          <li>주어진 그래프의 구조와 시작 노드에 따라서 실제 시간 복잡도가 다를 수 있으며,</li>
-          <li>어떤 알고리즘이 더 효율적인지는 그래프의 형태와 알고리즘의 목적에 따라 달라짐</li>
-          <li>일반적으로 어떤 알고리즘을 선택할지는 문제의 특성과 요구사항에 따라 결정</li>
-        </ul>
-      </li>
-    </ul>
+    <pre><code class="language-redis">ZCARD wait:z:{cat:123}
+</code></pre>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ZREM key member [member ...]</code>
+멤버 삭제.</p>
+
+    <pre><code class="language-redis">ZREM wait:z:{cat:123} 101 205
+</code></pre>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ZRANDMEMBER key [count] [WITHSCORES]</code> <em>(6.2+)</em>
+<strong>무작위 조회</strong>(삭제 아님).</p>
+
+    <pre><code class="language-redis">ZRANDMEMBER wait:z:{cat:123} 2
+</code></pre>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ZPOPMIN key [count]</code> / <code class="language-plaintext highlighter-rouge">ZPOPMAX</code>
+<strong>꺼내며 삭제</strong>(원자). 대기순 매칭에 유용.</p>
+
+    <pre><code class="language-redis">ZPOPMIN wait:z:{cat:123} 2
+</code></pre>
   </li>
 </ul>
 
 <hr />
 
-<h2 id="다익스트라-dijkstra-알고리즘">다익스트라 (Dijkstra) 알고리즘</h2>
+<h2 id="set-집합--중복-없는-랜덤-풀">SET (집합) — 중복 없는 랜덤 풀</h2>
 
 <ul>
-  <li>그래프 알고리즘</li>
-  <li>알고리즘을 사용하는 경우
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">SADD key member [member ...]</code> / <code class="language-plaintext highlighter-rouge">SREM key member [...]</code>
+추가/삭제 (중복 불가).</p>
+
+    <pre><code class="language-redis">SADD matching:queue:{cat:123} 101
+SREM matching:queue:{cat:123} 101
+</code></pre>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">SPOP key [count]</code>
+<strong>무작위 추출+삭제</strong>(원자). 랜덤 매칭에 간단·빠름.</p>
+
+    <pre><code class="language-redis">SPOP matching:queue:{cat:123} 2
+</code></pre>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">SCARD key</code>
+멤버 수.</p>
+
+    <pre><code class="language-redis">SCARD matching:queue:{cat:123}
+</code></pre>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="ttl키-유틸-대기-상태-자동-청소용">TTL/키 유틸 (대기 상태 자동 청소용)</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">SET key value EX &lt;sec&gt; NX</code>
+<strong>선점 + TTL</strong>(중복 입장 방지).</p>
+
+    <pre><code class="language-redis">SET user:index:42 "cat=123|queue=q_..." EX 600 NX
+</code></pre>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">EXPIRE key &lt;sec&gt;</code> / <code class="language-plaintext highlighter-rouge">TTL key</code>
+키 만료/조회.
+<strong>주의:</strong> TTL은 <strong>키 전체</strong>에 붙음(멤버 단위 X).</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>베스트 프랙티스: <strong>대기열 컬렉션(SET/ZSET)엔 TTL 금지</strong>, 개별 사용자 상태 키에만 TTL.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="매칭에서-자주-쓰는-레시피">매칭에서 자주 쓰는 <strong>레시피</strong></h2>
+
+<h3 id="1-대기순공정성-매칭">1) 대기순(공정성) 매칭</h3>
+
+<ul>
+  <li>
+    <p>방법 A(2단계): <code class="language-plaintext highlighter-rouge">ZRANGE</code>로 상위 N 조회 → <strong><code class="language-plaintext highlighter-rouge">ZREM</code>로 제거</strong></p>
+
+    <pre><code class="language-redis">ZRANGE wait:z:{cat:123} 0 1         # 후보 조회
+ZREM   wait:z:{cat:123} 101 205     # 확정 후 제거
+</code></pre>
+  </li>
+  <li>
+    <p>방법 B(원자): <code class="language-plaintext highlighter-rouge">ZPOPMIN wait:z:{cat:123} 2</code>
+(조회+삭제가 한 번에)</p>
+  </li>
+</ul>
+
+<h3 id="2-랜덤-매칭">2) 랜덤 매칭</h3>
+
+<ul>
+  <li>
+    <p>ZSET만 쓸 때(원자화는 Lua 추천):</p>
+
     <ul>
-      <li>BFS 사용 시, 격자모양의 미로에서는 상하좌우 방향의 가중치가 모두 동일
-        <ul>
-          <li>현재 정점에서 이어진 간선들의 가중치가 모두 동일</li>
-        </ul>
-      </li>
-      <li>하지만 가중치가 모두 일정하지 않다면 -&gt; BFS를 사용할 수 없음</li>
+      <li><code class="language-plaintext highlighter-rouge">ZRANDMEMBER</code>로 조회 → <strong>같은 로직 안에서 <code class="language-plaintext highlighter-rouge">ZREM</code></strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>SET을 함께 쓸 때:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">SPOP matching:queue:{cat:123} 2</code> (원자 랜덤 추출)</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="다익스트라-알고리즘-설명">다익스트라 알고리즘 설명</h3>
+<h3 id="3-하이브리드랜덤-80--대기순-20">3) 하이브리드(랜덤 80% + 대기순 20%)</h3>
 
 <ul>
-  <li>한 정점에서 다른 모든 정점으로의 최단 경로를 구하는 알고리즘</li>
-  <li>간선의 가중치가 양수일 때만 사용 가능
+  <li>
+    <p>하나의 <strong>Lua/Functions</strong>에서 분기:</p>
+
     <ul>
-      <li>음수면 다익스트라가 아닌 테이크스트라 알고리즘 사용</li>
-    </ul>
-  </li>
-  <li>BFS와 유사하지만, 일반적인 큐가 아닌 <strong>우선순위 큐(Priority Queue)</strong>를 사용하여 <strong>비용이 가장 작은 간선부터 탐색</strong>한다는 차이점이 있음
-    <ul>
-      <li>우선순위 큐 (Priority Queue)
-        <ul>
-          <li>들어오는 순서에 상관 없이 우선 순위가 높은 데이터가 먼저 나가는 자료구조</li>
-          <li>Heap을 이용해 구현하는 것이 가장 효율적</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>그리디(Greedy) 알고리즘</strong>
-    <ul>
-      <li>매 단계에서 현재까지의 부분 해(solution)를 최적화하여 최종적으로 전체 문제의 최적 해를 찾아냄</li>
+      <li>랜덤: <code class="language-plaintext highlighter-rouge">ZRANDMEMBER</code> → <code class="language-plaintext highlighter-rouge">ZREM</code></li>
+      <li>대기순: <code class="language-plaintext highlighter-rouge">ZRANGE</code> → <code class="language-plaintext highlighter-rouge">ZREM</code> (또는 <code class="language-plaintext highlighter-rouge">ZPOPMIN</code>)</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="다익스트라-알고리즘-동작-순서">다익스트라 알고리즘 동작 순서</h3>
-
-<ol>
-  <li>출발 노드 선택</li>
-  <li>출발 노드로부터 각 노드까지의 최단 거리 배열 초기화
-    <ul>
-      <li>출발노드 거리는 0, 나머지 노드는 무한대(충분히 큰 값)로 설정</li>
-    </ul>
-  </li>
-  <li>현재 노드 설정
-    <ul>
-      <li>현재까지의 최단 거리가 확정된 노드 중 가장 가까운 노드 선택</li>
-    </ul>
-  </li>
-  <li>이웃 노드 갱신
-    <ul>
-      <li>선택한 노드를 기준으로 해당 노드와 이웃한 노드들 간의 거리 갱신</li>
-    </ul>
-  </li>
-  <li>모든 노드를 확인할 때까지 3,4단계 반복</li>
-</ol>
+<h3 id="4-원자성-보장동시성-안전">4) 원자성 보장(동시성 안전)</h3>
 
 <ul>
-  <li>핵심 아이디어
+  <li>
+    <p><strong>조회(선정)와 삭제를 한 덩어리로</strong>: Lua/Functions로 감싸기</p>
+
     <ul>
-      <li>각 노드까지의 현재까지 알려진 최단 거리를 계속 갱신하며 출발 노드로부터 최단 경로를 찾는 것</li>
-      <li>비용이 가장 작은 간선부터 이어주기 위해 우선순위 큐를 사용한다.</li>
+      <li>“이미 다른 워커가 먼저 가져간” 케이스를 **<code class="language-plaintext highlighter-rouge">ZREM</code> 반환값(0/1)**로 판단해 필터링.</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="다익스트라-알고리즘-시간-복잡도">다익스트라 알고리즘 시간 복잡도</h3>
+<hr />
+
+<h2 id="흔한-실수--주의">흔한 실수 &amp; 주의</h2>
 
 <ul>
-  <li>V : 정점(노드)의 수, E : 간선의 수</li>
-  <li>O(ElogV)</li>
+  <li><code class="language-plaintext highlighter-rouge">ZRANGE</code>/<code class="language-plaintext highlighter-rouge">ZRANDMEMBER</code> <strong>만</strong> 호출하고 <code class="language-plaintext highlighter-rouge">ZREM</code>을 빼먹음 → 큐에 그대로 남아 <strong>중복 매칭</strong> 발생.</li>
+  <li><strong>컬렉션 키에 TTL</strong>을 걸어 전체 대기열이 사라짐.
+TTL은 <strong>개별 사용자 키</strong>(예: <code class="language-plaintext highlighter-rouge">user:queued:{cat:123}:42</code>)에만.</li>
+  <li>Redis Cluster 사용 시, <strong>스크립트 KEYS는 같은 해시태그</strong>(<code class="language-plaintext highlighter-rouge">{cat:123}</code>)로 묶기. 전역 키는 Lua에서 다루지 말고 자바에서만.</li>
 </ul>
 
-<h3 id="다익스트라-알고리즘의-구현">다익스트라 알고리즘의 구현</h3>
+<hr />
+
+<h2 id="시간-복잡도감으로-기억">시간 복잡도(감으로 기억)</h2>
 
 <ul>
-  <li>문제 예시
-    <ul>
-      <li>방향 그래프가 주어지면 주어진 시작점에서 다른 모든 정점으로의 최단 경로의 비용을 구하여라</li>
-      <li>첫째 줄에 정점의 개수와 간선의 개수가 입력됨</li>
-      <li>둘째 줄에는 시작 정점의 번호가 입력됨</li>
-      <li>셋째 줄부터 간선의 개수만큼의 줄에 걸쳐 (u,v,w)가 주어짐
-        <ul>
-          <li>(u,v,w) -&gt; u에서 v로 가는 양의 가중치 w인 간선 존재</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>구현 예시
-    <ol>
-      <li>출발 노드 선택
-        <ul>
-          <li><img src="/algorithm/image/day6_image-dijkstra-1.png" alt="Full-width image" /></li>
-        </ul>
-      </li>
-      <li>출발 노드로부터 각 노드까지의 최단 거리 배열 초기화
-        <ul>
-          <li><img src="/algorithm/image/day6_image-dijkstra-2.png" alt="Full-width image" /></li>
-        </ul>
-      </li>
-      <li>현재 노드 설정</li>
-      <li>이웃 노드 갱신</li>
-      <li>모든 노드 확인할 때까지 3,4단계 반복
-        <ul>
-          <li><img src="/algorithm/image/day6_image-dijkstra-3.png" alt="Full-width image" /></li>
-        </ul>
-      </li>
-    </ol>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">ZADD/ZREM/ZRANK</code> ≈ <strong>O(log N)</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">ZRANGE</code> ≈ <strong>O(k)</strong> (반환 수)</li>
+  <li><code class="language-plaintext highlighter-rouge">ZPOPMIN/MAX</code> ≈ <strong>O(k log N)</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">SADD/SREM/SPOP</code> ≈ <strong>평균 O(1)</strong></li>
+</ul>
+
+<hr />
+
+<h2 id="미니-예시-대기열-입장--매칭">미니 예시: 대기열 입장 &amp; 매칭</h2>
+
+<pre><code class="language-redis"># 입장
+ZADD wait:z:{cat:123} 1725430000456 101          # 대기 시작 시각(밀리초)
+SET  user:queued:{cat:123}:101 q_101_123 EX 600   # 개별 TTL
+
+# 대기순 매칭 2명 (원자)
+ZPOPMIN wait:z:{cat:123} 2                        # -&gt; [101,score],[205,score]
+
+# 랜덤 매칭 2명 (Lua로 원자화 권장)
+-- 조회
+ZRANDMEMBER wait:z:{cat:123} 2
+-- 같은 로직 안에서 제거
+ZREM wait:z:{cat:123} 101 205
+</code></pre>
+
+<hr />
+
+<h2 id="한-줄-정리">한 줄 정리</h2>
+
+<ul>
+  <li><strong>ZSET = 순번/대기시간/공정성</strong>, <strong>SET = 단순 랜덤 풀</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">ZRANGE/ZRANDMEMBER</code>(조회) 뒤엔 <strong>반드시 <code class="language-plaintext highlighter-rouge">ZREM</code>(삭제)</strong></li>
+  <li>경쟁 환경에선 <strong>Lua로 “조회→삭제”를 원자화</strong></li>
+  <li><strong>TTL은 개별 상태 키에만</strong>, 대기열 컬렉션엔 금지</li>
 </ul>
 
   
@@ -787,7 +791,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-09-03-diary/" class="flip-title"><span>[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</span></a>  <time class="faded fine" datetime="2025-09-03T00:00:00+00:00">03 Sep 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-08-29-diary/" class="flip-title"><span>[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지 — 실전 회고</span></a>  <time class="faded fine" datetime="2025-08-29T00:00:00+00:00">29 Aug 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-08-25-diary/" class="flip-title"><span>[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</span></a>  <time class="faded fine" datetime="2025-08-25T00:00:00+00:00">25 Aug 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-08-29-diary/" class="flip-title"><span>[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지 — 실전 회고</span></a>  <time class="faded fine" datetime="2025-08-29T00:00:00+00:00">29 Aug 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-08-25-diary/" class="flip-title"><span>[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</span></a>  <time class="faded fine" datetime="2025-08-25T00:00:00+00:00">25 Aug 2025</time></li>                        <li class="h4">  <a href="/java/2025-08-25-queue-int/" class="flip-title"><span>[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</span></a>  <time class="faded fine" datetime="2025-08-25T00:00:00+00:00">25 Aug 2025</time></li>            </ul></aside>
 
   
 
