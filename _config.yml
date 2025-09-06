@@ -75,7 +75,7 @@ menu:
     url: /javascript/
   - title: Algorithm (11)
     url: /algorithm/
-  - title: Java (11)
+  - title: Java (12)
     url: /java/
   - title: Git (3)
     url: /git/
@@ -85,9 +85,9 @@ menu:
     url: /spring/
   - title: Miscellaneous (16)
     url: /miscellaneous/
-  - title: 프로젝트 일기 (6)
+  - title: 프로젝트 일기 (10)
     url: /projectdiary/
-  - title: TIL (61)
+  - title: TIL (63)
     url: /til/
 
 # Add links to the footer.
