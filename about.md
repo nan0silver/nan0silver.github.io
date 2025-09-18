@@ -29,6 +29,8 @@ Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 
 <h3>🔹Vita🔹</h3>
 
+2025.09.17 제2회 DDM Union 청년 창업 아이디어 챌린지 우수상 <br>
+
 2025.07 ~ 2025.08 서울 AI 허브 Say Track 영클럽 2기 수료 (우수 참여자상 수상) <br>
 
 2025.07.05 시니어퓨처(SeniorFuture) ‘인공지능(AI)을 활용한 시니어 삶의 질 향상 아이디어톤’ 최우수상 <br>
