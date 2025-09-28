@@ -1,8 +1,7 @@
 ---
 layout: about
 description: >
-  A boutique Jekyll theme for hackers, nerds, and academics,
-  with a focus on personal sites that are meant to impress.
+  은나현에 대해서 소개합니다!
 hide_description: true
 redirect_from:
   - /download/
