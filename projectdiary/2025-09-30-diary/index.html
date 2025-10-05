@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교 | NAHYUN BLOG</title>
+<title>[친구하자] WebRTC란 무엇일까? | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교" />
+<meta property="og:title" content="[친구하자] WebRTC란 무엇일까?" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="2025-07-20 FastAPI vs Flask" />
-<meta property="og:description" content="2025-07-20 FastAPI vs Flask" />
-<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" />
-<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" />
+<meta name="description" content="친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!" />
+<meta property="og:description" content="친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-07-20T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-09-30T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교" />
+<meta property="twitter:title" content="[친구하자] WebRTC란 무엇일까?" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-07-23T16:30:00+00:00","datePublished":"2025-07-20T00:00:00+00:00","description":"2025-07-20 FastAPI vs Flask","headline":"[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-10-05T15:34:09+00:00","datePublished":"2025-09-30T00:00:00+00:00","description":"친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!","headline":"[친구하자] WebRTC란 무엇일까?","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-09-30-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-09-30-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교",
-    "description": "2025-07-20 FastAPI vs Flask
+    "headline": "[친구하자] WebRTC란 무엇일까?",
+    "description": "친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-07-20T00:00:00+00:00",
-    "dateModified": "2025-07-23T16:30:00+00:00",
+    "datePublished": "2025-09-30T00:00:00+00:00",
+    "dateModified": "2025-10-05T15:34:09+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"
+      "@id": "https://nan0silver.github.io/projectdiary/2025-09-30-diary/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "miscellaneous",
-        "item": "https://nan0silver.github.io/miscellaneous/"
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교",
-        "item": "https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"
+        "name": "[친구하자] WebRTC란 무엇일까?",
+        "item": "https://nan0silver.github.io/projectdiary/2025-09-30-diary/"
       }
     ]
   }
@@ -358,23 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/miscellaneous/">miscellaneous</a>
+          <a href="/projectdiary/">projectdiary</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          
-          
-          <a href="/miscellaneous/til/">til</a>
-        
-      </li>
-    
-      <li>
-        
-          <span>/</span>
-          <span>2025-07-20-flask-fastAPI</span>
+          <span>2025-09-30-diary</span>
         
       </li>
     
@@ -391,18 +382,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-til-flask-fastAPI" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교
+        [친구하자] WebRTC란 무엇일까?
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-07-20T00:00:00+00:00">20 Jul 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> / <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Fastapi</span>, <span>Flask</span>, <span>Backend</span>
+        <time datetime="2025-09-30T00:00:00+00:00">30 Sep 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -411,10 +402,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 23 Jul 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 05 Oct 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-07-23T16:30:00+00:00">2025-07-23</time>
+              <time datetime="2025-10-05T15:34:09+00:00">2025-10-05</time>
             </span>
           
         
@@ -430,7 +421,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      2025-07-20 FastAPI vs Flask
+      친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!
 
     </p>
   
@@ -439,173 +430,176 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <ul>
-  <li><a href="#-새롭게-배운-것">새롭게 배운 것</a></li>
-  <li><a href="#-오늘의-문제-상황--해결-과정">오늘의 문제 상황 &amp; 해결 과정</a></li>
-  <li><a href="#-pydantic이란">Pydantic이란?</a></li>
-  <li><a href="#-spring-boot-dto와-pydantic의-비교">Spring Boot DTO와 Pydantic의 비교</a></li>
-  <li><a href="#-느낀-점">느낀 점</a></li>
-</ul>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<ul>
-  <li>Python 백엔드 프레임워크인 <strong>FastAPI</strong>와 <strong>Flask</strong>를 비교해보았다.</li>
-  <li>두 프레임워크 모두 경량 웹 서버를 빠르게 개발할 수 있도록 도와주지만, 철학과 기능 면에서 차이가 존재한다.</li>
-  <li>주요 비교 항목: 비동기 처리, 타입 힌트 지원, 성능, 문서 자동화, 커뮤니티 및 생태계 등</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th><strong>FastAPI</strong></th>
-      <th><strong>Flask</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>출시 연도</strong></td>
-      <td>2018</td>
-      <td>2010</td>
-    </tr>
-    <tr>
-      <td><strong>비동기 지원</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">async/await</code> 기반 비동기 처리 완전 지원</td>
-      <td>기본은 동기, 비동기 처리는 별도 패키지 필요</td>
-    </tr>
-    <tr>
-      <td><strong>타입 힌트</strong></td>
-      <td>필수적으로 사용하며, 자동 문서화 및 검증에 활용</td>
-      <td>선택적 사용, 검증은 외부 라이브러리 의존</td>
-    </tr>
-    <tr>
-      <td><strong>문서 자동화</strong></td>
-      <td>Swagger UI 및 Redoc 자동 생성</td>
-      <td>기본 제공 없음 (Flasgger 등으로 보완)</td>
-    </tr>
-    <tr>
-      <td><strong>성능</strong></td>
-      <td>매우 빠름 (Starlette 기반, Uvicorn 활용)</td>
-      <td>상대적으로 느림</td>
-    </tr>
-    <tr>
-      <td><strong>러닝 커브</strong></td>
-      <td>초기 진입 장벽이 다소 높음 (타입, Pydantic 등)</td>
-      <td>매우 쉬운 진입, 학습 곡선 완만</td>
-    </tr>
-    <tr>
-      <td><strong>커뮤니티</strong></td>
-      <td>빠르게 성장 중</td>
-      <td>매우 크고 안정적인 생태계</td>
-    </tr>
-    <tr>
-      <td><strong>데이터 검증</strong></td>
-      <td>Pydantic 기반의 자동 검증</td>
-      <td>별도 유효성 검사 코드 필요</td>
-    </tr>
-    <tr>
-      <td><strong>REST API 개발</strong></td>
-      <td>RESTful 설계에 최적화</td>
-      <td>자유도가 높음, 규칙이 느슨함</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-오늘의-문제-상황--해결-과정">🍎 오늘의 문제 상황 &amp; 해결 과정</h2>
-
-<ul>
-  <li>지금까지는 Flask의 간결함과 진입 장벽이 낮은 점이 마음에 들어 주로 Flask를 사용해왔다.</li>
-  <li>하지만 이번에는 FastAPI를 직접 적용해보고 싶어 새 프로젝트에 도입해보았다.</li>
-  <li>특히 <code class="language-plaintext highlighter-rouge">Pydantic</code> 모델이 처음엔 어렵게 느껴질까 걱정했지만, 막상 사용해보니 <strong>Spring Boot의 DTO와 매우 유사한 느낌</strong>이 들어 빠르게 익숙해졌다.</li>
-  <li>타입 기반 구조와 자동 검증, 문서화 덕분에 프로젝트가 자연스럽게 구조화되고 개발 속도도 빨랐다.</li>
-</ul>
-
-<hr />
-
-<h2 id="-pydantic이란">📌 Pydantic이란?</h2>
-
-<ul>
-  <li><strong>Pydantic</strong>은 FastAPI에서 입력/출력 데이터의 구조를 정의하고, 유효성을 검사하며, JSON 직렬화를 자동으로 처리하는 핵심 컴포넌트다.</li>
-  <li>Python의 <strong>타입 힌트(type hint)</strong>를 기반으로 동작하며, <code class="language-plaintext highlighter-rouge">BaseModel</code>을 상속하여 필드와 제약 조건을 선언할 수 있다.</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
-
-<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
-</code></pre></div></div>
-
-<ul>
-  <li>위와 같이 작성하면, FastAPI는 요청 데이터가 이 조건을 만족하는지 자동으로 검증하고, Swagger 문서까지 자동 생성해준다.</li>
-</ul>
-
-<hr />
-
-<h2 id="-spring-boot-dto와-pydantic의-비교">🔍 Spring Boot DTO와 Pydantic의 비교</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>Spring Boot DTO</th>
-      <th>FastAPI Pydantic Model</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>역할</strong></td>
-      <td>요청/응답 객체 정의 + 유효성 검사</td>
-      <td>요청/응답 객체 정의 + 유효성 검사</td>
-    </tr>
-    <tr>
-      <td><strong>유효성 검사 도구</strong></td>
-      <td>JSR 380 (e.g., <code class="language-plaintext highlighter-rouge">@NotNull</code>, <code class="language-plaintext highlighter-rouge">@Size</code>)</td>
-      <td>Pydantic (<code class="language-plaintext highlighter-rouge">Field</code>, <code class="language-plaintext highlighter-rouge">validator</code>)</td>
-    </tr>
-    <tr>
-      <td><strong>직렬화/역직렬화</strong></td>
-      <td>Jackson 사용</td>
-      <td>내장 기능으로 자동 처리</td>
-    </tr>
-    <tr>
-      <td><strong>중첩 구조 지원</strong></td>
-      <td>중첩 DTO 클래스</td>
-      <td>중첩 <code class="language-plaintext highlighter-rouge">BaseModel</code>을 통한 자연스러운 처리</td>
-    </tr>
-    <tr>
-      <td><strong>문서화 연동</strong></td>
-      <td>Swagger/OpenAPI 설정 필요</td>
-      <td>FastAPI에 자동 내장</td>
-    </tr>
-    <tr>
-      <td><strong>확장성</strong></td>
-      <td>Bean Validation 위주</td>
-      <td>타입 변환, 커스텀 직렬화 등 더 다양한 기능 내장</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>결론적으로 <strong>Pydantic은 Spring의 DTO와 유사한 사용 경험을 제공하면서도</strong>, 그 이상의 기능(데이터 직렬화, 문서화, 타입 변환 등)을 하나의 모델에서 처리할 수 있다는 점에서 <strong>DTO + Validator + Mapper + Serializer의 통합체</strong>로 볼 수 있다.</p>
+    <blockquote>
+  <p>Today I Learned – Agora WebRTC 통화 구현 전 이해하기</p>
 </blockquote>
 
 <hr />
 
-<h2 id="-느낀-점">🦄 느낀 점</h2>
+<h2 id="-1-webrtc의-정의">🧩 1. WebRTC의 정의</h2>
+
+<p><strong>WebRTC (Web Real-Time Communication)</strong>는
+웹 브라우저나 모바일 앱끼리 <strong>실시간 음성, 영상, 데이터</strong>를 직접 주고받을 수 있게 해주는 오픈소스 기술이다.
+즉, 중간 서버를 거치지 않고 <strong>클라이언트 간 P2P 통신</strong>을 가능하게 만든다.</p>
+
+<p>브라우저끼리 “전화기처럼” 연결된다고 생각하면 쉽다.
+별도 플러그인이나 설치 과정 없이 JavaScript API로 바로 통화 기능을 구현할 수 있다.</p>
+
+<hr />
+
+<h2 id="-2-webrtc의-주요-구성-요소">🌐 2. WebRTC의 주요 구성 요소</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구성 요소</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>MediaStream (getUserMedia)</strong></td>
+      <td>사용자의 카메라, 마이크 데이터를 캡처하는 API</td>
+    </tr>
+    <tr>
+      <td><strong>RTCPeerConnection</strong></td>
+      <td>실제 P2P 연결을 담당. 네트워크 경로 설정, 코덱 협상, 암호화 등을 수행</td>
+    </tr>
+    <tr>
+      <td><strong>RTCDataChannel</strong></td>
+      <td>파일 전송, 채팅 등 실시간 데이터 교환용 채널</td>
+    </tr>
+    <tr>
+      <td><strong>ICE (Interactive Connectivity Establishment)</strong></td>
+      <td>NAT(공유기 등) 환경에서도 통신이 가능하도록 IP 후보 탐색 및 연결 시도</td>
+    </tr>
+    <tr>
+      <td><strong>STUN / TURN 서버</strong></td>
+      <td>STUN: 공용 IP 확인용 / TURN: 직접 연결이 안될 때 중계 서버 역할</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-3-동작-흐름-signaling-포함">🛰️ 3. 동작 흐름 (Signaling 포함)</h2>
+
+<ol>
+  <li>
+    <p><strong>Signaling 단계</strong></p>
+
+    <ul>
+      <li>두 클라이언트가 연결 정보를 교환 (SDP, ICE candidates 등)</li>
+      <li>이 단계는 WebRTC 외부에서 처리해야 하며, 보통 WebSocket, Socket.io, REST API 등을 사용</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>P2P 연결</strong></p>
+
+    <ul>
+      <li>서로의 연결 정보를 받은 뒤 <code class="language-plaintext highlighter-rouge">RTCPeerConnection</code>으로 직접 연결 시도</li>
+      <li>STUN 서버로 외부 IP 탐색, 필요 시 TURN 서버를 통한 중계</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>미디어 스트림 전송</strong></p>
+
+    <ul>
+      <li>연결이 완료되면 오디오/비디오/데이터 스트림이 실시간으로 교환됨</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="️-4-왜-agora를-사용하는가">⚙️ 4. 왜 Agora를 사용하는가</h2>
+
+<p>WebRTC 자체는 “기술 표준”일 뿐, 실서비스에는 <strong>보완이 필요</strong>하다.
+예를 들어,</p>
 
 <ul>
-  <li>Flask는 여전히 빠른 개발과 간단한 구조를 원할 때 유용한 선택지다.</li>
-  <li>반면 FastAPI는 프로젝트 구조를 더 명확히 하고, 자동화된 유효성 검사 및 문서화 기능까지 갖추고 있어 <strong>중·대형 규모 프로젝트나 협업 시에 훨씬 효율적</strong>이라는 점을 느꼈다.</li>
-  <li>개인적으로는 Pydantic이 예상보다 익숙했고, Spring Boot의 DTO를 써본 경험이 FastAPI 적응에 큰 도움이 되었다.</li>
-  <li>앞으로는 프로젝트의 성격에 따라 Flask와 FastAPI를 유연하게 선택하며, 각 도구의 장점을 상황에 맞게 활용할 계획이다.</li>
+  <li>TURN 서버 트래픽 비용과 관리 부담</li>
+  <li>네트워크 불안정 시 끊김</li>
+  <li>다자간 통화 (SFU/Mesh 방식) 구현 복잡성</li>
 </ul>
+
+<p>이 때문에 Agora, Twilio, Daily 같은 <strong>WebRTC 기반 클라우드 SDK</strong>를 이용하면
+복잡한 signaling, TURN 운영, QoS 튜닝을 대신 처리해준다.</p>
+
+<p>👉 <strong>친구하자 서비스</strong>에서도 Agora를 이용해</p>
+
+<ul>
+  <li>빠른 1:1 매칭 통화</li>
+  <li>안정적인 통화 품질</li>
+  <li>통화 종료 후 감정분석 AI 연결</li>
+</ul>
+
+<p>까지 구현할 수 있다.</p>
+
+<blockquote>
+  <p>여러 SDK를 비교한 후, 가격 성능 서비스 부분에서 Agora를 선택했다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-5-보안-측면">🔐 5. 보안 측면</h2>
+
+<ul>
+  <li>모든 WebRTC 통신은 <strong>DTLS (Datagram Transport Layer Security)</strong> 로 암호화</li>
+  <li>미디어 스트림은 <strong>SRTP (Secure RTP)</strong> 로 암호화되어 안전하게 전송</li>
+  <li>HTTPS 환경에서만 동작 (브라우저 정책상 보안 채널 필수)</li>
+</ul>
+
+<hr />
+
+<h2 id="-6-오늘의-정리">💡 6. 오늘의 정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>키워드</th>
+      <th>요약</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>WebRTC</strong></td>
+      <td>브라우저 간 실시간 통신 기술</td>
+    </tr>
+    <tr>
+      <td><strong>Signaling</strong></td>
+      <td>SDP/ICE 교환을 위한 외부 과정</td>
+    </tr>
+    <tr>
+      <td><strong>STUN/TURN</strong></td>
+      <td>NAT 환경에서도 연결을 돕는 서버</td>
+    </tr>
+    <tr>
+      <td><strong>Agora</strong></td>
+      <td>WebRTC 기반 실시간 통화 SDK</td>
+    </tr>
+    <tr>
+      <td><strong>보안</strong></td>
+      <td>DTLS + SRTP 기반 암호화</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-7-개인-메모">✍️ 7. 개인 메모</h2>
+
+<blockquote>
+  <p>Agora SDK를 직접 사용하며 느낀 점</p>
+</blockquote>
+
+<ul>
+  <li>브라우저 단에서 PeerConnection을 직접 제어하는 것보다 훨씬 안정적이다.</li>
+  <li>특히 네트워크 품질이 낮은 환경에서 TURN 관리가 자동화되어 있다는 점이 큰 장점.</li>
+  <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
+</ul>
+
+<hr />
 
   
 </article>
@@ -732,7 +726,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-09-30-diary/" class="flip-title"><span>[친구하자] WebRTC란 무엇일까?</span></a>  <time class="faded fine" datetime="2025-09-30T00:00:00+00:00">30 Sep 2025</time></li>                        <li class="h4">  <a href="/java/2025-09-12-stream/" class="flip-title"><span>[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</span></a>  <time class="faded fine" datetime="2025-09-12T00:00:00+00:00">12 Sep 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-09-03-diary/" class="flip-title"><span>[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</span></a>  <time class="faded fine" datetime="2025-09-03T00:00:00+00:00">03 Sep 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/java/2025-09-12-stream/" class="flip-title"><span>[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</span></a>  <time class="faded fine" datetime="2025-09-12T00:00:00+00:00">12 Sep 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-09-03-diary/" class="flip-title"><span>[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</span></a>  <time class="faded fine" datetime="2025-09-03T00:00:00+00:00">03 Sep 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-08-29-diary/" class="flip-title"><span>[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지 — 실전 회고</span></a>  <time class="faded fine" datetime="2025-08-29T00:00:00+00:00">29 Aug 2025</time></li>            </ul></aside>
 
   
 

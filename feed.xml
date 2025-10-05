@@ -1,7 +1,176 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-09-21T06:37:17+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-10-05T15:35:02+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-09-21T06:36:37+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-10-05T15:34:09+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<blockquote>
+  <p>Today I Learned – Agora WebRTC 통화 구현 전 이해하기</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-1-webrtc의-정의">🧩 1. WebRTC의 정의</h2>
+
+<p><strong>WebRTC (Web Real-Time Communication)</strong>는
+웹 브라우저나 모바일 앱끼리 <strong>실시간 음성, 영상, 데이터</strong>를 직접 주고받을 수 있게 해주는 오픈소스 기술이다.
+즉, 중간 서버를 거치지 않고 <strong>클라이언트 간 P2P 통신</strong>을 가능하게 만든다.</p>
+
+<p>브라우저끼리 “전화기처럼” 연결된다고 생각하면 쉽다.
+별도 플러그인이나 설치 과정 없이 JavaScript API로 바로 통화 기능을 구현할 수 있다.</p>
+
+<hr />
+
+<h2 id="-2-webrtc의-주요-구성-요소">🌐 2. WebRTC의 주요 구성 요소</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구성 요소</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>MediaStream (getUserMedia)</strong></td>
+      <td>사용자의 카메라, 마이크 데이터를 캡처하는 API</td>
+    </tr>
+    <tr>
+      <td><strong>RTCPeerConnection</strong></td>
+      <td>실제 P2P 연결을 담당. 네트워크 경로 설정, 코덱 협상, 암호화 등을 수행</td>
+    </tr>
+    <tr>
+      <td><strong>RTCDataChannel</strong></td>
+      <td>파일 전송, 채팅 등 실시간 데이터 교환용 채널</td>
+    </tr>
+    <tr>
+      <td><strong>ICE (Interactive Connectivity Establishment)</strong></td>
+      <td>NAT(공유기 등) 환경에서도 통신이 가능하도록 IP 후보 탐색 및 연결 시도</td>
+    </tr>
+    <tr>
+      <td><strong>STUN / TURN 서버</strong></td>
+      <td>STUN: 공용 IP 확인용 / TURN: 직접 연결이 안될 때 중계 서버 역할</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-3-동작-흐름-signaling-포함">🛰️ 3. 동작 흐름 (Signaling 포함)</h2>
+
+<ol>
+  <li>
+    <p><strong>Signaling 단계</strong></p>
+
+    <ul>
+      <li>두 클라이언트가 연결 정보를 교환 (SDP, ICE candidates 등)</li>
+      <li>이 단계는 WebRTC 외부에서 처리해야 하며, 보통 WebSocket, Socket.io, REST API 등을 사용</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>P2P 연결</strong></p>
+
+    <ul>
+      <li>서로의 연결 정보를 받은 뒤 <code class="language-plaintext highlighter-rouge">RTCPeerConnection</code>으로 직접 연결 시도</li>
+      <li>STUN 서버로 외부 IP 탐색, 필요 시 TURN 서버를 통한 중계</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>미디어 스트림 전송</strong></p>
+
+    <ul>
+      <li>연결이 완료되면 오디오/비디오/데이터 스트림이 실시간으로 교환됨</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="️-4-왜-agora를-사용하는가">⚙️ 4. 왜 Agora를 사용하는가</h2>
+
+<p>WebRTC 자체는 “기술 표준”일 뿐, 실서비스에는 <strong>보완이 필요</strong>하다.
+예를 들어,</p>
+
+<ul>
+  <li>TURN 서버 트래픽 비용과 관리 부담</li>
+  <li>네트워크 불안정 시 끊김</li>
+  <li>다자간 통화 (SFU/Mesh 방식) 구현 복잡성</li>
+</ul>
+
+<p>이 때문에 Agora, Twilio, Daily 같은 <strong>WebRTC 기반 클라우드 SDK</strong>를 이용하면
+복잡한 signaling, TURN 운영, QoS 튜닝을 대신 처리해준다.</p>
+
+<p>👉 <strong>친구하자 서비스</strong>에서도 Agora를 이용해</p>
+
+<ul>
+  <li>빠른 1:1 매칭 통화</li>
+  <li>안정적인 통화 품질</li>
+  <li>통화 종료 후 감정분석 AI 연결</li>
+</ul>
+
+<p>까지 구현할 수 있다.</p>
+
+<blockquote>
+  <p>여러 SDK를 비교한 후, 가격 성능 서비스 부분에서 Agora를 선택했다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-5-보안-측면">🔐 5. 보안 측면</h2>
+
+<ul>
+  <li>모든 WebRTC 통신은 <strong>DTLS (Datagram Transport Layer Security)</strong> 로 암호화</li>
+  <li>미디어 스트림은 <strong>SRTP (Secure RTP)</strong> 로 암호화되어 안전하게 전송</li>
+  <li>HTTPS 환경에서만 동작 (브라우저 정책상 보안 채널 필수)</li>
+</ul>
+
+<hr />
+
+<h2 id="-6-오늘의-정리">💡 6. 오늘의 정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>키워드</th>
+      <th>요약</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>WebRTC</strong></td>
+      <td>브라우저 간 실시간 통신 기술</td>
+    </tr>
+    <tr>
+      <td><strong>Signaling</strong></td>
+      <td>SDP/ICE 교환을 위한 외부 과정</td>
+    </tr>
+    <tr>
+      <td><strong>STUN/TURN</strong></td>
+      <td>NAT 환경에서도 연결을 돕는 서버</td>
+    </tr>
+    <tr>
+      <td><strong>Agora</strong></td>
+      <td>WebRTC 기반 실시간 통화 SDK</td>
+    </tr>
+    <tr>
+      <td><strong>보안</strong></td>
+      <td>DTLS + SRTP 기반 암호화</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-7-개인-메모">✍️ 7. 개인 메모</h2>
+
+<blockquote>
+  <p>Agora SDK를 직접 사용하며 느낀 점</p>
+</blockquote>
+
+<ul>
+  <li>브라우저 단에서 PeerConnection을 직접 제어하는 것보다 훨씬 안정적이다.</li>
+  <li>특히 네트워크 품질이 낮은 환경에서 TURN 관리가 자동화되어 있다는 점이 큰 장점.</li>
+  <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
+</ul>
+
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-10-05T15:34:09+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
   <li><a href="#1-배열--스트림">1. 배열 → 스트림</a></li>
   <li><a href="#2-형-변환-mapping">2. 형 변환 (Mapping)</a></li>
   <li><a href="#3-집계-연산-aggregation">3. 집계 연산 (Aggregation)</a></li>
@@ -122,7 +291,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li><code class="language-plaintext highlighter-rouge">summaryStatistics()</code></li>
 </ol>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-09-21T06:36:37+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-10-05T15:34:09+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
   <p>카테고리별 2인 매칭을 구현하며 실제로 쓴(또는 고민했던) 명령어들을 짧게 정리.
 예시 키는 <code class="language-plaintext highlighter-rouge">{cat:123}</code> 해시태그로 Redis Cluster 슬롯을 고정하는 패턴을 사용.</p>
 </blockquote>
@@ -356,7 +525,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><code class="language-plaintext highlighter-rouge">ZRANGE/ZRANDMEMBER</code>(조회) 뒤엔 <strong>반드시 <code class="language-plaintext highlighter-rouge">ZREM</code>(삭제)</strong></li>
   <li>경쟁 환경에선 <strong>Lua로 “조회→삭제”를 원자화</strong></li>
   <li><strong>TTL은 개별 상태 키에만</strong>, 대기열 컬렉션엔 금지</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지 — 실전 회고</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지 — 실전 회고" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-09-21T06:36:37+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지 — 실전 회고</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지 — 실전 회고" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-10-05T15:34:09+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
   <p>“카테고리별 2인 랜덤 매칭”을 스케줄러로 돌리는데, 한 카테고리에서 예외가 나면 <strong>전체 루프가 롤백</strong>될 수 있다는 얘기를 듣고 시작된 고민.
 그 결과 <code class="language-plaintext highlighter-rouge">@Transactional(propagation = REQUIRES_NEW)</code>를 채택했고, 다시 <strong>self-invocation</strong> 문제를 만나 리팩터링까지 갔던 과정을 정리했습니다.</p>
 </blockquote>
@@ -535,7 +704,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><a href="https://redis.io/docs/latest/develop/programmability/">Redis programmability</a></li>
   <li><a href="https://redis.io/blog/you-dont-need-transaction-rollbacks-in-redis/?utm_source=chatgpt.com">You Don’t Need Transaction Rollbacks in Redis</a></li>
   <li><a href="https://devoong2.tistory.com/entry/Spring-Transactional-REQUIRESNEW-%EC%98%B5%EC%85%98%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EC%99%B8-%EB%B0%8F-Rollback">Transactional REQUIRES_NEW 옵션에서 예외 및 Rollback</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-09-21T06:36:37+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-05T15:34:09+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
   <li><a href="#-record란-java-14">record란?</a></li>
   <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
   <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
@@ -773,7 +942,7 @@ ZREM wait:z:{cat:123} 101 205
 
 <h2 id="마무리">마무리</h2>
 
-<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-09-21T06:36:37+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
+<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-05T15:34:09+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
   <li><a href="#문제-배경">문제 배경</a></li>
   <li><a href="#tldr">TL;DR</a></li>
   <li><a href="#1-내가-왜-이런-고민을-하게-됐나-맥락">1. 내가 왜 이런 고민을 하게 됐나</a></li>
@@ -1333,7 +1502,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><strong>빈도주의</strong>: p-value/신뢰구간, 고정 표본 설계에 적합.</li>
   <li><strong>베이즈</strong>: “B가 A보다 좋을 확률”처럼 <strong>직관적 해석</strong>과 <strong>순차적 의사결정</strong>에 유리.
 둘 다 장단점 있어요—팀의 익숙함/툴링에 따라 선택.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-09-21T06:36:37+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-10-05T15:34:09+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
   <li><a href="#1-오늘-읽은-내용-요약">1. 오늘 읽은 내용 요약</a></li>
   <li><a href="#2-나에게-필요했던-이유--친구하자-적용-사례">2. 나에게 필요했던 이유 — <strong>친구하자</strong> 적용 사례</a></li>
   <li><a href="#3-느낀-점--인사이트">3. 느낀 점 &amp; 인사이트</a></li>
@@ -1822,200 +1991,4 @@ ZREM wait:z:{cat:123} 101 205
   <li>반면 FastAPI는 프로젝트 구조를 더 명확히 하고, 자동화된 유효성 검사 및 문서화 기능까지 갖추고 있어 <strong>중·대형 규모 프로젝트나 협업 시에 훨씬 효율적</strong>이라는 점을 느꼈다.</li>
   <li>개인적으로는 Pydantic이 예상보다 익숙했고, Spring Boot의 DTO를 써본 경험이 FastAPI 적응에 큰 도움이 되었다.</li>
   <li>앞으로는 프로젝트의 성격에 따라 Flask와 FastAPI를 유연하게 선택하며, 각 도구의 장점을 상황에 맞게 활용할 계획이다.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><category term="til" /><category term="TIL" /><category term="FastAPI" /><category term="Flask" /><category term="Backend" /><summary type="html"><![CDATA[2025-07-20 FastAPI vs Flask]]></summary></entry><entry><title type="html">[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS</title><link href="https://nan0silver.github.io/til/2025-05-27-til/" rel="alternate" type="text/html" title="[TIL] Jenkins vs GitHub Actions, IaaS vs PaaS vs SaaS" /><published>2025-05-27T00:00:00+00:00</published><updated>2025-05-28T00:36:49+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-05-27-til/"><![CDATA[<blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/62">#62</a><br />
-📅 <strong>작성일</strong>: 2025-05-27<br />
-🔄 <strong>최종 수정</strong>: 2025년 05월 28일</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<ul>
-  <li>AI Tech 2025 : AI 융합 비즈니스 개발 컨퍼런스 후기 작성 완료!
-    <ul>
-      <li><a href="https://silvernh.tistory.com/3">Tistory</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="1️⃣-jenkins-vs-github-actions">1️⃣ <strong>Jenkins vs GitHub Actions</strong></h3>
-
-<p>둘 다 **CI/CD(지속적 통합/지속적 배포)**를 자동화하는 도구다.
-개발자가 코드를 push하면 <strong>자동으로 빌드하고, 테스트하고, 배포</strong>까지 해주는 파이프라인 역할.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>Jenkins</th>
-      <th>GitHub Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>배포 방식</td>
-      <td>직접 서버에 설치 (온프레미스, 클라우드)</td>
-      <td>GitHub 내장 서비스 (클라우드 기반)</td>
-    </tr>
-    <tr>
-      <td>파이프라인 구성</td>
-      <td>Groovy 기반 DSL (Jenkinsfile)</td>
-      <td>YAML 기반 설정 (.github/workflows/)</td>
-    </tr>
-    <tr>
-      <td>UI/플러그인</td>
-      <td>수많은 플러그인과 커스터마이징 가능</td>
-      <td>GitHub 생태계에 최적화된 워크플로우</td>
-    </tr>
-    <tr>
-      <td>설정 난이도</td>
-      <td>다소 복잡 (서버 관리 필요)</td>
-      <td>상대적으로 간단하고 빠른 적용 가능</td>
-    </tr>
-    <tr>
-      <td>장점</td>
-      <td>유연한 환경 설정, 다양한 툴 연동 가능</td>
-      <td>GitHub와 완벽하게 통합, 설정이 간단</td>
-    </tr>
-    <tr>
-      <td>단점</td>
-      <td>서버 유지보수 필요, 러닝커브 있음</td>
-      <td>GitHub 내에서만 동작 (GitLab, Bitbucket X)</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>✅ GitHub Actions는 빠르게 CI/CD를 도입하고 싶은 팀에 좋고,
-✅ Jenkins는 복잡한 환경이나 내부망에서의 CI/CD가 필요할 때 적합하다.</p>
-</blockquote>
-
-<p>—å</p>
-
-<h3 id="-간단-예시--github-actions">🧪 간단 예시 – GitHub Actions</h3>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># .github/workflows/deploy.yml</span>
-<span class="na">name</span><span class="pi">:</span> <span class="s">Build and Deploy</span>
-
-<span class="na">on</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">push</span><span class="pi">]</span>
-
-<span class="na">jobs</span><span class="pi">:</span>
-  <span class="na">build</span><span class="pi">:</span>
-    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
-    <span class="na">steps</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
-      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">./gradlew build</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="2️⃣-iaas-vs-paas-vs-saas">2️⃣ <strong>IaaS vs PaaS vs SaaS</strong></h3>
-
-<p>클라우드 서비스 모델을 구분할 때 자주 등장하는 세 가지 개념.
-“내가 어디까지 책임지고, 어디서부터는 제공자가 해주는가?”가 핵심.</p>
-
-<h4 id="-개념-요약">✅ 개념 요약</h4>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>설명</th>
-      <th>예시</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>IaaS (Infrastructure as a Service)</td>
-      <td>인프라만 제공받고, OS부터 직접 설치</td>
-      <td>AWS EC2, Google Compute Engine</td>
-    </tr>
-    <tr>
-      <td>PaaS (Platform as a Service)</td>
-      <td>실행 환경까지 제공, 앱 코드만 올리면 됨</td>
-      <td>Heroku, Google App Engine, Render</td>
-    </tr>
-    <tr>
-      <td>SaaS (Software as a Service)</td>
-      <td>소프트웨어 완제품 사용</td>
-      <td>Gmail, Notion, Slack</td>
-    </tr>
-  </tbody>
-</table>
-
-<h4 id="-비교-예시">✅ 비교 예시</h4>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>IaaS</th>
-      <th>PaaS</th>
-      <th>SaaS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>서버 관리</td>
-      <td>내가 함</td>
-      <td>클라우드가 함</td>
-      <td>필요 없음</td>
-    </tr>
-    <tr>
-      <td>개발 유연성</td>
-      <td>높음</td>
-      <td>중간</td>
-      <td>거의 없음</td>
-    </tr>
-    <tr>
-      <td>배포 편의성</td>
-      <td>낮음 (직접 설정)</td>
-      <td>높음 (코드만 배포)</td>
-      <td>매우 높음 (사용만 하면 됨)</td>
-    </tr>
-    <tr>
-      <td>대상 사용자</td>
-      <td>인프라 엔지니어, DevOps</td>
-      <td>백엔드 개발자</td>
-      <td>일반 사용자, 마케터 등</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="-요약-정리">🧠 요약 정리</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>질문</th>
-      <th>답변</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Jenkins랑 GitHub Actions 중 뭐가 더 쉽지?</td>
-      <td>GitHub Actions! 설정이 YAML이고 GitHub랑 연동이 편함</td>
-    </tr>
-    <tr>
-      <td>IaaS는 언제 써야 해?</td>
-      <td>서버에 대해 완전히 커스터마이징이 필요할 때</td>
-    </tr>
-    <tr>
-      <td>SaaS는 어떤 거야?</td>
-      <td>구글 드라이브, 노션, 슬랙처럼 바로 쓰는 서비스</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<blockquote>
-  <p>오늘의 핵심:
-✅ CI/CD 도구는 “내가 코드를 어떻게 자동화할지”에 따라 고르고,
-✅ 클라우드 서비스 모델은 “어디까지 직접 관리할지”에 따라 고른다.</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="DevOps" /><category term="Cloud" /><summary type="html"><![CDATA[2025-05-27 TIL]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><category term="til" /><category term="TIL" /><category term="FastAPI" /><category term="Flask" /><category term="Backend" /><summary type="html"><![CDATA[2025-07-20 FastAPI vs Flask]]></summary></entry></feed>
