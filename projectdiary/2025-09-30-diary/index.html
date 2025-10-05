@@ -46,7 +46,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-10-05T15:34:09+00:00","datePublished":"2025-09-30T00:00:00+00:00","description":"친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!","headline":"[친구하자] WebRTC란 무엇일까?","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-09-30-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-09-30-diary/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-10-05T15:46:03+00:00","datePublished":"2025-09-30T00:00:00+00:00","description":"친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!","headline":"[친구하자] WebRTC란 무엇일까?","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-09-30-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-09-30-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -186,7 +186,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-10-05T15:35:02+00:00',
+    INDEX_KEY: 'index--2025-10-05T15:46:47+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -236,7 +236,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       }
     },
     "datePublished": "2025-09-30T00:00:00+00:00",
-    "dateModified": "2025-10-05T15:34:09+00:00",
+    "dateModified": "2025-10-05T15:46:03+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://nan0silver.github.io/projectdiary/2025-09-30-diary/"
@@ -405,7 +405,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 05 Oct 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-10-05T15:34:09+00:00">2025-10-05</time>
+              <time datetime="2025-10-05T15:46:03+00:00">2025-10-05</time>
             </span>
           
         
@@ -430,9 +430,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <blockquote>
-  <p>Today I Learned – Agora WebRTC 통화 구현 전 이해하기</p>
-</blockquote>
+    <ul>
+  <li><a href="#-1-webrtc의-정의">1. WebRTC의 정의</a></li>
+  <li><a href="#-2-webrtc의-주요-구성-요소">2. WebRTC의 주요 구성 요소</a></li>
+  <li><a href="#️-3-동작-흐름-signaling-포함">3. 동작 흐름 (Signaling 포함)</a></li>
+  <li><a href="#-4-왜-agora를-사용하는가">4. 왜 Agora를 사용하는가</a></li>
+  <li><a href="#-5-보안-측면">5. 보안 측면</a></li>
+  <li><a href="#-6-오늘의-정리">6. 오늘의 정리</a></li>
+</ul>
 
 <hr />
 
@@ -960,8 +965,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </nav>
 
   <div style="text-align: center;">
-    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fnan0silver.github.io&count_bg=%23E786D8&title_bg=%237624DD&icon=waze.svg&icon_color=%23E7E7E7&title=%EC%A1%B0%ED%9A%8C%EC%88%98&edge_flat=false" alt="조회수 배치" width="120" height="20" loading="lazy"/></a>
-  </div>
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
 
   
   <div class="sidebar-social">
