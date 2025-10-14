@@ -1,7 +1,136 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-10-13T02:25:31+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-10-14T05:30:55+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-10-13T02:24:46+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-10-14T05:30:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
+  <li><a href="#문제-상황">문제 상황</a></li>
+  <li><a href="#원인">원인</a></li>
+  <li><a href="#해결-방법">해결방법</a></li>
+  <li><a href="#참고-사항">참고사항</a></li>
+</ul>
+
+<h2 id="redis-데이터-초기화-트러블슈팅">Redis 데이터 초기화 트러블슈팅</h2>
+
+<ul>
+  <li>
+    <p>나는 로컬 환경에서 Docker Compose로 Redis, MySQL룰 컨테이너화해서 실행하고 있다.</p>
+
+    <blockquote>
+      <p>Redis 7 Alpine 이미지 기반의 컨테이너를 오케스트레이션</p>
+    </blockquote>
+  </li>
+  <li>Redis(인메모리 캐시)는 실시간 매칭 대기열 관리에 사용되고,</li>
+  <li>
+    <p>MySQL은 매칭 결과 및 사용자 정보 저장에 사용된다.</p>
+
+    <blockquote>
+      <p>매칭 대기열에서 Redis를 사용한 플로우와 이유에 대해서는 다음 게시글에서 다루겠다.</p>
+    </blockquote>
+  </li>
+  <li>Spring Boot로 로컬 개발을 하며 매칭 - 통화 - 통화 평가 프로세스 구축에 시간을 많이 썼다.</li>
+  <li>Redis, WebSocke을 이용한 개발이 처음이기도 하고, 공부하면서 개발했기 때문에 시행착오를 많이 거쳤다.</li>
+  <li>이 과정에서 계속 DB를 초기화 하고.. 로직을 엎고.. 하는 일들이 많았는데</li>
+  <li>
+    <p>여러번 반복적으로 Redis를 초기화 할때는 외워서 했지만 프론트와 연동하며 오랜만에 매칭 관련 코드를 뜯어보다 문제가 생겨 Redis를 초기화 하려니 생각이 하나도 안나는 것이다!!</p>
+  </li>
+  <li>그래서 그냥 정리해두기로 했다.</li>
+</ul>
+
+<h2 id="문제-상황">문제 상황</h2>
+
+<ul>
+  <li>Spring Boot 애플리케이션에서 매칭 대기열에 사용자가 계속 남아있는 문제가 발생하였다.</li>
+  <li>
+    <p>MySQL은 초기화 한 상황, user가 한명도 없는데도 userID만 redis에 계속 저장되어있는 상황</p>
+
+    <ul>
+      <li>MySQL은 spring boot 재실행만으로도 초기화가 쉽게 되는데 redis는 어떻게 했더라.. 문제 발생</li>
+    </ul>
+  </li>
+  <li><img src="image.png" alt="계속 남아있는 매칭 대기열의 유령들" />
+    <blockquote>
+      <p>계속 남아있는 매칭 대기열의 유령들</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="원인">원인</h2>
+
+<ul>
+  <li>위에도 말했지만 Docker Compose로 MySQL 컨테이너를 재시작해서 데이터베이스는 초기화됨</li>
+  <li>하지만 Redis는 인메모리 데이터베이스이면서도 <code class="language-plaintext highlighter-rouge">redis_data</code>볼륨애 데이터를 영구 저장</li>
+  <li>컨테이너를 재시작해도 볼륨에 저장된 데이터는 유지됨..</li>
+  <li>결과적으로 DB에는 없는 사용자가 Redis에만 남아있는 불일치 상태 발생</li>
+</ul>
+
+<h2 id="해결-방법">해결 방법</h2>
+
+<h3 id="방법-1--redis-cli로-데이터-삭제">방법 1 : Redis CLI로 데이터 삭제</h3>
+
+<blockquote>
+  <p>나는 이걸로 해결</p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Redis 컨테이너에 접속
+docker exec -it &lt;내 redis 이름&gt; redis-cli
+
+# 모든 데이터 삭제
+127.0.0.1:6379&gt; FLUSHALL
+
+# 삭제 확인
+127.0.0.1:6379&gt; KEYS *
+
+# 종료
+127.0.0.1:6379&gt; exit
+</code></pre></div></div>
+
+<p><img src="image-1.png" alt="캡쳐 사진" /></p>
+
+<p>-&gt; 금방 해결!</p>
+
+<h3 id="방법-2--명령어-한줄로-실행">방법 2 : 명령어 한줄로 실행</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker exec -it chingoo-redis redis-cli FLUSHALL
+</code></pre></div></div>
+
+<h3 id="방법-3--docker-볼륨까지-완전-삭제">방법 3 : Docker 볼륨까지 완전 삭제</h3>
+
+<ul>
+  <li>더 확실한 초기화 방법</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># docker 디렉토리로 이동
+cd docker
+
+# 컨테이너 중지 및 볼륨 삭제
+docker-compose down -v
+
+# 컨테이너 재시작
+docker-compose up -d
+</code></pre></div></div>
+
+<ul>
+  <li>볼륨까지 삭제되므로 Redis 데이터가 완전히 초기화됨</li>
+  <li>‼ <code class="language-plaintext highlighter-rouge">-v</code>옵션은 MySQL 데이터도 삭제하므로 주의가 필요!</li>
+</ul>
+
+<h2 id="해결">해결</h2>
+
+<p>이렇게 하면
+<img src="image-2.png" alt="alt text" /></p>
+
+<blockquote>
+  <p>매칭 대기열이 깨끗해진 모습
+이렇게 유령들이 사라진다.</p>
+</blockquote>
+
+<h2 id="참고-사항">참고 사항</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">FLUSHALL</code>: 모든 데이터베이스의 모든 키 삭제</li>
+  <li><code class="language-plaintext highlighter-rouge">FLUSHDB</code>: 현재 선택된 데이터베이스의 키만 삭제</li>
+  <li>Redis는 기본적으로 데이터베이스 0~15번까지 16개를 제공</li>
+  <li>운영환경에서는 절대 <code class="language-plaintext highlighter-rouge">FLUSHALL</code>을 실행하면 안됨!</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-10-14T05:30:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
   <li><a href="#-1-webrtc의-정의">1. WebRTC의 정의</a></li>
   <li><a href="#-2-webrtc의-주요-구성-요소">2. WebRTC의 주요 구성 요소</a></li>
   <li><a href="#️-3-동작-흐름-signaling-포함">3. 동작 흐름 (Signaling 포함)</a></li>
@@ -175,7 +304,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-10-13T02:24:46+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-10-14T05:30:08+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
   <li><a href="#1-배열--스트림">1. 배열 → 스트림</a></li>
   <li><a href="#2-형-변환-mapping">2. 형 변환 (Mapping)</a></li>
   <li><a href="#3-집계-연산-aggregation">3. 집계 연산 (Aggregation)</a></li>
@@ -296,7 +425,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   <li><code class="language-plaintext highlighter-rouge">summaryStatistics()</code></li>
 </ol>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-10-13T02:24:46+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-10-14T05:30:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
   <p>카테고리별 2인 매칭을 구현하며 실제로 쓴(또는 고민했던) 명령어들을 짧게 정리.
 예시 키는 <code class="language-plaintext highlighter-rouge">{cat:123}</code> 해시태그로 Redis Cluster 슬롯을 고정하는 패턴을 사용.</p>
 </blockquote>
@@ -530,7 +659,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><code class="language-plaintext highlighter-rouge">ZRANGE/ZRANDMEMBER</code>(조회) 뒤엔 <strong>반드시 <code class="language-plaintext highlighter-rouge">ZREM</code>(삭제)</strong></li>
   <li>경쟁 환경에선 <strong>Lua로 “조회→삭제”를 원자화</strong></li>
   <li><strong>TTL은 개별 상태 키에만</strong>, 대기열 컬렉션엔 금지</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-10-13T02:24:46+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-10-14T05:30:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
   <p>“카테고리별 2인 랜덤 매칭”을 스케줄러로 돌리는데, 한 카테고리에서 예외가 나면 <strong>전체 루프가 롤백</strong>될 수 있다는 얘기를 듣고 시작된 고민.
 그 결과 <code class="language-plaintext highlighter-rouge">@Transactional(propagation = REQUIRES_NEW)</code>를 채택했고, 다시 <strong>self-invocation</strong> 문제를 만나 리팩터링까지 갔던 과정을 정리했습니다.</p>
 </blockquote>
@@ -709,7 +838,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><a href="https://redis.io/docs/latest/develop/programmability/">Redis programmability</a></li>
   <li><a href="https://redis.io/blog/you-dont-need-transaction-rollbacks-in-redis/?utm_source=chatgpt.com">You Don’t Need Transaction Rollbacks in Redis</a></li>
   <li><a href="https://devoong2.tistory.com/entry/Spring-Transactional-REQUIRESNEW-%EC%98%B5%EC%85%98%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EC%99%B8-%EB%B0%8F-Rollback">Transactional REQUIRES_NEW 옵션에서 예외 및 Rollback</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-13T02:24:46+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-14T05:30:08+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
   <li><a href="#-record란-java-14">record란?</a></li>
   <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
   <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
@@ -947,7 +1076,7 @@ ZREM wait:z:{cat:123} 101 205
 
 <h2 id="마무리">마무리</h2>
 
-<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-13T02:24:46+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
+<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-14T05:30:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
   <li><a href="#문제-배경">문제 배경</a></li>
   <li><a href="#tldr">TL;DR</a></li>
   <li><a href="#1-내가-왜-이런-고민을-하게-됐나-맥락">1. 내가 왜 이런 고민을 하게 됐나</a></li>
@@ -1507,7 +1636,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><strong>빈도주의</strong>: p-value/신뢰구간, 고정 표본 설계에 적합.</li>
   <li><strong>베이즈</strong>: “B가 A보다 좋을 확률”처럼 <strong>직관적 해석</strong>과 <strong>순차적 의사결정</strong>에 유리.
 둘 다 장단점 있어요—팀의 익숙함/툴링에 따라 선택.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-10-13T02:24:46+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-10-14T05:30:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
   <li><a href="#1-오늘-읽은-내용-요약">1. 오늘 읽은 내용 요약</a></li>
   <li><a href="#2-나에게-필요했던-이유--친구하자-적용-사례">2. 나에게 필요했던 이유 — <strong>친구하자</strong> 적용 사례</a></li>
   <li><a href="#3-느낀-점--인사이트">3. 느낀 점 &amp; 인사이트</a></li>
@@ -1830,170 +1959,4 @@ ZREM wait:z:{cat:123} 101 205
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />모델 업데이트 시 A/B 테스트 기반 롤아웃 전략 도입</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-16 TIL]]></summary></entry><entry><title type="html">[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교</title><link href="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" rel="alternate" type="text/html" title="[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교" /><published>2025-07-20T00:00:00+00:00</published><updated>2025-07-23T16:30:00+00:00</updated><id>https://nan0silver.github.io/miscellaneous/til/flask-fastAPI</id><content type="html" xml:base="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"><![CDATA[<ul>
-  <li><a href="#-새롭게-배운-것">새롭게 배운 것</a></li>
-  <li><a href="#-오늘의-문제-상황--해결-과정">오늘의 문제 상황 &amp; 해결 과정</a></li>
-  <li><a href="#-pydantic이란">Pydantic이란?</a></li>
-  <li><a href="#-spring-boot-dto와-pydantic의-비교">Spring Boot DTO와 Pydantic의 비교</a></li>
-  <li><a href="#-느낀-점">느낀 점</a></li>
-</ul>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<ul>
-  <li>Python 백엔드 프레임워크인 <strong>FastAPI</strong>와 <strong>Flask</strong>를 비교해보았다.</li>
-  <li>두 프레임워크 모두 경량 웹 서버를 빠르게 개발할 수 있도록 도와주지만, 철학과 기능 면에서 차이가 존재한다.</li>
-  <li>주요 비교 항목: 비동기 처리, 타입 힌트 지원, 성능, 문서 자동화, 커뮤니티 및 생태계 등</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th><strong>FastAPI</strong></th>
-      <th><strong>Flask</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>출시 연도</strong></td>
-      <td>2018</td>
-      <td>2010</td>
-    </tr>
-    <tr>
-      <td><strong>비동기 지원</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">async/await</code> 기반 비동기 처리 완전 지원</td>
-      <td>기본은 동기, 비동기 처리는 별도 패키지 필요</td>
-    </tr>
-    <tr>
-      <td><strong>타입 힌트</strong></td>
-      <td>필수적으로 사용하며, 자동 문서화 및 검증에 활용</td>
-      <td>선택적 사용, 검증은 외부 라이브러리 의존</td>
-    </tr>
-    <tr>
-      <td><strong>문서 자동화</strong></td>
-      <td>Swagger UI 및 Redoc 자동 생성</td>
-      <td>기본 제공 없음 (Flasgger 등으로 보완)</td>
-    </tr>
-    <tr>
-      <td><strong>성능</strong></td>
-      <td>매우 빠름 (Starlette 기반, Uvicorn 활용)</td>
-      <td>상대적으로 느림</td>
-    </tr>
-    <tr>
-      <td><strong>러닝 커브</strong></td>
-      <td>초기 진입 장벽이 다소 높음 (타입, Pydantic 등)</td>
-      <td>매우 쉬운 진입, 학습 곡선 완만</td>
-    </tr>
-    <tr>
-      <td><strong>커뮤니티</strong></td>
-      <td>빠르게 성장 중</td>
-      <td>매우 크고 안정적인 생태계</td>
-    </tr>
-    <tr>
-      <td><strong>데이터 검증</strong></td>
-      <td>Pydantic 기반의 자동 검증</td>
-      <td>별도 유효성 검사 코드 필요</td>
-    </tr>
-    <tr>
-      <td><strong>REST API 개발</strong></td>
-      <td>RESTful 설계에 최적화</td>
-      <td>자유도가 높음, 규칙이 느슨함</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-오늘의-문제-상황--해결-과정">🍎 오늘의 문제 상황 &amp; 해결 과정</h2>
-
-<ul>
-  <li>지금까지는 Flask의 간결함과 진입 장벽이 낮은 점이 마음에 들어 주로 Flask를 사용해왔다.</li>
-  <li>하지만 이번에는 FastAPI를 직접 적용해보고 싶어 새 프로젝트에 도입해보았다.</li>
-  <li>특히 <code class="language-plaintext highlighter-rouge">Pydantic</code> 모델이 처음엔 어렵게 느껴질까 걱정했지만, 막상 사용해보니 <strong>Spring Boot의 DTO와 매우 유사한 느낌</strong>이 들어 빠르게 익숙해졌다.</li>
-  <li>타입 기반 구조와 자동 검증, 문서화 덕분에 프로젝트가 자연스럽게 구조화되고 개발 속도도 빨랐다.</li>
-</ul>
-
-<hr />
-
-<h2 id="-pydantic이란">📌 Pydantic이란?</h2>
-
-<ul>
-  <li><strong>Pydantic</strong>은 FastAPI에서 입력/출력 데이터의 구조를 정의하고, 유효성을 검사하며, JSON 직렬화를 자동으로 처리하는 핵심 컴포넌트다.</li>
-  <li>Python의 <strong>타입 힌트(type hint)</strong>를 기반으로 동작하며, <code class="language-plaintext highlighter-rouge">BaseModel</code>을 상속하여 필드와 제약 조건을 선언할 수 있다.</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
-
-<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
-</code></pre></div></div>
-
-<ul>
-  <li>위와 같이 작성하면, FastAPI는 요청 데이터가 이 조건을 만족하는지 자동으로 검증하고, Swagger 문서까지 자동 생성해준다.</li>
-</ul>
-
-<hr />
-
-<h2 id="-spring-boot-dto와-pydantic의-비교">🔍 Spring Boot DTO와 Pydantic의 비교</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>Spring Boot DTO</th>
-      <th>FastAPI Pydantic Model</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>역할</strong></td>
-      <td>요청/응답 객체 정의 + 유효성 검사</td>
-      <td>요청/응답 객체 정의 + 유효성 검사</td>
-    </tr>
-    <tr>
-      <td><strong>유효성 검사 도구</strong></td>
-      <td>JSR 380 (e.g., <code class="language-plaintext highlighter-rouge">@NotNull</code>, <code class="language-plaintext highlighter-rouge">@Size</code>)</td>
-      <td>Pydantic (<code class="language-plaintext highlighter-rouge">Field</code>, <code class="language-plaintext highlighter-rouge">validator</code>)</td>
-    </tr>
-    <tr>
-      <td><strong>직렬화/역직렬화</strong></td>
-      <td>Jackson 사용</td>
-      <td>내장 기능으로 자동 처리</td>
-    </tr>
-    <tr>
-      <td><strong>중첩 구조 지원</strong></td>
-      <td>중첩 DTO 클래스</td>
-      <td>중첩 <code class="language-plaintext highlighter-rouge">BaseModel</code>을 통한 자연스러운 처리</td>
-    </tr>
-    <tr>
-      <td><strong>문서화 연동</strong></td>
-      <td>Swagger/OpenAPI 설정 필요</td>
-      <td>FastAPI에 자동 내장</td>
-    </tr>
-    <tr>
-      <td><strong>확장성</strong></td>
-      <td>Bean Validation 위주</td>
-      <td>타입 변환, 커스텀 직렬화 등 더 다양한 기능 내장</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>결론적으로 <strong>Pydantic은 Spring의 DTO와 유사한 사용 경험을 제공하면서도</strong>, 그 이상의 기능(데이터 직렬화, 문서화, 타입 변환 등)을 하나의 모델에서 처리할 수 있다는 점에서 <strong>DTO + Validator + Mapper + Serializer의 통합체</strong>로 볼 수 있다.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-느낀-점">🦄 느낀 점</h2>
-
-<ul>
-  <li>Flask는 여전히 빠른 개발과 간단한 구조를 원할 때 유용한 선택지다.</li>
-  <li>반면 FastAPI는 프로젝트 구조를 더 명확히 하고, 자동화된 유효성 검사 및 문서화 기능까지 갖추고 있어 <strong>중·대형 규모 프로젝트나 협업 시에 훨씬 효율적</strong>이라는 점을 느꼈다.</li>
-  <li>개인적으로는 Pydantic이 예상보다 익숙했고, Spring Boot의 DTO를 써본 경험이 FastAPI 적응에 큰 도움이 되었다.</li>
-  <li>앞으로는 프로젝트의 성격에 따라 Flask와 FastAPI를 유연하게 선택하며, 각 도구의 장점을 상황에 맞게 활용할 계획이다.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="miscellaneous" /><category term="til" /><category term="TIL" /><category term="FastAPI" /><category term="Flask" /><category term="Backend" /><summary type="html"><![CDATA[2025-07-20 FastAPI vs Flask]]></summary></entry></feed>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-16 TIL]]></summary></entry></feed>
