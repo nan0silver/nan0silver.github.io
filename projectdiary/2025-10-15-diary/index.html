@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[TIL] Hidden Technical Debt in Machine Learning Systems | NAHYUN BLOG</title>
+<title>[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[TIL] Hidden Technical Debt in Machine Learning Systems" />
+<meta property="og:title" content="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="2025-08-16 TIL" />
-<meta property="og:description" content="2025-08-16 TIL" />
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-08-16-til/" />
-<meta property="og:url" content="https://nan0silver.github.io/til/2025-08-16-til/" />
+<meta name="description" content="백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)" />
+<meta property="og:description" content="백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-08-16T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-10-15T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[TIL] Hidden Technical Debt in Machine Learning Systems" />
+<meta property="twitter:title" content="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-08-16T00:36:49+00:00","datePublished":"2025-08-16T00:00:00+00:00","description":"2025-08-16 TIL","headline":"[TIL] Hidden Technical Debt in Machine Learning Systems","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-08-16-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-08-16-til/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-10-16T05:21:03+00:00","datePublished":"2025-10-15T00:00:00+00:00","description":"백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)","headline":"[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-10-15-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-10-15-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/til/2025-08-16-til/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[TIL] Hidden Technical Debt in Machine Learning Systems",
-    "description": "2025-08-16 TIL
+    "headline": "[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제",
+    "description": "백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-08-16T00:00:00+00:00",
-    "dateModified": "2025-08-16T00:36:49+00:00",
+    "datePublished": "2025-10-15T00:00:00+00:00",
+    "dateModified": "2025-10-16T05:21:03+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/til/2025-08-16-til/"
+      "@id": "https://nan0silver.github.io/projectdiary/2025-10-15-diary/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-08-16-til/" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "til",
-        "item": "https://nan0silver.github.io/til/"
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[TIL] Hidden Technical Debt in Machine Learning Systems",
-        "item": "https://nan0silver.github.io/til/2025-08-16-til/"
+        "name": "[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제",
+        "item": "https://nan0silver.github.io/projectdiary/2025-10-15-diary/"
       }
     ]
   }
@@ -358,14 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/til/">til</a>
+          <a href="/projectdiary/">projectdiary</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-08-16-til</span>
+          <span>2025-10-15-diary</span>
         
       </li>
     
@@ -382,23 +382,31 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-til-til" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [TIL] Hidden Technical Debt in Machine Learning Systems
+        [친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-08-16T00:00:00+00:00">16 Aug 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Git</span>, <span>Ml</span>
+        <time datetime="2025-10-15T00:00:00+00:00">15 Oct 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
           
           
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 16 Oct 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-10-16T05:21:03+00:00">2025-10-16</time>
+            </span>
           
         
       
@@ -413,7 +421,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      2025-08-16 TIL
+      백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)
 
     </p>
   
@@ -422,125 +430,229 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-📅 <strong>작성일</strong>: 2025-08-16<br />
-🔄 <strong>최종 수정</strong>: 2025년 08월 16일</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<p><strong>논문</strong>: [Hidden Technical Debt in Machine Learning Systems (NIPS 2015)]
-<strong>작성자</strong>: D. Sculley외 10인 (Google, Inc.)</p>
-
-<h3 id="1-오늘-읽은-내용-요약">1. 오늘 읽은 내용 요약</h3>
-
-<blockquote>
-  <p><strong>핵심 주제</strong>: 머신러닝 시스템에서 발생하는 <strong>숨은 기술 부채(hidden technical debt)</strong> 문제를 설명하고, 시스템 설계 단계에서 고려해야 할 위험 요소를 다룸.</p>
-</blockquote>
-
-<ul>
-  <li>
-    <p><strong>기술 부채(Technical Debt) 개념</strong></p>
-
     <ul>
-      <li>ML 시스템은 개발과 배포는 빠르지만 <strong>유지보수가 어렵고 비용이 많이 드는 구조적 특성</strong>을 가짐.</li>
-      <li>코드 수준의 문제보다 <strong>시스템 전반에서의 복잡성</strong>이 더 큰 원인.</li>
-      <li>숨은 부채는 누적되며, 발견 시에는 비용이 급격히 커짐.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>ML 시스템에서 기술 부채가 생기는 주요 원인</strong></p>
-
-    <ol>
-      <li><strong>경계 침식(Boundary Erosion)</strong>: 모델이 여러 신호를 섞어 사용하기 때문에 한 부분을 바꾸면 전체가 변함 (<strong>CACE 원칙: Changing Anything Changes Everything</strong>).</li>
-      <li><strong>데이터 의존성(Data Dependencies)</strong>: 불안정하거나 과도한 데이터 의존성으로 인해 작은 변화가 큰 장애를 일으킴.</li>
-      <li><strong>피드백 루프(Feedback Loops)</strong>: 모델이 자신의 입력 데이터를 간접적으로 바꾸는 경우 → 예측 정확도에 예기치 못한 영향을 미침.</li>
-      <li>
-        <p><strong>시스템 안티패턴(System Anti-Patterns)</strong>:</p>
-
-        <ul>
-          <li><strong>Glue Code</strong>: 다양한 패키지를 연결하는 코드가 과도해져 유지보수 비용 증가.</li>
-          <li><strong>Pipeline Jungles</strong>: 데이터 처리 파이프라인이 점점 복잡해져 관리가 어려워짐.</li>
-          <li><strong>Dead Experimental Codepaths</strong>: 실험을 위해 만든 코드가 방치되어 예기치 못한 오류를 유발.</li>
-        </ul>
-      </li>
-      <li><strong>구성(Configuration) 부채</strong>: 피처, 하이퍼파라미터, 로깅 설정 등 방대한 설정이 누적되어 관리가 어려워짐.</li>
-      <li><strong>외부 세계 변화</strong>: 환경, 사용자 행동, 시장 조건의 변화가 모델 성능에 직접적인 영향을 미침.</li>
-    </ol>
-  </li>
-  <li>
-    <p><strong>해결 방안</strong></p>
-
-    <ul>
-      <li>데이터 및 모델 <strong>의존성 관리 도구</strong> 구축 (버저닝, 자동화된 피처 관리 등).</li>
-      <li><strong>모니터링 &amp; 자동화 대응</strong> 필수.</li>
-      <li>실험적 코드 정리 및 중복 제거.</li>
-      <li>연구팀과 엔지니어링팀 간 <strong>하이브리드 협업 구조</strong> 필요.</li>
-    </ul>
-  </li>
+  <li><a href="#문제-상황">문제 상황</a></li>
+  <li><a href="#원인-분석">원인 분석</a></li>
+  <li><a href="#해결-방법">해결방법</a></li>
+  <li><a href="#참고-사항">참고사항</a></li>
 </ul>
 
-<hr />
-
-<h3 id="2-나에게-필요했던-이유">2. 나에게 필요했던 이유</h3>
-
-<blockquote>
-  <p>이에 대한 자세한 내용은 (깃블로그)[링크]에서 볼 수 있습니다.</p>
-</blockquote>
+<h2 id="크로스-도메인-환경에서-refresh-token-쿠키-소실-트러블슈팅">크로스 도메인 환경에서 Refresh Token 쿠키 소실 트러블슈팅</h2>
 
 <ul>
-  <li>
-    <p>현재 진행 중인 <strong>AI 기반 발화/화행 분석 모델</strong>과 <strong>친구하자</strong> 서비스의 ML 시스템에 적용할 수 있음:</p>
-
-    <ul>
-      <li><strong>데이터 버저닝</strong> 필요성 → 감정 분석 모델 학습 시 <strong>피처 변경</strong>이 있을 경우 예기치 못한 성능 저하 방지.</li>
-      <li><strong>파이프라인 관리</strong> 중요성 → 통화 음성 데이터 → 스펙트로그램 변환 → 감정 분석 → 저장 단계에서 발생할 수 있는 <strong>Pipeline Jungle</strong> 방지.</li>
-      <li><strong>모델 업데이트 전략</strong> → 모델 개선이 실제 서비스에서 <strong>사용자 경험을 악화시킬 수 있는 위험</strong> 방지 필요.</li>
-      <li><strong>실시간 모니터링</strong> 필요 → 모델 성능 저하나 데이터 분포 변화에 빠르게 대응 가능해야 함.</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="3-느낀-점--인사이트">3. 느낀 점 &amp; 인사이트</h3>
-
-<ul>
-  <li>단순히 모델 성능을 높이는 것보다, <strong>시스템 전반의 유지보수성</strong>과 <strong>데이터 흐름 관리</strong>가 훨씬 중요하다는 걸 깨달음.</li>
-  <li>
-    <p>특히 <strong>CACE 원칙</strong>은 실무에서 체감할 가능성이 큼:</p>
-
+  <li>개발 환경에서는 token관련 문제가 전혀 없었다. 그런데 배포한 후 로그인이 새로운 탭에서 유지되지 않는 문제를 해결하려고 하다가 Refresh Token이 새로고침하면 사라지는걸 발견하였다.
     <blockquote>
-      <p>“하나 바꾸면 다 바뀐다” → 모델 입력 피처 변경 시 전체 시스템의 예측 성능이 흔들릴 수 있음.</p>
+      <p>어디갔어.. 내 refresh token 🥲</p>
     </blockquote>
   </li>
-  <li>앞으로 <strong>AI 모델 성능 향상보다 안정적인 시스템 아키텍처 설계</strong>에 우선순위를 둬야겠다고 느낌.</li>
-  <li>
-    <p><strong>친구하자</strong> 서비스에서도:</p>
+  <li>로그인이 유지되지 않는 문제는 왜인지 알았기 때문에 금방 해결하였지만, refresh token이 사라지는 문제가 더 나를 힘들게 만들었다..</li>
+  <li>따라서 왜 그런 문제가 발생하는지 좀 더 알아보고자 했다.</li>
+</ul>
 
-    <ul>
-      <li>데이터 파이프라인 설계를 단순하게 유지.</li>
-      <li>모델을 <strong>엔드 투 엔드로 한 번에 학습</strong>하는 방법과 <strong>서브모델 앙상블 방식</strong>의 트레이드오프를 고려해야 함.</li>
-      <li>장기적으로 <strong>모델 버저닝 + 모니터링 시스템</strong>을 도입해 기술 부채를 최소화할 필요 있음.</li>
-    </ul>
+<h2 id="문제-상황">문제 상황</h2>
+
+<ul>
+  <li>Local 환경: Refresh Token 쿠키가 정상적으로 유지됨 ✅</li>
+  <li>Production 환경 : 로그인은 성공하지만, 새로고침하면 Refresh Token 쿠키가 사라짐 👻 (Refresh Token은 HttpOnly Cookie에 저장함)</li>
+  <li>
+    <p>브라우저 개발자 도구에서 확인한 쿠키 만료 시간: 30일 ✅</p>
+
+    <blockquote>
+      <p>처음엔 만료 시간이 잘못 설정되어있는줄 알았다.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>환경 정보</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Local 환경:
+- Frontend: http://localhost:3000
+- Backend:  http://localhost:8080
+- 동일 호스트(localhost), 다른 포트 → Same-Site
+
+Production 환경:
+- Frontend: https://chingoo-frontend.vercel.app
+- Backend:  https://your-backend-domain.com
+- 다른 도메인 → Cross-Site
+</code></pre></div>    </div>
   </li>
 </ul>
 
-<hr />
+<h2 id="원인-분석">원인 분석</h2>
 
-<h3 id="4-다음-액션-아이템">4. 다음 액션 아이템</h3>
+<h3 id="1-잘못된-쿠키-설정">1. 잘못된 쿠키 설정</h3>
 
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />데이터 버저닝 전략 조사 및 설계 (e.g., DVC, MLflow)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />음성 데이터 파이프라인 단순화 → Glue Code 최소화</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />실시간 성능 모니터링 및 알림 시스템 설계</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />모델 업데이트 시 A/B 테스트 기반 롤아웃 전략 도입</li>
+<p>application-prod.yml의 문제:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">app:
+  cookie:
+    secure: false     # ❌ HTTPS 환경인데 false
+    sam-site: Lax     # ❌ 크로스 도메인인데 Lax
+    max-age: 2592000  # ✅ 30일 (정상)
+</span></code></pre></div></div>
+
+<h3 id="2-samsite-쿠키-정책-이해하기">2. SamSite 쿠키 정책 이해하기</h3>
+
+<h4 id="samsite-속성이란">SamSite 속성이란?</h4>
+
+<ul>
+  <li>
+    <p>CSRF(Cross-Site Request Forgery) 공격을 방어하기 위해 도입된 쿠키 정책으로, 언제 쿠키를 전송할지를 제어</p>
+
+    <blockquote>
+      <p>CSRF공격 이란?</p>
+
+      <blockquote>
+        <p>사용자가 자신의 의지와는 상관없이 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 하는 공격
+공격자가 사용자의 세션을 가로채는 방식으로 일어난다.</p>
+      </blockquote>
+    </blockquote>
+  </li>
+  <li>
+    <p>SamSite 3가지 값</p>
+    <ol>
+      <li>Strict
+        <ul>
+          <li>동일 사이트에서만 쿠키 전공</li>
+          <li>모든 크로스 사이트 요청에서 차단</li>
+          <li>최고 수준 보안이 필요한 경우에 사용 (매우 엄격해서 잘 안씀)</li>
+        </ul>
+      </li>
+      <li>Lax (기본값)
+        <ul>
+          <li>TOP-LEVEL 네비게이션 + GET 요청만 허용</li>
+          <li>POST, PUT, DELETE 등은 차단</li>
+          <li>일반적인 Sam-Site 환경 (프론트엔드와 벡엔드가 같은 도메인)</li>
+        </ul>
+      </li>
+      <li>None
+        <ul>
+          <li>모든 크로스 사이트 요청에서 쿠키전송</li>
+          <li>단, <code class="language-plaintext highlighter-rouge">Secure=true</code> 필수 (HTTPS)</li>
+          <li>크로스 도메인 환경 (프론트엔트와 백엔드 도메인 다름)</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
 </ul>
 
-<hr />
+<h4 id="브라우서의-samsitelax-동작-분석">브라우서의 SamSite=Lax 동작 분석</h4>
+
+<h4 id="시나리오-1-로그인-시-최초-요청">시나리오 1: 로그인 시 (최초 요청)</h4>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">POST https://your-backend.com/api/v1/auth/login
+Origin: https://your-frontend.com
+Content-Type: application/json
+
+{"email": "user@example.com", "password": "..."}
+</span></code></pre></div></div>
+
+<p>백엔드 응답:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.1 200 OK
+Set-Cookie: refreshToken=eyJhbGc...;
+            Path=/;
+            Max-Age=2592000;
+            HttpOnly;
+            Secure;
+            SameSite=Lax  ← 여기가 문제! ❌
+Access-Control-Allow-Origin: https://chingoo-frontend.vercel.app
+Access-Control-Allow-Credentials: true
+</code></pre></div></div>
+
+<ul>
+  <li>쿠키는 설정됨 (브라우저가 Set-Cookie 헤더를 받아서 저장)</li>
+  <li>개발자 도구에서 쿠키 확인 가능</li>
+  <li>Expires/Max-Age도 30일로 정상</li>
+</ul>
+
+<h4 id="시나리오-2-새로고침-시-두번째-요청">시나리오 2: 새로고침 시 (두번째 요청)</h4>
+
+<ul>
+  <li>사용자가 새로고침 또는 페이지 이동 시, 프론트엔드가 자동으로 사용자 정보를 가져오는 API 호출:</li>
+</ul>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">// 프론트엔드 코드 (자동 실행)
+useEffect(() =&gt; {
+  axios.get('https://your-backend.com/api/v1/users/me', {
+    withCredentials: true  // 쿠키 전송 요청
+  });
+}, []);
+</span></code></pre></div></div>
+
+<p>브라우저의 요청:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET https://your-backend.com/api/v1/users/me
+Origin: https://your-frontend.com
+Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단!
+</code></pre></div></div>
+
+<ul>
+  <li>TOP-LEVEL 네비게이션이 아니고 JavaScript 요청이기 때문에 쿠키 전송이 안됌
+    <blockquote>
+      <p>TOP-LEVEL 네비게이션은 아래와 같다.</p>
+
+      <blockquote>
+        <ol>
+          <li>주소창에 URL을 직접 입력</li>
+          <li><code class="language-plaintext highlighter-rouge">&lt;a href = "..."&gt;</code> 링크 클릭</li>
+          <li><code class="language-plaintext highlighter-rouge">window.location.href</code> 변경
+            <blockquote>
+              <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   // ❌ 이런 JavaScript 요청은 TOP-LEVEL 네비게이션이 아님
+   axios.get('https://api.example.com/user');
+
+   // ✅ 이런 요청만 TOP-LEVEL 네비게이션으로 인정
+   window.location.href = 'https://api.example.com/user';
+   &lt;a href="https://api.example.com/user"&gt;클릭&lt;/a&gt;
+</code></pre></div>              </div>
+            </blockquote>
+          </li>
+        </ol>
+      </blockquote>
+    </blockquote>
+  </li>
+</ul>
+
+<h4 id="시나리오-3-post-요청">시나리오 3: POST 요청</h4>
+
+<ul>
+  <li>사용자가 폼을 제출하는 등 POST 요청을 보낼 때:</li>
+</ul>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">POST https://your-backend.com/api/v1/some-action
+Origin: https://your-frontend.com
+Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단
+</span></code></pre></div></div>
+
+<p>결과:</p>
+
+<ul>
+  <li>Refresh Token 쿠키가 전송되지 않음</li>
+  <li>백엔드에서 인증 실패 (401 Unauthorized)</li>
+  <li>사용자는 다시 로그인해야함</li>
+</ul>
+
+<h2 id="해결">해결</h2>
+
+<ul>
+  <li>application-prod.yml 수정</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app:
+  cookie:
+    secure: true       # HTTPS 필수
+    same-site: None    # 크로스 도메인 허용
+    max-age: 2592000   # 30일
+</code></pre></div></div>
+
+<ul>
+  <li>이로 인한 CSRF 공격에 대한 방어는 다음 편에서 다루기로 한다.</li>
+</ul>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">MDN: SamSite cookies</a></li>
+</ul>
 
   
 </article>
@@ -667,7 +779,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-10-16-diary/" class="flip-title"><span>[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결</span></a>  <time class="faded fine" datetime="2025-10-16T00:00:00+00:00">16 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-10-15-diary/" class="flip-title"><span>[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</span></a>  <time class="faded fine" datetime="2025-10-15T00:00:00+00:00">15 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-10-14-diary/" class="flip-title"><span>[친구하자] Redis 데이터 초기화 트러블 슈팅</span></a>  <time class="faded fine" datetime="2025-10-14T00:00:00+00:00">14 Oct 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-10-16-diary/" class="flip-title"><span>[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결</span></a>  <time class="faded fine" datetime="2025-10-16T00:00:00+00:00">16 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-10-14-diary/" class="flip-title"><span>[친구하자] Redis 데이터 초기화 트러블 슈팅</span></a>  <time class="faded fine" datetime="2025-10-14T00:00:00+00:00">14 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-09-30-diary/" class="flip-title"><span>[친구하자] WebRTC란 무엇일까?</span></a>  <time class="faded fine" datetime="2025-09-30T00:00:00+00:00">30 Sep 2025</time></li>            </ul></aside>
 
   
 

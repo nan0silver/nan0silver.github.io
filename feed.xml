@@ -1,7 +1,413 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-10-14T05:33:30+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-10-16T05:21:50+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-10-14T05:32:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-10-16T05:21:03+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
+  <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
+  <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
+  <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
+  <li><a href="#4-samsite--csrf-토큰-조합">4. SamSite + CSRF 토큰 조합</a></li>
+</ul>
+
+<h2 id="크로스-도메인-환경에서-refresh-token-쿠키-소실-트러블슈팅-2">크로스 도메인 환경에서 Refresh Token 쿠키 소실 트러블슈팅 2</h2>
+
+<blockquote>
+  <p>저번 편에서 해결까지는 다뤘지만, 그로 인해 발생하는 CSRF 공격에 대한 약한 방어를 방지하는 로직에 대해서는 이번 편에서 다루기로 한다. (너무 길어져서..)</p>
+</blockquote>
+
+<h2 id="csrf-공격-방어">CSRF 공격 방어</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">SamSite=None</code>으로 하면 CSRF 공격을 방어할 수 없다. 따라서 추가 설정을 해줘야 한다.</li>
+  <li>방어 방법들은 아래와 같다.</li>
+</ul>
+
+<h3 id="1-csrf-토큰-패턴">1. CSRF 토큰 패턴</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// SecurityConfig.java</span>
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">filterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">http</span>
+            <span class="o">.</span><span class="na">csrf</span><span class="o">(</span><span class="n">csrf</span> <span class="o">-&gt;</span> <span class="n">csrf</span>
+                <span class="o">.</span><span class="na">csrfTokenRepository</span><span class="o">(</span><span class="nc">CookieCsrfTokenRepository</span><span class="o">.</span><span class="na">withHttpOnlyFalse</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">csrfTokenRequestHandler</span><span class="o">(</span><span class="k">new</span> <span class="nc">SpaCsrfTokenRequestHandler</span><span class="o">())</span>
+            <span class="o">)</span>
+            <span class="c1">// ... 나머지 설정</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 프론트엔드</span>
+<span class="kd">const</span> <span class="nx">csrfToken</span> <span class="o">=</span> <span class="nx">getCookie</span><span class="p">(</span><span class="dl">"</span><span class="s2">XSRF-TOKEN</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/v1/users/delete</span><span class="dl">"</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">X-XSRF-TOKEN</span><span class="dl">"</span><span class="p">:</span> <span class="nx">csrfToken</span><span class="p">,</span> <span class="c1">// CSRF 토큰 포함</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<ul>
+  <li>이렇게 하면 악의적인 사이트는
+    <ul>
+      <li>JavaScript로 쿠키를 읽을 수 없음</li>
+      <li>따라서 헤더에 토큰을 포함할 수 없음</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-originreferer-검증">2. Origin/Referer 검증</h3>
+
+<ul>
+  <li>서버에서 요청의 <code class="language-plaintext highlighter-rouge">Origin</code> 또는 <code class="language-plaintext highlighter-rouge">Referer</code> 헤더를 확인하여 신뢰할 수 있는 도메인에서 온 요청인지 검증</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// CorsConfig.java</span>
+<span class="nd">@Bean</span>
+<span class="nd">@Profile</span><span class="o">(</span><span class="s">"prod"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">CorsConfigurationSource</span> <span class="nf">prodCorsConfigurationSource</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">CorsConfiguration</span> <span class="n">configuration</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CorsConfiguration</span><span class="o">();</span>
+
+    <span class="c1">// ✅ 허용된 출처만 명시</span>
+    <span class="n">configuration</span><span class="o">.</span><span class="na">setAllowedOriginPatterns</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+        <span class="s">"https://chingoo-frontend.vercel.app"</span><span class="o">,</span>
+        <span class="s">"https://www.chingoo-frontend.vercel.app"</span>
+    <span class="o">));</span>
+
+    <span class="n">configuration</span><span class="o">.</span><span class="na">setAllowCredentials</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이렇게 하면</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE https://your-backend.com/api/v1/users/delete
+Origin: https://evil.com  ← 이 값으로 검증!
+Cookie: refreshToken=...
+</code></pre></div></div>
+
+<ul>
+  <li>백엔드가 <code class="language-plaintext highlighter-rouge">Origin</code> 헤더 확인:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">evail.com</code>은 허용 목록에 없음</li>
+      <li>CORS 오류 발생으로 요청 차단</li>
+    </ul>
+  </li>
+  <li>이 방법의 단점이 있다.
+    <ul>
+      <li>Origin 헤더를 조작할 수 있는 환경에서는 우회 가능</li>
+      <li>브라우저가 아닌 요청(Postman, curl)에서는 검증 안됨</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="3-jwt의-이중-검증">3. JWT의 이중 검증</h3>
+
+<ul>
+  <li>가장 현대적인 방법이다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// JwtAuthenticationFilter.java</span>
+<span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doFilterInternal</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
+                                <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+                                <span class="nc">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// 1️⃣ 쿠키에서 RefreshToken 추출</span>
+    <span class="nc">String</span> <span class="n">refreshTokenFromCookie</span> <span class="o">=</span> <span class="n">extractTokenFromCookie</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+
+    <span class="c1">// 2️⃣ 헤더에서 AccessToken 추출</span>
+    <span class="nc">String</span> <span class="n">accessTokenFromHeader</span> <span class="o">=</span> <span class="n">extractTokenFromHeader</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+
+    <span class="c1">// 3️⃣ 둘 다 검증</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isValidToken</span><span class="o">(</span><span class="n">refreshTokenFromCookie</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+        <span class="n">isValidToken</span><span class="o">(</span><span class="n">accessTokenFromHeader</span><span class="o">))</span> <span class="o">{</span>
+
+        <span class="c1">// 4️⃣ 토큰의 userId가 일치하는지 확인</span>
+        <span class="nc">Long</span> <span class="n">userIdFromRefresh</span> <span class="o">=</span> <span class="n">getUserIdFromToken</span><span class="o">(</span><span class="n">refreshTokenFromCookie</span><span class="o">);</span>
+        <span class="nc">Long</span> <span class="n">userIdFromAccess</span> <span class="o">=</span> <span class="n">getUserIdFromToken</span><span class="o">(</span><span class="n">accessTokenFromHeader</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">userIdFromRefresh</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">userIdFromAccess</span><span class="o">))</span> <span class="o">{</span>
+            <span class="c1">// ✅ 인증 성공</span>
+            <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">setAuthentication</span><span class="o">(</span><span class="n">createAuthentication</span><span class="o">(</span><span class="n">userIdFromAccess</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>쿠키(Refresh Token)이 자동으로 포함됨</li>
+  <li>하지만 해더(Access Token)는 JavaScript로 명시적으로 설정해야함</li>
+  <li>악의적인 사이트는 정상 사이트의 localStorage에 접근 불가 (Cross-Origin)</li>
+  <li>따라서 Access Token을 얻을 수 없음</li>
+</ul>
+
+<h3 id="4-samsite--csrf-토큰-조합">4. SamSite + CSRF 토큰 조합</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Profile</span><span class="o">(</span><span class="s">"prod"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">prodFilterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">http</span>
+            <span class="c1">// CSRF 토큰 활성화</span>
+            <span class="o">.</span><span class="na">csrf</span><span class="o">(</span><span class="n">csrf</span> <span class="o">-&gt;</span> <span class="n">csrf</span>
+                <span class="o">.</span><span class="na">csrfTokenRepository</span><span class="o">(</span><span class="nc">CookieCsrfTokenRepository</span><span class="o">.</span><span class="na">withHttpOnlyFalse</span><span class="o">())</span>
+            <span class="o">)</span>
+            <span class="c1">// CORS 설정 (Origin 검증)</span>
+            <span class="o">.</span><span class="na">cors</span><span class="o">(</span><span class="n">cors</span> <span class="o">-&gt;</span> <span class="n">cors</span><span class="o">.</span><span class="na">configurationSource</span><span class="o">(</span><span class="n">corsConfigurationSource</span><span class="o">))</span>
+            <span class="c1">// ...</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># application-prod.yml</span>
+<span class="na">app</span><span class="pi">:</span>
+  <span class="na">cookie</span><span class="pi">:</span>
+    <span class="na">secure</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">same-site</span><span class="pi">:</span> <span class="s">None</span> <span class="c1"># 크로스 도메인 지원</span>
+    <span class="na">max-age</span><span class="pi">:</span> <span class="m">2592000</span>
+</code></pre></div></div>
+
+<ul>
+  <li>이렇게 하면 다중 방어선이 만들어진다.
+    <ul>
+      <li>Origin 검증 (CORS)</li>
+      <li>CSRF 토큰 검증</li>
+      <li>JWT 검증</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-10-16T05:21:03+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
+  <li><a href="#문제-상황">문제 상황</a></li>
+  <li><a href="#원인-분석">원인 분석</a></li>
+  <li><a href="#해결-방법">해결방법</a></li>
+  <li><a href="#참고-사항">참고사항</a></li>
+</ul>
+
+<h2 id="크로스-도메인-환경에서-refresh-token-쿠키-소실-트러블슈팅">크로스 도메인 환경에서 Refresh Token 쿠키 소실 트러블슈팅</h2>
+
+<ul>
+  <li>개발 환경에서는 token관련 문제가 전혀 없었다. 그런데 배포한 후 로그인이 새로운 탭에서 유지되지 않는 문제를 해결하려고 하다가 Refresh Token이 새로고침하면 사라지는걸 발견하였다.
+    <blockquote>
+      <p>어디갔어.. 내 refresh token 🥲</p>
+    </blockquote>
+  </li>
+  <li>로그인이 유지되지 않는 문제는 왜인지 알았기 때문에 금방 해결하였지만, refresh token이 사라지는 문제가 더 나를 힘들게 만들었다..</li>
+  <li>따라서 왜 그런 문제가 발생하는지 좀 더 알아보고자 했다.</li>
+</ul>
+
+<h2 id="문제-상황">문제 상황</h2>
+
+<ul>
+  <li>Local 환경: Refresh Token 쿠키가 정상적으로 유지됨 ✅</li>
+  <li>Production 환경 : 로그인은 성공하지만, 새로고침하면 Refresh Token 쿠키가 사라짐 👻 (Refresh Token은 HttpOnly Cookie에 저장함)</li>
+  <li>
+    <p>브라우저 개발자 도구에서 확인한 쿠키 만료 시간: 30일 ✅</p>
+
+    <blockquote>
+      <p>처음엔 만료 시간이 잘못 설정되어있는줄 알았다.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>환경 정보</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Local 환경:
+- Frontend: http://localhost:3000
+- Backend:  http://localhost:8080
+- 동일 호스트(localhost), 다른 포트 → Same-Site
+
+Production 환경:
+- Frontend: https://chingoo-frontend.vercel.app
+- Backend:  https://your-backend-domain.com
+- 다른 도메인 → Cross-Site
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="원인-분석">원인 분석</h2>
+
+<h3 id="1-잘못된-쿠키-설정">1. 잘못된 쿠키 설정</h3>
+
+<p>application-prod.yml의 문제:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">app:
+  cookie:
+    secure: false     # ❌ HTTPS 환경인데 false
+    sam-site: Lax     # ❌ 크로스 도메인인데 Lax
+    max-age: 2592000  # ✅ 30일 (정상)
+</span></code></pre></div></div>
+
+<h3 id="2-samsite-쿠키-정책-이해하기">2. SamSite 쿠키 정책 이해하기</h3>
+
+<h4 id="samsite-속성이란">SamSite 속성이란?</h4>
+
+<ul>
+  <li>
+    <p>CSRF(Cross-Site Request Forgery) 공격을 방어하기 위해 도입된 쿠키 정책으로, 언제 쿠키를 전송할지를 제어</p>
+
+    <blockquote>
+      <p>CSRF공격 이란?</p>
+
+      <blockquote>
+        <p>사용자가 자신의 의지와는 상관없이 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 하는 공격
+공격자가 사용자의 세션을 가로채는 방식으로 일어난다.</p>
+      </blockquote>
+    </blockquote>
+  </li>
+  <li>
+    <p>SamSite 3가지 값</p>
+    <ol>
+      <li>Strict
+        <ul>
+          <li>동일 사이트에서만 쿠키 전공</li>
+          <li>모든 크로스 사이트 요청에서 차단</li>
+          <li>최고 수준 보안이 필요한 경우에 사용 (매우 엄격해서 잘 안씀)</li>
+        </ul>
+      </li>
+      <li>Lax (기본값)
+        <ul>
+          <li>TOP-LEVEL 네비게이션 + GET 요청만 허용</li>
+          <li>POST, PUT, DELETE 등은 차단</li>
+          <li>일반적인 Sam-Site 환경 (프론트엔드와 벡엔드가 같은 도메인)</li>
+        </ul>
+      </li>
+      <li>None
+        <ul>
+          <li>모든 크로스 사이트 요청에서 쿠키전송</li>
+          <li>단, <code class="language-plaintext highlighter-rouge">Secure=true</code> 필수 (HTTPS)</li>
+          <li>크로스 도메인 환경 (프론트엔트와 백엔드 도메인 다름)</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h4 id="브라우서의-samsitelax-동작-분석">브라우서의 SamSite=Lax 동작 분석</h4>
+
+<h4 id="시나리오-1-로그인-시-최초-요청">시나리오 1: 로그인 시 (최초 요청)</h4>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">POST https://your-backend.com/api/v1/auth/login
+Origin: https://your-frontend.com
+Content-Type: application/json
+
+{"email": "user@example.com", "password": "..."}
+</span></code></pre></div></div>
+
+<p>백엔드 응답:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.1 200 OK
+Set-Cookie: refreshToken=eyJhbGc...;
+            Path=/;
+            Max-Age=2592000;
+            HttpOnly;
+            Secure;
+            SameSite=Lax  ← 여기가 문제! ❌
+Access-Control-Allow-Origin: https://chingoo-frontend.vercel.app
+Access-Control-Allow-Credentials: true
+</code></pre></div></div>
+
+<ul>
+  <li>쿠키는 설정됨 (브라우저가 Set-Cookie 헤더를 받아서 저장)</li>
+  <li>개발자 도구에서 쿠키 확인 가능</li>
+  <li>Expires/Max-Age도 30일로 정상</li>
+</ul>
+
+<h4 id="시나리오-2-새로고침-시-두번째-요청">시나리오 2: 새로고침 시 (두번째 요청)</h4>
+
+<ul>
+  <li>사용자가 새로고침 또는 페이지 이동 시, 프론트엔드가 자동으로 사용자 정보를 가져오는 API 호출:</li>
+</ul>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">// 프론트엔드 코드 (자동 실행)
+useEffect(() =&gt; {
+  axios.get('https://your-backend.com/api/v1/users/me', {
+    withCredentials: true  // 쿠키 전송 요청
+  });
+}, []);
+</span></code></pre></div></div>
+
+<p>브라우저의 요청:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET https://your-backend.com/api/v1/users/me
+Origin: https://your-frontend.com
+Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단!
+</code></pre></div></div>
+
+<ul>
+  <li>TOP-LEVEL 네비게이션이 아니고 JavaScript 요청이기 때문에 쿠키 전송이 안됌
+    <blockquote>
+      <p>TOP-LEVEL 네비게이션은 아래와 같다.</p>
+
+      <blockquote>
+        <ol>
+          <li>주소창에 URL을 직접 입력</li>
+          <li><code class="language-plaintext highlighter-rouge">&lt;a href = "..."&gt;</code> 링크 클릭</li>
+          <li><code class="language-plaintext highlighter-rouge">window.location.href</code> 변경
+            <blockquote>
+              <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   // ❌ 이런 JavaScript 요청은 TOP-LEVEL 네비게이션이 아님
+   axios.get('https://api.example.com/user');
+
+   // ✅ 이런 요청만 TOP-LEVEL 네비게이션으로 인정
+   window.location.href = 'https://api.example.com/user';
+   &lt;a href="https://api.example.com/user"&gt;클릭&lt;/a&gt;
+</code></pre></div>              </div>
+            </blockquote>
+          </li>
+        </ol>
+      </blockquote>
+    </blockquote>
+  </li>
+</ul>
+
+<h4 id="시나리오-3-post-요청">시나리오 3: POST 요청</h4>
+
+<ul>
+  <li>사용자가 폼을 제출하는 등 POST 요청을 보낼 때:</li>
+</ul>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">POST https://your-backend.com/api/v1/some-action
+Origin: https://your-frontend.com
+Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단
+</span></code></pre></div></div>
+
+<p>결과:</p>
+
+<ul>
+  <li>Refresh Token 쿠키가 전송되지 않음</li>
+  <li>백엔드에서 인증 실패 (401 Unauthorized)</li>
+  <li>사용자는 다시 로그인해야함</li>
+</ul>
+
+<h2 id="해결">해결</h2>
+
+<ul>
+  <li>application-prod.yml 수정</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app:
+  cookie:
+    secure: true       # HTTPS 필수
+    same-site: None    # 크로스 도메인 허용
+    max-age: 2592000   # 30일
+</code></pre></div></div>
+
+<ul>
+  <li>이로 인한 CSRF 공격에 대한 방어는 다음 편에서 다루기로 한다.</li>
+</ul>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">MDN: SamSite cookies</a></li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-10-16T05:21:03+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인">원인</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -130,7 +536,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">FLUSHDB</code>: 현재 선택된 데이터베이스의 키만 삭제</li>
   <li>Redis는 기본적으로 데이터베이스 0~15번까지 16개를 제공</li>
   <li>운영환경에서는 절대 <code class="language-plaintext highlighter-rouge">FLUSHALL</code>을 실행하면 안됨!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-10-14T05:32:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-10-16T05:21:03+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
   <li><a href="#-1-webrtc의-정의">1. WebRTC의 정의</a></li>
   <li><a href="#-2-webrtc의-주요-구성-요소">2. WebRTC의 주요 구성 요소</a></li>
   <li><a href="#️-3-동작-흐름-signaling-포함">3. 동작 흐름 (Signaling 포함)</a></li>
@@ -304,7 +710,7 @@ docker-compose up -d
   <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-10-14T05:32:50+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-10-16T05:21:03+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
   <li><a href="#1-배열--스트림">1. 배열 → 스트림</a></li>
   <li><a href="#2-형-변환-mapping">2. 형 변환 (Mapping)</a></li>
   <li><a href="#3-집계-연산-aggregation">3. 집계 연산 (Aggregation)</a></li>
@@ -425,7 +831,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">summaryStatistics()</code></li>
 </ol>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-10-14T05:32:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-10-16T05:21:03+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
   <p>카테고리별 2인 매칭을 구현하며 실제로 쓴(또는 고민했던) 명령어들을 짧게 정리.
 예시 키는 <code class="language-plaintext highlighter-rouge">{cat:123}</code> 해시태그로 Redis Cluster 슬롯을 고정하는 패턴을 사용.</p>
 </blockquote>
@@ -659,7 +1065,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><code class="language-plaintext highlighter-rouge">ZRANGE/ZRANDMEMBER</code>(조회) 뒤엔 <strong>반드시 <code class="language-plaintext highlighter-rouge">ZREM</code>(삭제)</strong></li>
   <li>경쟁 환경에선 <strong>Lua로 “조회→삭제”를 원자화</strong></li>
   <li><strong>TTL은 개별 상태 키에만</strong>, 대기열 컬렉션엔 금지</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-10-14T05:32:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-10-16T05:21:03+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
   <p>“카테고리별 2인 랜덤 매칭”을 스케줄러로 돌리는데, 한 카테고리에서 예외가 나면 <strong>전체 루프가 롤백</strong>될 수 있다는 얘기를 듣고 시작된 고민.
 그 결과 <code class="language-plaintext highlighter-rouge">@Transactional(propagation = REQUIRES_NEW)</code>를 채택했고, 다시 <strong>self-invocation</strong> 문제를 만나 리팩터링까지 갔던 과정을 정리했습니다.</p>
 </blockquote>
@@ -838,7 +1244,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><a href="https://redis.io/docs/latest/develop/programmability/">Redis programmability</a></li>
   <li><a href="https://redis.io/blog/you-dont-need-transaction-rollbacks-in-redis/?utm_source=chatgpt.com">You Don’t Need Transaction Rollbacks in Redis</a></li>
   <li><a href="https://devoong2.tistory.com/entry/Spring-Transactional-REQUIRESNEW-%EC%98%B5%EC%85%98%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EC%99%B8-%EB%B0%8F-Rollback">Transactional REQUIRES_NEW 옵션에서 예외 및 Rollback</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-14T05:32:50+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-16T05:21:03+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
   <li><a href="#-record란-java-14">record란?</a></li>
   <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
   <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
@@ -1076,7 +1482,7 @@ ZREM wait:z:{cat:123} 101 205
 
 <h2 id="마무리">마무리</h2>
 
-<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-14T05:32:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
+<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-16T05:21:03+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
   <li><a href="#문제-배경">문제 배경</a></li>
   <li><a href="#tldr">TL;DR</a></li>
   <li><a href="#1-내가-왜-이런-고민을-하게-됐나-맥락">1. 내가 왜 이런 고민을 하게 됐나</a></li>
@@ -1636,327 +2042,4 @@ ZREM wait:z:{cat:123} 101 205
   <li><strong>빈도주의</strong>: p-value/신뢰구간, 고정 표본 설계에 적합.</li>
   <li><strong>베이즈</strong>: “B가 A보다 좋을 확률”처럼 <strong>직관적 해석</strong>과 <strong>순차적 의사결정</strong>에 유리.
 둘 다 장단점 있어요—팀의 익숙함/툴링에 따라 선택.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry><entry><title type="html">[친구하자] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/projectdiary/2025-08-17-diary/" rel="alternate" type="text/html" title="[친구하자] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-17T00:00:00+00:00</published><updated>2025-10-14T05:32:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-17-diary/"><![CDATA[<ul>
-  <li><a href="#1-오늘-읽은-내용-요약">1. 오늘 읽은 내용 요약</a></li>
-  <li><a href="#2-나에게-필요했던-이유--친구하자-적용-사례">2. 나에게 필요했던 이유 — <strong>친구하자</strong> 적용 사례</a></li>
-  <li><a href="#3-느낀-점--인사이트">3. 느낀 점 &amp; 인사이트</a></li>
-  <li><a href="#4-다음-액션-아이템">4. 다음 액션 아이템</a></li>
-  <li><a href="#-핵심-요약">💡 핵심 요약</a></li>
-</ul>
-
-<hr />
-
-<blockquote>
-  <p>이번에는 서울 AI 허브 특강을 듣다가 알게 된 ML관련 논문을 읽고 지금 하고있는 “친구하자” 프로젝트의 어떤 부분에서 도움을 받을 수 있을지에 대해 알아보았다.</p>
-</blockquote>
-
-<p><strong>논문</strong>: [Hidden Technical Debt in Machine Learning Systems (NIPS 2015)]
-<strong>작성자</strong>: D. Sculley외 10인 (Google, Inc.)</p>
-
-<ul>
-  <li><a href="https://nan0silver.github.io/til/2025-08-16-til/">논문에 대한 TIL 작성</a></li>
-</ul>
-
-<hr />
-
-<h3 id="1-오늘-읽은-내용-요약">1. 오늘 읽은 내용 요약</h3>
-
-<blockquote>
-  <p><strong>핵심 주제</strong>: 머신러닝 시스템에서는 단순히 모델 성능을 높이는 것보다 <strong>데이터 흐름 관리, 파이프라인 구조, 의존성 관리</strong>가 더 중요하다는 점을 강조.</p>
-</blockquote>
-
-<ul>
-  <li>
-    <p><strong>기술 부채(Technical Debt)</strong></p>
-
-    <ul>
-      <li>ML 시스템은 빠르게 개발 가능하지만, 장기 유지보수 비용은 전통적인 소프트웨어보다 훨씬 높음.</li>
-      <li>숨은 부채는 코드 수준이 아니라 <strong>시스템 수준</strong>에서 쌓이기 때문에 발견하기 어렵고 비용이 급격히 커짐.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>주요 이슈와 원인</strong></p>
-
-    <ol>
-      <li>
-        <p><strong>CACE 원칙</strong> <em>(Changing Anything Changes Everything)</em></p>
-
-        <ul>
-          <li>피처, 하이퍼파라미터, 데이터셋 중 하나만 바꿔도 전체 모델 성능이 예측 불가능하게 바뀜.</li>
-        </ul>
-      </li>
-      <li>
-        <p><strong>데이터 의존성</strong></p>
-
-        <ul>
-          <li>불안정한 입력 신호, 중복 피처, 과도한 데이터 연결은 장애 가능성을 높임.</li>
-        </ul>
-      </li>
-      <li>
-        <p><strong>Pipeline Jungle</strong></p>
-
-        <ul>
-          <li>데이터 전처리 단계가 쌓이면 유지보수가 어려워지고 에러 포인트가 증가.</li>
-        </ul>
-      </li>
-      <li>
-        <p><strong>모델 간 숨은 피드백 루프</strong></p>
-
-        <ul>
-          <li>하나의 모델 변경이 다른 시스템의 입력 데이터에 간접적으로 영향을 미침.</li>
-        </ul>
-      </li>
-      <li>
-        <p><strong>실시간 모니터링 부족</strong></p>
-
-        <ul>
-          <li>모델 업데이트 후 이상 징후를 늦게 발견하면 복구 비용이 기하급수적으로 커짐.</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="2-나에게-필요했던-이유--친구하자-적용-사례">2. 나에게 필요했던 이유 — <strong>친구하자</strong> 적용 사례</h3>
-
-<h4 id="1-발화화행-분석-모델-파이프라인-설계-시-고려할-점">(1) 발화/화행 분석 모델 파이프라인 설계 시 고려할 점</h4>
-
-<ul>
-  <li>
-    <p><strong>현재 시나리오</strong></p>
-
-    <ul>
-      <li>통화 음성 → 스펙트로그램 변환 → 감정/화행 분석 모델 → 사용자 인지 지표 산출</li>
-      <li>향후 <strong>AI 기반 발화 분석 모델</strong>을 도입해 지남력, 유창성, 어휘력, 주의집중력 등의 점수를 자동 산출할 계획.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>적용 포인트</strong></p>
-
-    <ul>
-      <li>
-        <p><strong>데이터 버저닝 필요성</strong></p>
-
-        <ul>
-          <li>예: 스펙트로그램 생성 방식을 바꿀 경우, 기존 학습 데이터와 호환성이 깨질 수 있음.</li>
-          <li>→ DVC나 MLflow 같은 도구를 도입해 음성 데이터, 스펙트로그램, 학습된 모델을 <strong>버전 단위로 관리</strong>해야 함.</li>
-        </ul>
-      </li>
-      <li>
-        <p><strong>Pipeline Jungle 방지</strong></p>
-
-        <ul>
-          <li>현재는 음성 → 텍스트 → 감정 점수 산출이라는 단순 구조지만, 향후 발화 분석, 화행 분석, 치매 위험 예측까지 추가되면 <strong>중간 파이프라인이 폭발적으로 늘어남</strong>.</li>
-          <li>→ 파이프라인을 계층적으로 나누고, 데이터 입출력 포맷을 표준화하는 설계가 필요.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h4 id="2-실시간-통화-분석-시스템-설계-시-고려할-점">(2) 실시간 통화 분석 시스템 설계 시 고려할 점</h4>
-
-<ul>
-  <li>
-    <p><strong>현재 시나리오</strong></p>
-
-    <ul>
-      <li>WebRTC 기반 통화 → 통화 녹음 → 분석 API 호출 → 사용자/보호자 알림</li>
-      <li>향후 실시간 음성 분석을 통해 <strong>통화 중 인지 저하, 우울감 등 감지</strong> 시 알림을 제공하는 기능을 목표.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>적용 포인트</strong></p>
-
-    <ul>
-      <li>
-        <p><strong>실시간 피처 드리프트 모니터링</strong></p>
-
-        <ul>
-          <li>예: 고령 사용자들의 발화 속도나 어휘 다양성이 계절, 이벤트에 따라 달라질 수 있음.</li>
-          <li>→ 실시간으로 <strong>데이터 분포 변화를 감시</strong>해 학습 데이터와 입력 데이터의 괴리를 탐지하는 모니터링 필요.</li>
-        </ul>
-      </li>
-      <li>
-        <p><strong>모델 업데이트 전략(A/B Testing)</strong></p>
-
-        <ul>
-          <li>새로운 화행 분석 모델을 도입할 때, <strong>전체 사용자에게 바로 적용</strong>하면 위험.</li>
-          <li>→ 전체 롤아웃 전 <strong>소규모 샘플 그룹</strong>에서 먼저 성능을 검증하고, 이상 징후 시 자동 롤백하는 시스템 필요.</li>
-        </ul>
-      </li>
-      <li>
-        <p><strong>경계 침식 문제 해결</strong></p>
-
-        <ul>
-          <li>통화 감정 분석 결과가 <strong>다른 추천 시스템</strong>(예: 대화 주제 추천)에도 입력될 경우, 모델 간 강한 의존성이 생김.</li>
-          <li>→ API 수준에서 <strong>의존성 추적 및 제어</strong> 기능을 설계해 시스템 분리를 유지해야 함.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="3-느낀-점--인사이트">3. 느낀 점 &amp; 인사이트</h3>
-
-<ul>
-  <li>발화/화행 분석 모델처럼 <strong>실시간 데이터 기반 ML 시스템</strong>은 전통적인 오프라인 예측 모델보다 훨씬 <strong>기술 부채 리스크</strong>가 큼.</li>
-  <li>
-    <p>특히 이 논문에서 제시한 <strong>CACE 원칙</strong>을 그대로 체감할 수 있음:</p>
-
-    <blockquote>
-      <p>“스펙트로그램 해상도만 살짝 바꿨는데 전체 감정 분석 성능이 붕괴될 수도 있다.”</p>
-    </blockquote>
-  </li>
-  <li>결론적으로, <strong>친구하자</strong>에서는 모델 성능 향상보다 <strong>데이터/파이프라인 안정성</strong>을 우선시해야 함.</li>
-  <li><strong>모델 버저닝</strong>, <strong>실시간 모니터링</strong>, <strong>A/B 테스트</strong>, <strong>피처 관리 자동화</strong>는 반드시 초기에 설계해야 장기 비용을 줄일 수 있음.</li>
-</ul>
-
-<hr />
-
-<h3 id="4-다음-액션-아이템">4. 다음 액션 아이템</h3>
-
-<ul>
-  <li><strong>DVC/MLflow</strong> 도입 → 발화/화행 분석 모델, 음성 데이터, 스펙트로그램 버전 관리</li>
-  <li>데이터 파이프라인 표준화 → 입력/출력 포맷 및 계층 구조 설계</li>
-  <li><strong>실시간 데이터 분포 모니터링</strong> 및 알림 시스템 구축</li>
-  <li><strong>A/B 테스트 기반 모델 롤아웃 전략</strong> 설계 및 자동 롤백 기능 구현</li>
-  <li>서비스 아키텍처에 <strong>모델 간 의존성 추적 기능</strong> 추가</li>
-</ul>
-
-<hr />
-
-<h3 id="-핵심-요약">💡 핵심 요약</h3>
-
-<blockquote>
-  <p><strong>친구하자</strong>의 실시간 발화/화행 분석 시스템에서 기술 부채를 최소화하려면:</p>
-
-  <p><strong>버전 관리</strong>: 데이터·모델·파이프라인을 모두 버전 단위로 관리
-<strong>모니터링</strong>: 실시간 데이터 드리프트 및 예측 이상 징후 자동 탐지
-<strong>분리 설계</strong>: 모델 간 강한 의존성 최소화
-<strong>안전한 업데이트</strong>: A/B 테스트 기반 롤아웃 + 자동 롤백 전략 필수</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 논문 내용을 읽고 프로젝트 개발을 구체화한 내용입니다.]]></summary></entry><entry><title type="html">[TIL] Hidden Technical Debt in Machine Learning Systems</title><link href="https://nan0silver.github.io/til/2025-08-16-til/" rel="alternate" type="text/html" title="[TIL] Hidden Technical Debt in Machine Learning Systems" /><published>2025-08-16T00:00:00+00:00</published><updated>2025-08-16T00:36:49+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-08-16-til/"><![CDATA[<blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-📅 <strong>작성일</strong>: 2025-08-16<br />
-🔄 <strong>최종 수정</strong>: 2025년 08월 16일</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<p><strong>논문</strong>: [Hidden Technical Debt in Machine Learning Systems (NIPS 2015)]
-<strong>작성자</strong>: D. Sculley외 10인 (Google, Inc.)</p>
-
-<h3 id="1-오늘-읽은-내용-요약">1. 오늘 읽은 내용 요약</h3>
-
-<blockquote>
-  <p><strong>핵심 주제</strong>: 머신러닝 시스템에서 발생하는 <strong>숨은 기술 부채(hidden technical debt)</strong> 문제를 설명하고, 시스템 설계 단계에서 고려해야 할 위험 요소를 다룸.</p>
-</blockquote>
-
-<ul>
-  <li>
-    <p><strong>기술 부채(Technical Debt) 개념</strong></p>
-
-    <ul>
-      <li>ML 시스템은 개발과 배포는 빠르지만 <strong>유지보수가 어렵고 비용이 많이 드는 구조적 특성</strong>을 가짐.</li>
-      <li>코드 수준의 문제보다 <strong>시스템 전반에서의 복잡성</strong>이 더 큰 원인.</li>
-      <li>숨은 부채는 누적되며, 발견 시에는 비용이 급격히 커짐.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>ML 시스템에서 기술 부채가 생기는 주요 원인</strong></p>
-
-    <ol>
-      <li><strong>경계 침식(Boundary Erosion)</strong>: 모델이 여러 신호를 섞어 사용하기 때문에 한 부분을 바꾸면 전체가 변함 (<strong>CACE 원칙: Changing Anything Changes Everything</strong>).</li>
-      <li><strong>데이터 의존성(Data Dependencies)</strong>: 불안정하거나 과도한 데이터 의존성으로 인해 작은 변화가 큰 장애를 일으킴.</li>
-      <li><strong>피드백 루프(Feedback Loops)</strong>: 모델이 자신의 입력 데이터를 간접적으로 바꾸는 경우 → 예측 정확도에 예기치 못한 영향을 미침.</li>
-      <li>
-        <p><strong>시스템 안티패턴(System Anti-Patterns)</strong>:</p>
-
-        <ul>
-          <li><strong>Glue Code</strong>: 다양한 패키지를 연결하는 코드가 과도해져 유지보수 비용 증가.</li>
-          <li><strong>Pipeline Jungles</strong>: 데이터 처리 파이프라인이 점점 복잡해져 관리가 어려워짐.</li>
-          <li><strong>Dead Experimental Codepaths</strong>: 실험을 위해 만든 코드가 방치되어 예기치 못한 오류를 유발.</li>
-        </ul>
-      </li>
-      <li><strong>구성(Configuration) 부채</strong>: 피처, 하이퍼파라미터, 로깅 설정 등 방대한 설정이 누적되어 관리가 어려워짐.</li>
-      <li><strong>외부 세계 변화</strong>: 환경, 사용자 행동, 시장 조건의 변화가 모델 성능에 직접적인 영향을 미침.</li>
-    </ol>
-  </li>
-  <li>
-    <p><strong>해결 방안</strong></p>
-
-    <ul>
-      <li>데이터 및 모델 <strong>의존성 관리 도구</strong> 구축 (버저닝, 자동화된 피처 관리 등).</li>
-      <li><strong>모니터링 &amp; 자동화 대응</strong> 필수.</li>
-      <li>실험적 코드 정리 및 중복 제거.</li>
-      <li>연구팀과 엔지니어링팀 간 <strong>하이브리드 협업 구조</strong> 필요.</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="2-나에게-필요했던-이유">2. 나에게 필요했던 이유</h3>
-
-<blockquote>
-  <p>이에 대한 자세한 내용은 (깃블로그)[링크]에서 볼 수 있습니다.</p>
-</blockquote>
-
-<ul>
-  <li>
-    <p>현재 진행 중인 <strong>AI 기반 발화/화행 분석 모델</strong>과 <strong>친구하자</strong> 서비스의 ML 시스템에 적용할 수 있음:</p>
-
-    <ul>
-      <li><strong>데이터 버저닝</strong> 필요성 → 감정 분석 모델 학습 시 <strong>피처 변경</strong>이 있을 경우 예기치 못한 성능 저하 방지.</li>
-      <li><strong>파이프라인 관리</strong> 중요성 → 통화 음성 데이터 → 스펙트로그램 변환 → 감정 분석 → 저장 단계에서 발생할 수 있는 <strong>Pipeline Jungle</strong> 방지.</li>
-      <li><strong>모델 업데이트 전략</strong> → 모델 개선이 실제 서비스에서 <strong>사용자 경험을 악화시킬 수 있는 위험</strong> 방지 필요.</li>
-      <li><strong>실시간 모니터링</strong> 필요 → 모델 성능 저하나 데이터 분포 변화에 빠르게 대응 가능해야 함.</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="3-느낀-점--인사이트">3. 느낀 점 &amp; 인사이트</h3>
-
-<ul>
-  <li>단순히 모델 성능을 높이는 것보다, <strong>시스템 전반의 유지보수성</strong>과 <strong>데이터 흐름 관리</strong>가 훨씬 중요하다는 걸 깨달음.</li>
-  <li>
-    <p>특히 <strong>CACE 원칙</strong>은 실무에서 체감할 가능성이 큼:</p>
-
-    <blockquote>
-      <p>“하나 바꾸면 다 바뀐다” → 모델 입력 피처 변경 시 전체 시스템의 예측 성능이 흔들릴 수 있음.</p>
-    </blockquote>
-  </li>
-  <li>앞으로 <strong>AI 모델 성능 향상보다 안정적인 시스템 아키텍처 설계</strong>에 우선순위를 둬야겠다고 느낌.</li>
-  <li>
-    <p><strong>친구하자</strong> 서비스에서도:</p>
-
-    <ul>
-      <li>데이터 파이프라인 설계를 단순하게 유지.</li>
-      <li>모델을 <strong>엔드 투 엔드로 한 번에 학습</strong>하는 방법과 <strong>서브모델 앙상블 방식</strong>의 트레이드오프를 고려해야 함.</li>
-      <li>장기적으로 <strong>모델 버저닝 + 모니터링 시스템</strong>을 도입해 기술 부채를 최소화할 필요 있음.</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="4-다음-액션-아이템">4. 다음 액션 아이템</h3>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />데이터 버저닝 전략 조사 및 설계 (e.g., DVC, MLflow)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />음성 데이터 파이프라인 단순화 → Glue Code 최소화</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />실시간 성능 모니터링 및 알림 시스템 설계</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />모델 업데이트 시 A/B 테스트 기반 롤아웃 전략 도입</li>
-</ul>
-
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-16 TIL]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry></feed>

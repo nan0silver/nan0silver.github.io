@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[TIL] Hidden Technical Debt in Machine Learning Systems | NAHYUN BLOG</title>
+<title>[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[TIL] Hidden Technical Debt in Machine Learning Systems" />
+<meta property="og:title" content="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="2025-08-16 TIL" />
-<meta property="og:description" content="2025-08-16 TIL" />
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-08-16-til/" />
-<meta property="og:url" content="https://nan0silver.github.io/til/2025-08-16-til/" />
+<meta name="description" content="백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!" />
+<meta property="og:description" content="백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-08-16T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-10-16T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[TIL] Hidden Technical Debt in Machine Learning Systems" />
+<meta property="twitter:title" content="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-08-16T00:36:49+00:00","datePublished":"2025-08-16T00:00:00+00:00","description":"2025-08-16 TIL","headline":"[TIL] Hidden Technical Debt in Machine Learning Systems","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-08-16-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-08-16-til/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-10-16T05:21:03+00:00","datePublished":"2025-10-16T00:00:00+00:00","description":"백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!","headline":"[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-10-16-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-10-16-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/til/2025-08-16-til/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[TIL] Hidden Technical Debt in Machine Learning Systems",
-    "description": "2025-08-16 TIL
+    "headline": "[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결",
+    "description": "백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-08-16T00:00:00+00:00",
-    "dateModified": "2025-08-16T00:36:49+00:00",
+    "datePublished": "2025-10-16T00:00:00+00:00",
+    "dateModified": "2025-10-16T05:21:03+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/til/2025-08-16-til/"
+      "@id": "https://nan0silver.github.io/projectdiary/2025-10-16-diary/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-08-16-til/" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "til",
-        "item": "https://nan0silver.github.io/til/"
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[TIL] Hidden Technical Debt in Machine Learning Systems",
-        "item": "https://nan0silver.github.io/til/2025-08-16-til/"
+        "name": "[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결",
+        "item": "https://nan0silver.github.io/projectdiary/2025-10-16-diary/"
       }
     ]
   }
@@ -358,14 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/til/">til</a>
+          <a href="/projectdiary/">projectdiary</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-08-16-til</span>
+          <span>2025-10-16-diary</span>
         
       </li>
     
@@ -382,18 +382,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-til-til" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [TIL] Hidden Technical Debt in Machine Learning Systems
+        [친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-08-16T00:00:00+00:00">16 Aug 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Git</span>, <span>Ml</span>
+        <time datetime="2025-10-16T00:00:00+00:00">16 Oct 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -413,7 +413,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      2025-08-16 TIL
+      백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!
 
     </p>
   
@@ -422,125 +422,191 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-📅 <strong>작성일</strong>: 2025-08-16<br />
-🔄 <strong>최종 수정</strong>: 2025년 08월 16일</p>
-</blockquote>
+    <ul>
+  <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
+  <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
+  <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
+  <li><a href="#4-samsite--csrf-토큰-조합">4. SamSite + CSRF 토큰 조합</a></li>
+</ul>
 
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<p><strong>논문</strong>: [Hidden Technical Debt in Machine Learning Systems (NIPS 2015)]
-<strong>작성자</strong>: D. Sculley외 10인 (Google, Inc.)</p>
-
-<h3 id="1-오늘-읽은-내용-요약">1. 오늘 읽은 내용 요약</h3>
+<h2 id="크로스-도메인-환경에서-refresh-token-쿠키-소실-트러블슈팅-2">크로스 도메인 환경에서 Refresh Token 쿠키 소실 트러블슈팅 2</h2>
 
 <blockquote>
-  <p><strong>핵심 주제</strong>: 머신러닝 시스템에서 발생하는 <strong>숨은 기술 부채(hidden technical debt)</strong> 문제를 설명하고, 시스템 설계 단계에서 고려해야 할 위험 요소를 다룸.</p>
+  <p>저번 편에서 해결까지는 다뤘지만, 그로 인해 발생하는 CSRF 공격에 대한 약한 방어를 방지하는 로직에 대해서는 이번 편에서 다루기로 한다. (너무 길어져서..)</p>
 </blockquote>
 
-<ul>
-  <li>
-    <p><strong>기술 부채(Technical Debt) 개념</strong></p>
-
-    <ul>
-      <li>ML 시스템은 개발과 배포는 빠르지만 <strong>유지보수가 어렵고 비용이 많이 드는 구조적 특성</strong>을 가짐.</li>
-      <li>코드 수준의 문제보다 <strong>시스템 전반에서의 복잡성</strong>이 더 큰 원인.</li>
-      <li>숨은 부채는 누적되며, 발견 시에는 비용이 급격히 커짐.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>ML 시스템에서 기술 부채가 생기는 주요 원인</strong></p>
-
-    <ol>
-      <li><strong>경계 침식(Boundary Erosion)</strong>: 모델이 여러 신호를 섞어 사용하기 때문에 한 부분을 바꾸면 전체가 변함 (<strong>CACE 원칙: Changing Anything Changes Everything</strong>).</li>
-      <li><strong>데이터 의존성(Data Dependencies)</strong>: 불안정하거나 과도한 데이터 의존성으로 인해 작은 변화가 큰 장애를 일으킴.</li>
-      <li><strong>피드백 루프(Feedback Loops)</strong>: 모델이 자신의 입력 데이터를 간접적으로 바꾸는 경우 → 예측 정확도에 예기치 못한 영향을 미침.</li>
-      <li>
-        <p><strong>시스템 안티패턴(System Anti-Patterns)</strong>:</p>
-
-        <ul>
-          <li><strong>Glue Code</strong>: 다양한 패키지를 연결하는 코드가 과도해져 유지보수 비용 증가.</li>
-          <li><strong>Pipeline Jungles</strong>: 데이터 처리 파이프라인이 점점 복잡해져 관리가 어려워짐.</li>
-          <li><strong>Dead Experimental Codepaths</strong>: 실험을 위해 만든 코드가 방치되어 예기치 못한 오류를 유발.</li>
-        </ul>
-      </li>
-      <li><strong>구성(Configuration) 부채</strong>: 피처, 하이퍼파라미터, 로깅 설정 등 방대한 설정이 누적되어 관리가 어려워짐.</li>
-      <li><strong>외부 세계 변화</strong>: 환경, 사용자 행동, 시장 조건의 변화가 모델 성능에 직접적인 영향을 미침.</li>
-    </ol>
-  </li>
-  <li>
-    <p><strong>해결 방안</strong></p>
-
-    <ul>
-      <li>데이터 및 모델 <strong>의존성 관리 도구</strong> 구축 (버저닝, 자동화된 피처 관리 등).</li>
-      <li><strong>모니터링 &amp; 자동화 대응</strong> 필수.</li>
-      <li>실험적 코드 정리 및 중복 제거.</li>
-      <li>연구팀과 엔지니어링팀 간 <strong>하이브리드 협업 구조</strong> 필요.</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="2-나에게-필요했던-이유">2. 나에게 필요했던 이유</h3>
-
-<blockquote>
-  <p>이에 대한 자세한 내용은 (깃블로그)[링크]에서 볼 수 있습니다.</p>
-</blockquote>
+<h2 id="csrf-공격-방어">CSRF 공격 방어</h2>
 
 <ul>
-  <li>
-    <p>현재 진행 중인 <strong>AI 기반 발화/화행 분석 모델</strong>과 <strong>친구하자</strong> 서비스의 ML 시스템에 적용할 수 있음:</p>
-
-    <ul>
-      <li><strong>데이터 버저닝</strong> 필요성 → 감정 분석 모델 학습 시 <strong>피처 변경</strong>이 있을 경우 예기치 못한 성능 저하 방지.</li>
-      <li><strong>파이프라인 관리</strong> 중요성 → 통화 음성 데이터 → 스펙트로그램 변환 → 감정 분석 → 저장 단계에서 발생할 수 있는 <strong>Pipeline Jungle</strong> 방지.</li>
-      <li><strong>모델 업데이트 전략</strong> → 모델 개선이 실제 서비스에서 <strong>사용자 경험을 악화시킬 수 있는 위험</strong> 방지 필요.</li>
-      <li><strong>실시간 모니터링</strong> 필요 → 모델 성능 저하나 데이터 분포 변화에 빠르게 대응 가능해야 함.</li>
-    </ul>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">SamSite=None</code>으로 하면 CSRF 공격을 방어할 수 없다. 따라서 추가 설정을 해줘야 한다.</li>
+  <li>방어 방법들은 아래와 같다.</li>
 </ul>
 
-<hr />
+<h3 id="1-csrf-토큰-패턴">1. CSRF 토큰 패턴</h3>
 
-<h3 id="3-느낀-점--인사이트">3. 느낀 점 &amp; 인사이트</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// SecurityConfig.java</span>
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">filterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">http</span>
+            <span class="o">.</span><span class="na">csrf</span><span class="o">(</span><span class="n">csrf</span> <span class="o">-&gt;</span> <span class="n">csrf</span>
+                <span class="o">.</span><span class="na">csrfTokenRepository</span><span class="o">(</span><span class="nc">CookieCsrfTokenRepository</span><span class="o">.</span><span class="na">withHttpOnlyFalse</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">csrfTokenRequestHandler</span><span class="o">(</span><span class="k">new</span> <span class="nc">SpaCsrfTokenRequestHandler</span><span class="o">())</span>
+            <span class="o">)</span>
+            <span class="c1">// ... 나머지 설정</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 프론트엔드</span>
+<span class="kd">const</span> <span class="nx">csrfToken</span> <span class="o">=</span> <span class="nx">getCookie</span><span class="p">(</span><span class="dl">"</span><span class="s2">XSRF-TOKEN</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/v1/users/delete</span><span class="dl">"</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">X-XSRF-TOKEN</span><span class="dl">"</span><span class="p">:</span> <span class="nx">csrfToken</span><span class="p">,</span> <span class="c1">// CSRF 토큰 포함</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div></div>
 
 <ul>
-  <li>단순히 모델 성능을 높이는 것보다, <strong>시스템 전반의 유지보수성</strong>과 <strong>데이터 흐름 관리</strong>가 훨씬 중요하다는 걸 깨달음.</li>
-  <li>
-    <p>특히 <strong>CACE 원칙</strong>은 실무에서 체감할 가능성이 큼:</p>
-
-    <blockquote>
-      <p>“하나 바꾸면 다 바뀐다” → 모델 입력 피처 변경 시 전체 시스템의 예측 성능이 흔들릴 수 있음.</p>
-    </blockquote>
-  </li>
-  <li>앞으로 <strong>AI 모델 성능 향상보다 안정적인 시스템 아키텍처 설계</strong>에 우선순위를 둬야겠다고 느낌.</li>
-  <li>
-    <p><strong>친구하자</strong> 서비스에서도:</p>
-
+  <li>이렇게 하면 악의적인 사이트는
     <ul>
-      <li>데이터 파이프라인 설계를 단순하게 유지.</li>
-      <li>모델을 <strong>엔드 투 엔드로 한 번에 학습</strong>하는 방법과 <strong>서브모델 앙상블 방식</strong>의 트레이드오프를 고려해야 함.</li>
-      <li>장기적으로 <strong>모델 버저닝 + 모니터링 시스템</strong>을 도입해 기술 부채를 최소화할 필요 있음.</li>
+      <li>JavaScript로 쿠키를 읽을 수 없음</li>
+      <li>따라서 헤더에 토큰을 포함할 수 없음</li>
     </ul>
   </li>
 </ul>
 
-<hr />
+<h3 id="2-originreferer-검증">2. Origin/Referer 검증</h3>
 
-<h3 id="4-다음-액션-아이템">4. 다음 액션 아이템</h3>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />데이터 버저닝 전략 조사 및 설계 (e.g., DVC, MLflow)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />음성 데이터 파이프라인 단순화 → Glue Code 최소화</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />실시간 성능 모니터링 및 알림 시스템 설계</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />모델 업데이트 시 A/B 테스트 기반 롤아웃 전략 도입</li>
+<ul>
+  <li>서버에서 요청의 <code class="language-plaintext highlighter-rouge">Origin</code> 또는 <code class="language-plaintext highlighter-rouge">Referer</code> 헤더를 확인하여 신뢰할 수 있는 도메인에서 온 요청인지 검증</li>
 </ul>
 
-<hr />
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// CorsConfig.java</span>
+<span class="nd">@Bean</span>
+<span class="nd">@Profile</span><span class="o">(</span><span class="s">"prod"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">CorsConfigurationSource</span> <span class="nf">prodCorsConfigurationSource</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">CorsConfiguration</span> <span class="n">configuration</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CorsConfiguration</span><span class="o">();</span>
+
+    <span class="c1">// ✅ 허용된 출처만 명시</span>
+    <span class="n">configuration</span><span class="o">.</span><span class="na">setAllowedOriginPatterns</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+        <span class="s">"https://chingoo-frontend.vercel.app"</span><span class="o">,</span>
+        <span class="s">"https://www.chingoo-frontend.vercel.app"</span>
+    <span class="o">));</span>
+
+    <span class="n">configuration</span><span class="o">.</span><span class="na">setAllowCredentials</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이렇게 하면</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE https://your-backend.com/api/v1/users/delete
+Origin: https://evil.com  ← 이 값으로 검증!
+Cookie: refreshToken=...
+</code></pre></div></div>
+
+<ul>
+  <li>백엔드가 <code class="language-plaintext highlighter-rouge">Origin</code> 헤더 확인:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">evail.com</code>은 허용 목록에 없음</li>
+      <li>CORS 오류 발생으로 요청 차단</li>
+    </ul>
+  </li>
+  <li>이 방법의 단점이 있다.
+    <ul>
+      <li>Origin 헤더를 조작할 수 있는 환경에서는 우회 가능</li>
+      <li>브라우저가 아닌 요청(Postman, curl)에서는 검증 안됨</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="3-jwt의-이중-검증">3. JWT의 이중 검증</h3>
+
+<ul>
+  <li>가장 현대적인 방법이다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// JwtAuthenticationFilter.java</span>
+<span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doFilterInternal</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
+                                <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+                                <span class="nc">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// 1️⃣ 쿠키에서 RefreshToken 추출</span>
+    <span class="nc">String</span> <span class="n">refreshTokenFromCookie</span> <span class="o">=</span> <span class="n">extractTokenFromCookie</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+
+    <span class="c1">// 2️⃣ 헤더에서 AccessToken 추출</span>
+    <span class="nc">String</span> <span class="n">accessTokenFromHeader</span> <span class="o">=</span> <span class="n">extractTokenFromHeader</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+
+    <span class="c1">// 3️⃣ 둘 다 검증</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isValidToken</span><span class="o">(</span><span class="n">refreshTokenFromCookie</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+        <span class="n">isValidToken</span><span class="o">(</span><span class="n">accessTokenFromHeader</span><span class="o">))</span> <span class="o">{</span>
+
+        <span class="c1">// 4️⃣ 토큰의 userId가 일치하는지 확인</span>
+        <span class="nc">Long</span> <span class="n">userIdFromRefresh</span> <span class="o">=</span> <span class="n">getUserIdFromToken</span><span class="o">(</span><span class="n">refreshTokenFromCookie</span><span class="o">);</span>
+        <span class="nc">Long</span> <span class="n">userIdFromAccess</span> <span class="o">=</span> <span class="n">getUserIdFromToken</span><span class="o">(</span><span class="n">accessTokenFromHeader</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">userIdFromRefresh</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">userIdFromAccess</span><span class="o">))</span> <span class="o">{</span>
+            <span class="c1">// ✅ 인증 성공</span>
+            <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">setAuthentication</span><span class="o">(</span><span class="n">createAuthentication</span><span class="o">(</span><span class="n">userIdFromAccess</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>쿠키(Refresh Token)이 자동으로 포함됨</li>
+  <li>하지만 해더(Access Token)는 JavaScript로 명시적으로 설정해야함</li>
+  <li>악의적인 사이트는 정상 사이트의 localStorage에 접근 불가 (Cross-Origin)</li>
+  <li>따라서 Access Token을 얻을 수 없음</li>
+</ul>
+
+<h3 id="4-samsite--csrf-토큰-조합">4. SamSite + CSRF 토큰 조합</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Profile</span><span class="o">(</span><span class="s">"prod"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">prodFilterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">http</span>
+            <span class="c1">// CSRF 토큰 활성화</span>
+            <span class="o">.</span><span class="na">csrf</span><span class="o">(</span><span class="n">csrf</span> <span class="o">-&gt;</span> <span class="n">csrf</span>
+                <span class="o">.</span><span class="na">csrfTokenRepository</span><span class="o">(</span><span class="nc">CookieCsrfTokenRepository</span><span class="o">.</span><span class="na">withHttpOnlyFalse</span><span class="o">())</span>
+            <span class="o">)</span>
+            <span class="c1">// CORS 설정 (Origin 검증)</span>
+            <span class="o">.</span><span class="na">cors</span><span class="o">(</span><span class="n">cors</span> <span class="o">-&gt;</span> <span class="n">cors</span><span class="o">.</span><span class="na">configurationSource</span><span class="o">(</span><span class="n">corsConfigurationSource</span><span class="o">))</span>
+            <span class="c1">// ...</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># application-prod.yml</span>
+<span class="na">app</span><span class="pi">:</span>
+  <span class="na">cookie</span><span class="pi">:</span>
+    <span class="na">secure</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">same-site</span><span class="pi">:</span> <span class="s">None</span> <span class="c1"># 크로스 도메인 지원</span>
+    <span class="na">max-age</span><span class="pi">:</span> <span class="m">2592000</span>
+</code></pre></div></div>
+
+<ul>
+  <li>이렇게 하면 다중 방어선이 만들어진다.
+    <ul>
+      <li>Origin 검증 (CORS)</li>
+      <li>CSRF 토큰 검증</li>
+      <li>JWT 검증</li>
+    </ul>
+  </li>
+</ul>
 
   
 </article>
@@ -667,7 +733,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-10-16-diary/" class="flip-title"><span>[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 해결</span></a>  <time class="faded fine" datetime="2025-10-16T00:00:00+00:00">16 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-10-15-diary/" class="flip-title"><span>[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</span></a>  <time class="faded fine" datetime="2025-10-15T00:00:00+00:00">15 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-10-14-diary/" class="flip-title"><span>[친구하자] Redis 데이터 초기화 트러블 슈팅</span></a>  <time class="faded fine" datetime="2025-10-14T00:00:00+00:00">14 Oct 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-10-15-diary/" class="flip-title"><span>[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</span></a>  <time class="faded fine" datetime="2025-10-15T00:00:00+00:00">15 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-10-14-diary/" class="flip-title"><span>[친구하자] Redis 데이터 초기화 트러블 슈팅</span></a>  <time class="faded fine" datetime="2025-10-14T00:00:00+00:00">14 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-09-30-diary/" class="flip-title"><span>[친구하자] WebRTC란 무엇일까?</span></a>  <time class="faded fine" datetime="2025-09-30T00:00:00+00:00">30 Sep 2025</time></li>            </ul></aside>
 
   
 
