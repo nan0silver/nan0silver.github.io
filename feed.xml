@@ -1,7 +1,401 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-10-24T13:23:09+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-10-24T13:28:42+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-10-24T13:22:15+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-10-24T13:27:54+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+  <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
+  <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
+  <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
+  <li><a href="#-4️⃣-priorityqueue--우선순위-큐-힙">PriorityQueue</a></li>
+  <li><a href="#-5️⃣-stack--queue-deque--선형-구조">Stack / Queue</a></li>
+  <li><a href="#-6️⃣-collections--arrays-유틸리티-메서드">Collections / Arrays</a></li>
+  <li><a href="#-추천-연습문제-유형별-활용-예시">추천 연습문제 유형별 활용 예시</a></li>
+</ol>
+
+<hr />
+
+<h2 id="️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">🗂️ 1️⃣ HashMap&lt;K, V&gt; — key-value 형태로 빠르게 찾고 세는 용도</h2>
+
+<h3 id="-핵심-활용-상황">💡 핵심 활용 상황</h3>
+
+<ul>
+  <li>“이 값이 몇 번 나왔는가?”</li>
+  <li>“이 key가 이미 존재하나?”</li>
+  <li>“카테고리별 개수 세기 (위장 문제 등)”</li>
+</ul>
+
+<h3 id="-자주-쓰는-메서드">🚀 자주 쓰는 메서드</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>메서드</th>
+      <th>설명</th>
+      <th>예시 코드</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">put(K key, V value)</code></td>
+      <td>값 삽입 (덮어씀)</td>
+      <td><code class="language-plaintext highlighter-rouge">map.put("apple", 3);</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">get(K key)</code></td>
+      <td>key로 value 조회</td>
+      <td><code class="language-plaintext highlighter-rouge">int v = map.get("apple");</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">getOrDefault(K key, V defaultVal)</code></td>
+      <td>key 없으면 기본값 반환</td>
+      <td><code class="language-plaintext highlighter-rouge">map.getOrDefault("pear", 0);</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">containsKey(K key)</code></td>
+      <td>key 존재 여부</td>
+      <td><code class="language-plaintext highlighter-rouge">if (map.containsKey("apple"))</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">remove(K key)</code></td>
+      <td>key/value 쌍 삭제</td>
+      <td><code class="language-plaintext highlighter-rouge">map.remove("apple");</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">keySet()</code></td>
+      <td>모든 key 조회</td>
+      <td><code class="language-plaintext highlighter-rouge">for (String k : map.keySet())</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">values()</code></td>
+      <td>모든 value 조회</td>
+      <td><code class="language-plaintext highlighter-rouge">for (int v : map.values())</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">entrySet()</code></td>
+      <td>key+value 동시 접근</td>
+      <td>`for (Map.Entry&lt;String, Integer&gt; e : map.entrySet()) {</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> System.out.println(e.getKey() + " → " + e.getValue());
+</code></pre></div></div>
+
+<p>}<code class="language-plaintext highlighter-rouge">|
+|</code>size()<code class="language-plaintext highlighter-rouge">| 원소 수 |</code>map.size();<code class="language-plaintext highlighter-rouge">|
+|</code>clear()<code class="language-plaintext highlighter-rouge">| 모두 삭제 |</code>map.clear();` |</p>
+
+<hr />
+
+<h2 id="-2️⃣-hashset--중복-없는-데이터-저장">🧩 2️⃣ HashSet — 중복 없는 데이터 저장</h2>
+
+<h3 id="-핵심-활용-상황-1">💡 핵심 활용 상황</h3>
+
+<ul>
+  <li>“이미 나온 적 있는 값인가?”</li>
+  <li>“교집합, 중복 제거”</li>
+  <li>“전화번호부 접두사, 참가자 중 완주 못한 사람 찾기 등”</li>
+</ul>
+
+<h3 id="-자주-쓰는-메서드-1">🚀 자주 쓰는 메서드</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>메서드</th>
+      <th>설명</th>
+      <th>예시 코드</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">add(E e)</code></td>
+      <td>원소 추가</td>
+      <td><code class="language-plaintext highlighter-rouge">set.add("apple");</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">contains(E e)</code></td>
+      <td>포함 여부 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">if (set.contains("apple"))</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">remove(E e)</code></td>
+      <td>원소 삭제</td>
+      <td><code class="language-plaintext highlighter-rouge">set.remove("apple");</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">size()</code></td>
+      <td>원소 개수</td>
+      <td><code class="language-plaintext highlighter-rouge">set.size();</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">clear()</code></td>
+      <td>모두 삭제</td>
+      <td><code class="language-plaintext highlighter-rouge">set.clear();</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">isEmpty()</code></td>
+      <td>비었는지 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">if (set.isEmpty())</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">iterator()</code></td>
+      <td>순회용 Iterator 생성</td>
+      <td><code class="language-plaintext highlighter-rouge">for (String s : set) System.out.println(s);</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>or
+<code class="language-plaintext highlighter-rouge">Iterator&lt;String&gt; it = set.iterator();
+while (it.hasNext()) {
+      System.out.println(it.next());
+}</code> |</p>
+
+<blockquote>
+  <p>💡 참고: HashSet은 내부적으로 HashMap을 사용하므로 add, contains 모두 O(1)입니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">📋 3️⃣ ArrayList — 순서 있는 리스트 (인덱스 접근 가능)</h2>
+
+<h3 id="-핵심-활용-상황-2">💡 핵심 활용 상황</h3>
+
+<ul>
+  <li>“순차적 접근”, “정렬”, “조합/순열 저장”</li>
+  <li>BFS/DFS에서 방문 순서 저장 등</li>
+</ul>
+
+<h3 id="-자주-쓰는-메서드-2">🚀 자주 쓰는 메서드</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>메서드</th>
+      <th>설명</th>
+      <th>예시 코드</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">add(E e)</code></td>
+      <td>끝에 추가</td>
+      <td><code class="language-plaintext highlighter-rouge">list.add(5);</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">add(int idx, E e)</code></td>
+      <td>인덱스에 삽입</td>
+      <td><code class="language-plaintext highlighter-rouge">list.add(1, 10);</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">get(int idx)</code></td>
+      <td>특정 인덱스 조회</td>
+      <td><code class="language-plaintext highlighter-rouge">list.get(0);</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">set(int idx, E e)</code></td>
+      <td>특정 위치 값 수정</td>
+      <td><code class="language-plaintext highlighter-rouge">list.set(2, 99);</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">remove(int idx)</code></td>
+      <td>인덱스로 삭제</td>
+      <td><code class="language-plaintext highlighter-rouge">list.remove(1);</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">contains(E e)</code></td>
+      <td>포함 여부</td>
+      <td><code class="language-plaintext highlighter-rouge">if (list.contains(5))</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">size()</code></td>
+      <td>크기 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">list.size();</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">clear()</code></td>
+      <td>모두 삭제</td>
+      <td><code class="language-plaintext highlighter-rouge">list.clear();</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sort(Comparator&lt;? super E&gt; c)</code></td>
+      <td>정렬</td>
+      <td>`Arrays.sort(arr, new Comparator<String>() {</String></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        @Override
+        public int compare(String o1, String o2) {
+            if (o1.length()==o2.length()) {
+                return o1.compareTo(o2);
+            } else {
+                return o1.length()-o2.length();
+            }}});` |
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-4️⃣-priorityqueue--우선순위-큐-힙">🧮 4️⃣ PriorityQueue — 우선순위 큐 (힙)</h2>
+
+<h3 id="-핵심-활용-상황-3">💡 핵심 활용 상황</h3>
+
+<ul>
+  <li>“가장 작은/큰 값”을 반복적으로 꺼낼 때 (Dijkstra, HeapSort, 스케줄링 문제 등)</li>
+</ul>
+
+<h3 id="-자주-쓰는-메서드-3">🚀 자주 쓰는 메서드</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>메서드</th>
+      <th>설명</th>
+      <th>예시 코드</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">add(E e)</code></td>
+      <td>원소 추가</td>
+      <td><code class="language-plaintext highlighter-rouge">pq.add(10);</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">peek()</code></td>
+      <td>최상단 원소 확인(삭제 안 함)</td>
+      <td><code class="language-plaintext highlighter-rouge">int top = pq.peek();</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">poll()</code></td>
+      <td>최상단 원소 꺼내기</td>
+      <td><code class="language-plaintext highlighter-rouge">int top = pq.poll();</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">isEmpty()</code></td>
+      <td>비었는지 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">if (pq.isEmpty())</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>💡 디폴트는 오름차순(최소 힙) → 작은 숫자가 먼저 나옴</p>
+
+  <p>내림차순은 <code class="language-plaintext highlighter-rouge">new PriorityQueue&lt;&gt;(Collections.reverseOrder());</code></p>
+</blockquote>
+
+<hr />
+
+<h2 id="-5️⃣-stack--queue-deque--선형-구조">🧰 5️⃣ Stack / Queue (Deque) — 선형 구조</h2>
+
+<h3 id="-queue">💡 Queue</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Queue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<h3 id="-stack-deque로-대체-권장">💡 Stack (Deque로 대체 권장)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Deque</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayDeque</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-6️⃣-collections--arrays-유틸리티-메서드">💎 6️⃣ Collections / Arrays 유틸리티 메서드</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>클래스</th>
+      <th>메서드</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Collections.sort(list)</code></td>
+      <td>리스트 정렬</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Collections.reverse(list)</code></td>
+      <td>역순 정렬</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Collections.max(list)</code></td>
+      <td>최댓값</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Collections.min(list)</code></td>
+      <td>최솟값</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Arrays.sort(arr)</code></td>
+      <td>배열 정렬</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Arrays.equals(arr1, arr2)</code></td>
+      <td>배열 비교</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Arrays.toString(arr)</code></td>
+      <td>배열 출력용</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-추천-연습문제-유형별-활용-예시">📘 추천 연습문제 유형별 활용 예시</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>유형</th>
+      <th>핵심 자료구조/메서드</th>
+      <th>예시 문제</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Hash (중복, 완주하지 못한 선수 등)</td>
+      <td><code class="language-plaintext highlighter-rouge">HashMap</code>, <code class="language-plaintext highlighter-rouge">HashSet</code></td>
+      <td><code class="language-plaintext highlighter-rouge">map.getOrDefault</code>, <code class="language-plaintext highlighter-rouge">set.contains</code></td>
+    </tr>
+    <tr>
+      <td>Stack/Queue</td>
+      <td><code class="language-plaintext highlighter-rouge">Deque</code>, <code class="language-plaintext highlighter-rouge">LinkedList</code></td>
+      <td>괄호 검사, 기능개발</td>
+    </tr>
+    <tr>
+      <td>정렬</td>
+      <td><code class="language-plaintext highlighter-rouge">Arrays.sort</code>, <code class="language-plaintext highlighter-rouge">Collections.sort</code></td>
+      <td>H-index, K번째 수</td>
+    </tr>
+    <tr>
+      <td>이중 루프 회피</td>
+      <td><code class="language-plaintext highlighter-rouge">HashMap</code> lookup</td>
+      <td>전화번호 목록</td>
+    </tr>
+    <tr>
+      <td>우선순위 문제</td>
+      <td><code class="language-plaintext highlighter-rouge">PriorityQueue</code></td>
+      <td>더 맵게, 디스크 컨트롤러</td>
+    </tr>
+    <tr>
+      <td>그래프/BFS/DFS</td>
+      <td><code class="language-plaintext highlighter-rouge">Queue</code>, <code class="language-plaintext highlighter-rouge">ArrayList</code></td>
+      <td>미로 탐색, 네트워크</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-10-24T13:27:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
   <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
   <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
   <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
@@ -185,7 +579,7 @@ Cookie: refreshToken=...
       <li>JWT 검증</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-10-24T13:22:15+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-10-24T13:27:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인-분석">원인 분석</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -407,7 +801,7 @@ Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단
 
 <ul>
   <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">MDN: SamSite cookies</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-10-24T13:22:15+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-10-24T13:27:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인">원인</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -536,7 +930,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">FLUSHDB</code>: 현재 선택된 데이터베이스의 키만 삭제</li>
   <li>Redis는 기본적으로 데이터베이스 0~15번까지 16개를 제공</li>
   <li>운영환경에서는 절대 <code class="language-plaintext highlighter-rouge">FLUSHALL</code>을 실행하면 안됨!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-10-24T13:22:15+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-10-24T13:27:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
   <li><a href="#-1-webrtc의-정의">1. WebRTC의 정의</a></li>
   <li><a href="#-2-webrtc의-주요-구성-요소">2. WebRTC의 주요 구성 요소</a></li>
   <li><a href="#️-3-동작-흐름-signaling-포함">3. 동작 흐름 (Signaling 포함)</a></li>
@@ -710,7 +1104,7 @@ docker-compose up -d
   <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-10-24T13:22:15+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-10-24T13:27:54+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
   <li><a href="#1-배열--스트림">1. 배열 → 스트림</a></li>
   <li><a href="#2-형-변환-mapping">2. 형 변환 (Mapping)</a></li>
   <li><a href="#3-집계-연산-aggregation">3. 집계 연산 (Aggregation)</a></li>
@@ -831,7 +1225,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">summaryStatistics()</code></li>
 </ol>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-10-24T13:22:15+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-10-24T13:27:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
   <p>카테고리별 2인 매칭을 구현하며 실제로 쓴(또는 고민했던) 명령어들을 짧게 정리.
 예시 키는 <code class="language-plaintext highlighter-rouge">{cat:123}</code> 해시태그로 Redis Cluster 슬롯을 고정하는 패턴을 사용.</p>
 </blockquote>
@@ -1065,7 +1459,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><code class="language-plaintext highlighter-rouge">ZRANGE/ZRANDMEMBER</code>(조회) 뒤엔 <strong>반드시 <code class="language-plaintext highlighter-rouge">ZREM</code>(삭제)</strong></li>
   <li>경쟁 환경에선 <strong>Lua로 “조회→삭제”를 원자화</strong></li>
   <li><strong>TTL은 개별 상태 키에만</strong>, 대기열 컬렉션엔 금지</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-10-24T13:22:15+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-10-24T13:27:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
   <p>“카테고리별 2인 랜덤 매칭”을 스케줄러로 돌리는데, 한 카테고리에서 예외가 나면 <strong>전체 루프가 롤백</strong>될 수 있다는 얘기를 듣고 시작된 고민.
 그 결과 <code class="language-plaintext highlighter-rouge">@Transactional(propagation = REQUIRES_NEW)</code>를 채택했고, 다시 <strong>self-invocation</strong> 문제를 만나 리팩터링까지 갔던 과정을 정리했습니다.</p>
 </blockquote>
@@ -1244,7 +1638,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><a href="https://redis.io/docs/latest/develop/programmability/">Redis programmability</a></li>
   <li><a href="https://redis.io/blog/you-dont-need-transaction-rollbacks-in-redis/?utm_source=chatgpt.com">You Don’t Need Transaction Rollbacks in Redis</a></li>
   <li><a href="https://devoong2.tistory.com/entry/Spring-Transactional-REQUIRESNEW-%EC%98%B5%EC%85%98%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EC%99%B8-%EB%B0%8F-Rollback">Transactional REQUIRES_NEW 옵션에서 예외 및 Rollback</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-24T13:22:15+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-24T13:27:54+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
   <li><a href="#-record란-java-14">record란?</a></li>
   <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
   <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
@@ -1482,7 +1876,7 @@ ZREM wait:z:{cat:123} 101 205
 
 <h2 id="마무리">마무리</h2>
 
-<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-24T13:22:15+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
+<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-10-24T13:27:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
   <li><a href="#문제-배경">문제 배경</a></li>
   <li><a href="#tldr">TL;DR</a></li>
   <li><a href="#1-내가-왜-이런-고민을-하게-됐나-맥락">1. 내가 왜 이런 고민을 하게 됐나</a></li>
@@ -1857,189 +2251,4 @@ ZREM wait:z:{cat:123} 101 205
 
 <p>이번 설계는 “<strong>현재 요구(저지연)</strong>”와 “<strong>미래 요구(운영/분석/복구/확장)</strong>”를 동시에 충족시키기 위한 <strong>균형점</strong>을 찾는 과정이었다.
 <strong>DB+Redis 하이브리드</strong>는 그 균형점 위에서 <strong>실무적으로 검증된 길</strong>이며, MVP에서 시작해 <strong>Streams/Kafka</strong>로 확장 가능한 <strong>진화 경로</strong>를 갖는다.
-친구하자의 성격(실시간 매칭 + 장기 운영/분석 필요)에 <strong>정합한 선택</strong>이라고 생각한다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[TIL] A/B 테스트</title><link href="https://nan0silver.github.io/til/2025-08-23-til/" rel="alternate" type="text/html" title="[TIL] A/B 테스트" /><published>2025-08-23T00:00:00+00:00</published><updated>2025-08-23T00:36:49+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2025-08-23-til/"><![CDATA[<blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-📅 <strong>작성일</strong>: 2025-08-23<br />
-🔄 <strong>최종 수정</strong>: 2025년 08월 25일</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<h1 id="ab-테스트란">A/B 테스트란?</h1>
-
-<ul>
-  <li><strong>정의</strong>: 같은 목표를 두고 <strong>두 버전(A=기준, B=변경안)</strong> 을 <strong>동시에 무작위로</strong> 사용자에게 나눠 보여준 뒤, <strong>어느 쪽이 더 성과가 좋은지</strong> 통계적으로 비교하는 실험.</li>
-  <li><strong>목적</strong>: 느낌/감이 아니라 <strong>데이터로 의사결정</strong>. 버튼 문구, 화면 배치, 가격 제안, 푸시 타이밍 등 “실제로” 지표가 개선되는지 검증.</li>
-</ul>
-
-<h1 id="기본-용어">기본 용어</h1>
-
-<ul>
-  <li><strong>변수(Variant)</strong>: A(컨트롤) vs B(실험안). 3개 이상이면 A/B/n.</li>
-  <li><strong>지표(Metric)</strong>: 실험의 <strong>목표</strong>(예: 등록 전환율, 1일차 잔존, 통화 완료율).</li>
-  <li><strong>유의수준 α</strong>: 오탐 허용(보통 0.05).</li>
-  <li><strong>검정력 Power(1−β)</strong>: 진짜 차이가 있을 때 잡아낼 확률(보통 0.8).</li>
-  <li><strong>MDE</strong>(최소 검출 가능 효과): “이 정도 차이는 나야 성공이라 본다” 최소 개선 폭(예: +2%p).</li>
-</ul>
-
-<h1 id="어떻게-하는가-실전-절차-7단계">어떻게 하는가 (실전 절차 7단계)</h1>
-
-<ol>
-  <li>
-    <p><strong>가설 세우기</strong></p>
-
-    <ul>
-      <li>예) “대기시간 안내 문구를 바꾸면 <strong>매칭 시작 클릭률</strong>이 ↑한다.”</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>지표 딱 하나만 주지표로</strong></p>
-
-    <ul>
-      <li>주지표: 매칭 시작 클릭률</li>
-      <li>보조지표(가드레일): 이탈률, 고객불만 접수율 등 “부작용 체크”</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>표본수(기간) 계획</strong></p>
-
-    <ul>
-      <li>대략의 규칙: <strong>차이를 작게 보고 싶을수록, 베이스 전환율이 낮을수록 → 더 많은 트래픽/기간</strong>이 필요.</li>
-      <li>
-        <p>(참고 공식 – <strong>이해만</strong>):</p>
-
-        <ul>
-          <li>
-            <p>비율형 지표의 각 그룹 표본수 n ≈ <code class="language-plaintext highlighter-rouge">2 * (zα/2 + zβ)^2 * p̄(1-p̄) / Δ^2</code></p>
-
-            <ul>
-              <li><code class="language-plaintext highlighter-rouge">p̄</code>: 기준 전환율 추정, <code class="language-plaintext highlighter-rouge">Δ</code>: 검증하고 싶은 차이(절대값)</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>무작위 배정 &amp; 고정</strong></p>
-
-    <ul>
-      <li><strong>사용자 단위</strong>로 50/50 랜덤 분배(세션/페이지뷰 단위 X).</li>
-      <li>실험 중엔 <strong>변형하지 말기</strong>(중간에 디자인을 또 바꾸지 않기).</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>정확한 로깅</strong></p>
-
-    <ul>
-      <li>모든 이벤트에 <code class="language-plaintext highlighter-rouge">experiment_id</code>, <code class="language-plaintext highlighter-rouge">variant</code>(A/B) 파라미터를 함께 로깅.</li>
-      <li><strong>SRM</strong>(sample ratio mismatch) 체크: 50/50이 크게 깨지면(예: 60/40) 실험 무효.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>기간 고정 &amp; ‘엿보기’ 금지</strong></p>
-
-    <ul>
-      <li><strong>종료 조건 전</strong>에 유의성만 보고 중단하면 거짓 양성↑.</li>
-      <li>꼭 필요하면 <strong>사전 정의된 순차검정</strong>(group-sequential)이나 <strong>베이즈 접근</strong>을 사용.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>해석 &amp; 롤아웃</strong></p>
-
-    <ul>
-      <li>통계 유의 + <strong>실무 유의</strong>(임팩트/비용/부작용) 함께 본 뒤, 점진적 롤아웃(예: 10%→30%→100%).</li>
-    </ul>
-  </li>
-</ol>
-
-<h1 id="ga4앱에서-바로-쓰는-구성-팁">GA4/앱에서 바로 쓰는 구성 팁</h1>
-
-<ul>
-  <li>
-    <p>이벤트 설계 예:</p>
-
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">event_name: start_match_click</code></li>
-      <li>
-        <p>파라미터:</p>
-
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">experiment_id: "wait_copy_v1"</code></li>
-          <li><code class="language-plaintext highlighter-rouge">variant: "A"|"B"</code></li>
-          <li>사용자 ID 또는 설치 ID(사용자 기준 배정 유지)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>빅쿼리 연동</strong> 시 쿼리로 <code class="language-plaintext highlighter-rouge">variant</code>별 전환율 비교가 쉬워짐.</li>
-  <li><strong>SRM 빠른 체킹</strong>: 실시간 대시보드에서 A/B 트래픽이 49–51% 근처인지 확인.</li>
-</ul>
-
-<h1 id="ab-테스트-3가지-예시">A/B 테스트 3가지 예시</h1>
-
-<ol>
-  <li>
-    <p><strong>대기시간 안내 문구</strong></p>
-
-    <ul>
-      <li>A: “곧 연결됩니다”</li>
-      <li>B: “평균 30초 내 연결됩니다 · 취소 가능”</li>
-      <li>주지표: <code class="language-plaintext highlighter-rouge">start_match_click / 방문자</code></li>
-      <li>가드레일: 즉시 이탈률, 고객불만</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>통화 후 피드백 수집 방식</strong></p>
-
-    <ul>
-      <li>A: 5점 척도만</li>
-      <li>B: 5점 + “칭찬 한마디” 한줄 텍스트</li>
-      <li>주지표: 피드백 제출률</li>
-      <li>가드레일: 피드백 작성 시간, 다음날 재방문율</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>안심케어(유료) 소개 타이밍</strong></p>
-
-    <ul>
-      <li>A: 첫 3회 통화 후 페이월</li>
-      <li>B: 첫 1회 통화 후 페이월</li>
-      <li>주지표: 7일 내 결제 전환율</li>
-      <li>가드레일: 7일 유지율, 평균 통화시간 변화</li>
-    </ul>
-  </li>
-</ol>
-
-<h1 id="설계-체크리스트-붙여넣어-쓰기">설계 체크리스트 (붙여넣어 쓰기)</h1>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />가설과 <strong>주지표 1개</strong> 명확</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>MDE</strong>와 <strong>기간/표본수</strong> 사전 정의</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>사용자 단위 랜덤</strong> 배정 + 고정</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>experiment_id / variant</strong> 로깅</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>SRM</strong> 모니터링</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />중도 엿보기 금지(혹은 순차검정 채택)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />통계 유의 + <strong>비즈니스 유의</strong> 함께 판단</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />롤아웃/롤백 플랜 준비</li>
-</ul>
-
-<h1 id="자주-하는-실수">자주 하는 실수</h1>
-
-<ul>
-  <li>여러 요소를 한꺼번에 바꾸기 → <strong>원인 분리 불가</strong></li>
-  <li>주지표를 여러 개로 두기 → 해석 혼란</li>
-  <li>세션/페이지뷰 단위 랜덤화 → 사용자 경험이 섞여 <strong>오염</strong></li>
-  <li>주중/주말, 마케팅 캠페인 겹침 <strong>시즌성 영향</strong> 무시</li>
-  <li>결과가 좋게 나올 때까지만 <strong>계속 엿보기</strong></li>
-</ul>
-
-<h1 id="참고-빈도주의-vs-베이즈">(참고) 빈도주의 vs 베이즈</h1>
-
-<ul>
-  <li><strong>빈도주의</strong>: p-value/신뢰구간, 고정 표본 설계에 적합.</li>
-  <li><strong>베이즈</strong>: “B가 A보다 좋을 확률”처럼 <strong>직관적 해석</strong>과 <strong>순차적 의사결정</strong>에 유리.
-둘 다 장단점 있어요—팀의 익숙함/툴링에 따라 선택.</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="til" /><category term="TIL" /><category term="Git" /><category term="ML" /><summary type="html"><![CDATA[2025-08-23 TIL]]></summary></entry></feed>
+친구하자의 성격(실시간 매칭 + 장기 운영/분석 필요)에 <strong>정합한 선택</strong>이라고 생각한다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry></feed>
