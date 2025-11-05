@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[TIL] DTO vs VO vs Entity, DTO/DAO/Repository | NAHYUN BLOG</title>
+<title>[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[TIL] DTO vs VO vs Entity, DTO/DAO/Repository" />
+<meta property="og:title" content="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="2025-04-02 TIL" />
-<meta property="og:description" content="2025-04-02 TIL" />
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-04-02-til/" />
-<meta property="og:url" content="https://nan0silver.github.io/til/2025-04-02-til/" />
+<meta name="description" content="음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다." />
+<meta property="og:description" content="음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-04-02T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-10-20T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[TIL] DTO vs VO vs Entity, DTO/DAO/Repository" />
+<meta property="twitter:title" content="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-04-09T01:40:33+00:00","datePublished":"2025-04-02T00:00:00+00:00","description":"2025-04-02 TIL","headline":"[TIL] DTO vs VO vs Entity, DTO/DAO/Repository","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-04-02-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-04-02-til/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-11-05T07:36:41+00:00","datePublished":"2025-10-20T00:00:00+00:00","description":"음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.","headline":"[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-10-20-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-10-20-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/til/2025-04-02-til/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[TIL] DTO vs VO vs Entity, DTO/DAO/Repository",
-    "description": "2025-04-02 TIL
+    "headline": "[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅",
+    "description": "음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-04-02T00:00:00+00:00",
-    "dateModified": "2025-04-09T01:40:33+00:00",
+    "datePublished": "2025-10-20T00:00:00+00:00",
+    "dateModified": "2025-11-05T07:36:41+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/til/2025-04-02-til/"
+      "@id": "https://nan0silver.github.io/projectdiary/2025-10-20-diary/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-04-02-til/" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "til",
-        "item": "https://nan0silver.github.io/til/"
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[TIL] DTO vs VO vs Entity, DTO/DAO/Repository",
-        "item": "https://nan0silver.github.io/til/2025-04-02-til/"
+        "name": "[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅",
+        "item": "https://nan0silver.github.io/projectdiary/2025-10-20-diary/"
       }
     ]
   }
@@ -358,14 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/til/">til</a>
+          <a href="/projectdiary/">projectdiary</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-04-02-til</span>
+          <span>2025-10-20-diary</span>
         
       </li>
     
@@ -382,18 +382,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-til-til" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [TIL] DTO vs VO vs Entity, DTO/DAO/Repository
+        [친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-04-02T00:00:00+00:00">02 Apr 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>
+        <time datetime="2025-10-20T00:00:00+00:00">20 Oct 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -402,10 +402,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Apr 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 05 Nov 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-04-09T01:40:33+00:00">2025-04-09</time>
+              <time datetime="2025-11-05T07:36:41+00:00">2025-11-05</time>
             </span>
           
         
@@ -421,7 +421,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      2025-04-02 TIL
+      음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.
 
     </p>
   
@@ -430,246 +430,128 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/35">#35</a><br />
-📅 <strong>작성일</strong>: 2025-04-02<br />
-🔄 <strong>최종 수정</strong>: 2025년 04월 09일</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<ul>
-  <li>DTO vs VO vs Entity
     <ul>
-      <li>약간씩 다른 비슷한 개념인 것 같은데, 어떤 것이 정확히 다른지 알아보기 위해 블로그에 정리해보았다.</li>
-      <li><a href="https://nan0silver.github.io/spring/2025-04-02-dto-vo/">DTO vs VO vs Entity</a></li>
-    </ul>
-  </li>
-  <li>DTO, DAO
-    <ul>
-      <li>이름이 비슷한데 역할이 다른 것 같아 아래에 정리해보았다.</li>
-    </ul>
-  </li>
-  <li>공부하다 보니 Repository와 DAO도 비슷한 개념인 것 같아서 아래에 같이 정리했다.</li>
+  <li><a href="#1-문제-발견">1. 문제 발견</a></li>
+  <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
+  <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
+  <li><a href="#4-문제-원인-분석">4. 문제 원인 분석</a></li>
+  <li><a href="#5-해결-방법">5. 해결 방법</a></li>
+  <li><a href="#6-최종-해결-코드">6. 최종 해결 코드</a></li>
+  <li><a href="#7-핵심-개념-정리">7. 핵심 개념 정리</a></li>
 </ul>
 
-<hr />
-
-<h3 id="-dto-data-transfer-object">📦 DTO (Data Transfer Object)</h3>
-
-<p><strong>💡 데이터 “전달용” 객체</strong></p>
-
-<h4 id="-개념">✅ 개념</h4>
-
-<ul>
-  <li>계층 간(Controller ↔ Service, Frontend ↔ Backend 등) <strong>데이터를 주고받기 위한 객체</strong></li>
-  <li><strong>순수 데이터만 담는 클래스</strong> (getter/setter만 있는 경우 많음)</li>
-</ul>
-
-<h4 id="-예시">✅ 예시</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDTO</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="-용도">✅ 용도</h4>
-
-<ul>
-  <li>API 요청/응답 데이터 전달</li>
-  <li>DB Entity와 분리된 <strong>가벼운 데이터 구조</strong></li>
-</ul>
-
-<hr />
-
-<h3 id="️-dao-data-access-object">🗃️ DAO (Data Access Object)</h3>
-
-<p><strong>💡 DB에 접근하는 역할을 하는 객체</strong></p>
-
-<h4 id="-개념-1">✅ 개념</h4>
-
-<ul>
-  <li>실제로 DB와 연결되어 <strong>데이터를 저장하거나 불러오는 역할</strong></li>
-  <li>SQL 실행, JPA 사용 등 <strong>DB 처리 로직을 담당</strong></li>
-</ul>
-
-<h4 id="-예시-1">✅ 예시</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserDAO</span> <span class="o">{</span>
-    <span class="nc">UserEntity</span> <span class="nf">findById</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">);</span>
-    <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="nc">UserEntity</span> <span class="n">user</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="-용도-1">✅ 용도</h4>
-
-<ul>
-  <li><strong>DB 연동 로직을 캡슐화</strong>해서 Service 계층에서 쉽게 사용하도록 함</li>
-  <li>DB 종류가 바뀌어도 DAO만 바꾸면 되게 설계 가능</li>
-</ul>
-
-<hr />
-
-<h3 id="-핵심-비교-정리">📌 핵심 비교 정리</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>DTO</th>
-      <th>DAO</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>의미</td>
-      <td>Data Transfer Object</td>
-      <td>Data Access Object</td>
-    </tr>
-    <tr>
-      <td>역할</td>
-      <td>데이터 <strong>전달</strong> 전용</td>
-      <td>DB <strong>접근/처리</strong> 전용</td>
-    </tr>
-    <tr>
-      <td>내용</td>
-      <td>필드 + getter/setter</td>
-      <td>메서드 (save, find 등 DB 작업)</td>
-    </tr>
-    <tr>
-      <td>위치</td>
-      <td>Controller ↔ Service 계층 사이 등</td>
-      <td>Service ↔ DB 사이에서 사용</td>
-    </tr>
-    <tr>
-      <td>비유</td>
-      <td>택배 상자 (데이터만 담음)</td>
-      <td>택배기사 (DB에서 데이터를 꺼내옴)</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="repositoryvs-dao"><code class="language-plaintext highlighter-rouge">Repository</code>vs <code class="language-plaintext highlighter-rouge">DAO</code></h2>
-
-<h3 id="-공통점">✅ 공통점</h3>
-
-<ul>
-  <li>둘 다 <strong>데이터에 접근하기 위한 객체</strong></li>
-  <li>보통 <strong>DB에서 데이터를 가져오거나 저장하는 역할</strong>을 한다.</li>
-</ul>
-
-<hr />
-
-<h3 id="-dao-data-access-object">✅ DAO (Data Access Object)</h3>
-
-<h4 id="-정의">📌 정의</h4>
+<h2 id="음성-통화-녹음-기능은-동작하는데-에러가">음성 통화 녹음, 기능은 동작하는데 에러가?</h2>
 
 <blockquote>
-  <p>DAO는 데이터베이스에 직접 접근해서 데이터를 CRUD(Create, Read, Update, Delete)하는 객체</p>
+  <p>Agora Cloud Recording을 이용한 음성 통화 녹음 기능을 구현했다. 녹음 시작과 중지는 정상적으로 동작하는 것처럼 보였지만, 통화 종료 직후 콘솔에 예외 스택이 연속으로 출력되었다. LazyInitializationException과 OptimisticLockingFailureException… 둘 다 뭔가 익숙한데 동시에 발생하다니?</p>
 </blockquote>
 
-<h4 id="-특징">💡 특징</h4>
+<h2 id="1-문제-발견">1. 문제 발견</h2>
 
-<ul>
-  <li><strong>기술 중심</strong>: SQL, JDBC, MyBatis 같은 <strong>구체적인 구현 기술</strong>을 다룰 때 자주 씀.</li>
-  <li><strong>DB와 직접 소통</strong>하는 코드를 포함.</li>
-  <li>예전 Java에서 많이 쓰던 방식.</li>
-</ul>
+<h3 id="상황">상황</h3>
 
-<h4 id="-예시-2">📦 예시</h4>
+<p>Agora Cloud Recording을 사용하여 음성 통화 녹음 기능을 구현하던 중, 통화는 정상적으로 시작되고 녹음도 시작되지만, <strong>통화 종료 시점에 예외가 연달아 발생</strong>했다.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDao</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="nc">User</span> <span class="nf">findById</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// JDBC, SQL 직접 사용</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// INSERT 쿼리</span>
-    <span class="o">}</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 통화 종료 시 자동으로 녹음을 중지하는 로직</span>
+<span class="nd">@Async</span><span class="o">(</span><span class="s">"recordingTaskExecutor"</span><span class="o">)</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">CompletableFuture</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">autoStopRecordingOnCallEnd</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">runAsync</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="n">stopRecording</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>  <span class="c1">// ← 여기서 에러 발생!</span>
+    <span class="o">});</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h3 id="-repository-spring에서의-의미">✅ Repository (Spring에서의 의미)</h3>
+<h3 id="에러-로그">에러 로그</h3>
 
-<h4 id="-정의-1">📌 정의</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cloud Recording 중지 실패 - callId: 1
+org.hibernate.LazyInitializationException: Could not initialize proxy [com.ldsilver.chingoohaja.domain.call.Call#1] - no session
+	at org.hibernate.proxy.AbstractLazyInitializer.initialize(AbstractLazyInitializer.java:174)
+	at com.ldsilver.chingoohaja.domain.call.Call$HibernateProxy.getAgoraChannelName(Unknown Source)
+	at com.ldsilver.chingoohaja.dto.call.response.RecordingResponse.from(RecordingResponse.java:76)
+	at com.ldsilver.chingoohaja.service.AgoraRecordingService.stopRecording(AgoraRecordingService.java:138)
+</code></pre></div></div>
 
-<blockquote>
-  <p>Repository는 <strong>도메인 객체의 컬렉션처럼 다루기 위한 추상화된 계층</strong>이</p>
-</blockquote>
+<p>이어서 두 번째 에러:</p>
 
-<h4 id="-특징-1">💡 특징</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Recording 실패 상태 저장 실패 - callId: 1
+org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [com.ldsilver.chingoohaja.domain.call.CallRecording#1]
 
-<ul>
-  <li><strong>비즈니스 관점</strong>에서 설계: “데이터 저장소”처럼 보이도록 추상화.</li>
-  <li>Spring에서는 보통 <code class="language-plaintext highlighter-rouge">@Repository</code> 어노테이션 붙임.</li>
-  <li>JPA에서는 <code class="language-plaintext highlighter-rouge">CrudRepository</code>, <code class="language-plaintext highlighter-rouge">JpaRepository</code> 등을 상속받아 간단하게 사용 가능.</li>
-  <li>SQL보다 객체 지향적인 <strong>도메인 중심 접근</strong>.</li>
-</ul>
+Caused by: org.hibernate.StaleObjectStateException: Row was updated or deleted by another transaction
+</code></pre></div></div>
 
-<h4 id="-예시-3">📦 예시</h4>
+<h3 id="첫-번째-의문">첫 번째 의문</h3>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Repository</span>
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="nc">User</span> <span class="nf">findByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
+<p>“분명히 <code class="language-plaintext highlighter-rouge">@Transactional</code> 어노테이션도 붙였고, 엔티티도 제대로 조회했는데 왜 세션이 없다는 거지? 그리고 왜 낙관적 락 충돌이 발생하는 거야?”</p>
+
+<hr />
+
+<h2 id="2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</h2>
+
+<h3 id="에러의-의미">에러의 의미</h3>
+
+<p><code class="language-plaintext highlighter-rouge">LazyInitializationException</code>은 Hibernate에서 <strong>지연 로딩(Lazy Loading)으로 설정된 연관 엔티티에 접근하려 할 때, 이미 영속성 컨텍스트(Persistence Context)가 닫혀있어서 발생</strong>하는 에러다.</p>
+
+<h3 id="일반적인-발생-상황">일반적인 발생 상황</h3>
+
+<p><strong>1. 트랜잭션 밖에서 Lazy 프록시 접근</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">User</span> <span class="nf">findUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>  <span class="c1">// User.orders는 LAZY</span>
+<span class="o">}</span>
+
+<span class="c1">// 트랜잭션 밖 - 서비스 메서드 밖이나 컨트롤러</span>
+<span class="n">user</span><span class="o">.</span><span class="na">getOrders</span><span class="o">().</span><span class="na">size</span><span class="o">();</span>  <span class="c1">// ❌ LazyInitializationException!</span>
+</code></pre></div></div>
+
+<p><strong>2. 트랜잭션이 종료된 후 비동기 작업에서 접근</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">processOrder</span><span class="o">(</span><span class="nc">Long</span> <span class="n">orderId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Order</span> <span class="n">order</span> <span class="o">=</span> <span class="n">findOrder</span><span class="o">(</span><span class="n">orderId</span><span class="o">);</span>
+    <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">runAsync</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="c1">// 이 시점에는 트랜잭션이 종료되어 세션이 없음</span>
+        <span class="n">order</span><span class="o">.</span><span class="na">getUser</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>  <span class="c1">// ❌ LazyInitializationException!</span>
+    <span class="o">});</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
 <hr />
 
-<h3 id="-dao-vs-repository-요약-비교">🔍 DAO vs Repository 요약 비교</h3>
+<h2 id="3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>DAO</th>
-      <th>Repository</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>의미</td>
-      <td>데이터에 접근하는 객체</td>
-      <td>도메인 저장소를 추상화한 객체</td>
-    </tr>
-    <tr>
-      <td>초점</td>
-      <td>기술 (SQL, JDBC, MyBatis)</td>
-      <td>비즈니스/도메인 중심 (JPA, ORM 기반)</td>
-    </tr>
-    <tr>
-      <td>구현 방식</td>
-      <td>구현체를 직접 만듦</td>
-      <td>인터페이스 + Spring Data JPA가 구현체 제공</td>
-    </tr>
-    <tr>
-      <td>어노테이션 사용</td>
-      <td>없음 (전통적인 Java 방식)</td>
-      <td><code class="language-plaintext highlighter-rouge">@Repository</code> 사용</td>
-    </tr>
-    <tr>
-      <td>대표 기술</td>
-      <td>JDBC, MyBatis</td>
-      <td>Spring Data JPA, Hibernate</td>
-    </tr>
-  </tbody>
-</table>
+<h3 id="에러의-의미-1">에러의 의미</h3>
+
+<p><code class="language-plaintext highlighter-rouge">OptimisticLockingFailureException</code>은 <strong>낙관적 락(Optimistic Lock) 검증 실패</strong> 시 발생하는 에러다. JPA의 <code class="language-plaintext highlighter-rouge">@Version</code>을 사용한 엔티티에서 <strong>다른 트랜잭션이 이미 해당 레코드를 수정하여 버전이 증가했을 때</strong> 발생한다.</p>
+
+<h3 id="일반적인-발생-상황-1">일반적인 발생 상황</h3>
+
+<p><strong>1. 동시에 같은 엔티티를 수정</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 트랜잭션 1</span>
+<span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0</span>
+<span class="n">user</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"Alice"</span><span class="o">);</span>
+<span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>  <span class="c1">// version = 1로 증가</span>
+
+<span class="c1">// 트랜잭션 2 (동시 실행)</span>
+<span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0 (조회 시점)</span>
+<span class="n">user</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">"new@email.com"</span><span class="o">);</span>
+<span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>  <span class="c1">// ❌ version이 이미 1이라 실패!</span>
+</code></pre></div></div>
+
+<p><strong>2. 분리된(Detached) 엔티티를 merge</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0</span>
+<span class="c1">// 엔티티가 영속성 컨텍스트에서 분리됨</span>
+<span class="c1">// ... 다른 트랜잭션에서 해당 엔티티를 수정하여 버전이 증가</span>
+<span class="n">user</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"Bob"</span><span class="o">);</span>
+<span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>  <span class="c1">// ❌ version 불일치!</span>
+</code></pre></div></div>
 
 <hr />
 
-<h2 id="-결론적으로">✨ 결론적으로…</h2>
-
-<ul>
-  <li><strong>DAO는 전통적인 방식</strong>으로, 데이터베이스 중심의 설계.</li>
-  <li><strong>Repository는 도메인 중심</strong>의 설계 방식이며, Spring에서는 더 추상화된 계층</li>
-  <li>요즘 Spring 프로젝트에서는 대부분 <strong>Repository 패턴</strong>을 쓴다. 특히 JPA랑 궁합이 잘 맞는다.</li>
-</ul>
+<h2 id="4-문제-원인-분석">4. 문제 원인 분석</h2>
 
   
 </article>
@@ -796,7 +678,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/algorithm/2025-10-23-collections/" class="flip-title"><span>[Algorithm] 코테에서 자주 쓰이는 Collection 모음</span></a>  <time class="faded fine" datetime="2025-10-23T00:00:00+00:00">23 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-10-20-diary/" class="flip-title"><span>[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</span></a>  <time class="faded fine" datetime="2025-10-20T00:00:00+00:00">20 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-10-16-diary/" class="flip-title"><span>[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</span></a>  <time class="faded fine" datetime="2025-10-16T00:00:00+00:00">16 Oct 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/algorithm/2025-10-23-collections/" class="flip-title"><span>[Algorithm] 코테에서 자주 쓰이는 Collection 모음</span></a>  <time class="faded fine" datetime="2025-10-23T00:00:00+00:00">23 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-10-16-diary/" class="flip-title"><span>[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</span></a>  <time class="faded fine" datetime="2025-10-16T00:00:00+00:00">16 Oct 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-10-15-diary/" class="flip-title"><span>[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</span></a>  <time class="faded fine" datetime="2025-10-15T00:00:00+00:00">15 Oct 2025</time></li>            </ul></aside>
 
   
 

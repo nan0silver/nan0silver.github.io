@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-05T07:31:12+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-05T07:37:30+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-05T07:30:30+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-05T07:36:41+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
   <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
   <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
   <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
@@ -395,7 +395,128 @@ while (it.hasNext()) {
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-05T07:30:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-05T07:36:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
+  <li><a href="#1-문제-발견">1. 문제 발견</a></li>
+  <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
+  <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
+  <li><a href="#4-문제-원인-분석">4. 문제 원인 분석</a></li>
+  <li><a href="#5-해결-방법">5. 해결 방법</a></li>
+  <li><a href="#6-최종-해결-코드">6. 최종 해결 코드</a></li>
+  <li><a href="#7-핵심-개념-정리">7. 핵심 개념 정리</a></li>
+</ul>
+
+<h2 id="음성-통화-녹음-기능은-동작하는데-에러가">음성 통화 녹음, 기능은 동작하는데 에러가?</h2>
+
+<blockquote>
+  <p>Agora Cloud Recording을 이용한 음성 통화 녹음 기능을 구현했다. 녹음 시작과 중지는 정상적으로 동작하는 것처럼 보였지만, 통화 종료 직후 콘솔에 예외 스택이 연속으로 출력되었다. LazyInitializationException과 OptimisticLockingFailureException… 둘 다 뭔가 익숙한데 동시에 발생하다니?</p>
+</blockquote>
+
+<h2 id="1-문제-발견">1. 문제 발견</h2>
+
+<h3 id="상황">상황</h3>
+
+<p>Agora Cloud Recording을 사용하여 음성 통화 녹음 기능을 구현하던 중, 통화는 정상적으로 시작되고 녹음도 시작되지만, <strong>통화 종료 시점에 예외가 연달아 발생</strong>했다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 통화 종료 시 자동으로 녹음을 중지하는 로직</span>
+<span class="nd">@Async</span><span class="o">(</span><span class="s">"recordingTaskExecutor"</span><span class="o">)</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">CompletableFuture</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">autoStopRecordingOnCallEnd</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">runAsync</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="n">stopRecording</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>  <span class="c1">// ← 여기서 에러 발생!</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="에러-로그">에러 로그</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cloud Recording 중지 실패 - callId: 1
+org.hibernate.LazyInitializationException: Could not initialize proxy [com.ldsilver.chingoohaja.domain.call.Call#1] - no session
+	at org.hibernate.proxy.AbstractLazyInitializer.initialize(AbstractLazyInitializer.java:174)
+	at com.ldsilver.chingoohaja.domain.call.Call$HibernateProxy.getAgoraChannelName(Unknown Source)
+	at com.ldsilver.chingoohaja.dto.call.response.RecordingResponse.from(RecordingResponse.java:76)
+	at com.ldsilver.chingoohaja.service.AgoraRecordingService.stopRecording(AgoraRecordingService.java:138)
+</code></pre></div></div>
+
+<p>이어서 두 번째 에러:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Recording 실패 상태 저장 실패 - callId: 1
+org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [com.ldsilver.chingoohaja.domain.call.CallRecording#1]
+
+Caused by: org.hibernate.StaleObjectStateException: Row was updated or deleted by another transaction
+</code></pre></div></div>
+
+<h3 id="첫-번째-의문">첫 번째 의문</h3>
+
+<p>“분명히 <code class="language-plaintext highlighter-rouge">@Transactional</code> 어노테이션도 붙였고, 엔티티도 제대로 조회했는데 왜 세션이 없다는 거지? 그리고 왜 낙관적 락 충돌이 발생하는 거야?”</p>
+
+<hr />
+
+<h2 id="2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</h2>
+
+<h3 id="에러의-의미">에러의 의미</h3>
+
+<p><code class="language-plaintext highlighter-rouge">LazyInitializationException</code>은 Hibernate에서 <strong>지연 로딩(Lazy Loading)으로 설정된 연관 엔티티에 접근하려 할 때, 이미 영속성 컨텍스트(Persistence Context)가 닫혀있어서 발생</strong>하는 에러다.</p>
+
+<h3 id="일반적인-발생-상황">일반적인 발생 상황</h3>
+
+<p><strong>1. 트랜잭션 밖에서 Lazy 프록시 접근</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">User</span> <span class="nf">findUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>  <span class="c1">// User.orders는 LAZY</span>
+<span class="o">}</span>
+
+<span class="c1">// 트랜잭션 밖 - 서비스 메서드 밖이나 컨트롤러</span>
+<span class="n">user</span><span class="o">.</span><span class="na">getOrders</span><span class="o">().</span><span class="na">size</span><span class="o">();</span>  <span class="c1">// ❌ LazyInitializationException!</span>
+</code></pre></div></div>
+
+<p><strong>2. 트랜잭션이 종료된 후 비동기 작업에서 접근</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">processOrder</span><span class="o">(</span><span class="nc">Long</span> <span class="n">orderId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Order</span> <span class="n">order</span> <span class="o">=</span> <span class="n">findOrder</span><span class="o">(</span><span class="n">orderId</span><span class="o">);</span>
+    <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">runAsync</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="c1">// 이 시점에는 트랜잭션이 종료되어 세션이 없음</span>
+        <span class="n">order</span><span class="o">.</span><span class="na">getUser</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>  <span class="c1">// ❌ LazyInitializationException!</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</h2>
+
+<h3 id="에러의-의미-1">에러의 의미</h3>
+
+<p><code class="language-plaintext highlighter-rouge">OptimisticLockingFailureException</code>은 <strong>낙관적 락(Optimistic Lock) 검증 실패</strong> 시 발생하는 에러다. JPA의 <code class="language-plaintext highlighter-rouge">@Version</code>을 사용한 엔티티에서 <strong>다른 트랜잭션이 이미 해당 레코드를 수정하여 버전이 증가했을 때</strong> 발생한다.</p>
+
+<h3 id="일반적인-발생-상황-1">일반적인 발생 상황</h3>
+
+<p><strong>1. 동시에 같은 엔티티를 수정</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 트랜잭션 1</span>
+<span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0</span>
+<span class="n">user</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"Alice"</span><span class="o">);</span>
+<span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>  <span class="c1">// version = 1로 증가</span>
+
+<span class="c1">// 트랜잭션 2 (동시 실행)</span>
+<span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0 (조회 시점)</span>
+<span class="n">user</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">"new@email.com"</span><span class="o">);</span>
+<span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>  <span class="c1">// ❌ version이 이미 1이라 실패!</span>
+</code></pre></div></div>
+
+<p><strong>2. 분리된(Detached) 엔티티를 merge</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0</span>
+<span class="c1">// 엔티티가 영속성 컨텍스트에서 분리됨</span>
+<span class="c1">// ... 다른 트랜잭션에서 해당 엔티티를 수정하여 버전이 증가</span>
+<span class="n">user</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"Bob"</span><span class="o">);</span>
+<span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>  <span class="c1">// ❌ version 불일치!</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-문제-원인-분석">4. 문제 원인 분석</h2>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-05T07:36:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
   <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
   <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
   <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
@@ -579,7 +700,7 @@ Cookie: refreshToken=...
       <li>JWT 검증</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-05T07:30:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-05T07:36:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인-분석">원인 분석</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -801,7 +922,7 @@ Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단
 
 <ul>
   <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">MDN: SamSite cookies</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-05T07:30:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-05T07:36:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인">원인</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -930,7 +1051,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">FLUSHDB</code>: 현재 선택된 데이터베이스의 키만 삭제</li>
   <li>Redis는 기본적으로 데이터베이스 0~15번까지 16개를 제공</li>
   <li>운영환경에서는 절대 <code class="language-plaintext highlighter-rouge">FLUSHALL</code>을 실행하면 안됨!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-05T07:30:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-05T07:36:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
   <li><a href="#-1-webrtc의-정의">1. WebRTC의 정의</a></li>
   <li><a href="#-2-webrtc의-주요-구성-요소">2. WebRTC의 주요 구성 요소</a></li>
   <li><a href="#️-3-동작-흐름-signaling-포함">3. 동작 흐름 (Signaling 포함)</a></li>
@@ -1104,7 +1225,7 @@ docker-compose up -d
   <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-11-05T07:30:30+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-11-05T07:36:41+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
   <li><a href="#1-배열--스트림">1. 배열 → 스트림</a></li>
   <li><a href="#2-형-변환-mapping">2. 형 변환 (Mapping)</a></li>
   <li><a href="#3-집계-연산-aggregation">3. 집계 연산 (Aggregation)</a></li>
@@ -1225,7 +1346,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">summaryStatistics()</code></li>
 </ol>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-11-05T07:30:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-11-05T07:36:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
   <p>카테고리별 2인 매칭을 구현하며 실제로 쓴(또는 고민했던) 명령어들을 짧게 정리.
 예시 키는 <code class="language-plaintext highlighter-rouge">{cat:123}</code> 해시태그로 Redis Cluster 슬롯을 고정하는 패턴을 사용.</p>
 </blockquote>
@@ -1459,7 +1580,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><code class="language-plaintext highlighter-rouge">ZRANGE/ZRANDMEMBER</code>(조회) 뒤엔 <strong>반드시 <code class="language-plaintext highlighter-rouge">ZREM</code>(삭제)</strong></li>
   <li>경쟁 환경에선 <strong>Lua로 “조회→삭제”를 원자화</strong></li>
   <li><strong>TTL은 개별 상태 키에만</strong>, 대기열 컬렉션엔 금지</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-11-05T07:30:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-11-05T07:36:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
   <p>“카테고리별 2인 랜덤 매칭”을 스케줄러로 돌리는데, 한 카테고리에서 예외가 나면 <strong>전체 루프가 롤백</strong>될 수 있다는 얘기를 듣고 시작된 고민.
 그 결과 <code class="language-plaintext highlighter-rouge">@Transactional(propagation = REQUIRES_NEW)</code>를 채택했고, 다시 <strong>self-invocation</strong> 문제를 만나 리팩터링까지 갔던 과정을 정리했습니다.</p>
 </blockquote>
@@ -1638,7 +1759,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><a href="https://redis.io/docs/latest/develop/programmability/">Redis programmability</a></li>
   <li><a href="https://redis.io/blog/you-dont-need-transaction-rollbacks-in-redis/?utm_source=chatgpt.com">You Don’t Need Transaction Rollbacks in Redis</a></li>
   <li><a href="https://devoong2.tistory.com/entry/Spring-Transactional-REQUIRESNEW-%EC%98%B5%EC%85%98%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EC%99%B8-%EB%B0%8F-Rollback">Transactional REQUIRES_NEW 옵션에서 예외 및 Rollback</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-11-05T07:30:30+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-11-05T07:36:41+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
   <li><a href="#-record란-java-14">record란?</a></li>
   <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
   <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
@@ -1876,379 +1997,4 @@ ZREM wait:z:{cat:123} 101 205
 
 <h2 id="마무리">마무리</h2>
 
-<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</title><link href="https://nan0silver.github.io/projectdiary/2025-08-25-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-11-05T07:30:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-25-diary/"><![CDATA[<ul>
-  <li><a href="#문제-배경">문제 배경</a></li>
-  <li><a href="#tldr">TL;DR</a></li>
-  <li><a href="#1-내가-왜-이런-고민을-하게-됐나-맥락">1. 내가 왜 이런 고민을 하게 됐나</a></li>
-  <li><a href="#2-현재-구현의-문제-정리-redis-단독일-때">2. 현재 구현의 문제 정리 (Redis 단독일 때)</a></li>
-  <li><a href="#3-하이브리드-설계-원칙">3. 하이브리드 설계 원칙</a></li>
-  <li><a href="#4-개선된-데이터-흐름">4. 개선된 데이터 흐름</a></li>
-  <li><a href="#5-redis-자료구조-선택과-이유">5. Redis 자료구조 선택과 이유</a></li>
-  <li><a href="#6-원자적-매칭-lua-스크립트-예시개념">6. 원자적 매칭: Lua 스크립트 예시(개념)</a></li>
-  <li><a href="#7-복구-메커니즘서버-재기동장애-대비">7. 복구 메커니즘(서버 재기동/장애 대비)</a></li>
-  <li><a href="#8-스키마인덱스-설계">8. 스키마/인덱스 설계</a></li>
-  <li><a href="#9-시스템-구성개념-아키텍처">9. 시스템 구성(개념 아키텍처)</a></li>
-  <li><a href="#10-실무에서의-선택지-비교">10. 실무에서의 선택지 비교</a></li>
-  <li><a href="#11-테스트운영-시나리오">11. 테스트/운영 시나리오</a></li>
-  <li><a href="#12-내가-배운-점--선택의-근거">12. 내가 배운 점 &amp; 선택의 근거</a></li>
-  <li><a href="#13-next-steps-로드맵">13. Next Steps (로드맵)</a></li>
-  <li><a href="#부록-a-코드-스니펫개념">부록 A. 코드 스니펫(개념)</a></li>
-</ul>
-
-<blockquote>
-  <p>“대기열=실시간성, 기록/분석/복구=영속성.”
-이 두 욕심을 동시에 만족시키려다 보니 하이브리드(DB+Redis)가 자연스럽게 답이 되었다.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="문제-배경">문제 배경</h2>
-
-<ul>
-  <li>친구하자 구현 중 핵심인 통화 매칭 부분을 구현하는 중이였다.</li>
-  <li>초반 설계에서는 Redis만 사용해서 구현하기로 하여 하고있었는데, 이렇게 하면 대기열 기록이 되지않아 나중에 시스템 분석 및 복구에 어려움이 있어보였다.</li>
-  <li>따라서 DB와 함께 구현하는 방식이 많이 사용되는 방식인지, 어떤 부분에 장단점이 있고 고려해야하는 부분은 어떤 것인지 궁금했다.</li>
-  <li>또한 관련되서 더 심화된 기술은 어떤 것이 있는지 알아보고싶었다.</li>
-</ul>
-
-<hr />
-
-<h2 id="tldr">TL;DR</h2>
-
-<ul>
-  <li><strong>문제의식</strong>: Redis만 쓰면 빠르지만 휘발성·운영/분석/복구가 약하다. DB만 쓰면 영속적이지만 지연·경합에 취약하다.</li>
-  <li><strong>결론</strong>: <strong>DB(사실의 원천, 이력/분석/복구) + Redis(실시간 대기열/매칭)</strong> 를 분리한 하이브리드 구조.</li>
-  <li><strong>실무 팁</strong>: 아웃박스 패턴으로 <strong>이중 쓰기 일관성</strong>, Redis <strong>ZSET</strong>+<strong>Lua</strong>로 <strong>원자적 매칭</strong>, <strong>멱등키/TTL/청소잡/AOF+복제</strong>로 운영 내구성 확보.</li>
-  <li><strong>대안</strong>: 규모·요구사항에 따라 Redis Streams, RabbitMQ, Kafka, SQS, Postgres SKIP LOCKED도 선택지.</li>
-</ul>
-
-<hr />
-
-<h2 id="1-내가-왜-이런-고민을-하게-됐나-맥락">1) 내가 왜 이런 고민을 하게 됐나 (맥락)</h2>
-
-<p>친구하자는 <strong>1분 내 매칭</strong> 같은 <strong>저지연 실시간성</strong>이 핵심이다. 그래서 처음엔 <strong>Redis 단독</strong>이 끌렸다.
-하지만 곧바로 다음 현실에 부딪혔다.</p>
-
-<ul>
-  <li><strong>휘발성 vs 영속성</strong>: Redis는 빠르지만(메모리) 장애/재시작 시 <strong>데이터 유실</strong> 리스크.</li>
-  <li><strong>운영/디버깅</strong>: 매칭 실패/타임아웃/취소 이슈를 <strong>재현</strong>하고 <strong>원인 추적</strong>하려면 <strong>이력 테이블</strong>이 꼭 필요.</li>
-  <li><strong>통계/제품개선</strong>: 카테고리별 대기시간·매칭률·시간대 부하 같은 <strong>지표</strong>는 DB가 편하다.</li>
-  <li><strong>복구 시나리오</strong>: 서버/Redis 재기동 시 <strong>“누가 줄에 서 있었나?”</strong> 를 복원하려면 DB에 근거가 있어야 한다.</li>
-</ul>
-
-<p>결국 “<strong>실시간 처리=Redis</strong>”, “<strong>이력/분석/복구=DB</strong>”로 역할을 나누는 하이브리드가 합리적이라는 결론에 도달했다.</p>
-
-<hr />
-
-<h2 id="2-현재-구현의-문제-정리-redis-단독일-때">2) 현재 구현의 문제 정리 (Redis 단독일 때)</h2>
-
-<ol>
-  <li><strong>데이터 영속성</strong>: 서버/Redis 재시작 시 대기열 유실 가능</li>
-  <li><strong>통계/분석 취약</strong>: 매칭 히스토리/패턴 분석이 어려움</li>
-  <li><strong>디버깅 곤란</strong>: 실패 재현·CS 대응 근거 부족</li>
-  <li><strong>복구 어려움</strong>: 장애 시 대기열/상태 재구성이 힘듦</li>
-</ol>
-
-<hr />
-
-<h2 id="3-하이브리드-설계-원칙">3) 하이브리드 설계 원칙</h2>
-
-<h3 id="1-단일-출처single-source-of-truth-sot-명확화">(1) 단일 출처(Single Source of Truth, SOT) 명확화</h3>
-
-<ul>
-  <li><strong>대기열의 SOT = Redis</strong> (실시간 기준)</li>
-  <li><strong>이력/상태의 SOT = DB</strong> (사실 기준)</li>
-</ul>
-
-<h3 id="2-일관성-경계-정의">(2) 일관성 경계 정의</h3>
-
-<ul>
-  <li>두 저장소에 <strong>언제/어떤 순서로</strong> 쓸지 고정.</li>
-  <li>권장: <strong>DB 트랜잭션</strong>으로 <code class="language-plaintext highlighter-rouge">matching_queue(WAITING)</code> + <strong>아웃박스 이벤트</strong>를 함께 기록 → 워커가 <strong>Redis에 enqueue</strong> (재시도 가능)</li>
-</ul>
-
-<h3 id="3-멱등성중복-방지">(3) 멱등성/중복 방지</h3>
-
-<ul>
-  <li>사용자 중복 등록 방지: <code class="language-plaintext highlighter-rouge">SET user:{id}:queued 1 NX EX 600</code></li>
-  <li>매칭 결과 멱등 업데이트: <code class="language-plaintext highlighter-rouge">match_id</code> <strong>UNIQUE</strong> 제약 등</li>
-</ul>
-
-<hr />
-
-<h2 id="4-개선된-데이터-흐름">4) 개선된 데이터 흐름</h2>
-
-<ol>
-  <li>
-    <p><strong>참가(Enqueue)</strong>:</p>
-
-    <ul>
-      <li>DB 트랜잭션: <code class="language-plaintext highlighter-rouge">matching_queue(WAITING)</code> + <code class="language-plaintext highlighter-rouge">outbox(enqueue_event)</code></li>
-      <li>Outbox Consumer가 Redis <strong>ZSET</strong>에 등록</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>매칭(Match)</strong>:</p>
-
-    <ul>
-      <li>Redis에서 <strong>원자적으로 두 명을 Pop</strong> (Lua 스크립트)</li>
-      <li>DB에 <code class="language-plaintext highlighter-rouge">MATCHING → MATCHED</code> 상태 전이(멱등)</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>통계/리포트</strong>:</p>
-
-    <ul>
-      <li>DB 이력 기반 분석/대시보드</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>실시간 조회</strong>:</p>
-    <ul>
-      <li>Redis 대기열 길이, 평균 대기시간(샘플링) 즉시 응답</li>
-    </ul>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="5-redis-자료구조-선택과-이유">5) Redis 자료구조 선택과 이유</h2>
-
-<ul>
-  <li>
-    <p><strong>ZSET(정렬집합)</strong> 권장</p>
-
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">score = 대기 시작 시각 or 우선순위</code></li>
-      <li><strong>공정성(FCFS)/우선순위</strong>/타임아웃 처리 쉽다.</li>
-      <li>꺼낼 때 <strong>원자성</strong>을 위해 Lua 스크립트 사용.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>덧붙임</strong></p>
-
-    <ul>
-      <li><strong>SET NX</strong>로 중복 등록 방지</li>
-      <li><strong>HASH</strong>(<code class="language-plaintext highlighter-rouge">queue:{queueId}</code>)로 사용자·카테고리·TTL 메타 저장</li>
-      <li><strong>TTL + 정리잡</strong>으로 고아 항목 청소</li>
-    </ul>
-  </li>
-</ul>
-
-<blockquote>
-  <p>단순 리스트(LLEN/LPOP)는 쉽지만 공정성·타임아웃·중복 제어를 구조적으로 풀기 어렵다.
-<strong>Streams</strong>는 컨슈머 그룹/ACK로 내구성이 좋지만 매칭 “쌍짓기”엔 별도 설계가 필요.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="6-원자적-매칭-lua-스크립트-예시개념">6) 원자적 매칭: Lua 스크립트 예시(개념)</h2>
-
-<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- KEYS[1]=zset key, ARGV[1]=score(복원용)</span>
-<span class="kd">local</span> <span class="n">k</span> <span class="o">=</span> <span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="kd">local</span> <span class="n">a</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZRANGE'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="k">if</span> <span class="o">#</span><span class="n">a</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">then</span> <span class="k">return</span> <span class="p">{}</span> <span class="k">end</span>
-<span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZREM'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="kd">local</span> <span class="n">b</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZRANGE'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="k">if</span> <span class="o">#</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">then</span>
-  <span class="c1">-- 짝이 없으면 되돌리기</span>
-  <span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZADD'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-  <span class="k">return</span> <span class="p">{}</span>
-<span class="k">end</span>
-<span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s1">'ZREM'</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="c1">-- 필요 시 락/마킹/TTL 등 추가</span>
-<span class="k">return</span> <span class="p">{</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p>실전에서는 <strong>되돌리기/락/타임아웃/카테고리 필터</strong>까지 넣어야 한다.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="7-복구-메커니즘서버-재기동장애-대비">7) 복구 메커니즘(서버 재기동/장애 대비)</h2>
-
-<ul>
-  <li>Redis는 <strong>AOF(append-only)</strong> + <strong>영속 볼륨</strong> + <strong>복제/센티넬</strong>로 내구성 강화</li>
-  <li>그래도 안전망으로 <strong>“최근 WAITING만 DB→Redis 재적재”</strong> 수행</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 서버 기동 시 안전 복구(개념)</span>
-<span class="nd">@PostConstruct</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">recoverQueuesFromDatabase</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kt">var</span> <span class="n">active</span> <span class="o">=</span> <span class="n">matchingQueueRepository</span><span class="o">.</span><span class="na">findByQueueStatusAndCreatedAtAfter</span><span class="o">(</span>
-        <span class="nc">QueueStatus</span><span class="o">.</span><span class="na">WAITING</span><span class="o">,</span>
-        <span class="nc">LocalDateTime</span><span class="o">.</span><span class="na">now</span><span class="o">().</span><span class="na">minusMinutes</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
-    <span class="o">);</span>
-    <span class="n">active</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">queue</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="c1">// Redis 재적재 로직(ZSET + 메타 HSET 등)</span>
-    <span class="o">});</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p>운영에선 <strong>ApplicationRunner + 분산락</strong>으로 <strong>중복 복구 방지</strong>를 권장.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="8-스키마인덱스-설계">8) 스키마/인덱스 설계</h2>
-
-<p><strong>matching_queue</strong></p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">id, user_id, category, status(WAITING/MATCHING/MATCHED/EXPIRED/CANCELLED), created_at, updated_at</code></li>
-  <li>인덱스: <code class="language-plaintext highlighter-rouge">(status, created_at)</code>, <code class="language-plaintext highlighter-rouge">(user_id, status)</code></li>
-</ul>
-
-<p><strong>match_events</strong></p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">match_id(UNIQUE), user_a, user_b, started_at, ended_at, result, reason</code></li>
-  <li>멱등키: <code class="language-plaintext highlighter-rouge">match_id UNIQUE</code></li>
-</ul>
-
-<p><strong>outbox</strong></p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">event_id, type, payload, created_at, processed_at NULLABLE</code></li>
-  <li>워커가 <code class="language-plaintext highlighter-rouge">processed_at IS NULL</code>만 읽고 성공 시 채움(재시도 가능)</li>
-</ul>
-
-<hr />
-
-<h2 id="9-시스템-구성개념-아키텍처">9) 시스템 구성(개념 아키텍처)</h2>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[API] ──(Tx)──&gt; [DB] ──(Outbox)──&gt; [Outbox Consumer] ──&gt; [Redis ZSET]
-  │                                              │
-  └──────────────(조회/이력)──────────────────────┘
-
-[Matching Worker] &lt;──&gt; [Redis ZSET + Lua + TTL]
-      │                            │
-      └────(멱등 업데이트)──────&gt; [DB: 상태/이력]
-</code></pre></div></div>
-
-<p>운영 필수 체크:</p>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Redis <strong>AOF + 복제/센티넬</strong></li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>아웃박스/재시도</strong>로 DB↔Redis <strong>일관성 보장</strong></li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>SET NX/TTL/청소잡/분산락</strong></li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>대기열 길이/평균 대기시간/타임아웃률/매칭 성공률</strong> 메트릭</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>enqueue/match/cancel/timeout</strong> 이벤트 로깅</li>
-</ul>
-
-<hr />
-
-<h2 id="10-실무에서의-선택지-비교">10) 실무에서의 선택지 비교</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>시나리오</th>
-      <th>권장 스택</th>
-      <th>핵심 포인트</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>저지연 실시간 매칭 (MVP~중규모)</strong></td>
-      <td><strong>Redis (ZSET/Streams) + DB</strong></td>
-      <td>속도·복잡도 밸런스 좋음</td>
-    </tr>
-    <tr>
-      <td><strong>내구성 높은 큐/재처리/다중소비자</strong></td>
-      <td><strong>Redis Streams</strong> or <strong>RabbitMQ</strong> + DB</td>
-      <td>ACK/리트라이/가시성 타임아웃 쉬움</td>
-    </tr>
-    <tr>
-      <td><strong>대규모 분산/리플레이</strong></td>
-      <td><strong>Kafka</strong> (+ Redis 캐시)</td>
-      <td>파티셔닝·재처리 강점, 매칭 로직은 앱에서</td>
-    </tr>
-    <tr>
-      <td><strong>아주 단순/저QPS</strong></td>
-      <td><strong>Postgres</strong> (<code class="language-plaintext highlighter-rouge">FOR UPDATE SKIP LOCKED</code>)</td>
-      <td>운영 단순, 지연·경합은 감수</td>
-    </tr>
-    <tr>
-      <td><strong>관리형 간단 큐</strong></td>
-      <td><strong>SQS</strong></td>
-      <td>쉬움+내구성, 초저지연 매칭은 보완 필요</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>친구하자의 <strong>“1분 내 매칭·공정성·운영 용이성”</strong> 기준에선 현재 <strong>Redis ZSET + DB</strong>가 가장 적합. 추후 트래픽 급증 시 <strong>Streams/Kafka</strong>로 확장 가능.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="11-테스트운영-시나리오">11) 테스트/운영 시나리오</h2>
-
-<ul>
-  <li><strong>부하 테스트</strong>: 카테고리별 동시 1k~5k 등록, 평균/95p 대기시간, 매칭 성공률 측정</li>
-  <li><strong>경합 테스트</strong>: 동시 매칭 워커 2~10개, 중복 매칭/유실 여부</li>
-  <li><strong>장애 시나리오</strong>: Redis 재시작, 네트워크 분리, DB 쓰기 실패 시 재시도 동작</li>
-  <li><strong>복구 리허설</strong>: DB→Redis 재적재 로직의 <strong>멱등성/중복 방지</strong> 검증</li>
-</ul>
-
-<hr />
-
-<h2 id="12-내가-배운-점--선택의-근거">12) 내가 배운 점 &amp; 선택의 근거</h2>
-
-<ul>
-  <li>실시간성만 보면 Redis 단독이 매력적이지만, <strong>운영·분석·복구</strong>까지 생각하면 <strong>DB 하이브리드</strong>가 필수.</li>
-  <li><strong>단일 출처</strong>를 나누고(<strong>대기열=Redis, 이력=DB</strong>), <strong>이중 쓰기 일관성</strong>(아웃박스/재시도)을 확보하면 MVP 이후에도 <strong>확장 가능한 길</strong>이 열린다.</li>
-  <li>Redis에선 <strong>ZSET + Lua</strong>가 <strong>공정성/타임아웃/원자성</strong>을 한 번에 잡는 실전 해법이었다.</li>
-</ul>
-
-<hr />
-
-<h2 id="13-next-steps-로드맵">13) Next Steps (로드맵)</h2>
-
-<ol>
-  <li><strong>아웃박스 컨슈머</strong> 도입 및 재시도/백오프</li>
-  <li><strong>Lua 스크립트</strong>에 락/타임아웃/복원 로직 보강</li>
-  <li><strong>AOF+복제/센티넬</strong> 운영화</li>
-  <li><strong>메트릭/알람</strong>: 대기열 길이·대기시간·타임아웃률·에러율</li>
-  <li>트래픽 증가 시 <strong>Streams</strong> 도입 검토(컨슈머 그룹 기반), 더 커지면 <strong>Kafka</strong> 병행</li>
-</ol>
-
-<hr />
-
-<h3 id="부록-a-코드-스니펫개념">부록 A. 코드 스니펫(개념)</h3>
-
-<p><strong>DB → Outbox 트랜잭션</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="o">(</span><span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">category</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">MatchingQueue</span> <span class="n">q</span> <span class="o">=</span> <span class="n">matchingQueueRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span>
-        <span class="nc">MatchingQueue</span><span class="o">.</span><span class="na">waiting</span><span class="o">(</span><span class="n">userId</span><span class="o">,</span> <span class="n">category</span><span class="o">)</span>
-    <span class="o">);</span>
-    <span class="n">outboxRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="nc">OutboxEvent</span><span class="o">.</span><span class="na">enqueue</span><span class="o">(</span><span class="n">q</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">category</span><span class="o">));</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><strong>Outbox Consumer → Redis</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="nc">OutboxEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">String</span> <span class="n">key</span> <span class="o">=</span> <span class="s">"mq:"</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getCategory</span><span class="o">();</span>
-    <span class="c1">// 중복 방지</span>
-    <span class="nc">Boolean</span> <span class="n">ok</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="na">setIfAbsent</span><span class="o">(</span><span class="s">"user:"</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getUserId</span><span class="o">()</span> <span class="o">+</span> <span class="s">":queued"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">,</span> <span class="nc">Duration</span><span class="o">.</span><span class="na">ofMinutes</span><span class="o">(</span><span class="mi">10</span><span class="o">));</span>
-    <span class="k">if</span> <span class="o">(</span><span class="nc">Boolean</span><span class="o">.</span><span class="na">TRUE</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">ok</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">redis</span><span class="o">.</span><span class="na">zAdd</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getEnqueuedAt</span><span class="o">().</span><span class="na">toEpochSecond</span><span class="o">(</span><span class="nc">ZoneOffset</span><span class="o">.</span><span class="na">UTC</span><span class="o">),</span> <span class="n">e</span><span class="o">.</span><span class="na">getQueueId</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
-    <span class="o">}</span>
-    <span class="n">outboxRepository</span><span class="o">.</span><span class="na">markProcessed</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="마무리">마무리</h2>
-
-<p>이번 설계는 “<strong>현재 요구(저지연)</strong>”와 “<strong>미래 요구(운영/분석/복구/확장)</strong>”를 동시에 충족시키기 위한 <strong>균형점</strong>을 찾는 과정이었다.
-<strong>DB+Redis 하이브리드</strong>는 그 균형점 위에서 <strong>실무적으로 검증된 길</strong>이며, MVP에서 시작해 <strong>Streams/Kafka</strong>로 확장 가능한 <strong>진화 경로</strong>를 갖는다.
-친구하자의 성격(실시간 매칭 + 장기 운영/분석 필요)에 <strong>정합한 선택</strong>이라고 생각한다.</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry></feed>
+<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry></feed>
