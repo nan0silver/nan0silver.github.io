@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-05T07:46:27+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-05T07:53:04+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-05T07:45:42+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-05T07:52:18+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
   <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
   <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
   <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
@@ -395,14 +395,13 @@ while (it.hasNext()) {
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-05T07:45:42+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-05T07:52:18+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
   <li><a href="#1-문제-발견">1. 문제 발견</a></li>
   <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
   <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
   <li><a href="#4-문제-원인-분석">4. 문제 원인 분석</a></li>
   <li><a href="#5-해결-방법">5. 해결 방법</a></li>
-  <li><a href="#6-최종-해결-코드">6. 최종 해결 코드</a></li>
-  <li><a href="#7-핵심-개념-정리">7. 핵심 개념 정리</a></li>
+  <li><a href="#6-핵심-개념-정리">6. 핵심 개념 정리</a></li>
 </ul>
 
 <h2 id="음성-통화-녹음-기능은-동작하는데-에러가">음성 통화 녹음, 기능은 동작하는데 에러가?</h2>
@@ -417,37 +416,35 @@ while (it.hasNext()) {
 
 <p>Agora Cloud Recording을 사용하여 음성 통화 녹음 기능을 구현하던 중, 통화는 정상적으로 시작되고 녹음도 시작되지만, <strong>통화 종료 시점에 예외가 연달아 발생</strong>했다.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 통화 종료 시 자동으로 녹음을 중지하는 로직</span>
-<span class="nd">@Async</span><span class="o">(</span><span class="s">"recordingTaskExecutor"</span><span class="o">)</span>
-<span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="nc">CompletableFuture</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">autoStopRecordingOnCallEnd</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">runAsync</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="n">stopRecording</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>  <span class="c1">// ← 여기서 에러 발생!</span>
-    <span class="o">});</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<p>구조는 다음과 같았다:</p>
+
+<ul>
+  <li>통화 종료 → 비동기로 녹음 중지 API 호출</li>
+  <li>녹음 정보를 DB에 저장하는 과정에서 에러 발생</li>
+</ul>
 
 <h3 id="에러-로그">에러 로그</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cloud Recording 중지 실패 - callId: 1
-org.hibernate.LazyInitializationException: Could not initialize proxy [com.ldsilver.chingoohaja.domain.call.Call#1] - no session
-	at org.hibernate.proxy.AbstractLazyInitializer.initialize(AbstractLazyInitializer.java:174)
-	at com.ldsilver.chingoohaja.domain.call.Call$HibernateProxy.getAgoraChannelName(Unknown Source)
-	at com.ldsilver.chingoohaja.dto.call.response.RecordingResponse.from(RecordingResponse.java:76)
-	at com.ldsilver.chingoohaja.service.AgoraRecordingService.stopRecording(AgoraRecordingService.java:138)
+<p><strong>첫 번째 에러:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org.hibernate.LazyInitializationException: Could not initialize proxy
+[com.example.domain.Call#1] - no session
+	at org.hibernate.proxy.AbstractLazyInitializer.initialize(...)
+	at RecordingResponse.from(RecordingResponse.java:76)
 </code></pre></div></div>
 
-<p>이어서 두 번째 에러:</p>
+<p><strong>두 번째 에러:</strong></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Recording 실패 상태 저장 실패 - callId: 1
-org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [com.ldsilver.chingoohaja.domain.call.CallRecording#1]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org.springframework.orm.ObjectOptimisticLockingFailureException:
+Row was updated or deleted by another transaction
 
-Caused by: org.hibernate.StaleObjectStateException: Row was updated or deleted by another transaction
+Caused by: org.hibernate.StaleObjectStateException:
+Row was updated or deleted by another transaction
 </code></pre></div></div>
 
-<h3 id="첫-번째-의문">첫 번째 의문</h3>
-
-<p>“분명히 <code class="language-plaintext highlighter-rouge">@Transactional</code> 어노테이션도 붙였고, 엔티티도 제대로 조회했는데 왜 세션이 없다는 거지? 그리고 왜 낙관적 락 충돌이 발생하는 거야?”</p>
+<blockquote>
+  <p>“분명히 <code class="language-plaintext highlighter-rouge">@Transactional</code>도 붙였고, 엔티티도 제대로 조회했는데 왜 세션이 없다는 거지? 그리고 왜 낙관적 락 충돌이 발생하는 거야?”</p>
+</blockquote>
 
 <hr />
 
@@ -466,21 +463,42 @@ Caused by: org.hibernate.StaleObjectStateException: Row was updated or deleted b
     <span class="k">return</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>  <span class="c1">// User.orders는 LAZY</span>
 <span class="o">}</span>
 
-<span class="c1">// 트랜잭션 밖 - 서비스 메서드 밖이나 컨트롤러</span>
+<span class="c1">// 트랜잭션 밖</span>
 <span class="n">user</span><span class="o">.</span><span class="na">getOrders</span><span class="o">().</span><span class="na">size</span><span class="o">();</span>  <span class="c1">// ❌ LazyInitializationException!</span>
 </code></pre></div></div>
 
-<p><strong>2. 트랜잭션이 종료된 후 비동기 작업에서 접근</strong></p>
+<p><strong>2. 비동기 작업에서 접근</strong></p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processOrder</span><span class="o">(</span><span class="nc">Long</span> <span class="n">orderId</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">Order</span> <span class="n">order</span> <span class="o">=</span> <span class="n">findOrder</span><span class="o">(</span><span class="n">orderId</span><span class="o">);</span>
     <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">runAsync</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="c1">// 이 시점에는 트랜잭션이 종료되어 세션이 없음</span>
-        <span class="n">order</span><span class="o">.</span><span class="na">getUser</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>  <span class="c1">// ❌ LazyInitializationException!</span>
+        <span class="n">order</span><span class="o">.</span><span class="na">getUser</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>  <span class="c1">// ❌ 세션 종료 후 접근</span>
     <span class="o">});</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
+<h3 id="내-경우의-원인">내 경우의 원인</h3>
+
+<p>엔티티 구조:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">class</span> <span class="nc">CallRecording</span> <span class="o">{</span>
+    <span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>  <span class="c1">// ← LAZY 로딩</span>
+    <span class="kd">private</span> <span class="nc">Call</span> <span class="n">call</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>문제 흐름:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">@Async</code>로 비동기 스레드에서 녹음 중지 로직 실행</li>
+  <li><code class="language-plaintext highlighter-rouge">CallRecording</code> 조회 (이때 <code class="language-plaintext highlighter-rouge">Call</code>은 프록시 상태)</li>
+  <li>DTO 변환 시 <code class="language-plaintext highlighter-rouge">call.getChannelName()</code> 호출</li>
+  <li><strong>프록시 초기화 시도하지만 이미 세션 종료 → 에러!</strong></li>
+</ol>
+
+<p>핵심은 <strong>비동기 스레드는 별도의 영속성 컨텍스트를 가지며</strong>, 연관 엔티티가 LAZY로 설정되어 있으면 세션 밖에서 접근 시 문제가 발생한다는 점이다.</p>
 
 <hr />
 
@@ -488,144 +506,294 @@ Caused by: org.hibernate.StaleObjectStateException: Row was updated or deleted b
 
 <h3 id="에러의-의미-1">에러의 의미</h3>
 
-<p><code class="language-plaintext highlighter-rouge">OptimisticLockingFailureException</code>은 <strong>낙관적 락(Optimistic Lock) 검증 실패</strong> 시 발생하는 에러다. JPA의 <code class="language-plaintext highlighter-rouge">@Version</code>을 사용한 엔티티에서 <strong>다른 트랜잭션이 이미 해당 레코드를 수정하여 버전이 증가했을 때</strong> 발생한다.</p>
+<p><code class="language-plaintext highlighter-rouge">OptimisticLockingFailureException</code>은 <strong>낙관적 락(Optimistic Lock) 검증 실패</strong> 시 발생한다. JPA의 <code class="language-plaintext highlighter-rouge">@Version</code>을 사용한 엔티티에서 <strong>다른 트랜잭션이 이미 해당 레코드를 수정하여 버전이 증가했을 때</strong> 발생한다.</p>
+
+<h3 id="낙관적-락이란">낙관적 락이란?</h3>
+
+<p>동시성 제어 방법 중 하나로, 실제 충돌이 자주 발생하지 않을 것이라고 “낙관적으로” 가정한다.</p>
+
+<p><strong>동작 방식:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">class</span> <span class="nc">CallRecording</span> <span class="o">{</span>
+    <span class="nd">@Version</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">version</span><span class="o">;</span>  <span class="c1">// 수정될 때마다 자동 증가</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>엔티티 조회 시 version 값 함께 조회</li>
+  <li>업데이트 시 WHERE 절에 version 조건 추가</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">UPDATE</span> <span class="n">call_recordings</span>
+   <span class="k">SET</span> <span class="n">status</span> <span class="o">=</span> <span class="s1">'COMPLETED'</span><span class="p">,</span> <span class="k">version</span> <span class="o">=</span> <span class="k">version</span> <span class="o">+</span> <span class="mi">1</span>
+   <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="k">version</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<ol>
+  <li>영향받은 행이 0개면 → <strong>OptimisticLockingFailureException!</strong></li>
+</ol>
 
 <h3 id="일반적인-발생-상황-1">일반적인 발생 상황</h3>
 
-<p><strong>1. 동시에 같은 엔티티를 수정</strong></p>
+<p><strong>동시에 같은 엔티티 수정:</strong></p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 트랜잭션 1</span>
-<span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0</span>
-<span class="n">user</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"Alice"</span><span class="o">);</span>
-<span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>  <span class="c1">// version = 1로 증가</span>
+<span class="nc">Recording</span> <span class="n">rec</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0</span>
+<span class="n">rec</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="no">COMPLETED</span><span class="o">);</span>
+<span class="n">repo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">rec</span><span class="o">);</span>  <span class="c1">// version = 1</span>
 
 <span class="c1">// 트랜잭션 2 (동시 실행)</span>
-<span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0 (조회 시점)</span>
-<span class="n">user</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">"new@email.com"</span><span class="o">);</span>
-<span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>  <span class="c1">// ❌ version이 이미 1이라 실패!</span>
+<span class="nc">Recording</span> <span class="n">rec</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0 (조회 시점)</span>
+<span class="n">rec</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="no">FAILED</span><span class="o">);</span>
+<span class="n">repo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">rec</span><span class="o">);</span>  <span class="c1">// ❌ version이 이미 1이라 실패!</span>
 </code></pre></div></div>
 
-<p><strong>2. 분리된(Detached) 엔티티를 merge</strong></p>
+<h3 id="내-경우의-원인-1">내 경우의 원인</h3>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0</span>
-<span class="c1">// 엔티티가 영속성 컨텍스트에서 분리됨</span>
-<span class="c1">// ... 다른 트랜잭션에서 해당 엔티티를 수정하여 버전이 증가</span>
-<span class="n">user</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"Bob"</span><span class="o">);</span>
-<span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>  <span class="c1">// ❌ version 불일치!</span>
-</code></pre></div></div>
+<p>문제 흐름:</p>
+
+<ol>
+  <li>메인 로직에서 <code class="language-plaintext highlighter-rouge">recording.complete()</code> 호출 → version 증가</li>
+  <li>비동기 스레드에서도 같은 recording 접근</li>
+  <li>에러 발생 → <code class="language-plaintext highlighter-rouge">recording.fail()</code> 호출</li>
+  <li>저장 시도 → <strong>이미 version이 변경되어 충돌!</strong></li>
+</ol>
 
 <hr />
 
 <h2 id="4-문제-원인-분석">4. 문제 원인 분석</h2>
 
-<h3 id="-에러-1-lazyinitializationexception">❌ 에러 1: LazyInitializationException</h3>
+<h3 id="근본-원인">근본 원인</h3>
 
-<p>녹음 중지 로직에서 <code class="language-plaintext highlighter-rouge">RecordingResponse.from()</code> 메서드가 <code class="language-plaintext highlighter-rouge">CallRecording</code> 엔티티의 연관된 <code class="language-plaintext highlighter-rouge">Call</code> 엔티티에 접근하려 했으나, <strong>비동기 스레드에서 실행되어 Hibernate 세션이 이미 닫혀있는 상태</strong>였습니다.</p>
+<p>두 에러가 동시에 발생한 이유는 <strong>비동기 처리와 동시성 제어의 조합</strong> 때문이었다.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// CallRecording.java</span>
-<span class="nd">@Entity</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CallRecording</span> <span class="o">{</span>
-    <span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>  <span class="c1">// ← LAZY 로딩!</span>
-    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"call_id"</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">Call</span> <span class="n">call</span><span class="o">;</span>
-<span class="o">}</span>
+<p><strong>시나리오:</strong></p>
 
-<span class="c1">// RecordingResponse.java</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="nc">RecordingResponse</span> <span class="nf">from</span><span class="o">(</span><span class="nc">CallRecording</span> <span class="n">recording</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">Call</span> <span class="n">call</span> <span class="o">=</span> <span class="n">recording</span><span class="o">.</span><span class="na">getCall</span><span class="o">();</span>  <span class="c1">// ← 프록시 객체</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nf">RecordingResponse</span><span class="o">(</span>
-        <span class="c1">// ...</span>
-        <span class="n">call</span><span class="o">.</span><span class="na">getAgoraChannelName</span><span class="o">(),</span>  <span class="c1">// ❌ 여기서 실제 데이터 접근 시도!</span>
-        <span class="c1">// ...</span>
-    <span class="o">);</span>
-<span class="o">}</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 통화 종료 이벤트 발생
+2. @Async 메서드로 녹음 중지 로직 실행 (별도 스레드)
+3. CallRecording 조회 (Call은 LAZY 프록시 상태)
+4. DTO 변환 시 Call 접근 → LazyInitializationException
+5. 예외 처리 로직에서 recording.fail() 호출
+6. 다른 트랜잭션이 이미 recording을 수정 → OptimisticLockingFailureException
 </code></pre></div></div>
 
-<p><strong>문제 흐름:</strong></p>
+<p><strong>핵심 문제점:</strong></p>
 
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">@Async</code> 메서드로 비동기 실행</li>
-  <li>비동기 스레드에는 별도의 영속성 컨텍스트</li>
-  <li><code class="language-plaintext highlighter-rouge">CallRecording</code> 조회 (Call은 프록시 상태)</li>
-  <li>트랜잭션 커밋 → 영속성 컨텍스트 종료</li>
-  <li><code class="language-plaintext highlighter-rouge">call.getAgoraChannelName()</code> 호출 시 프록시 초기화 시도</li>
-  <li>세션이 없어서 <strong>LazyInitializationException</strong> 발생!</li>
-</ol>
+<ul>
+  <li>LAZY 로딩된 연관 엔티티를 비동기 컨텍스트에서 접근</li>
+  <li>동일 엔티티에 대한 동시 업데이트 시도</li>
+</ul>
 
 <hr />
 
-<h3 id="-에러-2-optimisticlockingfailureexception">❌ 에러 2: OptimisticLockingFailureException</h3>
+<h2 id="5-해결-방법">5. 해결 방법</h2>
 
-<p>녹음 중지 시 <strong>에러 처리 로직에서 <code class="language-plaintext highlighter-rouge">recording.fail()</code>을 호출하여 상태를 변경</strong>하려 했으나, <strong>이미 다른 트랜잭션에서 해당 레코드를 수정하여 버전이 증가</strong>한 상태였습니다.</p>
+<h3 id="해결-전략">해결 전략</h3>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CallRecording</span> <span class="o">{</span>
-    <span class="nd">@Version</span>
-    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">version</span><span class="o">;</span>  <span class="c1">// ← 낙관적 락</span>
+<ol>
+  <li><strong>LazyInitializationException</strong>: 연관 엔티티를 미리 로드</li>
+  <li><strong>OptimisticLockingFailureException</strong>: 예외 처리 전략 수립</li>
+</ol>
+
+<h3 id="1-join-fetch로-연관-엔티티-즉시-로딩">1) JOIN FETCH로 연관 엔티티 즉시 로딩</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"SELECT cr FROM CallRecording cr "</span> <span class="o">+</span>
+       <span class="s">"JOIN FETCH cr.call "</span> <span class="o">+</span>
+       <span class="s">"WHERE cr.call.id = :callId"</span><span class="o">)</span>
+<span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">CallRecording</span><span class="o">&gt;</span> <span class="nf">findByCallIdWithCall</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"callId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">callId</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>효과:</strong></p>
+
+<ul>
+  <li>한 번의 쿼리로 <code class="language-plaintext highlighter-rouge">CallRecording</code>과 <code class="language-plaintext highlighter-rouge">Call</code>을 함께 조회</li>
+  <li>LAZY 프록시 문제 해결</li>
+</ul>
+
+<h3 id="2-dto-생성-시-필요한-데이터만-전달">2) DTO 생성 시 필요한 데이터만 전달</h3>
+
+<p>기존의 프록시 객체에서 데이터를 꺼내는 대신, <strong>이미 로드된 엔티티를 명시적으로 전달</strong>하는 방식으로 변경:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Before: recording에서 call을 꺼내려 시도 (프록시 초기화)</span>
+<span class="nc">RecordingResponse</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">recording</span><span class="o">);</span>
+
+<span class="c1">// After: 이미 로드된 call을 직접 전달</span>
+<span class="nc">RecordingResponse</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">recording</span><span class="o">,</span> <span class="n">call</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="3-비동기-메서드에-transactional-추가">3) 비동기 메서드에 @Transactional 추가</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Async</span>
+<span class="nd">@Transactional</span>  <span class="c1">// ← 비동기 스레드에도 트랜잭션 컨텍스트</span>
+<span class="kd">public</span> <span class="nc">CompletableFuture</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">autoStopRecording</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 새로운 영속성 컨텍스트에서 실행</span>
 <span class="o">}</span>
+</code></pre></div></div>
 
-<span class="k">try</span> <span class="o">{</span>
-    <span class="c1">// 녹음 중지 시도</span>
-    <span class="n">recording</span><span class="o">.</span><span class="na">complete</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="s">"hls"</span><span class="o">);</span>
-    <span class="n">callRecordingRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">recording</span><span class="o">);</span>  <span class="c1">// version 증가</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 에러 발생 시</span>
+<h3 id="4-낙관적-락-예외-처리">4) 낙관적 락 예외 처리</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="o">{</span>
     <span class="n">recording</span><span class="o">.</span><span class="na">fail</span><span class="o">();</span>
-    <span class="n">callRecordingRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">recording</span><span class="o">);</span>  <span class="c1">// ❌ version 불일치!</span>
+    <span class="n">repository</span><span class="o">.</span><span class="na">saveAndFlush</span><span class="o">(</span><span class="n">recording</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">OptimisticLockException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 이미 다른 트랜잭션에서 처리됨 - 무시</span>
+    <span class="n">log</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">"낙관적 락 충돌 (무시): callId={}"</span><span class="o">,</span> <span class="n">callId</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p><strong>문제 흐름:</strong></p>
+<p><strong>전략:</strong></p>
 
-<ol>
-  <li>메인 스레드에서 <code class="language-plaintext highlighter-rouge">recording.complete()</code> 호출 → version 증가</li>
-  <li>비동기 스레드에서도 같은 recording 엔티티 접근</li>
-  <li>에러 발생 → <code class="language-plaintext highlighter-rouge">recording.fail()</code> 호출</li>
-  <li>저장 시도 → <strong>이미 version이 변경되어 OptimisticLockingFailureException!</strong></li>
-</ol>
+<ul>
+  <li>이미 처리된 경우 무시 (재시도 불필요)</li>
+  <li><code class="language-plaintext highlighter-rouge">saveAndFlush()</code>로 즉시 DB 반영</li>
+</ul>
+
+<h3 id="5-적용-후-개선된-흐름">5) 적용 후 개선된 흐름</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 통화 종료
+2. JOIN FETCH로 Call과 함께 CallRecording 조회
+3. 필요한 데이터를 DTO에 전달 (프록시 접근 없음)
+4. 업데이트 시 낙관적 락 충돌 발생 시 적절히 처리
+</code></pre></div></div>
 
 <hr />
 
-<h2 id="-학습-포인트">🔍 학습 포인트</h2>
+<h2 id="6-핵심-개념-정리">6. 핵심 개념 정리</h2>
+
+<h3 id="lazy-loading">Lazy Loading</h3>
+
+<p><strong>개념:</strong><br />
+연관된 엔티티를 실제로 사용할 때까지 조회를 미루는 전략</p>
+
+<p><strong>장점:</strong></p>
+
+<ul>
+  <li>불필요한 쿼리 감소</li>
+  <li>성능 최적화</li>
+</ul>
+
+<p><strong>단점:</strong></p>
+
+<ul>
+  <li>영속성 컨텍스트 밖에서 접근 시 LazyInitializationException</li>
+</ul>
+
+<p><strong>해결 방법:</strong></p>
+
+<ul>
+  <li>JOIN FETCH로 즉시 로딩</li>
+  <li>DTO 변환 시점 조정</li>
+  <li>EAGER 로딩 (신중하게)</li>
+</ul>
+
+<h3 id="낙관적-락-vs-비관적-락">낙관적 락 vs 비관적 락</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>낙관적 락</th>
+      <th>비관적 락</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>가정</td>
+      <td>충돌이 적을 것</td>
+      <td>충돌이 많을 것</td>
+    </tr>
+    <tr>
+      <td>락 시점</td>
+      <td>업데이트 시</td>
+      <td>조회 시</td>
+    </tr>
+    <tr>
+      <td>구현</td>
+      <td>@Version</td>
+      <td>@Lock(PESSIMISTIC_WRITE)</td>
+    </tr>
+    <tr>
+      <td>적합한 경우</td>
+      <td>읽기가 많은 경우</td>
+      <td>쓰기가 많은 경우</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>낙관적 락 동작:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 조회</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">recordings</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">-- version = 0</span>
+
+<span class="c1">-- 업데이트</span>
+<span class="k">UPDATE</span> <span class="n">recordings</span>
+<span class="k">SET</span> <span class="n">status</span> <span class="o">=</span> <span class="s1">'COMPLETED'</span><span class="p">,</span> <span class="k">version</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="k">version</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">-- 버전 체크</span>
+
+<span class="c1">-- 영향받은 행이 0개면 실패 → 예외 발생</span>
+</code></pre></div></div>
+
+<h3 id="비동기-처리와-영속성-컨텍스트">비동기 처리와 영속성 컨텍스트</h3>
+
+<p><strong>주의사항:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Async</code> 메서드는 별도 스레드에서 실행</li>
+  <li>각 스레드는 독립적인 영속성 컨텍스트</li>
+  <li>LAZY 엔티티는 미리 로드하거나 별도 트랜잭션 필요</li>
+</ul>
+
+<hr />
+
+<h2 id="7-학습-포인트">7. 학습 포인트</h2>
+
+<h3 id="이번-트러블슈팅을-통해-배운-것">이번 트러블슈팅을 통해 배운 것</h3>
 
 <ol>
   <li>
-    <p><strong>비동기 처리 시 영속성 컨텍스트 관리</strong></p>
+    <p><strong>비동기 처리 시 영속성 컨텍스트 관리의 중요성</strong></p>
 
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">@Async</code> 메서드는 별도 스레드에서 실행</li>
-      <li>각 스레드는 독립적인 영속성 컨텍스트를 가짐</li>
-      <li>JOIN FETCH 또는 EAGER 로딩으로 필요한 데이터 미리 로드</li>
+      <li>JOIN FETCH로 필요한 데이터 미리 로드</li>
+      <li>비동기 컨텍스트에는 별도의 트랜잭션 필요</li>
     </ul>
   </li>
   <li>
-    <p><strong>동시성 제어 전략</strong></p>
+    <p><strong>동시성 제어 전략 선택</strong></p>
 
     <ul>
-      <li>낙관적 락: 충돌이 적을 때 (읽기 많음)</li>
-      <li>비관적 락: 충돌이 많을 때 (쓰기 많음)</li>
+      <li>낙관적 락: 충돌이 적을 때 효율적</li>
       <li>예외 처리로 재시도 또는 무시 전략 구현</li>
     </ul>
   </li>
   <li>
-    <p><strong>트랜잭션 범위 설계</strong></p>
+    <p><strong>트랜잭션 범위와 데이터 일관성</strong></p>
     <ul>
       <li><code class="language-plaintext highlighter-rouge">saveAndFlush()</code>로 즉시 반영</li>
-      <li>에러 처리 시 최신 데이터 재조회</li>
-      <li>낙관적 락 예외는 상황에 따라 무시 가능</li>
+      <li>에러 처리 시 최신 데이터 재조회 고려</li>
     </ul>
   </li>
 </ol>
+
+<h3 id="더-나은-설계를-위한-고민">더 나은 설계를 위한 고민</h3>
+
+<ul>
+  <li>비동기 작업에서는 ID만 전달하고 내부에서 재조회</li>
+  <li>DTO 변환은 서비스 레이어에서 완료</li>
+  <li>동시성이 중요한 엔티티는 비관적 락 고려</li>
+</ul>
 
 <hr />
 
 <h2 id="참고-자료">참고 자료</h2>
 
 <ul>
-  <li><a href="https://docs.jboss.org/hibernate/orm/6.0/userguide/html_single/Hibernate_User_Guide.html#fetching-LazyInitializationException">Hibernate LazyInitializationException 공식 문서</a></li>
-  <li><a href="https://www.baeldung.com/jpa-optimistic-locking">JPA Optimistic Locking</a></li>
-  <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring @Async 동작 원리</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-05T07:45:42+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
+  <li><a href="https://docs.jboss.org/hibernate/orm/6.0/userguide/html_single/Hibernate_User_Guide.html">Hibernate User Guide - LazyInitializationException</a></li>
+  <li><a href="https://www.baeldung.com/jpa-optimistic-locking">Baeldung - JPA Optimistic Locking</a></li>
+  <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring Framework - Async Execution</a></li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-05T07:52:18+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
   <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
   <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
   <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
@@ -809,7 +977,7 @@ Cookie: refreshToken=...
       <li>JWT 검증</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-05T07:45:42+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-05T07:52:18+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인-분석">원인 분석</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -1031,7 +1199,7 @@ Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단
 
 <ul>
   <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">MDN: SamSite cookies</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-05T07:45:42+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-05T07:52:18+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인">원인</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -1160,7 +1328,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">FLUSHDB</code>: 현재 선택된 데이터베이스의 키만 삭제</li>
   <li>Redis는 기본적으로 데이터베이스 0~15번까지 16개를 제공</li>
   <li>운영환경에서는 절대 <code class="language-plaintext highlighter-rouge">FLUSHALL</code>을 실행하면 안됨!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-05T07:45:42+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-05T07:52:18+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
   <li><a href="#-1-webrtc의-정의">1. WebRTC의 정의</a></li>
   <li><a href="#-2-webrtc의-주요-구성-요소">2. WebRTC의 주요 구성 요소</a></li>
   <li><a href="#️-3-동작-흐름-signaling-포함">3. 동작 흐름 (Signaling 포함)</a></li>
@@ -1334,7 +1502,7 @@ docker-compose up -d
   <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-11-05T07:45:42+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-11-05T07:52:18+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
   <li><a href="#1-배열--스트림">1. 배열 → 스트림</a></li>
   <li><a href="#2-형-변환-mapping">2. 형 변환 (Mapping)</a></li>
   <li><a href="#3-집계-연산-aggregation">3. 집계 연산 (Aggregation)</a></li>
@@ -1455,7 +1623,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">summaryStatistics()</code></li>
 </ol>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-11-05T07:45:42+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-11-05T07:52:18+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
   <p>카테고리별 2인 매칭을 구현하며 실제로 쓴(또는 고민했던) 명령어들을 짧게 정리.
 예시 키는 <code class="language-plaintext highlighter-rouge">{cat:123}</code> 해시태그로 Redis Cluster 슬롯을 고정하는 패턴을 사용.</p>
 </blockquote>
@@ -1689,7 +1857,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><code class="language-plaintext highlighter-rouge">ZRANGE/ZRANDMEMBER</code>(조회) 뒤엔 <strong>반드시 <code class="language-plaintext highlighter-rouge">ZREM</code>(삭제)</strong></li>
   <li>경쟁 환경에선 <strong>Lua로 “조회→삭제”를 원자화</strong></li>
   <li><strong>TTL은 개별 상태 키에만</strong>, 대기열 컬렉션엔 금지</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-11-05T07:45:42+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-11-05T07:52:18+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
   <p>“카테고리별 2인 랜덤 매칭”을 스케줄러로 돌리는데, 한 카테고리에서 예외가 나면 <strong>전체 루프가 롤백</strong>될 수 있다는 얘기를 듣고 시작된 고민.
 그 결과 <code class="language-plaintext highlighter-rouge">@Transactional(propagation = REQUIRES_NEW)</code>를 채택했고, 다시 <strong>self-invocation</strong> 문제를 만나 리팩터링까지 갔던 과정을 정리했습니다.</p>
 </blockquote>
@@ -1868,7 +2036,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><a href="https://redis.io/docs/latest/develop/programmability/">Redis programmability</a></li>
   <li><a href="https://redis.io/blog/you-dont-need-transaction-rollbacks-in-redis/?utm_source=chatgpt.com">You Don’t Need Transaction Rollbacks in Redis</a></li>
   <li><a href="https://devoong2.tistory.com/entry/Spring-Transactional-REQUIRESNEW-%EC%98%B5%EC%85%98%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EC%99%B8-%EB%B0%8F-Rollback">Transactional REQUIRES_NEW 옵션에서 예외 및 Rollback</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-11-05T07:45:42+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-11-05T07:52:18+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
   <li><a href="#-record란-java-14">record란?</a></li>
   <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
   <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
