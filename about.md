@@ -19,6 +19,7 @@ redirect_from:
 JAVA와 PYTHON를 이용한 백엔드 개발과 AI활용 서비스 개발에 관련해서 공부하고 있습니다.<br>
 Spring Boot, FastAPI, Flask를 공부하고 있으며, AI를 활용한 서비스 개발을 위해 공부하고 있습니다.<br>
 블로그에 와주셔서 감사합니다🤗<br>
+저에 대해서 더 알고 싶으시다면 언제든 연락 환영입니다!<br>
 
 <span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> <br>
 Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
