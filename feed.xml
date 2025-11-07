@@ -1,7 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-05T07:54:40+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-07T06:10:51+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-05T07:53:59+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-07T06:10:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
+  <li>“친구하자”를 웹으로 MVP 완성을 하니, 이걸 앱으로 빌드해서 사용자들이 더 쉽게 사용할 수 있으면 좋겠다고 생각했다.</li>
+  <li>원래는.. 개발자의 입장으로 링크로 이동하는 방식이 쉬울꺼라고 생각했는데, 막상 사용자에게 링크를 보내주니까 어려움을 토로하거나 방식에 의문을 가지는 사람들이 많았다..
+    <ul>
+      <li>링크는 일단 어디 저장해놓고 찾아서 연결해야하고..</li>
+      <li>핸드폰에서 링크를 통해 이동하는 방식이 익숙하지 않은 사람들이 더 많았다.. (일회용 링크정도만 다들 사용하는 것 같았다.)</li>
+    </ul>
+  </li>
+  <li>네이티브 앱으로 개발하는건 일단 시간이 많이 드니까 최대한 빠른 방법을 찾아보다가 Capacitor 플러그인을 찾게 되었다.</li>
+</ul>
+
+<h2 id="capacitor">Capacitor</h2>
+
+<ul>
+  <li><a href="https://capacitorjs.com/">Capacitor</a>는 기존 React웹을 네이티브 앱 컨테이너에 담아주는 플러그인이다.</li>
+  <li>기존의 React 코드베이스를 거의 건들이지 않고 모바일 앱을 만들 수 있게 해준다.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>기존 React 웹 앱
+         ↓
+    Capacitor 추가
+         ↓
+네이티브 WebView에서 실행
+(iOS/Android 앱으로 패키징)
+</code></pre></div></div>
+
+<ul>
+  <li>설치만 해서 간단하게 앱으로 빌드할 수 있다!</li>
+  <li>일단 나는 ios로 빌드하는 것을 아래에 보여주겠다.</li>
+</ul>
+
+<h2 id="capacitor로-ios-앱-빌드하기">Capacitor로 iOS 앱 빌드하기</h2>
+
+<ul>
+  <li>
+    <p>일단 내 기존 프론트 프로젝트 스펙을 정리하자면</p>
+
+    <ul>
+      <li>많은 의존성을 가짐(특히 @radix-ui/* 패키지들)</li>
+      <li>React 18 + TypeScript + Vite 스택</li>
+      <li>Express 서버 통합</li>
+    </ul>
+  </li>
+  <li>따라서 npm이 아닌 pnpm을 사용하고 있다.</li>
+  <li>capacitor 공식문서에는 npm으로 설명이 나와있는데, 그냥 pnpm 명령어로만 바꿔서 똑같이 진행해줬다.</li>
+</ul>
+
+<h3 id="1-capacitor의-메인-의존성-설치">1. Capacitor의 메인 의존성 설치</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pnpm add @capacitor/core @capacitor/cli
+</code></pre></div></div>
+
+<p>프로젝트 루트 디렉토리에 위의 명령어를 입력!</p>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic1.png?raw=true" alt="성공 이미지" /></p>
+
+<h3 id="2-capacitor-config-초기화">2. Capacitor Config 초기화</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx cap init
+</code></pre></div></div>
+
+<ul>
+  <li>여기서는 이름과, Project ID를 입력하라고 한다.</li>
+  <li>Project ID는 도메인 네임 형태로 적어주면 된다. (예: com.example.app)</li>
+  <li>나는 프론트 도메인을 사놓은게 있어서 그대로 넣었다.</li>
+</ul>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic2.png?raw=true" alt="성공 이미지2" /></p>
+
+<h3 id="3-플랫폼-추가-android-ios">3. 플랫폼 추가 (android, iOS)</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Android</span>
+pnpm add @capacitor/android
+
+<span class="c"># iOS (macOS에서만)</span>
+pnpm add @capacitor/android
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>나는 맥북에서 작업하고 있기 때문에 둘다 추가해줬다.</p>
+
+    <blockquote>
+      <p>ios 만들고 싶어서 3년전에 맥북 샀던 기억..</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>성공하면 아래와 같은 메시지가 나온다.</p>
+  </li>
+</ul>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic3.png?raw=true" alt="성공 이미지3" /></p>
+
+<h3 id="이제-실행해보자">이제 실행해보자!!</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Android</span>
+npx cap run android
+
+<span class="c"># iOS</span>
+npx cap run ios
+</code></pre></div></div>
+
+<p>일단 ios로 아래와 같이 실행 성공!</p>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic4.png?raw=true" alt="성공 이미지4" /></p>
+
+<p>다음에 android studio 업데이트를 좀 하고.. (안한지 넘 오래됌..) 아래와 같이 빌드 성공!
+<img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-07T06:10:06+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
   <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
   <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
   <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
@@ -395,7 +502,7 @@ while (it.hasNext()) {
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-05T07:53:59+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-07T06:10:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
   <li><a href="#1-문제-발견">1. 문제 발견</a></li>
   <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
   <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
@@ -793,7 +900,7 @@ Row was updated or deleted by another transaction
   <li><a href="https://docs.jboss.org/hibernate/orm/6.0/userguide/html_single/Hibernate_User_Guide.html">Hibernate User Guide - LazyInitializationException</a></li>
   <li><a href="https://www.baeldung.com/jpa-optimistic-locking">Baeldung - JPA Optimistic Locking</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring Framework - Async Execution</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-05T07:53:59+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-07T06:10:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
   <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
   <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
   <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
@@ -977,7 +1084,7 @@ Cookie: refreshToken=...
       <li>JWT 검증</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-05T07:53:59+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-07T06:10:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인-분석">원인 분석</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -1199,7 +1306,7 @@ Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단
 
 <ul>
   <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">MDN: SamSite cookies</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-05T07:53:59+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-07T06:10:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인">원인</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -1328,7 +1435,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">FLUSHDB</code>: 현재 선택된 데이터베이스의 키만 삭제</li>
   <li>Redis는 기본적으로 데이터베이스 0~15번까지 16개를 제공</li>
   <li>운영환경에서는 절대 <code class="language-plaintext highlighter-rouge">FLUSHALL</code>을 실행하면 안됨!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-05T07:53:59+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-07T06:10:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
   <li><a href="#-1-webrtc의-정의">1. WebRTC의 정의</a></li>
   <li><a href="#-2-webrtc의-주요-구성-요소">2. WebRTC의 주요 구성 요소</a></li>
   <li><a href="#️-3-동작-흐름-signaling-포함">3. 동작 흐름 (Signaling 포함)</a></li>
@@ -1502,7 +1609,7 @@ docker-compose up -d
   <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-11-05T07:53:59+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-11-07T06:10:06+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
   <li><a href="#1-배열--스트림">1. 배열 → 스트림</a></li>
   <li><a href="#2-형-변환-mapping">2. 형 변환 (Mapping)</a></li>
   <li><a href="#3-집계-연산-aggregation">3. 집계 연산 (Aggregation)</a></li>
@@ -1623,7 +1730,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">summaryStatistics()</code></li>
 </ol>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-11-05T07:53:59+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-11-07T06:10:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
   <p>카테고리별 2인 매칭을 구현하며 실제로 쓴(또는 고민했던) 명령어들을 짧게 정리.
 예시 키는 <code class="language-plaintext highlighter-rouge">{cat:123}</code> 해시태그로 Redis Cluster 슬롯을 고정하는 패턴을 사용.</p>
 </blockquote>
@@ -1857,7 +1964,7 @@ ZREM wait:z:{cat:123} 101 205
   <li><code class="language-plaintext highlighter-rouge">ZRANGE/ZRANDMEMBER</code>(조회) 뒤엔 <strong>반드시 <code class="language-plaintext highlighter-rouge">ZREM</code>(삭제)</strong></li>
   <li>경쟁 환경에선 <strong>Lua로 “조회→삭제”를 원자화</strong></li>
   <li><strong>TTL은 개별 상태 키에만</strong>, 대기열 컬렉션엔 금지</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-11-05T07:53:59+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-11-07T06:10:06+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
   <p>“카테고리별 2인 랜덤 매칭”을 스케줄러로 돌리는데, 한 카테고리에서 예외가 나면 <strong>전체 루프가 롤백</strong>될 수 있다는 얘기를 듣고 시작된 고민.
 그 결과 <code class="language-plaintext highlighter-rouge">@Transactional(propagation = REQUIRES_NEW)</code>를 채택했고, 다시 <strong>self-invocation</strong> 문제를 만나 리팩터링까지 갔던 과정을 정리했습니다.</p>
 </blockquote>
@@ -2036,242 +2143,4 @@ ZREM wait:z:{cat:123} 101 205
   <li><a href="https://redis.io/docs/latest/develop/programmability/">Redis programmability</a></li>
   <li><a href="https://redis.io/blog/you-dont-need-transaction-rollbacks-in-redis/?utm_source=chatgpt.com">You Don’t Need Transaction Rollbacks in Redis</a></li>
   <li><a href="https://devoong2.tistory.com/entry/Spring-Transactional-REQUIRESNEW-%EC%98%B5%EC%85%98%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EC%99%B8-%EB%B0%8F-Rollback">Transactional REQUIRES_NEW 옵션에서 예외 및 Rollback</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry><entry><title type="html">[JAVA] Queue는 왜 안되고 Queue는 왜 될까?</title><link href="https://nan0silver.github.io/java/2025-08-25-queue-int/" rel="alternate" type="text/html" title="[JAVA] Queue는 왜 안되고 Queue는 왜 될까?" /><published>2025-08-25T00:00:00+00:00</published><updated>2025-11-05T07:53:59+00:00</updated><id>https://nan0silver.github.io/java/queue-int</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-08-25-queue-int/"><![CDATA[<ul>
-  <li><a href="#-record란-java-14">record란?</a></li>
-  <li><a href="#1️⃣-record의-특징">record의 특징</a></li>
-  <li><a href="#2️⃣-기존-클래스-vs-record-비교">기존 클래스 vs record 비교</a></li>
-  <li><a href="#3️⃣-record의-내부-동작">record 내부 동작</a></li>
-  <li><a href="#4️⃣-record의-주요-기능">record 주요 기능</a></li>
-  <li><a href="#5️⃣-record를-언제-사용할까">record 사용 방법</a></li>
-  <li><a href="#6️⃣-정리">정리</a></li>
-</ul>
-
-<hr />
-
-<h1 id="왜-queueint는-안-되고-queueinteger는-될까">왜 <code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>는 안 되고 <code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code>는 될까?</h1>
-
-<p>Java 제네릭을 쓰다 보면 한 번씩 멈칫하게 되는 질문입니다. “왜 <code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>는 안 되는데 <code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code>는 되지?” 이 글은 그 이유를 **타입 소거(type erasure)**와 <strong>참조 타입만 허용하는 제네릭 규칙</strong>에서 차근차근 풀어 설명합니다. 실전 성능 팁과 BFS 같은 알고리즘 코드 패턴도 함께 담았습니다.</p>
-
-<hr />
-
-<h2 id="정리">정리</h2>
-
-<ul>
-  <li><strong>제네릭 타입 인자(T)는 참조 타입만 가능</strong>합니다. (<code class="language-plaintext highlighter-rouge">T extends Object</code>가 암묵적 전제)</li>
-  <li><strong>타입 소거</strong>로 인해 런타임에는 제네릭 정보가 지워지고, 메서드 시그니처가 사실상 <code class="language-plaintext highlighter-rouge">Object</code> 기반으로 동작합니다.</li>
-  <li><code class="language-plaintext highlighter-rouge">int</code> 같은 <strong>원시 타입(primitive)</strong> 은 <code class="language-plaintext highlighter-rouge">Object</code>가 아니므로 <strong>제네릭 인자로 쓸 수 없습니다.</strong> ⇒ <code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code> 금지</li>
-  <li><strong>배열은 참조 타입</strong>이므로 <code class="language-plaintext highlighter-rouge">Queue&lt;int[]&gt;</code>는 가능합니다. (배열 자체는 객체)</li>
-  <li>알고리즘 큐에는 <strong><code class="language-plaintext highlighter-rouge">int[]</code> 또는 <code class="language-plaintext highlighter-rouge">record/class</code>로 상태를 묶어</strong> 넣으면 <strong>박싱 없이</strong> 빠르고 메모리 친화적입니다.</li>
-</ul>
-
-<hr />
-
-<h2 id="1-제네릭은-왜-쓰나">1) 제네릭은 왜 쓰나?</h2>
-
-<p>컴파일 타임에 타입을 체크해 <strong>타입 안전성</strong>을 높이고, 캐스트를 없애 <strong>가독성</strong>과 <strong>유지보수성</strong>을 올리기 위해서입니다.
-<a href="https://nan0silver.github.io/java/2025-01-29-generic/">제네릭에 대해 정리한 블로그 글 참고</a></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 제네릭 없음: 캐스트 필요</span>
-<span class="nc">List</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
-<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"hi"</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">x</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-
-<span class="c1">// 제네릭 사용: 컴파일 타임에 체크, 캐스트 제거</span>
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">list2</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"hi"</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">y</span> <span class="o">=</span> <span class="n">list2</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="2-타입-소거type-erasure란">2) 타입 소거(type erasure)란?</h2>
-
-<p>자바의 제네릭은 <strong>런타임에 사라집니다.</strong> 컴파일러가 제네릭 코드를 검사·보정한 뒤, <strong>실행 시점에는 타입 매개변수를 지운(Object로 대체한)</strong> 형태로 동작합니다.</p>
-
-<p>개념적으로 다음과 같습니다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 원본</span>
-<span class="kd">class</span> <span class="nc">Box</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
-  <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="no">T</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span> <span class="cm">/* ... */</span> <span class="o">}</span>
-  <span class="no">T</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span> <span class="cm">/* ... */</span> <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">// (개념적) 컴파일 후 - T가 지워지고 Object 중심으로</span>
-<span class="kd">class</span> <span class="nc">Box</span> <span class="o">{</span>
-  <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="nc">Object</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span> <span class="cm">/* ... */</span> <span class="o">}</span>
-  <span class="nc">Object</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span> <span class="cm">/* ... */</span> <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>컴파일러가 <strong>캐스트 삽입</strong>과 <strong>오토박싱/언박싱</strong>으로 타입 안전을 보정해 줍니다(필요 시 브리지 메서드도 생성).</p>
-
-<hr />
-
-<h2 id="3-t는-왜-참조-타입만-될-수-있나">3) T는 왜 ‘참조 타입’만 될 수 있나?</h2>
-
-<p>자바 언어 규칙상 **모든 타입 매개변수는 암묵적으로 <code class="language-plaintext highlighter-rouge">T extends Object</code>**로 취급됩니다.</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Integer</code>, <code class="language-plaintext highlighter-rouge">String</code>, <code class="language-plaintext highlighter-rouge">MyClass</code> 같은 <strong>참조 타입(reference type)</strong> 은 <code class="language-plaintext highlighter-rouge">Object</code>의 하위 타입이므로 OK.</li>
-  <li><code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">double</code>, <code class="language-plaintext highlighter-rouge">boolean</code> 같은 <strong>원시 타입(primitive)</strong> 은 <code class="language-plaintext highlighter-rouge">Object</code>가 아니므로 <strong>제네릭 타입 인자로 금지</strong>됩니다.</li>
-</ul>
-
-<p>즉, <code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>는 <strong>언어 차원에서 성립하지 않습니다.</strong></p>
-
-<blockquote>
-  <p>포인트: <strong>타입 소거 후의 세계는 <code class="language-plaintext highlighter-rouge">Object</code> 중심</strong>이라, 그 세계로 들어올 수 있는 타입(=참조 타입)만 제네릭 인자가 될 수 있습니다.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="4-그렇다면-queueinteger는-왜-되나">4) 그렇다면 <code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code>는 왜 되나?</h2>
-
-<p><code class="language-plaintext highlighter-rouge">Integer</code>는 <code class="language-plaintext highlighter-rouge">int</code>의 <strong>래퍼 클래스</strong>(참조 타입)입니다. 제네릭 인자로 쓸 수 있고, <code class="language-plaintext highlighter-rouge">q.offer(1)</code>처럼 쓰면 <strong>오토박싱</strong>이 자동으로 일어나 <code class="language-plaintext highlighter-rouge">int -&gt; Integer</code>가 됩니다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Queue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayDeque</span><span class="o">&lt;&gt;();</span>
-<span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>      <span class="c1">// int가 Integer로 오토박싱</span>
-<span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span> <span class="c1">// Integer가 int로 언박싱</span>
-</code></pre></div></div>
-
-<p>단, 이 과정은 <strong>객체 할당/GC 비용</strong>이 들 수 있습니다. 대량 연산에서는 체감될 수 있어요.</p>
-
-<hr />
-
-<h2 id="5-queueint는-왜-가능한가">5) <code class="language-plaintext highlighter-rouge">Queue&lt;int[]&gt;</code>는 왜 가능한가?</h2>
-
-<p>배열은 <strong>항상 참조 타입</strong>입니다. 원소가 원시 타입이든 말든, <strong>배열 자체는 힙 객체</strong>니까 제네릭 인자로 사용 가능해요.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayDeque</span><span class="o">&lt;&gt;();</span>
-<span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">});</span> <span class="c1">// 배열 참조를 넣음</span>
-<span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="6-성능메모리-관점-오토박싱을-피하자">6) 성능·메모리 관점: 오토박싱을 피하자</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code>는 <strong>원소마다 <code class="language-plaintext highlighter-rouge">Integer</code> 객체</strong>가 생길 수 있어</p>
-
-    <ul>
-      <li>오토박싱/언박싱 비용</li>
-      <li>객체 헤더 + 포인터 오버헤드</li>
-      <li>GC 부담
-이 발생합니다.</li>
-    </ul>
-  </li>
-  <li>
-    <p>알고리즘(특히 BFS/DFS, 다익스트라 등)에서는 <strong>박싱을 피하는 게 유리</strong>합니다.</p>
-  </li>
-</ul>
-
-<h3 id="권장-1-int로-상태-묶기-가볍고-빠름">권장 1) <code class="language-plaintext highlighter-rouge">int[]</code>로 상태 묶기 (가볍고 빠름)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// {r, c, breakUsed, dist}</span>
-<span class="nc">ArrayDeque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayDeque</span><span class="o">&lt;&gt;();</span>
-<span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">});</span>
-<span class="kt">int</span><span class="o">[]</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-<span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
-</code></pre></div></div>
-
-<h3 id="권장-2-record로-가독성--java-16">권장 2) <code class="language-plaintext highlighter-rouge">record</code>로 가독성 ↑ (Java 16+)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">record</span> <span class="nf">State</span><span class="o">(</span><span class="kt">int</span> <span class="n">r</span><span class="o">,</span> <span class="kt">int</span> <span class="n">c</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">,</span> <span class="kt">int</span> <span class="n">d</span><span class="o">)</span> <span class="o">{}</span>
-<span class="nc">ArrayDeque</span><span class="o">&lt;</span><span class="nc">State</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayDeque</span><span class="o">&lt;&gt;();</span>
-<span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="nc">State</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">));</span>
-<span class="nc">State</span> <span class="n">s</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p>팁: 큐 구현체는 **<code class="language-plaintext highlighter-rouge">ArrayDeque</code>**가 일반적으로 <code class="language-plaintext highlighter-rouge">LinkedList</code>보다 빠르고 메모리 효율적입니다.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="7-실전-faq">7) 실전 FAQ</h2>
-
-<p><strong>Q1. “런타임에 진짜 <code class="language-plaintext highlighter-rouge">Queue&lt;Object&gt;</code>로 동작하나요?”</strong>
-개념적으로는 <strong>그와 유사</strong>합니다(타입 소거). 실제로는 컴파일러가 캐스트/브리지 메서드 등으로 타입 안전을 맞춰 줍니다. 핵심은 <strong>런타임에 타입 인자 정보가 없고 <code class="language-plaintext highlighter-rouge">Object</code> 중심으로 호출</strong>된다는 점입니다.</p>
-
-<p><strong>Q2. 그렇다면 왜 컴파일러가 <code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>도 자동으로 <code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code>로 바꿔주지 않나요?</strong>
-언어 규칙상 <strong>제네릭 인자는 참조 타입만</strong> 허용합니다. 타입 인자 자체를 바꾸는 묵시적 변환은 <strong>설계상 모호성과 함정</strong>(예: <code class="language-plaintext highlighter-rouge">T</code>가 원시로 선언됐는데 실제론 참조로 다뤄짐)을 낳기에 금지됩니다. 명시적으로 <code class="language-plaintext highlighter-rouge">Integer</code>를 써 주세요.</p>
-
-<p><strong>Q3. 원시 타입 컬렉션이 꼭 필요합니다. 방법이 없나요?</strong>
-표준 라이브러리는 제공하지 않지만, <strong>전용 라이브러리</strong>가 있습니다.</p>
-
-<ul>
-  <li>fastutil (<code class="language-plaintext highlighter-rouge">IntArrayList</code>, <code class="language-plaintext highlighter-rouge">IntOpenHashSet</code>, …)</li>
-  <li>HPPC (High Performance Primitive Collections)</li>
-  <li>Eclipse Collections (primitive collections)
-대량 데이터·고성능 시나리오에서 유용합니다.</li>
-</ul>
-
-<hr />
-
-<h2 id="8-bfs-예시-박싱-없이-깔끔하게">8) BFS 예시: 박싱 없이 깔끔하게</h2>
-
-<p>아래는 “벽을 한 번만 부술 수 있는” BFS 패턴입니다. <code class="language-plaintext highlighter-rouge">int[]</code>로 상태를 묶어 <strong>박싱을 회피</strong>합니다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">dr</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">};</span>
-    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">dc</span> <span class="o">=</span> <span class="o">{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">};</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
-        <span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
-        <span class="nc">StringTokenizer</span> <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringTokenizer</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
-        <span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
-        <span class="kt">int</span> <span class="no">M</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
-
-        <span class="kt">int</span><span class="o">[][]</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">N</span><span class="o">][</span><span class="no">M</span><span class="o">];</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="nc">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="no">M</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="n">map</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="kt">boolean</span><span class="o">[][][]</span> <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="no">N</span><span class="o">][</span><span class="no">M</span><span class="o">][</span><span class="mi">2</span><span class="o">];</span>
-        <span class="nc">ArrayDeque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayDeque</span><span class="o">&lt;&gt;();</span>
-        <span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">});</span> <span class="c1">// r, c, breakUsed, dist</span>
-        <span class="n">visited</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-
-        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(!</span><span class="n">q</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
-            <span class="kt">int</span><span class="o">[]</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-            <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">2</span><span class="o">],</span> <span class="n">d</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">r</span> <span class="o">==</span> <span class="no">N</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">==</span> <span class="no">M</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">d</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span> <span class="o">}</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>
-                <span class="kt">int</span> <span class="n">nr</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">dr</span><span class="o">[</span><span class="n">k</span><span class="o">],</span> <span class="n">nc</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="n">dc</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">nr</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">nr</span> <span class="o">&gt;=</span> <span class="no">N</span> <span class="o">||</span> <span class="n">nc</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">nc</span> <span class="o">&gt;=</span> <span class="no">M</span><span class="o">)</span> <span class="k">continue</span><span class="o">;</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">map</span><span class="o">[</span><span class="n">nr</span><span class="o">][</span><span class="n">nc</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">if</span> <span class="o">(!</span><span class="n">visited</span><span class="o">[</span><span class="n">nr</span><span class="o">][</span><span class="n">nc</span><span class="o">][</span><span class="n">b</span><span class="o">])</span> <span class="o">{</span> <span class="n">visited</span><span class="o">[</span><span class="n">nr</span><span class="o">][</span><span class="n">nc</span><span class="o">][</span><span class="n">b</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span> <span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nr</span><span class="o">,</span> <span class="n">nc</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="o">});</span> <span class="o">}</span>
-                <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">visited</span><span class="o">[</span><span class="n">nr</span><span class="o">][</span><span class="n">nc</span><span class="o">][</span><span class="mi">1</span><span class="o">])</span> <span class="o">{</span>
-                    <span class="n">visited</span><span class="o">[</span><span class="n">nr</span><span class="o">][</span><span class="n">nc</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span> <span class="n">q</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nr</span><span class="o">,</span> <span class="n">nc</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="o">});</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ans</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="9-한눈에-요약-체크리스트">9) 한눈에 요약 체크리스트</h2>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />제네릭 인자 = <strong>참조 타입만</strong> (암묵적 <code class="language-plaintext highlighter-rouge">T extends Object</code>)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />런타임 = <strong>타입 소거</strong> (제네릭 정보 없음, <code class="language-plaintext highlighter-rouge">Object</code> 중심)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code> ❌, <code class="language-plaintext highlighter-rouge">Queue&lt;Integer&gt;</code> ⭕</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">Queue&lt;int[]&gt;</code> ⭕ (배열은 참조 타입)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />성능 중요: <strong>박싱 피하기</strong> (가능하면 <code class="language-plaintext highlighter-rouge">int[]</code>/<code class="language-plaintext highlighter-rouge">record</code> 사용)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />큐 구현체는 보통 <strong><code class="language-plaintext highlighter-rouge">ArrayDeque</code></strong> 추천</li>
-</ul>
-
-<hr />
-
-<h2 id="마무리">마무리</h2>
-
-<p><code class="language-plaintext highlighter-rouge">Queue&lt;int&gt;</code>가 금지되는 이유는 단순히 “문법이 그렇다”가 아니라, <strong>타입 소거라는 실행 모델</strong>과 <strong>참조 타입만 허용하는 제네릭 설계</strong>가 맞물린 결과입니다. 오늘부터는 알고리즘에서 <strong>박싱 없는 상태 표현</strong>으로 깔끔하고 빠른 코드를 써 보세요!</p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA["왜 Queue는 안 되는데 Queue는 되지?"에 대한 이유를 설명합니다.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry></feed>
