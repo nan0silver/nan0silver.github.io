@@ -14,9 +14,10 @@ redirect_from:
 <h3>🩷Introduction🩷</h3>
 
 안녕하세요👋 <br>
-저는 풀스택 및 AI 개발자를 꿈꾸며 공부하고 있는 은나현입니다.<br>
+저는 풀스택 개발자를 위해 공부하고 있는 은나현입니다.<br>
+저의 최종 목적은 솔로프리너가 되는 것입니다🙌 <br>
 JAVA와 PYTHON를 이용한 백엔드 개발과 AI활용 서비스 개발에 관련해서 공부하고 있습니다.<br>
-AI와 Bitcoin에도 관심이 많으며 여러 분야로 공부하고 있습니다.<br>
+Spring Boot, FastAPI, Flask를 공부하고 있으며, AI를 활용한 서비스 개발을 위해 공부하고 있습니다.<br>
 블로그에 와주셔서 감사합니다🤗<br>
 
 <span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> <br>
