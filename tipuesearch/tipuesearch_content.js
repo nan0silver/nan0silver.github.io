@@ -1,5 +1,5 @@
 var tipuesearch = {"pages": [{
-    "title": "[친구하자] Capacitor로 웹을 앱으로 빌드해보자!",
+    "title": "[친구하자] Capacitor로 빌드한 Android 앱 로그인 연동 해보자! 1편",
     "text": "지난 글에서는 Capacitor로 Android, iOS 앱 빌드하는 방법에 대해 다뤘다. 이번 글에서는 Capacitor로 빌드한 Android 앱에서 로그인 연동을 하는 방법에 대해 다뤄보겠다. 특히 CORS 에러 해결에 대해 다뤄보겠다.. 저번에 한번 여기까진 해결을 했었는데,, 다 밀고 다시하는 과정에서 까먹어서.. 이번에도 삽질을 했다..🥲 진짜 울뻔함 문제 상황 일단 내 프로젝트의 상황을 말하자면 React로 웹 빌드시 nginx 사용하고 있음 Android 앱 빌드 (Capacitor로 감싸고 있음) [앱/웹] → HTTPS (443) → [Nginx] → HTTP (8080) → [Spring Boot] Nginx의 역할은 SSL 종료 HTTPS를 HTTP로 변환 리버스 프록시 요청을 8080포트로 전달 ‼️ 문제 : OPTIONS preflight 요청이 여기서 자꾸 막혔다.🤮 왜 웹은 되고 앱은 안될까? 웹 브라우저와 Capacitor WebView는 preflight OPTIONS 요청을 다르게 보낸다. 웹 Origin이 https://chingoohaja.app -&gt; Nginx가 통과시킴 앱 Origin이 https:/localhost -&gt; Nginx가 의심 Capacitor의 URL/orign은 아래와 같다 iOS: capacitor://localhost Android: http://localhost 서버에서 Cors설정과 Security설정은 다 해놨다. 그런데도 CORS 에러가 해결되지않아서 Nginx 설정 파일을 손을 댔다 도메인들을 Nginx에서 동적으로 orign 반환하는 형식으로도 수정을 해봤고.. 모든 도메인을 다 허용도 해봤고.. 그런데 CORS 문제는 해결이 되지않았다..! 하지만 해결방법은 생각보다 간단했다.. 해결 방법 capacitor.config.ts파일에 capacitor의 HTTP 플러그인을 추가해준다. plugins: { CapacitorHttp: { enabled: true, }, }, 물론 서버에서 설정을 다 해준 다음 이 코드도 추가해줘야한다. 이틀간의 삽질이 끝났다.. 이제 리다이렉트 지옥이 시작임 참고 문헌 StackOverFlow가 짱이야",
     "tags": "projectdiary",
     "url": "/projectdiary/2025-11-10-diary/"
