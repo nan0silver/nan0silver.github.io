@@ -1,7 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-08T15:10:02+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-11T05:28:33+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-08T15:09:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-11T05:27:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
+  <li>지난 글에서는 Capacitor로 Android, iOS 앱 빌드하는 방법에 대해 다뤘다.</li>
+  <li>이번 글에서는 Capacitor로 빌드한 Android 앱에서 로그인 연동을 하는 방법에 대해 다뤄보겠다.</li>
+  <li>특히 CORS 에러 해결에 대해 다뤄보겠다..
+    <blockquote>
+      <p>저번에 한번 여기까진 해결을 했었는데,, 다 밀고 다시하는 과정에서 까먹어서.. 이번에도 삽질을 했다..🥲 진짜 울뻔함</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="문제-상황">문제 상황</h2>
+
+<ul>
+  <li>일단 내 프로젝트의 상황을 말하자면</li>
+</ul>
+
+<ol>
+  <li>React로 웹 빌드시 nginx 사용하고 있음</li>
+  <li>Android 앱 빌드 (Capacitor로 감싸고 있음)</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>앱/웹] → HTTPS <span class="o">(</span>443<span class="o">)</span> → <span class="o">[</span>Nginx] → HTTP <span class="o">(</span>8080<span class="o">)</span> → <span class="o">[</span>Spring Boot]
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>Nginx의 역할은</p>
+
+    <ol>
+      <li>SSL 종료
+        <ul>
+          <li>HTTPS를 HTTP로 변환</li>
+        </ul>
+      </li>
+      <li>리버스 프록시
+        <ul>
+          <li>요청을 8080포트로 전달</li>
+        </ul>
+      </li>
+      <li>‼️ 문제 : OPTIONS preflight 요청이 여기서 자꾸 막혔다.🤮</li>
+    </ol>
+
+    <p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-10-pic1.png?raw=true" alt="에러 이미지" />
+<img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-10-pic2.png?raw=true" alt="에러 이미지2" /></p>
+  </li>
+</ul>
+
+<h3 id="왜-웹은-되고-앱은-안될까">왜 웹은 되고 앱은 안될까?</h3>
+
+<ul>
+  <li>웹 브라우저와 Capacitor WebView는 preflight OPTIONS 요청을 다르게 보낸다.</li>
+</ul>
+
+<ol>
+  <li>웹
+    <ul>
+      <li>Origin이 <code class="language-plaintext highlighter-rouge">https://chingoohaja.app</code> -&gt; Nginx가 통과시킴</li>
+    </ul>
+  </li>
+  <li>앱
+    <ul>
+      <li>Origin이 <code class="language-plaintext highlighter-rouge">https:/localhost</code> -&gt; Nginx가 의심
+        <blockquote>
+          <p>Capacitor의 URL/orign은 아래와 같다</p>
+
+          <blockquote>
+            <p>iOS: capacitor://localhost
+Android: http://localhost</p>
+          </blockquote>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>서버에서 Cors설정과 Security설정은 다 해놨다.</li>
+  <li>그런데도 CORS 에러가 해결되지않아서 Nginx 설정 파일을 손을 댔다
+    <ul>
+      <li>도메인들을 Nginx에서 동적으로 orign 반환하는 형식으로도 수정을 해봤고..</li>
+      <li>모든 도메인을 다 허용도 해봤고..</li>
+    </ul>
+  </li>
+  <li>그런데 CORS 문제는 해결이 되지않았다..!</li>
+  <li>하지만 해결방법은 생각보다 간단했다..</li>
+</ul>
+
+<h2 id="해결-방법">해결 방법</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">capacitor.config.ts</code>파일에 capacitor의 HTTP 플러그인을 추가해준다.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugins: {
+    CapacitorHttp: {
+      enabled: true,
+    },
+  },
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>물론 서버에서 설정을 다 해준 다음 이 코드도 추가해줘야한다.</p>
+  </li>
+  <li>이틀간의 삽질이 끝났다..</li>
+  <li>이제 리다이렉트 지옥이 시작임</li>
+</ul>
+
+<h3 id="참고-문헌">참고 문헌</h3>
+
+<ul>
+  <li><a href="https://stackoverflow.com/questions/75192411/cors-in-capacitor-for-android">StackOverFlow가 짱이야</a></li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-11T05:27:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
   <li>“친구하자”를 웹으로 MVP 완성을 하니, 이걸 앱으로 빌드해서 사용자들이 더 쉽게 사용할 수 있으면 좋겠다고 생각했다.</li>
   <li>원래는.. 개발자의 입장으로 링크로 이동하는 방식이 쉬울꺼라고 생각했는데, 막상 사용자에게 링크를 보내주니까 어려움을 토로하거나 방식에 의문을 가지는 사람들이 많았다..
     <ul>
@@ -110,7 +222,7 @@ npx cap run ios
 <p><br />
 다음에 android studio 업데이트를 좀 하고.. (안한지 넘 오래됌..) 아래와 같이 빌드 성공!</p>
 
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-08T15:09:17+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-11T05:27:50+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
   <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
   <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
   <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
@@ -504,7 +616,7 @@ while (it.hasNext()) {
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-08T15:09:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-11T05:27:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
   <li><a href="#1-문제-발견">1. 문제 발견</a></li>
   <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
   <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
@@ -902,7 +1014,7 @@ Row was updated or deleted by another transaction
   <li><a href="https://docs.jboss.org/hibernate/orm/6.0/userguide/html_single/Hibernate_User_Guide.html">Hibernate User Guide - LazyInitializationException</a></li>
   <li><a href="https://www.baeldung.com/jpa-optimistic-locking">Baeldung - JPA Optimistic Locking</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring Framework - Async Execution</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-08T15:09:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-11T05:27:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
   <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
   <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
   <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
@@ -1086,7 +1198,7 @@ Cookie: refreshToken=...
       <li>JWT 검증</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-08T15:09:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-11T05:27:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인-분석">원인 분석</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -1308,7 +1420,7 @@ Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단
 
 <ul>
   <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">MDN: SamSite cookies</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-08T15:09:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-11T05:27:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인">원인</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -1437,7 +1549,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">FLUSHDB</code>: 현재 선택된 데이터베이스의 키만 삭제</li>
   <li>Redis는 기본적으로 데이터베이스 0~15번까지 16개를 제공</li>
   <li>운영환경에서는 절대 <code class="language-plaintext highlighter-rouge">FLUSHALL</code>을 실행하면 안됨!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-08T15:09:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-11T05:27:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
   <li><a href="#-1-webrtc의-정의">1. WebRTC의 정의</a></li>
   <li><a href="#-2-webrtc의-주요-구성-요소">2. WebRTC의 주요 구성 요소</a></li>
   <li><a href="#️-3-동작-흐름-signaling-포함">3. 동작 흐름 (Signaling 포함)</a></li>
@@ -1611,7 +1723,7 @@ docker-compose up -d
   <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-11-08T15:09:17+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-11-11T05:27:50+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
   <li><a href="#1-배열--스트림">1. 배열 → 스트림</a></li>
   <li><a href="#2-형-변환-mapping">2. 형 변환 (Mapping)</a></li>
   <li><a href="#3-집계-연산-aggregation">3. 집계 연산 (Aggregation)</a></li>
@@ -1732,7 +1844,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">summaryStatistics()</code></li>
 </ol>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-11-08T15:09:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-11-11T05:27:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
   <p>카테고리별 2인 매칭을 구현하며 실제로 쓴(또는 고민했던) 명령어들을 짧게 정리.
 예시 키는 <code class="language-plaintext highlighter-rouge">{cat:123}</code> 해시태그로 Redis Cluster 슬롯을 고정하는 패턴을 사용.</p>
 </blockquote>
@@ -1966,183 +2078,4 @@ ZREM wait:z:{cat:123} 101 205
   <li><code class="language-plaintext highlighter-rouge">ZRANGE/ZRANDMEMBER</code>(조회) 뒤엔 <strong>반드시 <code class="language-plaintext highlighter-rouge">ZREM</code>(삭제)</strong></li>
   <li>경쟁 환경에선 <strong>Lua로 “조회→삭제”를 원자화</strong></li>
   <li><strong>TTL은 개별 상태 키에만</strong>, 대기열 컬렉션엔 금지</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry><entry><title type="html">[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지</title><link href="https://nan0silver.github.io/projectdiary/2025-08-29-diary/" rel="alternate" type="text/html" title="[친구하자] 배치 스케줄러에서 @Transactional(REQUIRES_NEW)를 선택하기까지" /><published>2025-08-29T00:00:00+00:00</published><updated>2025-11-08T15:09:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-08-29-diary/"><![CDATA[<blockquote>
-  <p>“카테고리별 2인 랜덤 매칭”을 스케줄러로 돌리는데, 한 카테고리에서 예외가 나면 <strong>전체 루프가 롤백</strong>될 수 있다는 얘기를 듣고 시작된 고민.
-그 결과 <code class="language-plaintext highlighter-rouge">@Transactional(propagation = REQUIRES_NEW)</code>를 채택했고, 다시 <strong>self-invocation</strong> 문제를 만나 리팩터링까지 갔던 과정을 정리했습니다.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="배경-매칭-스케줄러의-요구사항">배경: 매칭 스케줄러의 요구사항</h2>
-
-<ul>
-  <li>여러 <strong>카테고리</strong>를 순회하며 매칭을 수행한다.</li>
-  <li>어떤 카테고리에서 실패해도 <strong>나머지는 정상 커밋</strong>되어야 한다(부분 성공).</li>
-  <li>DB에 매칭 세션을 만들고, Redis 대기열을 정리하고, 알림을 보낸다.</li>
-</ul>
-
-<p>처음엔 스케줄러 전체를 <code class="language-plaintext highlighter-rouge">@Transactional</code>로 감싸는 걸 고민했지만, 그러면 <strong>카테고리 하나의 실패가 전체 롤백</strong>으로 번질 수 있다. 그래서 트랜잭션 경계를 <strong>카테고리 단위로 쪼개야</strong> 했다.</p>
-
-<hr />
-
-<h2 id="옵션-검토-왜-requires_new인가">옵션 검토: 왜 <code class="language-plaintext highlighter-rouge">REQUIRES_NEW</code>인가</h2>
-
-<ul>
-  <li><strong><code class="language-plaintext highlighter-rouge">REQUIRED</code></strong>: 바깥 트랜잭션이 있으면 <strong>같이 묶인다</strong> → 부분 실패가 전체 롤백으로 확장될 위험.</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">NESTED</code></strong>: 세이브포인트 기반. <strong>바깥이 롤백되면 내부도 함께 롤백</strong> → 부분 성공 보장 X.</li>
-  <li><strong>비트랜잭션</strong>(<code class="language-plaintext highlighter-rouge">NOT_SUPPORTED</code> 등): DB 원자성 보장 X.</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">REQUIRES_NEW</code></strong>: <strong>항상 새 트랜잭션 시작</strong>, 외부 트랜잭션은 <strong>일시 중단</strong> → <strong>카테고리별 독립 커밋</strong>을 정확히 충족.</li>
-</ul>
-
-<p>결론: 내 요구(카테고리별 완결·부분 성공)를 가장 잘 만족시키는 건 <strong><code class="language-plaintext highlighter-rouge">REQUIRES_NEW</code></strong>.</p>
-
-<hr />
-
-<h2 id="첫-번째-벽-self-invocation-경고">첫 번째 벽: “self-invocation” 경고</h2>
-
-<p>스케줄러 코드 초안:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Scheduled</span><span class="o">(</span><span class="n">fixedDelay</span> <span class="o">=</span> <span class="o">...)</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">processMatching</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">for</span> <span class="o">(</span><span class="nc">Category</span> <span class="n">category</span> <span class="o">:</span> <span class="n">activeCategories</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">processMatchingForCategory</span><span class="o">(</span><span class="n">category</span><span class="o">);</span> <span class="c1">// 내부 메서드 호출</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="nd">@Transactional</span><span class="o">(</span><span class="n">propagation</span> <span class="o">=</span> <span class="nc">Propagation</span><span class="o">.</span><span class="na">REQUIRES_NEW</span><span class="o">)</span>
-<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">processMatchingForCategory</span><span class="o">(</span><span class="nc">Category</span> <span class="n">category</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
-</code></pre></div></div>
-
-<p>경고 메시지:</p>
-
-<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">@Transactional self-invocation ... does not lead to an actual transaction at runtime</code></p>
-</blockquote>
-
-<h3 id="왜-이런가">왜 이런가?</h3>
-
-<p>Spring의 <code class="language-plaintext highlighter-rouge">@Transactional</code>은 <strong>프록시 기반 AOP</strong>다.
-<strong>같은 객체 내부에서 자기 메서드를 직접 호출하면</strong> 프록시를 <strong>우회</strong>하므로 <strong>트랜잭션이 적용되지 않는다</strong>. 접근 제어자(private→protected) 변경으로는 해결되지 않는다. 본질은 <strong>프록시를 타느냐</strong>이다.</p>
-
-<hr />
-
-<h2 id="해결-트랜잭션-경계를-다른-빈의-public-메서드로-분리">해결: 트랜잭션 경계를 “다른 빈의 public 메서드”로 분리</h2>
-
-<h3 id="리팩터링-전후">리팩터링 전/후</h3>
-
-<p><strong>Before</strong>: 스케줄러 클래스 내부에서 <code class="language-plaintext highlighter-rouge">processMatchingForCategory</code> 호출 → 프록시 미적용</p>
-
-<p><strong>After</strong>: <strong>별도의 서비스 빈</strong>으로 분리 + <code class="language-plaintext highlighter-rouge">public</code> 메서드에 <code class="language-plaintext highlighter-rouge">@Transactional(REQUIRES_NEW)</code>
-스케줄러는 “그 빈을 주입 받아 호출” → <strong>프록시를 경유</strong>하므로 트랜잭션 정상 적용</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// A. 카테고리 단위 워커 (새 트랜잭션 경계)</span>
-<span class="nd">@Service</span>
-<span class="nd">@RequiredArgsConstructor</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CategoryMatchWorker</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">RedisMatchingQueueService</span> <span class="n">redisMatchingQueueService</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">CallRepository</span> <span class="n">callRepository</span><span class="o">;</span>
-    <span class="c1">// ... 필요한 의존성</span>
-
-    <span class="nd">@Transactional</span><span class="o">(</span><span class="n">propagation</span> <span class="o">=</span> <span class="nc">Propagation</span><span class="o">.</span><span class="na">REQUIRES_NEW</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processCategory</span><span class="o">(</span><span class="nc">Category</span> <span class="n">category</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 카테고리 하나에 대한 모든 DB 작업 (예외 → 이 트랜잭션만 롤백)</span>
-        <span class="c1">// 1) 대기 인원 확인 → 2) 하이브리드 매칭 → 3) 사용자 조회 검증</span>
-        <span class="c1">// 4) Call 생성/저장 → 5) 큐 상태 업데이트 → 6) 알림 예약(afterCommit)</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">// B. 스케줄러 (비트랜잭션; 실패해도 루프 계속)</span>
-<span class="nd">@Service</span>
-<span class="nd">@RequiredArgsConstructor</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MatchingSchedulerService</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">CategoryMatchWorker</span> <span class="n">categoryMatchWorker</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">CategoryRepository</span> <span class="n">categoryRepository</span><span class="o">;</span>
-
-    <span class="nd">@Scheduled</span><span class="o">(</span><span class="n">fixedDelay</span> <span class="o">=</span> <span class="o">...)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processMatching</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kt">var</span> <span class="n">categories</span> <span class="o">=</span> <span class="n">categoryRepository</span><span class="o">.</span><span class="na">findByIsActiveTrueOrderByName</span><span class="o">();</span>
-        <span class="k">for</span> <span class="o">(</span><span class="nc">Category</span> <span class="n">category</span> <span class="o">:</span> <span class="n">categories</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="n">categoryMatchWorker</span><span class="o">.</span><span class="na">processCategory</span><span class="o">(</span><span class="n">category</span><span class="o">);</span> <span class="c1">// 프록시 경유 OK</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">log</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">"카테고리 {} 처리 실패 - 다음으로 진행"</span><span class="o">,</span> <span class="n">category</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p>대안으로 <strong><code class="language-plaintext highlighter-rouge">TransactionTemplate</code></strong>(프로그래매틱 트랜잭션)도 있다. 카테고리마다 <code class="language-plaintext highlighter-rouge">PROPAGATION_REQUIRES_NEW</code>로 실행 블록을 감싸는 방식. 프록시 우회 이슈가 없다.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="redis와의-경계-한-트랜잭션이-아니다">Redis와의 경계: “한 트랜잭션이 아니다”</h2>
-
-<ul>
-  <li>DB와 Redis는 <strong>동일 트랜잭션 경계가 아님</strong>(2PC 안 쓰는 한).</li>
-  <li>
-    <p>안전한 순서:</p>
-
-    <ol>
-      <li><strong>DB 커밋 성공 후</strong>(트랜잭션 경계 밖) Redis/PubSub/WebSocket 등 <strong>사이드 이펙트 수행</strong></li>
-      <li>Spring에선 <code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager.registerSynchronization(... afterCommit)</code> 훅으로 구현 가능</li>
-    </ol>
-  </li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">TransactionSynchronizationManager</span><span class="o">.</span><span class="na">registerSynchronization</span><span class="o">(</span><span class="k">new</span> <span class="nc">TransactionSynchronization</span><span class="o">()</span> <span class="o">{</span>
-    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterCommit</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// DB 커밋이 확정된 뒤에만 알림/이벤트 발행</span>
-        <span class="n">webSocketEventService</span><span class="o">.</span><span class="na">notifyMatchingSuccess</span><span class="o">(...);</span>
-    <span class="o">}</span>
-<span class="o">});</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="내가-얻은-체크리스트">내가 얻은 체크리스트</h2>
-
-<ol>
-  <li><strong>부분 성공</strong>이 목표면 트랜잭션을 **처리 단위(여기선 카테고리)**로 쪼갠다.</li>
-  <li><code class="language-plaintext highlighter-rouge">REQUIRES_NEW</code>는 외부와 <strong>분리된 커밋/롤백</strong>을 보장한다.</li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">@Transactional</code>은 <strong>프록시 기반</strong> → <strong>자기 자신 호출은 적용되지 않는다</strong>.</p>
-
-    <ul>
-      <li>트랜잭션 메서드는 <strong>public</strong> + <strong>다른 빈</strong>으로 분리해 호출.</li>
-      <li>또는 <strong>TransactionTemplate</strong>로 명시 제어.</li>
-    </ul>
-  </li>
-  <li><strong>롤백 규칙</strong>을 의도대로: 체크 예외까지 롤백이면 <code class="language-plaintext highlighter-rouge">rollbackFor = Exception.class</code>.</li>
-  <li><strong>Redis/메시징</strong>은 DB 트랜잭션과 별개 → <strong>afterCommit</strong>에 배치.</li>
-  <li>멱등성·재시도·처리상태 플래그를 준비(일부 성공/일부 실패가 정상인 아키텍처).</li>
-</ol>
-
-<hr />
-
-<h2 id="최종-결론">최종 결론</h2>
-
-<ul>
-  <li>스케줄러 루프 전체를 하나의 트랜잭션으로 묶는 대신, **카테고리별로 <code class="language-plaintext highlighter-rouge">REQUIRES_NEW</code>**를 적용해 <strong>부분 성공</strong>과 <strong>격리</strong>를 확보한다.</li>
-  <li>이때 <code class="language-plaintext highlighter-rouge">@Transactional</code>이 실제로 동작하려면 <strong>프록시를 타야 하므로</strong>, 트랜잭션 메서드는 <strong>다른 빈의 public 메서드</strong>로 분리한다.</li>
-  <li>DB 커밋 이후에만 외부 부작용(알림/Redis)을 발생시키는 흐름으로 <strong>정합성</strong>을 지킨다.</li>
-</ul>
-
-<p>이 과정을 거치면서 “왜 <code class="language-plaintext highlighter-rouge">REQUIRES_NEW</code>인가?”에 더해 “<strong>어디에, 어떻게 붙여야 실제로 동작하는가</strong>”를 체득했다. 스프링의 트랜잭션은 <strong>어노테이션 한 줄</strong>이 아니라, <strong>경계 설계 + 호출 구조</strong>까지 포함한 문제였다.</p>
-
-<blockquote>
-  <p>Redis.. 어렵다..</p>
-</blockquote>
-
-<h2 id="참고">참고</h2>
-
-<ul>
-  <li><a href="https://redis.io/docs/latest/develop/programmability/">Redis programmability</a></li>
-  <li><a href="https://redis.io/blog/you-dont-need-transaction-rollbacks-in-redis/?utm_source=chatgpt.com">You Don’t Need Transaction Rollbacks in Redis</a></li>
-  <li><a href="https://devoong2.tistory.com/entry/Spring-Transactional-REQUIRESNEW-%EC%98%B5%EC%85%98%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EC%99%B8-%EB%B0%8F-Rollback">Transactional REQUIRES_NEW 옵션에서 예외 및 Rollback</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 배치 스케줄러를 구현하다가 생긴 고민을 정리해보았습니다.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry></feed>
