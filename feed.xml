@@ -1,7 +1,532 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-13T02:38:18+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-13T13:04:23+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 해보자! 1편 - CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 해보자! 1편 - CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-13T02:37:31+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">Capacitor 앱에서 카카오/구글 네이티브 로그인 구현 가이드</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="Capacitor 앱에서 카카오/구글 네이티브 로그인 구현 가이드" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-11-13T13:03:38+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<h2 id="개요">개요</h2>
+
+<ul>
+  <li>Capacitor로 빌드한 React 앱에서 카카오와 구글 네이티브 로그인을 구현하는 방법을 정리해 보았다.</li>
+  <li>관련되서 정리되어있는게 없는것 같아서.. 내가 나중에 찾아볼 수 있게 일단 문서를 만들어보았다.</li>
+  <li>웹에서는 일반 OAuth 리다이렉트를 사용하지만, 모바일 앱에서는 <strong>네이티브 SDK를 직접 사용</strong>하는 방식으로 구현했다. (kakao, google)
+    <ul>
+      <li>kakao developer에는 flutter문서에서 크로스 플랫폼에서는 커스텀 URL 스킴을 사용하라고 권장한다. 하지만 나는 플러그인을 사용하는 방식으로 구현해보았다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="네이티브-sdk-직접-사용-구헌-방식-카카오-구글">네이티브 SDK 직접 사용 구헌 방식 (카카오, 구글)</h3>
+
+<p><strong>장점:</strong></p>
+
+<ul>
+  <li>앱 간 전환 없이 네이티브 UI로 로그인</li>
+  <li>더 빠르고 부드러운 사용자 경험</li>
+  <li>네이티브 앱(카카오톡, 구글 앱)과 연동 가능</li>
+</ul>
+
+<p><strong>구현 방식:</strong></p>
+
+<ul>
+  <li>카카오: <code class="language-plaintext highlighter-rouge">KakaoLoginPlugin.goLogin()</code> → 네이티브 SDK 호출 → 결과 직접 반환</li>
+  <li>구글: <code class="language-plaintext highlighter-rouge">GoogleAuth.signIn()</code> → 네이티브 SDK 호출 → 결과 직접 반환</li>
+  <li><strong>커스텀 스킴이나 Deep Link 불필요</strong></li>
+</ul>
+
+<hr />
+
+<h2 id="1-카카오-네이티브-로그인-구현">1. 카카오 네이티브 로그인 구현</h2>
+
+<h3 id="11-플러그인-설치">1.1 플러그인 설치</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pnpm add capacitor-kakao-login-plugin
+npx cap <span class="nb">sync</span>
+</code></pre></div></div>
+
+<h3 id="12-android-설정">1.2 Android 설정</h3>
+
+<h4 id="121-kakao-sdk-의존성-추가">1.2.1 Kakao SDK 의존성 추가</h4>
+
+<p><code class="language-plaintext highlighter-rouge">android/app/build.gradle</code>:</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">dependencies</span> <span class="o">{</span>
+    <span class="c1">// ... 기존 의존성 ...</span>
+    <span class="n">implementation</span> <span class="s2">"com.kakao.sdk:v2-common:2.20.1"</span>
+    <span class="n">implementation</span> <span class="s2">"com.kakao.sdk:v2-auth:2.20.1"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">android/build.gradle</code>:</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">allprojects</span> <span class="o">{</span>
+    <span class="k">repositories</span> <span class="o">{</span>
+        <span class="n">google</span><span class="o">()</span>
+        <span class="n">mavenCentral</span><span class="o">()</span>
+        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s1">'https://devrepo.kakao.com/nexus/content/groups/public/'</span> <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="122-androidmanifestxml-설정">1.2.2 AndroidManifest.xml 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">android/app/src/main/AndroidManifest.xml</code>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;application&gt;</span>
+    <span class="c">&lt;!-- 카카오 SDK 메타데이터 --&gt;</span>
+    <span class="nt">&lt;meta-data</span>
+        <span class="na">android:name=</span><span class="s">"com.kakao.sdk.AppKey"</span>
+        <span class="na">android:value=</span><span class="s">"@string/kakao_app_key"</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;activity</span>
+        <span class="na">android:name=</span><span class="s">".MainActivity"</span>
+        <span class="na">android:exported=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- 카카오 로그인 리다이렉트 --&gt;</span>
+        <span class="nt">&lt;intent-filter&gt;</span>
+            <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"android.intent.action.VIEW"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.DEFAULT"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.BROWSABLE"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;data</span> <span class="na">android:host=</span><span class="s">"kakaolink"</span> <span class="na">android:scheme=</span><span class="s">"@string/kakao_scheme"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/intent-filter&gt;</span>
+    <span class="nt">&lt;/activity&gt;</span>
+
+    <span class="c">&lt;!-- 카카오 인증 코드 핸들러 --&gt;</span>
+    <span class="nt">&lt;activity</span>
+        <span class="na">android:name=</span><span class="s">"com.kakao.sdk.auth.AuthCodeHandlerActivity"</span>
+        <span class="na">android:exported=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;intent-filter&gt;</span>
+            <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"android.intent.action.VIEW"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.DEFAULT"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.BROWSABLE"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;data</span> <span class="na">android:host=</span><span class="s">"oauth"</span> <span class="na">android:scheme=</span><span class="s">"@string/kakao_scheme"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/intent-filter&gt;</span>
+    <span class="nt">&lt;/activity&gt;</span>
+<span class="nt">&lt;/application&gt;</span>
+</code></pre></div></div>
+
+<h4 id="123-stringsxml-설정">1.2.3 strings.xml 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">android/app/src/main/res/values/strings.xml</code>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"kakao_app_key"</span><span class="nt">&gt;</span>YOUR_KAKAO_NATIVE_APP_KEY<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"kakao_scheme"</span><span class="nt">&gt;</span>kakaoYOUR_KAKAO_NATIVE_APP_KEY<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div></div>
+
+<h4 id="124-mainactivityjava-초기화">1.2.4 MainActivity.java 초기화</h4>
+
+<p><code class="language-plaintext highlighter-rouge">android/app/src/main/java/com/yourpackage/app/MainActivity.java</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">com.kakao.sdk.common.KakaoSdk</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="nc">BridgeActivity</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+
+        <span class="c1">// 카카오 SDK 초기화</span>
+        <span class="nc">KakaoSdk</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getString</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">kakao_app_key</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="13-ios-설정">1.3 iOS 설정</h3>
+
+<h4 id="131-infoplist-설정">1.3.1 Info.plist 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">ios/App/App/Info.plist</code>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;key&gt;</span>KAKAO_APP_KEY<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;string&gt;</span>YOUR_KAKAO_NATIVE_APP_KEY<span class="nt">&lt;/string&gt;</span>
+
+<span class="nt">&lt;key&gt;</span>CFBundleURLTypes<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;array&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>CFBundleURLSchemes<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;array&gt;</span>
+            <span class="nt">&lt;string&gt;</span>kakaoYOUR_KAKAO_NATIVE_APP_KEY<span class="nt">&lt;/string&gt;</span>
+            <span class="nt">&lt;string&gt;</span>com.yourapp.bundleid<span class="nt">&lt;/string&gt;</span>
+        <span class="nt">&lt;/array&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+<span class="nt">&lt;/array&gt;</span>
+
+<span class="nt">&lt;key&gt;</span>LSApplicationQueriesSchemes<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;array&gt;</span>
+    <span class="nt">&lt;string&gt;</span>kakaoYOUR_KAKAO_NATIVE_APP_KEY<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string&gt;</span>kakaokompassauth<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string&gt;</span>storykompassauth<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string&gt;</span>kakaolink<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string&gt;</span>storylink<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string&gt;</span>kakaotalk<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string&gt;</span>kakaotalk-5.9.7<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string&gt;</span>kakaostory-2.9.0<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/array&gt;</span>
+</code></pre></div></div>
+
+<h4 id="132-appdelegateswift-초기화">1.3.2 AppDelegate.swift 초기화</h4>
+
+<p><code class="language-plaintext highlighter-rouge">ios/App/App/AppDelegate.swift</code>:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">KakaoSDKAuth</span>
+<span class="kd">import</span> <span class="kt">KakaoSDKCommon</span>
+
+<span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplication</span><span class="o">.</span><span class="kt">LaunchOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">key</span> <span class="o">=</span> <span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">infoDictionary</span><span class="p">?[</span><span class="s">"KAKAO_APP_KEY"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">kakaoKey</span> <span class="o">=</span> <span class="n">key</span> <span class="p">{</span>
+        <span class="kt">KakaoSDK</span><span class="o">.</span><span class="nf">initSDK</span><span class="p">(</span><span class="nv">appKey</span><span class="p">:</span> <span class="n">kakaoKey</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplication</span><span class="o">.</span><span class="kt">OpenURLOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="kt">AuthApi</span><span class="o">.</span><span class="nf">isKakaoTalkLoginUrl</span><span class="p">(</span><span class="n">url</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kt">AuthController</span><span class="o">.</span><span class="nf">handleOpenUrl</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kt">ApplicationDelegateProxy</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="nv">open</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="n">options</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="14-프론트엔드-코드">1.4 프론트엔드 코드</h3>
+
+<p><code class="language-plaintext highlighter-rouge">client/lib/auth.ts</code>:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">KakaoLoginPlugin</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">capacitor-kakao-login-plugin</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">startSocialLogin</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
+  <span class="nx">provider</span><span class="p">:</span> <span class="nx">OAuthProvider</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">isMobile</span> <span class="o">=</span> <span class="nx">Capacitor</span><span class="p">.</span><span class="nx">isNativePlatform</span><span class="p">();</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">isMobile</span> <span class="o">&amp;&amp;</span> <span class="nx">provider</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">kakao</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="c1">// 카카오 네이티브 로그인 실행</span>
+      <span class="kd">const</span> <span class="nx">kakaoResult</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">KakaoLoginPlugin</span><span class="p">.</span><span class="nx">goLogin</span><span class="p">();</span>
+
+      <span class="c1">// 카카오 액세스 토큰을 백엔드로 전달</span>
+      <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">processKakaoNativeLogin</span><span class="p">(</span><span class="nx">kakaoResult</span><span class="p">.</span><span class="nx">accessToken</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span>
+          <span class="k">new</span> <span class="nx">CustomEvent</span><span class="p">(</span><span class="dl">"</span><span class="s2">oauth-login-success</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+            <span class="na">detail</span><span class="p">:</span> <span class="p">{</span> <span class="na">userInfo</span><span class="p">:</span> <span class="nx">result</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">user_info</span> <span class="p">},</span>
+          <span class="p">})</span>
+        <span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span>
+        <span class="k">new</span> <span class="nx">CustomEvent</span><span class="p">(</span><span class="dl">"</span><span class="s2">oauth-login-error</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+          <span class="na">detail</span><span class="p">:</span> <span class="p">{</span> <span class="na">error</span><span class="p">:</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="p">},</span>
+        <span class="p">})</span>
+      <span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// 웹: 일반 OAuth 리다이렉트</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">authorization_url</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 백엔드로 카카오 토큰 전달</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">processKakaoNativeLogin</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
+  <span class="nx">kakaoAccessToken</span><span class="p">:</span> <span class="kr">string</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">OAuthLoginResponse</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">getApiUrl</span><span class="p">()}</span><span class="s2">/v1/auth/oauth/kakao/native`</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+      <span class="na">kakao_access_token</span><span class="p">:</span> <span class="nx">kakaoAccessToken</span><span class="p">,</span>
+      <span class="na">device_info</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">platform</span><span class="p">}</span><span class="s2"> - </span><span class="p">${</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+    <span class="p">}),</span>
+    <span class="na">credentials</span><span class="p">:</span> <span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="15-카카오-개발자-콘솔-설정">1.5 카카오 개발자 콘솔 설정</h3>
+
+<ol>
+  <li>
+    <p><strong>키 해시 등록</strong> (Android)</p>
+
+    <ul>
+      <li>Android Studio Logcat에서 SHA-1, SHA-256 키 해시 확인</li>
+      <li>카카오 개발자 콘솔 → 내 애플리케이션 → 플랫폼 → Android → 키 해시 등록</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>리다이렉트 URI 설정</strong></p>
+    <ul>
+      <li>Android: <code class="language-plaintext highlighter-rouge">kakao{NATIVE_APP_KEY}://oauth</code></li>
+      <li>iOS: <code class="language-plaintext highlighter-rouge">kakao{NATIVE_APP_KEY}://oauth</code></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="2-구글-네이티브-로그인-구현">2. 구글 네이티브 로그인 구현</h2>
+
+<h3 id="21-플러그인-설치">2.1 플러그인 설치</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pnpm add @codetrix-studio/capacitor-google-auth
+npx cap <span class="nb">sync</span>
+</code></pre></div></div>
+
+<h3 id="22-google-console-설정">2.2 Google Console 설정</h3>
+
+<h4 id="221-웹-클라이언트-id-생성">2.2.1 웹 클라이언트 ID 생성</h4>
+
+<ol>
+  <li>Google Console → API 및 서비스 → 사용자 인증 정보</li>
+  <li>
+    <ul>
+      <li>사용자 인증 정보 만들기 → OAuth 2.0 클라이언트 ID</li>
+    </ul>
+  </li>
+  <li>애플리케이션 유형: <strong>웹 애플리케이션</strong></li>
+  <li>생성된 클라이언트 ID를 복사</li>
+</ol>
+
+<h4 id="222-android-클라이언트-id-생성">2.2.2 Android 클라이언트 ID 생성</h4>
+
+<ol>
+  <li>
+    <ul>
+      <li>사용자 인증 정보 만들기 → OAuth 2.0 클라이언트 ID</li>
+    </ul>
+  </li>
+  <li>애플리케이션 유형: <strong>Android</strong></li>
+  <li>패키지 이름: <code class="language-plaintext highlighter-rouge">com.yourapp.bundleid</code></li>
+  <li><strong>SHA-1 인증서 지문 등록</strong> (중요!)</li>
+</ol>
+
+<p><strong>SHA-1 지문 확인 방법:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 디버그 키스토어</span>
+keytool <span class="nt">-list</span> <span class="nt">-v</span> <span class="nt">-keystore</span> ~/.android/debug.keystore <span class="nt">-alias</span> androiddebugkey <span class="nt">-storepass</span> android <span class="nt">-keypass</span> android
+
+<span class="c"># 또는 MainActivity에서 로그로 확인</span>
+</code></pre></div></div>
+
+<p>SHA-1 지문을 <strong>콜론 없이</strong> 등록</p>
+
+<h4 id="223-ios-클라이언트-id-생성-선택">2.2.3 iOS 클라이언트 ID 생성 (선택)</h4>
+
+<ol>
+  <li>
+    <ul>
+      <li>사용자 인증 정보 만들기 → OAuth 2.0 클라이언트 ID</li>
+    </ul>
+  </li>
+  <li>애플리케이션 유형: <strong>iOS</strong></li>
+  <li>번들 ID: <code class="language-plaintext highlighter-rouge">com.yourapp.bundleid</code></li>
+  <li><code class="language-plaintext highlighter-rouge">GoogleService.plist</code> 파일 다운로드</li>
+</ol>
+
+<h3 id="23-android-설정">2.3 Android 설정</h3>
+
+<h4 id="231-stringsxml-설정">2.3.1 strings.xml 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">android/app/src/main/res/values/strings.xml</code>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;resources&gt;</span>
+    <span class="c">&lt;!-- 웹 클라이언트 ID (server_client_id) --&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"server_client_id"</span><span class="nt">&gt;</span>YOUR_WEB_CLIENT_ID.apps.googleusercontent.com<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div></div>
+
+<p><strong>참고</strong>: Android 클라이언트 ID는 코드에 넣을 필요 없습니다. 플러그인이 자동으로 사용합니다.</p>
+
+<h4 id="232-androidmanifestxml-권한-추가">2.3.2 AndroidManifest.xml 권한 추가</h4>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.GET_ACCOUNTS"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<h4 id="233-capacitorconfigts-설정">2.3.3 capacitor.config.ts 설정</h4>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">GoogleAuth</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">scopes</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">profile</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">],</span>
+      <span class="na">serverClientId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">YOUR_WEB_CLIENT_ID.apps.googleusercontent.com</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">forceCodeForRefreshToken</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="24-ios-설정">2.4 iOS 설정</h3>
+
+<h4 id="241-googleserviceplist-추가">2.4.1 GoogleService.plist 추가</h4>
+
+<ol>
+  <li>Google Console에서 다운로드한 <code class="language-plaintext highlighter-rouge">GoogleService.plist</code> 파일을</li>
+  <li><code class="language-plaintext highlighter-rouge">ios/App/App/</code> 폴더에 복사</li>
+</ol>
+
+<h4 id="242-infoplist-설정">2.4.2 Info.plist 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">ios/App/App/Info.plist</code>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;key&gt;</span>CFBundleURLTypes<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;array&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+        <span class="nt">&lt;key&gt;</span>CFBundleURLSchemes<span class="nt">&lt;/key&gt;</span>
+        <span class="nt">&lt;array&gt;</span>
+            <span class="nt">&lt;string&gt;</span>com.yourapp.bundleid<span class="nt">&lt;/string&gt;</span>
+            <span class="c">&lt;!-- GoogleService.plist의 REVERSED_CLIENT_ID 값 --&gt;</span>
+            <span class="nt">&lt;string&gt;</span>YOUR_REVERSED_CLIENT_ID<span class="nt">&lt;/string&gt;</span>
+        <span class="nt">&lt;/array&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+<span class="nt">&lt;/array&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">REVERSED_CLIENT_ID</code>는 <code class="language-plaintext highlighter-rouge">GoogleService.plist</code> 파일에서 확인할 수 있습니다.</p>
+
+<h3 id="25-프론트엔드-코드">2.5 프론트엔드 코드</h3>
+
+<p><code class="language-plaintext highlighter-rouge">client/lib/auth.ts</code>:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">GoogleAuth</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@codetrix-studio/capacitor-google-auth</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">startSocialLogin</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
+  <span class="nx">provider</span><span class="p">:</span> <span class="nx">OAuthProvider</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">isMobile</span> <span class="o">=</span> <span class="nx">Capacitor</span><span class="p">.</span><span class="nx">isNativePlatform</span><span class="p">();</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">isMobile</span> <span class="o">&amp;&amp;</span> <span class="nx">provider</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">google</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="c1">// 구글 플러그인 초기화 (scopes 포함)</span>
+      <span class="k">await</span> <span class="nx">GoogleAuth</span><span class="p">.</span><span class="nx">initialize</span><span class="p">({</span>
+        <span class="na">scopes</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">profile</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">],</span>
+      <span class="p">});</span>
+
+      <span class="c1">// 구글 네이티브 로그인 실행</span>
+      <span class="kd">const</span> <span class="nx">googleResult</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">GoogleAuth</span><span class="p">.</span><span class="nx">signIn</span><span class="p">();</span>
+
+      <span class="c1">// 구글 ID 토큰을 백엔드로 전달</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">googleResult</span><span class="p">.</span><span class="nx">authentication</span><span class="p">?.</span><span class="nx">idToken</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">구글 ID 토큰을 받지 못했습니다.</span><span class="dl">"</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">processGoogleNativeLogin</span><span class="p">(</span>
+        <span class="nx">googleResult</span><span class="p">.</span><span class="nx">authentication</span><span class="p">.</span><span class="nx">idToken</span>
+      <span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span>
+          <span class="k">new</span> <span class="nx">CustomEvent</span><span class="p">(</span><span class="dl">"</span><span class="s2">oauth-login-success</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+            <span class="na">detail</span><span class="p">:</span> <span class="p">{</span> <span class="na">userInfo</span><span class="p">:</span> <span class="nx">result</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">user_info</span> <span class="p">},</span>
+          <span class="p">})</span>
+        <span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span>
+        <span class="k">new</span> <span class="nx">CustomEvent</span><span class="p">(</span><span class="dl">"</span><span class="s2">oauth-login-error</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+          <span class="na">detail</span><span class="p">:</span> <span class="p">{</span> <span class="na">error</span><span class="p">:</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="p">},</span>
+        <span class="p">})</span>
+      <span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// 웹: 일반 OAuth 리다이렉트</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">authorization_url</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 백엔드로 구글 ID 토큰 전달</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">processGoogleNativeLogin</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
+  <span class="nx">googleIdToken</span><span class="p">:</span> <span class="kr">string</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">OAuthLoginResponse</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">getApiUrl</span><span class="p">()}</span><span class="s2">/v1/auth/oauth/google/native`</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+      <span class="na">google_id_token</span><span class="p">:</span> <span class="nx">googleIdToken</span><span class="p">,</span>
+      <span class="na">device_info</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">platform</span><span class="p">}</span><span class="s2"> - </span><span class="p">${</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+    <span class="p">}),</span>
+    <span class="na">credentials</span><span class="p">:</span> <span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="26-웹-설정-선택">2.6 웹 설정 (선택)</h3>
+
+<p><code class="language-plaintext highlighter-rouge">index.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;meta</span>
+  <span class="na">name=</span><span class="s">"google-signin-client_id"</span>
+  <span class="na">content=</span><span class="s">"YOUR_WEB_CLIENT_ID.apps.googleusercontent.com"</span>
+<span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-백엔드-api-엔드포인트">3. 백엔드 API 엔드포인트</h2>
+
+<h3 id="31-카카오-네이티브-로그인">3.1 카카오 네이티브 로그인</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /v1/auth/oauth/kakao/native
+Content-Type: application/json
+
+{
+  "kakao_access_token": "카카오_액세스_토큰",
+  "device_info": "플랫폼 정보"
+}
+</code></pre></div></div>
+
+<h3 id="32-구글-네이티브-로그인">3.2 구글 네이티브 로그인</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /v1/auth/oauth/google/native
+Content-Type: application/json
+
+{
+  "google_id_token": "구글_ID_토큰",
+  "device_info": "플랫폼 정보"
+}
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-체크리스트">4. 체크리스트</h2>
+
+<h3 id="카카오-로그인">카카오 로그인</h3>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">capacitor-kakao-login-plugin</code> 설치</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: Kakao SDK 의존성 추가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: <code class="language-plaintext highlighter-rouge">AndroidManifest.xml</code> 설정</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: <code class="language-plaintext highlighter-rouge">strings.xml</code>에 앱 키 설정</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: <code class="language-plaintext highlighter-rouge">MainActivity.java</code>에서 SDK 초기화</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />iOS: <code class="language-plaintext highlighter-rouge">Info.plist</code> 설정</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />iOS: <code class="language-plaintext highlighter-rouge">AppDelegate.swift</code>에서 SDK 초기화</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />카카오 개발자 콘솔에 키 해시 등록</li>
+</ul>
+
+<h3 id="구글-로그인">구글 로그인</h3>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">@codetrix-studio/capacitor-google-auth</code> 설치</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Google Console에 웹 클라이언트 ID 생성</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Google Console에 Android 클라이언트 ID 생성 (SHA-1 지문 등록)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Google Console에 iOS 클라이언트 ID 생성 (선택)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: <code class="language-plaintext highlighter-rouge">strings.xml</code>에 웹 클라이언트 ID 설정</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: <code class="language-plaintext highlighter-rouge">capacitor.config.ts</code> 설정</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />iOS: <code class="language-plaintext highlighter-rouge">GoogleService.plist</code> 추가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />iOS: <code class="language-plaintext highlighter-rouge">Info.plist</code>에 <code class="language-plaintext highlighter-rouge">REVERSED_CLIENT_ID</code> 추가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />웹: <code class="language-plaintext highlighter-rouge">index.html</code>에 meta tag 추가</li>
+</ul>
+
+<hr />
+
+<h2 id="5-참고-자료">5. 참고 자료</h2>
+
+<ul>
+  <li><a href="https://capacitorjs.com/docs">Capacitor 공식 문서</a></li>
+  <li><a href="https://developers.kakao.com/docs/latest/ko/flutter/getting-started#project-scheme">Kakao developer</a></li>
+  <li><a href="https://github.com/nerdFrenzs/capacitor-kakao-login-plugin">capacitor-kakao-login-plugin</a></li>
+  <li><a href="https://github.com/CodetrixStudio/CapacitorGoogleAuth">@codetrix-studio/capacitor-google-auth</a></li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 해보자! 1편 - CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 해보자! 1편 - CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-13T13:03:38+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
   <li>지난 글에서는 Capacitor로 Android, iOS 앱 빌드하는 방법에 대해 다뤘다.</li>
   <li>이번 글에서는 Capacitor로 빌드한 Android 앱에서 로그인 연동을 하는 방법에 대해 다뤄보겠다.</li>
   <li>특히 CORS 에러 해결에 대해 다뤄보겠다..
@@ -180,7 +705,7 @@ Android: http://localhost</p>
   <li><a href="https://stackoverflow.com/questions/75192411/cors-in-capacitor-for-android">StackOverFlow가 짱이야</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/http">Capacitor HTTP Plugin 공식 문서</a></li>
   <li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS">MDN - CORS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-13T02:37:31+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-13T13:03:38+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
   <li>“친구하자”를 웹으로 MVP 완성을 하니, 이걸 앱으로 빌드해서 사용자들이 더 쉽게 사용할 수 있으면 좋겠다고 생각했다.</li>
   <li>원래는.. 개발자의 입장으로 링크로 이동하는 방식이 쉬울꺼라고 생각했는데, 막상 사용자에게 링크를 보내주니까 어려움을 토로하거나 방식에 의문을 가지는 사람들이 많았다..
     <ul>
@@ -289,7 +814,7 @@ npx cap run ios
 <p><br />
 다음에 android studio 업데이트를 좀 하고.. (안한지 넘 오래됌..) 아래와 같이 빌드 성공!</p>
 
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-13T02:37:31+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-13T13:03:38+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
   <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
   <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
   <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
@@ -683,7 +1208,7 @@ while (it.hasNext()) {
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-13T02:37:31+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-13T13:03:38+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
   <li><a href="#1-문제-발견">1. 문제 발견</a></li>
   <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
   <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
@@ -1081,7 +1606,7 @@ Row was updated or deleted by another transaction
   <li><a href="https://docs.jboss.org/hibernate/orm/6.0/userguide/html_single/Hibernate_User_Guide.html">Hibernate User Guide - LazyInitializationException</a></li>
   <li><a href="https://www.baeldung.com/jpa-optimistic-locking">Baeldung - JPA Optimistic Locking</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring Framework - Async Execution</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-13T02:37:31+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-13T13:03:38+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
   <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
   <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
   <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
@@ -1265,7 +1790,7 @@ Cookie: refreshToken=...
       <li>JWT 검증</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-13T02:37:31+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-13T13:03:38+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인-분석">원인 분석</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -1487,7 +2012,7 @@ Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단
 
 <ul>
   <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">MDN: SamSite cookies</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-13T02:37:31+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-13T13:03:38+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인">원인</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -1616,7 +2141,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">FLUSHDB</code>: 현재 선택된 데이터베이스의 키만 삭제</li>
   <li>Redis는 기본적으로 데이터베이스 0~15번까지 16개를 제공</li>
   <li>운영환경에서는 절대 <code class="language-plaintext highlighter-rouge">FLUSHALL</code>을 실행하면 안됨!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-13T02:37:31+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-13T13:03:38+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
   <li><a href="#-1-webrtc의-정의">1. WebRTC의 정의</a></li>
   <li><a href="#-2-webrtc의-주요-구성-요소">2. WebRTC의 주요 구성 요소</a></li>
   <li><a href="#️-3-동작-흐름-signaling-포함">3. 동작 흐름 (Signaling 포함)</a></li>
@@ -1790,7 +2315,7 @@ docker-compose up -d
   <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-11-13T02:37:31+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-11-13T13:03:38+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
   <li><a href="#1-배열--스트림">1. 배열 → 스트림</a></li>
   <li><a href="#2-형-변환-mapping">2. 형 변환 (Mapping)</a></li>
   <li><a href="#3-집계-연산-aggregation">3. 집계 연산 (Aggregation)</a></li>
@@ -1911,238 +2436,4 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">summaryStatistics()</code></li>
 </ol>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)</title><link href="https://nan0silver.github.io/projectdiary/2025-09-03-diary/" rel="alternate" type="text/html" title="[친구하자] 매칭 대기열 만들면서 정리한 Redis 명령어 치트시트 (SET/ZSET편)" /><published>2025-09-03T00:00:00+00:00</published><updated>2025-11-13T02:37:31+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-03-diary/"><![CDATA[<blockquote>
-  <p>카테고리별 2인 매칭을 구현하며 실제로 쓴(또는 고민했던) 명령어들을 짧게 정리.
-예시 키는 <code class="language-plaintext highlighter-rouge">{cat:123}</code> 해시태그로 Redis Cluster 슬롯을 고정하는 패턴을 사용.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="zset-sorted-set--순번대기시간우선순위가-필요할-때">ZSET (Sorted Set) — 순번/대기시간/우선순위가 필요할 때</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">ZADD key score member [score member ...]</code>
-멤버 추가/갱신. <strong>score</strong>가 작을수록 앞쪽.</p>
-
-    <pre><code class="language-redis">ZADD wait:z:{cat:123} 1725430000123 101
-</code></pre>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">ZRANGE key start stop [WITHSCORES | REV | BYSCORE ...]</code>
-<strong>정렬 순서대로 조회</strong>. 삭제는 아님!</p>
-
-    <pre><code class="language-redis">ZRANGE wait:z:{cat:123} 0 1              # 가장 오래 기다린 2명
-ZRANGE wait:z:{cat:123} 0 9 WITHSCORES    # 상위 10명 + score
-</code></pre>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">ZRANK key member</code>
-멤버의 <strong>순위(0-base)</strong>.</p>
-
-    <pre><code class="language-redis">ZRANK wait:z:{cat:123} 101               # 0이면 1번째
-</code></pre>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">ZSCORE key member</code>
-멤버의 score(대기 시작 시각 등).</p>
-
-    <pre><code class="language-redis">ZSCORE wait:z:{cat:123} 101
-</code></pre>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">ZCARD key</code>
-멤버 수.</p>
-
-    <pre><code class="language-redis">ZCARD wait:z:{cat:123}
-</code></pre>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">ZREM key member [member ...]</code>
-멤버 삭제.</p>
-
-    <pre><code class="language-redis">ZREM wait:z:{cat:123} 101 205
-</code></pre>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">ZRANDMEMBER key [count] [WITHSCORES]</code> <em>(6.2+)</em>
-<strong>무작위 조회</strong>(삭제 아님).</p>
-
-    <pre><code class="language-redis">ZRANDMEMBER wait:z:{cat:123} 2
-</code></pre>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">ZPOPMIN key [count]</code> / <code class="language-plaintext highlighter-rouge">ZPOPMAX</code>
-<strong>꺼내며 삭제</strong>(원자). 대기순 매칭에 유용.</p>
-
-    <pre><code class="language-redis">ZPOPMIN wait:z:{cat:123} 2
-</code></pre>
-  </li>
-</ul>
-
-<hr />
-
-<h2 id="set-집합--중복-없는-랜덤-풀">SET (집합) — 중복 없는 랜덤 풀</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">SADD key member [member ...]</code> / <code class="language-plaintext highlighter-rouge">SREM key member [...]</code>
-추가/삭제 (중복 불가).</p>
-
-    <pre><code class="language-redis">SADD matching:queue:{cat:123} 101
-SREM matching:queue:{cat:123} 101
-</code></pre>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">SPOP key [count]</code>
-<strong>무작위 추출+삭제</strong>(원자). 랜덤 매칭에 간단·빠름.</p>
-
-    <pre><code class="language-redis">SPOP matching:queue:{cat:123} 2
-</code></pre>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">SCARD key</code>
-멤버 수.</p>
-
-    <pre><code class="language-redis">SCARD matching:queue:{cat:123}
-</code></pre>
-  </li>
-</ul>
-
-<hr />
-
-<h2 id="ttl키-유틸-대기-상태-자동-청소용">TTL/키 유틸 (대기 상태 자동 청소용)</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">SET key value EX &lt;sec&gt; NX</code>
-<strong>선점 + TTL</strong>(중복 입장 방지).</p>
-
-    <pre><code class="language-redis">SET user:index:42 "cat=123|queue=q_..." EX 600 NX
-</code></pre>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">EXPIRE key &lt;sec&gt;</code> / <code class="language-plaintext highlighter-rouge">TTL key</code>
-키 만료/조회.
-<strong>주의:</strong> TTL은 <strong>키 전체</strong>에 붙음(멤버 단위 X).</p>
-  </li>
-</ul>
-
-<blockquote>
-  <p>베스트 프랙티스: <strong>대기열 컬렉션(SET/ZSET)엔 TTL 금지</strong>, 개별 사용자 상태 키에만 TTL.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="매칭에서-자주-쓰는-레시피">매칭에서 자주 쓰는 <strong>레시피</strong></h2>
-
-<h3 id="1-대기순공정성-매칭">1) 대기순(공정성) 매칭</h3>
-
-<ul>
-  <li>
-    <p>방법 A(2단계): <code class="language-plaintext highlighter-rouge">ZRANGE</code>로 상위 N 조회 → <strong><code class="language-plaintext highlighter-rouge">ZREM</code>로 제거</strong></p>
-
-    <pre><code class="language-redis">ZRANGE wait:z:{cat:123} 0 1         # 후보 조회
-ZREM   wait:z:{cat:123} 101 205     # 확정 후 제거
-</code></pre>
-  </li>
-  <li>
-    <p>방법 B(원자): <code class="language-plaintext highlighter-rouge">ZPOPMIN wait:z:{cat:123} 2</code>
-(조회+삭제가 한 번에)</p>
-  </li>
-</ul>
-
-<h3 id="2-랜덤-매칭">2) 랜덤 매칭</h3>
-
-<ul>
-  <li>
-    <p>ZSET만 쓸 때(원자화는 Lua 추천):</p>
-
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">ZRANDMEMBER</code>로 조회 → <strong>같은 로직 안에서 <code class="language-plaintext highlighter-rouge">ZREM</code></strong></li>
-    </ul>
-  </li>
-  <li>
-    <p>SET을 함께 쓸 때:</p>
-
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">SPOP matching:queue:{cat:123} 2</code> (원자 랜덤 추출)</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="3-하이브리드랜덤-80--대기순-20">3) 하이브리드(랜덤 80% + 대기순 20%)</h3>
-
-<ul>
-  <li>
-    <p>하나의 <strong>Lua/Functions</strong>에서 분기:</p>
-
-    <ul>
-      <li>랜덤: <code class="language-plaintext highlighter-rouge">ZRANDMEMBER</code> → <code class="language-plaintext highlighter-rouge">ZREM</code></li>
-      <li>대기순: <code class="language-plaintext highlighter-rouge">ZRANGE</code> → <code class="language-plaintext highlighter-rouge">ZREM</code> (또는 <code class="language-plaintext highlighter-rouge">ZPOPMIN</code>)</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="4-원자성-보장동시성-안전">4) 원자성 보장(동시성 안전)</h3>
-
-<ul>
-  <li>
-    <p><strong>조회(선정)와 삭제를 한 덩어리로</strong>: Lua/Functions로 감싸기</p>
-
-    <ul>
-      <li>“이미 다른 워커가 먼저 가져간” 케이스를 **<code class="language-plaintext highlighter-rouge">ZREM</code> 반환값(0/1)**로 판단해 필터링.</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h2 id="흔한-실수--주의">흔한 실수 &amp; 주의</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">ZRANGE</code>/<code class="language-plaintext highlighter-rouge">ZRANDMEMBER</code> <strong>만</strong> 호출하고 <code class="language-plaintext highlighter-rouge">ZREM</code>을 빼먹음 → 큐에 그대로 남아 <strong>중복 매칭</strong> 발생.</li>
-  <li><strong>컬렉션 키에 TTL</strong>을 걸어 전체 대기열이 사라짐.
-TTL은 <strong>개별 사용자 키</strong>(예: <code class="language-plaintext highlighter-rouge">user:queued:{cat:123}:42</code>)에만.</li>
-  <li>Redis Cluster 사용 시, <strong>스크립트 KEYS는 같은 해시태그</strong>(<code class="language-plaintext highlighter-rouge">{cat:123}</code>)로 묶기. 전역 키는 Lua에서 다루지 말고 자바에서만.</li>
-</ul>
-
-<hr />
-
-<h2 id="시간-복잡도">시간 복잡도</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">ZADD/ZREM/ZRANK</code> ≈ <strong>O(log N)</strong></li>
-  <li><code class="language-plaintext highlighter-rouge">ZRANGE</code> ≈ <strong>O(k)</strong> (반환 수)</li>
-  <li><code class="language-plaintext highlighter-rouge">ZPOPMIN/MAX</code> ≈ <strong>O(k log N)</strong></li>
-  <li><code class="language-plaintext highlighter-rouge">SADD/SREM/SPOP</code> ≈ <strong>평균 O(1)</strong></li>
-</ul>
-
-<hr />
-
-<h2 id="미니-예시-대기열-입장--매칭">미니 예시: 대기열 입장 &amp; 매칭</h2>
-
-<pre><code class="language-redis"># 입장
-ZADD wait:z:{cat:123} 1725430000456 101          # 대기 시작 시각(밀리초)
-SET  user:queued:{cat:123}:101 q_101_123 EX 600   # 개별 TTL
-
-# 대기순 매칭 2명 (원자)
-ZPOPMIN wait:z:{cat:123} 2                        # -&gt; [101,score],[205,score]
-
-# 랜덤 매칭 2명 (Lua로 원자화 권장)
--- 조회
-ZRANDMEMBER wait:z:{cat:123} 2
--- 같은 로직 안에서 제거
-ZREM wait:z:{cat:123} 101 205
-</code></pre>
-
-<hr />
-
-<h2 id="한-줄-정리">한 줄 정리</h2>
-
-<ul>
-  <li><strong>ZSET = 순번/대기시간/공정성</strong>, <strong>SET = 단순 랜덤 풀</strong></li>
-  <li><code class="language-plaintext highlighter-rouge">ZRANGE/ZRANDMEMBER</code>(조회) 뒤엔 <strong>반드시 <code class="language-plaintext highlighter-rouge">ZREM</code>(삭제)</strong></li>
-  <li>경쟁 환경에선 <strong>Lua로 “조회→삭제”를 원자화</strong></li>
-  <li><strong>TTL은 개별 상태 키에만</strong>, 대기열 컬렉션엔 금지</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 랜덤 매칭 대기열을 만들면서 정리한 Redis 명령어 모음집입니다.]]></summary></entry></feed>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry></feed>
