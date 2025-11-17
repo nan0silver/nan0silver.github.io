@@ -46,7 +46,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-11-17T00:54:16+00:00","datePublished":"2025-11-13T00:00:00+00:00","description":"Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.","headline":"[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-11-13-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-11-13-diary/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-11-17T03:08:03+00:00","datePublished":"2025-11-13T00:00:00+00:00","description":"Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.","headline":"[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-11-13-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-11-13-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -186,7 +186,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-11-17T00:55:02+00:00',
+    INDEX_KEY: 'index--2025-11-17T03:08:44+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -236,7 +236,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       }
     },
     "datePublished": "2025-11-13T00:00:00+00:00",
-    "dateModified": "2025-11-17T00:54:16+00:00",
+    "dateModified": "2025-11-17T03:08:03+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://nan0silver.github.io/projectdiary/2025-11-13-diary/"
@@ -405,7 +405,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 17 Nov 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-11-17T00:54:16+00:00">2025-11-17</time>
+              <time datetime="2025-11-17T03:08:03+00:00">2025-11-17</time>
             </span>
           
         
@@ -442,20 +442,64 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 <h3 id="네이티브-sdk-직접-사용-구헌-방식-카카오-구글">네이티브 SDK 직접 사용 구헌 방식 (카카오, 구글)</h3>
 
-<p><strong>장점:</strong></p>
+<p><strong>네이티브 SDK 로그인 방식이란?</strong></p>
 
 <ul>
-  <li>앱 간 전환 없이 네이티브 UI로 로그인</li>
-  <li>더 빠르고 부드러운 사용자 경험</li>
-  <li>네이티브 앱(카카오톡, 구글 앱)과 연동 가능</li>
+  <li>카카오/구글이 제공하는 Android/iOS 전용 SDK를 사용한 로그인 방식</li>
+  <li>앱 간 통신 방식을 사용한다.
+    <ul>
+      <li>즉, 기기에 설치된 카카오톡/구글 앱과 직접 통신하여 인증한다.</li>
+    </ul>
+  </li>
+  <li>WebView를 우회하여 브라우저 리다이렉트 없이 앱 레벨에서 토큰을 교환한다.</li>
 </ul>
 
-<p><strong>구현 방식:</strong></p>
+<p><strong>이 방식이 하이브리드 앱에서 가능한 이유</strong></p>
 
 <ul>
-  <li>카카오: <code class="language-plaintext highlighter-rouge">KakaoLoginPlugin.goLogin()</code> → 네이티브 SDK 호출 → 결과 직접 반환</li>
-  <li>구글: <code class="language-plaintext highlighter-rouge">GoogleAuth.signIn()</code> → 네이티브 SDK 호출 → 결과 직접 반환</li>
-  <li><strong>커스텀 스킴이나 Deep Link 불필요</strong></li>
+  <li>⭐️<strong>Capacitor의 플러그인 시스템</strong>⭐️이 핵심!</li>
+</ul>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-13-pic1.png?raw=true" alt="설명 이미지1" /></p>
+
+<ul>
+  <li>WebView의 JavaScript 코드가 네이티브 코드를 호출할 수 있게 해줌</li>
+  <li><code class="language-plaintext highlighter-rouge">KakaoLoginPlugin.goLogin()</code>을 통해 실제로 Android의 카카오 SDK 실행</li>
+  <li>결과를 다시 JavaScript로 전달</li>
+</ul>
+
+<p>*<em>앱 구조 비교</em></p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 안드로이드에서 실행 시</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">Capacitor</span><span class="p">.</span><span class="nx">isNativePlatform</span><span class="p">())</span> <span class="p">{</span>
+  <span class="c1">// ✅ 네이티브 SDK 사용 (앱간 통신)</span>
+  <span class="c1">// 카카오톡 앱 → 내 앱 (빠르고 안정적)</span>
+  <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">KakaoLoginPlugin</span><span class="p">.</span><span class="nx">goLogin</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// 웹 브라우저에서 실행 시</span>
+<span class="k">else</span> <span class="p">{</span>
+  <span class="c1">// ✅ OAuth 리다이렉트 사용 (브라우저 기반)</span>
+  <span class="c1">// 브라우저 → 카카오 웹 → 콜백 URL</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://kauth.kakao.com/oauth/...</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>이렇게 하는 이유</strong></p>
+
+<ul>
+  <li>네이티브 로그인의 장점:
+    <ul>
+      <li>사용자가 카카오톡이 설치되어 있으면 앱 전환만으로 즉시 로그인</li>
+      <li>브라우저 리다이렉트보다 UX가 훨씬 부드러움</li>
+      <li>DeepLink, Custom URL Scheme 문제 없음</li>
+    </ul>
+  </li>
+  <li>웹 로그인:
+    <ul>
+      <li>브라우저에서는 네이티브 SDK를 쓸 수 없으니 전통적인 OAuth 방식 사용</li>
+    </ul>
+  </li>
 </ul>
 
 <hr />
