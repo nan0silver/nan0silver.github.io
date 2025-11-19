@@ -1,7 +1,260 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-17T03:33:27+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-19T05:23:01+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-11-17T03:32:40+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
+  <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 X-Frame-Options 에러에 대해 다루었다.</li>
+  <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
+</ul>
+
+<h2 id="문제-상황">문제 상황</h2>
+
+<ul>
+  <li>웹에서는 정상적으로 작동하던 <strong>매칭 완료 -&gt; WebSocket 메시지 수신 -&gt; 통화 시작 페이지 이동</strong> 로직이 Android 앱에서 다음과 같은 에러로 실패했다.</li>
+</ul>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-17-pic1.png?raw=true" alt="에러 이미지1" /></p>
+
+<ul>
+  <li>🔥 이 문제는 <strong>Capacitor의 WebView 환경과 Spring Security의 기본 보안 설정이 충돌</strong>하면서 발생! 🔥</li>
+  <li>WebSocket 라이브러리인 SockJS가 fallback 메커니즘으로 iframe을 사용하려 했지만, 서버가 보안상의 이유로 이를 차단했기 때문이다.</li>
+  <li>이 글에서는 X-Frame-Options가 무엇인지, iframe이 무엇인지, 그리고 왜 이런 에러가 발생햇는지를 자세히 알아보겠습니다.</li>
+</ul>
+
+<h2 id="1-iframe-이란">1. iframe 이란?</h2>
+
+<ul>
+  <li><strong>iframe (inline frame)</strong>은 HTML 문서 안에서 다른 HTML 문서를 삽입하는 태그이다.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!-- 예시: 유튜브 영상 삽입 --&gt;
+&lt;iframe
+    src="https://www.youtube.com/embed/VIDEO_ID"
+    width="560"
+    height="315"&gt;
+&lt;/iframe&gt;
+</code></pre></div></div>
+
+<p><strong>시각적 구조:</strong>
+<img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-17-pic2.png?raw=true" alt="설명 이미지1" /></p>
+
+<ul>
+  <li>실생활 예시 : 유튜브 영상 삽입, 구글 지도 삽입, 페이스북 “좋아요” 버튼 등</li>
+</ul>
+
+<h2 id="2-x-frame-options-이란">2. X-Frame-Options 이란?</h2>
+
+<ul>
+  <li>
+    <p><strong>X-Frame-Options</strong>는 HTTP 응답 헤더로, 내 웹사이트가 다른 사이트의 iframe안에 표시되는 것을 제어하는 보안 메커니즘</p>
+  </li>
+  <li>
+    <p>헤더 값 3가지:</p>
+    <ul>
+      <li>X-Frame-Options: DENY
+        <ul>
+          <li>어떤 사이트든 iframe으로 내 페이지를 로드할 수 없음</li>
+        </ul>
+      </li>
+      <li>X-Frame-Options: SAMEORIGIN
+        <ul>
+          <li>같은 도메인에서만 iframe으로 로드 가능</li>
+        </ul>
+      </li>
+      <li>X-Frame-Options: ALLOW-FROM https://example.com
+        <ul>
+          <li>특정 도메인에서만 iframe으로 로드 가능 (deprecated)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="왜-x-frame-options가-필요한가">왜 X-Frame-Options가 필요한가?</h3>
+
+<ul>
+  <li><strong>Clickjacking 공격 방지</strong>
+    <ul>
+      <li>악의적인 사이트가 투명한 iframe을 통해 사용자를 속여 원하지 않는 행동을 하게 만드는 공격</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>공격 시나리오:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 공격자가 악의적인 사이트 만들기 (evil.com)
+
+2. 투명한 iframe으로 은행 사이트를 숨김
+   ┌─────────────────────────────────┐
+   │ evil.com                        │
+   │                                 │
+   │ [무료 iPhone 받기!] 버튼           │
+   │        ↑                        │
+   │        실제로는 투명한 iframe       │
+   │        은행 송금 버튼이 위치         │
+   └─────────────────────────────────┘
+
+3. 사용자가 "무료 iPhone 받기!" 클릭
+   → 실제로는 은행의 "송금 승인" 버튼 클릭
+   → 돈이 공격자에게 전송됨 🥲
+</code></pre></div></div>
+
+<p><strong>X-Frame-Options: DENY가 막는 방법:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─────────────────────────────────┐
+│ evil.com                        │
+│                                 │
+│ &lt;iframe src="bank.com"&gt;         │
+│   ❌ 브라우저가 로드 거부!           │
+│   "X-Frame-Options: DENY"       │
+│ &lt;/iframe&gt;                       │
+└─────────────────────────────────┘
+</code></pre></div></div>
+
+<h2 id="️-capacitor로-빌드한-앱에서-이-문제가-발생한-이유">‼️ Capacitor로 빌드한 앱에서 이 문제가 발생한 이유</h2>
+
+<ul>
+  <li>Capacitor는 <strong>하이브리드 앱</strong>을 만드는 프레임워크이다.</li>
+</ul>
+
+<p><strong>하이브리드 앱 구조</strong>
+<img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-17-pic3.png?raw=true" alt="설명 이미지2" /></p>
+
+<ul>
+  <li>WebView는 본질적으로 iframe과 유사하다!</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>네이티브 앱 (Android/iOS)
+    └── WebView ≈ iframe
+         └── React 앱 (https://localhost)
+              └── WebSocket 연결 시도 → 백엔드 (https://backend.domain)
+</code></pre></div></div>
+
+<h3 id="sockjs의-iframe-transport"><strong>SockJS의 iframe Transport</strong></h3>
+
+<p><strong>SockJS</strong>는 WebSocket이 안 될 때를 대비한 여러 fallback 방법을 제공한다.</p>
+
+<p><strong>SockJS Transport 순서:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. WebSocket (가장 빠르고 효율적)
+   ↓ 실패
+2. xhr-streaming (HTTP 스트리밍)
+   ↓ 실패
+3. xhr-polling (HTTP 폴링)
+   ↓ 실패
+4. iframe-based transports (레거시 브라우저용)
+   ↓ 실패
+5. jsonp-polling (최후의 수단)
+</code></pre></div></div>
+
+<ul>
+  <li>iframe-based transport가 하는 일:</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- SockJS가 내부적으로 생성하는 숨겨진 iframe --&gt;</span>
+<span class="nt">&lt;iframe</span> <span class="na">src=</span><span class="s">"https://backend.domain/ws/iframe.html"</span> <span class="na">style=</span><span class="s">"display: none;"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/iframe&gt;</span>
+</code></pre></div></div>
+
+<h3 id="문제-발생-시나리오"><strong>문제 발생 시나리오:</strong></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Capacitor 앱 (WebView) 시작
+   Origin: capacitor://localhost
+
+2. WebSocket 연결 시도 (친구하자 프로젝트의 경우, 통화 매칭시 사용 중)
+   → https://backend.domain/ws
+
+3. SockJS가 iframe transport 시도
+   ┌─────────────────────────────────┐
+   │ Capacitor WebView               │
+   │ (capacitor://localhost)         │
+   │                                 │
+   │ &lt;iframe src="backend.domain/ws"&gt; │
+   │   ❌ 차단됨!                     │
+   │   "X-Frame-Options: DENY"       │
+   │ &lt;/iframe&gt;                       │
+   └─────────────────────────────────┘
+
+4. 에러 메시지:
+   "Refused to display 'https://backend.domain/'
+    in a frame because it set 'X-Frame-Options' to 'deny'"
+</code></pre></div></div>
+
+<h3 id="왜-spring-security가-기본적으로-deny를-설정할까">왜 Spring Security가 기본적으로 Deny를 설정할까?</h3>
+
+<ul>
+  <li>Spring Security의 보안 우선 철학 :
+<img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-17-pic4.png?raw=true" alt="설명 이미지3" /></li>
+</ul>
+
+<p><strong>이유</strong></p>
+
+<ol>
+  <li><strong>보안 우선주의</strong>: 안전하지 않은 것보다 안전한 것이 낫다</li>
+  <li><strong>Clickjacking 방지</strong>: 대부분의 웹 애플리케이션은 iframe에 로드될 필요 없음</li>
+  <li><strong>명시적 허용</strong>: 개발자가 필요하면 명시적으로 변경하도록 유도</li>
+</ol>
+
+<p><strong>일반적인 웹사이트는 DENY가 맞다:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>은행, 쇼핑몰, 관리자 페이지 등
+→ iframe에 로드될 이유가 없음
+→ DENY로 보안 강화
+</code></pre></div></div>
+
+<p><strong>하지만 우리의 경우:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Capacitor 하이브리드 앱
+→ WebView는 iframe과 유사한 환경
+→ DENY면 앱 자체가 작동 안 함
+→ SAMEORIGIN 또는 특정 origin 허용 필요
+</code></pre></div></div>
+
+<h2 id="해결-방법">해결 방법</h2>
+
+<h3 id="방법-1-frameoptionssameorigin-운영-환경-권장">방법 1: frameOptions().sameOrigin() (운영 환경 권장)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">java</span><span class="o">.</span><span class="na">headers</span><span class="o">(</span><span class="n">headers</span> <span class="o">-&gt;</span> <span class="n">headers</span>
+    <span class="o">.</span><span class="na">frameOptions</span><span class="o">(</span><span class="n">frameOptions</span> <span class="o">-&gt;</span> <span class="n">frameOptions</span><span class="o">.</span><span class="na">sameOrigin</span><span class="o">())</span>
+<span class="o">)</span>
+</code></pre></div></div>
+
+<p><strong>의미:</strong></p>
+
+<ul>
+  <li>같은 도메인에서만 iframe 허용</li>
+  <li><code class="language-plaintext highlighter-rouge">https://backend.domain</code>에서 <code class="language-plaintext highlighter-rouge">https://backend.domain</code>를 iframe으로 로드 가능</li>
+  <li>Capacitor WebView는 <code class="language-plaintext highlighter-rouge">capacitor://localhost</code>이지만, WebView 자체가 특수 처리됨</li>
+</ul>
+
+<p><strong>왜 이게 Capacitor에서 작동하나?</strong>
+WebView는 브라우저 엔진의 특수 모드
+→ origin 검사가 일반 웹과 다르게 처리됨
+→ SAMEORIGIN이어도 WebView 내부 컨텍스트에서는 허용</p>
+
+<h3 id="방법-2-content-security-policy-추가-최고-보안">방법 2: Content-Security-Policy 추가 (최고 보안)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">java</span><span class="o">.</span><span class="na">headers</span><span class="o">(</span><span class="n">headers</span> <span class="o">-&gt;</span> <span class="n">headers</span>
+    <span class="o">.</span><span class="na">frameOptions</span><span class="o">(</span><span class="n">frameOptions</span> <span class="o">-&gt;</span> <span class="n">frameOptions</span><span class="o">.</span><span class="na">sameOrigin</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">contentSecurityPolicy</span><span class="o">(</span><span class="n">csp</span> <span class="o">-&gt;</span> <span class="n">csp</span>
+        <span class="o">.</span><span class="na">policyDirectives</span><span class="o">(</span><span class="s">"frame-ancestors 'self' capacitor://localhost http://localhost https://localhost"</span><span class="o">)</span>
+    <span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div></div>
+
+<p><strong>의미:</strong></p>
+
+<ul>
+  <li>현대적인 보안 헤더 (X-Frame-Options의 후속)</li>
+  <li>더 세밀한 제어 가능</li>
+  <li>특정 origin만 명시적으로 허용</li>
+</ul>
+
+<h2 id="결론">결론</h2>
+
+<ul>
+  <li>Capacitor로 앱을 빌드한 다음에 웹에서는 발생하지 않는 에러들이 생겨서 찾아보고, 공부하고, 해결하는 재미가 있다.</li>
+  <li>이제 통화연결까지 앱으로 수행할 수 있게 되었다!!</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
   <li>Capacitor로 빌드한 React 앱에서 카카오와 구글 네이티브 로그인을 구현하는 방법을 정리해 보았다.</li>
   <li>관련되서 정리되어있는게 없는것 같아서.. 내가 나중에 찾아볼 수 있게 일단 문서를 만들어보았다.</li>
   <li>웹에서는 일반 OAuth 리다이렉트를 사용하지만, 모바일 앱에서는 <strong>네이티브 SDK를 직접 사용</strong>하는 방식으로 구현했다. (kakao, google)
@@ -568,7 +821,7 @@ Content-Type: application/json
   <li><a href="https://developers.kakao.com/docs/latest/ko/flutter/getting-started#project-scheme">Kakao developer</a></li>
   <li><a href="https://github.com/nerdFrenzs/capacitor-kakao-login-plugin">capacitor-kakao-login-plugin</a></li>
   <li><a href="https://github.com/CodetrixStudio/CapacitorGoogleAuth">@codetrix-studio/capacitor-google-auth</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-17T03:32:40+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
   <li>지난 글에서는 Capacitor로 Android, iOS 앱 빌드하는 방법에 대해 다뤘다.</li>
   <li>이번 글에서는 Capacitor로 빌드한 Android 앱에서 로그인 연동을 하는 방법에 대해 다뤄보겠다.</li>
   <li>특히 CORS 에러 해결에 대해 다뤄보겠다..
@@ -747,7 +1000,7 @@ Android: http://localhost</p>
   <li><a href="https://stackoverflow.com/questions/75192411/cors-in-capacitor-for-android">StackOverFlow가 짱이야</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/http">Capacitor HTTP Plugin 공식 문서</a></li>
   <li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS">MDN - CORS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-17T03:32:40+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
   <li>“친구하자”를 웹으로 MVP 완성을 하니, 이걸 앱으로 빌드해서 사용자들이 더 쉽게 사용할 수 있으면 좋겠다고 생각했다.</li>
   <li>원래는.. 개발자의 입장으로 링크로 이동하는 방식이 쉬울꺼라고 생각했는데, 막상 사용자에게 링크를 보내주니까 어려움을 토로하거나 방식에 의문을 가지는 사람들이 많았다..
     <ul>
@@ -856,7 +1109,7 @@ npx cap run ios
 <p><br />
 다음에 android studio 업데이트를 좀 하고.. (안한지 넘 오래됌..) 아래와 같이 빌드 성공!</p>
 
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-17T03:32:40+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
   <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
   <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
   <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
@@ -1250,7 +1503,7 @@ while (it.hasNext()) {
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-17T03:32:40+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
   <li><a href="#1-문제-발견">1. 문제 발견</a></li>
   <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
   <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
@@ -1648,7 +1901,7 @@ Row was updated or deleted by another transaction
   <li><a href="https://docs.jboss.org/hibernate/orm/6.0/userguide/html_single/Hibernate_User_Guide.html">Hibernate User Guide - LazyInitializationException</a></li>
   <li><a href="https://www.baeldung.com/jpa-optimistic-locking">Baeldung - JPA Optimistic Locking</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring Framework - Async Execution</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-17T03:32:40+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
   <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
   <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
   <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
@@ -1832,7 +2085,7 @@ Cookie: refreshToken=...
       <li>JWT 검증</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-17T03:32:40+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인-분석">원인 분석</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -2054,7 +2307,7 @@ Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단
 
 <ul>
   <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">MDN: SamSite cookies</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-17T03:32:40+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인">원인</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -2183,7 +2436,7 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">FLUSHDB</code>: 현재 선택된 데이터베이스의 키만 삭제</li>
   <li>Redis는 기본적으로 데이터베이스 0~15번까지 16개를 제공</li>
   <li>운영환경에서는 절대 <code class="language-plaintext highlighter-rouge">FLUSHALL</code>을 실행하면 안됨!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-17T03:32:40+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
   <li><a href="#-1-webrtc의-정의">1. WebRTC의 정의</a></li>
   <li><a href="#-2-webrtc의-주요-구성-요소">2. WebRTC의 주요 구성 요소</a></li>
   <li><a href="#️-3-동작-흐름-signaling-포함">3. 동작 흐름 (Signaling 포함)</a></li>
@@ -2357,125 +2610,4 @@ docker-compose up -d
   <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry><entry><title type="html">[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들</title><link href="https://nan0silver.github.io/java/2025-09-12-stream/" rel="alternate" type="text/html" title="[JAVA] Java 알고리즘 문제 풀이 시, 자주 쓰이는 Steam API 함수들" /><published>2025-09-12T00:00:00+00:00</published><updated>2025-11-17T03:32:40+00:00</updated><id>https://nan0silver.github.io/java/stream</id><content type="html" xml:base="https://nan0silver.github.io/java/2025-09-12-stream/"><![CDATA[<ul>
-  <li><a href="#1-배열--스트림">1. 배열 → 스트림</a></li>
-  <li><a href="#2-형-변환-mapping">2. 형 변환 (Mapping)</a></li>
-  <li><a href="#3-집계-연산-aggregation">3. 집계 연산 (Aggregation)</a></li>
-  <li><a href="#4-정렬--수집">4. 정렬 / 수집</a></li>
-  <li><a href="#5-foreach--joining">5. forEach / joining</a></li>
-</ul>
-
-<hr />
-
-<h1 id="자주-쓰이는-stream-api-함수들">자주 쓰이는 Stream API 함수들</h1>
-
-<h3 id="1-배열--스트림">1. <strong>배열 → 스트림</strong></h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Arrays.stream(arr)</code> : <code class="language-plaintext highlighter-rouge">int[]</code>, <code class="language-plaintext highlighter-rouge">double[]</code>, <code class="language-plaintext highlighter-rouge">long[]</code> 같은 <strong>primitive 배열</strong>을 스트림으로 변환</li>
-  <li><code class="language-plaintext highlighter-rouge">Stream.of(array)</code> : <code class="language-plaintext highlighter-rouge">String[]</code> 같은 <strong>객체 배열</strong>을 스트림으로 변환</li>
-</ul>
-
-<p>예:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">};</span>
-<span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">arr</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-
-<span class="nc">String</span><span class="o">[]</span> <span class="n">strArr</span> <span class="o">=</span> <span class="o">{</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">};</span>
-<span class="nc">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">strArr</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="2-형-변환-mapping">2. <strong>형 변환 (Mapping)</strong></h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">mapToInt(Integer::parseInt)</code> : 문자열 스트림 → 정수 스트림</li>
-  <li><code class="language-plaintext highlighter-rouge">map(String::length)</code> : 문자열 스트림 → 문자열 길이 스트림</li>
-</ul>
-
-<p>예:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">};</span>
-<span class="kt">int</span><span class="o">[]</span> <span class="n">intArr</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">arr</span><span class="o">).</span><span class="na">mapToInt</span><span class="o">(</span><span class="nl">Integer:</span><span class="o">:</span><span class="n">parseInt</span><span class="o">).</span><span class="na">toArray</span><span class="o">();</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="3-집계-연산-aggregation">3. <strong>집계 연산 (Aggregation)</strong></h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">.min().getAsInt()</code> / <code class="language-plaintext highlighter-rouge">.max().getAsInt()</code> : 최솟값 / 최댓값</li>
-  <li><code class="language-plaintext highlighter-rouge">.sum()</code> : 합계</li>
-  <li><code class="language-plaintext highlighter-rouge">.average().getAsDouble()</code> : 평균</li>
-</ul>
-
-<p>예:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">};</span>
-<span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">arr</span><span class="o">).</span><span class="na">min</span><span class="o">().</span><span class="na">getAsInt</span><span class="o">();</span>
-<span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">arr</span><span class="o">).</span><span class="na">max</span><span class="o">().</span><span class="na">getAsInt</span><span class="o">();</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="4-정렬--수집">4. <strong>정렬 / 수집</strong></h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">.sorted()</code> : 정렬</li>
-  <li><code class="language-plaintext highlighter-rouge">.toArray()</code> : 배열로 다시 변환</li>
-  <li><code class="language-plaintext highlighter-rouge">.collect(Collectors.toList())</code> : 리스트로 변환</li>
-</ul>
-
-<p>예:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="s">"3"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">,</span> <span class="s">"2"</span><span class="o">};</span>
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">arr</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Integer:</span><span class="o">:</span><span class="n">parseInt</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">sorted</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="5-foreach--joining">5. <strong>forEach / joining</strong></h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">.forEach(System.out::println)</code> : 요소 출력</li>
-  <li><code class="language-plaintext highlighter-rouge">.collect(Collectors.joining(" "))</code> : 문자열 합치기</li>
-</ul>
-
-<p>예:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="s">"a"</span><span class="o">,</span> <span class="s">"b"</span><span class="o">,</span> <span class="s">"c"</span><span class="o">};</span>
-<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">arr</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">(</span><span class="s">", "</span><span class="o">));</span>  <span class="c1">// "a, b, c"</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="-이-문제를-stream으로-풀면-이렇게도-가능">🎯 이 문제를 Stream으로 풀면 이렇게도 가능</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">String</span> <span class="nf">solution</span><span class="o">(</span><span class="nc">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">IntSummaryStatistics</span> <span class="n">stats</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">))</span>
-            <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="nl">Integer:</span><span class="o">:</span><span class="n">parseInt</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">summaryStatistics</span><span class="o">();</span>  <span class="c1">// count, min, max, sum, average 한번에</span>
-
-    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="na">getMin</span><span class="o">()</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="na">getMax</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>👉 <code class="language-plaintext highlighter-rouge">IntSummaryStatistics</code>를 쓰면 <strong>최소값/최대값/합계/평균</strong>을 다 구할 수 있어서 깔끔!</p>
-
-<hr />
-
-<p>💡 정리
-비슷한 문제에서 빠르게 풀고 싶으면 최소한 아래 3개는 꼭 익혀두자:</p>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">mapToInt(Integer::parseInt)</code></li>
-  <li><code class="language-plaintext highlighter-rouge">min() / max() / sum() / average()</code></li>
-  <li><code class="language-plaintext highlighter-rouge">summaryStatistics()</code></li>
-</ol>
-
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="java" /><summary type="html"><![CDATA[알고리즘 문제풀이 시, 코드를 예쁘고 빠르게 만들어주는 Steam API를 정리해보았습니다.]]></summary></entry></feed>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry></feed>

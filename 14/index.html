@@ -45,7 +45,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-11-17T03:32:40+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/14/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-11-19T05:22:17+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/14/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -185,7 +185,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2025-11-17T03:33:27+00:00',
+    INDEX_KEY: 'index--2025-11-19T05:23:01+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -564,6 +564,95 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 
 
+<article id="post-java-variable" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/java/2024-11-20-variable/" class="flip-title">
+        [JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2024-11-20T00:00:00+00:00">20 Nov 2024</time> in <a href="/java/" class="flip-title">JAVA</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 19 Nov 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-11-19T05:22:17+00:00">2025-11-19</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      static, 지역변수, 레퍼런스 변수 등 JAVA의 변수의 종류와 메모리 모델에 대해 알아본다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#static-변수">static 변수</a>
+    <ul>
+      <li><a href="#method-area">Method Area</a></li>
+    </ul>
+  </li>
+  <li><a href="#지역변수--레퍼런스-변수">지역변수 &amp; 레퍼런스 변수</a>
+    <ul>
+      <li><a href="#지역변수-local-variable">지역 변수</a></li>
+      <li><a href="#레퍼런스-변수-reference-variable">레퍼런스 변수</a></li>
+    </ul>
+  </li>
+  <li><a href="#java-변수-비교-static-지역-변수-레퍼런스-변수의-특징과-차이점">JAVA 변수들의 특징 및 차이점 요약</a>
+    <ul>
+      <li><a href="#static-변수와-지역-변수-비교">static 변수와 지역 변수 비교</a></li>
+      <li><a href="#static-변수와-레퍼런스-변수-비교">static 변수와 레퍼런스 변수 비교</a></li>
+      <li><a href="#지역-변수와-레퍼런스-변수-비교">지역 변수와 레퍼런스 변수 비교</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/java/2024-11-20-variable/">[JAVA] JAVA 메모리 모델과 변수의 종류 : static, 지역변수, 레퍼런스 변수 이해하기</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-java-java17" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -584,10 +673,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Nov 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 19 Nov 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-11-17T03:32:40+00:00">2025-11-17</time>
+              <time datetime="2025-11-19T05:22:17+00:00">2025-11-19</time>
             </span>
           
         
@@ -661,10 +750,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Nov 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 19 Nov 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-11-17T03:32:40+00:00">2025-11-17</time>
+              <time datetime="2025-11-19T05:22:17+00:00">2025-11-19</time>
             </span>
           
         
@@ -734,10 +823,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Nov 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 19 Nov 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-11-17T03:32:40+00:00">2025-11-17</time>
+              <time datetime="2025-11-19T05:22:17+00:00">2025-11-19</time>
             </span>
           
         
@@ -812,10 +901,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Nov 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 19 Nov 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-11-17T03:32:40+00:00">2025-11-17</time>
+              <time datetime="2025-11-19T05:22:17+00:00">2025-11-19</time>
             </span>
           
         
@@ -882,10 +971,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Nov 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 19 Nov 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-11-17T03:32:40+00:00">2025-11-17</time>
+              <time datetime="2025-11-19T05:22:17+00:00">2025-11-19</time>
             </span>
           
         
@@ -960,10 +1049,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Nov 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 19 Nov 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-11-17T03:32:40+00:00">2025-11-17</time>
+              <time datetime="2025-11-19T05:22:17+00:00">2025-11-19</time>
             </span>
           
         
@@ -1034,10 +1123,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Nov 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 19 Nov 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-11-17T03:32:40+00:00">2025-11-17</time>
+              <time datetime="2025-11-19T05:22:17+00:00">2025-11-19</time>
             </span>
           
         
@@ -1110,10 +1199,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Nov 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 19 Nov 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-11-17T03:32:40+00:00">2025-11-17</time>
+              <time datetime="2025-11-19T05:22:17+00:00">2025-11-19</time>
             </span>
           
         
@@ -1180,10 +1269,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Nov 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 19 Nov 2025">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-11-17T03:32:40+00:00">2025-11-17</time>
+              <time datetime="2025-11-19T05:22:17+00:00">2025-11-19</time>
             </span>
           
         
@@ -1222,80 +1311,6 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/algorithm/2024-07-12-day5/">[Algorithm] 깊이 우선 탐색</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-algorithm-day4" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/algorithm/2024-07-11-day4/" class="flip-title">
-        [Algorithm] 재귀와 정렬
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2024-07-11T00:00:00+00:00">11 Jul 2024</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 17 Nov 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-11-17T03:32:40+00:00">2025-11-17</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      Elice Algorithm Code Challenge - Day 4 (재귀와 정렬)
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>목차</p>
-<ol>
-  <li><a href="#재귀">재귀</a></li>
-  <li><a href="#정렬">정렬</a></li>
-</ol>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/algorithm/2024-07-11-day4/">[Algorithm] 재귀와 정렬</a>
 
       </p>
     </footer>
