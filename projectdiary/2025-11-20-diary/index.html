@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자] Capacitor 앱 Custom Splash Screen 구현하기 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다." />
+<meta property="og:description" content="Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-11-20T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-11-21T01:48:45+00:00","datePublished":"2025-11-20T00:00:00+00:00","description":"Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.","headline":"[친구하자] Capacitor 앱 Custom Splash Screen 구현하기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-11-20-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-11-20-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-11-21T01:49:31+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자] Capacitor 앱 Custom Splash Screen 구현하기",
+    "description": "Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2025-11-20T00:00:00+00:00",
+    "dateModified": "2025-11-21T01:48:45+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2025-11-20-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자] Capacitor 앱 Custom Splash Screen 구현하기",
+        "item": "https://nan0silver.github.io/projectdiary/2025-11-20-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-11-20-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자] Capacitor 앱 Custom Splash Screen 구현하기
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-11-20T00:00:00+00:00">20 Nov 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 21 Nov 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-11-21T01:48:45+00:00">2025-11-21</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li>이번 포스팅에선 Capacitor로 빌드한 앱에서 여러 아이콘이 순차적으로 표시되는 커스텀 스플래시 스크린을 구현하는 방법을 정리해 보았다..</li>
+  <li>왜 Custom splash screen이 필요했나?
+    <ul>
+      <li>Capacitor의 기본 splash screen은 단일 정적 이미지만 지원한다.<a href="https://capacitorjs.com/docs/apis/splash-screen">🔗링크</a></li>
+      <li>나는 여러 아이콘을 순차적으로 보여주는 애니메이션을 구현하고 싶어 React 컴포넌트로 직접 구현하였다!</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="목차">목차</h2>
+
+<ul>
+  <li><a href="#1-필요한-패키지-설치">1. 필요한 패키지 설치</a></li>
+  <li><a href="#2-capacitor-설정">2. Capacitor 설정</a></li>
+  <li><a href="#3-커스텀-스플래시-스크린-컴포넌트-생성">3. 커스텀 스플래시 스크린 컴포넌트 생성</a></li>
+  <li><a href="#4-apptsx에-통합">4. App.tsx에 통합</a></li>
+  <li><a href="#핵심-구현-포인트">핵심 구현 포인트</a></li>
+  <li><a href="#주의사항">주의사항</a></li>
+  <li><a href="#참고-문헌">참고 문헌</a></li>
+</ul>
+
+<hr />
+
+<h2 id="1-필요한-패키지-설치">1. 필요한 패키지 설치</h2>
+
+<p>먼저 스플래시 스크린 관련 패키지를 설치하자.</p>
+
+<blockquote>
+  <p>나는 pnpm을 사용하고 있었으므로 pnpm으로 설치했다.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pnpm add @capacitor/splash-screen
+pnpm add <span class="nt">-D</span> @capacitor/assets
+</code></pre></div></div>
+
+<h2 id="2-capacitor-설정">2. Capacitor 설정</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">capacitor.config.ts</code> 파일에 스플래시 스크린 설정을 추가하자.</li>
+  <li>‼️ 커스텀 스플래시를 사용하므로 네이티브 스플래시는 최소화!</li>
+</ul>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// &lt;reference types="@capacitor/splash-screen" /&gt;</span>
+
+<span class="k">import</span> <span class="kd">type</span> <span class="p">{</span> <span class="nx">CapacitorConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@capacitor/cli</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">config</span><span class="p">:</span> <span class="nx">CapacitorConfig</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// ... 기타 설정</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">SplashScreen</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">launchShowDuration</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 커스텀 스플래시를 사용하므로 0으로 설정</span>
+      <span class="na">launchAutoHide</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// 자동으로 숨길지 여부</span>
+      <span class="na">launchFadeOutDuration</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 페이드 아웃 애니메이션 시간 (커스텀 스플래시에서 처리)</span>
+      <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ffffff</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 배경색 (hex 형식) - 커스텀 스플래시와 동일하게 설정</span>
+      <span class="c1">// ... 기타 설정</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="3-커스텀-스플래시-스크린-컴포넌트-생성">3. 커스텀 스플래시 스크린 컴포넌트 생성</h2>
+
+<p><code class="language-plaintext highlighter-rouge">client/components/CustomSplashScreen.tsx</code> 파일을 생성한다.</p>
+
+<h3 id="props-정의">Props 정의</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">CustomSplashScreenProps</span> <span class="p">{</span>
+  <span class="nl">onComplete</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span> <span class="c1">// 스플래시 완료 시 콜백</span>
+  <span class="nl">icons</span><span class="p">?:</span> <span class="kr">string</span><span class="p">[];</span> <span class="c1">// 표시할 아이콘 배열</span>
+  <span class="nl">iconDuration</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span> <span class="c1">// 각 아이콘 표시 시간(ms)</span>
+  <span class="nl">minDisplayDuration</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span> <span class="c1">// 최소 표시 시간(ms)</span>
+  <span class="nl">animationType</span><span class="p">?:</span> <span class="dl">"</span><span class="s2">slide-up</span><span class="dl">"</span> <span class="o">|</span> <span class="dl">"</span><span class="s2">fade</span><span class="dl">"</span> <span class="o">|</span> <span class="dl">"</span><span class="s2">none</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nl">backgroundColor</span><span class="p">?:</span> <span class="kr">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="핵심-로직">핵심 로직</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">CustomSplashScreen</span> <span class="o">=</span> <span class="p">({</span>
+  <span class="nx">onComplete</span><span class="p">,</span>
+  <span class="nx">icons</span> <span class="o">=</span> <span class="p">[],</span>
+  <span class="nx">iconDuration</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
+  <span class="nx">minDisplayDuration</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span>
+  <span class="nx">animationType</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">slide-up</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">backgroundColor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">#ffffff</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}:</span> <span class="nx">CustomSplashScreenProps</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">currentIconIndex</span><span class="p">,</span> <span class="nx">setCurrentIconIndex</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">isVisible</span><span class="p">,</span> <span class="nx">setIsVisible</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+  <span class="c1">// 1. 네이티브 스플래시 스크린 즉시 숨기기</span>
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">hideNativeSplash</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="k">await</span> <span class="nx">SplashScreen</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 웹 환경에서는 에러가 발생할 수 있으므로 무시</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+    <span class="nx">hideNativeSplash</span><span class="p">();</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="c1">// 2. 아이콘 순차 표시 로직</span>
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">icons</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setIsVisible</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+        <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">onComplete</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+      <span class="p">},</span> <span class="nx">minDisplayDuration</span><span class="p">);</span>
+      <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 아이콘 전환 인터벌</span>
+    <span class="kd">const</span> <span class="nx">iconInterval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">setCurrentIconIndex</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">prev</span> <span class="o">&lt;</span> <span class="nx">icons</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">prev</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">prev</span><span class="p">;</span>
+      <span class="p">});</span>
+    <span class="p">},</span> <span class="nx">iconDuration</span><span class="p">);</span>
+
+    <span class="c1">// 총 표시 시간 계산</span>
+    <span class="kd">const</span> <span class="nx">totalAnimationDuration</span> <span class="o">=</span> <span class="nx">icons</span><span class="p">.</span><span class="nx">length</span> <span class="o">*</span> <span class="nx">iconDuration</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">actualDuration</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">totalAnimationDuration</span><span class="p">,</span> <span class="nx">minDisplayDuration</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">completeTimer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">setIsVisible</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">onComplete</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+    <span class="p">},</span> <span class="nx">actualDuration</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">iconInterval</span><span class="p">);</span>
+      <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">completeTimer</span><span class="p">);</span>
+    <span class="p">};</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">icons</span><span class="p">,</span> <span class="nx">iconDuration</span><span class="p">,</span> <span class="nx">minDisplayDuration</span><span class="p">,</span> <span class="nx">onComplete</span><span class="p">]);</span>
+
+  <span class="c1">// ... 렌더링 로직</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>아이콘 슬라이드 애니메이션과 텍스트 추가 등 개인의 디자인에 맞게 React 코드를 수정해서 꾸며주면 된다!!</li>
+</ul>
+
+<h2 id="4-apptsx에-통합">4. App.tsx에 통합</h2>
+
+<p>메인 앱 컴포넌트에 커스텀 스플래시 스크린을 통합합니다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">CustomSplashScreen</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./components/CustomSplashScreen</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">AppRoutes</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">showSplash</span><span class="p">,</span> <span class="nx">setShowSplash</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+  <span class="c1">// 스플래시 스크린에 표시할 아이콘들</span>
+  <span class="kd">const</span> <span class="nx">splashIcons</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">/splash-icons/icon1.png</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">/splash-icons/icon2.png</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">/splash-icons/icon3.png</span><span class="dl">"</span><span class="p">,</span>
+    <span class="c1">// ... 더 많은 아이콘</span>
+  <span class="p">];</span>
+
+  <span class="kd">const</span> <span class="nx">handleSplashComplete</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setShowSplash</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">showSplash</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">CustomSplashScreen</span>
+        <span class="nx">onComplete</span><span class="o">=</span><span class="p">{</span><span class="nx">handleSplashComplete</span><span class="p">}</span>
+        <span class="nx">icons</span><span class="o">=</span><span class="p">{</span><span class="nx">splashIcons</span><span class="p">}</span>
+        <span class="nx">iconDuration</span><span class="o">=</span><span class="p">{</span><span class="mi">400</span><span class="p">}</span>
+        <span class="nx">minDisplayDuration</span><span class="o">=</span><span class="p">{</span><span class="mi">2000</span><span class="p">}</span>
+        <span class="nx">animationType</span><span class="o">=</span><span class="dl">"</span><span class="s2">slide-up</span><span class="dl">"</span>
+      <span class="o">/&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// ... 나머지 앱 로직</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="핵심-구현-포인트">핵심 구현 포인트</h2>
+
+<h3 id="1-네이티브-스플래시와-커스텀-스플래시-분리">1. 네이티브 스플래시와 커스텀 스플래시 분리</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">launchShowDuration: 0</code>으로 설정하여 네이티브 스플래시를 즉시 숨김</li>
+  <li><code class="language-plaintext highlighter-rouge">SplashScreen.hide()</code>를 컴포넌트 마운트 시 호출</li>
+</ul>
+
+<h3 id="2-텍스트-깜빡임-방지">2. 텍스트 깜빡임 방지</h3>
+
+<p>아이콘과 텍스트를 별도의 <code class="language-plaintext highlighter-rouge">div</code>로 렌더링하여 아이콘이 변경될 때 텍스트가 깜빡이지 않도록 구현</p>
+
+<h3 id="3-부드러운-애니메이션">3. 부드러운 애니메이션</h3>
+
+<p>CSS <code class="language-plaintext highlighter-rouge">transition</code>과 <code class="language-plaintext highlighter-rouge">cubic-bezier</code> 타이밍 함수를 사용하여 자연스러운 전환 효과 구현</p>
+
+<h3 id="4-최소-표시-시간-보장">4. 최소 표시 시간 보장</h3>
+
+<p><code class="language-plaintext highlighter-rouge">minDisplayDuration</code>을 설정하여 애니메이션이 너무 빨리 끝나도 최소 시간은 보장</p>
+
+<h2 id="이미지-준비">이미지 준비</h2>
+
+<p>아이콘 이미지는 <code class="language-plaintext highlighter-rouge">public/splash-icons/</code> 디렉토리에 저장합니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public/
+  splash-icons/
+    icon1.png
+    icon2.png
+    icon3.png
+</code></pre></div></div>
+
+<h2 id="주의사항">주의사항</h2>
+
+<ul>
+  <li>이미지는 반드시 <code class="language-plaintext highlighter-rouge">public</code> 폴더에 저장 (빌드 시 자동 포함)</li>
+  <li>웹 환경에서는 <code class="language-plaintext highlighter-rouge">SplashScreen.hide()</code>가 에러를 발생시킬 수 있으므로 try-catch 처리 필요</li>
+  <li>Android 12 이상에서는 네이티브 스플래시 API가 강제 적용되므로 초기 0.5초는 네이티브 스플래시가 보일 수 있음</li>
+</ul>
+
+<h2 id="참고-문헌">참고 문헌</h2>
+
+<ul>
+  <li><a href="https://github.com/ionic-team/capacitor-assets">Capacitor assets github page</a></li>
+  <li><a href="https://capacitorjs.com/docs/apis/splash-screen">@capacitor/splash-screen DOCS</a></li>
+  <li><a href="https://capacitorjs.com/docs/guides/splash-screens-and-icons">Splash Screens and Icons DOCS</a></li>
+</ul>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-11-17-diary/" class="flip-title"><span>[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</span></a>  <time class="faded fine" datetime="2025-11-17T00:00:00+00:00">17 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-13-diary/" class="flip-title"><span>[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</span></a>  <time class="faded fine" datetime="2025-11-13T00:00:00+00:00">13 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-10-diary/" class="flip-title"><span>[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</span></a>  <time class="faded fine" datetime="2025-11-10T00:00:00+00:00">10 Nov 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (19)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (63)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

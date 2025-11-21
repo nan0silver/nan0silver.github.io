@@ -1,7 +1,237 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-19T05:23:01+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-21T01:49:31+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-11-21T01:48:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
+  <li>이번 포스팅에선 Capacitor로 빌드한 앱에서 여러 아이콘이 순차적으로 표시되는 커스텀 스플래시 스크린을 구현하는 방법을 정리해 보았다..</li>
+  <li>왜 Custom splash screen이 필요했나?
+    <ul>
+      <li>Capacitor의 기본 splash screen은 단일 정적 이미지만 지원한다.<a href="https://capacitorjs.com/docs/apis/splash-screen">🔗링크</a></li>
+      <li>나는 여러 아이콘을 순차적으로 보여주는 애니메이션을 구현하고 싶어 React 컴포넌트로 직접 구현하였다!</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="목차">목차</h2>
+
+<ul>
+  <li><a href="#1-필요한-패키지-설치">1. 필요한 패키지 설치</a></li>
+  <li><a href="#2-capacitor-설정">2. Capacitor 설정</a></li>
+  <li><a href="#3-커스텀-스플래시-스크린-컴포넌트-생성">3. 커스텀 스플래시 스크린 컴포넌트 생성</a></li>
+  <li><a href="#4-apptsx에-통합">4. App.tsx에 통합</a></li>
+  <li><a href="#핵심-구현-포인트">핵심 구현 포인트</a></li>
+  <li><a href="#주의사항">주의사항</a></li>
+  <li><a href="#참고-문헌">참고 문헌</a></li>
+</ul>
+
+<hr />
+
+<h2 id="1-필요한-패키지-설치">1. 필요한 패키지 설치</h2>
+
+<p>먼저 스플래시 스크린 관련 패키지를 설치하자.</p>
+
+<blockquote>
+  <p>나는 pnpm을 사용하고 있었으므로 pnpm으로 설치했다.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pnpm add @capacitor/splash-screen
+pnpm add <span class="nt">-D</span> @capacitor/assets
+</code></pre></div></div>
+
+<h2 id="2-capacitor-설정">2. Capacitor 설정</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">capacitor.config.ts</code> 파일에 스플래시 스크린 설정을 추가하자.</li>
+  <li>‼️ 커스텀 스플래시를 사용하므로 네이티브 스플래시는 최소화!</li>
+</ul>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// &lt;reference types="@capacitor/splash-screen" /&gt;</span>
+
+<span class="k">import</span> <span class="kd">type</span> <span class="p">{</span> <span class="nx">CapacitorConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@capacitor/cli</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">config</span><span class="p">:</span> <span class="nx">CapacitorConfig</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// ... 기타 설정</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">SplashScreen</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">launchShowDuration</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 커스텀 스플래시를 사용하므로 0으로 설정</span>
+      <span class="na">launchAutoHide</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// 자동으로 숨길지 여부</span>
+      <span class="na">launchFadeOutDuration</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 페이드 아웃 애니메이션 시간 (커스텀 스플래시에서 처리)</span>
+      <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ffffff</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 배경색 (hex 형식) - 커스텀 스플래시와 동일하게 설정</span>
+      <span class="c1">// ... 기타 설정</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="3-커스텀-스플래시-스크린-컴포넌트-생성">3. 커스텀 스플래시 스크린 컴포넌트 생성</h2>
+
+<p><code class="language-plaintext highlighter-rouge">client/components/CustomSplashScreen.tsx</code> 파일을 생성한다.</p>
+
+<h3 id="props-정의">Props 정의</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">CustomSplashScreenProps</span> <span class="p">{</span>
+  <span class="nl">onComplete</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span> <span class="c1">// 스플래시 완료 시 콜백</span>
+  <span class="nl">icons</span><span class="p">?:</span> <span class="kr">string</span><span class="p">[];</span> <span class="c1">// 표시할 아이콘 배열</span>
+  <span class="nl">iconDuration</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span> <span class="c1">// 각 아이콘 표시 시간(ms)</span>
+  <span class="nl">minDisplayDuration</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span> <span class="c1">// 최소 표시 시간(ms)</span>
+  <span class="nl">animationType</span><span class="p">?:</span> <span class="dl">"</span><span class="s2">slide-up</span><span class="dl">"</span> <span class="o">|</span> <span class="dl">"</span><span class="s2">fade</span><span class="dl">"</span> <span class="o">|</span> <span class="dl">"</span><span class="s2">none</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nl">backgroundColor</span><span class="p">?:</span> <span class="kr">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="핵심-로직">핵심 로직</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">CustomSplashScreen</span> <span class="o">=</span> <span class="p">({</span>
+  <span class="nx">onComplete</span><span class="p">,</span>
+  <span class="nx">icons</span> <span class="o">=</span> <span class="p">[],</span>
+  <span class="nx">iconDuration</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
+  <span class="nx">minDisplayDuration</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span>
+  <span class="nx">animationType</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">slide-up</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">backgroundColor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">#ffffff</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}:</span> <span class="nx">CustomSplashScreenProps</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">currentIconIndex</span><span class="p">,</span> <span class="nx">setCurrentIconIndex</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">isVisible</span><span class="p">,</span> <span class="nx">setIsVisible</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+  <span class="c1">// 1. 네이티브 스플래시 스크린 즉시 숨기기</span>
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">hideNativeSplash</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="k">await</span> <span class="nx">SplashScreen</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 웹 환경에서는 에러가 발생할 수 있으므로 무시</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+    <span class="nx">hideNativeSplash</span><span class="p">();</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="c1">// 2. 아이콘 순차 표시 로직</span>
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">icons</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setIsVisible</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+        <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">onComplete</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+      <span class="p">},</span> <span class="nx">minDisplayDuration</span><span class="p">);</span>
+      <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 아이콘 전환 인터벌</span>
+    <span class="kd">const</span> <span class="nx">iconInterval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">setCurrentIconIndex</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">prev</span> <span class="o">&lt;</span> <span class="nx">icons</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">prev</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">prev</span><span class="p">;</span>
+      <span class="p">});</span>
+    <span class="p">},</span> <span class="nx">iconDuration</span><span class="p">);</span>
+
+    <span class="c1">// 총 표시 시간 계산</span>
+    <span class="kd">const</span> <span class="nx">totalAnimationDuration</span> <span class="o">=</span> <span class="nx">icons</span><span class="p">.</span><span class="nx">length</span> <span class="o">*</span> <span class="nx">iconDuration</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">actualDuration</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">totalAnimationDuration</span><span class="p">,</span> <span class="nx">minDisplayDuration</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">completeTimer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">setIsVisible</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">onComplete</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+    <span class="p">},</span> <span class="nx">actualDuration</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">iconInterval</span><span class="p">);</span>
+      <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">completeTimer</span><span class="p">);</span>
+    <span class="p">};</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">icons</span><span class="p">,</span> <span class="nx">iconDuration</span><span class="p">,</span> <span class="nx">minDisplayDuration</span><span class="p">,</span> <span class="nx">onComplete</span><span class="p">]);</span>
+
+  <span class="c1">// ... 렌더링 로직</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>아이콘 슬라이드 애니메이션과 텍스트 추가 등 개인의 디자인에 맞게 React 코드를 수정해서 꾸며주면 된다!!</li>
+</ul>
+
+<h2 id="4-apptsx에-통합">4. App.tsx에 통합</h2>
+
+<p>메인 앱 컴포넌트에 커스텀 스플래시 스크린을 통합합니다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">CustomSplashScreen</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./components/CustomSplashScreen</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">AppRoutes</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">showSplash</span><span class="p">,</span> <span class="nx">setShowSplash</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+  <span class="c1">// 스플래시 스크린에 표시할 아이콘들</span>
+  <span class="kd">const</span> <span class="nx">splashIcons</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">/splash-icons/icon1.png</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">/splash-icons/icon2.png</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">/splash-icons/icon3.png</span><span class="dl">"</span><span class="p">,</span>
+    <span class="c1">// ... 더 많은 아이콘</span>
+  <span class="p">];</span>
+
+  <span class="kd">const</span> <span class="nx">handleSplashComplete</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setShowSplash</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">showSplash</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">CustomSplashScreen</span>
+        <span class="nx">onComplete</span><span class="o">=</span><span class="p">{</span><span class="nx">handleSplashComplete</span><span class="p">}</span>
+        <span class="nx">icons</span><span class="o">=</span><span class="p">{</span><span class="nx">splashIcons</span><span class="p">}</span>
+        <span class="nx">iconDuration</span><span class="o">=</span><span class="p">{</span><span class="mi">400</span><span class="p">}</span>
+        <span class="nx">minDisplayDuration</span><span class="o">=</span><span class="p">{</span><span class="mi">2000</span><span class="p">}</span>
+        <span class="nx">animationType</span><span class="o">=</span><span class="dl">"</span><span class="s2">slide-up</span><span class="dl">"</span>
+      <span class="o">/&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// ... 나머지 앱 로직</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="핵심-구현-포인트">핵심 구현 포인트</h2>
+
+<h3 id="1-네이티브-스플래시와-커스텀-스플래시-분리">1. 네이티브 스플래시와 커스텀 스플래시 분리</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">launchShowDuration: 0</code>으로 설정하여 네이티브 스플래시를 즉시 숨김</li>
+  <li><code class="language-plaintext highlighter-rouge">SplashScreen.hide()</code>를 컴포넌트 마운트 시 호출</li>
+</ul>
+
+<h3 id="2-텍스트-깜빡임-방지">2. 텍스트 깜빡임 방지</h3>
+
+<p>아이콘과 텍스트를 별도의 <code class="language-plaintext highlighter-rouge">div</code>로 렌더링하여 아이콘이 변경될 때 텍스트가 깜빡이지 않도록 구현</p>
+
+<h3 id="3-부드러운-애니메이션">3. 부드러운 애니메이션</h3>
+
+<p>CSS <code class="language-plaintext highlighter-rouge">transition</code>과 <code class="language-plaintext highlighter-rouge">cubic-bezier</code> 타이밍 함수를 사용하여 자연스러운 전환 효과 구현</p>
+
+<h3 id="4-최소-표시-시간-보장">4. 최소 표시 시간 보장</h3>
+
+<p><code class="language-plaintext highlighter-rouge">minDisplayDuration</code>을 설정하여 애니메이션이 너무 빨리 끝나도 최소 시간은 보장</p>
+
+<h2 id="이미지-준비">이미지 준비</h2>
+
+<p>아이콘 이미지는 <code class="language-plaintext highlighter-rouge">public/splash-icons/</code> 디렉토리에 저장합니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public/
+  splash-icons/
+    icon1.png
+    icon2.png
+    icon3.png
+</code></pre></div></div>
+
+<h2 id="주의사항">주의사항</h2>
+
+<ul>
+  <li>이미지는 반드시 <code class="language-plaintext highlighter-rouge">public</code> 폴더에 저장 (빌드 시 자동 포함)</li>
+  <li>웹 환경에서는 <code class="language-plaintext highlighter-rouge">SplashScreen.hide()</code>가 에러를 발생시킬 수 있으므로 try-catch 처리 필요</li>
+  <li>Android 12 이상에서는 네이티브 스플래시 API가 강제 적용되므로 초기 0.5초는 네이티브 스플래시가 보일 수 있음</li>
+</ul>
+
+<h2 id="참고-문헌">참고 문헌</h2>
+
+<ul>
+  <li><a href="https://github.com/ionic-team/capacitor-assets">Capacitor assets github page</a></li>
+  <li><a href="https://capacitorjs.com/docs/apis/splash-screen">@capacitor/splash-screen DOCS</a></li>
+  <li><a href="https://capacitorjs.com/docs/guides/splash-screens-and-icons">Splash Screens and Icons DOCS</a></li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2025-11-21T01:48:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 X-Frame-Options 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
@@ -254,7 +484,7 @@ WebView는 브라우저 엔진의 특수 모드
 <ul>
   <li>Capacitor로 앱을 빌드한 다음에 웹에서는 발생하지 않는 에러들이 생겨서 찾아보고, 공부하고, 해결하는 재미가 있다.</li>
   <li>이제 통화연결까지 앱으로 수행할 수 있게 되었다!!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-11-21T01:48:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
   <li>Capacitor로 빌드한 React 앱에서 카카오와 구글 네이티브 로그인을 구현하는 방법을 정리해 보았다.</li>
   <li>관련되서 정리되어있는게 없는것 같아서.. 내가 나중에 찾아볼 수 있게 일단 문서를 만들어보았다.</li>
   <li>웹에서는 일반 OAuth 리다이렉트를 사용하지만, 모바일 앱에서는 <strong>네이티브 SDK를 직접 사용</strong>하는 방식으로 구현했다. (kakao, google)
@@ -821,7 +1051,7 @@ Content-Type: application/json
   <li><a href="https://developers.kakao.com/docs/latest/ko/flutter/getting-started#project-scheme">Kakao developer</a></li>
   <li><a href="https://github.com/nerdFrenzs/capacitor-kakao-login-plugin">capacitor-kakao-login-plugin</a></li>
   <li><a href="https://github.com/CodetrixStudio/CapacitorGoogleAuth">@codetrix-studio/capacitor-google-auth</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-21T01:48:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
   <li>지난 글에서는 Capacitor로 Android, iOS 앱 빌드하는 방법에 대해 다뤘다.</li>
   <li>이번 글에서는 Capacitor로 빌드한 Android 앱에서 로그인 연동을 하는 방법에 대해 다뤄보겠다.</li>
   <li>특히 CORS 에러 해결에 대해 다뤄보겠다..
@@ -1000,7 +1230,7 @@ Android: http://localhost</p>
   <li><a href="https://stackoverflow.com/questions/75192411/cors-in-capacitor-for-android">StackOverFlow가 짱이야</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/http">Capacitor HTTP Plugin 공식 문서</a></li>
   <li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS">MDN - CORS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-21T01:48:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
   <li>“친구하자”를 웹으로 MVP 완성을 하니, 이걸 앱으로 빌드해서 사용자들이 더 쉽게 사용할 수 있으면 좋겠다고 생각했다.</li>
   <li>원래는.. 개발자의 입장으로 링크로 이동하는 방식이 쉬울꺼라고 생각했는데, 막상 사용자에게 링크를 보내주니까 어려움을 토로하거나 방식에 의문을 가지는 사람들이 많았다..
     <ul>
@@ -1109,7 +1339,7 @@ npx cap run ios
 <p><br />
 다음에 android studio 업데이트를 좀 하고.. (안한지 넘 오래됌..) 아래와 같이 빌드 성공!</p>
 
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-21T01:48:45+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
   <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
   <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
   <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
@@ -1503,7 +1733,7 @@ while (it.hasNext()) {
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-21T01:48:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
   <li><a href="#1-문제-발견">1. 문제 발견</a></li>
   <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
   <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
@@ -1901,7 +2131,7 @@ Row was updated or deleted by another transaction
   <li><a href="https://docs.jboss.org/hibernate/orm/6.0/userguide/html_single/Hibernate_User_Guide.html">Hibernate User Guide - LazyInitializationException</a></li>
   <li><a href="https://www.baeldung.com/jpa-optimistic-locking">Baeldung - JPA Optimistic Locking</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring Framework - Async Execution</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-21T01:48:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
   <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
   <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
   <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
@@ -2085,7 +2315,7 @@ Cookie: refreshToken=...
       <li>JWT 검증</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-21T01:48:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인-분석">원인 분석</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -2307,7 +2537,7 @@ Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단
 
 <ul>
   <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">MDN: SamSite cookies</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry><entry><title type="html">[친구하자] Redis 데이터 초기화 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" rel="alternate" type="text/html" title="[친구하자] Redis 데이터 초기화 트러블 슈팅" /><published>2025-10-14T00:00:00+00:00</published><updated>2025-11-21T01:48:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-14-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#원인">원인</a></li>
   <li><a href="#해결-방법">해결방법</a></li>
@@ -2436,178 +2666,4 @@ docker-compose up -d
   <li><code class="language-plaintext highlighter-rouge">FLUSHDB</code>: 현재 선택된 데이터베이스의 키만 삭제</li>
   <li>Redis는 기본적으로 데이터베이스 0~15번까지 16개를 제공</li>
   <li>운영환경에서는 절대 <code class="language-plaintext highlighter-rouge">FLUSHALL</code>을 실행하면 안됨!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry><entry><title type="html">[친구하자] WebRTC란 무엇일까?</title><link href="https://nan0silver.github.io/projectdiary/2025-09-30-diary/" rel="alternate" type="text/html" title="[친구하자] WebRTC란 무엇일까?" /><published>2025-09-30T00:00:00+00:00</published><updated>2025-11-19T05:22:17+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-09-30-diary/"><![CDATA[<ul>
-  <li><a href="#-1-webrtc의-정의">1. WebRTC의 정의</a></li>
-  <li><a href="#-2-webrtc의-주요-구성-요소">2. WebRTC의 주요 구성 요소</a></li>
-  <li><a href="#️-3-동작-흐름-signaling-포함">3. 동작 흐름 (Signaling 포함)</a></li>
-  <li><a href="#-4-왜-agora를-사용하는가">4. 왜 Agora를 사용하는가</a></li>
-  <li><a href="#-5-보안-측면">5. 보안 측면</a></li>
-  <li><a href="#-6-오늘의-정리">6. 오늘의 정리</a></li>
-</ul>
-
-<hr />
-
-<h2 id="-1-webrtc의-정의">🧩 1. WebRTC의 정의</h2>
-
-<p><strong>WebRTC (Web Real-Time Communication)</strong>는
-웹 브라우저나 모바일 앱끼리 <strong>실시간 음성, 영상, 데이터</strong>를 직접 주고받을 수 있게 해주는 오픈소스 기술이다.
-즉, 중간 서버를 거치지 않고 <strong>클라이언트 간 P2P 통신</strong>을 가능하게 만든다.</p>
-
-<p>브라우저끼리 “전화기처럼” 연결된다고 생각하면 쉽다.
-별도 플러그인이나 설치 과정 없이 JavaScript API로 바로 통화 기능을 구현할 수 있다.</p>
-
-<hr />
-
-<h2 id="-2-webrtc의-주요-구성-요소">🌐 2. WebRTC의 주요 구성 요소</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>구성 요소</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>MediaStream (getUserMedia)</strong></td>
-      <td>사용자의 카메라, 마이크 데이터를 캡처하는 API</td>
-    </tr>
-    <tr>
-      <td><strong>RTCPeerConnection</strong></td>
-      <td>실제 P2P 연결을 담당. 네트워크 경로 설정, 코덱 협상, 암호화 등을 수행</td>
-    </tr>
-    <tr>
-      <td><strong>RTCDataChannel</strong></td>
-      <td>파일 전송, 채팅 등 실시간 데이터 교환용 채널</td>
-    </tr>
-    <tr>
-      <td><strong>ICE (Interactive Connectivity Establishment)</strong></td>
-      <td>NAT(공유기 등) 환경에서도 통신이 가능하도록 IP 후보 탐색 및 연결 시도</td>
-    </tr>
-    <tr>
-      <td><strong>STUN / TURN 서버</strong></td>
-      <td>STUN: 공용 IP 확인용 / TURN: 직접 연결이 안될 때 중계 서버 역할</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="️-3-동작-흐름-signaling-포함">🛰️ 3. 동작 흐름 (Signaling 포함)</h2>
-
-<ol>
-  <li>
-    <p><strong>Signaling 단계</strong></p>
-
-    <ul>
-      <li>두 클라이언트가 연결 정보를 교환 (SDP, ICE candidates 등)</li>
-      <li>이 단계는 WebRTC 외부에서 처리해야 하며, 보통 WebSocket, Socket.io, REST API 등을 사용</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>P2P 연결</strong></p>
-
-    <ul>
-      <li>서로의 연결 정보를 받은 뒤 <code class="language-plaintext highlighter-rouge">RTCPeerConnection</code>으로 직접 연결 시도</li>
-      <li>STUN 서버로 외부 IP 탐색, 필요 시 TURN 서버를 통한 중계</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>미디어 스트림 전송</strong></p>
-
-    <ul>
-      <li>연결이 완료되면 오디오/비디오/데이터 스트림이 실시간으로 교환됨</li>
-    </ul>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="️-4-왜-agora를-사용하는가">⚙️ 4. 왜 Agora를 사용하는가</h2>
-
-<p>WebRTC 자체는 “기술 표준”일 뿐, 실서비스에는 <strong>보완이 필요</strong>하다.
-예를 들어,</p>
-
-<ul>
-  <li>TURN 서버 트래픽 비용과 관리 부담</li>
-  <li>네트워크 불안정 시 끊김</li>
-  <li>다자간 통화 (SFU/Mesh 방식) 구현 복잡성</li>
-</ul>
-
-<p>이 때문에 Agora, Twilio, Daily 같은 <strong>WebRTC 기반 클라우드 SDK</strong>를 이용하면
-복잡한 signaling, TURN 운영, QoS 튜닝을 대신 처리해준다.</p>
-
-<p>👉 <strong>친구하자 서비스</strong>에서도 Agora를 이용해</p>
-
-<ul>
-  <li>빠른 1:1 매칭 통화</li>
-  <li>안정적인 통화 품질</li>
-  <li>통화 종료 후 감정분석 AI 연결</li>
-</ul>
-
-<p>까지 구현할 수 있다.</p>
-
-<blockquote>
-  <p>여러 SDK를 비교한 후, 가격 성능 서비스 부분에서 Agora를 선택했다.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="-5-보안-측면">🔐 5. 보안 측면</h2>
-
-<ul>
-  <li>모든 WebRTC 통신은 <strong>DTLS (Datagram Transport Layer Security)</strong> 로 암호화</li>
-  <li>미디어 스트림은 <strong>SRTP (Secure RTP)</strong> 로 암호화되어 안전하게 전송</li>
-  <li>HTTPS 환경에서만 동작 (브라우저 정책상 보안 채널 필수)</li>
-</ul>
-
-<hr />
-
-<h2 id="-6-오늘의-정리">💡 6. 오늘의 정리</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>키워드</th>
-      <th>요약</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>WebRTC</strong></td>
-      <td>브라우저 간 실시간 통신 기술</td>
-    </tr>
-    <tr>
-      <td><strong>Signaling</strong></td>
-      <td>SDP/ICE 교환을 위한 외부 과정</td>
-    </tr>
-    <tr>
-      <td><strong>STUN/TURN</strong></td>
-      <td>NAT 환경에서도 연결을 돕는 서버</td>
-    </tr>
-    <tr>
-      <td><strong>Agora</strong></td>
-      <td>WebRTC 기반 실시간 통화 SDK</td>
-    </tr>
-    <tr>
-      <td><strong>보안</strong></td>
-      <td>DTLS + SRTP 기반 암호화</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="️-7-개인-메모">✍️ 7. 개인 메모</h2>
-
-<blockquote>
-  <p>Agora SDK를 직접 사용하며 느낀 점</p>
-</blockquote>
-
-<ul>
-  <li>브라우저 단에서 PeerConnection을 직접 제어하는 것보다 훨씬 안정적이다.</li>
-  <li>특히 네트워크 품질이 낮은 환경에서 TURN 관리가 자동화되어 있다는 점이 큰 장점.</li>
-  <li>이후 자체 STUN/TURN 구축을 통해 비용 절감을 검토할 예정.</li>
-</ul>
-
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 개발 중 Agora WebRTC 통화 구현 전 이해하기!]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리]]></summary></entry></feed>
