@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-28T06:49:10+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-28T07:54:10+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2025-11-28T07:53:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
 
 <p>처음에는 단순할 줄 알았는데, 생각보다 에러도 많이 나고 시행착오가 많아서 MVP에서 제외하고 개발했다. 이 글에서는 어떤 문제들을 겪었고, 어떻게 해결했는지를 정리하려고 한다.</p>
 
@@ -253,7 +253,7 @@ Secret: 한 번만 보여주니 즉시 복사!
   <li><a href="https://spring.io/guides/gs/async-method">Spring Async 설정</a></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-11-28T07:53:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
   <li>이번 포스팅에선 Capacitor로 빌드한 앱에서 여러 아이콘이 순차적으로 표시되는 커스텀 스플래시 스크린을 구현하는 방법을 정리했다.</li>
   <li>왜 Custom splash screen이 필요했나?
     <ul>
@@ -483,9 +483,23 @@ pnpm add <span class="nt">-D</span> @capacitor/assets
   <li><a href="https://github.com/ionic-team/capacitor-assets">Capacitor assets github page</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/splash-screen">@capacitor/splash-screen DOCS</a></li>
   <li><a href="https://capacitorjs.com/docs/guides/splash-screens-and-icons">Splash Screens and Icons DOCS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</title><link href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" rel="alternate" type="text/html" title="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" /><published>2025-11-18T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-18-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</title><link href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" rel="alternate" type="text/html" title="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" /><published>2025-11-18T00:00:00+00:00</published><updated>2025-11-28T07:53:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-18-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 JSONP 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
+</ul>
+
+<h2 id="목차">목차</h2>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#문제-상황">문제 상황</a></li>
+  <li><a href="#jsonp란-무엇인가">JSONP란 무엇인가?</a></li>
+  <li><a href="#sockjs에서-jsonp가-필요했던-이유">SockJS에서 JSONP가 필요했던 이유</a></li>
+  <li><a href="#왜-현대-웹에서는-사용하지-않는가">왜 현대 웹에서는 사용하지 않는가?</a></li>
+  <li><a href="#내-프로젝트에서의-문제">내 프로젝트에서의 문제</a></li>
+  <li><a href="#해결-방법">해결 방법</a></li>
+  <li><a href="#교훈">결론</a></li>
+  <li><a href="#참고-자료">참고 자료</a></li>
 </ul>
 
 <h2 id="들어가며">들어가며</h2>
@@ -693,7 +707,7 @@ pnpm add <span class="nt">-D</span> @capacitor/assets
   <li><a href="https://sockjs.github.io/sockjs-protocol/sockjs-protocol-0.3.3.html">SockJS Protocol</a></li>
   <li><a href="https://en.wikipedia.org/wiki/JSONP">JSONP의 작동 원리와 보안 이슈</a></li>
   <li><a href="https://stackoverflow.com/questions/2067472/what-is-jsonp-and-why-was-it-created">CORS vs JSONP</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2025-11-28T07:53:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 X-Frame-Options 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
@@ -946,7 +960,7 @@ WebView는 브라우저 엔진의 특수 모드
 <ul>
   <li>Capacitor로 앱을 빌드한 다음에 웹에서는 발생하지 않는 에러들이 생겨서 찾아보고, 공부하고, 해결하는 재미가 있다.</li>
   <li>이제 통화연결까지 앱으로 수행할 수 있게 되었다!!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-11-28T07:53:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
   <li>Capacitor로 빌드한 React 앱에서 카카오와 구글 네이티브 로그인을 구현하는 방법을 정리해 보았다.</li>
   <li>관련되서 정리되어있는게 없는것 같아서.. 내가 나중에 찾아볼 수 있게 일단 문서를 만들어보았다.</li>
   <li>웹에서는 일반 OAuth 리다이렉트를 사용하지만, 모바일 앱에서는 <strong>네이티브 SDK를 직접 사용</strong>하는 방식으로 구현했다. (kakao, google)
@@ -1513,7 +1527,7 @@ Content-Type: application/json
   <li><a href="https://developers.kakao.com/docs/latest/ko/flutter/getting-started#project-scheme">Kakao developer</a></li>
   <li><a href="https://github.com/nerdFrenzs/capacitor-kakao-login-plugin">capacitor-kakao-login-plugin</a></li>
   <li><a href="https://github.com/CodetrixStudio/CapacitorGoogleAuth">@codetrix-studio/capacitor-google-auth</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-28T07:53:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
   <li>지난 글에서는 Capacitor로 Android, iOS 앱 빌드하는 방법에 대해 다뤘다.</li>
   <li>이번 글에서는 Capacitor로 빌드한 Android 앱에서 로그인 연동을 하는 방법에 대해 다뤄보겠다.</li>
   <li>특히 CORS 에러 해결에 대해 다뤄보겠다..
@@ -1692,7 +1706,7 @@ Android: http://localhost</p>
   <li><a href="https://stackoverflow.com/questions/75192411/cors-in-capacitor-for-android">StackOverFlow가 짱이야</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/http">Capacitor HTTP Plugin 공식 문서</a></li>
   <li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS">MDN - CORS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-28T07:53:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
   <li>“친구하자”를 웹으로 MVP 완성을 하니, 이걸 앱으로 빌드해서 사용자들이 더 쉽게 사용할 수 있으면 좋겠다고 생각했다.</li>
   <li>원래는.. 개발자의 입장으로 링크로 이동하는 방식이 쉬울꺼라고 생각했는데, 막상 사용자에게 링크를 보내주니까 어려움을 토로하거나 방식에 의문을 가지는 사람들이 많았다..
     <ul>
@@ -1801,7 +1815,7 @@ npx cap run ios
 <p><br />
 다음에 android studio 업데이트를 좀 하고.. (안한지 넘 오래됌..) 아래와 같이 빌드 성공!</p>
 
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-28T07:53:28+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
   <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
   <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
   <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
@@ -2195,7 +2209,7 @@ while (it.hasNext()) {
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-28T07:53:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
   <li><a href="#1-문제-발견">1. 문제 발견</a></li>
   <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
   <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
@@ -2593,7 +2607,7 @@ Row was updated or deleted by another transaction
   <li><a href="https://docs.jboss.org/hibernate/orm/6.0/userguide/html_single/Hibernate_User_Guide.html">Hibernate User Guide - LazyInitializationException</a></li>
   <li><a href="https://www.baeldung.com/jpa-optimistic-locking">Baeldung - JPA Optimistic Locking</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring Framework - Async Execution</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-28T07:53:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
   <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
   <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
   <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
