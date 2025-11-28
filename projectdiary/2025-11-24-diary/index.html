@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Spring] Spring 매핑 개념과 주요 애너테이션 활용법 | NAHYUN BLOG</title>
+<title>[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Spring] Spring 매핑 개념과 주요 애너테이션 활용법" />
+<meta property="og:title" content="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다." />
-<meta property="og:description" content="URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다." />
-<link rel="canonical" href="https://nan0silver.github.io/spring/2024-12-03-mapping/" />
-<meta property="og:url" content="https://nan0silver.github.io/spring/2024-12-03-mapping/" />
+<meta name="description" content="Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다." />
+<meta property="og:description" content="Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-12-03T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-11-24T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Spring] Spring 매핑 개념과 주요 애너테이션 활용법" />
+<meta property="twitter:title" content="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-11-28T05:51:20+00:00","datePublished":"2024-12-03T00:00:00+00:00","description":"URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다.","headline":"[Spring] Spring 매핑 개념과 주요 애너테이션 활용법","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/spring/2024-12-03-mapping/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/spring/2024-12-03-mapping/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-11-28T05:51:20+00:00","datePublished":"2025-11-24T00:00:00+00:00","description":"Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.","headline":"[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-11-24-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-11-24-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/spring/2024-12-03-mapping/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[Spring] Spring 매핑 개념과 주요 애너테이션 활용법",
-    "description": "URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다.
+    "headline": "[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기",
+    "description": "Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2024-12-03T00:00:00+00:00",
+    "datePublished": "2025-11-24T00:00:00+00:00",
     "dateModified": "2025-11-28T05:51:20+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/spring/2024-12-03-mapping/"
+      "@id": "https://nan0silver.github.io/projectdiary/2025-11-24-diary/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/spring/2024-12-03-mapping/" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "spring",
-        "item": "https://nan0silver.github.io/spring/"
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[Spring] Spring 매핑 개념과 주요 애너테이션 활용법",
-        "item": "https://nan0silver.github.io/spring/2024-12-03-mapping/"
+        "name": "[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기",
+        "item": "https://nan0silver.github.io/projectdiary/2025-11-24-diary/"
       }
     ]
   }
@@ -358,14 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/spring/">spring</a>
+          <a href="/projectdiary/">projectdiary</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2024-12-03-mapping</span>
+          <span>2025-11-24-diary</span>
         
       </li>
     
@@ -382,18 +382,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-spring-mapping" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Spring] Spring 매핑 개념과 주요 애너테이션 활용법
+        [친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2024-12-03T00:00:00+00:00">03 Dec 2024</time> in <a href="/spring/" class="flip-title">SPRING</a> 
+        <time datetime="2025-11-24T00:00:00+00:00">24 Nov 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -421,7 +421,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      URL과 컨트롤러 메서드를 연결하는 매핑 작업과 관련된 Spring 애너테이션(@RequestMapping, @GetMapping 등)의 활용법을 정리한 글입니다.
+      Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.
 
     </p>
   
@@ -430,87 +430,246 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
+    <p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
+
+<p>처음에는 단순할 줄 알았는데, 생각보다 에러도 많이 나고 시행착오가 많아서 MVP에서 제외하고 개발했다. 이 글에서는 어떤 문제들을 겪었고, 어떻게 해결했는지를 정리하려고 한다.</p>
+
+<h2 id="1-기술-스택-선택">1. 기술 스택 선택</h2>
+
+<h3 id="11-왜-agora-cloud-recording을-선택했나">1.1. 왜 Agora Cloud Recording을 선택했나?</h3>
+
+<p>처음에 WebRTC 서비스를 선택하기에 앞서 Recording 구현을 고려했다. WebRTC 중에는 recording을 지원하는 서비스가 있고, 아닌 서비스가 있었다. 그중 Agora는 Recording 지원이 가장 다양했고, 가격도 저렴했다.</p>
+
+<p>Recording을 저장하는 것에도 많은 선택지가 있었다:</p>
+
+<ol>
+  <li><strong>Agora 백업 저장소</strong>
     <ul>
-  <li><a href="#맵핑-mapping">Mapping</a></li>
+      <li>제3자 스토리지 설정이 실패하면 백업 서버에 <strong>24시간 동안만</strong> 임시 저장</li>
+      <li>운영용이 아니므로 반드시 외부 저장소 연동 필요</li>
+    </ul>
+  </li>
+  <li><strong>AWS S3 직접 연동</strong>
+    <ul>
+      <li>가장 일반적이고 안정적인 방법</li>
+    </ul>
+  </li>
+  <li><strong>Firebase Storage (GCS 기반)</strong>
+    <ul>
+      <li>이미 프로젝트에서 사용 중 (프로필 이미지 등)</li>
+    </ul>
+  </li>
+</ol>
+
+<p>고민 끝에 <strong>Firebase Storage</strong>를 선택했다:</p>
+
+<ul>
+  <li>이미 프로젝트에서 사용 중이어서 익숙함</li>
+  <li>GCS(Google Cloud Storage) 기반이라 Agora와 호환성이 좋음</li>
+  <li>Firebase의 다른 기능들과도 잘 통합됨</li>
+  <li>AWS S3와 비용이 비슷한 수준 (월 1,000분 통화 기준 약 80원 차이)</li>
+</ul>
+
+<h3 id="12-individual-recording-mode-선택">1.2. Individual Recording Mode 선택</h3>
+
+<p>Agora Cloud Recording에는 여러 모드가 있다:</p>
+
+<ul>
+  <li><strong>Composite Mode</strong>: 모든 사람의 음성을 하나로 합침</li>
+  <li><strong>Individual Mode</strong>: 각 사용자별로 별도 녹음</li>
+</ul>
+
+<p>나는 <strong>Individual Mode</strong>를 선택했다. 추후 각 사용자의 음성을 따로 분석할 수도 있고, 더 유연하기 때문이다.</p>
+
+<h2 id="2-구현-과정에서-만난-문제들">2. 구현 과정에서 만난 문제들</h2>
+
+<h3 id="21-비동기-처리-설정-문제">2.1. 비동기 처리 설정 문제</h3>
+
+<p>녹음 시작/중지는 시간이 걸리는 작업이기 때문에 비동기로 처리해야 했다. 그런데 Spring에서 이런 경고가 떴다:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>More than one TaskExecutor bean found within the context,
+and none is named <span class="s1">'taskExecutor'</span>
+</code></pre></div></div>
+
+<p><strong>문제:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">@Async</code>만 쓰면 Spring이 <code class="language-plaintext highlighter-rouge">SimpleAsyncTaskExecutor</code>를 사용한다. 이는 매번 새 스레드를 생성하기 때문에 매우 비효율적이다.</p>
+
+<p>내 경우, 애플리케이션 컨텍스트에 이미 여러 개의 <code class="language-plaintext highlighter-rouge">TaskExecutor</code> 빈이 존재했는데 (<code class="language-plaintext highlighter-rouge">recordingTaskExecutor</code>, <code class="language-plaintext highlighter-rouge">matchingTaskExecutor</code> 등), 어느 것도 <code class="language-plaintext highlighter-rouge">taskExecutor</code>라는 이름을 가지고 있지 않았다. Executor를 지정하지 않고 <code class="language-plaintext highlighter-rouge">@Async</code>만 작성하니 Spring에서 경고를 보냈다.</p>
+
+<p><strong>해결:</strong></p>
+
+<p>용도별로 Executor를 분리하고, 기본 <code class="language-plaintext highlighter-rouge">taskExecutor</code>를 명시적으로 지정했다:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableAsync</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AsyncConfig</span> <span class="kd">implements</span> <span class="nc">AsyncConfigurer</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span><span class="o">(</span><span class="s">"taskExecutor"</span><span class="o">)</span>
+    <span class="nd">@Primary</span>
+    <span class="kd">public</span> <span class="nc">Executor</span> <span class="nf">taskExecutor</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">ThreadPoolTaskExecutor</span> <span class="n">executor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ThreadPoolTaskExecutor</span><span class="o">();</span>
+        <span class="n">executor</span><span class="o">.</span><span class="na">setCorePoolSize</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+        <span class="n">executor</span><span class="o">.</span><span class="na">setMaxPoolSize</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+        <span class="n">executor</span><span class="o">.</span><span class="na">setQueueCapacity</span><span class="o">(</span><span class="mi">25</span><span class="o">);</span>
+        <span class="n">executor</span><span class="o">.</span><span class="na">setThreadNamePrefix</span><span class="o">(</span><span class="s">"Async-"</span><span class="o">);</span>
+        <span class="n">executor</span><span class="o">.</span><span class="na">initialize</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">executor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span><span class="o">(</span><span class="s">"recordingTaskExecutor"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Executor</span> <span class="nf">recordingTaskExecutor</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">ThreadPoolTaskExecutor</span> <span class="n">executor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ThreadPoolTaskExecutor</span><span class="o">();</span>
+        <span class="n">executor</span><span class="o">.</span><span class="na">setCorePoolSize</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+        <span class="n">executor</span><span class="o">.</span><span class="na">setMaxPoolSize</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+        <span class="n">executor</span><span class="o">.</span><span class="na">setQueueCapacity</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+        <span class="n">executor</span><span class="o">.</span><span class="na">setThreadNamePrefix</span><span class="o">(</span><span class="s">"Recording-"</span><span class="o">);</span>
+        <span class="n">executor</span><span class="o">.</span><span class="na">initialize</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">executor</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이렇게 하면 스레드 풀을 재사용해서 성능이 훨씬 좋아진다:</p>
+
+<ul>
+  <li>스레드 생성 비용: ~1-2ms → ~0.01ms</li>
+  <li>리소스 제한: 무제한 → 최대 5개로 제어</li>
+</ul>
+
+<h3 id="22-firebase-storage-저장-실패">2.2. Firebase Storage 저장 실패</h3>
+
+<p>드디어 녹음이 시작되었다! 로그에도 성공 메시지가 떴다. 그런데 Firebase Storage를 확인해보니… 파일이 없었다. 😱</p>
+
+<p><strong>문제의 핵심: <code class="language-plaintext highlighter-rouge">uploadingStatus=backuped</code></strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">uploadingStatus</code>에는 두 가지 값이 있다:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">uploaded</code></strong>: 제3자 스토리지(Firebase)에 업로드 성공</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">backuped</code></strong>: Agora 자체 백업 서버에 저장 (24시간 후 삭제)</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">backuped</code>가 나왔다는 건 Firebase에 업로드가 실패했다는 의미였다.</p>
+
+<p><strong>원인: HMAC 키가 없었다!</strong></p>
+
+<p>Agora가 GCS(Google Cloud Storage)에 파일을 올리려면 <strong>HMAC 인증 키</strong>가 필요하다. Firebase Console → Storage → Settings → Interoperability를 확인해보니 아무것도 없었다.</p>
+
+<p><strong>해결 과정:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Google Cloud Console 접속</strong></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cloud Console → Storage → Settings → Interoperability
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>HMAC 키 생성</strong></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Service account HMAC 섹션
+→ Create a key for a service account
+→ firebase-adminsdk-xxxxx@프로젝트명.iam.gserviceaccount.com 선택
+→ CREATE KEY
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Access Key와 Secret 복사</strong></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Access Key: GOOG1E...로 시작하는 긴 문자열
+Secret: 한 번만 보여주니 즉시 복사!
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>application.yml 설정</strong></p>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">app</span><span class="pi">:</span>
+  <span class="na">agora</span><span class="pi">:</span>
+    <span class="na">recording-region</span><span class="pi">:</span> <span class="m">0</span> <span class="c1"># GCS Multi-region US</span>
+    <span class="na">recording-storage-vendor</span><span class="pi">:</span> <span class="s2">"</span><span class="s">6"</span> <span class="c1"># 6 = GCS</span>
+    <span class="na">recording-storage-bucket</span><span class="pi">:</span> <span class="s">프로젝트명.appspot.com</span>
+    <span class="na">recording-storage-access-key</span><span class="pi">:</span> <span class="s">${AGORA_STORAGE_ACCESS_KEY}</span>
+    <span class="na">recording-storage-secret-key</span><span class="pi">:</span> <span class="s">${AGORA_STORAGE_SECRET_KEY}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>이렇게 설정하고 다시 녹음을 시작했더니… 드디어 성공! 🎉</p>
+
+<h2 id="3-최종-구조">3. 최종 구조</h2>
+
+<p>모든 삽질을 마치고 완성된 구조는 다음과 같다:</p>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-24-pic1.png?raw=true" alt="이미지1" /></p>
+
+<h3 id="31-주요-특징">3.1. 주요 특징</h3>
+
+<ol>
+  <li><strong>Individual Recording Mode</strong>: 각 사용자별로 별도 녹음</li>
+  <li><strong>Audio Only</strong>: 비용 절감 (비디오 없음)</li>
+  <li><strong>자동 업로드</strong>: Agora → Firebase Storage 직접 저장</li>
+  <li><strong>파일 구조화</strong>: 날짜/Call ID별 폴더 정리</li>
+  <li><strong>비동기 처리</strong>: 녹음 시작/중지가 메인 스레드를 블로킹하지 않음</li>
+</ol>
+
+<h2 id="4-배운-점">4. 배운 점</h2>
+
+<h3 id="41-공식-문서를-꼼꼼히-읽자">4.1. 공식 문서를 꼼꼼히 읽자</h3>
+
+<p>Agora 공식 문서에 Individual Mode와 Composite Mode의 차이가 명확하게 나와 있었다. 처음부터 제대로 읽었으면 불필요한 시행착오를 줄일 수 있었을 것이다.</p>
+
+<h3 id="42-클라우드-서비스는-인증이-핵심">4.2. 클라우드 서비스는 인증이 핵심</h3>
+
+<p>Firebase Storage에 파일이 안 올라가는 이유가 HMAC 키 때문이었다. 클라우드 간 연동에서는 항상 <strong>인증 설정을 먼저 확인</strong>해야 한다.</p>
+
+<h3 id="43-비동기-처리는-제대로-설정하자">4.3. 비동기 처리는 제대로 설정하자</h3>
+
+<p><code class="language-plaintext highlighter-rouge">@Async</code>만 쓰고 넘어가면 안 된다. 제대로 된 <code class="language-plaintext highlighter-rouge">ThreadPoolTaskExecutor</code>를 설정해야 운영에서 안정적이다.</p>
+
+<h2 id="5-운영-지표">5. 운영 지표</h2>
+
+<p>현재 운영 중인 시스템의 주요 지표:</p>
+
+<ul>
+  <li><strong>녹음 시작 시간</strong>: 평균 2-3초</li>
+  <li><strong>파일 업로드</strong>: Agora가 자동 처리 (15초마다)</li>
+  <li><strong>DB 저장</strong>: 비동기 처리로 메인 로직에 영향 없음</li>
+  <li><strong>스레드 풀</strong>: 최대 5개 스레드로 제한되어 안정적</li>
+</ul>
+
+<p><strong>비용 최적화:</strong></p>
+
+<ul>
+  <li>Audio Only로 비디오 대비 비용 1/5 수준</li>
+  <li>maxIdleTime 설정으로 30초 무음 시 자동 종료</li>
+  <li>streamMode: standard (Agora 권장)</li>
+</ul>
+
+<h2 id="6-마치며">6. 마치며</h2>
+
+<p>처음엔 “그냥 녹음만 하면 되는 거 아니야?”라고 생각했는데, 실제로는 정말 많은 함정이 있었다:</p>
+
+<ul>
+  <li>Individual vs Composite Mode 이해</li>
+  <li>HMAC 키 설정</li>
+  <li>비동기 처리 구성</li>
+  <li>에러 핸들링</li>
+</ul>
+
+<p>하나하나 해결하면서 많이 배웠다. 특히 클라우드 서비스 간 연동에서 <strong>인증과 권한 설정</strong>이 얼마나 중요한지 깨달았다.</p>
+
+<p>이 글이 Agora Cloud Recording과 Firebase Storage를 연동하려는 누군가에게 도움이 되었으면 좋겠다. 😅</p>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://docs.agora.io/en/cloud-recording/develop/individual-mode">Agora Individual Recording 공식 문서</a></li>
+  <li><a href="https://docs.agora.io/en/cloud-recording/reference/region-vendor">Agora Cloud Storage 설정</a></li>
+  <li><a href="https://cloud.google.com/storage/docs/authentication/hmackeys">Google Cloud HMAC 키 생성</a></li>
+  <li><a href="https://spring.io/guides/gs/async-method">Spring Async 설정</a></li>
 </ul>
 
 <hr />
-
-<h2 id="맵핑-mapping">맵핑 (Mapping)</h2>
-
-<ul>
-  <li>
-    <p>Mapping</p>
-
-    <ul>
-      <li>클라이언트로 부터 요청이 들어오는 URL과 컨트롤러 메서드를 연결하는 작업</li>
-      <li>Mapping 애너테이션을 사용해 클라이언트의 요청이 URL로 들어올 때 해당 URL에 맞는 컨트롤러가 있는지 확인하고 해당 컨트롤러를 매핑하여 요청을 처리</li>
-    </ul>
-  </li>
-  <li>
-    <p>@RequestMapping</p>
-
-    <ul>
-      <li>클라이언트가 특정 URL로 요청을 보낼 때, 이 요청을 처리할 컨트롤러 메서드를 정의하는 것</li>
-      <li>
-        <p>Get, Post, Put, Delete, Patch등의 URL을 다 포함하고 있으며, 옵션을 통해 종류를 지정할 수 있음</p>
-
-        <ul>
-          <li>
-            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nd">@Controller</span>
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProductController</span> <span class="o">{</span>
-      <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/products"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
-      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">listProducts</span><span class="o">()</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="s">"product-list"</span><span class="o">;</span>
-      <span class="o">}</span>
-
-      <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/products"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
-      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">addProducts</span><span class="o">()</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="s">"product-added"</span><span class="o">;</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-</code></pre></div>            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>HTTP 메서드에 특화된 매핑</p>
-    <ul>
-      <li>@GetMapping
-        <ul>
-          <li>GET 요청만 받는 애노테이션</li>
-          <li>@RequestMapping(method = RequestMethod.GET)</li>
-        </ul>
-      </li>
-      <li>@PostMapping
-        <ul>
-          <li>POST 요청만 받는 애노테이션</li>
-          <li>@RequestMapping(method = RequestMethod.POST)</li>
-        </ul>
-      </li>
-      <li>@PutMapping
-        <ul>
-          <li>PUT 요청만 받는 애노테이션</li>
-          <li>@RequestMapping(method = RequestMethod.PUT)</li>
-        </ul>
-      </li>
-      <li>@DeleteMapping
-        <ul>
-          <li>DELETE 요청만 받는 애노테이션</li>
-          <li>@RequestMapping(method = RequestMethod.DELETE)</li>
-        </ul>
-      </li>
-      <li>@PatchtMapping
-        <ul>
-          <li>PATCT 요청만 받는 애노테이션</li>
-          <li>@RequestMapping(method = RequestMethod.PATCH)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
 
   
 </article>
@@ -637,7 +796,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-11-24-diary/" class="flip-title"><span>[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</span></a>  <time class="faded fine" datetime="2025-11-24T00:00:00+00:00">24 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-20-diary/" class="flip-title"><span>[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</span></a>  <time class="faded fine" datetime="2025-11-20T00:00:00+00:00">20 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-17-diary/" class="flip-title"><span>[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</span></a>  <time class="faded fine" datetime="2025-11-17T00:00:00+00:00">17 Nov 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-11-20-diary/" class="flip-title"><span>[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</span></a>  <time class="faded fine" datetime="2025-11-20T00:00:00+00:00">20 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-17-diary/" class="flip-title"><span>[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</span></a>  <time class="faded fine" datetime="2025-11-17T00:00:00+00:00">17 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-13-diary/" class="flip-title"><span>[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</span></a>  <time class="faded fine" datetime="2025-11-13T00:00:00+00:00">13 Nov 2025</time></li>            </ul></aside>
 
   
 
