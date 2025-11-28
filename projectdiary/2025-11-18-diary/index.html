@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[친구하자] Redis 데이터 초기화 트러블 슈팅 | NAHYUN BLOG</title>
+<title>[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[친구하자] Redis 데이터 초기화 트러블 슈팅" />
+<meta property="og:title" content="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리" />
-<meta property="og:description" content="가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리" />
-<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" />
-<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" />
+<meta name="description" content="Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다." />
+<meta property="og:description" content="Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-10-14T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-11-18T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[친구하자] Redis 데이터 초기화 트러블 슈팅" />
+<meta property="twitter:title" content="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-11-28T06:48:24+00:00","datePublished":"2025-10-14T00:00:00+00:00","description":"가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리","headline":"[친구하자] Redis 데이터 초기화 트러블 슈팅","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-10-14-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-10-14-diary/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-11-28T06:48:24+00:00","datePublished":"2025-11-18T00:00:00+00:00","description":"Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.","headline":"[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-11-18-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-11-18-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[친구하자] Redis 데이터 초기화 트러블 슈팅",
-    "description": "가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리
+    "headline": "[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술",
+    "description": "Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-10-14T00:00:00+00:00",
+    "datePublished": "2025-11-18T00:00:00+00:00",
     "dateModified": "2025-11-28T06:48:24+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/projectdiary/2025-10-14-diary/"
+      "@id": "https://nan0silver.github.io/projectdiary/2025-11-18-diary/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-10-14-diary/" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -287,8 +287,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[친구하자] Redis 데이터 초기화 트러블 슈팅",
-        "item": "https://nan0silver.github.io/projectdiary/2025-10-14-diary/"
+        "name": "[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술",
+        "item": "https://nan0silver.github.io/projectdiary/2025-11-18-diary/"
       }
     ]
   }
@@ -365,7 +365,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         
           <span>/</span>
-          <span>2025-10-14-diary</span>
+          <span>2025-11-18-diary</span>
         
       </li>
     
@@ -386,14 +386,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   <header>
     <h1 class="post-title flip-project-title">
       
-        [친구하자] Redis 데이터 초기화 트러블 슈팅
+        [친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-10-14T00:00:00+00:00">14 Oct 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+        <time datetime="2025-11-18T00:00:00+00:00">18 Nov 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -421,7 +421,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      가끔 발생했던 Redis 데이터 초기화 방법과 관련해 정리
+      Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.
 
     </p>
   
@@ -431,134 +431,215 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#문제-상황">문제 상황</a></li>
-  <li><a href="#원인">원인</a></li>
-  <li><a href="#해결-방법">해결방법</a></li>
-  <li><a href="#참고-사항">참고사항</a></li>
+  <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 JSONP 에러에 대해 다루었다.</li>
+  <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
 
-<h2 id="redis-데이터-초기화-트러블슈팅">Redis 데이터 초기화 트러블슈팅</h2>
+<h2 id="들어가며">들어가며</h2>
 
-<ul>
-  <li>
-    <p>나는 로컬 환경에서 Docker Compose로 Redis, MySQL룰 컨테이너화해서 실행하고 있다.</p>
+<p>Capacitor 기반 Android 앱에서 WebSocket 연결을 구현하던 중, 예상치 못한 에러를 만났다.</p>
 
-    <blockquote>
-      <p>Redis 7 Alpine 이미지 기반의 컨테이너를 오케스트레이션</p>
-    </blockquote>
-  </li>
-  <li>Redis(인메모리 캐시)는 실시간 매칭 대기열 관리에 사용되고,</li>
-  <li>
-    <p>MySQL은 매칭 결과 및 사용자 정보 저장에 사용된다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❌ Refused to execute script from 'https://silverld.site/ws/270/s4swngca/jsonp?c=_jp.a050t2f'
+   because its MIME type ('') is not executable
+</code></pre></div></div>
 
-    <blockquote>
-      <p>매칭 대기열에서 Redis를 사용한 플로우와 이유에 대해서는 다음 게시글에서 다루겠다.</p>
-    </blockquote>
-  </li>
-  <li>Spring Boot로 로컬 개발을 하며 매칭 - 통화 - 통화 평가 프로세스 구축에 시간을 많이 썼다.</li>
-  <li>Redis, WebSocke을 이용한 개발이 처음이기도 하고, 공부하면서 개발했기 때문에 시행착오를 많이 거쳤다.</li>
-  <li>이 과정에서 계속 DB를 초기화 하고.. 로직을 엎고.. 하는 일들이 많았는데</li>
-  <li>
-    <p>여러번 반복적으로 Redis를 초기화 할때는 외워서 했지만 프론트와 연동하며 오랜만에 매칭 관련 코드를 뜯어보다 문제가 생겨 Redis를 초기화 하려니 생각이 하나도 안나는 것이다!!</p>
-  </li>
-  <li>그래서 그냥 정리해두기로 했다.</li>
-</ul>
+<p>JSONP? 분명 WebSocket을 사용하고 있는데 왜 갑자기 JSONP가 등장했을까?</p>
+
+<hr />
 
 <h2 id="문제-상황">문제 상황</h2>
 
-<ul>
-  <li>Spring Boot 애플리케이션에서 매칭 대기열에 사용자가 계속 남아있는 문제가 발생하였다.</li>
-  <li>
-    <p>MySQL은 초기화 한 상황, user가 한명도 없는데도 userID만 redis에 계속 저장되어있는 상황</p>
+<p>로그를 분석해보니 SockJS가 다음과 같은 순서로 연결을 시도하고 있었다:</p>
 
-    <ul>
-      <li>MySQL은 spring boot 재실행만으로도 초기화가 쉽게 되는데 redis는 어떻게 했더라.. 문제 발생</li>
-    </ul>
-  </li>
-  <li><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-10-14-image.png?raw=true" alt="계속 남아있는 매칭 대기열의 유령들" />
-    <blockquote>
-      <p>계속 남아있는 매칭 대기열의 유령들</p>
-    </blockquote>
-  </li>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. WebSocket → 실패
+2. xhr-streaming → 응답 없음
+3. xhr-polling → 부분 성공
+4. jsonp → MIME type 에러 발생!
+5. Connection closed → 5초 후 재연결 시도
+</code></pre></div></div>
+
+<p>WebSocket 연결이 실패하자 SockJS가 <strong>fallback 메커니즘</strong>을 통해 JSONP까지 시도한 것이었다.</p>
+
+<hr />
+
+<h2 id="jsonp란-무엇인가">JSONP란 무엇인가?</h2>
+
+<h3 id="탄생-배경">탄생 배경</h3>
+
+<p>JSONP(JSON with Padding)는 <strong>2000년대 중반</strong>, CORS가 표준화되기 전에 등장한 크로스 도메인 통신 기법이다.</p>
+
+<p>당시 웹 개발자들은 <strong>같은 출처 정책(Same-Origin Policy)</strong> 때문에 다른 도메인의 데이터를 가져올 수 없었다:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ 다른 도메인 AJAX 요청 → 차단됨</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.example.com/data</span><span class="dl">"</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="c1">// Error: CORS policy 위반!</span>
+</code></pre></div></div>
+
+<h3 id="작동-원리">작동 원리</h3>
+
+<p>JSONP는 <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> 태그가 <strong>CORS 제약을 받지 않는다</strong>는 점을 활용한다:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- ✅ script 태그는 다른 도메인 로드 가능 --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://api.example.com/data?callback=handleData"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p><strong>서버 응답:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleData</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><strong>클라이언트에서 미리 정의:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleData</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// { name: "John", age: 30 }</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이렇게 서버가 <strong>콜백 함수로 데이터를 감싸서</strong> 반환하면, 브라우저가 이를 실행하면서 데이터를 전달받는 방식이다.</p>
+
+<hr />
+
+<h2 id="sockjs에서-jsonp가-필요했던-이유">SockJS에서 JSONP가 필요했던 이유</h2>
+
+<p><strong>SockJS</strong>는 WebSocket을 지원하지 않는 구형 브라우저(IE8/9 등)를 위한 라이브러리이다.</p>
+
+<p>실시간 양방향 통신을 보장하기 위해 다양한 fallback 전략을 사용한다:</p>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-18-pic1.png?raw=true" alt="이미지1" /></p>
+
+<p>JSONP는 <strong>가장 오래된 브라우저도 지원</strong>하기 위한 최후의 수단!</p>
+
+<hr />
+
+<h2 id="왜-현대-웹에서는-사용하지-않는가">왜 현대 웹에서는 사용하지 않는가?</h2>
+
+<h3 id="1-cors의-등장">1. CORS의 등장</h3>
+
+<p>2014년 CORS(Cross-Origin Resource Sharing)가 표준화되면서 안전하게 크로스 도메인 통신이 가능해졌다:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 현대적인 방법</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.example.com/data</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// ✅ POST, PUT, DELETE 모두 가능</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">),</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="2-보안-취약점">2. 보안 취약점</h3>
+
+<p>JSONP는 심각한 보안 문제를 갖고 있다:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ XSS 공격에 취약</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://malicious.com/data?callback=alert('hacked!')</span><span class="dl">"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>
+<span class="c1">// ❌ CSRF 공격 가능 (GET 요청만 가능하므로)</span>
+<span class="c1">// ❌ 인증 토큰 노출 위험</span>
+</code></pre></div></div>
+
+<h3 id="3-기능-제한">3. 기능 제한</h3>
+
+<ul>
+  <li><strong>GET 요청만 가능</strong> (POST, PUT, DELETE 불가)</li>
+  <li><strong>에러 핸들링 어려움</strong> (HTTP 상태 코드 확인 불가)</li>
+  <li><strong>타임아웃 제어 어려움</strong></li>
 </ul>
 
-<h2 id="원인">원인</h2>
+<hr />
+
+<h2 id="내-프로젝트에서의-문제">내 프로젝트에서의 문제</h2>
+
+<p>Capacitor 앱에서 WebSocket 연결이 실패하자, SockJS가 JSONP까지 fallback을 시도했다.</p>
+
+<p>하지만 백엔드(Spring Boot)가 <strong>JSONP 응답에 올바른 MIME type 헤더를 보내지 않아</strong> 브라우저가 스크립트 실행을 거부한 것이다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❌ MIME type ('') is not executable
+</code></pre></div></div>
+
+<p><strong>근본 원인:</strong></p>
 
 <ul>
-  <li>위에도 말했지만 Docker Compose로 MySQL 컨테이너를 재시작해서 데이터베이스는 초기화됨</li>
-  <li>하지만 Redis는 인메모리 데이터베이스이면서도 <code class="language-plaintext highlighter-rouge">redis_data</code>볼륨애 데이터를 영구 저장</li>
-  <li>컨테이너를 재시작해도 볼륨에 저장된 데이터는 유지됨..</li>
-  <li>결과적으로 DB에는 없는 사용자가 Redis에만 남아있는 불일치 상태 발생</li>
+  <li>Capacitor 앱에서는 JSONP가 <strong>전혀 필요 없음</strong> (최신 WebView 사용)</li>
+  <li>하지만 SockJS가 기본 설정으로 JSONP를 포함하고 있었음</li>
 </ul>
+
+<hr />
 
 <h2 id="해결-방법">해결 방법</h2>
 
-<h3 id="방법-1--redis-cli로-데이터-삭제">방법 1 : Redis CLI로 데이터 삭제</h3>
+<p>SockJS 초기화 시 <strong>사용할 transport를 명시적으로 제한</strong>했다:</p>
 
-<blockquote>
-  <p>나는 이걸로 해결</p>
-</blockquote>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sockJSOptions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">transports</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">websocket</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 최우선</span>
+    <span class="dl">"</span><span class="s2">xhr-streaming</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 2순위</span>
+    <span class="dl">"</span><span class="s2">xhr-polling</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 3순위</span>
+    <span class="c1">// 'jsonp' 제거! (레거시 transport)</span>
+  <span class="p">],</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">20000</span><span class="p">,</span>
+<span class="p">};</span>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Redis 컨테이너에 접속
-docker exec -it &lt;내 redis 이름&gt; redis-cli
-
-# 모든 데이터 삭제
-127.0.0.1:6379&gt; FLUSHALL
-
-# 삭제 확인
-127.0.0.1:6379&gt; KEYS *
-
-# 종료
-127.0.0.1:6379&gt; exit
+<span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SockJS</span><span class="p">(</span><span class="nx">wsUrl</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">sockJSOptions</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-10-14-image-1.png?raw=true" alt="캡쳐 사진" /></p>
-
-<p>-&gt; 금방 해결!</p>
-
-<h3 id="방법-2--명령어-한줄로-실행">방법 2 : 명령어 한줄로 실행</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker exec -it chingoo-redis redis-cli FLUSHALL
-</code></pre></div></div>
-
-<h3 id="방법-3--docker-볼륨까지-완전-삭제">방법 3 : Docker 볼륨까지 완전 삭제</h3>
+<p><strong>결과:</strong></p>
 
 <ul>
-  <li>더 확실한 초기화 방법</li>
+  <li>✅ JSONP 에러 해결</li>
+  <li>✅ 불필요한 fallback 시도 제거</li>
+  <li>✅ 연결 속도 향상</li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># docker 디렉토리로 이동
-cd docker
+<hr />
 
-# 컨테이너 중지 및 볼륨 삭제
-docker-compose down -v
+<h2 id="교훈">교훈</h2>
 
-# 컨테이너 재시작
-docker-compose up -d
-</code></pre></div></div>
+<ol>
+  <li>
+    <p><strong>레거시 코드는 예상치 못한 곳에 숨어있다</strong></p>
+
+    <ul>
+      <li>현대적인 라이브러리도 하위 호환성을 위해 오래된 기술을 포함</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>기본 설정을 맹신하지 말자</strong></p>
+
+    <ul>
+      <li>SockJS의 기본 transport 설정은 IE8 시대의 유산</li>
+      <li>현대 환경에 맞게 커스터마이징 필요</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>프레임워크의 동작 방식을 이해하자</strong></p>
+    <ul>
+      <li>“왜 WebSocket을 쓰는데 JSONP가?”라는 의문</li>
+      <li>Fallback 메커니즘을 이해하니 해결 방법도 명확해짐</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="마치며">마치며</h2>
+
+<p>JSONP 에러를 처음 마주했다. 하지만 웹의 역사를 이해하고, 현대 기술이 어떻게 발전해왔는지 공부하는 좋은 기회가 되었다.</p>
+
+<p>여러분의 프로젝트에서도 SockJS를 사용한다면, transport 설정을 확인해보시길 추천합니다!
+불필요한 레거시 코드를 제거하면 성능과 안정성 모두 향상될 수 있습니다.😊</p>
+
+<hr />
+
+<h2 id="참고-자료">참고 자료</h2>
 
 <ul>
-  <li>볼륨까지 삭제되므로 Redis 데이터가 완전히 초기화됨</li>
-  <li>‼ <code class="language-plaintext highlighter-rouge">-v</code>옵션은 MySQL 데이터도 삭제하므로 주의가 필요!</li>
-</ul>
-
-<h2 id="해결">해결</h2>
-
-<p>이렇게 하면
-<img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-10-14-image-2.png?raw=true" alt="alt text" /></p>
-
-<blockquote>
-  <p>매칭 대기열이 깨끗해진 모습
-이렇게 유령들이 사라진다.</p>
-</blockquote>
-
-<h2 id="참고-사항">참고 사항</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">FLUSHALL</code>: 모든 데이터베이스의 모든 키 삭제</li>
-  <li><code class="language-plaintext highlighter-rouge">FLUSHDB</code>: 현재 선택된 데이터베이스의 키만 삭제</li>
-  <li>Redis는 기본적으로 데이터베이스 0~15번까지 16개를 제공</li>
-  <li>운영환경에서는 절대 <code class="language-plaintext highlighter-rouge">FLUSHALL</code>을 실행하면 안됨!</li>
+  <li><a href="https://sockjs.github.io/sockjs-protocol/sockjs-protocol-0.3.3.html">SockJS Protocol</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/JSONP">JSONP의 작동 원리와 보안 이슈</a></li>
+  <li><a href="https://stackoverflow.com/questions/2067472/what-is-jsonp-and-why-was-it-created">CORS vs JSONP</a></li>
 </ul>
 
   
@@ -686,7 +767,7 @@ docker-compose up -d
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-11-24-diary/" class="flip-title"><span>[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</span></a>  <time class="faded fine" datetime="2025-11-24T00:00:00+00:00">24 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-20-diary/" class="flip-title"><span>[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</span></a>  <time class="faded fine" datetime="2025-11-20T00:00:00+00:00">20 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-18-diary/" class="flip-title"><span>[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</span></a>  <time class="faded fine" datetime="2025-11-18T00:00:00+00:00">18 Nov 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-11-24-diary/" class="flip-title"><span>[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</span></a>  <time class="faded fine" datetime="2025-11-24T00:00:00+00:00">24 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-20-diary/" class="flip-title"><span>[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</span></a>  <time class="faded fine" datetime="2025-11-20T00:00:00+00:00">20 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-17-diary/" class="flip-title"><span>[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</span></a>  <time class="faded fine" datetime="2025-11-17T00:00:00+00:00">17 Nov 2025</time></li>            </ul></aside>
 
   
 

@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-28T05:54:07+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-11-28T06:49:10+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2025-11-28T05:53:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
 
 <p>처음에는 단순할 줄 알았는데, 생각보다 에러도 많이 나고 시행착오가 많아서 MVP에서 제외하고 개발했다. 이 글에서는 어떤 문제들을 겪었고, 어떻게 해결했는지를 정리하려고 한다.</p>
 
@@ -253,7 +253,7 @@ Secret: 한 번만 보여주니 즉시 복사!
   <li><a href="https://spring.io/guides/gs/async-method">Spring Async 설정</a></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-11-28T05:53:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
   <li>이번 포스팅에선 Capacitor로 빌드한 앱에서 여러 아이콘이 순차적으로 표시되는 커스텀 스플래시 스크린을 구현하는 방법을 정리했다.</li>
   <li>왜 Custom splash screen이 필요했나?
     <ul>
@@ -483,7 +483,217 @@ pnpm add <span class="nt">-D</span> @capacitor/assets
   <li><a href="https://github.com/ionic-team/capacitor-assets">Capacitor assets github page</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/splash-screen">@capacitor/splash-screen DOCS</a></li>
   <li><a href="https://capacitorjs.com/docs/guides/splash-screens-and-icons">Splash Screens and Icons DOCS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2025-11-28T05:53:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</title><link href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" rel="alternate" type="text/html" title="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" /><published>2025-11-18T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-18-diary/"><![CDATA[<ul>
+  <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 JSONP 에러에 대해 다루었다.</li>
+  <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
+</ul>
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>Capacitor 기반 Android 앱에서 WebSocket 연결을 구현하던 중, 예상치 못한 에러를 만났다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❌ Refused to execute script from 'https://silverld.site/ws/270/s4swngca/jsonp?c=_jp.a050t2f'
+   because its MIME type ('') is not executable
+</code></pre></div></div>
+
+<p>JSONP? 분명 WebSocket을 사용하고 있는데 왜 갑자기 JSONP가 등장했을까?</p>
+
+<hr />
+
+<h2 id="문제-상황">문제 상황</h2>
+
+<p>로그를 분석해보니 SockJS가 다음과 같은 순서로 연결을 시도하고 있었다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. WebSocket → 실패
+2. xhr-streaming → 응답 없음
+3. xhr-polling → 부분 성공
+4. jsonp → MIME type 에러 발생!
+5. Connection closed → 5초 후 재연결 시도
+</code></pre></div></div>
+
+<p>WebSocket 연결이 실패하자 SockJS가 <strong>fallback 메커니즘</strong>을 통해 JSONP까지 시도한 것이었다.</p>
+
+<hr />
+
+<h2 id="jsonp란-무엇인가">JSONP란 무엇인가?</h2>
+
+<h3 id="탄생-배경">탄생 배경</h3>
+
+<p>JSONP(JSON with Padding)는 <strong>2000년대 중반</strong>, CORS가 표준화되기 전에 등장한 크로스 도메인 통신 기법이다.</p>
+
+<p>당시 웹 개발자들은 <strong>같은 출처 정책(Same-Origin Policy)</strong> 때문에 다른 도메인의 데이터를 가져올 수 없었다:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ 다른 도메인 AJAX 요청 → 차단됨</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.example.com/data</span><span class="dl">"</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="c1">// Error: CORS policy 위반!</span>
+</code></pre></div></div>
+
+<h3 id="작동-원리">작동 원리</h3>
+
+<p>JSONP는 <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> 태그가 <strong>CORS 제약을 받지 않는다</strong>는 점을 활용한다:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- ✅ script 태그는 다른 도메인 로드 가능 --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://api.example.com/data?callback=handleData"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p><strong>서버 응답:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleData</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><strong>클라이언트에서 미리 정의:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">handleData</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// { name: "John", age: 30 }</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이렇게 서버가 <strong>콜백 함수로 데이터를 감싸서</strong> 반환하면, 브라우저가 이를 실행하면서 데이터를 전달받는 방식이다.</p>
+
+<hr />
+
+<h2 id="sockjs에서-jsonp가-필요했던-이유">SockJS에서 JSONP가 필요했던 이유</h2>
+
+<p><strong>SockJS</strong>는 WebSocket을 지원하지 않는 구형 브라우저(IE8/9 등)를 위한 라이브러리이다.</p>
+
+<p>실시간 양방향 통신을 보장하기 위해 다양한 fallback 전략을 사용한다:</p>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-18-pic1.png?raw=true" alt="이미지1" /></p>
+
+<p>JSONP는 <strong>가장 오래된 브라우저도 지원</strong>하기 위한 최후의 수단!</p>
+
+<hr />
+
+<h2 id="왜-현대-웹에서는-사용하지-않는가">왜 현대 웹에서는 사용하지 않는가?</h2>
+
+<h3 id="1-cors의-등장">1. CORS의 등장</h3>
+
+<p>2014년 CORS(Cross-Origin Resource Sharing)가 표준화되면서 안전하게 크로스 도메인 통신이 가능해졌다:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 현대적인 방법</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.example.com/data</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// ✅ POST, PUT, DELETE 모두 가능</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">),</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="2-보안-취약점">2. 보안 취약점</h3>
+
+<p>JSONP는 심각한 보안 문제를 갖고 있다:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ XSS 공격에 취약</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://malicious.com/data?callback=alert('hacked!')</span><span class="dl">"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>
+<span class="c1">// ❌ CSRF 공격 가능 (GET 요청만 가능하므로)</span>
+<span class="c1">// ❌ 인증 토큰 노출 위험</span>
+</code></pre></div></div>
+
+<h3 id="3-기능-제한">3. 기능 제한</h3>
+
+<ul>
+  <li><strong>GET 요청만 가능</strong> (POST, PUT, DELETE 불가)</li>
+  <li><strong>에러 핸들링 어려움</strong> (HTTP 상태 코드 확인 불가)</li>
+  <li><strong>타임아웃 제어 어려움</strong></li>
+</ul>
+
+<hr />
+
+<h2 id="내-프로젝트에서의-문제">내 프로젝트에서의 문제</h2>
+
+<p>Capacitor 앱에서 WebSocket 연결이 실패하자, SockJS가 JSONP까지 fallback을 시도했다.</p>
+
+<p>하지만 백엔드(Spring Boot)가 <strong>JSONP 응답에 올바른 MIME type 헤더를 보내지 않아</strong> 브라우저가 스크립트 실행을 거부한 것이다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❌ MIME type ('') is not executable
+</code></pre></div></div>
+
+<p><strong>근본 원인:</strong></p>
+
+<ul>
+  <li>Capacitor 앱에서는 JSONP가 <strong>전혀 필요 없음</strong> (최신 WebView 사용)</li>
+  <li>하지만 SockJS가 기본 설정으로 JSONP를 포함하고 있었음</li>
+</ul>
+
+<hr />
+
+<h2 id="해결-방법">해결 방법</h2>
+
+<p>SockJS 초기화 시 <strong>사용할 transport를 명시적으로 제한</strong>했다:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sockJSOptions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">transports</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">websocket</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 최우선</span>
+    <span class="dl">"</span><span class="s2">xhr-streaming</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 2순위</span>
+    <span class="dl">"</span><span class="s2">xhr-polling</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 3순위</span>
+    <span class="c1">// 'jsonp' 제거! (레거시 transport)</span>
+  <span class="p">],</span>
+  <span class="na">timeout</span><span class="p">:</span> <span class="mi">20000</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SockJS</span><span class="p">(</span><span class="nx">wsUrl</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">sockJSOptions</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>결과:</strong></p>
+
+<ul>
+  <li>✅ JSONP 에러 해결</li>
+  <li>✅ 불필요한 fallback 시도 제거</li>
+  <li>✅ 연결 속도 향상</li>
+</ul>
+
+<hr />
+
+<h2 id="교훈">교훈</h2>
+
+<ol>
+  <li>
+    <p><strong>레거시 코드는 예상치 못한 곳에 숨어있다</strong></p>
+
+    <ul>
+      <li>현대적인 라이브러리도 하위 호환성을 위해 오래된 기술을 포함</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>기본 설정을 맹신하지 말자</strong></p>
+
+    <ul>
+      <li>SockJS의 기본 transport 설정은 IE8 시대의 유산</li>
+      <li>현대 환경에 맞게 커스터마이징 필요</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>프레임워크의 동작 방식을 이해하자</strong></p>
+    <ul>
+      <li>“왜 WebSocket을 쓰는데 JSONP가?”라는 의문</li>
+      <li>Fallback 메커니즘을 이해하니 해결 방법도 명확해짐</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="마치며">마치며</h2>
+
+<p>JSONP 에러를 처음 마주했다. 하지만 웹의 역사를 이해하고, 현대 기술이 어떻게 발전해왔는지 공부하는 좋은 기회가 되었다.</p>
+
+<p>여러분의 프로젝트에서도 SockJS를 사용한다면, transport 설정을 확인해보시길 추천합니다!
+불필요한 레거시 코드를 제거하면 성능과 안정성 모두 향상될 수 있습니다.😊</p>
+
+<hr />
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://sockjs.github.io/sockjs-protocol/sockjs-protocol-0.3.3.html">SockJS Protocol</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/JSONP">JSONP의 작동 원리와 보안 이슈</a></li>
+  <li><a href="https://stackoverflow.com/questions/2067472/what-is-jsonp-and-why-was-it-created">CORS vs JSONP</a></li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 X-Frame-Options 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
@@ -736,7 +946,7 @@ WebView는 브라우저 엔진의 특수 모드
 <ul>
   <li>Capacitor로 앱을 빌드한 다음에 웹에서는 발생하지 않는 에러들이 생겨서 찾아보고, 공부하고, 해결하는 재미가 있다.</li>
   <li>이제 통화연결까지 앱으로 수행할 수 있게 되었다!!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-11-28T05:53:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
   <li>Capacitor로 빌드한 React 앱에서 카카오와 구글 네이티브 로그인을 구현하는 방법을 정리해 보았다.</li>
   <li>관련되서 정리되어있는게 없는것 같아서.. 내가 나중에 찾아볼 수 있게 일단 문서를 만들어보았다.</li>
   <li>웹에서는 일반 OAuth 리다이렉트를 사용하지만, 모바일 앱에서는 <strong>네이티브 SDK를 직접 사용</strong>하는 방식으로 구현했다. (kakao, google)
@@ -1303,7 +1513,7 @@ Content-Type: application/json
   <li><a href="https://developers.kakao.com/docs/latest/ko/flutter/getting-started#project-scheme">Kakao developer</a></li>
   <li><a href="https://github.com/nerdFrenzs/capacitor-kakao-login-plugin">capacitor-kakao-login-plugin</a></li>
   <li><a href="https://github.com/CodetrixStudio/CapacitorGoogleAuth">@codetrix-studio/capacitor-google-auth</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-28T05:53:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
   <li>지난 글에서는 Capacitor로 Android, iOS 앱 빌드하는 방법에 대해 다뤘다.</li>
   <li>이번 글에서는 Capacitor로 빌드한 Android 앱에서 로그인 연동을 하는 방법에 대해 다뤄보겠다.</li>
   <li>특히 CORS 에러 해결에 대해 다뤄보겠다..
@@ -1482,7 +1692,7 @@ Android: http://localhost</p>
   <li><a href="https://stackoverflow.com/questions/75192411/cors-in-capacitor-for-android">StackOverFlow가 짱이야</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/http">Capacitor HTTP Plugin 공식 문서</a></li>
   <li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS">MDN - CORS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-28T05:53:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
   <li>“친구하자”를 웹으로 MVP 완성을 하니, 이걸 앱으로 빌드해서 사용자들이 더 쉽게 사용할 수 있으면 좋겠다고 생각했다.</li>
   <li>원래는.. 개발자의 입장으로 링크로 이동하는 방식이 쉬울꺼라고 생각했는데, 막상 사용자에게 링크를 보내주니까 어려움을 토로하거나 방식에 의문을 가지는 사람들이 많았다..
     <ul>
@@ -1591,7 +1801,7 @@ npx cap run ios
 <p><br />
 다음에 android studio 업데이트를 좀 하고.. (안한지 넘 오래됌..) 아래와 같이 빌드 성공!</p>
 
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-28T05:53:26+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
   <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
   <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
   <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
@@ -1985,7 +2195,7 @@ while (it.hasNext()) {
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-28T05:53:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
   <li><a href="#1-문제-발견">1. 문제 발견</a></li>
   <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
   <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
@@ -2383,7 +2593,7 @@ Row was updated or deleted by another transaction
   <li><a href="https://docs.jboss.org/hibernate/orm/6.0/userguide/html_single/Hibernate_User_Guide.html">Hibernate User Guide - LazyInitializationException</a></li>
   <li><a href="https://www.baeldung.com/jpa-optimistic-locking">Baeldung - JPA Optimistic Locking</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring Framework - Async Execution</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-28T05:53:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-11-28T06:48:24+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
   <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
   <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
   <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
@@ -2567,226 +2777,4 @@ Cookie: refreshToken=...
       <li>JWT 검증</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</title><link href="https://nan0silver.github.io/projectdiary/2025-10-15-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제" /><published>2025-10-15T00:00:00+00:00</published><updated>2025-11-28T05:53:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-15-diary/"><![CDATA[<ul>
-  <li><a href="#문제-상황">문제 상황</a></li>
-  <li><a href="#원인-분석">원인 분석</a></li>
-  <li><a href="#해결-방법">해결방법</a></li>
-  <li><a href="#참고-사항">참고사항</a></li>
-</ul>
-
-<h2 id="크로스-도메인-환경에서-refresh-token-쿠키-소실-트러블슈팅">크로스 도메인 환경에서 Refresh Token 쿠키 소실 트러블슈팅</h2>
-
-<ul>
-  <li>개발 환경에서는 token관련 문제가 전혀 없었다. 그런데 배포한 후 로그인이 새로운 탭에서 유지되지 않는 문제를 해결하려고 하다가 Refresh Token이 새로고침하면 사라지는걸 발견하였다.
-    <blockquote>
-      <p>어디갔어.. 내 refresh token 🥲</p>
-    </blockquote>
-  </li>
-  <li>로그인이 유지되지 않는 문제는 왜인지 알았기 때문에 금방 해결하였지만, refresh token이 사라지는 문제가 더 나를 힘들게 만들었다..</li>
-  <li>따라서 왜 그런 문제가 발생하는지 좀 더 알아보고자 했다.</li>
-</ul>
-
-<h2 id="문제-상황">문제 상황</h2>
-
-<ul>
-  <li>Local 환경: Refresh Token 쿠키가 정상적으로 유지됨 ✅</li>
-  <li>Production 환경 : 로그인은 성공하지만, 새로고침하면 Refresh Token 쿠키가 사라짐 👻 (Refresh Token은 HttpOnly Cookie에 저장함)</li>
-  <li>
-    <p>브라우저 개발자 도구에서 확인한 쿠키 만료 시간: 30일 ✅</p>
-
-    <blockquote>
-      <p>처음엔 만료 시간이 잘못 설정되어있는줄 알았다.</p>
-    </blockquote>
-  </li>
-  <li>
-    <p>환경 정보</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Local 환경:
-- Frontend: http://localhost:3000
-- Backend:  http://localhost:8080
-- 동일 호스트(localhost), 다른 포트 → Same-Site
-
-Production 환경:
-- Frontend: https://chingoo-frontend.vercel.app
-- Backend:  https://your-backend-domain.com
-- 다른 도메인 → Cross-Site
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="원인-분석">원인 분석</h2>
-
-<h3 id="1-잘못된-쿠키-설정">1. 잘못된 쿠키 설정</h3>
-
-<p>application-prod.yml의 문제:</p>
-
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">app:
-  cookie:
-    secure: false     # ❌ HTTPS 환경인데 false
-    sam-site: Lax     # ❌ 크로스 도메인인데 Lax
-    max-age: 2592000  # ✅ 30일 (정상)
-</span></code></pre></div></div>
-
-<h3 id="2-samsite-쿠키-정책-이해하기">2. SamSite 쿠키 정책 이해하기</h3>
-
-<h4 id="samsite-속성이란">SamSite 속성이란?</h4>
-
-<ul>
-  <li>
-    <p>CSRF(Cross-Site Request Forgery) 공격을 방어하기 위해 도입된 쿠키 정책으로, 언제 쿠키를 전송할지를 제어</p>
-
-    <blockquote>
-      <p>CSRF공격 이란?</p>
-
-      <blockquote>
-        <p>사용자가 자신의 의지와는 상관없이 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 하는 공격
-공격자가 사용자의 세션을 가로채는 방식으로 일어난다.</p>
-      </blockquote>
-    </blockquote>
-  </li>
-  <li>
-    <p>SamSite 3가지 값</p>
-    <ol>
-      <li>Strict
-        <ul>
-          <li>동일 사이트에서만 쿠키 전공</li>
-          <li>모든 크로스 사이트 요청에서 차단</li>
-          <li>최고 수준 보안이 필요한 경우에 사용 (매우 엄격해서 잘 안씀)</li>
-        </ul>
-      </li>
-      <li>Lax (기본값)
-        <ul>
-          <li>TOP-LEVEL 네비게이션 + GET 요청만 허용</li>
-          <li>POST, PUT, DELETE 등은 차단</li>
-          <li>일반적인 Sam-Site 환경 (프론트엔드와 벡엔드가 같은 도메인)</li>
-        </ul>
-      </li>
-      <li>None
-        <ul>
-          <li>모든 크로스 사이트 요청에서 쿠키전송</li>
-          <li>단, <code class="language-plaintext highlighter-rouge">Secure=true</code> 필수 (HTTPS)</li>
-          <li>크로스 도메인 환경 (프론트엔트와 백엔드 도메인 다름)</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-</ul>
-
-<h4 id="브라우서의-samsitelax-동작-분석">브라우서의 SamSite=Lax 동작 분석</h4>
-
-<h4 id="시나리오-1-로그인-시-최초-요청">시나리오 1: 로그인 시 (최초 요청)</h4>
-
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">POST https://your-backend.com/api/v1/auth/login
-Origin: https://your-frontend.com
-Content-Type: application/json
-
-{"email": "user@example.com", "password": "..."}
-</span></code></pre></div></div>
-
-<p>백엔드 응답:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.1 200 OK
-Set-Cookie: refreshToken=eyJhbGc...;
-            Path=/;
-            Max-Age=2592000;
-            HttpOnly;
-            Secure;
-            SameSite=Lax  ← 여기가 문제! ❌
-Access-Control-Allow-Origin: https://chingoo-frontend.vercel.app
-Access-Control-Allow-Credentials: true
-</code></pre></div></div>
-
-<ul>
-  <li>쿠키는 설정됨 (브라우저가 Set-Cookie 헤더를 받아서 저장)</li>
-  <li>개발자 도구에서 쿠키 확인 가능</li>
-  <li>Expires/Max-Age도 30일로 정상</li>
-</ul>
-
-<h4 id="시나리오-2-새로고침-시-두번째-요청">시나리오 2: 새로고침 시 (두번째 요청)</h4>
-
-<ul>
-  <li>사용자가 새로고침 또는 페이지 이동 시, 프론트엔드가 자동으로 사용자 정보를 가져오는 API 호출:</li>
-</ul>
-
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">// 프론트엔드 코드 (자동 실행)
-useEffect(() =&gt; {
-  axios.get('https://your-backend.com/api/v1/users/me', {
-    withCredentials: true  // 쿠키 전송 요청
-  });
-}, []);
-</span></code></pre></div></div>
-
-<p>브라우저의 요청:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET https://your-backend.com/api/v1/users/me
-Origin: https://your-frontend.com
-Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단!
-</code></pre></div></div>
-
-<ul>
-  <li>TOP-LEVEL 네비게이션이 아니고 JavaScript 요청이기 때문에 쿠키 전송이 안됌
-    <blockquote>
-      <p>TOP-LEVEL 네비게이션은 아래와 같다.</p>
-
-      <blockquote>
-        <ol>
-          <li>주소창에 URL을 직접 입력</li>
-          <li><code class="language-plaintext highlighter-rouge">&lt;a href = "..."&gt;</code> 링크 클릭</li>
-          <li><code class="language-plaintext highlighter-rouge">window.location.href</code> 변경
-            <blockquote>
-              <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   // ❌ 이런 JavaScript 요청은 TOP-LEVEL 네비게이션이 아님
-   axios.get('https://api.example.com/user');
-
-   // ✅ 이런 요청만 TOP-LEVEL 네비게이션으로 인정
-   window.location.href = 'https://api.example.com/user';
-   &lt;a href="https://api.example.com/user"&gt;클릭&lt;/a&gt;
-</code></pre></div>              </div>
-            </blockquote>
-          </li>
-        </ol>
-      </blockquote>
-    </blockquote>
-  </li>
-</ul>
-
-<h4 id="시나리오-3-post-요청">시나리오 3: POST 요청</h4>
-
-<ul>
-  <li>사용자가 폼을 제출하는 등 POST 요청을 보낼 때:</li>
-</ul>
-
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">POST https://your-backend.com/api/v1/some-action
-Origin: https://your-frontend.com
-Cookie: (없음!) &lt;- SamSite=Lax가 쿠키 전송을 차단
-</span></code></pre></div></div>
-
-<p>결과:</p>
-
-<ul>
-  <li>Refresh Token 쿠키가 전송되지 않음</li>
-  <li>백엔드에서 인증 실패 (401 Unauthorized)</li>
-  <li>사용자는 다시 로그인해야함</li>
-</ul>
-
-<h2 id="해결">해결</h2>
-
-<ul>
-  <li>application-prod.yml 수정</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app:
-  cookie:
-    secure: true       # HTTPS 필수
-    same-site: None    # 크로스 도메인 허용
-    max-age: 2592000   # 30일
-</code></pre></div></div>
-
-<ul>
-  <li>이로 인한 CSRF 공격에 대한 방어는 다음 편에서 다루기로 한다.</li>
-</ul>
-
-<h2 id="참고-자료">참고 자료</h2>
-
-<ul>
-  <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">MDN: SamSite cookies</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry></feed>
