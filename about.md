@@ -31,6 +31,8 @@ Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 
 <h3>🔹Vita🔹</h3>
 
+2025.12.19 지역사회 문제해결을 위한 시민 공감형 혁신 milieu 구축 학생-시민 공모전 대상 수상 <br>
+
 2025.11.25 부산 예비창업패키지 사전 인큐베이팅 프로그램 최종 데모데이 은상 (예창패 서류 조기 합격) <br>
 
 2025.11.21 울산 예비창업패키지 사전 인큐베이팅 프로그램 최종 데모데이 2등 (예창패 서류 조기 합격) <br>
