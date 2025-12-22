@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록" />
+<meta property="og:description" content="컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-12-20T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-12-22T06:22:45+00:00","datePublished":"2025-12-20T00:00:00+00:00","description":"컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록","headline":"[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-12-20-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-12-20-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-12-22T06:23:26+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나",
+    "description": "컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2025-12-20T00:00:00+00:00",
+    "dateModified": "2025-12-22T06:22:45+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2025-12-20-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나",
+        "item": "https://nan0silver.github.io/projectdiary/2025-12-20-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-12-20-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-12-20T00:00:00+00:00">20 Dec 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 22 Dec 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-12-22T06:22:45+00:00">2025-12-22</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-전체-그림-우리-서비스가-필요한-것">1. 전체 그림: 우리 서비스가 필요한 것</a></li>
+  <li><a href="#2-backend-spring-boot--webflux를-선택한-이유">2. Backend: Spring Boot + WebFlux를 선택한 이유</a></li>
+  <li><a href="#3-database-mysql을-선택한-이유">3. Database: MySQL을 선택한 이유</a></li>
+  <li><a href="#4-cache--queue-redis를-선택한-이유">4. Cache &amp; Queue: Redis를 선택한 이유</a></li>
+  <li><a href="#5-webrtc-agora를-선택한-이유">5. WebRTC: Agora를 선택한 이유</a></li>
+  <li><a href="#6-file-storage-firebase-storage를-선택한-이유">6. File Storage: Firebase Storage를 선택한 이유</a></li>
+  <li><a href="#7-frontend-react--capacitor를-선택한-이유">7. Frontend: React + Capacitor를 선택한 이유</a></li>
+  <li><a href="#8-배포-환경-aws--vercel">8. 배포 환경: AWS + Vercel</a></li>
+  <li><a href="#9-기술-선택의-원칙">9. 기술 선택의 원칙</a></li>
+  <li><a href="#10-마치며">10. 마치며</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>“관심사 기반 1:1 랜덤 음성 통화”라는 아이디어를 떠올렸을 때, 가장 먼저 든 생각은 “어떻게 구현하지?”였다. 학부와 석사 과정에서 배운 이론과 토이 프로젝트 경험은 있었지만, 실제 사용자가 쓸 서비스를 만드는 것은 처음이었다.</p>
+
+<p>기술 스택을 선택하는 과정에서 수많은 블로그 글을 읽었고, 여러 서비스를 비교했다. 하지만 결국 깨달은 건 <strong>“정답은 없다”</strong>는 것이었다. 각 기술은 장단점이 있고, 중요한 건 우리 서비스의 맥락에서 어떤 게 적합한가였다.</p>
+
+<p>이 글에서는 내가 왜 이런 선택을 했는지, 어떤 고민을 했는지를 솔직하게 공유해보려 한다.</p>
+
+<hr />
+
+<h2 id="1-전체-그림-우리-서비스가-필요한-것">1. 전체 그림: 우리 서비스가 필요한 것</h2>
+
+<p>기술을 선택하기 전에, 먼저 우리 서비스의 특성을 정리했다.</p>
+
+<h3 id="핵심-요구사항">핵심 요구사항</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 실시간성
+   - 매칭 대기 시간을 최소화 (목표: 1분 이내)
+   - 매칭 완료 즉시 알림
+   - 끊김 없는 음성 통화
+
+2. 확장성
+   - 초기엔 소규모지만, 사용자 증가에 대응 가능해야 함
+   - 트래픽 급증 시나리오 고려
+
+3. 운영 편의성
+   - 문제 발생 시 빠른 파악과 대응
+   - 모니터링과 로깅
+   - 배포 자동화
+
+4. 비용 효율성
+   - MVP 단계에서 과도한 인프라 비용 지양
+   - 사용량에 따른 탄력적 비용 구조
+</code></pre></div></div>
+
+<p>이 네 가지 축을 기준으로 모든 기술 선택을 평가했다.</p>
+
+<hr />
+
+<h2 id="2-backend-spring-boot--webflux를-선택한-이유">2. Backend: Spring Boot + WebFlux를 선택한 이유</h2>
+
+<h3 id="왜-비동기가-필요했나">왜 비동기가 필요했나?</h3>
+
+<p>처음에는 익숙한 Spring MVC를 쓸까 고민했다. 하지만 우리 서비스의 특성을 생각해보니 WebFlux가 더 적합해 보였다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 시나리오: 통화 종료 후 녹음 저장</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">endCall</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 1. 통화 종료 처리</span>
+    <span class="n">callService</span><span class="o">.</span><span class="na">endCall</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>
+
+    <span class="c1">// 2. Agora API 호출 (외부 API, 2-3초 소요)</span>
+    <span class="n">agoraService</span><span class="o">.</span><span class="na">stopRecording</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>  <span class="c1">// ← 여기서 블로킹!</span>
+
+    <span class="c1">// 3. 평가 페이지로 리다이렉트</span>
+    <span class="k">return</span> <span class="s">"redirect:/evaluation"</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>동기 방식의 문제는 Agora API 응답을 기다리는 2-3초 동안 스레드가 블로킹된다는 거였다. 200개 스레드로 동시 200명만 처리 가능하고, 대기 시간이 증가하면 사용자 경험이 저하된다.</p>
+
+<p>비동기 방식을 쓰면:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Mono</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">endCall</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">callService</span><span class="o">.</span><span class="na">endCall</span><span class="o">(</span><span class="n">callId</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">agoraService</span><span class="o">.</span><span class="na">stopRecording</span><span class="o">(</span><span class="n">callId</span><span class="o">))</span>  <span class="c1">// 논블로킹</span>
+        <span class="o">.</span><span class="na">then</span><span class="o">();</span>
+    <span class="c1">// 스레드가 즉시 다른 요청 처리 가능</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="실제-경험-webflux의-학습-곡선">실제 경험: WebFlux의 학습 곡선</h3>
+
+<p>솔직히 말하면, WebFlux는 쉽지 않았다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ 이렇게 하면 안 됨</span>
+<span class="kd">public</span> <span class="nc">Mono</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">getUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">block</span><span class="o">();</span>  <span class="c1">// 블로킹!</span>
+    <span class="k">return</span> <span class="nc">Mono</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// ✅ 올바른 방법</span>
+<span class="kd">public</span> <span class="nc">Mono</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">getUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>  <span class="c1">// 논블로킹 체인</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">block()</code>을 쓰는 순간 비동기의 의미가 사라진다. “Reactive하게 생각하기”까지 시간이 필요했지만, 익숙해지니 외부 API 호출이 많은 우리 서비스에 딱 맞았다.</p>
+
+<h3 id="언제-webflux를-쓰면-좋을까">언제 WebFlux를 쓰면 좋을까?</h3>
+
+<p>내 경험상 이런 경우 WebFlux가 적합하다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ WebFlux 추천:
+- 외부 API 호출이 많은 서비스
+- WebSocket 등 실시간 통신 필요
+- I/O 대기 시간이 긴 작업
+- 동시 접속자가 많은 서비스
+
+❌ WebFlux 비추천:
+- CPU 집약적 작업 (이미지 처리, 암호화 등)
+- 간단한 CRUD 중심 서비스
+- 팀이 Spring MVC에 익숙하고, 학습 시간이 부족한 경우
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-database-mysql을-선택한-이유">3. Database: MySQL을 선택한 이유</h2>
+
+<h3 id="mysql-vs-nosql-고민">MySQL vs NoSQL 고민</h3>
+
+<p>“요즘 트렌드는 NoSQL 아닌가?”라는 생각도 했다. MongoDB를 쓸까 진지하게 고민했다.</p>
+
+<p>우리 데이터의 특성을 분석해봤다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User ←→ Friendships ←→ User
+  ↓
+Calls ←→ CallRecordings
+  ↓
+CallEvaluations
+</code></pre></div></div>
+
+<p>친구 관계는 양방향이고 상태 관리가 필요하다 (요청중/수락/차단). 통화 이력은 두 사용자 간의 연결이고, 평가는 통화와 1:1 관계다.</p>
+
+<p>이런 구조를 보니 관계형 데이터베이스가 더 자연스러웠다.</p>
+
+<h3 id="데이터-일관성의-중요성">데이터 일관성의 중요성</h3>
+
+<p>특히 친구 관계에서 일관성이 중요했다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 친구 요청은 반드시 양쪽 모두 저장되어야 함</span>
+<span class="k">BEGIN</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">friendships</span> <span class="p">(</span><span class="n">user_a_id</span><span class="p">,</span> <span class="n">user_b_id</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'PENDING'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">friendships</span> <span class="p">(</span><span class="n">user_b_id</span><span class="p">,</span> <span class="n">user_a_id</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'REQUESTED'</span><span class="p">);</span>
+<span class="k">COMMIT</span><span class="p">;</span>
+
+<span class="c1">-- 하나라도 실패하면 전체 롤백</span>
+</code></pre></div></div>
+
+<p>NoSQL에서는 이런 트랜잭션 보장이 상대적으로 약하다.</p>
+
+<h3 id="쿼리-복잡도">쿼리 복잡도</h3>
+
+<p>통화 이력 조회 같은 경우, JOIN이 필요했다:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 내 통화 이력 + 상대방 정보 + 친구 상태</span>
+<span class="k">SELECT</span>
+    <span class="k">c</span><span class="p">.</span><span class="o">*</span><span class="p">,</span>
+    <span class="n">u</span><span class="p">.</span><span class="n">nickname</span> <span class="k">as</span> <span class="n">partner_name</span><span class="p">,</span>
+    <span class="n">f</span><span class="p">.</span><span class="n">status</span> <span class="k">as</span> <span class="n">friend_status</span>
+<span class="k">FROM</span> <span class="n">calls</span> <span class="k">c</span>
+<span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">user_a_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">OR</span> <span class="k">c</span><span class="p">.</span><span class="n">user_b_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="k">AND</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="o">!=</span> <span class="p">:</span><span class="n">myId</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">friendships</span> <span class="n">f</span> <span class="k">ON</span> <span class="n">f</span><span class="p">.</span><span class="n">friend_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">AND</span> <span class="n">f</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">myId</span>
+<span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">user_a_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">myId</span> <span class="k">OR</span> <span class="k">c</span><span class="p">.</span><span class="n">user_b_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">myId</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">c</span><span class="p">.</span><span class="n">created_at</span> <span class="k">DESC</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>NoSQL에서 이런 쿼리는 애플리케이션 레벨에서 여러 번 조회해야 한다.</p>
+
+<h3 id="그럼-nosql은-언제">그럼 NoSQL은 언제?</h3>
+
+<p>내가 생각하는 NoSQL 적합 케이스:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ NoSQL 추천:
+- 스키마가 자주 변하는 경우
+- 단순 Key-Value 조회가 대부분
+- 대용량 로그/이벤트 데이터
+- 수평 확장이 필수적인 경우
+
+❌ NoSQL 비추천:
+- 복잡한 관계와 트랜잭션 필요
+- JOIN 쿼리가 많은 경우
+- 데이터 일관성이 중요한 비즈니스 로직
+</code></pre></div></div>
+
+<p>결론은 MySQL로 시작하고, 필요시 캐시(Redis)와 조합하기로 했다.</p>
+
+<hr />
+
+<h2 id="4-cache--queue-redis를-선택한-이유">4. Cache &amp; Queue: Redis를 선택한 이유</h2>
+
+<h3 id="redis의-세-가지-역할">Redis의 세 가지 역할</h3>
+
+<p>우리 서비스에서 Redis는 단순 캐시를 넘어 세 가지 역할을 한다:</p>
+
+<ol>
+  <li><strong>매칭 대기열</strong> - 카테고리별로 대기 중인 사용자 관리</li>
+  <li><strong>실시간 세션 관리</strong> - WebSocket 연결 정보</li>
+  <li><strong>캐시</strong> - 자주 조회되는 카테고리 정보</li>
+</ol>
+
+<h3 id="자료구조-선택-zset-vs-set-vs-list">자료구조 선택: ZSET vs SET vs List</h3>
+
+<p>매칭 대기열을 어떤 자료구조로 구현할지 고민이 많았다.</p>
+
+<h4 id="시도-1-list-lpushrpop">시도 1: List (LPUSH/RPOP)</h4>
+
+<pre><code class="language-redis"># 입장
+LPUSH wait:music userId_101
+
+# 매칭 (2명 추출)
+RPOP wait:music  # userId_101
+RPOP wait:music  # userId_205
+</code></pre>
+
+<p>문제점은 대기 순서는 보장되지만, 타임아웃 처리가 어렵고 랜덤 매칭이 불가능했다.</p>
+
+<h4 id="시도-2-set-saddspop">시도 2: Set (SADD/SPOP)</h4>
+
+<pre><code class="language-redis"># 입장
+SADD wait:music userId_101
+
+# 매칭 (랜덤 2명)
+SPOP wait:music 2
+</code></pre>
+
+<p>랜덤은 쉽지만 대기 순서를 알 수 없어서 공정성이 없었다.</p>
+
+<h4 id="최종-선택-zset-sorted-set">최종 선택: ZSET (Sorted Set)</h4>
+
+<pre><code class="language-redis"># 입장 (점수 = 대기 시작 시각)
+ZADD wait:music 1725430000456 userId_101
+ZADD wait:music 1725430001234 userId_205
+
+# 대기순 매칭
+ZPOPMIN wait:music 2
+
+# 랜덤 매칭
+ZRANDMEMBER wait:music 2
+</code></pre>
+
+<p>장점이 명확했다:</p>
+
+<ul>
+  <li>대기 시간 기준 정렬 ✅</li>
+  <li>대기순/랜덤 모두 가능 ✅</li>
+  <li>타임아웃 쉬움 (점수 기준 삭제) ✅</li>
+</ul>
+
+<h3 id="왜-별도의-메시지-큐를-안-썼나">왜 별도의 메시지 큐를 안 썼나?</h3>
+
+<p>RabbitMQ, Kafka 같은 전문 메시지 큐도 고려했다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Redis</th>
+      <th>RabbitMQ</th>
+      <th>Kafka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>학습 곡선</td>
+      <td>낮음</td>
+      <td>중간</td>
+      <td>높음</td>
+    </tr>
+    <tr>
+      <td>운영 복잡도</td>
+      <td>낮음</td>
+      <td>중간</td>
+      <td>높음</td>
+    </tr>
+    <tr>
+      <td>성능 (우리 규모)</td>
+      <td>충분</td>
+      <td>충분</td>
+      <td>과함</td>
+    </tr>
+    <tr>
+      <td>비용</td>
+      <td>낮음</td>
+      <td>중간</td>
+      <td>높음</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>초기 단계에서는 Redis로 충분하다고 판단했다. 트래픽이 늘면 그때 전환을 고려하기로 했다. “과도한 엔지니어링”을 경계해야 한다고 생각했다.</p>
+
+<hr />
+
+<h2 id="5-webrtc-agora를-선택한-이유">5. WebRTC: Agora를 선택한 이유</h2>
+
+<h3 id="직접-구현-vs-saas">직접 구현 vs SaaS</h3>
+
+<p>WebRTC를 직접 구현할지, SaaS를 쓸지 고민했다.</p>
+
+<p>직접 구현 시나리오를 생각해보니:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>필요한 것:
+- STUN/TURN 서버 구축 및 운영
+- Signaling 서버 개발
+- NAT Traversal 처리
+- 통화 품질 모니터링
+- 녹음 기능 구현
+
+예상 개발 시간: 2-3개월
+예상 운영 부담: 높음
+</code></pre></div></div>
+
+<p>SaaS 사용 시나리오:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>필요한 것:
+- SDK 통합 (1-2주)
+- 설정 및 테스트
+
+예상 개발 시간: 2주
+예상 운영 부담: 낮음
+</code></pre></div></div>
+
+<p>MVP는 빠르게 검증하는 게 중요하다고 생각해서 SaaS를 선택했다.</p>
+
+<h3 id="agora-vs-twilio-vs-daily">Agora vs Twilio vs Daily</h3>
+
+<p>WebRTC SaaS를 비교 분석했다.</p>
+
+<p>비교 기준:</p>
+
+<ol>
+  <li><strong>통화 품질</strong> - 모두 우수한 수준, 한국 리전 지원 여부가 중요</li>
+  <li><strong>Cloud Recording</strong> - 우리 서비스에 필수 기능</li>
+  <li><strong>가격</strong> - 초기 단계라 비용 민감</li>
+  <li><strong>문서 및 커뮤니티</strong> - 문제 해결이 쉬운가</li>
+</ol>
+
+<p>최종적으로 Agora를 선택한 이유:</p>
+
+<ul>
+  <li>Cloud Recording 기능이 강력 (Individual Mode 지원)</li>
+  <li>Firebase Storage 직접 연동 가능</li>
+  <li>가격 경쟁력</li>
+  <li>한국어 문서와 한국 리전 지원</li>
+</ul>
+
+<p>다만 Twilio보다 커뮤니티가 작고, 일부 고급 기능은 Twilio가 우세하다는 점은 고려사항이었다.</p>
+
+<h3 id="실제-사용-후기">실제 사용 후기</h3>
+
+<p>Agora를 6개월간 사용한 경험을 정리하면:</p>
+
+<p>만족스러운 점:</p>
+
+<ul>
+  <li>SDK 통합이 생각보다 쉬움</li>
+  <li>녹음 기능이 안정적</li>
+  <li>통화 품질 좋음</li>
+</ul>
+
+<p>아쉬운 점:</p>
+
+<ul>
+  <li>일부 에러 메시지가 불친절</li>
+  <li>고급 설정 시 영어 문서 의존도 높음</li>
+</ul>
+
+<hr />
+
+<h2 id="6-file-storage-firebase-storage를-선택한-이유">6. File Storage: Firebase Storage를 선택한 이유</h2>
+
+<h3 id="왜-aws-s3가-아닌가">왜 AWS S3가 아닌가?</h3>
+
+<p>통화 녹음 파일을 저장할 곳이 필요했다. 가장 먼저 떠오른 건 AWS S3였다.</p>
+
+<p>고민한 점:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AWS S3:
+✅ 업계 표준
+✅ 많은 레퍼런스
+✅ 강력한 기능
+
+Firebase Storage:
+✅ 이미 프로필 이미지에 사용 중
+✅ GCS 기반 (Agora와 호환성 좋음)
+✅ Firebase 생태계 활용 가능
+</code></pre></div></div>
+
+<h3 id="실용적-판단">실용적 판단</h3>
+
+<p>결정적이었던 건 <strong>이미 사용하고 있다</strong>는 점이었다.</p>
+
+<p>새로운 기술을 도입하면:</p>
+
+<ul>
+  <li>학습 시간</li>
+  <li>설정 및 테스트</li>
+  <li>운영 노하우 축적</li>
+  <li>문제 해결 경험</li>
+</ul>
+
+<p>이 모든 비용이 든다.</p>
+
+<p>기존 기술을 활용하면:</p>
+
+<ul>
+  <li>즉시 사용 가능</li>
+  <li>이미 익숙함</li>
+  <li>통합 관리 편함</li>
+</ul>
+
+<p>“최신/유명 != 우리에게 최선”이라는 걸 다시 한번 깨달았다.</p>
+
+<h3 id="agora와의-통합">Agora와의 통합</h3>
+
+<p>특히 Agora Cloud Recording이 GCS(Google Cloud Storage)와 직접 연동된다는 점이 좋았다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Agora → Firebase Storage (GCS 기반)
+- HMAC 인증으로 직접 업로드
+- 별도의 파일 전송 서버 불필요
+- 자동 업로드 (15초마다 segment)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="7-frontend-react--capacitor를-선택한-이유">7. Frontend: React + Capacitor를 선택한 이유</h2>
+
+<h3 id="웹인가-앱인가">웹인가, 앱인가?</h3>
+
+<p>처음부터 모바일 앱을 목표로 했다. 음성 통화 특성상 앱이 더 자연스럽다고 판단했다.</p>
+
+<p>선택지를 정리하면:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 웹 (React)만 개발
+   → 빠르지만 접근성 낮음
+
+2. React Native
+   → 네이티브 성능, 웹 코드 재사용 불가
+
+3. Flutter
+   → 성능 좋음, Dart 새로 학습 필요
+
+4. Capacitor (선택!)
+   → 웹 코드 100% 재사용, WebView 기반
+</code></pre></div></div>
+
+<h3 id="capacitor의-장점">Capacitor의 장점</h3>
+
+<p>가장 큰 장점은 빠른 개발이었다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 기존 React 웹 코드</span>
+<span class="kd">const</span> <span class="nx">CallPage</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">setChannel</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+  <span class="c1">// Agora WebRTC 로직</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Capacitor 추가 후</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="p">@</span><span class="nd">capacitor</span><span class="sr">/cor</span><span class="err">e
+</span><span class="nx">npx</span> <span class="nx">cap</span> <span class="nx">add</span> <span class="nx">android</span> <span class="nx">ios</span>
+
+<span class="c1">// 앱 빌드 완료!</span>
+</code></pre></div></div>
+
+<p>단일 코드베이스로 관리할 수 있다는 것도 큰 장점이었다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/
+  components/
+    CallPage.tsx      ← 웹, Android, iOS 모두 사용
+    MatchingButton.tsx
+  lib/
+    agora.ts          ← 한 번만 작성
+    websocket.ts
+</code></pre></div></div>
+
+<h3 id="네이티브-기능-접근">네이티브 기능 접근</h3>
+
+<p>Capacitor 플러그인으로 네이티브 기능도 사용 가능했다:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 카카오 네이티브 로그인</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">KakaoLoginPlugin</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">capacitor-kakao-login-plugin</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">KakaoLoginPlugin</span><span class="p">.</span><span class="nx">goLogin</span><span class="p">();</span>
+
+<span class="c1">// 구글 네이티브 로그인</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">GoogleAuth</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@codetrix-studio/capacitor-google-auth</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">GoogleAuth</span><span class="p">.</span><span class="nx">signIn</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="한계와-트레이드오프">한계와 트레이드오프</h3>
+
+<p>WebView 제약이 있다:</p>
+
+<ul>
+  <li>네이티브 앱보다 성능 떨어짐</li>
+  <li>일부 브라우저 제약 (CORS, Cookie 등)</li>
+  <li>플랫폼별 차이 (iOS vs Android)</li>
+</ul>
+
+<p>그럼에도 선택한 이유는:</p>
+
+<ul>
+  <li><strong>속도:</strong> 2-3개월 단축</li>
+  <li><strong>유지보수:</strong> 하나의 코드베이스</li>
+  <li><strong>검증:</strong> MVP 빠르게 출시</li>
+</ul>
+
+<p>초기에는 Capacitor로 시작하고, 성장하면 부분적으로 네이티브 전환을 고려하기로 했다.</p>
+
+<hr />
+
+<h2 id="8-배포-환경-aws--vercel">8. 배포 환경: AWS + Vercel</h2>
+
+<h3 id="backend-aws-ec2">Backend: AWS EC2</h3>
+
+<p>“왜 컨테이너(ECS, EKS)가 아닌가?”라는 질문을 받을 수 있는데:</p>
+
+<p>우리 상황:</p>
+
+<ul>
+  <li>단일 서버로 충분</li>
+  <li>오토 스케일링 아직 불필요</li>
+  <li>운영 복잡도 최소화</li>
+</ul>
+
+<p>선택:</p>
+
+<ul>
+  <li>EC2 단일 인스턴스</li>
+  <li>Nginx 리버스 프록시</li>
+  <li>Let’s Encrypt SSL</li>
+</ul>
+
+<p>비용도 고려했다. ECS/EKS는 추가 비용이 들고, Elastic Load Balancer도 고정 비용이 든다. EC2 단독이 가장 경제적이었다.</p>
+
+<h3 id="frontend-vercel">Frontend: Vercel</h3>
+
+<p>왜 Vercel인가?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ 장점:
+- Git push → 자동 배포
+- HTTPS 기본 제공
+- CDN 자동 설정
+- 무료 플랜으로 충분
+
+vs
+
+AWS S3 + CloudFront:
+- 직접 설정 필요
+- 비용 발생
+- CI/CD 직접 구축
+</code></pre></div></div>
+
+<p>프론트엔드는 정적 파일이므로 Vercel이 훨씬 편했다.</p>
+
+<hr />
+
+<h2 id="9-기술-선택의-원칙">9. 기술 선택의 원칙</h2>
+
+<p>6개월간의 경험을 돌아보니, 내게는 몇 가지 원칙이 생겼다.</p>
+
+<h3 id="원칙-1-맥락이-가장-중요하다">원칙 1: “맥락”이 가장 중요하다</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❌ "요즘 A가 대세니까 A를 써야지"
+✅ "우리 상황에서는 B가 더 적합해"
+</code></pre></div></div>
+
+<p>예시:</p>
+
+<ul>
+  <li>Kafka는 강력하지만 우리 규모에는 과함 → Redis 선택</li>
+  <li>React Native는 좋지만 웹 코드 재사용 중요 → Capacitor 선택</li>
+</ul>
+
+<h3 id="원칙-2-mvp는-빠르게-확장은-점진적으로">원칙 2: MVP는 빠르게, 확장은 점진적으로</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>처음부터 완벽한 설계 (X)
+빠른 검증 → 점진적 개선 (O)
+</code></pre></div></div>
+
+<p>실제 적용:</p>
+
+<ul>
+  <li>단일 EC2로 시작 → 트래픽 증가 시 확장 고려</li>
+  <li>Redis 대기열 → 필요시 Kafka 전환</li>
+  <li>Capacitor → 성장하면 부분 네이티브</li>
+</ul>
+
+<h3 id="원칙-3-익숙함도-중요한-가치">원칙 3: “익숙함”도 중요한 가치</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>새로운 기술 학습 비용 vs 익숙한 기술 활용
+
+학부/석사에서 Spring 사용 경험
+→ Spring Boot 선택이 자연스러움
+</code></pre></div></div>
+
+<h3 id="원칙-4-비용은-현실적-제약">원칙 4: 비용은 현실적 제약</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>초기 단계의 인프라 비용:
+- EC2, RDS, Redis, Agora, Firebase
+→ 월 수십 달러 수준으로 통제
+
+vs
+
+이상적 아키텍처:
+- ECS, ELB, CloudFront, Kafka...
+→ 월 수백 달러
+</code></pre></div></div>
+
+<p>서비스 검증이 우선이고, 인프라는 필요 시 확장하기로 했다.</p>
+
+<hr />
+
+<h2 id="10-마치며">10. 마치며</h2>
+
+<p>기술 선택은 트레이드오프의 연속이었다.</p>
+
+<ul>
+  <li>성능 vs 개발 속도</li>
+  <li>이상 vs 현실</li>
+  <li>최신 기술 vs 익숙한 기술</li>
+  <li>비용 vs 확장성</li>
+</ul>
+
+<p>중요한 건 “정답”을 찾는 게 아니라, “우리에게 맞는 답”을 찾는 것이었다.</p>
+
+<p>6개월간 이 기술들로 서비스를 만들고 운영하며 정말 많이 배웠다.
+선택이 완벽하진 않았지만, 후회는 없다.
+각 선택의 이유를 명확히 알고 있고, 필요하면 언제든 바꿀 수 있다는 확신이 있기 때문이다!</p>
+
+<p><strong>“왜?”라는 질문을 끊임없이 던지자. 그 답이 쌓이면, 그게 바로 우리의 기술 철학이 된다.</strong></p>
+
+<hr />
+
+<p><strong>시리즈:</strong></p>
+
+<ol>
+  <li><strong>왜 이 기술들을 선택했나</strong> ← 현재 글</li>
+  <li>실시간 매칭 시스템 설계 (작성 예정)</li>
+  <li>운영하며 겪은 문제들 (작성 예정)</li>
+  <li>성능 최적화 여정 (작성 예정)</li>
+</ol>
+
+<hr />
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://docs.spring.io/spring-framework/reference/web/webflux.html">Spring WebFlux 공식 문서</a></li>
+  <li><a href="https://redis.io/docs/data-types/">Redis 자료구조 가이드</a></li>
+  <li><a href="https://docs.agora.io/en/cloud-recording">Agora Cloud Recording</a></li>
+  <li><a href="https://capacitorjs.com/docs">Capacitor 공식 문서</a></li>
+</ul>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-11-24-diary/" class="flip-title"><span>[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</span></a>  <time class="faded fine" datetime="2025-11-24T00:00:00+00:00">24 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-20-diary/" class="flip-title"><span>[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</span></a>  <time class="faded fine" datetime="2025-11-20T00:00:00+00:00">20 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-18-diary/" class="flip-title"><span>[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</span></a>  <time class="faded fine" datetime="2025-11-18T00:00:00+00:00">18 Nov 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (23)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (63)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

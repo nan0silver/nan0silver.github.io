@@ -1,7 +1,664 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-12-22T06:13:37+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-12-22T06:23:26+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2025-12-22T06:12:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</title><link href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" /><published>2025-12-20T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-20-diary/"><![CDATA[<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-전체-그림-우리-서비스가-필요한-것">1. 전체 그림: 우리 서비스가 필요한 것</a></li>
+  <li><a href="#2-backend-spring-boot--webflux를-선택한-이유">2. Backend: Spring Boot + WebFlux를 선택한 이유</a></li>
+  <li><a href="#3-database-mysql을-선택한-이유">3. Database: MySQL을 선택한 이유</a></li>
+  <li><a href="#4-cache--queue-redis를-선택한-이유">4. Cache &amp; Queue: Redis를 선택한 이유</a></li>
+  <li><a href="#5-webrtc-agora를-선택한-이유">5. WebRTC: Agora를 선택한 이유</a></li>
+  <li><a href="#6-file-storage-firebase-storage를-선택한-이유">6. File Storage: Firebase Storage를 선택한 이유</a></li>
+  <li><a href="#7-frontend-react--capacitor를-선택한-이유">7. Frontend: React + Capacitor를 선택한 이유</a></li>
+  <li><a href="#8-배포-환경-aws--vercel">8. 배포 환경: AWS + Vercel</a></li>
+  <li><a href="#9-기술-선택의-원칙">9. 기술 선택의 원칙</a></li>
+  <li><a href="#10-마치며">10. 마치며</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>“관심사 기반 1:1 랜덤 음성 통화”라는 아이디어를 떠올렸을 때, 가장 먼저 든 생각은 “어떻게 구현하지?”였다. 학부와 석사 과정에서 배운 이론과 토이 프로젝트 경험은 있었지만, 실제 사용자가 쓸 서비스를 만드는 것은 처음이었다.</p>
+
+<p>기술 스택을 선택하는 과정에서 수많은 블로그 글을 읽었고, 여러 서비스를 비교했다. 하지만 결국 깨달은 건 <strong>“정답은 없다”</strong>는 것이었다. 각 기술은 장단점이 있고, 중요한 건 우리 서비스의 맥락에서 어떤 게 적합한가였다.</p>
+
+<p>이 글에서는 내가 왜 이런 선택을 했는지, 어떤 고민을 했는지를 솔직하게 공유해보려 한다.</p>
+
+<hr />
+
+<h2 id="1-전체-그림-우리-서비스가-필요한-것">1. 전체 그림: 우리 서비스가 필요한 것</h2>
+
+<p>기술을 선택하기 전에, 먼저 우리 서비스의 특성을 정리했다.</p>
+
+<h3 id="핵심-요구사항">핵심 요구사항</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 실시간성
+   - 매칭 대기 시간을 최소화 (목표: 1분 이내)
+   - 매칭 완료 즉시 알림
+   - 끊김 없는 음성 통화
+
+2. 확장성
+   - 초기엔 소규모지만, 사용자 증가에 대응 가능해야 함
+   - 트래픽 급증 시나리오 고려
+
+3. 운영 편의성
+   - 문제 발생 시 빠른 파악과 대응
+   - 모니터링과 로깅
+   - 배포 자동화
+
+4. 비용 효율성
+   - MVP 단계에서 과도한 인프라 비용 지양
+   - 사용량에 따른 탄력적 비용 구조
+</code></pre></div></div>
+
+<p>이 네 가지 축을 기준으로 모든 기술 선택을 평가했다.</p>
+
+<hr />
+
+<h2 id="2-backend-spring-boot--webflux를-선택한-이유">2. Backend: Spring Boot + WebFlux를 선택한 이유</h2>
+
+<h3 id="왜-비동기가-필요했나">왜 비동기가 필요했나?</h3>
+
+<p>처음에는 익숙한 Spring MVC를 쓸까 고민했다. 하지만 우리 서비스의 특성을 생각해보니 WebFlux가 더 적합해 보였다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 시나리오: 통화 종료 후 녹음 저장</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">endCall</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 1. 통화 종료 처리</span>
+    <span class="n">callService</span><span class="o">.</span><span class="na">endCall</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>
+
+    <span class="c1">// 2. Agora API 호출 (외부 API, 2-3초 소요)</span>
+    <span class="n">agoraService</span><span class="o">.</span><span class="na">stopRecording</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>  <span class="c1">// ← 여기서 블로킹!</span>
+
+    <span class="c1">// 3. 평가 페이지로 리다이렉트</span>
+    <span class="k">return</span> <span class="s">"redirect:/evaluation"</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>동기 방식의 문제는 Agora API 응답을 기다리는 2-3초 동안 스레드가 블로킹된다는 거였다. 200개 스레드로 동시 200명만 처리 가능하고, 대기 시간이 증가하면 사용자 경험이 저하된다.</p>
+
+<p>비동기 방식을 쓰면:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Mono</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">endCall</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">callService</span><span class="o">.</span><span class="na">endCall</span><span class="o">(</span><span class="n">callId</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">agoraService</span><span class="o">.</span><span class="na">stopRecording</span><span class="o">(</span><span class="n">callId</span><span class="o">))</span>  <span class="c1">// 논블로킹</span>
+        <span class="o">.</span><span class="na">then</span><span class="o">();</span>
+    <span class="c1">// 스레드가 즉시 다른 요청 처리 가능</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="실제-경험-webflux의-학습-곡선">실제 경험: WebFlux의 학습 곡선</h3>
+
+<p>솔직히 말하면, WebFlux는 쉽지 않았다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ 이렇게 하면 안 됨</span>
+<span class="kd">public</span> <span class="nc">Mono</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">getUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">block</span><span class="o">();</span>  <span class="c1">// 블로킹!</span>
+    <span class="k">return</span> <span class="nc">Mono</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// ✅ 올바른 방법</span>
+<span class="kd">public</span> <span class="nc">Mono</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">getUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>  <span class="c1">// 논블로킹 체인</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">block()</code>을 쓰는 순간 비동기의 의미가 사라진다. “Reactive하게 생각하기”까지 시간이 필요했지만, 익숙해지니 외부 API 호출이 많은 우리 서비스에 딱 맞았다.</p>
+
+<h3 id="언제-webflux를-쓰면-좋을까">언제 WebFlux를 쓰면 좋을까?</h3>
+
+<p>내 경험상 이런 경우 WebFlux가 적합하다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ WebFlux 추천:
+- 외부 API 호출이 많은 서비스
+- WebSocket 등 실시간 통신 필요
+- I/O 대기 시간이 긴 작업
+- 동시 접속자가 많은 서비스
+
+❌ WebFlux 비추천:
+- CPU 집약적 작업 (이미지 처리, 암호화 등)
+- 간단한 CRUD 중심 서비스
+- 팀이 Spring MVC에 익숙하고, 학습 시간이 부족한 경우
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-database-mysql을-선택한-이유">3. Database: MySQL을 선택한 이유</h2>
+
+<h3 id="mysql-vs-nosql-고민">MySQL vs NoSQL 고민</h3>
+
+<p>“요즘 트렌드는 NoSQL 아닌가?”라는 생각도 했다. MongoDB를 쓸까 진지하게 고민했다.</p>
+
+<p>우리 데이터의 특성을 분석해봤다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User ←→ Friendships ←→ User
+  ↓
+Calls ←→ CallRecordings
+  ↓
+CallEvaluations
+</code></pre></div></div>
+
+<p>친구 관계는 양방향이고 상태 관리가 필요하다 (요청중/수락/차단). 통화 이력은 두 사용자 간의 연결이고, 평가는 통화와 1:1 관계다.</p>
+
+<p>이런 구조를 보니 관계형 데이터베이스가 더 자연스러웠다.</p>
+
+<h3 id="데이터-일관성의-중요성">데이터 일관성의 중요성</h3>
+
+<p>특히 친구 관계에서 일관성이 중요했다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 친구 요청은 반드시 양쪽 모두 저장되어야 함</span>
+<span class="k">BEGIN</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">friendships</span> <span class="p">(</span><span class="n">user_a_id</span><span class="p">,</span> <span class="n">user_b_id</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'PENDING'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">friendships</span> <span class="p">(</span><span class="n">user_b_id</span><span class="p">,</span> <span class="n">user_a_id</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'REQUESTED'</span><span class="p">);</span>
+<span class="k">COMMIT</span><span class="p">;</span>
+
+<span class="c1">-- 하나라도 실패하면 전체 롤백</span>
+</code></pre></div></div>
+
+<p>NoSQL에서는 이런 트랜잭션 보장이 상대적으로 약하다.</p>
+
+<h3 id="쿼리-복잡도">쿼리 복잡도</h3>
+
+<p>통화 이력 조회 같은 경우, JOIN이 필요했다:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 내 통화 이력 + 상대방 정보 + 친구 상태</span>
+<span class="k">SELECT</span>
+    <span class="k">c</span><span class="p">.</span><span class="o">*</span><span class="p">,</span>
+    <span class="n">u</span><span class="p">.</span><span class="n">nickname</span> <span class="k">as</span> <span class="n">partner_name</span><span class="p">,</span>
+    <span class="n">f</span><span class="p">.</span><span class="n">status</span> <span class="k">as</span> <span class="n">friend_status</span>
+<span class="k">FROM</span> <span class="n">calls</span> <span class="k">c</span>
+<span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">user_a_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">OR</span> <span class="k">c</span><span class="p">.</span><span class="n">user_b_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="k">AND</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="o">!=</span> <span class="p">:</span><span class="n">myId</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">friendships</span> <span class="n">f</span> <span class="k">ON</span> <span class="n">f</span><span class="p">.</span><span class="n">friend_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">AND</span> <span class="n">f</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">myId</span>
+<span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">user_a_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">myId</span> <span class="k">OR</span> <span class="k">c</span><span class="p">.</span><span class="n">user_b_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">myId</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">c</span><span class="p">.</span><span class="n">created_at</span> <span class="k">DESC</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>NoSQL에서 이런 쿼리는 애플리케이션 레벨에서 여러 번 조회해야 한다.</p>
+
+<h3 id="그럼-nosql은-언제">그럼 NoSQL은 언제?</h3>
+
+<p>내가 생각하는 NoSQL 적합 케이스:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ NoSQL 추천:
+- 스키마가 자주 변하는 경우
+- 단순 Key-Value 조회가 대부분
+- 대용량 로그/이벤트 데이터
+- 수평 확장이 필수적인 경우
+
+❌ NoSQL 비추천:
+- 복잡한 관계와 트랜잭션 필요
+- JOIN 쿼리가 많은 경우
+- 데이터 일관성이 중요한 비즈니스 로직
+</code></pre></div></div>
+
+<p>결론은 MySQL로 시작하고, 필요시 캐시(Redis)와 조합하기로 했다.</p>
+
+<hr />
+
+<h2 id="4-cache--queue-redis를-선택한-이유">4. Cache &amp; Queue: Redis를 선택한 이유</h2>
+
+<h3 id="redis의-세-가지-역할">Redis의 세 가지 역할</h3>
+
+<p>우리 서비스에서 Redis는 단순 캐시를 넘어 세 가지 역할을 한다:</p>
+
+<ol>
+  <li><strong>매칭 대기열</strong> - 카테고리별로 대기 중인 사용자 관리</li>
+  <li><strong>실시간 세션 관리</strong> - WebSocket 연결 정보</li>
+  <li><strong>캐시</strong> - 자주 조회되는 카테고리 정보</li>
+</ol>
+
+<h3 id="자료구조-선택-zset-vs-set-vs-list">자료구조 선택: ZSET vs SET vs List</h3>
+
+<p>매칭 대기열을 어떤 자료구조로 구현할지 고민이 많았다.</p>
+
+<h4 id="시도-1-list-lpushrpop">시도 1: List (LPUSH/RPOP)</h4>
+
+<pre><code class="language-redis"># 입장
+LPUSH wait:music userId_101
+
+# 매칭 (2명 추출)
+RPOP wait:music  # userId_101
+RPOP wait:music  # userId_205
+</code></pre>
+
+<p>문제점은 대기 순서는 보장되지만, 타임아웃 처리가 어렵고 랜덤 매칭이 불가능했다.</p>
+
+<h4 id="시도-2-set-saddspop">시도 2: Set (SADD/SPOP)</h4>
+
+<pre><code class="language-redis"># 입장
+SADD wait:music userId_101
+
+# 매칭 (랜덤 2명)
+SPOP wait:music 2
+</code></pre>
+
+<p>랜덤은 쉽지만 대기 순서를 알 수 없어서 공정성이 없었다.</p>
+
+<h4 id="최종-선택-zset-sorted-set">최종 선택: ZSET (Sorted Set)</h4>
+
+<pre><code class="language-redis"># 입장 (점수 = 대기 시작 시각)
+ZADD wait:music 1725430000456 userId_101
+ZADD wait:music 1725430001234 userId_205
+
+# 대기순 매칭
+ZPOPMIN wait:music 2
+
+# 랜덤 매칭
+ZRANDMEMBER wait:music 2
+</code></pre>
+
+<p>장점이 명확했다:</p>
+
+<ul>
+  <li>대기 시간 기준 정렬 ✅</li>
+  <li>대기순/랜덤 모두 가능 ✅</li>
+  <li>타임아웃 쉬움 (점수 기준 삭제) ✅</li>
+</ul>
+
+<h3 id="왜-별도의-메시지-큐를-안-썼나">왜 별도의 메시지 큐를 안 썼나?</h3>
+
+<p>RabbitMQ, Kafka 같은 전문 메시지 큐도 고려했다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Redis</th>
+      <th>RabbitMQ</th>
+      <th>Kafka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>학습 곡선</td>
+      <td>낮음</td>
+      <td>중간</td>
+      <td>높음</td>
+    </tr>
+    <tr>
+      <td>운영 복잡도</td>
+      <td>낮음</td>
+      <td>중간</td>
+      <td>높음</td>
+    </tr>
+    <tr>
+      <td>성능 (우리 규모)</td>
+      <td>충분</td>
+      <td>충분</td>
+      <td>과함</td>
+    </tr>
+    <tr>
+      <td>비용</td>
+      <td>낮음</td>
+      <td>중간</td>
+      <td>높음</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>초기 단계에서는 Redis로 충분하다고 판단했다. 트래픽이 늘면 그때 전환을 고려하기로 했다. “과도한 엔지니어링”을 경계해야 한다고 생각했다.</p>
+
+<hr />
+
+<h2 id="5-webrtc-agora를-선택한-이유">5. WebRTC: Agora를 선택한 이유</h2>
+
+<h3 id="직접-구현-vs-saas">직접 구현 vs SaaS</h3>
+
+<p>WebRTC를 직접 구현할지, SaaS를 쓸지 고민했다.</p>
+
+<p>직접 구현 시나리오를 생각해보니:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>필요한 것:
+- STUN/TURN 서버 구축 및 운영
+- Signaling 서버 개발
+- NAT Traversal 처리
+- 통화 품질 모니터링
+- 녹음 기능 구현
+
+예상 개발 시간: 2-3개월
+예상 운영 부담: 높음
+</code></pre></div></div>
+
+<p>SaaS 사용 시나리오:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>필요한 것:
+- SDK 통합 (1-2주)
+- 설정 및 테스트
+
+예상 개발 시간: 2주
+예상 운영 부담: 낮음
+</code></pre></div></div>
+
+<p>MVP는 빠르게 검증하는 게 중요하다고 생각해서 SaaS를 선택했다.</p>
+
+<h3 id="agora-vs-twilio-vs-daily">Agora vs Twilio vs Daily</h3>
+
+<p>WebRTC SaaS를 비교 분석했다.</p>
+
+<p>비교 기준:</p>
+
+<ol>
+  <li><strong>통화 품질</strong> - 모두 우수한 수준, 한국 리전 지원 여부가 중요</li>
+  <li><strong>Cloud Recording</strong> - 우리 서비스에 필수 기능</li>
+  <li><strong>가격</strong> - 초기 단계라 비용 민감</li>
+  <li><strong>문서 및 커뮤니티</strong> - 문제 해결이 쉬운가</li>
+</ol>
+
+<p>최종적으로 Agora를 선택한 이유:</p>
+
+<ul>
+  <li>Cloud Recording 기능이 강력 (Individual Mode 지원)</li>
+  <li>Firebase Storage 직접 연동 가능</li>
+  <li>가격 경쟁력</li>
+  <li>한국어 문서와 한국 리전 지원</li>
+</ul>
+
+<p>다만 Twilio보다 커뮤니티가 작고, 일부 고급 기능은 Twilio가 우세하다는 점은 고려사항이었다.</p>
+
+<h3 id="실제-사용-후기">실제 사용 후기</h3>
+
+<p>Agora를 6개월간 사용한 경험을 정리하면:</p>
+
+<p>만족스러운 점:</p>
+
+<ul>
+  <li>SDK 통합이 생각보다 쉬움</li>
+  <li>녹음 기능이 안정적</li>
+  <li>통화 품질 좋음</li>
+</ul>
+
+<p>아쉬운 점:</p>
+
+<ul>
+  <li>일부 에러 메시지가 불친절</li>
+  <li>고급 설정 시 영어 문서 의존도 높음</li>
+</ul>
+
+<hr />
+
+<h2 id="6-file-storage-firebase-storage를-선택한-이유">6. File Storage: Firebase Storage를 선택한 이유</h2>
+
+<h3 id="왜-aws-s3가-아닌가">왜 AWS S3가 아닌가?</h3>
+
+<p>통화 녹음 파일을 저장할 곳이 필요했다. 가장 먼저 떠오른 건 AWS S3였다.</p>
+
+<p>고민한 점:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AWS S3:
+✅ 업계 표준
+✅ 많은 레퍼런스
+✅ 강력한 기능
+
+Firebase Storage:
+✅ 이미 프로필 이미지에 사용 중
+✅ GCS 기반 (Agora와 호환성 좋음)
+✅ Firebase 생태계 활용 가능
+</code></pre></div></div>
+
+<h3 id="실용적-판단">실용적 판단</h3>
+
+<p>결정적이었던 건 <strong>이미 사용하고 있다</strong>는 점이었다.</p>
+
+<p>새로운 기술을 도입하면:</p>
+
+<ul>
+  <li>학습 시간</li>
+  <li>설정 및 테스트</li>
+  <li>운영 노하우 축적</li>
+  <li>문제 해결 경험</li>
+</ul>
+
+<p>이 모든 비용이 든다.</p>
+
+<p>기존 기술을 활용하면:</p>
+
+<ul>
+  <li>즉시 사용 가능</li>
+  <li>이미 익숙함</li>
+  <li>통합 관리 편함</li>
+</ul>
+
+<p>“최신/유명 != 우리에게 최선”이라는 걸 다시 한번 깨달았다.</p>
+
+<h3 id="agora와의-통합">Agora와의 통합</h3>
+
+<p>특히 Agora Cloud Recording이 GCS(Google Cloud Storage)와 직접 연동된다는 점이 좋았다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Agora → Firebase Storage (GCS 기반)
+- HMAC 인증으로 직접 업로드
+- 별도의 파일 전송 서버 불필요
+- 자동 업로드 (15초마다 segment)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="7-frontend-react--capacitor를-선택한-이유">7. Frontend: React + Capacitor를 선택한 이유</h2>
+
+<h3 id="웹인가-앱인가">웹인가, 앱인가?</h3>
+
+<p>처음부터 모바일 앱을 목표로 했다. 음성 통화 특성상 앱이 더 자연스럽다고 판단했다.</p>
+
+<p>선택지를 정리하면:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 웹 (React)만 개발
+   → 빠르지만 접근성 낮음
+
+2. React Native
+   → 네이티브 성능, 웹 코드 재사용 불가
+
+3. Flutter
+   → 성능 좋음, Dart 새로 학습 필요
+
+4. Capacitor (선택!)
+   → 웹 코드 100% 재사용, WebView 기반
+</code></pre></div></div>
+
+<h3 id="capacitor의-장점">Capacitor의 장점</h3>
+
+<p>가장 큰 장점은 빠른 개발이었다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 기존 React 웹 코드</span>
+<span class="kd">const</span> <span class="nx">CallPage</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">setChannel</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+  <span class="c1">// Agora WebRTC 로직</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Capacitor 추가 후</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="p">@</span><span class="nd">capacitor</span><span class="sr">/cor</span><span class="err">e
+</span><span class="nx">npx</span> <span class="nx">cap</span> <span class="nx">add</span> <span class="nx">android</span> <span class="nx">ios</span>
+
+<span class="c1">// 앱 빌드 완료!</span>
+</code></pre></div></div>
+
+<p>단일 코드베이스로 관리할 수 있다는 것도 큰 장점이었다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/
+  components/
+    CallPage.tsx      ← 웹, Android, iOS 모두 사용
+    MatchingButton.tsx
+  lib/
+    agora.ts          ← 한 번만 작성
+    websocket.ts
+</code></pre></div></div>
+
+<h3 id="네이티브-기능-접근">네이티브 기능 접근</h3>
+
+<p>Capacitor 플러그인으로 네이티브 기능도 사용 가능했다:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 카카오 네이티브 로그인</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">KakaoLoginPlugin</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">capacitor-kakao-login-plugin</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">KakaoLoginPlugin</span><span class="p">.</span><span class="nx">goLogin</span><span class="p">();</span>
+
+<span class="c1">// 구글 네이티브 로그인</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">GoogleAuth</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@codetrix-studio/capacitor-google-auth</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">GoogleAuth</span><span class="p">.</span><span class="nx">signIn</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="한계와-트레이드오프">한계와 트레이드오프</h3>
+
+<p>WebView 제약이 있다:</p>
+
+<ul>
+  <li>네이티브 앱보다 성능 떨어짐</li>
+  <li>일부 브라우저 제약 (CORS, Cookie 등)</li>
+  <li>플랫폼별 차이 (iOS vs Android)</li>
+</ul>
+
+<p>그럼에도 선택한 이유는:</p>
+
+<ul>
+  <li><strong>속도:</strong> 2-3개월 단축</li>
+  <li><strong>유지보수:</strong> 하나의 코드베이스</li>
+  <li><strong>검증:</strong> MVP 빠르게 출시</li>
+</ul>
+
+<p>초기에는 Capacitor로 시작하고, 성장하면 부분적으로 네이티브 전환을 고려하기로 했다.</p>
+
+<hr />
+
+<h2 id="8-배포-환경-aws--vercel">8. 배포 환경: AWS + Vercel</h2>
+
+<h3 id="backend-aws-ec2">Backend: AWS EC2</h3>
+
+<p>“왜 컨테이너(ECS, EKS)가 아닌가?”라는 질문을 받을 수 있는데:</p>
+
+<p>우리 상황:</p>
+
+<ul>
+  <li>단일 서버로 충분</li>
+  <li>오토 스케일링 아직 불필요</li>
+  <li>운영 복잡도 최소화</li>
+</ul>
+
+<p>선택:</p>
+
+<ul>
+  <li>EC2 단일 인스턴스</li>
+  <li>Nginx 리버스 프록시</li>
+  <li>Let’s Encrypt SSL</li>
+</ul>
+
+<p>비용도 고려했다. ECS/EKS는 추가 비용이 들고, Elastic Load Balancer도 고정 비용이 든다. EC2 단독이 가장 경제적이었다.</p>
+
+<h3 id="frontend-vercel">Frontend: Vercel</h3>
+
+<p>왜 Vercel인가?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ 장점:
+- Git push → 자동 배포
+- HTTPS 기본 제공
+- CDN 자동 설정
+- 무료 플랜으로 충분
+
+vs
+
+AWS S3 + CloudFront:
+- 직접 설정 필요
+- 비용 발생
+- CI/CD 직접 구축
+</code></pre></div></div>
+
+<p>프론트엔드는 정적 파일이므로 Vercel이 훨씬 편했다.</p>
+
+<hr />
+
+<h2 id="9-기술-선택의-원칙">9. 기술 선택의 원칙</h2>
+
+<p>6개월간의 경험을 돌아보니, 내게는 몇 가지 원칙이 생겼다.</p>
+
+<h3 id="원칙-1-맥락이-가장-중요하다">원칙 1: “맥락”이 가장 중요하다</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❌ "요즘 A가 대세니까 A를 써야지"
+✅ "우리 상황에서는 B가 더 적합해"
+</code></pre></div></div>
+
+<p>예시:</p>
+
+<ul>
+  <li>Kafka는 강력하지만 우리 규모에는 과함 → Redis 선택</li>
+  <li>React Native는 좋지만 웹 코드 재사용 중요 → Capacitor 선택</li>
+</ul>
+
+<h3 id="원칙-2-mvp는-빠르게-확장은-점진적으로">원칙 2: MVP는 빠르게, 확장은 점진적으로</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>처음부터 완벽한 설계 (X)
+빠른 검증 → 점진적 개선 (O)
+</code></pre></div></div>
+
+<p>실제 적용:</p>
+
+<ul>
+  <li>단일 EC2로 시작 → 트래픽 증가 시 확장 고려</li>
+  <li>Redis 대기열 → 필요시 Kafka 전환</li>
+  <li>Capacitor → 성장하면 부분 네이티브</li>
+</ul>
+
+<h3 id="원칙-3-익숙함도-중요한-가치">원칙 3: “익숙함”도 중요한 가치</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>새로운 기술 학습 비용 vs 익숙한 기술 활용
+
+학부/석사에서 Spring 사용 경험
+→ Spring Boot 선택이 자연스러움
+</code></pre></div></div>
+
+<h3 id="원칙-4-비용은-현실적-제약">원칙 4: 비용은 현실적 제약</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>초기 단계의 인프라 비용:
+- EC2, RDS, Redis, Agora, Firebase
+→ 월 수십 달러 수준으로 통제
+
+vs
+
+이상적 아키텍처:
+- ECS, ELB, CloudFront, Kafka...
+→ 월 수백 달러
+</code></pre></div></div>
+
+<p>서비스 검증이 우선이고, 인프라는 필요 시 확장하기로 했다.</p>
+
+<hr />
+
+<h2 id="10-마치며">10. 마치며</h2>
+
+<p>기술 선택은 트레이드오프의 연속이었다.</p>
+
+<ul>
+  <li>성능 vs 개발 속도</li>
+  <li>이상 vs 현실</li>
+  <li>최신 기술 vs 익숙한 기술</li>
+  <li>비용 vs 확장성</li>
+</ul>
+
+<p>중요한 건 “정답”을 찾는 게 아니라, “우리에게 맞는 답”을 찾는 것이었다.</p>
+
+<p>6개월간 이 기술들로 서비스를 만들고 운영하며 정말 많이 배웠다.
+선택이 완벽하진 않았지만, 후회는 없다.
+각 선택의 이유를 명확히 알고 있고, 필요하면 언제든 바꿀 수 있다는 확신이 있기 때문이다!</p>
+
+<p><strong>“왜?”라는 질문을 끊임없이 던지자. 그 답이 쌓이면, 그게 바로 우리의 기술 철학이 된다.</strong></p>
+
+<hr />
+
+<p><strong>시리즈:</strong></p>
+
+<ol>
+  <li><strong>왜 이 기술들을 선택했나</strong> ← 현재 글</li>
+  <li>실시간 매칭 시스템 설계 (작성 예정)</li>
+  <li>운영하며 겪은 문제들 (작성 예정)</li>
+  <li>성능 최적화 여정 (작성 예정)</li>
+</ol>
+
+<hr />
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://docs.spring.io/spring-framework/reference/web/webflux.html">Spring WebFlux 공식 문서</a></li>
+  <li><a href="https://redis.io/docs/data-types/">Redis 자료구조 가이드</a></li>
+  <li><a href="https://docs.agora.io/en/cloud-recording">Agora Cloud Recording</a></li>
+  <li><a href="https://capacitorjs.com/docs">Capacitor 공식 문서</a></li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
 
 <p>처음에는 단순할 줄 알았는데, 생각보다 에러도 많이 나고 시행착오가 많아서 MVP에서 제외하고 개발했다. 이 글에서는 어떤 문제들을 겪었고, 어떻게 해결했는지를 정리하려고 한다.</p>
 
@@ -254,7 +911,7 @@ Secret: 한 번만 보여주니 즉시 복사!
   <li><a href="https://spring.io/guides/gs/async-method">Spring Async 설정</a></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-12-22T06:12:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
   <li>이번 포스팅에선 Capacitor로 빌드한 앱에서 여러 아이콘이 순차적으로 표시되는 커스텀 스플래시 스크린을 구현하는 방법을 정리했다.</li>
   <li>왜 Custom splash screen이 필요했나?
     <ul>
@@ -484,7 +1141,7 @@ pnpm add <span class="nt">-D</span> @capacitor/assets
   <li><a href="https://github.com/ionic-team/capacitor-assets">Capacitor assets github page</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/splash-screen">@capacitor/splash-screen DOCS</a></li>
   <li><a href="https://capacitorjs.com/docs/guides/splash-screens-and-icons">Splash Screens and Icons DOCS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</title><link href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" rel="alternate" type="text/html" title="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" /><published>2025-11-18T00:00:00+00:00</published><updated>2025-12-22T06:12:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-18-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</title><link href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" rel="alternate" type="text/html" title="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" /><published>2025-11-18T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-18-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 JSONP 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
@@ -708,7 +1365,7 @@ pnpm add <span class="nt">-D</span> @capacitor/assets
   <li><a href="https://sockjs.github.io/sockjs-protocol/sockjs-protocol-0.3.3.html">SockJS Protocol</a></li>
   <li><a href="https://en.wikipedia.org/wiki/JSONP">JSONP의 작동 원리와 보안 이슈</a></li>
   <li><a href="https://stackoverflow.com/questions/2067472/what-is-jsonp-and-why-was-it-created">CORS vs JSONP</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2025-12-22T06:12:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 X-Frame-Options 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
@@ -961,7 +1618,7 @@ WebView는 브라우저 엔진의 특수 모드
 <ul>
   <li>Capacitor로 앱을 빌드한 다음에 웹에서는 발생하지 않는 에러들이 생겨서 찾아보고, 공부하고, 해결하는 재미가 있다.</li>
   <li>이제 통화연결까지 앱으로 수행할 수 있게 되었다!!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-12-22T06:12:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
   <li>Capacitor로 빌드한 React 앱에서 카카오와 구글 네이티브 로그인을 구현하는 방법을 정리해 보았다.</li>
   <li>관련되서 정리되어있는게 없는것 같아서.. 내가 나중에 찾아볼 수 있게 일단 문서를 만들어보았다.</li>
   <li>웹에서는 일반 OAuth 리다이렉트를 사용하지만, 모바일 앱에서는 <strong>네이티브 SDK를 직접 사용</strong>하는 방식으로 구현했다. (kakao, google)
@@ -1528,7 +2185,7 @@ Content-Type: application/json
   <li><a href="https://developers.kakao.com/docs/latest/ko/flutter/getting-started#project-scheme">Kakao developer</a></li>
   <li><a href="https://github.com/nerdFrenzs/capacitor-kakao-login-plugin">capacitor-kakao-login-plugin</a></li>
   <li><a href="https://github.com/CodetrixStudio/CapacitorGoogleAuth">@codetrix-studio/capacitor-google-auth</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-12-22T06:12:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
   <li>지난 글에서는 Capacitor로 Android, iOS 앱 빌드하는 방법에 대해 다뤘다.</li>
   <li>이번 글에서는 Capacitor로 빌드한 Android 앱에서 로그인 연동을 하는 방법에 대해 다뤄보겠다.</li>
   <li>특히 CORS 에러 해결에 대해 다뤄보겠다..
@@ -1707,7 +2364,7 @@ Android: http://localhost</p>
   <li><a href="https://stackoverflow.com/questions/75192411/cors-in-capacitor-for-android">StackOverFlow가 짱이야</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/http">Capacitor HTTP Plugin 공식 문서</a></li>
   <li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS">MDN - CORS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-12-22T06:12:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
   <li>“친구하자”를 웹으로 MVP 완성을 하니, 이걸 앱으로 빌드해서 사용자들이 더 쉽게 사용할 수 있으면 좋겠다고 생각했다.</li>
   <li>원래는.. 개발자의 입장으로 링크로 이동하는 방식이 쉬울꺼라고 생각했는데, 막상 사용자에게 링크를 보내주니까 어려움을 토로하거나 방식에 의문을 가지는 사람들이 많았다..
     <ul>
@@ -1816,7 +2473,7 @@ npx cap run ios
 <p><br />
 다음에 android studio 업데이트를 좀 하고.. (안한지 넘 오래됌..) 아래와 같이 빌드 성공!</p>
 
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-12-22T06:12:50+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
   <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
   <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
   <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
@@ -2210,7 +2867,7 @@ while (it.hasNext()) {
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-12-22T06:12:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
   <li><a href="#1-문제-발견">1. 문제 발견</a></li>
   <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
   <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
@@ -2608,188 +3265,4 @@ Row was updated or deleted by another transaction
   <li><a href="https://docs.jboss.org/hibernate/orm/6.0/userguide/html_single/Hibernate_User_Guide.html">Hibernate User Guide - LazyInitializationException</a></li>
   <li><a href="https://www.baeldung.com/jpa-optimistic-locking">Baeldung - JPA Optimistic Locking</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring Framework - Async Execution</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</title><link href="https://nan0silver.github.io/projectdiary/2025-10-16-diary/" rel="alternate" type="text/html" title="[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2" /><published>2025-10-16T00:00:00+00:00</published><updated>2025-12-22T06:12:50+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-16-diary/"><![CDATA[<ul>
-  <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
-  <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
-  <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
-  <li><a href="#4-samsite--csrf-토큰-조합">4. SamSite + CSRF 토큰 조합</a></li>
-</ul>
-
-<h2 id="크로스-도메인-환경에서-refresh-token-쿠키-소실-트러블슈팅-2">크로스 도메인 환경에서 Refresh Token 쿠키 소실 트러블슈팅 2</h2>
-
-<blockquote>
-  <p>저번 편에서 해결까지는 다뤘지만, 그로 인해 발생하는 CSRF 공격에 대한 약한 방어를 방지하는 로직에 대해서는 이번 편에서 다루기로 한다. (너무 길어져서..)</p>
-</blockquote>
-
-<h2 id="csrf-공격-방어">CSRF 공격 방어</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">SamSite=None</code>으로 하면 CSRF 공격을 방어할 수 없다. 따라서 추가 설정을 해줘야 한다.</li>
-  <li>방어 방법들은 아래와 같다.</li>
-</ul>
-
-<h3 id="1-csrf-토큰-패턴">1. CSRF 토큰 패턴</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// SecurityConfig.java</span>
-<span class="nd">@Configuration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">filterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">http</span>
-            <span class="o">.</span><span class="na">csrf</span><span class="o">(</span><span class="n">csrf</span> <span class="o">-&gt;</span> <span class="n">csrf</span>
-                <span class="o">.</span><span class="na">csrfTokenRepository</span><span class="o">(</span><span class="nc">CookieCsrfTokenRepository</span><span class="o">.</span><span class="na">withHttpOnlyFalse</span><span class="o">())</span>
-                <span class="o">.</span><span class="na">csrfTokenRequestHandler</span><span class="o">(</span><span class="k">new</span> <span class="nc">SpaCsrfTokenRequestHandler</span><span class="o">())</span>
-            <span class="o">)</span>
-            <span class="c1">// ... 나머지 설정</span>
-            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 프론트엔드</span>
-<span class="kd">const</span> <span class="nx">csrfToken</span> <span class="o">=</span> <span class="nx">getCookie</span><span class="p">(</span><span class="dl">"</span><span class="s2">XSRF-TOKEN</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/v1/users/delete</span><span class="dl">"</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="dl">"</span><span class="s2">X-XSRF-TOKEN</span><span class="dl">"</span><span class="p">:</span> <span class="nx">csrfToken</span><span class="p">,</span> <span class="c1">// CSRF 토큰 포함</span>
-  <span class="p">},</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<ul>
-  <li>이렇게 하면 악의적인 사이트는
-    <ul>
-      <li>JavaScript로 쿠키를 읽을 수 없음</li>
-      <li>따라서 헤더에 토큰을 포함할 수 없음</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="2-originreferer-검증">2. Origin/Referer 검증</h3>
-
-<ul>
-  <li>서버에서 요청의 <code class="language-plaintext highlighter-rouge">Origin</code> 또는 <code class="language-plaintext highlighter-rouge">Referer</code> 헤더를 확인하여 신뢰할 수 있는 도메인에서 온 요청인지 검증</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// CorsConfig.java</span>
-<span class="nd">@Bean</span>
-<span class="nd">@Profile</span><span class="o">(</span><span class="s">"prod"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="nc">CorsConfigurationSource</span> <span class="nf">prodCorsConfigurationSource</span><span class="o">()</span> <span class="o">{</span>
-    <span class="nc">CorsConfiguration</span> <span class="n">configuration</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CorsConfiguration</span><span class="o">();</span>
-
-    <span class="c1">// ✅ 허용된 출처만 명시</span>
-    <span class="n">configuration</span><span class="o">.</span><span class="na">setAllowedOriginPatterns</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
-        <span class="s">"https://chingoo-frontend.vercel.app"</span><span class="o">,</span>
-        <span class="s">"https://www.chingoo-frontend.vercel.app"</span>
-    <span class="o">));</span>
-
-    <span class="n">configuration</span><span class="o">.</span><span class="na">setAllowCredentials</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-    <span class="c1">// ...</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>이렇게 하면</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE https://your-backend.com/api/v1/users/delete
-Origin: https://evil.com  ← 이 값으로 검증!
-Cookie: refreshToken=...
-</code></pre></div></div>
-
-<ul>
-  <li>백엔드가 <code class="language-plaintext highlighter-rouge">Origin</code> 헤더 확인:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">evail.com</code>은 허용 목록에 없음</li>
-      <li>CORS 오류 발생으로 요청 차단</li>
-    </ul>
-  </li>
-  <li>이 방법의 단점이 있다.
-    <ul>
-      <li>Origin 헤더를 조작할 수 있는 환경에서는 우회 가능</li>
-      <li>브라우저가 아닌 요청(Postman, curl)에서는 검증 안됨</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="3-jwt의-이중-검증">3. JWT의 이중 검증</h3>
-
-<ul>
-  <li>가장 현대적인 방법이다.</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// JwtAuthenticationFilter.java</span>
-<span class="nd">@Override</span>
-<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doFilterInternal</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
-                                <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
-                                <span class="nc">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="o">{</span>
-
-    <span class="c1">// 1️⃣ 쿠키에서 RefreshToken 추출</span>
-    <span class="nc">String</span> <span class="n">refreshTokenFromCookie</span> <span class="o">=</span> <span class="n">extractTokenFromCookie</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
-
-    <span class="c1">// 2️⃣ 헤더에서 AccessToken 추출</span>
-    <span class="nc">String</span> <span class="n">accessTokenFromHeader</span> <span class="o">=</span> <span class="n">extractTokenFromHeader</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
-
-    <span class="c1">// 3️⃣ 둘 다 검증</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">isValidToken</span><span class="o">(</span><span class="n">refreshTokenFromCookie</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
-        <span class="n">isValidToken</span><span class="o">(</span><span class="n">accessTokenFromHeader</span><span class="o">))</span> <span class="o">{</span>
-
-        <span class="c1">// 4️⃣ 토큰의 userId가 일치하는지 확인</span>
-        <span class="nc">Long</span> <span class="n">userIdFromRefresh</span> <span class="o">=</span> <span class="n">getUserIdFromToken</span><span class="o">(</span><span class="n">refreshTokenFromCookie</span><span class="o">);</span>
-        <span class="nc">Long</span> <span class="n">userIdFromAccess</span> <span class="o">=</span> <span class="n">getUserIdFromToken</span><span class="o">(</span><span class="n">accessTokenFromHeader</span><span class="o">);</span>
-
-        <span class="k">if</span> <span class="o">(</span><span class="n">userIdFromRefresh</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">userIdFromAccess</span><span class="o">))</span> <span class="o">{</span>
-            <span class="c1">// ✅ 인증 성공</span>
-            <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">setAuthentication</span><span class="o">(</span><span class="n">createAuthentication</span><span class="o">(</span><span class="n">userIdFromAccess</span><span class="o">));</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>쿠키(Refresh Token)이 자동으로 포함됨</li>
-  <li>하지만 해더(Access Token)는 JavaScript로 명시적으로 설정해야함</li>
-  <li>악의적인 사이트는 정상 사이트의 localStorage에 접근 불가 (Cross-Origin)</li>
-  <li>따라서 Access Token을 얻을 수 없음</li>
-</ul>
-
-<h3 id="4-samsite--csrf-토큰-조합">4. SamSite + CSRF 토큰 조합</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
-
-    <span class="nd">@Bean</span>
-    <span class="nd">@Profile</span><span class="o">(</span><span class="s">"prod"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">prodFilterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">http</span>
-            <span class="c1">// CSRF 토큰 활성화</span>
-            <span class="o">.</span><span class="na">csrf</span><span class="o">(</span><span class="n">csrf</span> <span class="o">-&gt;</span> <span class="n">csrf</span>
-                <span class="o">.</span><span class="na">csrfTokenRepository</span><span class="o">(</span><span class="nc">CookieCsrfTokenRepository</span><span class="o">.</span><span class="na">withHttpOnlyFalse</span><span class="o">())</span>
-            <span class="o">)</span>
-            <span class="c1">// CORS 설정 (Origin 검증)</span>
-            <span class="o">.</span><span class="na">cors</span><span class="o">(</span><span class="n">cors</span> <span class="o">-&gt;</span> <span class="n">cors</span><span class="o">.</span><span class="na">configurationSource</span><span class="o">(</span><span class="n">corsConfigurationSource</span><span class="o">))</span>
-            <span class="c1">// ...</span>
-            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># application-prod.yml</span>
-<span class="na">app</span><span class="pi">:</span>
-  <span class="na">cookie</span><span class="pi">:</span>
-    <span class="na">secure</span><span class="pi">:</span> <span class="no">true</span>
-    <span class="na">same-site</span><span class="pi">:</span> <span class="s">None</span> <span class="c1"># 크로스 도메인 지원</span>
-    <span class="na">max-age</span><span class="pi">:</span> <span class="m">2592000</span>
-</code></pre></div></div>
-
-<ul>
-  <li>이렇게 하면 다중 방어선이 만들어진다.
-    <ul>
-      <li>Origin 검증 (CORS)</li>
-      <li>CSRF 토큰 검증</li>
-      <li>JWT 검증</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry></feed>
