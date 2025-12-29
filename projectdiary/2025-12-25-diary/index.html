@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="“버튼 하나면 되는 거 아냐?” 라고 생각했던 나에게 현실이 알려준 것들" />
+<meta property="og:description" content="“버튼 하나면 되는 거 아냐?” 라고 생각했던 나에게 현실이 알려준 것들" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-12-25T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-12-29T09:46:22+00:00","datePublished":"2025-12-25T00:00:00+00:00","description":"“버튼 하나면 되는 거 아냐?” 라고 생각했던 나에게 현실이 알려준 것들","headline":"[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-12-25-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-12-25-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-12-29T09:47:04+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기",
+    "description": "&quot;버튼 하나면 되는 거 아냐?&quot; 라고 생각했던 나에게 현실이 알려준 것들
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2025-12-25T00:00:00+00:00",
+    "dateModified": "2025-12-29T09:46:22+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2025-12-25-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기",
+        "item": "https://nan0silver.github.io/projectdiary/2025-12-25-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-12-25-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-12-25T00:00:00+00:00">25 Dec 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 29 Dec 2025">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2025-12-29T09:46:22+00:00">2025-12-29</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      “버튼 하나면 되는 거 아냐?” 라고 생각했던 나에게 현실이 알려준 것들
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-처음-그린-그림">1. 처음 그린 그림</a></li>
+  <li><a href="#2-redis-대기열-생각보다-복잡했다">2. Redis 대기열, 생각보다 복잡했다</a></li>
+  <li><a href="#3-매칭-알고리즘의-딜레마">3. 매칭 알고리즘의 딜레마</a></li>
+  <li><a href="#4-알림이-안-가요">4. “알림이 안 가요”</a></li>
+  <li><a href="#5-동시성의-늪">5. 동시성의 늪</a></li>
+  <li><a href="#6-db와-redis-사이에서">6. DB와 Redis 사이에서</a></li>
+  <li><a href="#7-배운-것들">7. 배운 것들</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>“매칭이요? 그냥 대기열 만들고, 2명 되면 연결하면 되는 거 아니에요?”</p>
+
+<p>처음에 나도 그렇게 생각했다. 버튼 하나 누르면 매칭되고, 바로 통화 시작. 간단하지 않나?</p>
+
+<p>그런데 막상 만들기 시작하니까… 전혀 간단하지 않았다.</p>
+
+<hr />
+
+<h2 id="1-처음-그린-그림">1. 처음 그린 그림</h2>
+
+<p>가장 먼저 그린 건 이런 흐름이었다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 사용자가 "매칭 시작" 버튼 클릭
+2. 대기열에 들어감
+3. 다른 사람이 들어오면 자동 매칭
+4. 통화 시작!
+</code></pre></div></div>
+
+<p>완벽해 보였다. 그래서 바로 코딩을 시작했다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 첫 번째 시도</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">startMatching</span><span class="o">(</span><span class="nc">Long</span> <span class="n">userId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">userId</span><span class="o">);</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">User</span> <span class="n">user1</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+        <span class="nc">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+        <span class="n">createCall</span><span class="o">(</span><span class="n">user1</span><span class="o">,</span> <span class="n">user2</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>로컬에서 테스트하니까 잘 됐다. “오, 쉽네?” 싶었다.</p>
+
+<p>그런데…</p>
+
+<hr />
+
+<h2 id="2-redis-대기열-생각보다-복잡했다">2. Redis 대기열, 생각보다 복잡했다</h2>
+
+<h3 id="같은-사람이랑-계속-매칭돼요">“같은 사람이랑 계속 매칭돼요”</h3>
+
+<p>첫 번째 문제는 금방 발견됐다. 테스트하던 친구가 말했다.</p>
+
+<p>“어… 나 방금 매칭된 사람이랑 또 매칭됐는데?”</p>
+
+<p>그제야 깨달았다. 그냥 랜덤으로 매칭하면 방금 통화한 사람이랑 또 만날 수 있다는 걸.</p>
+
+<p>“그럼 대기순으로 하면 되겠네!”</p>
+
+<p>List를 써서 먼저 온 사람부터 매칭하도록 바꿨다. 문제 해결!</p>
+
+<h3 id="10분째-기다리고-있는데요">“10분째 기다리고 있는데요”</h3>
+
+<p>그런데 이번엔 다른 문제가 생겼다.</p>
+
+<p>새벽 시간대에 사용자가 적을 때, 한 명이 들어와서 10분을 기다리고 있었다. 상대방이 안 와서.</p>
+
+<p>“아… 타임아웃 처리를 해야 하는구나.”</p>
+
+<p>그런데 List로는 “언제 들어왔는지”를 알 수가 없었다. 그냥 순서만 알 수 있었다.</p>
+
+<p>여기서 Redis의 <strong>Sorted Set(ZSET)</strong> 을 알게 됐다.</p>
+
+<pre><code class="language-redis"># 들어온 시각을 점수로 저장
+ZADD queue:music 1734840123456 user_101
+ZADD queue:music 1734840125789 user_205
+</code></pre>
+
+<p>이제 시간 기준으로 정렬도 되고, 오래된 사람 찾기도 쉬워졌다.</p>
+
+<h3 id="랜덤도-하고-싶은데요">“랜덤도 하고 싶은데요?”</h3>
+
+<p>대기순만 하니까 너무 지루하다는 피드백이 왔다.</p>
+
+<p>“가끔은 랜덤 매칭도 하면 재밌을 것 같아요!”</p>
+
+<p>ZSET의 <code class="language-plaintext highlighter-rouge">ZRANDMEMBER</code> 명령어를 발견했다. 완벽했다.</p>
+
+<p>하지만 여기서 또 고민이 생겼다. 항상 랜덤? 항상 대기순? 어떻게 섞지?</p>
+
+<hr />
+
+<h2 id="3-매칭-알고리즘의-딜레마">3. 매칭 알고리즘의 딜레마</h2>
+
+<h3 id="공정성-vs-다양성">공정성 vs 다양성</h3>
+
+<p>고민을 정리해봤다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>대기순만 하면:
+✅ 공정함
+❌ 지루함
+
+랜덤만 하면:
+✅ 재미있음
+❌ 오래 기다린 사람 불공평
+</code></pre></div></div>
+
+<p>결국 <strong>하이브리드 방식</strong>을 선택했다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 대기순과 랜덤을 적절히 섞기</span>
+<span class="kt">boolean</span> <span class="n">useRandom</span> <span class="o">=</span> <span class="n">shouldUseRandom</span><span class="o">();</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">useRandom</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 랜덤 매칭</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="c1">// 대기순 매칭</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>(비율은 사실 감으로 정했다. 나중에 데이터 보면서 조정할 생각이다.)</p>
+
+<h3 id="스케줄러-vs-실시간">스케줄러 vs 실시간</h3>
+
+<p>또 다른 고민: 누가 들어올 때마다 매칭을 시도할까? 아니면 주기적으로 확인할까?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>실시간 시도:
+✅ 빠름
+❌ 트래픽 많으면 부하
+
+주기적 확인:
+✅ 안정적
+❌ 약간 느림
+</code></pre></div></div>
+
+<p>일단 <strong>주기적으로 확인하는 스케줄러</strong>로 구현했다. 1분 이내 매칭이 목표였으니까 충분했다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Scheduled</span><span class="o">(</span><span class="n">fixedDelay</span> <span class="o">=</span> <span class="mi">30000</span><span class="o">)</span>  <span class="c1">// 30초</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">processMatching</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// 매칭 로직</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-알림이-안-가요">4. “알림이 안 가요”</h2>
+
+<p>매칭은 되는데, 사용자가 모른다는 게 문제였다.</p>
+
+<h3 id="websocket의-등장">WebSocket의 등장</h3>
+
+<p>“알림 어떻게 보내지?”</p>
+
+<p>처음엔 클라이언트가 계속 서버에 물어보는 <strong>폴링</strong> 방식을 생각했다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 이렇게?</span>
+<span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/matching/status</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span> <span class="c1">// 1초마다</span>
+</code></pre></div></div>
+
+<p>그런데 이건 너무 비효율적이었다. 서버도 부담스럽고.</p>
+
+<p>그래서 <strong>WebSocket</strong>을 쓰기로 했다.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 구독하고 기다리면 알림이 옴</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s2">`/topic/matching/</span><span class="p">${</span><span class="nx">userId</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// 매칭 완료!</span>
+  <span class="nx">navigate</span><span class="p">(</span><span class="dl">"</span><span class="s2">/call</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="타이밍-이슈">타이밍 이슈</h3>
+
+<p>그런데 여기서 또 함정이 있었다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 매칭 완료 → DB 저장
+2. WebSocket 알림 발송
+3. 클라이언트가 통화 정보 조회
+4. ❌ 아직 DB에 커밋 안 됨!
+</code></pre></div></div>
+
+<p>알림은 보냈는데 DB에는 아직 데이터가 없는 상황.</p>
+
+<p>클라이언트에서 에러가 났다. “통화를 찾을 수 없습니다.”</p>
+
+<p><strong>해결:</strong> 트랜잭션 커밋 후에 알림 보내기</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// DB 커밋 성공 후에만 알림</span>
+<span class="nc">TransactionSynchronizationManager</span><span class="o">.</span><span class="na">registerSynchronization</span><span class="o">(</span>
+    <span class="k">new</span> <span class="nf">TransactionSynchronization</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterCommit</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// 이제야 알림 발송</span>
+            <span class="n">sendNotification</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>이 부분은 Spring 문서를 뒤져가며 찾았다. “트랜잭션 동기화”라는 개념을 처음 알았다.</p>
+
+<hr />
+
+<h2 id="5-동시성의-늪">5. 동시성의 늪</h2>
+
+<p>로컬에서는 잘 되던 게, 배포하니까 문제가 생겼다.</p>
+
+<h3 id="저-두-명이랑-동시에-매칭됐어요">“저 두 명이랑 동시에 매칭됐어요”</h3>
+
+<p>한 사용자가 두 개의 통화에 동시에 매칭되는 버그였다.</p>
+
+<p>원인을 찾아보니… 여러 스레드가 동시에 매칭 로직을 실행하면서 생긴 문제였다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[스레드 A] 사용자 101, 102 매칭 시작
+[스레드 B] 사용자 101, 103 매칭 시작
+     ↓
+사용자 101이 두 번 매칭됨!
+</code></pre></div></div>
+
+<p><strong>해결:</strong> 사용자 상태 체크</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// "나 지금 매칭 중이야" 표시</span>
+<span class="nc">String</span> <span class="n">lockKey</span> <span class="o">=</span> <span class="s">"user:queued:"</span> <span class="o">+</span> <span class="n">userId</span><span class="o">;</span>
+
+<span class="nc">Boolean</span> <span class="n">acquired</span> <span class="o">=</span> <span class="n">redisTemplate</span><span class="o">.</span><span class="na">opsForValue</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">setIfAbsent</span><span class="o">(</span><span class="n">lockKey</span><span class="o">,</span> <span class="s">"1"</span><span class="o">,</span> <span class="nc">Duration</span><span class="o">.</span><span class="na">ofMinutes</span><span class="o">(</span><span class="mi">10</span><span class="o">));</span>
+
+<span class="k">if</span> <span class="o">(!</span><span class="n">acquired</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">AlreadyInQueueException</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Redis의 <code class="language-plaintext highlighter-rouge">SETNX</code> (Set if Not eXists) 명령어를 쓰면 원자적으로 체크하고 설정할 수 있다는 걸 배웠다.</p>
+
+<h3 id="카테고리별-독립-처리">카테고리별 독립 처리</h3>
+
+<p>음악, 영화, 게임… 카테고리가 여러 개인데, 하나의 카테고리에서 에러가 나면 다른 카테고리 매칭도 다 실패했다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 문제가 있던 코드</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">processMatching</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Category</span> <span class="n">category</span> <span class="o">:</span> <span class="n">categories</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">matchCategory</span><span class="o">(</span><span class="n">category</span><span class="o">);</span>  <span class="c1">// 하나 실패하면 전체 롤백!</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>해결:</strong> 각 카테고리마다 독립적인 트랜잭션</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span><span class="o">(</span><span class="n">propagation</span> <span class="o">=</span> <span class="nc">Propagation</span><span class="o">.</span><span class="na">REQUIRES_NEW</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">matchCategory</span><span class="o">(</span><span class="nc">Category</span> <span class="n">category</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 이제 하나 실패해도 다른 카테고리는 계속 진행</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">REQUIRES_NEW</code>라는 옵션이 있다는 걸 이때 알았다. Spring은 정말 배울 게 많다.</p>
+
+<hr />
+
+<h2 id="6-db와-redis-사이에서">6. DB와 Redis 사이에서</h2>
+
+<h3 id="어디에-뭘-저장할까">어디에 뭘 저장할까?</h3>
+
+<p>처음엔 Redis에만 대기열을 관리했다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Redis만 사용:
+✅ 빠름
+❌ 서버 재시작하면 대기열 사라짐
+❌ 누가 언제 들어왔는지 기록 없음
+</code></pre></div></div>
+
+<p>그래서 DB에도 저장하기로 했다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. DB에 저장</span>
+<span class="nc">MatchingQueue</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">matchingQueueRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span>
+    <span class="k">new</span> <span class="nf">MatchingQueue</span><span class="o">(</span><span class="n">userId</span><span class="o">,</span> <span class="n">categoryId</span><span class="o">)</span>
+<span class="o">);</span>
+
+<span class="c1">// 2. Redis에도 추가</span>
+<span class="n">redisService</span><span class="o">.</span><span class="na">enqueue</span><span class="o">(</span><span class="n">userId</span><span class="o">,</span> <span class="n">categoryId</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="그런데-redis-추가가-실패하면">그런데 Redis 추가가 실패하면?</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. DB 저장 성공 ✅
+2. Redis 추가 실패 ❌
+   ↓
+대기열에는 없는데 DB엔 있는 상태
+</code></pre></div></div>
+
+<p>이게 생각보다 골치 아팠다.</p>
+
+<p>처음엔 “둘 다 성공하게 만들어야지!” 라고 생각했다. 그런데 현실은 그렇지 않았다.</p>
+
+<p>DB와 Redis는 완전히 다른 시스템이다. 하나의 트랜잭션으로 묶을 수 없다.</p>
+
+<p><strong>결론:</strong> 완벽한 일치는 불가능하다.</p>
+
+<p>대신 이렇게 접근했다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. DB는 "기록용"
+   - 누가 언제 매칭을 시도했는지
+   - 통계와 분석용
+
+2. Redis는 "실시간 처리용"
+   - 지금 대기 중인 사람들
+   - 빠른 매칭용
+
+3. 불일치가 생기면?
+   - Redis 실패하면 로그 남기고
+   - 서버 시작할 때 DB에서 복구
+</code></pre></div></div>
+
+<p>“최선”을 “완벽” 대신 선택했다.</p>
+
+<hr />
+
+<h2 id="7-배운-것들">7. 배운 것들</h2>
+
+<h3 id="간단해-보이는-기능도-간단하지-않다">“간단해 보이는 기능도 간단하지 않다”</h3>
+
+<p>“매칭 버튼 하나면 되는 거 아니야?”</p>
+
+<p>아니었다. 정말 아니었다.</p>
+
+<ul>
+  <li>타임아웃 처리</li>
+  <li>중복 방지</li>
+  <li>알림 발송</li>
+  <li>동시성 제어</li>
+  <li>데이터 일관성</li>
+  <li>서버 재시작 대응</li>
+  <li>…</li>
+</ul>
+
+<p>하나하나 다 신경 써야 할 게 있었다.</p>
+
+<h3 id="완벽은-없다">“완벽은 없다”</h3>
+
+<p>처음엔 “완벽하게 만들어야지!” 라고 생각했다.</p>
+
+<p>DB와 Redis가 항상 일치해야 하고, 알림이 절대 빠지면 안 되고, 매칭이 1초 만에 되어야 하고…</p>
+
+<p>그런데 현실은:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Redis는 가끔 연결이 끊긴다
+- 알림은 가끔 실패한다
+- 네트워크는 언제나 불안정하다
+</code></pre></div></div>
+
+<p>완벽을 추구하다가 영원히 못 끝낼 뻔했다.</p>
+
+<p><strong>대신 이렇게 접근했다:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ 대부분의 경우 잘 작동하면 OK
+✅ 실패해도 복구할 수 있으면 OK
+✅ 사용자가 크게 불편하지 않으면 OK
+</code></pre></div></div>
+
+<h3 id="문제는-운영하면서-발견된다">“문제는 운영하면서 발견된다”</h3>
+
+<p>로컬에서는 몰랐던 문제들:</p>
+
+<ul>
+  <li>동시성 이슈</li>
+  <li>타임아웃 처리</li>
+  <li>메모리 관리</li>
+  <li>네트워크 지연</li>
+</ul>
+
+<p>다 운영하면서 만났다.</p>
+
+<p>그리고 하나씩 해결했다.</p>
+
+<h3 id="설계보다-중요한-건-개선">“설계보다 중요한 건 개선”</h3>
+
+<p>처음 설계가 완벽할 순 없다.</p>
+
+<p>중요한 건:</p>
+
+<ul>
+  <li>문제를 빨리 발견하고</li>
+  <li>빨리 고치고</li>
+  <li>다시 배포하는 것</li>
+</ul>
+
+<p>이 사이클을 빠르게 돌리는 게 핵심이었다.</p>
+
+<h3 id="검색과-시도의-힘">“검색과 시도의 힘”</h3>
+
+<p>이 과정에서 새로 배운 것들:</p>
+
+<ul>
+  <li>Redis ZSET</li>
+  <li>WebSocket과 STOMP</li>
+  <li>트랜잭션 동기화</li>
+  <li>SETNX (원자적 연산)</li>
+  <li>REQUIRES_NEW 전파 속성</li>
+</ul>
+
+<p>하나도 몰랐다. 다 검색하고, 블로그 읽고, 시도하고, 실패하고, 다시 해보면서 배웠다.</p>
+
+<p>“모르는 게 부끄러운 게 아니라, 배우지 않는 게 부끄러운 것”이라는 걸 다시 한번 느꼈다.</p>
+
+<hr />
+
+<h2 id="마치며">마치며</h2>
+
+<p>6개월 전 “매칭 기능 만들어야지!” 라고 생각했을 때는 몰랐다.</p>
+
+<p>이렇게 많은 고민과 삽질이 필요할 줄.</p>
+
+<p>하지만 돌아보니, 이 과정에서 정말 많이 배웠다.</p>
+
+<ul>
+  <li>Redis의 다양한 자료구조</li>
+  <li>WebSocket 실시간 통신</li>
+  <li>동시성 제어</li>
+  <li>분산 시스템의 어려움</li>
+  <li>완벽함보다 실용성</li>
+</ul>
+
+<p>그리고 가장 중요한 것:</p>
+
+<p><strong>“모르는 건 부끄러운 게 아니다. 배우면 된다.”</strong></p>
+
+<p>하나씩 검색하고, 블로그 읽고, 시도해보고, 실패하고, 다시 해보고.</p>
+
+<p>그렇게 만들어졌다.</p>
+
+<p>완벽하진 않지만, 작동한다.</p>
+
+<p>그리고 계속 개선하고 있다.</p>
+
+<hr />
+
+<p>다음 편에서는 이 시스템을 운영하면서 만난 <strong>진짜 문제들</strong>을 이야기해보려고 한다.</p>
+
+<ul>
+  <li>Redis 메모리가 터졌던 날</li>
+  <li>WebSocket이 다 끊어졌던 날</li>
+  <li>매칭이 안 되는 버그를 3일 동안 찾았던 이야기</li>
+</ul>
+
+<p>기대해주시길!</p>
+
+<hr />
+
+<p><strong>시리즈:</strong></p>
+
+<ol>
+  <li><a href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/">왜 이 기술들을 선택했나</a></li>
+  <li><strong>실시간 매칭 시스템, 생각보다 어려웠던 이야기</strong> ← 현재 글</li>
+  <li>운영하며 겪은 문제들 (작성 예정)</li>
+  <li>성능 최적화 여정 (작성 예정)</li>
+</ol>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/algorithm/2025-12-29-floyd-warshall/" class="flip-title"><span>[Algorithm] 플로이드-워셜 알고리즘</span></a>  <time class="faded fine" datetime="2025-12-29T00:00:00+00:00">29 Dec 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-12-20-diary/" class="flip-title"><span>[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</span></a>  <time class="faded fine" datetime="2025-12-20T00:00:00+00:00">20 Dec 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-24-diary/" class="flip-title"><span>[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</span></a>  <time class="faded fine" datetime="2025-11-24T00:00:00+00:00">24 Nov 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (23)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (63)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>
