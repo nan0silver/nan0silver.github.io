@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[Algorithm] 플로이드-워셜 알고리즘 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[Algorithm] 플로이드-워셜 알고리즘" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="플로이드-워셜 알고리즘에 대해 정리해보았습니다." />
+<meta property="og:description" content="플로이드-워셜 알고리즘에 대해 정리해보았습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" />
+<meta property="og:url" content="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-12-29T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[Algorithm] 플로이드-워셜 알고리즘" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-12-29T09:31:20+00:00","datePublished":"2025-12-29T00:00:00+00:00","description":"플로이드-워셜 알고리즘에 대해 정리해보았습니다.","headline":"[Algorithm] 플로이드-워셜 알고리즘","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2025-12-29T09:32:07+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[Algorithm] 플로이드-워셜 알고리즘",
+    "description": "플로이드-워셜 알고리즘에 대해 정리해보았습니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2025-12-29T00:00:00+00:00",
+    "dateModified": "2025-12-29T09:31:20+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "algorithm",
+        "item": "https://nan0silver.github.io/algorithm/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[Algorithm] 플로이드-워셜 알고리즘",
+        "item": "https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/algorithm/">algorithm</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2025-12-29-floyd-warshall</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-algorithm-floyd-warshall" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [Algorithm] 플로이드-워셜 알고리즘
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-12-29T00:00:00+00:00">29 Dec 2025</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      플로이드-워셜 알고리즘에 대해 정리해보았습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ol>
+  <li><a href="#-1️⃣-플로이드-워셜이란">플로이드-워셜이란?</a></li>
+  <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
+  <li><a href="#-3️⃣-k-i-j의-정확한-의미">k, i, j의 의미</a></li>
+  <li><a href="#-4️⃣-동작-과정-시각화">동작 과정 시각화</a></li>
+  <li><a href="#-5️⃣-코드-구현">코드 구현</a></li>
+  <li><a href="#-6️⃣-시간복잡도와-공간복잡도">시간복잡도와 공간복잡도</a></li>
+  <li><a href="#-7️⃣-다익스트라와의-비교">다익스트라와의 비교</a></li>
+  <li><a href="#-8️⃣-실전-문제-적용">실전 문제 적용</a></li>
+</ol>
+
+<hr />
+
+<h2 id="-1️⃣-플로이드-워셜이란">🎯 1️⃣ 플로이드-워셜이란?</h2>
+
+<h3 id="-한-문장-정의">💡 한 문장 정의</h3>
+
+<p><strong>“모든 정점 쌍 사이의 최단 경로를 한 번에 구하는 알고리즘”</strong></p>
+
+<h3 id="-언제-사용하는가">💡 언제 사용하는가?</h3>
+
+<ul>
+  <li>“A 도시에서 B 도시로 가는 최단 거리는?” → 모든 도시 쌍에 대해 물어볼 때</li>
+  <li>“경유지를 거쳐가는 것이 더 빠른가?” → 중간 노드를 허용하며 최적 경로를 찾을 때</li>
+  <li>그래프의 모든 쌍 최단 거리를 구해야 할 때</li>
+</ul>
+
+<h3 id="-특징">💡 특징</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>특징</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O(V³) - 정점 개수의 세제곱</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V²) - 2차원 배열</td>
+    </tr>
+    <tr>
+      <td><strong>음수 간선</strong></td>
+      <td>처리 가능 (단, 음수 사이클은 불가)</td>
+    </tr>
+    <tr>
+      <td><strong>그래프 종류</strong></td>
+      <td>방향/무방향 모두 가능</td>
+    </tr>
+    <tr>
+      <td><strong>구현 난이도</strong></td>
+      <td>매우 쉬움 (3중 for문)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-2️⃣-핵심-개념-이해하기">🧠 2️⃣ 핵심 개념 이해하기</h2>
+
+<h3 id="-알고리즘의-본질">💡 알고리즘의 본질</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"도시 i에서 도시 j로 갈 때,
+k번 도시를 중간에 한 번 거쳐도 되는지를
+매 단계마다 허용해가며 최소 비용을 갱신하는 알고리즘"
+</code></pre></div></div>
+
+<h3 id="-distij의-의미">💡 dist[i][j]의 의미</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">지금까지</span> <span class="n">허용된</span> <span class="n">중간</span> <span class="n">도시들만</span> <span class="n">이용해서</span>
+             <span class="n">i</span> <span class="err">→</span> <span class="n">j로</span> <span class="n">가는</span> <span class="n">최소</span> <span class="n">비용</span>
+</code></pre></div></div>
+
+<p>여기서 “지금까지 허용된”이 핵심이다. k값에 따라 허용 범위가 달라진다.</p>
+
+<h3 id="-동적-계획법dp으로서의-플로이드-워셜">💡 동적 계획법(DP)으로서의 플로이드-워셜</h3>
+
+<p>플로이드-워셜의 본질적인 점화식:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DP[k][i][j] = 중간 도시를 1~k까지만 써서 i→j로 가는 최소 비용
+
+DP[k][i][j] = min(
+    DP[k-1][i][j],           // k를 거치지 않는 경우
+    DP[k-1][i][k] + DP[k-1][k][j]  // k를 거치는 경우
+)
+</code></pre></div></div>
+
+<p>실제 코드는 3차원 배열 대신 2차원 배열을 덮어쓰면서 k 단계를 확장한다.</p>
+
+<hr />
+
+<h2 id="-3️⃣-k-i-j의-정확한-의미">🔑 3️⃣ k, i, j의 정확한 의미</h2>
+
+<h3 id="-기본-구조">💡 기본 구조</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>        <span class="c1">// 중간 노드</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>    <span class="c1">// 출발 노드</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">// 도착 노드</span>
+            <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span>
+                <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">],</span>
+                <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="-각-변수의-의미">💡 각 변수의 의미</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>변수</th>
+      <th>의미</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>k</strong></td>
+      <td>중간에 거쳐도 되는 도시 번호</td>
+      <td>k=1일 때는 1번만, k=2일 때는 1,2번까지 허용</td>
+    </tr>
+    <tr>
+      <td><strong>i</strong></td>
+      <td>출발 도시</td>
+      <td>모든 출발지를 순회</td>
+    </tr>
+    <tr>
+      <td><strong>j</strong></td>
+      <td>도착 도시</td>
+      <td>모든 도착지를 순회</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-핵심-로직의-의미">💡 핵심 로직의 의미</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span>
+    <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">],</span>          <span class="c1">// 원래 알고 있던 i → j 최단 경로</span>
+    <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span>  <span class="c1">// i → k → j로 가는 새로운 경로</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>이 코드가 묻는 질문:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"i에서 j로 바로 가는 게 낫나?"
+"아니면 k를 한 번 들렀다 가는 게 낫나?"
+</code></pre></div></div>
+
+<p>시각적 표현:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>i ─────────▶ j  (직접)
+│
+│
+▼
+k
+</code></pre></div></div>
+
+<h3 id="-왜-k가-가장-바깥-루프인가">💡 왜 k가 가장 바깥 루프인가?</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 올바른 순서</span>
+<span class="k">for</span> <span class="n">k</span>
+  <span class="k">for</span> <span class="n">i</span>
+    <span class="k">for</span> <span class="n">j</span>
+
+<span class="c1">// ❌ 잘못된 순서</span>
+<span class="k">for</span> <span class="n">i</span>
+  <span class="k">for</span> <span class="n">j</span>
+    <span class="k">for</span> <span class="n">k</span>
+</code></pre></div></div>
+
+<p><strong>이유</strong>: k는 “중간 도시로 k까지 허용한 상태에서 모든 i→j 최단거리를 갱신”한다는 의미다. 만약 i나 j가 바깥에 있으면 아직 허용되지 않은 중간 도시를 사용하게 되어 DP의 단계적 의미가 깨진다.</p>
+
+<hr />
+
+<h2 id="-4️⃣-동작-과정-시각화">📊 4️⃣ 동작 과정 시각화</h2>
+
+<h3 id="-예시-그래프">💡 예시 그래프</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    1 ──(4)── 2
+    │         │
+   (3)       (2)
+    │         │
+    3 ──(5)── 4
+</code></pre></div></div>
+
+<h3 id="-초기-상태-k--0-중간-노드-허용-안-함">💡 초기 상태 (k = 0, 중간 노드 허용 안 함)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dist[i][j] = 직접 연결된 간선만 사용
+
+      1    2    3    4
+1  [  0    4   INF  INF ]
+2  [  4    0   INF   2  ]
+3  [ INF  INF   0    5  ]
+4  [ INF   2    5    0  ]
+</code></pre></div></div>
+
+<h3 id="-k--1-1번-노드를-중간에-사용-가능">💡 k = 1 (1번 노드를 중간에 사용 가능)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"1번을 거쳐가면 더 빠른 경로가 있나?"
+
+i=2, j=3일 때:
+dist[2][3] = min(INF, dist[2][1] + dist[1][3])
+           = min(INF, 4 + INF) = INF
+
+i=3, j=2일 때:
+dist[3][2] = min(INF, dist[3][1] + dist[1][2])
+           = min(INF, INF + 4) = INF
+</code></pre></div></div>
+
+<h3 id="-k--2-12번-노드를-중간에-사용-가능">💡 k = 2 (1,2번 노드를 중간에 사용 가능)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"2번을 거쳐가면 더 빠른 경로가 있나?"
+
+i=1, j=4일 때:
+dist[1][4] = min(INF, dist[1][2] + dist[2][4])
+           = min(INF, 4 + 2) = 6
+</code></pre></div></div>
+
+<h3 id="-최종-결과-k--4-모든-노드-허용">💡 최종 결과 (k = 4, 모든 노드 허용)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      1    2    3    4
+1  [  0    4    8    6  ]
+2  [  4    0    7    2  ]
+3  [  8    7    0    5  ]
+4  [  6    2    5    0  ]
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-5️⃣-코드-구현">💻 5️⃣ 코드 구현</h2>
+
+<h3 id="-기본-템플릿">💡 기본 템플릿</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FloydWarshall</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">INF</span> <span class="o">=</span> <span class="mi">987654321</span><span class="o">;</span>  <span class="c1">// 충분히 큰 값</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">solution</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">graph</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">dist</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="o">][</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+
+        <span class="c1">// 1. 초기화</span>
+
+        <span class="c1">// 2. 간선 정보 입력</span>
+
+        <span class="c1">// 3. 플로이드-워셜 알고리즘</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">!=</span> <span class="no">INF</span> <span class="o">&amp;&amp;</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">!=</span> <span class="no">INF</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">],</span>
+                                              <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 4. 결과 출력</span>
+        <span class="n">printDistances</span><span class="o">(</span><span class="n">dist</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-6️⃣-시간복잡도와-공간복잡도">📈 6️⃣ 시간복잡도와 공간복잡도</h2>
+
+<h3 id="-시간복잡도">💡 시간복잡도</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>연산</th>
+      <th>복잡도</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>플로이드-워셜</strong></td>
+      <td>O(V³)</td>
+      <td>3중 for문</td>
+    </tr>
+    <tr>
+      <td><strong>초기화</strong></td>
+      <td>O(V²)</td>
+      <td>2차원 배열 초기화</td>
+    </tr>
+    <tr>
+      <td><strong>전체</strong></td>
+      <td>O(V³)</td>
+      <td>플로이드-워셜이 지배적</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-공간복잡도">💡 공간복잡도</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>자료구조</th>
+      <th>크기</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>거리 배열</strong></td>
+      <td>O(V²)</td>
+      <td>dist[n][n]</td>
+    </tr>
+    <tr>
+      <td><strong>경로 배열</strong></td>
+      <td>O(V²)</td>
+      <td>next[n][n] (선택적)</td>
+    </tr>
+    <tr>
+      <td><strong>전체</strong></td>
+      <td>O(V²)</td>
+      <td>2차원 배열</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-7️⃣-다익스트라와의-비교">⚖️ 7️⃣ 다익스트라와의 비교</h2>
+
+<h3 id="-핵심-차이점">💡 핵심 차이점</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>플로이드-워셜</th>
+      <th>다익스트라</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>목적</strong></td>
+      <td>모든 쌍 최단 경로</td>
+      <td>한 정점에서 모든 정점으로</td>
+    </tr>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O(V³)</td>
+      <td>O((V+E)logV)</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V²)</td>
+      <td>O(V)</td>
+    </tr>
+    <tr>
+      <td><strong>음수 간선</strong></td>
+      <td>가능 (음수 사이클 제외)</td>
+      <td>불가능</td>
+    </tr>
+    <tr>
+      <td><strong>구현 난이도</strong></td>
+      <td>매우 쉬움</td>
+      <td>중간 (우선순위 큐)</td>
+    </tr>
+    <tr>
+      <td><strong>적용 상황</strong></td>
+      <td>정점이 적을 때 (V ≤ 500)</td>
+      <td>정점이 많을 때, 특정 출발점</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-언제-무엇을-쓸까">💡 언제 무엇을 쓸까?</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 플로이드-워셜을 쓸 때</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">모든</span> <span class="n">정점</span> <span class="n">쌍의</span> <span class="n">최단</span> <span class="n">거리가</span> <span class="n">필요</span> <span class="o">&amp;&amp;</span> <span class="n">정점</span> <span class="n">수</span> <span class="err">≤</span> <span class="mi">500</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">플로이드워셜</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="c1">// ✅ 다익스트라를 쓸 때</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">특정</span> <span class="n">출발점에서</span> <span class="n">모든</span> <span class="n">정점까지</span> <span class="o">&amp;&amp;</span> <span class="n">음수</span> <span class="n">간선</span> <span class="n">없음</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">다익스트라</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="c1">// ✅ 벨만-포드를 쓸 때</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">음수</span> <span class="n">간선</span> <span class="n">있음</span> <span class="o">&amp;&amp;</span> <span class="n">음수</span> <span class="n">사이클</span> <span class="n">감지</span> <span class="n">필요</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">벨만포드</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-8️⃣-실전-문제-적용">🎯 8️⃣ 실전 문제 적용</h2>
+
+<h3 id="-대표-문제-유형">💡 대표 문제 유형</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>유형</th>
+      <th>설명</th>
+      <th>예시 문제</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>모든 쌍 최단 경로</strong></td>
+      <td>모든 도시 간 최단 거리</td>
+      <td>백준 11404 플로이드</td>
+    </tr>
+    <tr>
+      <td><strong>경유지 문제</strong></td>
+      <td>특정 경유지를 거쳐야 할 때</td>
+      <td>프로그래머스 순위</td>
+    </tr>
+    <tr>
+      <td><strong>연결성 판단</strong></td>
+      <td>모든 노드가 연결되어 있는가?</td>
+      <td>백준 1389 케빈 베이컨</td>
+    </tr>
+    <tr>
+      <td><strong>최단 경로 개수</strong></td>
+      <td>최단 경로가 몇 개인가?</td>
+      <td>백준 1613 역사</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-체크리스트">💡 체크리스트</h3>
+
+<p>플로이드-워셜 문제를 풀 때 확인할 것:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />정점 수가 500 이하인가? (아니면 다익스트라 고려)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />모든 쌍의 최단 거리가 필요한가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />음수 간선이 있는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />음수 사이클을 감지해야 하는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />INF 값을 충분히 크게 설정했는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />중복 간선 처리를 했는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />k가 가장 바깥 루프인가?</li>
+</ul>
+
+<hr />
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2025-12-20-diary/" class="flip-title"><span>[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</span></a>  <time class="faded fine" datetime="2025-12-20T00:00:00+00:00">20 Dec 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-24-diary/" class="flip-title"><span>[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</span></a>  <time class="faded fine" datetime="2025-11-24T00:00:00+00:00">24 Nov 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-11-20-diary/" class="flip-title"><span>[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</span></a>  <time class="faded fine" datetime="2025-11-20T00:00:00+00:00">20 Nov 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (23)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (63)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

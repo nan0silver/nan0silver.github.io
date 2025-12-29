@@ -1,7 +1,454 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-12-22T06:23:26+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2025-12-29T09:32:07+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</title><link href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" /><published>2025-12-20T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-20-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2025-12-29T09:31:20+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
+  <li><a href="#-1️⃣-플로이드-워셜이란">플로이드-워셜이란?</a></li>
+  <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
+  <li><a href="#-3️⃣-k-i-j의-정확한-의미">k, i, j의 의미</a></li>
+  <li><a href="#-4️⃣-동작-과정-시각화">동작 과정 시각화</a></li>
+  <li><a href="#-5️⃣-코드-구현">코드 구현</a></li>
+  <li><a href="#-6️⃣-시간복잡도와-공간복잡도">시간복잡도와 공간복잡도</a></li>
+  <li><a href="#-7️⃣-다익스트라와의-비교">다익스트라와의 비교</a></li>
+  <li><a href="#-8️⃣-실전-문제-적용">실전 문제 적용</a></li>
+</ol>
+
+<hr />
+
+<h2 id="-1️⃣-플로이드-워셜이란">🎯 1️⃣ 플로이드-워셜이란?</h2>
+
+<h3 id="-한-문장-정의">💡 한 문장 정의</h3>
+
+<p><strong>“모든 정점 쌍 사이의 최단 경로를 한 번에 구하는 알고리즘”</strong></p>
+
+<h3 id="-언제-사용하는가">💡 언제 사용하는가?</h3>
+
+<ul>
+  <li>“A 도시에서 B 도시로 가는 최단 거리는?” → 모든 도시 쌍에 대해 물어볼 때</li>
+  <li>“경유지를 거쳐가는 것이 더 빠른가?” → 중간 노드를 허용하며 최적 경로를 찾을 때</li>
+  <li>그래프의 모든 쌍 최단 거리를 구해야 할 때</li>
+</ul>
+
+<h3 id="-특징">💡 특징</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>특징</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O(V³) - 정점 개수의 세제곱</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V²) - 2차원 배열</td>
+    </tr>
+    <tr>
+      <td><strong>음수 간선</strong></td>
+      <td>처리 가능 (단, 음수 사이클은 불가)</td>
+    </tr>
+    <tr>
+      <td><strong>그래프 종류</strong></td>
+      <td>방향/무방향 모두 가능</td>
+    </tr>
+    <tr>
+      <td><strong>구현 난이도</strong></td>
+      <td>매우 쉬움 (3중 for문)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-2️⃣-핵심-개념-이해하기">🧠 2️⃣ 핵심 개념 이해하기</h2>
+
+<h3 id="-알고리즘의-본질">💡 알고리즘의 본질</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"도시 i에서 도시 j로 갈 때,
+k번 도시를 중간에 한 번 거쳐도 되는지를
+매 단계마다 허용해가며 최소 비용을 갱신하는 알고리즘"
+</code></pre></div></div>
+
+<h3 id="-distij의-의미">💡 dist[i][j]의 의미</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">지금까지</span> <span class="n">허용된</span> <span class="n">중간</span> <span class="n">도시들만</span> <span class="n">이용해서</span>
+             <span class="n">i</span> <span class="err">→</span> <span class="n">j로</span> <span class="n">가는</span> <span class="n">최소</span> <span class="n">비용</span>
+</code></pre></div></div>
+
+<p>여기서 “지금까지 허용된”이 핵심이다. k값에 따라 허용 범위가 달라진다.</p>
+
+<h3 id="-동적-계획법dp으로서의-플로이드-워셜">💡 동적 계획법(DP)으로서의 플로이드-워셜</h3>
+
+<p>플로이드-워셜의 본질적인 점화식:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DP[k][i][j] = 중간 도시를 1~k까지만 써서 i→j로 가는 최소 비용
+
+DP[k][i][j] = min(
+    DP[k-1][i][j],           // k를 거치지 않는 경우
+    DP[k-1][i][k] + DP[k-1][k][j]  // k를 거치는 경우
+)
+</code></pre></div></div>
+
+<p>실제 코드는 3차원 배열 대신 2차원 배열을 덮어쓰면서 k 단계를 확장한다.</p>
+
+<hr />
+
+<h2 id="-3️⃣-k-i-j의-정확한-의미">🔑 3️⃣ k, i, j의 정확한 의미</h2>
+
+<h3 id="-기본-구조">💡 기본 구조</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>        <span class="c1">// 중간 노드</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>    <span class="c1">// 출발 노드</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">// 도착 노드</span>
+            <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span>
+                <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">],</span>
+                <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span>
+            <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="-각-변수의-의미">💡 각 변수의 의미</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>변수</th>
+      <th>의미</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>k</strong></td>
+      <td>중간에 거쳐도 되는 도시 번호</td>
+      <td>k=1일 때는 1번만, k=2일 때는 1,2번까지 허용</td>
+    </tr>
+    <tr>
+      <td><strong>i</strong></td>
+      <td>출발 도시</td>
+      <td>모든 출발지를 순회</td>
+    </tr>
+    <tr>
+      <td><strong>j</strong></td>
+      <td>도착 도시</td>
+      <td>모든 도착지를 순회</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-핵심-로직의-의미">💡 핵심 로직의 의미</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span>
+    <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">],</span>          <span class="c1">// 원래 알고 있던 i → j 최단 경로</span>
+    <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span>  <span class="c1">// i → k → j로 가는 새로운 경로</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>이 코드가 묻는 질문:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"i에서 j로 바로 가는 게 낫나?"
+"아니면 k를 한 번 들렀다 가는 게 낫나?"
+</code></pre></div></div>
+
+<p>시각적 표현:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>i ─────────▶ j  (직접)
+│
+│
+▼
+k
+</code></pre></div></div>
+
+<h3 id="-왜-k가-가장-바깥-루프인가">💡 왜 k가 가장 바깥 루프인가?</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 올바른 순서</span>
+<span class="k">for</span> <span class="n">k</span>
+  <span class="k">for</span> <span class="n">i</span>
+    <span class="k">for</span> <span class="n">j</span>
+
+<span class="c1">// ❌ 잘못된 순서</span>
+<span class="k">for</span> <span class="n">i</span>
+  <span class="k">for</span> <span class="n">j</span>
+    <span class="k">for</span> <span class="n">k</span>
+</code></pre></div></div>
+
+<p><strong>이유</strong>: k는 “중간 도시로 k까지 허용한 상태에서 모든 i→j 최단거리를 갱신”한다는 의미다. 만약 i나 j가 바깥에 있으면 아직 허용되지 않은 중간 도시를 사용하게 되어 DP의 단계적 의미가 깨진다.</p>
+
+<hr />
+
+<h2 id="-4️⃣-동작-과정-시각화">📊 4️⃣ 동작 과정 시각화</h2>
+
+<h3 id="-예시-그래프">💡 예시 그래프</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    1 ──(4)── 2
+    │         │
+   (3)       (2)
+    │         │
+    3 ──(5)── 4
+</code></pre></div></div>
+
+<h3 id="-초기-상태-k--0-중간-노드-허용-안-함">💡 초기 상태 (k = 0, 중간 노드 허용 안 함)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dist[i][j] = 직접 연결된 간선만 사용
+
+      1    2    3    4
+1  [  0    4   INF  INF ]
+2  [  4    0   INF   2  ]
+3  [ INF  INF   0    5  ]
+4  [ INF   2    5    0  ]
+</code></pre></div></div>
+
+<h3 id="-k--1-1번-노드를-중간에-사용-가능">💡 k = 1 (1번 노드를 중간에 사용 가능)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"1번을 거쳐가면 더 빠른 경로가 있나?"
+
+i=2, j=3일 때:
+dist[2][3] = min(INF, dist[2][1] + dist[1][3])
+           = min(INF, 4 + INF) = INF
+
+i=3, j=2일 때:
+dist[3][2] = min(INF, dist[3][1] + dist[1][2])
+           = min(INF, INF + 4) = INF
+</code></pre></div></div>
+
+<h3 id="-k--2-12번-노드를-중간에-사용-가능">💡 k = 2 (1,2번 노드를 중간에 사용 가능)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"2번을 거쳐가면 더 빠른 경로가 있나?"
+
+i=1, j=4일 때:
+dist[1][4] = min(INF, dist[1][2] + dist[2][4])
+           = min(INF, 4 + 2) = 6
+</code></pre></div></div>
+
+<h3 id="-최종-결과-k--4-모든-노드-허용">💡 최종 결과 (k = 4, 모든 노드 허용)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      1    2    3    4
+1  [  0    4    8    6  ]
+2  [  4    0    7    2  ]
+3  [  8    7    0    5  ]
+4  [  6    2    5    0  ]
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-5️⃣-코드-구현">💻 5️⃣ 코드 구현</h2>
+
+<h3 id="-기본-템플릿">💡 기본 템플릿</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FloydWarshall</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">INF</span> <span class="o">=</span> <span class="mi">987654321</span><span class="o">;</span>  <span class="c1">// 충분히 큰 값</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">solution</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">graph</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">dist</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="o">][</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+
+        <span class="c1">// 1. 초기화</span>
+
+        <span class="c1">// 2. 간선 정보 입력</span>
+
+        <span class="c1">// 3. 플로이드-워셜 알고리즘</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">!=</span> <span class="no">INF</span> <span class="o">&amp;&amp;</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">!=</span> <span class="no">INF</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">],</span>
+                                              <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 4. 결과 출력</span>
+        <span class="n">printDistances</span><span class="o">(</span><span class="n">dist</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-6️⃣-시간복잡도와-공간복잡도">📈 6️⃣ 시간복잡도와 공간복잡도</h2>
+
+<h3 id="-시간복잡도">💡 시간복잡도</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>연산</th>
+      <th>복잡도</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>플로이드-워셜</strong></td>
+      <td>O(V³)</td>
+      <td>3중 for문</td>
+    </tr>
+    <tr>
+      <td><strong>초기화</strong></td>
+      <td>O(V²)</td>
+      <td>2차원 배열 초기화</td>
+    </tr>
+    <tr>
+      <td><strong>전체</strong></td>
+      <td>O(V³)</td>
+      <td>플로이드-워셜이 지배적</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-공간복잡도">💡 공간복잡도</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>자료구조</th>
+      <th>크기</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>거리 배열</strong></td>
+      <td>O(V²)</td>
+      <td>dist[n][n]</td>
+    </tr>
+    <tr>
+      <td><strong>경로 배열</strong></td>
+      <td>O(V²)</td>
+      <td>next[n][n] (선택적)</td>
+    </tr>
+    <tr>
+      <td><strong>전체</strong></td>
+      <td>O(V²)</td>
+      <td>2차원 배열</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-7️⃣-다익스트라와의-비교">⚖️ 7️⃣ 다익스트라와의 비교</h2>
+
+<h3 id="-핵심-차이점">💡 핵심 차이점</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>플로이드-워셜</th>
+      <th>다익스트라</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>목적</strong></td>
+      <td>모든 쌍 최단 경로</td>
+      <td>한 정점에서 모든 정점으로</td>
+    </tr>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O(V³)</td>
+      <td>O((V+E)logV)</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V²)</td>
+      <td>O(V)</td>
+    </tr>
+    <tr>
+      <td><strong>음수 간선</strong></td>
+      <td>가능 (음수 사이클 제외)</td>
+      <td>불가능</td>
+    </tr>
+    <tr>
+      <td><strong>구현 난이도</strong></td>
+      <td>매우 쉬움</td>
+      <td>중간 (우선순위 큐)</td>
+    </tr>
+    <tr>
+      <td><strong>적용 상황</strong></td>
+      <td>정점이 적을 때 (V ≤ 500)</td>
+      <td>정점이 많을 때, 특정 출발점</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-언제-무엇을-쓸까">💡 언제 무엇을 쓸까?</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 플로이드-워셜을 쓸 때</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">모든</span> <span class="n">정점</span> <span class="n">쌍의</span> <span class="n">최단</span> <span class="n">거리가</span> <span class="n">필요</span> <span class="o">&amp;&amp;</span> <span class="n">정점</span> <span class="n">수</span> <span class="err">≤</span> <span class="mi">500</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">플로이드워셜</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="c1">// ✅ 다익스트라를 쓸 때</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">특정</span> <span class="n">출발점에서</span> <span class="n">모든</span> <span class="n">정점까지</span> <span class="o">&amp;&amp;</span> <span class="n">음수</span> <span class="n">간선</span> <span class="n">없음</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">다익스트라</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="c1">// ✅ 벨만-포드를 쓸 때</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">음수</span> <span class="n">간선</span> <span class="n">있음</span> <span class="o">&amp;&amp;</span> <span class="n">음수</span> <span class="n">사이클</span> <span class="n">감지</span> <span class="n">필요</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">벨만포드</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-8️⃣-실전-문제-적용">🎯 8️⃣ 실전 문제 적용</h2>
+
+<h3 id="-대표-문제-유형">💡 대표 문제 유형</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>유형</th>
+      <th>설명</th>
+      <th>예시 문제</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>모든 쌍 최단 경로</strong></td>
+      <td>모든 도시 간 최단 거리</td>
+      <td>백준 11404 플로이드</td>
+    </tr>
+    <tr>
+      <td><strong>경유지 문제</strong></td>
+      <td>특정 경유지를 거쳐야 할 때</td>
+      <td>프로그래머스 순위</td>
+    </tr>
+    <tr>
+      <td><strong>연결성 판단</strong></td>
+      <td>모든 노드가 연결되어 있는가?</td>
+      <td>백준 1389 케빈 베이컨</td>
+    </tr>
+    <tr>
+      <td><strong>최단 경로 개수</strong></td>
+      <td>최단 경로가 몇 개인가?</td>
+      <td>백준 1613 역사</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-체크리스트">💡 체크리스트</h3>
+
+<p>플로이드-워셜 문제를 풀 때 확인할 것:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />정점 수가 500 이하인가? (아니면 다익스트라 고려)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />모든 쌍의 최단 거리가 필요한가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />음수 간선이 있는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />음수 사이클을 감지해야 하는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />INF 값을 충분히 크게 설정했는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />중복 간선 처리를 했는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />k가 가장 바깥 루프인가?</li>
+</ul>
+
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</title><link href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" /><published>2025-12-20T00:00:00+00:00</published><updated>2025-12-29T09:31:20+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-20-diary/"><![CDATA[<ul>
   <li><a href="#들어가며">들어가며</a></li>
   <li><a href="#1-전체-그림-우리-서비스가-필요한-것">1. 전체 그림: 우리 서비스가 필요한 것</a></li>
   <li><a href="#2-backend-spring-boot--webflux를-선택한-이유">2. Backend: Spring Boot + WebFlux를 선택한 이유</a></li>
@@ -658,7 +1105,7 @@ vs
   <li><a href="https://redis.io/docs/data-types/">Redis 자료구조 가이드</a></li>
   <li><a href="https://docs.agora.io/en/cloud-recording">Agora Cloud Recording</a></li>
   <li><a href="https://capacitorjs.com/docs">Capacitor 공식 문서</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2025-12-29T09:31:20+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
 
 <p>처음에는 단순할 줄 알았는데, 생각보다 에러도 많이 나고 시행착오가 많아서 MVP에서 제외하고 개발했다. 이 글에서는 어떤 문제들을 겪었고, 어떻게 해결했는지를 정리하려고 한다.</p>
 
@@ -911,7 +1358,7 @@ Secret: 한 번만 보여주니 즉시 복사!
   <li><a href="https://spring.io/guides/gs/async-method">Spring Async 설정</a></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-12-29T09:31:20+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
   <li>이번 포스팅에선 Capacitor로 빌드한 앱에서 여러 아이콘이 순차적으로 표시되는 커스텀 스플래시 스크린을 구현하는 방법을 정리했다.</li>
   <li>왜 Custom splash screen이 필요했나?
     <ul>
@@ -1141,7 +1588,7 @@ pnpm add <span class="nt">-D</span> @capacitor/assets
   <li><a href="https://github.com/ionic-team/capacitor-assets">Capacitor assets github page</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/splash-screen">@capacitor/splash-screen DOCS</a></li>
   <li><a href="https://capacitorjs.com/docs/guides/splash-screens-and-icons">Splash Screens and Icons DOCS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</title><link href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" rel="alternate" type="text/html" title="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" /><published>2025-11-18T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-18-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</title><link href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" rel="alternate" type="text/html" title="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" /><published>2025-11-18T00:00:00+00:00</published><updated>2025-12-29T09:31:20+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-18-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 JSONP 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
@@ -1365,7 +1812,7 @@ pnpm add <span class="nt">-D</span> @capacitor/assets
   <li><a href="https://sockjs.github.io/sockjs-protocol/sockjs-protocol-0.3.3.html">SockJS Protocol</a></li>
   <li><a href="https://en.wikipedia.org/wiki/JSONP">JSONP의 작동 원리와 보안 이슈</a></li>
   <li><a href="https://stackoverflow.com/questions/2067472/what-is-jsonp-and-why-was-it-created">CORS vs JSONP</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2025-12-29T09:31:20+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 X-Frame-Options 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
@@ -1618,7 +2065,7 @@ WebView는 브라우저 엔진의 특수 모드
 <ul>
   <li>Capacitor로 앱을 빌드한 다음에 웹에서는 발생하지 않는 에러들이 생겨서 찾아보고, 공부하고, 해결하는 재미가 있다.</li>
   <li>이제 통화연결까지 앱으로 수행할 수 있게 되었다!!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2025-12-29T09:31:20+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
   <li>Capacitor로 빌드한 React 앱에서 카카오와 구글 네이티브 로그인을 구현하는 방법을 정리해 보았다.</li>
   <li>관련되서 정리되어있는게 없는것 같아서.. 내가 나중에 찾아볼 수 있게 일단 문서를 만들어보았다.</li>
   <li>웹에서는 일반 OAuth 리다이렉트를 사용하지만, 모바일 앱에서는 <strong>네이티브 SDK를 직접 사용</strong>하는 방식으로 구현했다. (kakao, google)
@@ -2185,7 +2632,7 @@ Content-Type: application/json
   <li><a href="https://developers.kakao.com/docs/latest/ko/flutter/getting-started#project-scheme">Kakao developer</a></li>
   <li><a href="https://github.com/nerdFrenzs/capacitor-kakao-login-plugin">capacitor-kakao-login-plugin</a></li>
   <li><a href="https://github.com/CodetrixStudio/CapacitorGoogleAuth">@codetrix-studio/capacitor-google-auth</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-12-29T09:31:20+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
   <li>지난 글에서는 Capacitor로 Android, iOS 앱 빌드하는 방법에 대해 다뤘다.</li>
   <li>이번 글에서는 Capacitor로 빌드한 Android 앱에서 로그인 연동을 하는 방법에 대해 다뤄보겠다.</li>
   <li>특히 CORS 에러 해결에 대해 다뤄보겠다..
@@ -2364,7 +2811,7 @@ Android: http://localhost</p>
   <li><a href="https://stackoverflow.com/questions/75192411/cors-in-capacitor-for-android">StackOverFlow가 짱이야</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/http">Capacitor HTTP Plugin 공식 문서</a></li>
   <li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS">MDN - CORS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2025-12-29T09:31:20+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
   <li>“친구하자”를 웹으로 MVP 완성을 하니, 이걸 앱으로 빌드해서 사용자들이 더 쉽게 사용할 수 있으면 좋겠다고 생각했다.</li>
   <li>원래는.. 개발자의 입장으로 링크로 이동하는 방식이 쉬울꺼라고 생각했는데, 막상 사용자에게 링크를 보내주니까 어려움을 토로하거나 방식에 의문을 가지는 사람들이 많았다..
     <ul>
@@ -2473,7 +2920,7 @@ npx cap run ios
 <p><br />
 다음에 android studio 업데이트를 좀 하고.. (안한지 넘 오래됌..) 아래와 같이 빌드 성공!</p>
 
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry><entry><title type="html">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</title><link href="https://nan0silver.github.io/algorithm/2025-10-23-collections/" rel="alternate" type="text/html" title="[Algorithm] 코테에서 자주 쓰이는 Collection 모음" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-12-29T09:31:20+00:00</updated><id>https://nan0silver.github.io/algorithm/collections</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-10-23-collections/"><![CDATA[<ol>
   <li><a href="#️-1️⃣-hashmapk-v--key-value-형태로-빠르게-찾고-세는-용도">HashMap</a></li>
   <li><a href="#-2️⃣-hashset--중복-없는-데이터-저장">HashSet</a></li>
   <li><a href="#-3️⃣-arraylist--순서-있는-리스트-인덱스-접근-가능">ArrayList</a></li>
@@ -2867,402 +3314,4 @@ while (it.hasNext()) {
   </tbody>
 </table>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-10-20-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅" /><published>2025-10-20T00:00:00+00:00</published><updated>2025-12-22T06:22:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-10-20-diary/"><![CDATA[<ul>
-  <li><a href="#1-문제-발견">1. 문제 발견</a></li>
-  <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
-  <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
-  <li><a href="#4-문제-원인-분석">4. 문제 원인 분석</a></li>
-  <li><a href="#5-해결-방법">5. 해결 방법</a></li>
-  <li><a href="#6-핵심-개념-정리">6. 핵심 개념 정리</a></li>
-</ul>
-
-<h2 id="음성-통화-녹음-기능은-동작하는데-에러가">음성 통화 녹음, 기능은 동작하는데 에러가?</h2>
-
-<blockquote>
-  <p>Agora Cloud Recording을 이용한 음성 통화 녹음 기능을 구현했다. 녹음 시작과 중지는 정상적으로 동작하는 것처럼 보였지만, 통화 종료 직후 콘솔에 예외 스택이 연속으로 출력되었다. LazyInitializationException과 OptimisticLockingFailureException… 둘 다 뭔가 익숙한데 동시에 발생하다니..🥲</p>
-</blockquote>
-
-<h2 id="1-문제-발견">1. 문제 발견</h2>
-
-<h3 id="상황">상황</h3>
-
-<p>Agora Cloud Recording을 사용하여 음성 통화 녹음 기능을 구현하던 중, 통화는 정상적으로 시작되고 녹음도 시작되지만, <strong>통화 종료 시점에 예외가 연달아 발생</strong>했다.</p>
-
-<p>구조는 다음과 같았다:</p>
-
-<ul>
-  <li>통화 종료 → 비동기로 녹음 중지 API 호출</li>
-  <li>녹음 정보를 DB에 저장하는 과정에서 에러 발생</li>
-</ul>
-
-<h3 id="에러-로그">에러 로그</h3>
-
-<p><strong>첫 번째 에러:</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org.hibernate.LazyInitializationException: Could not initialize proxy
-[com.example.domain.Call#1] - no session
-	at org.hibernate.proxy.AbstractLazyInitializer.initialize(...)
-	at RecordingResponse.from(RecordingResponse.java:76)
-</code></pre></div></div>
-
-<p><strong>두 번째 에러:</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org.springframework.orm.ObjectOptimisticLockingFailureException:
-Row was updated or deleted by another transaction
-
-Caused by: org.hibernate.StaleObjectStateException:
-Row was updated or deleted by another transaction
-</code></pre></div></div>
-
-<blockquote>
-  <p>“분명히 <code class="language-plaintext highlighter-rouge">@Transactional</code>도 붙였고, 엔티티도 제대로 조회했는데 왜 세션이 없다는 거지? 그리고 왜 낙관적 락 충돌이 발생하는 거야?”</p>
-</blockquote>
-
-<hr />
-
-<h2 id="2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</h2>
-
-<h3 id="에러의-의미">에러의 의미</h3>
-
-<p><code class="language-plaintext highlighter-rouge">LazyInitializationException</code>은 Hibernate에서 <strong>지연 로딩(Lazy Loading)으로 설정된 연관 엔티티에 접근하려 할 때, 이미 영속성 컨텍스트(Persistence Context)가 닫혀있어서 발생</strong>하는 에러다.</p>
-
-<h3 id="일반적인-발생-상황">일반적인 발생 상황</h3>
-
-<p><strong>1. 트랜잭션 밖에서 Lazy 프록시 접근</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="nc">User</span> <span class="nf">findUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>  <span class="c1">// User.orders는 LAZY</span>
-<span class="o">}</span>
-
-<span class="c1">// 트랜잭션 밖</span>
-<span class="n">user</span><span class="o">.</span><span class="na">getOrders</span><span class="o">().</span><span class="na">size</span><span class="o">();</span>  <span class="c1">// ❌ LazyInitializationException!</span>
-</code></pre></div></div>
-
-<p><strong>2. 비동기 작업에서 접근</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">processOrder</span><span class="o">(</span><span class="nc">Long</span> <span class="n">orderId</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">Order</span> <span class="n">order</span> <span class="o">=</span> <span class="n">findOrder</span><span class="o">(</span><span class="n">orderId</span><span class="o">);</span>
-    <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">runAsync</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="n">order</span><span class="o">.</span><span class="na">getUser</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>  <span class="c1">// ❌ 세션 종료 후 접근</span>
-    <span class="o">});</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="내-경우의-원인">내 경우의 원인</h3>
-
-<p>엔티티 구조:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
-<span class="kd">class</span> <span class="nc">CallRecording</span> <span class="o">{</span>
-    <span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>  <span class="c1">// ← LAZY 로딩</span>
-    <span class="kd">private</span> <span class="nc">Call</span> <span class="n">call</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>문제 흐름:</p>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">@Async</code>로 비동기 스레드에서 녹음 중지 로직 실행</li>
-  <li><code class="language-plaintext highlighter-rouge">CallRecording</code> 조회 (이때 <code class="language-plaintext highlighter-rouge">Call</code>은 프록시 상태)</li>
-  <li>DTO 변환 시 <code class="language-plaintext highlighter-rouge">call.getChannelName()</code> 호출</li>
-  <li><strong>프록시 초기화 시도하지만 이미 세션 종료 → 에러!</strong></li>
-</ol>
-
-<p>핵심은 <strong>비동기 스레드는 별도의 영속성 컨텍스트를 가지며</strong>, 연관 엔티티가 LAZY로 설정되어 있으면 세션 밖에서 접근 시 문제가 발생한다는 점이다.</p>
-
-<hr />
-
-<h2 id="3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</h2>
-
-<h3 id="에러의-의미-1">에러의 의미</h3>
-
-<p><code class="language-plaintext highlighter-rouge">OptimisticLockingFailureException</code>은 <strong>낙관적 락(Optimistic Lock) 검증 실패</strong> 시 발생한다. JPA의 <code class="language-plaintext highlighter-rouge">@Version</code>을 사용한 엔티티에서 <strong>다른 트랜잭션이 이미 해당 레코드를 수정하여 버전이 증가했을 때</strong> 발생한다.</p>
-
-<h3 id="낙관적-락이란">낙관적 락이란?</h3>
-
-<p>동시성 제어 방법 중 하나로, 실제 충돌이 자주 발생하지 않을 것이라고 “낙관적으로” 가정한다.</p>
-
-<p><strong>동작 방식:</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
-<span class="kd">class</span> <span class="nc">CallRecording</span> <span class="o">{</span>
-    <span class="nd">@Version</span>
-    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">version</span><span class="o">;</span>  <span class="c1">// 수정될 때마다 자동 증가</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<ol>
-  <li>엔티티 조회 시 version 값 함께 조회</li>
-  <li>업데이트 시 WHERE 절에 version 조건 추가</li>
-</ol>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">UPDATE</span> <span class="n">call_recordings</span>
-   <span class="k">SET</span> <span class="n">status</span> <span class="o">=</span> <span class="s1">'COMPLETED'</span><span class="p">,</span> <span class="k">version</span> <span class="o">=</span> <span class="k">version</span> <span class="o">+</span> <span class="mi">1</span>
-   <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="k">version</span> <span class="o">=</span> <span class="mi">0</span>
-</code></pre></div></div>
-
-<ol>
-  <li>영향받은 행이 0개면 → <strong>OptimisticLockingFailureException!</strong></li>
-</ol>
-
-<h3 id="일반적인-발생-상황-1">일반적인 발생 상황</h3>
-
-<p><strong>동시에 같은 엔티티 수정:</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 트랜잭션 1</span>
-<span class="nc">Recording</span> <span class="n">rec</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0</span>
-<span class="n">rec</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="no">COMPLETED</span><span class="o">);</span>
-<span class="n">repo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">rec</span><span class="o">);</span>  <span class="c1">// version = 1</span>
-
-<span class="c1">// 트랜잭션 2 (동시 실행)</span>
-<span class="nc">Recording</span> <span class="n">rec</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>  <span class="c1">// version = 0 (조회 시점)</span>
-<span class="n">rec</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="no">FAILED</span><span class="o">);</span>
-<span class="n">repo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">rec</span><span class="o">);</span>  <span class="c1">// ❌ version이 이미 1이라 실패!</span>
-</code></pre></div></div>
-
-<h3 id="내-경우의-원인-1">내 경우의 원인</h3>
-
-<p>문제 흐름:</p>
-
-<ol>
-  <li>메인 로직에서 <code class="language-plaintext highlighter-rouge">recording.complete()</code> 호출 → version 증가</li>
-  <li>비동기 스레드에서도 같은 recording 접근</li>
-  <li>에러 발생 → <code class="language-plaintext highlighter-rouge">recording.fail()</code> 호출</li>
-  <li>저장 시도 → <strong>이미 version이 변경되어 충돌!</strong></li>
-</ol>
-
-<hr />
-
-<h2 id="4-문제-원인-분석">4. 문제 원인 분석</h2>
-
-<h3 id="근본-원인">근본 원인</h3>
-
-<p>두 에러가 동시에 발생한 이유는 <strong>비동기 처리와 동시성 제어의 조합</strong> 때문이었다.</p>
-
-<p><strong>시나리오:</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 통화 종료 이벤트 발생
-2. @Async 메서드로 녹음 중지 로직 실행 (별도 스레드)
-3. CallRecording 조회 (Call은 LAZY 프록시 상태)
-4. DTO 변환 시 Call 접근 → LazyInitializationException
-5. 예외 처리 로직에서 recording.fail() 호출
-6. 다른 트랜잭션이 이미 recording을 수정 → OptimisticLockingFailureException
-</code></pre></div></div>
-
-<p><strong>핵심 문제점:</strong></p>
-
-<ul>
-  <li>LAZY 로딩된 연관 엔티티를 비동기 컨텍스트에서 접근</li>
-  <li>동일 엔티티에 대한 동시 업데이트 시도</li>
-</ul>
-
-<hr />
-
-<h2 id="5-해결-방법">5. 해결 방법</h2>
-
-<h3 id="해결-전략">해결 전략</h3>
-
-<ol>
-  <li><strong>LazyInitializationException</strong>: 연관 엔티티를 미리 로드</li>
-  <li><strong>OptimisticLockingFailureException</strong>: 예외 처리 전략 수립</li>
-</ol>
-
-<h3 id="1-join-fetch로-연관-엔티티-즉시-로딩">1) JOIN FETCH로 연관 엔티티 즉시 로딩</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"SELECT cr FROM CallRecording cr "</span> <span class="o">+</span>
-       <span class="s">"JOIN FETCH cr.call "</span> <span class="o">+</span>
-       <span class="s">"WHERE cr.call.id = :callId"</span><span class="o">)</span>
-<span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">CallRecording</span><span class="o">&gt;</span> <span class="nf">findByCallIdWithCall</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"callId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">callId</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p><strong>효과:</strong></p>
-
-<ul>
-  <li>한 번의 쿼리로 <code class="language-plaintext highlighter-rouge">CallRecording</code>과 <code class="language-plaintext highlighter-rouge">Call</code>을 함께 조회</li>
-  <li>LAZY 프록시 문제 해결</li>
-</ul>
-
-<h3 id="2-dto-생성-시-필요한-데이터만-전달">2) DTO 생성 시 필요한 데이터만 전달</h3>
-
-<p>기존의 프록시 객체에서 데이터를 꺼내는 대신, <strong>이미 로드된 엔티티를 명시적으로 전달</strong>하는 방식으로 변경:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Before: recording에서 call을 꺼내려 시도 (프록시 초기화)</span>
-<span class="nc">RecordingResponse</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">recording</span><span class="o">);</span>
-
-<span class="c1">// After: 이미 로드된 call을 직접 전달</span>
-<span class="nc">RecordingResponse</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">recording</span><span class="o">,</span> <span class="n">call</span><span class="o">);</span>
-</code></pre></div></div>
-
-<h3 id="3-비동기-메서드에-transactional-추가">3) 비동기 메서드에 @Transactional 추가</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Async</span>
-<span class="nd">@Transactional</span>  <span class="c1">// ← 비동기 스레드에도 트랜잭션 컨텍스트</span>
-<span class="kd">public</span> <span class="nc">CompletableFuture</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">autoStopRecording</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 새로운 영속성 컨텍스트에서 실행</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="4-낙관적-락-예외-처리">4) 낙관적 락 예외 처리</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="o">{</span>
-    <span class="n">recording</span><span class="o">.</span><span class="na">fail</span><span class="o">();</span>
-    <span class="n">repository</span><span class="o">.</span><span class="na">saveAndFlush</span><span class="o">(</span><span class="n">recording</span><span class="o">);</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">OptimisticLockException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 이미 다른 트랜잭션에서 처리됨 - 무시</span>
-    <span class="n">log</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">"낙관적 락 충돌 (무시): callId={}"</span><span class="o">,</span> <span class="n">callId</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><strong>전략:</strong></p>
-
-<ul>
-  <li>이미 처리된 경우 무시 (재시도 불필요)</li>
-  <li><code class="language-plaintext highlighter-rouge">saveAndFlush()</code>로 즉시 DB 반영</li>
-</ul>
-
-<h3 id="5-적용-후-개선된-흐름">5) 적용 후 개선된 흐름</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 통화 종료
-2. JOIN FETCH로 Call과 함께 CallRecording 조회
-3. 필요한 데이터를 DTO에 전달 (프록시 접근 없음)
-4. 업데이트 시 낙관적 락 충돌 발생 시 적절히 처리
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="6-핵심-개념-정리">6. 핵심 개념 정리</h2>
-
-<h3 id="lazy-loading">Lazy Loading</h3>
-
-<p><strong>개념:</strong><br />
-연관된 엔티티를 실제로 사용할 때까지 조회를 미루는 전략</p>
-
-<p><strong>장점:</strong></p>
-
-<ul>
-  <li>불필요한 쿼리 감소</li>
-  <li>성능 최적화</li>
-</ul>
-
-<p><strong>단점:</strong></p>
-
-<ul>
-  <li>영속성 컨텍스트 밖에서 접근 시 LazyInitializationException</li>
-</ul>
-
-<p><strong>해결 방법:</strong></p>
-
-<ul>
-  <li>JOIN FETCH로 즉시 로딩</li>
-  <li>DTO 변환 시점 조정</li>
-  <li>EAGER 로딩 (신중하게)</li>
-</ul>
-
-<h3 id="낙관적-락-vs-비관적-락">낙관적 락 vs 비관적 락</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>낙관적 락</th>
-      <th>비관적 락</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>가정</td>
-      <td>충돌이 적을 것</td>
-      <td>충돌이 많을 것</td>
-    </tr>
-    <tr>
-      <td>락 시점</td>
-      <td>업데이트 시</td>
-      <td>조회 시</td>
-    </tr>
-    <tr>
-      <td>구현</td>
-      <td>@Version</td>
-      <td>@Lock(PESSIMISTIC_WRITE)</td>
-    </tr>
-    <tr>
-      <td>적합한 경우</td>
-      <td>읽기가 많은 경우</td>
-      <td>쓰기가 많은 경우</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>낙관적 락 동작:</strong></p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 조회</span>
-<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">recordings</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">-- version = 0</span>
-
-<span class="c1">-- 업데이트</span>
-<span class="k">UPDATE</span> <span class="n">recordings</span>
-<span class="k">SET</span> <span class="n">status</span> <span class="o">=</span> <span class="s1">'COMPLETED'</span><span class="p">,</span> <span class="k">version</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="k">version</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">-- 버전 체크</span>
-
-<span class="c1">-- 영향받은 행이 0개면 실패 → 예외 발생</span>
-</code></pre></div></div>
-
-<h3 id="비동기-처리와-영속성-컨텍스트">비동기 처리와 영속성 컨텍스트</h3>
-
-<p><strong>주의사항:</strong></p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">@Async</code> 메서드는 별도 스레드에서 실행</li>
-  <li>각 스레드는 독립적인 영속성 컨텍스트</li>
-  <li>LAZY 엔티티는 미리 로드하거나 별도 트랜잭션 필요</li>
-</ul>
-
-<hr />
-
-<h2 id="7-학습-포인트">7. 학습 포인트</h2>
-
-<h3 id="이번-트러블슈팅을-통해-배운-것">이번 트러블슈팅을 통해 배운 것</h3>
-
-<ol>
-  <li>
-    <p><strong>비동기 처리 시 영속성 컨텍스트 관리의 중요성</strong></p>
-
-    <ul>
-      <li>JOIN FETCH로 필요한 데이터 미리 로드</li>
-      <li>비동기 컨텍스트에는 별도의 트랜잭션 필요</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>동시성 제어 전략 선택</strong></p>
-
-    <ul>
-      <li>낙관적 락: 충돌이 적을 때 효율적</li>
-      <li>예외 처리로 재시도 또는 무시 전략 구현</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>트랜잭션 범위와 데이터 일관성</strong></p>
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">saveAndFlush()</code>로 즉시 반영</li>
-      <li>에러 처리 시 최신 데이터 재조회 고려</li>
-    </ul>
-  </li>
-</ol>
-
-<h3 id="더-나은-설계를-위한-고민">더 나은 설계를 위한 고민</h3>
-
-<ul>
-  <li>비동기 작업에서는 ID만 전달하고 내부에서 재조회</li>
-  <li>DTO 변환은 서비스 레이어에서 완료</li>
-  <li>동시성이 중요한 엔티티는 비관적 락 고려</li>
-</ul>
-
-<hr />
-
-<h2 id="참고-자료">참고 자료</h2>
-
-<ul>
-  <li><a href="https://docs.jboss.org/hibernate/orm/6.0/userguide/html_single/Hibernate_User_Guide.html">Hibernate User Guide - LazyInitializationException</a></li>
-  <li><a href="https://www.baeldung.com/jpa-optimistic-locking">Baeldung - JPA Optimistic Locking</a></li>
-  <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring Framework - Async Execution</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.]]></summary></entry></feed>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 대비 JAVA Collections의 사용처 및 메서드를 정리해보았습니다.]]></summary></entry></feed>
