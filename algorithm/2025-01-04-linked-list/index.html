@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[TIL] 시큐어 코딩, glitch, CORS | NAHYUN BLOG</title>
+<title>[Algorithm] 인접 리스트(Adjacency List) 정리 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[TIL] 시큐어 코딩, glitch, CORS" />
+<meta property="og:title" content="[Algorithm] 인접 리스트(Adjacency List) 정리" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="2025-02-05 TIL" />
-<meta property="og:description" content="2025-02-05 TIL" />
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-02-05-til/" />
-<meta property="og:url" content="https://nan0silver.github.io/til/2025-02-05-til/" />
+<meta name="description" content="트리, 그래프 문제에서 자주 사용하는 인접 리스트 구조를 정리했습니다." />
+<meta property="og:description" content="트리, 그래프 문제에서 자주 사용하는 인접 리스트 구조를 정리했습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/algorithm/2025-01-04-linked-list/" />
+<meta property="og:url" content="https://nan0silver.github.io/algorithm/2025-01-04-linked-list/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-02-05T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-01-04T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[TIL] 시큐어 코딩, glitch, CORS" />
+<meta property="twitter:title" content="[Algorithm] 인접 리스트(Adjacency List) 정리" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-03-05T11:06:18+00:00","datePublished":"2025-02-05T00:00:00+00:00","description":"2025-02-05 TIL","headline":"[TIL] 시큐어 코딩, glitch, CORS","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-02-05-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-02-05-til/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-01-05T10:02:49+00:00","datePublished":"2025-01-04T00:00:00+00:00","description":"트리, 그래프 문제에서 자주 사용하는 인접 리스트 구조를 정리했습니다.","headline":"[Algorithm] 인접 리스트(Adjacency List) 정리","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2025-01-04-linked-list/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/algorithm/2025-01-04-linked-list/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/til/2025-02-05-til/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/algorithm/2025-01-04-linked-list/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[TIL] 시큐어 코딩, glitch, CORS",
-    "description": "2025-02-05 TIL
+    "headline": "[Algorithm] 인접 리스트(Adjacency List) 정리",
+    "description": "트리, 그래프 문제에서 자주 사용하는 인접 리스트 구조를 정리했습니다.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-02-05T00:00:00+00:00",
-    "dateModified": "2025-03-05T11:06:18+00:00",
+    "datePublished": "2025-01-04T00:00:00+00:00",
+    "dateModified": "2026-01-05T10:02:49+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/til/2025-02-05-til/"
+      "@id": "https://nan0silver.github.io/algorithm/2025-01-04-linked-list/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-02-05-til/" />
+<link rel="canonical" href="https://nan0silver.github.io/algorithm/2025-01-04-linked-list/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "til",
-        "item": "https://nan0silver.github.io/til/"
+        "name": "algorithm",
+        "item": "https://nan0silver.github.io/algorithm/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[TIL] 시큐어 코딩, glitch, CORS",
-        "item": "https://nan0silver.github.io/til/2025-02-05-til/"
+        "name": "[Algorithm] 인접 리스트(Adjacency List) 정리",
+        "item": "https://nan0silver.github.io/algorithm/2025-01-04-linked-list/"
       }
     ]
   }
@@ -358,14 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/til/">til</a>
+          <a href="/algorithm/">algorithm</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-02-05-til</span>
+          <span>2025-01-04-linked-list</span>
         
       </li>
     
@@ -382,18 +382,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-til-til" class="page post mb6" role="article">
+<article id="post-algorithm-linked-list" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [TIL] 시큐어 코딩, glitch, CORS
+        [Algorithm] 인접 리스트(Adjacency List) 정리
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-05T00:00:00+00:00">05 Feb 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>
+        <time datetime="2025-01-04T00:00:00+00:00">04 Jan 2025</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
       </span>
       
         
@@ -402,10 +402,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 05 Mar 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 05 Jan 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-03-05T11:06:18+00:00">2025-03-05</time>
+              <time datetime="2026-01-05T10:02:49+00:00">2026-01-05</time>
             </span>
           
         
@@ -421,7 +421,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      2025-02-05 TIL
+      트리, 그래프 문제에서 자주 사용하는 인접 리스트 구조를 정리했습니다.
 
     </p>
   
@@ -430,65 +430,278 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/11">#11</a><br />
-📅 <strong>작성일</strong>: 2025-02-05<br />
-🔄 <strong>최종 수정</strong>: 2025년 03월 05일</p>
-</blockquote>
+    <p>그래프 문제를 풀다 보면 <strong>“왜 인접 행렬 말고 인접 리스트를 쓰는지”</strong>,
+<strong>“List&lt;int[]&gt;[] 이 구조가 왜 이렇게 생겼는지”</strong> 헷갈릴 때가 많다.</p>
+
+<p>이 글에서는 <strong>코테 기준으로 딱 필요한 만큼만</strong> 정리한다.</p>
 
 <hr />
 
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+<h2 id="-인접-리스트란">🌳 인접 리스트란?</h2>
+
+<blockquote>
+  <p>각 정점이 <strong>연결된 정점들만 리스트로 가지고 있는 구조</strong></p>
+</blockquote>
+
+<h3 id="️-왜-쓰나">✔️ 왜 쓰나?</h3>
+
 <ul>
-  <li>기초적 시큐어 코딩 (클로저 사용)</li>
-  <li>glitch를 이용한 키 노출 문제 해결
-    <ul>
-      <li>CORS 문제 해결</li>
-    </ul>
-  </li>
+  <li>노드 ≤ 10,000 이상일 때</li>
+  <li>간선 수가 많지 않은 그래프 (트리 포함)</li>
+  <li><strong>메모리 효율 + 탐색 효율</strong>이 좋음</li>
 </ul>
 
-<h2 id="-오늘의-문제-상황">🍎 오늘의 문제 상황</h2>
+<hr />
+
+<h2 id="-인접-행렬-vs-인접-리스트">📌 인접 행렬 vs 인접 리스트</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>인접 행렬</th>
+      <th>인접 리스트</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>구조</td>
+      <td><code class="language-plaintext highlighter-rouge">int[N][N]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">List&lt;Edge&gt;[]</code></td>
+    </tr>
+    <tr>
+      <td>메모리</td>
+      <td>O(N²)</td>
+      <td>O(N + E)</td>
+    </tr>
+    <tr>
+      <td>간선 확인</td>
+      <td>빠름</td>
+      <td>느림</td>
+    </tr>
+    <tr>
+      <td>DFS/BFS</td>
+      <td>불리</td>
+      <td><strong>유리 (코테 표준)</strong></td>
+    </tr>
+    <tr>
+      <td>트리 문제</td>
+      <td>❌</td>
+      <td><strong>⭕</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>👉 <strong>트리 / BFS / DFS / 지름 문제 = 인접 리스트</strong></p>
+
+<hr />
+
+<h2 id="-기본-구조-가장-중요">🧱 기본 구조 (가장 중요)</h2>
+
+<h3 id="1️⃣-선언">1️⃣ 선언</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;[]</span> <span class="n">graph</span><span class="o">;</span>
+</code></pre></div></div>
+
 <ul>
-  <li>Glitch에서 Fastify를 사용해 서버를 개발하던 중, 클라이언트에서 API 요청을 보낼 때 CORS 오류가 발생함
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">Access to fetch at 'https://my-glitch-app.glitch.me/api' from origin 'https://another-site.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.</code></li>
-      <li>서버에서 CORS 설정을 올바르게 해주어야 해결할 수 있다.</li>
-    </ul>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">graph[i]</code> : <strong>i번 노드와 연결된 모든 간선 목록</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">int[]</code> : <code class="language-plaintext highlighter-rouge">{다음 노드, 가중치}</code></li>
 </ul>
 
-<h3 id="해결-과정">해결 과정</h3>
+<hr />
+
+<h3 id="2️⃣-초기화-절대-빠지면-안-됨">2️⃣ 초기화 (절대 빠지면 안 됨)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">graph</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>❗ <strong>이거 안 하면 <code class="language-plaintext highlighter-rouge">NullPointerException</code> 100% 발생</strong></p>
+
+<hr />
+
+<h3 id="3️⃣-간선-입력-무방향-그래프--트리">3️⃣ 간선 입력 (무방향 그래프 / 트리)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">graph</span><span class="o">[</span><span class="n">u</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">v</span><span class="o">,</span> <span class="n">w</span><span class="o">});</span>
+<span class="n">graph</span><span class="o">[</span><span class="n">v</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">u</span><span class="o">,</span> <span class="n">w</span><span class="o">});</span>
+</code></pre></div></div>
+
 <ul>
-  <li>Fastify에 CORS 플러그인 추가
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">@fastify/cors</code> 플러그인을 등록하여 모든 도메인에서의 요청을 허용하도록 설정</li>
-      <li><code class="language-plaintext highlighter-rouge">fastify.register(require('@fastify/cors'), {
-     origin: "*", // 모든 도메인에서 요청을 허용
-   });
-   </code></li>
-    </ul>
-  </li>
-  <li>CORS 플러그인 설치
-    <ul>
-      <li>무조건 8버전을 설치해야 제대로 실행이 되었다.</li>
-      <li><code class="language-plaintext highlighter-rouge">npm install @fastify/cors@8.0.0</code></li>
-    </ul>
-  </li>
+  <li>트리는 <strong>무방향 그래프</strong></li>
+  <li>부모 → 자식만 넣으면 ❌ (DFS에서 못 돌아옴)</li>
 </ul>
 
-<h2 id="-느낀-점">🦄 느낀 점</h2>
+<hr />
+
+<h2 id="-실제-예시-트리">🔍 실제 예시 (트리)</h2>
+
+<p>입력:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 - 2 (3)
+1 - 3 (2)
+</code></pre></div></div>
+
+<p>구조:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">graph</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="err">→</span> <span class="o">[</span> <span class="o">[</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">],</span> <span class="o">[</span><span class="mi">3</span><span class="o">,</span><span class="mi">2</span><span class="o">]</span> <span class="o">]</span>
+<span class="n">graph</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="err">→</span> <span class="o">[</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="mi">3</span><span class="o">]</span> <span class="o">]</span>
+<span class="n">graph</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="err">→</span> <span class="o">[</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">]</span> <span class="o">]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-dfs--bfs에서-사용하는-방법">🚶 DFS / BFS에서 사용하는 방법</h2>
+
+<h3 id="dfs-예시">DFS 예시</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">cur</span><span class="o">,</span> <span class="kt">int</span> <span class="n">dist</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">visited</span><span class="o">[</span><span class="n">cur</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">next</span> <span class="o">:</span> <span class="n">graph</span><span class="o">[</span><span class="n">cur</span><span class="o">])</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">to</span> <span class="o">=</span> <span class="n">next</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+        <span class="kt">int</span> <span class="n">w</span>  <span class="o">=</span> <span class="n">next</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+
+        <span class="k">if</span> <span class="o">(!</span><span class="n">visited</span><span class="o">[</span><span class="n">to</span><span class="o">])</span> <span class="o">{</span>
+            <span class="n">dfs</span><span class="o">(</span><span class="n">to</span><span class="o">,</span> <span class="n">dist</span> <span class="o">+</span> <span class="n">w</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="핵심-포인트">핵심 포인트</h3>
+
 <ul>
-  <li>CORS가 어떤 것인지 몰랐는데, 이번에 해결하면서 알게 되었다.</li>
-  <li>Fastify는 기본적으로 CORS를 막고 있어서 직접 열어줘야 한다는 것을 배웠다.</li>
-  <li>키 노출을 해결하는 방법으로 환경변수를 활용하는 더 좋은 방법을 배운 것 같다.</li>
+  <li><code class="language-plaintext highlighter-rouge">graph[cur]</code> = 현재 노드와 연결된 모든 간선</li>
+  <li><code class="language-plaintext highlighter-rouge">next[0]</code> = 다음 노드</li>
+  <li><code class="language-plaintext highlighter-rouge">next[1]</code> = 가중치</li>
 </ul>
 
-<h2 id="-깃블로그-정리">🐬 깃블로그 정리</h2>
+<hr />
+
+<h2 id="-자주-터지는-실수-top-5">🚨 자주 터지는 실수 TOP 5</h2>
+
+<h3 id="-1-graph-배열만-만들고-내부-리스트-안-만듦">❌ 1. graph 배열만 만들고 내부 리스트 안 만듦</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span> <span class="c1">// ❌</span>
+</code></pre></div></div>
+
+<p>→ 반드시 <code class="language-plaintext highlighter-rouge">for문으로 new ArrayList&lt;&gt;()</code></p>
+
+<hr />
+
+<h3 id="-2-무방향인데-한쪽만-추가">❌ 2. 무방향인데 한쪽만 추가</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">graph</span><span class="o">[</span><span class="n">u</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">v</span><span class="o">);</span> <span class="c1">// ❌</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-3-visited-크기-미초기화">❌ 3. visited 크기 미초기화</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">boolean</span><span class="o">[]</span> <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span> <span class="c1">// ❌</span>
+</code></pre></div></div>
+
+<p>→ n 입력 전이라 크기 0</p>
+
+<hr />
+
+<h3 id="-4-farnode--0-인-상태로-dfs">❌ 4. farNode = 0 인 상태로 DFS</h3>
+
+<p>→ <code class="language-plaintext highlighter-rouge">graph[0]</code> 접근 → <strong>NPE</strong></p>
+
+<hr />
+
+<h3 id="-5-dfs-깊이-너무-깊음-stackoverflow">❌ 5. DFS 깊이 너무 깊음 (StackOverflow)</h3>
+
 <ul>
-  <li>[Gemini를 이용한 메모 태그 추천 서비스] (https://nan0silver.github.io/memoGemini/)</li>
+  <li>노드 10,000</li>
+  <li>일자 트리</li>
 </ul>
+
+<p>👉 이 경우 <strong>BFS가 더 안전</strong></p>
+
+<hr />
+
+<h2 id="-언제-인접-리스트를-쓰나">🧠 언제 인접 리스트를 쓰나?</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>문제 유형</th>
+      <th>사용 여부</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>트리의 지름</td>
+      <td>⭐⭐⭐⭐⭐</td>
+    </tr>
+    <tr>
+      <td>BFS / DFS</td>
+      <td>⭐⭐⭐⭐⭐</td>
+    </tr>
+    <tr>
+      <td>다익스트라</td>
+      <td>⭐⭐⭐⭐⭐</td>
+    </tr>
+    <tr>
+      <td>플로이드 워셜</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td>완전 그래프</td>
+      <td>❌</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-대표-문제">📘 대표 문제</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>문제</th>
+      <th>이유</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>트리의 지름</td>
+      <td>2번 DFS</td>
+    </tr>
+    <tr>
+      <td>숨바꼭질</td>
+      <td>BFS</td>
+    </tr>
+    <tr>
+      <td>네트워크</td>
+      <td>DFS/BFS</td>
+    </tr>
+    <tr>
+      <td>치킨 배달</td>
+      <td>좌표 + 리스트</td>
+    </tr>
+    <tr>
+      <td>DSLR</td>
+      <td>상태 그래프</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-한-줄-요약">✨ 한 줄 요약</h2>
+
+<blockquote>
+  <p><strong>인접 리스트 = “각 노드가 연결된 노드만 들고 있는 구조”</strong>
+트리·BFS·DFS 문제에서는 <strong>거의 무조건 이걸 쓴다</strong></p>
+</blockquote>
+
+<hr />
 
   
 </article>
