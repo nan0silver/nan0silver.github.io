@@ -45,7 +45,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-01-05T10:02:49+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/3/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-01-09T01:50:45+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/3/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -185,7 +185,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-01-05T10:03:34+00:00',
+    INDEX_KEY: 'index--2026-01-09T01:51:35+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -564,6 +564,93 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 
 
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/projectdiary/2025-08-25-diary/" class="flip-title">
+        [친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-08-25T00:00:00+00:00">25 Aug 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Jan 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-01-09T01:50:45+00:00">2026-01-09</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      친구하자 프로젝트 개발 중 매칭 대기열을 구현하다가 생긴 고민을 정리해보았습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#문제-배경">문제 배경</a></li>
+  <li><a href="#tldr">TL;DR</a></li>
+  <li><a href="#1-내가-왜-이런-고민을-하게-됐나-맥락">1. 내가 왜 이런 고민을 하게 됐나</a></li>
+  <li><a href="#2-현재-구현의-문제-정리-redis-단독일-때">2. 현재 구현의 문제 정리 (Redis 단독일 때)</a></li>
+  <li><a href="#3-하이브리드-설계-원칙">3. 하이브리드 설계 원칙</a></li>
+  <li><a href="#4-개선된-데이터-흐름">4. 개선된 데이터 흐름</a></li>
+  <li><a href="#5-redis-자료구조-선택과-이유">5. Redis 자료구조 선택과 이유</a></li>
+  <li><a href="#6-원자적-매칭-lua-스크립트-예시개념">6. 원자적 매칭: Lua 스크립트 예시(개념)</a></li>
+  <li><a href="#7-복구-메커니즘서버-재기동장애-대비">7. 복구 메커니즘(서버 재기동/장애 대비)</a></li>
+  <li><a href="#8-스키마인덱스-설계">8. 스키마/인덱스 설계</a></li>
+  <li><a href="#9-시스템-구성개념-아키텍처">9. 시스템 구성(개념 아키텍처)</a></li>
+  <li><a href="#10-실무에서의-선택지-비교">10. 실무에서의 선택지 비교</a></li>
+  <li><a href="#11-테스트운영-시나리오">11. 테스트/운영 시나리오</a></li>
+  <li><a href="#12-내가-배운-점--선택의-근거">12. 내가 배운 점 &amp; 선택의 근거</a></li>
+  <li><a href="#13-next-steps-로드맵">13. Next Steps (로드맵)</a></li>
+  <li><a href="#부록-a-코드-스니펫개념">부록 A. 코드 스니펫(개념)</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-08-25-diary/">[친구하자] 매칭 대기열 설계 기록 : 왜 DB + Redis 하이브리드로 갔나</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-java-queue-int" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -584,10 +671,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 05 Jan 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Jan 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-01-05T10:02:49+00:00">2026-01-05</time>
+              <time datetime="2026-01-09T01:50:45+00:00">2026-01-09</time>
             </span>
           
         
@@ -728,10 +815,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 05 Jan 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Jan 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-01-05T10:02:49+00:00">2026-01-05</time>
+              <time datetime="2026-01-09T01:50:45+00:00">2026-01-09</time>
             </span>
           
         
@@ -1213,81 +1300,6 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/til/2025-05-22-til/">[TIL] 메테리얼 디자인 vs 쿠퍼티노 디자인, Log vs Metrics, Structure…</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-til-til" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/til/2025-05-21-til/" class="flip-title">
-        [TIL] RPM, 앙상블, 비용, WSL, Windows Subsystem for Linux …
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-05-21T00:00:00+00:00">21 May 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 27 May 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-05-27T03:53:22+00:00">2025-05-27</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      2025-05-21 TIL
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/58">#58</a><br />
-📅 <strong>작성일</strong>: 2025-05-21<br />
-🔄 <strong>최종 수정</strong>: 2025년 05월 27일</p>
-</blockquote>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/til/2025-05-21-til/">[TIL] RPM, 앙상블, 비용, WSL, Windows Subsystem for Linux …</a>
 
       </p>
     </footer>

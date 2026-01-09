@@ -1,7 +1,290 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-01-05T10:03:34+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-01-09T01:51:35+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2026-01-05T10:02:49+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</title><link href="https://nan0silver.github.io/algorithm/2026-01-09-summary/" rel="alternate" type="text/html" title="[Algorithm] 코딩테스트 알고리즘 선택방법 요약" /><published>2026-01-09T00:00:00+00:00</published><updated>2026-01-09T01:50:45+00:00</updated><id>https://nan0silver.github.io/algorithm/summary</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-01-09-summary/"><![CDATA[<p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
+이 글에서는 <strong>코테 기준으로 딱 필요한 만큼만</strong> 정리한다.</p>
+
+<hr />
+
+<h2 id="1️⃣-문제를-읽자마자-던질-5가지-질문">1️⃣ 문제를 읽자마자 던질 5가지 질문</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>순서</th>
+      <th>스스로에게 묻는 질문</th>
+      <th>YES면</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Q1</td>
+      <td>최단 거리 / 최소 횟수인가?</td>
+      <td>👉 아래 Q2</td>
+    </tr>
+    <tr>
+      <td>Q2</td>
+      <td>모든 간선 가중치가 같은가?</td>
+      <td>👉 <strong>BFS</strong></td>
+    </tr>
+    <tr>
+      <td>Q3</td>
+      <td>가중치가 다르지만 음수는 없는가?</td>
+      <td>👉 <strong>다익스트라</strong></td>
+    </tr>
+    <tr>
+      <td>Q4</td>
+      <td>모든 쌍 (i, j) 최단거리인가?</td>
+      <td>👉 <strong>플로이드-워셜</strong></td>
+    </tr>
+    <tr>
+      <td>Q5</td>
+      <td>트리(사이클 없음)인가?</td>
+      <td>👉 <strong>DFS / 트리 DP</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2️⃣-bfs--dfs--다익스트라--플로이드-비교표">2️⃣ BFS / DFS / 다익스트라 / 플로이드 비교표</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>BFS</th>
+      <th>DFS</th>
+      <th>다익스트라</th>
+      <th>플로이드</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>목적</td>
+      <td>최단 거리(가중치=1)</td>
+      <td>탐색/구조</td>
+      <td>최단 거리(가중치≠1)</td>
+      <td>모든 쌍 최단</td>
+    </tr>
+    <tr>
+      <td>자료구조</td>
+      <td>Queue</td>
+      <td>재귀 / Stack</td>
+      <td>PriorityQueue</td>
+      <td>2차원 배열</td>
+    </tr>
+    <tr>
+      <td>시간복잡도</td>
+      <td>O(N+M)</td>
+      <td>O(N+M)</td>
+      <td>O((N+M)logN)</td>
+      <td>O(N³)</td>
+    </tr>
+    <tr>
+      <td>거리 배열</td>
+      <td>O</td>
+      <td>△</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <td>visited</td>
+      <td>O</td>
+      <td>O</td>
+      <td>△</td>
+      <td>X</td>
+    </tr>
+    <tr>
+      <td>대표 문제</td>
+      <td>미로, 숨바꼭질</td>
+      <td>트리 지름</td>
+      <td>최단 비용</td>
+      <td>플로이드</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="3️⃣-가중치로-바로-고르는-공식-암기용">3️⃣ “가중치”로 바로 고르는 공식 (암기용)</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>최단 거리 + 가중치 = 1  → BFS
+최단 거리 + 가중치 다름 → 다익스트라
+모든 쌍 최단 거리      → 플로이드
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4️⃣-트리가-나오면-이렇게-생각하자">4️⃣ “트리”가 나오면 이렇게 생각하자</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>문제 키워드</th>
+      <th>거의 정답</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>트리 / 부모 / 자식</td>
+      <td>DFS</td>
+    </tr>
+    <tr>
+      <td>가장 긴 경로</td>
+      <td>트리 지름</td>
+    </tr>
+    <tr>
+      <td>서브트리</td>
+      <td>트리 DP</td>
+    </tr>
+    <tr>
+      <td>루트가 있음</td>
+      <td>DFS</td>
+    </tr>
+    <tr>
+      <td>간선 = 노드 - 1</td>
+      <td>트리</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>👉 <strong>트리 = DFS 기본값</strong></p>
+
+<hr />
+
+<h2 id="5️⃣-인접-리스트-vs-인접-행렬-선택표">5️⃣ 인접 리스트 vs 인접 행렬 선택표</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>상황</th>
+      <th>선택</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>N ≥ 1,000</td>
+      <td>인접 리스트</td>
+    </tr>
+    <tr>
+      <td>BFS / DFS / 다익스트라</td>
+      <td>인접 리스트</td>
+    </tr>
+    <tr>
+      <td>플로이드-워셜</td>
+      <td>인접 행렬</td>
+    </tr>
+    <tr>
+      <td>메모리 제한 빡빡</td>
+      <td>인접 리스트</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>코테 기본값</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;[]</span> <span class="n">graph</span><span class="o">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6️⃣-문제-문장--알고리즘-자동-변환-예시">6️⃣ 문제 문장 → 알고리즘 자동 변환 예시</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>문제 문장</th>
+      <th>바로 떠올릴 것</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>“최소 몇 번 만에”</td>
+      <td>BFS</td>
+    </tr>
+    <tr>
+      <td>“최소 비용”</td>
+      <td>다익스트라</td>
+    </tr>
+    <tr>
+      <td>“모든 도시 쌍”</td>
+      <td>플로이드</td>
+    </tr>
+    <tr>
+      <td>“가장 긴 경로”</td>
+      <td>트리 지름</td>
+    </tr>
+    <tr>
+      <td>“연결되어 있는가”</td>
+      <td>DFS/BFS</td>
+    </tr>
+    <tr>
+      <td>“K 거리인 노드”</td>
+      <td>BFS</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="7️⃣-실전에서-쓰는-판별-한-줄-공식">7️⃣ 실전에서 쓰는 <strong>판별 한 줄 공식</strong></h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>최단 거리인가?
+→ 가중치가 전부 1인가?
+  → YES: BFS
+  → NO : 다익스트라
+트리인가?
+→ DFS / 트리 DP
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="8️⃣-너가-자주-헷갈리던-문제들-정답-알고리즘">8️⃣ 너가 자주 헷갈리던 문제들, 정답 알고리즘</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>문제</th>
+      <th>정답 알고리즘</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>특정 거리의 도시 찾기</td>
+      <td>BFS</td>
+    </tr>
+    <tr>
+      <td>숨바꼭질</td>
+      <td>BFS</td>
+    </tr>
+    <tr>
+      <td>트리의 지름</td>
+      <td>DFS (2번 or DP)</td>
+    </tr>
+    <tr>
+      <td>거짓말</td>
+      <td>DSU / BFS</td>
+    </tr>
+    <tr>
+      <td>치킨 배달</td>
+      <td>조합 + 거리 계산</td>
+    </tr>
+    <tr>
+      <td>플로이드</td>
+      <td>플로이드-워셜</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-최종-요약-이-문장만-외워도-됨">🎯 최종 요약 (이 문장만 외워도 됨)</h2>
+
+<blockquote>
+  <p><strong>“알고리즘은 외우는 게 아니라,
+문제 조건으로 제거하고 남는 하나를 고르는 것”</strong></p>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2026-01-09T01:50:45+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
   <li><a href="#-1️⃣-플로이드-워셜이란">플로이드-워셜이란?</a></li>
   <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
   <li><a href="#-3️⃣-k-i-j의-정확한-의미">k, i, j의 의미</a></li>
@@ -448,7 +731,7 @@ dist[1][4] = min(INF, dist[1][2] + dist[2][4])
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />k가 가장 바깥 루프인가?</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기</title><link href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기" /><published>2025-12-25T00:00:00+00:00</published><updated>2026-01-05T10:02:49+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-25-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기</title><link href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기" /><published>2025-12-25T00:00:00+00:00</published><updated>2026-01-09T01:50:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-25-diary/"><![CDATA[<ul>
   <li><a href="#들어가며">들어가며</a></li>
   <li><a href="#1-처음-그린-그림">1. 처음 그린 그림</a></li>
   <li><a href="#2-redis-대기열-생각보다-복잡했다">2. Redis 대기열, 생각보다 복잡했다</a></li>
@@ -907,7 +1190,7 @@ ZADD queue:music 1734840125789 user_205
 <ol>
   <li><a href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/">왜 이 기술들을 선택했나</a></li>
   <li><strong>실시간 매칭 시스템, 생각보다 어려웠던 이야기</strong> ← 현재 글</li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA["버튼 하나면 되는 거 아냐?" 라고 생각했던 나에게 현실이 알려준 것들]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</title><link href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" /><published>2025-12-20T00:00:00+00:00</published><updated>2026-01-05T10:02:49+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-20-diary/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA["버튼 하나면 되는 거 아냐?" 라고 생각했던 나에게 현실이 알려준 것들]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</title><link href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" /><published>2025-12-20T00:00:00+00:00</published><updated>2026-01-09T01:50:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-20-diary/"><![CDATA[<ul>
   <li><a href="#들어가며">들어가며</a></li>
   <li><a href="#1-전체-그림-우리-서비스가-필요한-것">1. 전체 그림: 우리 서비스가 필요한 것</a></li>
   <li><a href="#2-backend-spring-boot--webflux를-선택한-이유">2. Backend: Spring Boot + WebFlux를 선택한 이유</a></li>
@@ -1562,7 +1845,7 @@ vs
   <li><a href="https://redis.io/docs/data-types/">Redis 자료구조 가이드</a></li>
   <li><a href="https://docs.agora.io/en/cloud-recording">Agora Cloud Recording</a></li>
   <li><a href="https://capacitorjs.com/docs">Capacitor 공식 문서</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2026-01-05T10:02:49+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2026-01-09T01:50:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
 
 <p>처음에는 단순할 줄 알았는데, 생각보다 에러도 많이 나고 시행착오가 많아서 MVP에서 제외하고 개발했다. 이 글에서는 어떤 문제들을 겪었고, 어떻게 해결했는지를 정리하려고 한다.</p>
 
@@ -1815,7 +2098,7 @@ Secret: 한 번만 보여주니 즉시 복사!
   <li><a href="https://spring.io/guides/gs/async-method">Spring Async 설정</a></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2026-01-05T10:02:49+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2026-01-09T01:50:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
   <li>이번 포스팅에선 Capacitor로 빌드한 앱에서 여러 아이콘이 순차적으로 표시되는 커스텀 스플래시 스크린을 구현하는 방법을 정리했다.</li>
   <li>왜 Custom splash screen이 필요했나?
     <ul>
@@ -2045,7 +2328,7 @@ pnpm add <span class="nt">-D</span> @capacitor/assets
   <li><a href="https://github.com/ionic-team/capacitor-assets">Capacitor assets github page</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/splash-screen">@capacitor/splash-screen DOCS</a></li>
   <li><a href="https://capacitorjs.com/docs/guides/splash-screens-and-icons">Splash Screens and Icons DOCS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</title><link href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" rel="alternate" type="text/html" title="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" /><published>2025-11-18T00:00:00+00:00</published><updated>2026-01-05T10:02:49+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-18-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</title><link href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" rel="alternate" type="text/html" title="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" /><published>2025-11-18T00:00:00+00:00</published><updated>2026-01-09T01:50:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-18-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 JSONP 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
@@ -2269,7 +2552,7 @@ pnpm add <span class="nt">-D</span> @capacitor/assets
   <li><a href="https://sockjs.github.io/sockjs-protocol/sockjs-protocol-0.3.3.html">SockJS Protocol</a></li>
   <li><a href="https://en.wikipedia.org/wiki/JSONP">JSONP의 작동 원리와 보안 이슈</a></li>
   <li><a href="https://stackoverflow.com/questions/2067472/what-is-jsonp-and-why-was-it-created">CORS vs JSONP</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2026-01-05T10:02:49+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2026-01-09T01:50:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 X-Frame-Options 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
@@ -2522,7 +2805,7 @@ WebView는 브라우저 엔진의 특수 모드
 <ul>
   <li>Capacitor로 앱을 빌드한 다음에 웹에서는 발생하지 않는 에러들이 생겨서 찾아보고, 공부하고, 해결하는 재미가 있다.</li>
   <li>이제 통화연결까지 앱으로 수행할 수 있게 되었다!!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2026-01-05T10:02:49+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2026-01-09T01:50:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
   <li>Capacitor로 빌드한 React 앱에서 카카오와 구글 네이티브 로그인을 구현하는 방법을 정리해 보았다.</li>
   <li>관련되서 정리되어있는게 없는것 같아서.. 내가 나중에 찾아볼 수 있게 일단 문서를 만들어보았다.</li>
   <li>웹에서는 일반 OAuth 리다이렉트를 사용하지만, 모바일 앱에서는 <strong>네이티브 SDK를 직접 사용</strong>하는 방식으로 구현했다. (kakao, google)
@@ -3089,7 +3372,7 @@ Content-Type: application/json
   <li><a href="https://developers.kakao.com/docs/latest/ko/flutter/getting-started#project-scheme">Kakao developer</a></li>
   <li><a href="https://github.com/nerdFrenzs/capacitor-kakao-login-plugin">capacitor-kakao-login-plugin</a></li>
   <li><a href="https://github.com/CodetrixStudio/CapacitorGoogleAuth">@codetrix-studio/capacitor-google-auth</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2026-01-05T10:02:49+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅</title><link href="https://nan0silver.github.io/projectdiary/2025-11-10-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 로그인 연동 CORS 트러블 슈팅" /><published>2025-11-10T00:00:00+00:00</published><updated>2026-01-09T01:50:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-10-diary/"><![CDATA[<ul>
   <li>지난 글에서는 Capacitor로 Android, iOS 앱 빌드하는 방법에 대해 다뤘다.</li>
   <li>이번 글에서는 Capacitor로 빌드한 Android 앱에서 로그인 연동을 하는 방법에 대해 다뤄보겠다.</li>
   <li>특히 CORS 에러 해결에 대해 다뤄보겠다..
@@ -3268,113 +3551,4 @@ Android: http://localhost</p>
   <li><a href="https://stackoverflow.com/questions/75192411/cors-in-capacitor-for-android">StackOverFlow가 짱이야</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/http">Capacitor HTTP Plugin 공식 문서</a></li>
   <li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/CORS">MDN - CORS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor로 웹을 앱으로 빌드해보자!</title><link href="https://nan0silver.github.io/projectdiary/2025-11-06-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor로 웹을 앱으로 빌드해보자!" /><published>2025-11-06T00:00:00+00:00</published><updated>2026-01-05T10:02:49+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-06-diary/"><![CDATA[<ul>
-  <li>“친구하자”를 웹으로 MVP 완성을 하니, 이걸 앱으로 빌드해서 사용자들이 더 쉽게 사용할 수 있으면 좋겠다고 생각했다.</li>
-  <li>원래는.. 개발자의 입장으로 링크로 이동하는 방식이 쉬울꺼라고 생각했는데, 막상 사용자에게 링크를 보내주니까 어려움을 토로하거나 방식에 의문을 가지는 사람들이 많았다..
-    <ul>
-      <li>링크는 일단 어디 저장해놓고 찾아서 연결해야하고..</li>
-      <li>핸드폰에서 링크를 통해 이동하는 방식이 익숙하지 않은 사람들이 더 많았다.. (일회용 링크정도만 다들 사용하는 것 같았다.)</li>
-    </ul>
-  </li>
-  <li>네이티브 앱으로 개발하는건 일단 시간이 많이 드니까 최대한 빠른 방법을 찾아보다가 Capacitor 플러그인을 찾게 되었다.</li>
-</ul>
-
-<h2 id="capacitor">Capacitor</h2>
-
-<ul>
-  <li><a href="https://capacitorjs.com/">Capacitor</a>는 기존 React웹을 네이티브 앱 컨테이너에 담아주는 플러그인이다.</li>
-  <li>기존의 React 코드베이스를 거의 건들이지 않고 모바일 앱을 만들 수 있게 해준다.</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>기존 React 웹 앱
-         ↓
-    Capacitor 추가
-         ↓
-네이티브 WebView에서 실행
-(iOS/Android 앱으로 패키징)
-</code></pre></div></div>
-
-<ul>
-  <li>설치만 해서 간단하게 앱으로 빌드할 수 있다!</li>
-  <li>일단 나는 ios로 빌드하는 것을 아래에 보여주겠다.</li>
-</ul>
-
-<h2 id="capacitor로-ios-앱-빌드하기">Capacitor로 iOS 앱 빌드하기</h2>
-
-<ul>
-  <li>
-    <p>일단 내 기존 프론트 프로젝트 스펙을 정리하자면</p>
-
-    <ul>
-      <li>많은 의존성을 가짐(특히 @radix-ui/* 패키지들)</li>
-      <li>React 18 + TypeScript + Vite 스택</li>
-      <li>Express 서버 통합</li>
-    </ul>
-  </li>
-  <li>따라서 npm이 아닌 pnpm을 사용하고 있다.</li>
-  <li>capacitor 공식문서에는 npm으로 설명이 나와있는데, 그냥 pnpm 명령어로만 바꿔서 똑같이 진행해줬다.</li>
-</ul>
-
-<h3 id="1-capacitor의-메인-의존성-설치">1. Capacitor의 메인 의존성 설치</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pnpm add @capacitor/core @capacitor/cli
-</code></pre></div></div>
-
-<p>프로젝트 루트 디렉토리에 위의 명령어를 입력!</p>
-
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic1.png?raw=true" alt="성공 이미지" /></p>
-
-<h3 id="2-capacitor-config-초기화">2. Capacitor Config 초기화</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx cap init
-</code></pre></div></div>
-
-<ul>
-  <li>여기서는 이름과, Project ID를 입력하라고 한다.</li>
-  <li>Project ID는 도메인 네임 형태로 적어주면 된다. (예: com.example.app)</li>
-  <li>나는 프론트 도메인을 사놓은게 있어서 그대로 넣었다.</li>
-</ul>
-
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic2.png?raw=true" alt="성공 이미지2" /></p>
-
-<h3 id="3-플랫폼-추가-android-ios">3. 플랫폼 추가 (android, iOS)</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Android</span>
-pnpm add @capacitor/android
-
-<span class="c"># iOS (macOS에서만)</span>
-pnpm add @capacitor/android
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>나는 맥북에서 작업하고 있기 때문에 둘다 추가해줬다.</p>
-
-    <blockquote>
-      <p>ios 만들고 싶어서 3년전에 맥북 샀던 기억..</p>
-    </blockquote>
-  </li>
-  <li>
-    <p>성공하면 아래와 같은 메시지가 나온다.</p>
-  </li>
-</ul>
-
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic3.png?raw=true" alt="성공 이미지3" /></p>
-
-<h3 id="이제-실행해보자">이제 실행해보자!!</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Android</span>
-npx cap run android
-
-<span class="c"># iOS</span>
-npx cap run ios
-</code></pre></div></div>
-
-<p>일단 ios로 아래와 같이 실행 성공!</p>
-
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic4.png?raw=true" alt="성공 이미지4" height="500" /></p>
-
-<p><br />
-다음에 android studio 업데이트를 좀 하고.. (안한지 넘 오래됌..) 아래와 같이 빌드 성공!</p>
-
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-06-pic5.png?raw=true" alt="성공 이미지5" height="500" /></p>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[웹을 앱으로 빠르게 빌드하기 위해 Capacitor를 사용해보기]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱 로그인 연동 해보자! - CORS 에러 해결에 대해 다룹니다.]]></summary></entry></feed>
