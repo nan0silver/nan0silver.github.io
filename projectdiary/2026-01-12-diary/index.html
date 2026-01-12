@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까? | NAHYUN BLOG</title>
+<title>[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt) | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" />
+<meta property="og:title" content="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="JWT 로그인 구현 시 로그아웃 방법 고민.." />
-<meta property="og:description" content="JWT 로그인 구현 시 로그아웃 방법 고민.." />
-<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" />
-<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" />
+<meta name="description" content="SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다." />
+<meta property="og:description" content="SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-04-16T00:00:00+00:00" />
+<meta property="article:published_time" content="2026-01-12T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?" />
+<meta property="twitter:title" content="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-01-12T02:07:22+00:00","datePublished":"2025-04-16T00:00:00+00:00","description":"JWT 로그인 구현 시 로그아웃 방법 고민..","headline":"[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-04-16-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-04-16-diary/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-01-12T02:07:22+00:00","datePublished":"2026-01-12T00:00:00+00:00","description":"SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.","headline":"[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-01-12-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-01-12-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?",
-    "description": "JWT 로그인 구현 시 로그아웃 방법 고민..
+    "headline": "[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)",
+    "description": "SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-04-16T00:00:00+00:00",
+    "datePublished": "2026-01-12T00:00:00+00:00",
     "dateModified": "2026-01-12T02:07:22+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/projectdiary/2025-04-16-diary/"
+      "@id": "https://nan0silver.github.io/projectdiary/2026-01-12-diary/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-04-16-diary/" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -287,8 +287,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?",
-        "item": "https://nan0silver.github.io/projectdiary/2025-04-16-diary/"
+        "name": "[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)",
+        "item": "https://nan0silver.github.io/projectdiary/2026-01-12-diary/"
       }
     ]
   }
@@ -365,7 +365,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         
           <span>/</span>
-          <span>2025-04-16-diary</span>
+          <span>2026-01-12-diary</span>
         
       </li>
     
@@ -386,27 +386,19 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   <header>
     <h1 class="post-title flip-project-title">
       
-        [버티] JWT로 로그인을 구현했을 때 로그아웃 방법을 어떻게 해야할까?
+        [친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-04-16T00:00:00+00:00">16 Apr 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+        <time datetime="2026-01-12T00:00:00+00:00">12 Jan 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
           
           
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 12 Jan 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-01-12T02:07:22+00:00">2026-01-12</time>
-            </span>
           
         
       
@@ -421,7 +413,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      JWT 로그인 구현 시 로그아웃 방법 고민..
+      SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.
 
     </p>
   
@@ -430,82 +422,179 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <blockquote>
-  <p>저번 프로젝트에서는 로그아웃을 구현하지 않고, 토큰 만료를 사용했는데 로그아웃을 구현해달라는 요청이 있었어서 이번 프로젝트에서는 제대로 알아보고 구현해보기로 하였다.</p>
-</blockquote>
-
-<ul>
-  <li>JWT는 기본적으로 상태를 저장하지 않아(stateless) 로그아웃 처리에 어려움이 있다.</li>
-  <li>
-    <p>로그아웃을 구현하는 방법에는 크게 3가지가 있다.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 프론트엔트에서 토큰 삭제
-   - 가장 구현이 간단하다.
-   - 클라이언트 측에서 토큰을 삭제하여 로그아웃을 구현하는 방법
-   - 이 방법이 토큰의 `Stateless`한 특징을 최대한 살린 방식
-     &gt; 'Stateful` : 데이터베이스에 정보를 저장하고 조회하는 경우
-</code></pre></div>    </div>
-
-    <p>‘Stateless`: 데이터베이스를 사용하지 않는 방식</p>
-
-    <blockquote>
-      <blockquote>
-        <p>JWT는 데이터베이스에 저장 및 조회가 필요없기 때문에<code class="language-plaintext highlighter-rouge">Stateless</code>한 특징을 가지고 있다.</p>
-      </blockquote>
-    </blockquote>
-
     <ul>
-      <li>단점 : 서버에선 토큰이 유효하기 때문에, 토큰이 노출되면 보안 문제가 생길 수 있음.</li>
-    </ul>
-
-    <ol>
-      <li>토큰 블랙리스트 관리
-        <ul>
-          <li>JWT가 만료되지 않은 상태에서 로그아웃 요청이 오는 경우, 서버에서 해당 토큰을 블랙리스트 DB에 넣어 처리</li>
-          <li>인증 필터에서 매 요청마다 토큰이 블랙리스트에 해당하는 토큰인지 확인해야한다.</li>
-          <li>서버에서 토큰을 효과적으로 관리할 수 있지만, 매 요청마다 블랙리스트를 확인해야하기 때문에 <code class="language-plaintext highlighter-rouge">stateless</code>한 JWT의 장점이 없어진다.</li>
-        </ul>
-      </li>
-      <li>Refresh Token 기간 만료 처리
-        <ul>
-          <li>사용자가 로그아웃을 요청할 때 리프레시 토큰을 무효화해 해당 사용자가 더 이상 새로운 엑세스 토큰을 발급받지 못하도록 하는 방식</li>
-          <li>사용자의 로그아웃 요청에 대해 서버 측에서 적극적으로 대응할 수 있다는 장점이 있다.</li>
-          <li>엑세스 토큰 재발급의 연속성을 차단해 보안을 강화할 수도 있다.</li>
-          <li>하지만 리프레시 토큰 확인 과정에서 JWT의 <code class="language-plaintext highlighter-rouge">Stateless</code>한 장점이 사라진다.</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-  <li>2번 VS 3번 비교
-    <ul>
-      <li>2번의 경우, 블랙리스트 DB 혹은 Redis를 사용해 서버 상태를 관리해야 한다.</li>
-      <li>또한 <code class="language-plaintext highlighter-rouge">Stateless</code>성이 완전히 깨지고 (모은 요청 시 DB확인이 필요하기 때문에!) 성능 이슈가 생길 수 있다.</li>
-      <li>하지만 3번의 경우, 리프레시 토큰만 관리하면 되기 때문에 상대적으로 가볍다.
-        <ul>
-          <li>리프레시 토큰만 서버 저장 및 관리하면 된다!</li>
-        </ul>
-      </li>
-      <li>또한 3번은 <code class="language-plaintext highlighter-rouge">Stateless</code>를 부분적으로 유지 가능하다. (액세스 토큰은 여전히 <code class="language-plaintext highlighter-rouge">Stateless</code>)</li>
-    </ul>
-  </li>
-  <li>일단은 3번 방법을 선택해서 로그아웃을 구현해보기로 결정하였다.
-    <ul>
-      <li>어플리케이션이 그렇게 무거운 프로젝트가 아니기 때문에, 블랙 리스트 방식처럼 서버 자원을 지속적으로 소모하는 설계보다는 토큰 생명주기를 명확히 관리할 수 있는 방식이 더 적합할 것 같다고 판단했다.</li>
-      <li>또한 리프레시 토큰 구현으로 토큰의 생명 주기에 대해 이해해볼 수 있을 것 같아 선택하게 되었다.</li>
-      <li>이번 프로젝트는 데이터베이스 사용이 많은 구조이기 때문에, 불필요한 토큰 상태 관리를 피하고 전체 시스템의 부하를 줄이기 위한 의도도 있었다.
-        <blockquote>
-          <p>리프레시 토큰의 발급 및 만료 흐름을 직접 설계함으로써, JWT 기반 인증 시스템의 구조와 보안 설계에 대한 이해도를 높이는 기회로 삼고자 한다.</p>
-        </blockquote>
-      </li>
-    </ul>
-  </li>
+  <li><a href="#들어가며">문제 상황</a></li>
+  <li><a href="#1-처음-그린-그림">SSL 인증서란?</a></li>
+  <li><a href="#2-redis-대기열-생각보다-복잡했다">Let’s Encrypt와 90일 갱신 주기</a></li>
+  <li><a href="#3-매칭-알고리즘의-딜레마">해결 과정</a></li>
+  <li><a href="#4-알림이-안-가요">4. “알림이 안 가요”</a></li>
+  <li><a href="#5-동시성의-늪">5. 동시성의 늪</a></li>
+  <li><a href="#6-db와-redis-사이에서">6. DB와 Redis 사이에서</a></li>
+  <li><a href="#7-배운-것들">7. 배운 것들</a></li>
 </ul>
 
-<p>참고 :</p>
+<hr />
+
+<h2 id="문제-상황">문제 상황</h2>
+
+<p>프로덕션 환경에서 갑자기 로그인이 안 되는 문제가 발생했다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET https://{backend-domain}/api/v1/auth/oauth/kakao/config?platform=web
+net::ERR_CERT_DATE_INVALID
+</code></pre></div></div>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-01-11-pic1.png?raw=true" alt="에러 이미지1" /></p>
+
+<p>브라우저 콘솔에 찍힌 에러 메시지를 보니 <code class="language-plaintext highlighter-rouge">ERR_CERT_DATE_INVALID</code> - SSL 인증서 날짜가 유효하지 않다는 것이었다.</p>
+
+<h2 id="ssl-인증서란">SSL 인증서란?</h2>
+
+<p>SSL(Secure Sockets Layer) 인증서는 웹사이트와 사용자 브라우저 간의 통신을 암호화하는 디지털 인증서이다.
+HTTPS 통신을 위해서는 반드시 필요하며, 다음과 같은 역할을 한다:</p>
 
 <ul>
-  <li><a href="https://upcurvewave.tistory.com/611">JWT 토큰 기반의 상태 관리시 로그아웃 처리 문제</a></li>
-  <li><a href="https://engineerinsight.tistory.com/232#google_vignette">[우테코] JWT 방식에서 로그아웃, Refresh Token 만들기(1)</a></li>
+  <li><strong>데이터 암호화</strong>: 사용자와 서버 간 주고받는 데이터를 암호화</li>
+  <li><strong>신원 검증</strong>: 해당 도메인이 인증된 소유자에 의해 운영됨을 증명</li>
+  <li><strong>데이터 무결성</strong>: 전송 중 데이터가 변조되지 않았음을 보장</li>
+</ul>
+
+<p>특히 OAuth 로그인 같은 민감한 정보를 다루는 경우, 카카오나 구글 같은 OAuth 제공자들은 <strong>HTTPS를 필수</strong>로 요구한다.</p>
+
+<h2 id="lets-encrypt와-90일-갱신-주기">Let’s Encrypt와 90일 갱신 주기</h2>
+
+<p>Let’s Encrypt는 무료로 SSL 인증서를 발급해주는 비영리 인증 기관이다. 하지만 한 가지 특징이 있다:</p>
+
+<p><strong>인증서 유효기간이 90일</strong></p>
+
+<p>왜 90일일까?</p>
+
+<ol>
+  <li><strong>보안 강화</strong>: 인증서가 탈취되더라도 피해 기간이 짧음</li>
+  <li><strong>자동화 유도</strong>: 수동 갱신이 번거로워 자동화를 강제함</li>
+  <li><strong>키 교체 주기</strong>: 정기적인 키 교체로 보안성 향상</li>
+</ol>
+
+<p>일반 상용 인증서는 1년 단위인데, Let’s Encrypt는 무료 대신 짧은 주기로 설정했다.
+결과적으로 <strong>자동 갱신 설정</strong>이 필요했다.</p>
+
+<h2 id="해결-과정">해결 과정</h2>
+
+<h3 id="1-즉시-인증서-갱신">1. 즉시 인증서 갱신</h3>
+
+<p>먼저 만료된 인증서를 갱신해서 서비스를 복구했다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># EC2 서버에 SSH 접속</span>
+ssh <span class="nt">-i</span> ~/.ssh/your-key.pem ec2-user@<span class="o">{</span>backend-domain<span class="o">}</span>
+
+<span class="c"># 인증서 확인</span>
+<span class="nb">sudo </span>certbot certificates
+</code></pre></div></div>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-01-11-pic2.png?raw=true" alt="에러 이미지2" /></p>
+
+<ul>
+  <li>인증서를 확인하니 어제자로 만료된 것을 확인했다. (오늘은 1월 12일)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 인증서 갱신</span>
+<span class="nb">sudo </span>certbot renew
+
+<span class="c"># Nginx 재시작</span>
+<span class="nb">sudo </span>systemctl reload nginx
+</code></pre></div></div>
+
+<h3 id="2-자동-갱신-설정">2. 자동 갱신 설정</h3>
+
+<p>하지만 90일마다 수동으로 갱신할 수는 없다고 생각해, cron을 이용해 자동 갱신을 설정했다.</p>
+
+<h4 id="amazon-linux에서-cron-설치">Amazon Linux에서 cron 설치</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># cronie 패키지 설치</span>
+<span class="nb">sudo </span>yum <span class="nb">install </span>cronie
+
+<span class="c"># crond 서비스 시작 및 활성화</span>
+<span class="nb">sudo </span>systemctl start crond
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>crond
+
+<span class="c"># 상태 확인</span>
+<span class="nb">sudo </span>systemctl status crond
+</code></pre></div></div>
+
+<p><strong>주의</strong>: Amazon Linux는 <code class="language-plaintext highlighter-rouge">cron</code>이 아니라 <code class="language-plaintext highlighter-rouge">crond</code>를 사용!</p>
+
+<h4 id="crontab-설정">crontab 설정</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># root 계정의 crontab 편집</span>
+<span class="nb">sudo </span>crontab <span class="nt">-e</span>
+</code></pre></div></div>
+
+<p>다음 내용을 추가한다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 2 * * * /usr/bin/certbot renew --quiet --post-hook "systemctl reload nginx"
+</code></pre></div></div>
+
+<p><strong>설정 의미:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">0 2 * * *</code>: 매일 새벽 2시에 실행</li>
+  <li><code class="language-plaintext highlighter-rouge">certbot renew</code>: 인증서 갱신 체크 (30일 이내 만료 시 자동 갱신)</li>
+  <li><code class="language-plaintext highlighter-rouge">--quiet</code>: 출력 최소화</li>
+  <li><code class="language-plaintext highlighter-rouge">--post-hook</code>: 갱신 성공 시 Nginx 재시작</li>
+</ul>
+
+<p>저장하고 종료:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>i           # 입력 모드
+(내용 입력)
+ESC         # 명령 모드
+:wq         # 저장 후 종료
+</code></pre></div></div>
+
+<h3 id="3-설정-확인">3. 설정 확인</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># crontab 목록 확인</span>
+<span class="nb">sudo </span>crontab <span class="nt">-l</span>
+
+<span class="c"># 갱신 테스트 (실제 갱신 없이 시뮬레이션)</span>
+<span class="nb">sudo </span>certbot renew <span class="nt">--dry-run</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">--dry-run</code>으로 테스트하면 실제 갱신 없이 프로세스가 정상 작동하는지 확인할 수 있다.</p>
+
+<h2 id="작동-원리">작동 원리</h2>
+
+<p>설정 후 시스템은 다음과 같이 동작한다:</p>
+
+<ol>
+  <li><strong>매일 새벽 2시</strong>, cron이 <code class="language-plaintext highlighter-rouge">certbot renew</code> 실행</li>
+  <li>certbot이 인증서 만료일 체크</li>
+  <li><strong>만료 30일 이내</strong>인 경우에만 실제 갱신 진행</li>
+  <li>갱신 성공 시 자동으로 Nginx 재시작</li>
+  <li>갱신 불필요 시 조용히 종료</li>
+</ol>
+
+<p>즉, 설정만 해두면 <strong>완전 자동으로</strong> 인증서가 관리된다.</p>
+
+<h2 id="결론">결론</h2>
+
+<p>SSL 인증서 만료로 인한 서비스 장애는 치명적이다. 특히 OAuth 인증을 사용하는 서비스에서는 로그인 자체가 불가능해잔다.</p>
+
+<p>Let’s Encrypt를 사용한다면:</p>
+
+<ul>
+  <li>✅ cron 자동 갱신 설정은 필수</li>
+  <li>✅ <code class="language-plaintext highlighter-rouge">--dry-run</code>으로 정기적으로 테스트</li>
+  <li>✅ 갱신 실패 시 알림 설정 권장 (이메일 등)</li>
+</ul>
+
+<p>90일마다 수동 갱신하는 것보다, 한 번 제대로 자동화 설정해두는 것이 훨씬 안전하고 편리하다.</p>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://letsencrypt.org/docs/">Let’s Encrypt 공식 문서</a></li>
+  <li><a href="https://certbot.eff.org/">Certbot 사용 가이드</a></li>
+  <li><a href="https://docs.aws.amazon.com/linux/">Amazon Linux cron 설정</a></li>
 </ul>
 
   
@@ -633,7 +722,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2026-01-12-diary/" class="flip-title"><span>[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</span></a>  <time class="faded fine" datetime="2026-01-12T00:00:00+00:00">12 Jan 2026</time></li>                        <li class="h4">  <a href="/algorithm/2026-01-09-summary/" class="flip-title"><span>[Algorithm] 코딩테스트 알고리즘 선택방법 요약</span></a>  <time class="faded fine" datetime="2026-01-09T00:00:00+00:00">09 Jan 2026</time></li>                        <li class="h4">  <a href="/algorithm/2025-12-29-floyd-warshall/" class="flip-title"><span>[Algorithm] 플로이드-워셜 알고리즘</span></a>  <time class="faded fine" datetime="2025-12-29T00:00:00+00:00">29 Dec 2025</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/algorithm/2026-01-09-summary/" class="flip-title"><span>[Algorithm] 코딩테스트 알고리즘 선택방법 요약</span></a>  <time class="faded fine" datetime="2026-01-09T00:00:00+00:00">09 Jan 2026</time></li>                        <li class="h4">  <a href="/algorithm/2025-12-29-floyd-warshall/" class="flip-title"><span>[Algorithm] 플로이드-워셜 알고리즘</span></a>  <time class="faded fine" datetime="2025-12-29T00:00:00+00:00">29 Dec 2025</time></li>                        <li class="h4">  <a href="/projectdiary/2025-12-25-diary/" class="flip-title"><span>[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기</span></a>  <time class="faded fine" datetime="2025-12-25T00:00:00+00:00">25 Dec 2025</time></li>            </ul></aside>
 
   
 
