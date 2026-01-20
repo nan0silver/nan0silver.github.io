@@ -1,7 +1,457 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-01-12T05:19:58+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-01-20T07:37:12+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-01-12T05:19:16+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
+</subtitle><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><entry><title type="html">[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" rel="alternate" type="text/html" title="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" /><published>2026-01-19T00:00:00+00:00</published><updated>2026-01-20T07:36:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-19-diary/"><![CDATA[<ul>
+  <li><a href="#-문제-발견-배경">문제 발견 배경</a></li>
+  <li>
+    <p><a href="#-근본-원인-분석">근본 원인 분석</a></p>
+
+    <ul>
+      <li><a href="#1-websocket-인증-흐름">1. WebSocket 인증 흐름</a></li>
+      <li><a href="#2-authenticationprincipal의-동작-방식">2. <code class="language-plaintext highlighter-rouge">@AuthenticationPrincipal</code>의 동작 방식</a></li>
+      <li><a href="#3-문제의-핵심-직렬화역직렬화">3. 문제의 핵심: 직렬화/역직렬화</a></li>
+      <li><a href="#4-프로젝트-구현-특성">4. 프로젝트 구현 특성</a></li>
+    </ul>
+  </li>
+  <li><a href="#-해결-방법">해결 방법</a></li>
+  <li><a href="#-authenticationprincipal-vs-simpmessageheaderaccessor">@AuthenticationPrincipal vs SimpMessageHeaderAccessor</a></li>
+  <li><a href="#-핵심-차이점">핵심 차이점</a></li>
+  <li><a href="#-테스트-결과">테스트 결과</a></li>
+  <li><a href="#-추가-개선-사항-선택">추가 개선 사항(선택)</a></li>
+  <li><a href="#-참고-자료">참고자료</a></li>
+  <li><a href="#-결론">결론</a></li>
+</ul>
+
+<hr />
+
+<h2 id="-문제-발견-배경">📖 문제 발견 배경</h2>
+
+<p>실시간 음성 매칭 서비스를 개발하던 중, 통화 중 브라우저를 새로고침했을 때 통화가 비정상적으로 종료되는 문제를 발견했다. 이를 해결하기 위해 Grace Period(유예 시간) 기능을 구현하여, 새로고침 후 30초 이내에 재접속하면 기존 통화를 복구할 수 있도록 했다.</p>
+
+<p>Grace Period 기능 구현을 완료하고 서버를 재시작한 뒤, 통화 종료 기능을 테스트하는 순간 예상치 못한 <code class="language-plaintext highlighter-rouge">NullPointerException</code>이 발생했다. 🥲</p>
+
+<p><strong>당황스러웠던 점은:</strong></p>
+
+<ol>
+  <li>서버 재시작 전까지는 정상적으로 작동했던 기능이었던 점</li>
+  <li>WebSocket CONNECT 시점에는 인증이 완벽하게 성공했는데, MESSAGE 전송 시점에만 에러가 발생했던 점</li>
+  <li>로그를 보니 <code class="language-plaintext highlighter-rouge">CustomUserDetails</code> 객체는 존재하는데 내부의 <code class="language-plaintext highlighter-rouge">user</code> 필드만 null이었던 점..</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WebSocket 연결 인증 성공 - userId: xxx  ✅
+CustomUserDetails.user is null?: false  ✅
+User ID: xxx  ✅
+
+... (통화 종료 버튼 클릭)
+
+User in UserDetails is null  ❌
+NullPointerException: Cannot invoke "User.getId()" because "this.user" is null
+</code></pre></div></div>
+
+<p>코드를 변경한 것도 아닌데 갑자기 작동하지 않는 이 상황이 매우 혼란스러웠다.
+이 글은 이 문제의 원인과 해결 과정을 정리한 트러블슈팅 문서이다.</p>
+
+<hr />
+
+<h2 id="-문제-상황">📋 문제 상황</h2>
+
+<h3 id="증상">증상</h3>
+
+<ul>
+  <li>WebSocket CONNECT 시점: 인증 성공 ✅</li>
+  <li>WebSocket MESSAGE 전송 시점: <code class="language-plaintext highlighter-rouge">NullPointerException</code> 발생 ❌
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.NullPointerException: Cannot invoke "com.ldsilver.chingoohaja.domain.user.User.getId()"
+because "this.user" is null
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="에러-발생-코드">에러 발생 코드</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@MessageMapping</span><span class="o">(</span><span class="s">"/endpoint/{targetId}"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleMessage</span><span class="o">(</span>
+    <span class="nd">@DestinationVariable</span> <span class="nc">Long</span> <span class="n">targetId</span><span class="o">,</span>
+    <span class="nd">@Payload</span> <span class="nc">SomeMessage</span> <span class="n">message</span><span class="o">,</span>
+    <span class="nd">@AuthenticationPrincipal</span> <span class="nc">CustomUserDetails</span> <span class="n">userDetails</span>  <span class="c1">// ❌ 문제 발생</span>
+<span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Long</span> <span class="n">userId</span> <span class="o">=</span> <span class="n">userDetails</span><span class="o">.</span><span class="na">getUserId</span><span class="o">();</span>  <span class="c1">// NullPointerException 발생!</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="로그-분석">로그 분석</h3>
+
+<p><strong>CONNECT 시점 (성공):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WebSocket 연결 인증 성공 - userId: xxx
+Principal is CustomUserDetails?: true
+CustomUserDetails.user is null?: false  ✅
+User ID: xxx
+</code></pre></div></div>
+
+<p><strong>MESSAGE 전송 시점 (실패):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Invoking WebSocketController#handleMessage
+User in UserDetails is null  ❌
+NullPointerException: Cannot invoke "User.getId()" because "this.user" is null
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-근본-원인-분석">🔍 근본 원인 분석</h2>
+
+<h3 id="1-websocket-인증-흐름">1. WebSocket 인증 흐름</h3>
+
+<h4 id="connect-단계">CONNECT 단계</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클라이언트 CONNECT 요청
+    ↓
+JwtChannelInterceptor.preSend() 실행
+    ↓
+토큰 검증 및 User 조회
+    ↓
+CustomUserDetails 생성 (user 필드 포함)
+    ↓
+UsernamePasswordAuthenticationToken 생성
+    ↓
+WebSocket 세션에 Authentication 저장
+</code></pre></div></div>
+
+<p>이 시점에는 <code class="language-plaintext highlighter-rouge">CustomUserDetails.user</code>가 <strong>정상적으로 존재</strong></p>
+
+<h4 id="message-전송-단계">MESSAGE 전송 단계</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클라이언트 MESSAGE 전송
+    ↓
+Spring이 세션에서 Authentication 조회
+    ↓
+@AuthenticationPrincipal로 Principal 주입
+    ↓
+??? CustomUserDetails.user가 null ???
+</code></pre></div></div>
+
+<h3 id="2-authenticationprincipal의-동작-방식">2. <code class="language-plaintext highlighter-rouge">@AuthenticationPrincipal</code>의 동작 방식</h3>
+
+<p><code class="language-plaintext highlighter-rouge">@AuthenticationPrincipal</code>는 내부적으로 다음과 같이 동작한다:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Spring Security 내부 동작 (의사 코드)</span>
+<span class="kd">public</span> <span class="nc">Object</span> <span class="nf">resolveArgument</span><span class="o">(</span><span class="nc">MethodParameter</span> <span class="n">parameter</span><span class="o">,</span> <span class="o">...)</span> <span class="o">{</span>
+    <span class="nc">Authentication</span> <span class="n">authentication</span> <span class="o">=</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">authentication</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nc">Object</span> <span class="n">principal</span> <span class="o">=</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
+
+    <span class="c1">// 🔥 문제: principal이 직렬화/역직렬화되었을 수 있음</span>
+    <span class="c1">// 🔥 WebSocket 세션 저장소(Redis, 메모리)에서 복원될 때 문제 발생 가능</span>
+
+    <span class="k">return</span> <span class="n">principal</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="3-문제의-핵심-직렬화역직렬화">3. 문제의 핵심: 직렬화/역직렬화</h3>
+
+<p>WebSocket 세션은 메모리나 Redis에 저장될 수 있으며, 이 과정에서:</p>
+
+<ol>
+  <li><strong>CONNECT 시점</strong>: <code class="language-plaintext highlighter-rouge">CustomUserDetails</code> 객체가 생성되고 세션에 저장
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">User user</code> 필드가 JPA 엔티티로 완전히 로드됨</li>
+    </ul>
+  </li>
+  <li><strong>MESSAGE 전송 시점</strong>: 세션에서 <code class="language-plaintext highlighter-rouge">Authentication</code> 객체 복원
+    <ul>
+      <li>직렬화/역직렬화 과정에서 <code class="language-plaintext highlighter-rouge">User</code> 객체가 제대로 복원되지 않음</li>
+      <li>또는 세션 스토리지가 얕은 복사만 수행</li>
+      <li><strong>결과</strong>: <code class="language-plaintext highlighter-rouge">CustomUserDetails.user == null</code></li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="4-프로젝트-구현-특성">4. 프로젝트 구현 특성</h3>
+
+<h4 id="customuserdetails-구조">CustomUserDetails 구조</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomUserDetails</span> <span class="kd">implements</span> <span class="nc">UserDetails</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">User</span> <span class="n">user</span><span class="o">;</span>  <span class="c1">// JPA Entity</span>
+
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getUserId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>  <span class="c1">// user가 null이면 NPE 발생!</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getUsername</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>  <span class="c1">// userId를 String으로 저장</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="user-엔티티">User 엔티티</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="c1">// ... 다양한 필드들</span>
+    <span class="c1">// Serializable 구현되지 않음 (문제 요인 중 하나)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="jwtchannelinterceptor">JwtChannelInterceptor</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">Authentication</span> <span class="nf">authenticateToken</span><span class="o">(</span><span class="nc">String</span> <span class="n">token</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Long</span> <span class="n">userId</span> <span class="o">=</span> <span class="n">jwtTokenProvider</span><span class="o">.</span><span class="na">getUserIdFromToken</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">userId</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">(...);</span>
+
+    <span class="nc">CustomUserDetails</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CustomUserDetails</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+
+    <span class="c1">// UsernamePasswordAuthenticationToken 생성</span>
+    <span class="c1">// 이 객체가 WebSocket 세션에 저장됨</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">UsernamePasswordAuthenticationToken</span><span class="o">(</span>
+        <span class="n">userDetails</span><span class="o">,</span>  <span class="c1">// principal</span>
+        <span class="kc">null</span><span class="o">,</span>
+        <span class="n">userDetails</span><span class="o">.</span><span class="na">getAuthorities</span><span class="o">()</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-해결-방법">✅ 해결 방법</h2>
+
+<h3 id="simpmessageheaderaccessor-사용">SimpMessageHeaderAccessor 사용</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@MessageMapping</span><span class="o">(</span><span class="s">"/endpoint/{targetId}"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleMessage</span><span class="o">(</span>
+    <span class="nd">@DestinationVariable</span> <span class="nc">Long</span> <span class="n">targetId</span><span class="o">,</span>
+    <span class="nd">@Payload</span> <span class="nc">SomeMessage</span> <span class="n">message</span><span class="o">,</span>
+    <span class="nc">SimpMessageHeaderAccessor</span> <span class="n">headerAccessor</span>  <span class="c1">// ✅ 변경</span>
+<span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Long</span> <span class="n">userId</span> <span class="o">=</span> <span class="n">extractUserIdFromPrincipal</span><span class="o">(</span><span class="n">headerAccessor</span><span class="o">);</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="nc">Long</span> <span class="nf">extractUserIdFromPrincipal</span><span class="o">(</span><span class="nc">SimpMessageHeaderAccessor</span> <span class="n">headerAccessor</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Principal</span> <span class="n">principal</span> <span class="o">=</span> <span class="n">headerAccessor</span><span class="o">.</span><span class="na">getUser</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">principal</span> <span class="k">instanceof</span> <span class="nc">Authentication</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Authentication</span> <span class="n">auth</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Authentication</span><span class="o">)</span> <span class="n">principal</span><span class="o">;</span>
+        <span class="nc">Object</span> <span class="n">principalObj</span> <span class="o">=</span> <span class="n">auth</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">principalObj</span> <span class="k">instanceof</span> <span class="nc">CustomUserDetails</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">CustomUserDetails</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="o">(</span><span class="nc">CustomUserDetails</span><span class="o">)</span> <span class="n">principalObj</span><span class="o">;</span>
+
+            <span class="c1">// user가 null이어도 username(=userId)에서 추출 가능</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">userDetails</span><span class="o">.</span><span class="na">getUser</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="nc">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">userDetails</span><span class="o">.</span><span class="na">getUsername</span><span class="o">());</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="n">userDetails</span><span class="o">.</span><span class="na">getUserId</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-authenticationprincipal-vs-simpmessageheaderaccessor">🔬 @AuthenticationPrincipal vs SimpMessageHeaderAccessor</h2>
+
+<h3 id="authenticationprincipal-방식">@AuthenticationPrincipal 방식</h3>
+
+<h4 id="장점">장점</h4>
+
+<ul>
+  <li>✅ 코드가 간결함</li>
+  <li>✅ Spring Security의 표준 방식</li>
+  <li>✅ HTTP 요청에서 잘 작동</li>
+</ul>
+
+<h4 id="단점">단점</h4>
+
+<ul>
+  <li>❌ WebSocket 세션 관리에서 불안정</li>
+  <li>❌ 직렬화/역직렬화 이슈에 취약</li>
+  <li>❌ Principal 객체의 내부 필드가 null일 수 있음</li>
+  <li>❌ 디버깅이 어려움 (Spring이 자동으로 주입)</li>
+</ul>
+
+<h4 id="동작-방식">동작 방식</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Spring이 내부적으로 수행</span>
+<span class="nc">Authentication</span> <span class="n">auth</span> <span class="o">=</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+<span class="nc">CustomUserDetails</span> <span class="n">principal</span> <span class="o">=</span> <span class="o">(</span><span class="nc">CustomUserDetails</span><span class="o">)</span> <span class="n">auth</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
+
+<span class="c1">// 🔥 이 principal이 직렬화/역직렬화를 거쳤을 수 있음</span>
+<span class="c1">// 🔥 user 필드가 null일 가능성</span>
+</code></pre></div></div>
+
+<h3 id="simpmessageheaderaccessor-방식">SimpMessageHeaderAccessor 방식</h3>
+
+<h4 id="장점-1">장점</h4>
+
+<ul>
+  <li>✅ WebSocket 메시지의 실제 Principal에 직접 접근</li>
+  <li>✅ 직렬화 이슈 회피 (Principal 객체를 직접 다룸)</li>
+  <li>✅ null 체크 및 fallback 로직 구현 가능</li>
+  <li>✅ 디버깅 용이 (명시적인 코드)</li>
+</ul>
+
+<h4 id="단점-1">단점</h4>
+
+<ul>
+  <li>❌ 코드가 다소 길어짐</li>
+  <li>❌ 헬퍼 메서드 필요</li>
+</ul>
+
+<h4 id="동작-방식-1">동작 방식</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 직접 메시지 헤더에서 Principal 추출</span>
+<span class="nc">Principal</span> <span class="n">principal</span> <span class="o">=</span> <span class="n">headerAccessor</span><span class="o">.</span><span class="na">getUser</span><span class="o">();</span>
+
+<span class="c1">// 이 principal은 JwtChannelInterceptor에서</span>
+<span class="c1">// accessor.setUser(authentication)으로 설정한 바로 그 객체</span>
+<span class="c1">// 중간에 직렬화/역직렬화를 거치지 않음 (같은 요청 컨텍스트 내)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-핵심-차이점">🎯 핵심 차이점</h2>
+
+<h3 id="인증-정보-조회-경로">인증 정보 조회 경로</h3>
+
+<p><strong>@AuthenticationPrincipal:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WebSocket 세션 스토리지 (메모리/Redis)
+    ↓
+직렬화된 Authentication 객체
+    ↓
+역직렬화 (문제 발생 가능)
+    ↓
+SecurityContext
+    ↓
+@AuthenticationPrincipal 주입
+</code></pre></div></div>
+
+<p><strong>SimpMessageHeaderAccessor:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>현재 메시지의 StompHeaderAccessor
+    ↓
+직접 Principal 조회
+    ↓
+명시적 타입 체크 및 변환
+    ↓
+안전한 userId 추출
+</code></pre></div></div>
+
+<h3 id="세션-관리-관점">세션 관리 관점</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>측면</th>
+      <th>@AuthenticationPrincipal</th>
+      <th>SimpMessageHeaderAccessor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>직렬화 의존성</td>
+      <td>높음</td>
+      <td>낮음</td>
+    </tr>
+    <tr>
+      <td>세션 저장소 영향</td>
+      <td>영향 받음</td>
+      <td>영향 적음</td>
+    </tr>
+    <tr>
+      <td>JPA 엔티티 문제</td>
+      <td>발생 가능</td>
+      <td>회피 가능</td>
+    </tr>
+    <tr>
+      <td>Lazy Loading</td>
+      <td>문제 가능</td>
+      <td>문제 없음</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-테스트-결과">🧪 테스트 결과</h2>
+
+<h3 id="before-문제-발생">Before (문제 발생)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WebSocket CONNECT: ✅ 성공
+WebSocket MESSAGE: ❌ NullPointerException
+</code></pre></div></div>
+
+<h3 id="after-해결">After (해결)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WebSocket CONNECT: ✅ 성공
+WebSocket MESSAGE: ✅ 성공
+userId 추출: ✅ 성공
+메시지 처리: ✅ 성공
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-추가-개선-사항-선택">💡 추가 개선 사항 (선택)</h2>
+
+<h3 id="1-user-엔티티를-serializable로-만들기">1. User 엔티티를 Serializable로 만들기</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="2-customuserdetails를-serializable로-만들기">2. CustomUserDetails를 Serializable로 만들기</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomUserDetails</span> <span class="kd">implements</span> <span class="nc">UserDetails</span><span class="o">,</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">User</span> <span class="n">user</span><span class="o">;</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="3-websocket-세션-관리-개선">3. WebSocket 세션 관리 개선</h3>
+
+<ul>
+  <li>Redis를 사용한다면 직렬화 설정 최적화</li>
+  <li>세션 타임아웃 설정 검토</li>
+  <li>재연결 시 인증 갱신 로직 구현</li>
+</ul>
+
+<hr />
+
+<h2 id="-참고-자료">📚 참고 자료</h2>
+
+<ul>
+  <li>Spring WebSocket Documentation: https://docs.spring.io/spring-framework/reference/web/websocket.html</li>
+  <li>Spring Security WebSocket Support: https://docs.spring.io/spring-security/reference/servlet/integrations/websocket.html</li>
+  <li>STOMP Protocol Specification: https://stomp.github.io/</li>
+</ul>
+
+<hr />
+
+<h2 id="-결론">🏁 결론</h2>
+
+<p>WebSocket 환경에서는 HTTP 요청과 달리 <strong>세션 관리 및 직렬화 이슈</strong>가 발생할 수 있다.</p>
+
+<p>특히 <code class="language-plaintext highlighter-rouge">@AuthenticationPrincipal</code>은 편리하지만 WebSocket 세션 저장소를 거치면서 <strong>Principal 객체의 내부 상태가 손실될 위험</strong>이 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">SimpMessageHeaderAccessor</code>를 사용하면:</p>
+
+<ul>
+  <li>✅ 직접 Principal에 접근하여 안정성 확보</li>
+  <li>✅ null 체크 및 fallback 로직 구현 가능</li>
+  <li>✅ 명시적 코드로 디버깅 용이</li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.]]></summary></entry><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-01-20T07:36:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#ssl-인증서란">SSL 인증서란?</a></li>
   <li><a href="#lets-encrypt와-90일-갱신-주기">Let’s Encrypt와 90일 갱신 주기</a></li>
@@ -170,7 +620,7 @@ ESC         # 명령 모드
   <li><a href="https://letsencrypt.org/docs/">Let’s Encrypt 공식 문서</a></li>
   <li><a href="https://certbot.eff.org/">Certbot 사용 가이드</a></li>
   <li><a href="https://docs.aws.amazon.com/linux/">Amazon Linux cron 설정</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</title><link href="https://nan0silver.github.io/algorithm/2026-01-09-summary/" rel="alternate" type="text/html" title="[Algorithm] 코딩테스트 알고리즘 선택방법 요약" /><published>2026-01-09T00:00:00+00:00</published><updated>2026-01-12T05:19:16+00:00</updated><id>https://nan0silver.github.io/algorithm/summary</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-01-09-summary/"><![CDATA[<p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</title><link href="https://nan0silver.github.io/algorithm/2026-01-09-summary/" rel="alternate" type="text/html" title="[Algorithm] 코딩테스트 알고리즘 선택방법 요약" /><published>2026-01-09T00:00:00+00:00</published><updated>2026-01-20T07:36:29+00:00</updated><id>https://nan0silver.github.io/algorithm/summary</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-01-09-summary/"><![CDATA[<p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
 이 글에서는 <strong>코테 기준으로 딱 필요한 만큼만</strong> 정리한다.</p>
 
 <hr />
@@ -453,7 +903,7 @@ ESC         # 명령 모드
 <blockquote>
   <p><strong>“알고리즘은 외우는 게 아니라,
 문제 조건으로 제거하고 남는 하나를 고르는 것”</strong></p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2026-01-12T05:19:16+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2026-01-20T07:36:29+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
   <li><a href="#-1️⃣-플로이드-워셜이란">플로이드-워셜이란?</a></li>
   <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
   <li><a href="#-3️⃣-k-i-j의-정확한-의미">k, i, j의 의미</a></li>
@@ -900,7 +1350,7 @@ dist[1][4] = min(INF, dist[1][2] + dist[2][4])
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />k가 가장 바깥 루프인가?</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기</title><link href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기" /><published>2025-12-25T00:00:00+00:00</published><updated>2026-01-12T05:19:16+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-25-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기</title><link href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기" /><published>2025-12-25T00:00:00+00:00</published><updated>2026-01-20T07:36:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-25-diary/"><![CDATA[<ul>
   <li><a href="#들어가며">들어가며</a></li>
   <li><a href="#1-처음-그린-그림">1. 처음 그린 그림</a></li>
   <li><a href="#2-redis-대기열-생각보다-복잡했다">2. Redis 대기열, 생각보다 복잡했다</a></li>
@@ -1359,7 +1809,7 @@ ZADD queue:music 1734840125789 user_205
 <ol>
   <li><a href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/">왜 이 기술들을 선택했나</a></li>
   <li><strong>실시간 매칭 시스템, 생각보다 어려웠던 이야기</strong> ← 현재 글</li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA["버튼 하나면 되는 거 아냐?" 라고 생각했던 나에게 현실이 알려준 것들]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</title><link href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" /><published>2025-12-20T00:00:00+00:00</published><updated>2026-01-12T05:19:16+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-20-diary/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA["버튼 하나면 되는 거 아냐?" 라고 생각했던 나에게 현실이 알려준 것들]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</title><link href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" /><published>2025-12-20T00:00:00+00:00</published><updated>2026-01-20T07:36:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-20-diary/"><![CDATA[<ul>
   <li><a href="#들어가며">들어가며</a></li>
   <li><a href="#1-전체-그림-우리-서비스가-필요한-것">1. 전체 그림: 우리 서비스가 필요한 것</a></li>
   <li><a href="#2-backend-spring-boot--webflux를-선택한-이유">2. Backend: Spring Boot + WebFlux를 선택한 이유</a></li>
@@ -2014,7 +2464,7 @@ vs
   <li><a href="https://redis.io/docs/data-types/">Redis 자료구조 가이드</a></li>
   <li><a href="https://docs.agora.io/en/cloud-recording">Agora Cloud Recording</a></li>
   <li><a href="https://capacitorjs.com/docs">Capacitor 공식 문서</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2026-01-12T05:19:16+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2026-01-20T07:36:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
 
 <p>처음에는 단순할 줄 알았는데, 생각보다 에러도 많이 나고 시행착오가 많아서 MVP에서 제외하고 개발했다. 이 글에서는 어떤 문제들을 겪었고, 어떻게 해결했는지를 정리하려고 한다.</p>
 
@@ -2267,7 +2717,7 @@ Secret: 한 번만 보여주니 즉시 복사!
   <li><a href="https://spring.io/guides/gs/async-method">Spring Async 설정</a></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2026-01-12T05:19:16+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2026-01-20T07:36:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
   <li>이번 포스팅에선 Capacitor로 빌드한 앱에서 여러 아이콘이 순차적으로 표시되는 커스텀 스플래시 스크린을 구현하는 방법을 정리했다.</li>
   <li>왜 Custom splash screen이 필요했나?
     <ul>
@@ -2497,7 +2947,7 @@ pnpm add <span class="nt">-D</span> @capacitor/assets
   <li><a href="https://github.com/ionic-team/capacitor-assets">Capacitor assets github page</a></li>
   <li><a href="https://capacitorjs.com/docs/apis/splash-screen">@capacitor/splash-screen DOCS</a></li>
   <li><a href="https://capacitorjs.com/docs/guides/splash-screens-and-icons">Splash Screens and Icons DOCS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</title><link href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" rel="alternate" type="text/html" title="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" /><published>2025-11-18T00:00:00+00:00</published><updated>2026-01-12T05:19:16+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-18-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</title><link href="https://nan0silver.github.io/projectdiary/2025-11-18-diary/" rel="alternate" type="text/html" title="[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술" /><published>2025-11-18T00:00:00+00:00</published><updated>2026-01-20T07:36:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-18-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 JSONP 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
@@ -2721,7 +3171,7 @@ pnpm add <span class="nt">-D</span> @capacitor/assets
   <li><a href="https://sockjs.github.io/sockjs-protocol/sockjs-protocol-0.3.3.html">SockJS Protocol</a></li>
   <li><a href="https://en.wikipedia.org/wiki/JSONP">JSONP의 작동 원리와 보안 이슈</a></li>
   <li><a href="https://stackoverflow.com/questions/2067472/what-is-jsonp-and-why-was-it-created">CORS vs JSONP</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2026-01-12T05:19:16+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</title><link href="https://nan0silver.github.io/projectdiary/2025-11-17-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결" /><published>2025-11-17T00:00:00+00:00</published><updated>2026-01-20T07:36:29+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-17-diary/"><![CDATA[<ul>
   <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 X-Frame-Options 에러에 대해 다루었다.</li>
   <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
 </ul>
@@ -2974,571 +3424,4 @@ WebView는 브라우저 엔진의 특수 모드
 <ul>
   <li>Capacitor로 앱을 빌드한 다음에 웹에서는 발생하지 않는 에러들이 생겨서 찾아보고, 공부하고, 해결하는 재미가 있다.</li>
   <li>이제 통화연결까지 앱으로 수행할 수 있게 되었다!!</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리</title><link href="https://nan0silver.github.io/projectdiary/2025-11-13-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱에서 Kakao/Google 네이티브 로그인 구현 정리" /><published>2025-11-13T00:00:00+00:00</published><updated>2026-01-12T05:19:16+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-13-diary/"><![CDATA[<ul>
-  <li>Capacitor로 빌드한 React 앱에서 카카오와 구글 네이티브 로그인을 구현하는 방법을 정리해 보았다.</li>
-  <li>관련되서 정리되어있는게 없는것 같아서.. 내가 나중에 찾아볼 수 있게 일단 문서를 만들어보았다.</li>
-  <li>웹에서는 일반 OAuth 리다이렉트를 사용하지만, 모바일 앱에서는 <strong>네이티브 SDK를 직접 사용</strong>하는 방식으로 구현했다. (kakao, google)
-    <ul>
-      <li>kakao developer에는 flutter문서에서 크로스 플랫폼에서는 커스텀 URL 스킴을 사용하라고 권장한다. 하지만 나는 플러그인을 사용하는 방식으로 구현해보았다.</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="네이티브-sdk-직접-사용-구헌-방식-카카오-구글">네이티브 SDK 직접 사용 구헌 방식 (카카오, 구글)</h3>
-
-<p><strong>네이티브 SDK 로그인 방식이란?</strong></p>
-
-<ul>
-  <li>카카오/구글이 제공하는 Android/iOS 전용 SDK를 사용한 로그인 방식</li>
-  <li>앱 간 통신 방식을 사용한다.
-    <ul>
-      <li>즉, 기기에 설치된 카카오톡/구글 앱과 직접 통신하여 인증한다.</li>
-    </ul>
-  </li>
-  <li>WebView를 우회하여 브라우저 리다이렉트 없이 앱 레벨에서 토큰을 교환한다.</li>
-</ul>
-
-<p><strong>이 방식이 하이브리드 앱에서 가능한 이유</strong></p>
-
-<ul>
-  <li>⭐️<strong>Capacitor의 플러그인 시스템</strong>⭐️이 핵심!</li>
-</ul>
-
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-11-13-pic1.png?raw=true" alt="설명 이미지1" /></p>
-
-<ul>
-  <li>WebView의 JavaScript 코드가 네이티브 코드를 호출할 수 있게 해줌</li>
-  <li><code class="language-plaintext highlighter-rouge">KakaoLoginPlugin.goLogin()</code>을 통해 실제로 Android의 카카오 SDK 실행</li>
-  <li>결과를 다시 JavaScript로 전달</li>
-</ul>
-
-<p>*<em>앱 구조 비교</em></p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 안드로이드에서 실행 시</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">Capacitor</span><span class="p">.</span><span class="nx">isNativePlatform</span><span class="p">())</span> <span class="p">{</span>
-  <span class="c1">// ✅ 네이티브 SDK 사용 (앱간 통신)</span>
-  <span class="c1">// 카카오톡 앱 → 내 앱 (빠르고 안정적)</span>
-  <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">KakaoLoginPlugin</span><span class="p">.</span><span class="nx">goLogin</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="c1">// 웹 브라우저에서 실행 시</span>
-<span class="k">else</span> <span class="p">{</span>
-  <span class="c1">// ✅ OAuth 리다이렉트 사용 (브라우저 기반)</span>
-  <span class="c1">// 브라우저 → 카카오 웹 → 콜백 URL</span>
-  <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://kauth.kakao.com/oauth/...</span><span class="dl">"</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p><strong>이렇게 하는 이유</strong></p>
-
-<ul>
-  <li>네이티브 로그인의 장점:
-    <ul>
-      <li>사용자가 카카오톡이 설치되어 있으면 앱 전환만으로 즉시 로그인</li>
-      <li>브라우저 리다이렉트보다 UX가 훨씬 부드러움</li>
-      <li>DeepLink, Custom URL Scheme 문제 없음</li>
-    </ul>
-  </li>
-  <li>웹 로그인:
-    <ul>
-      <li>브라우저에서는 네이티브 SDK를 쓸 수 없으니 전통적인 OAuth 방식 사용</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h2 id="1-카카오-네이티브-로그인-구현">1. 카카오 네이티브 로그인 구현</h2>
-
-<h3 id="11-플러그인-설치">1.1 플러그인 설치</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pnpm add capacitor-kakao-login-plugin
-npx cap <span class="nb">sync</span>
-</code></pre></div></div>
-
-<h3 id="12-android-설정">1.2 Android 설정</h3>
-
-<h4 id="121-kakao-sdk-의존성-추가">1.2.1 Kakao SDK 의존성 추가</h4>
-
-<p><code class="language-plaintext highlighter-rouge">android/app/build.gradle</code>:</p>
-
-<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">dependencies</span> <span class="o">{</span>
-    <span class="c1">// ... 기존 의존성 ...</span>
-    <span class="n">implementation</span> <span class="s2">"com.kakao.sdk:v2-common:2.20.1"</span>
-    <span class="n">implementation</span> <span class="s2">"com.kakao.sdk:v2-auth:2.20.1"</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">android/build.gradle</code>:</p>
-
-<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">allprojects</span> <span class="o">{</span>
-    <span class="k">repositories</span> <span class="o">{</span>
-        <span class="n">google</span><span class="o">()</span>
-        <span class="n">mavenCentral</span><span class="o">()</span>
-        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s1">'https://devrepo.kakao.com/nexus/content/groups/public/'</span> <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="122-androidmanifestxml-설정">1.2.2 AndroidManifest.xml 설정</h4>
-
-<p><code class="language-plaintext highlighter-rouge">android/app/src/main/AndroidManifest.xml</code>:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;application&gt;</span>
-    <span class="c">&lt;!-- 카카오 SDK 메타데이터 --&gt;</span>
-    <span class="nt">&lt;meta-data</span>
-        <span class="na">android:name=</span><span class="s">"com.kakao.sdk.AppKey"</span>
-        <span class="na">android:value=</span><span class="s">"@string/kakao_app_key"</span> <span class="nt">/&gt;</span>
-
-    <span class="nt">&lt;activity</span>
-        <span class="na">android:name=</span><span class="s">".MainActivity"</span>
-        <span class="na">android:exported=</span><span class="s">"true"</span><span class="nt">&gt;</span>
-        <span class="c">&lt;!-- 카카오 로그인 리다이렉트 --&gt;</span>
-        <span class="nt">&lt;intent-filter&gt;</span>
-            <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"android.intent.action.VIEW"</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.DEFAULT"</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.BROWSABLE"</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;data</span> <span class="na">android:host=</span><span class="s">"kakaolink"</span> <span class="na">android:scheme=</span><span class="s">"@string/kakao_scheme"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/intent-filter&gt;</span>
-    <span class="nt">&lt;/activity&gt;</span>
-
-    <span class="c">&lt;!-- 카카오 인증 코드 핸들러 --&gt;</span>
-    <span class="nt">&lt;activity</span>
-        <span class="na">android:name=</span><span class="s">"com.kakao.sdk.auth.AuthCodeHandlerActivity"</span>
-        <span class="na">android:exported=</span><span class="s">"true"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;intent-filter&gt;</span>
-            <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"android.intent.action.VIEW"</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.DEFAULT"</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.BROWSABLE"</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;data</span> <span class="na">android:host=</span><span class="s">"oauth"</span> <span class="na">android:scheme=</span><span class="s">"@string/kakao_scheme"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/intent-filter&gt;</span>
-    <span class="nt">&lt;/activity&gt;</span>
-<span class="nt">&lt;/application&gt;</span>
-</code></pre></div></div>
-
-<h4 id="123-stringsxml-설정">1.2.3 strings.xml 설정</h4>
-
-<p><code class="language-plaintext highlighter-rouge">android/app/src/main/res/values/strings.xml</code>:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;resources&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"kakao_app_key"</span><span class="nt">&gt;</span>YOUR_KAKAO_NATIVE_APP_KEY<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"kakao_scheme"</span><span class="nt">&gt;</span>kakaoYOUR_KAKAO_NATIVE_APP_KEY<span class="nt">&lt;/string&gt;</span>
-<span class="nt">&lt;/resources&gt;</span>
-</code></pre></div></div>
-
-<h4 id="124-mainactivityjava-초기화">1.2.4 MainActivity.java 초기화</h4>
-
-<p><code class="language-plaintext highlighter-rouge">android/app/src/main/java/com/yourpackage/app/MainActivity.java</code>:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">com.kakao.sdk.common.KakaoSdk</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="nc">BridgeActivity</span> <span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
-
-        <span class="c1">// 카카오 SDK 초기화</span>
-        <span class="nc">KakaoSdk</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getString</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">kakao_app_key</span><span class="o">));</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="13-ios-설정">1.3 iOS 설정</h3>
-
-<h4 id="131-infoplist-설정">1.3.1 Info.plist 설정</h4>
-
-<p><code class="language-plaintext highlighter-rouge">ios/App/App/Info.plist</code>:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;key&gt;</span>KAKAO_APP_KEY<span class="nt">&lt;/key&gt;</span>
-<span class="nt">&lt;string&gt;</span>YOUR_KAKAO_NATIVE_APP_KEY<span class="nt">&lt;/string&gt;</span>
-
-<span class="nt">&lt;key&gt;</span>CFBundleURLTypes<span class="nt">&lt;/key&gt;</span>
-<span class="nt">&lt;array&gt;</span>
-    <span class="nt">&lt;dict&gt;</span>
-        <span class="nt">&lt;key&gt;</span>CFBundleURLSchemes<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;array&gt;</span>
-            <span class="nt">&lt;string&gt;</span>kakaoYOUR_KAKAO_NATIVE_APP_KEY<span class="nt">&lt;/string&gt;</span>
-            <span class="nt">&lt;string&gt;</span>com.yourapp.bundleid<span class="nt">&lt;/string&gt;</span>
-        <span class="nt">&lt;/array&gt;</span>
-    <span class="nt">&lt;/dict&gt;</span>
-<span class="nt">&lt;/array&gt;</span>
-
-<span class="nt">&lt;key&gt;</span>LSApplicationQueriesSchemes<span class="nt">&lt;/key&gt;</span>
-<span class="nt">&lt;array&gt;</span>
-    <span class="nt">&lt;string&gt;</span>kakaoYOUR_KAKAO_NATIVE_APP_KEY<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string&gt;</span>kakaokompassauth<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string&gt;</span>storykompassauth<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string&gt;</span>kakaolink<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string&gt;</span>storylink<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string&gt;</span>kakaotalk<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string&gt;</span>kakaotalk-5.9.7<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string&gt;</span>kakaostory-2.9.0<span class="nt">&lt;/string&gt;</span>
-<span class="nt">&lt;/array&gt;</span>
-</code></pre></div></div>
-
-<h4 id="132-appdelegateswift-초기화">1.3.2 AppDelegate.swift 초기화</h4>
-
-<p><code class="language-plaintext highlighter-rouge">ios/App/App/AppDelegate.swift</code>:</p>
-
-<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">KakaoSDKAuth</span>
-<span class="kd">import</span> <span class="kt">KakaoSDKCommon</span>
-
-<span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplication</span><span class="o">.</span><span class="kt">LaunchOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
-    <span class="k">let</span> <span class="nv">key</span> <span class="o">=</span> <span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">infoDictionary</span><span class="p">?[</span><span class="s">"KAKAO_APP_KEY"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span>
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">kakaoKey</span> <span class="o">=</span> <span class="n">key</span> <span class="p">{</span>
-        <span class="kt">KakaoSDK</span><span class="o">.</span><span class="nf">initSDK</span><span class="p">(</span><span class="nv">appKey</span><span class="p">:</span> <span class="n">kakaoKey</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">app</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplication</span><span class="o">.</span><span class="kt">OpenURLOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="kt">AuthApi</span><span class="o">.</span><span class="nf">isKakaoTalkLoginUrl</span><span class="p">(</span><span class="n">url</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kt">AuthController</span><span class="o">.</span><span class="nf">handleOpenUrl</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="kt">ApplicationDelegateProxy</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="nv">open</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="n">options</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="14-프론트엔드-코드">1.4 프론트엔드 코드</h3>
-
-<p><code class="language-plaintext highlighter-rouge">client/lib/auth.ts</code>:</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">KakaoLoginPlugin</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">capacitor-kakao-login-plugin</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="k">export</span> <span class="kd">const</span> <span class="nx">startSocialLogin</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
-  <span class="nx">provider</span><span class="p">:</span> <span class="nx">OAuthProvider</span>
-<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">isMobile</span> <span class="o">=</span> <span class="nx">Capacitor</span><span class="p">.</span><span class="nx">isNativePlatform</span><span class="p">();</span>
-
-  <span class="k">if</span> <span class="p">(</span><span class="nx">isMobile</span> <span class="o">&amp;&amp;</span> <span class="nx">provider</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">kakao</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="p">{</span>
-      <span class="c1">// 카카오 네이티브 로그인 실행</span>
-      <span class="kd">const</span> <span class="nx">kakaoResult</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">KakaoLoginPlugin</span><span class="p">.</span><span class="nx">goLogin</span><span class="p">();</span>
-
-      <span class="c1">// 카카오 액세스 토큰을 백엔드로 전달</span>
-      <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">processKakaoNativeLogin</span><span class="p">(</span><span class="nx">kakaoResult</span><span class="p">.</span><span class="nx">accessToken</span><span class="p">);</span>
-
-      <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nb">window</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span>
-          <span class="k">new</span> <span class="nx">CustomEvent</span><span class="p">(</span><span class="dl">"</span><span class="s2">oauth-login-success</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-            <span class="na">detail</span><span class="p">:</span> <span class="p">{</span> <span class="na">userInfo</span><span class="p">:</span> <span class="nx">result</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">user_info</span> <span class="p">},</span>
-          <span class="p">})</span>
-        <span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nb">window</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span>
-        <span class="k">new</span> <span class="nx">CustomEvent</span><span class="p">(</span><span class="dl">"</span><span class="s2">oauth-login-error</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-          <span class="na">detail</span><span class="p">:</span> <span class="p">{</span> <span class="na">error</span><span class="p">:</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="p">},</span>
-        <span class="p">})</span>
-      <span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="c1">// 웹: 일반 OAuth 리다이렉트</span>
-    <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">authorization_url</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// 백엔드로 카카오 토큰 전달</span>
-<span class="k">export</span> <span class="kd">const</span> <span class="nx">processKakaoNativeLogin</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
-  <span class="nx">kakaoAccessToken</span><span class="p">:</span> <span class="kr">string</span>
-<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">OAuthLoginResponse</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">getApiUrl</span><span class="p">()}</span><span class="s2">/v1/auth/oauth/kakao/native`</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span> <span class="p">},</span>
-    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-      <span class="na">kakao_access_token</span><span class="p">:</span> <span class="nx">kakaoAccessToken</span><span class="p">,</span>
-      <span class="na">device_info</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">platform</span><span class="p">}</span><span class="s2"> - </span><span class="p">${</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
-    <span class="p">}),</span>
-    <span class="na">credentials</span><span class="p">:</span> <span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span>
-  <span class="p">});</span>
-
-  <span class="k">return</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<h3 id="15-카카오-개발자-콘솔-설정">1.5 카카오 개발자 콘솔 설정</h3>
-
-<ol>
-  <li>
-    <p><strong>키 해시 등록</strong> (Android)</p>
-
-    <ul>
-      <li>Android Studio Logcat에서 SHA-1, SHA-256 키 해시 확인</li>
-      <li>카카오 개발자 콘솔 → 내 애플리케이션 → 플랫폼 → Android → 키 해시 등록</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>리다이렉트 URI 설정</strong></p>
-    <ul>
-      <li>Android: <code class="language-plaintext highlighter-rouge">kakao{NATIVE_APP_KEY}://oauth</code></li>
-      <li>iOS: <code class="language-plaintext highlighter-rouge">kakao{NATIVE_APP_KEY}://oauth</code></li>
-    </ul>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="2-구글-네이티브-로그인-구현">2. 구글 네이티브 로그인 구현</h2>
-
-<h3 id="21-플러그인-설치">2.1 플러그인 설치</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pnpm add @codetrix-studio/capacitor-google-auth
-npx cap <span class="nb">sync</span>
-</code></pre></div></div>
-
-<h3 id="22-google-console-설정">2.2 Google Console 설정</h3>
-
-<h4 id="221-웹-클라이언트-id-생성">2.2.1 웹 클라이언트 ID 생성</h4>
-
-<ol>
-  <li>Google Console → API 및 서비스 → 사용자 인증 정보</li>
-  <li>
-    <ul>
-      <li>사용자 인증 정보 만들기 → OAuth 2.0 클라이언트 ID</li>
-    </ul>
-  </li>
-  <li>애플리케이션 유형: <strong>웹 애플리케이션</strong></li>
-  <li>생성된 클라이언트 ID를 복사</li>
-</ol>
-
-<h4 id="222-android-클라이언트-id-생성">2.2.2 Android 클라이언트 ID 생성</h4>
-
-<ol>
-  <li>
-    <ul>
-      <li>사용자 인증 정보 만들기 → OAuth 2.0 클라이언트 ID</li>
-    </ul>
-  </li>
-  <li>애플리케이션 유형: <strong>Android</strong></li>
-  <li>패키지 이름: <code class="language-plaintext highlighter-rouge">com.yourapp.bundleid</code></li>
-  <li><strong>SHA-1 인증서 지문 등록</strong> (중요!)</li>
-</ol>
-
-<p><strong>SHA-1 지문 확인 방법:</strong></p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 디버그 키스토어</span>
-keytool <span class="nt">-list</span> <span class="nt">-v</span> <span class="nt">-keystore</span> ~/.android/debug.keystore <span class="nt">-alias</span> androiddebugkey <span class="nt">-storepass</span> android <span class="nt">-keypass</span> android
-
-<span class="c"># 또는 MainActivity에서 로그로 확인</span>
-</code></pre></div></div>
-
-<p>SHA-1 지문을 <strong>콜론 없이</strong> 등록</p>
-
-<h4 id="223-ios-클라이언트-id-생성-선택">2.2.3 iOS 클라이언트 ID 생성 (선택)</h4>
-
-<ol>
-  <li>
-    <ul>
-      <li>사용자 인증 정보 만들기 → OAuth 2.0 클라이언트 ID</li>
-    </ul>
-  </li>
-  <li>애플리케이션 유형: <strong>iOS</strong></li>
-  <li>번들 ID: <code class="language-plaintext highlighter-rouge">com.yourapp.bundleid</code></li>
-  <li><code class="language-plaintext highlighter-rouge">GoogleService.plist</code> 파일 다운로드</li>
-</ol>
-
-<h3 id="23-android-설정">2.3 Android 설정</h3>
-
-<h4 id="231-stringsxml-설정">2.3.1 strings.xml 설정</h4>
-
-<p><code class="language-plaintext highlighter-rouge">android/app/src/main/res/values/strings.xml</code>:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;resources&gt;</span>
-    <span class="c">&lt;!-- 웹 클라이언트 ID (server_client_id) --&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"server_client_id"</span><span class="nt">&gt;</span>YOUR_WEB_CLIENT_ID.apps.googleusercontent.com<span class="nt">&lt;/string&gt;</span>
-<span class="nt">&lt;/resources&gt;</span>
-</code></pre></div></div>
-
-<p><strong>참고</strong>: Android 클라이언트 ID는 코드에 넣을 필요 없습니다. 플러그인이 자동으로 사용합니다.</p>
-
-<h4 id="232-androidmanifestxml-권한-추가">2.3.2 AndroidManifest.xml 권한 추가</h4>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.GET_ACCOUNTS"</span> <span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<h4 id="233-capacitorconfigts-설정">2.3.3 capacitor.config.ts 설정</h4>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
-  <span class="na">plugins</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">GoogleAuth</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">scopes</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">profile</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">],</span>
-      <span class="na">serverClientId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">YOUR_WEB_CLIENT_ID.apps.googleusercontent.com</span><span class="dl">"</span><span class="p">,</span>
-      <span class="na">forceCodeForRefreshToken</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="p">},</span>
-  <span class="p">},</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<h3 id="24-ios-설정">2.4 iOS 설정</h3>
-
-<h4 id="241-googleserviceplist-추가">2.4.1 GoogleService.plist 추가</h4>
-
-<ol>
-  <li>Google Console에서 다운로드한 <code class="language-plaintext highlighter-rouge">GoogleService.plist</code> 파일을</li>
-  <li><code class="language-plaintext highlighter-rouge">ios/App/App/</code> 폴더에 복사</li>
-</ol>
-
-<h4 id="242-infoplist-설정">2.4.2 Info.plist 설정</h4>
-
-<p><code class="language-plaintext highlighter-rouge">ios/App/App/Info.plist</code>:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;key&gt;</span>CFBundleURLTypes<span class="nt">&lt;/key&gt;</span>
-<span class="nt">&lt;array&gt;</span>
-    <span class="nt">&lt;dict&gt;</span>
-        <span class="nt">&lt;key&gt;</span>CFBundleURLSchemes<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;array&gt;</span>
-            <span class="nt">&lt;string&gt;</span>com.yourapp.bundleid<span class="nt">&lt;/string&gt;</span>
-            <span class="c">&lt;!-- GoogleService.plist의 REVERSED_CLIENT_ID 값 --&gt;</span>
-            <span class="nt">&lt;string&gt;</span>YOUR_REVERSED_CLIENT_ID<span class="nt">&lt;/string&gt;</span>
-        <span class="nt">&lt;/array&gt;</span>
-    <span class="nt">&lt;/dict&gt;</span>
-<span class="nt">&lt;/array&gt;</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">REVERSED_CLIENT_ID</code>는 <code class="language-plaintext highlighter-rouge">GoogleService.plist</code> 파일에서 확인할 수 있습니다.</p>
-
-<h3 id="25-프론트엔드-코드">2.5 프론트엔드 코드</h3>
-
-<p><code class="language-plaintext highlighter-rouge">client/lib/auth.ts</code>:</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">GoogleAuth</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@codetrix-studio/capacitor-google-auth</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="k">export</span> <span class="kd">const</span> <span class="nx">startSocialLogin</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
-  <span class="nx">provider</span><span class="p">:</span> <span class="nx">OAuthProvider</span>
-<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">isMobile</span> <span class="o">=</span> <span class="nx">Capacitor</span><span class="p">.</span><span class="nx">isNativePlatform</span><span class="p">();</span>
-
-  <span class="k">if</span> <span class="p">(</span><span class="nx">isMobile</span> <span class="o">&amp;&amp;</span> <span class="nx">provider</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">google</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="p">{</span>
-      <span class="c1">// 구글 플러그인 초기화 (scopes 포함)</span>
-      <span class="k">await</span> <span class="nx">GoogleAuth</span><span class="p">.</span><span class="nx">initialize</span><span class="p">({</span>
-        <span class="na">scopes</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">profile</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">],</span>
-      <span class="p">});</span>
-
-      <span class="c1">// 구글 네이티브 로그인 실행</span>
-      <span class="kd">const</span> <span class="nx">googleResult</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">GoogleAuth</span><span class="p">.</span><span class="nx">signIn</span><span class="p">();</span>
-
-      <span class="c1">// 구글 ID 토큰을 백엔드로 전달</span>
-      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">googleResult</span><span class="p">.</span><span class="nx">authentication</span><span class="p">?.</span><span class="nx">idToken</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">구글 ID 토큰을 받지 못했습니다.</span><span class="dl">"</span><span class="p">);</span>
-      <span class="p">}</span>
-
-      <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">processGoogleNativeLogin</span><span class="p">(</span>
-        <span class="nx">googleResult</span><span class="p">.</span><span class="nx">authentication</span><span class="p">.</span><span class="nx">idToken</span>
-      <span class="p">);</span>
-
-      <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nb">window</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span>
-          <span class="k">new</span> <span class="nx">CustomEvent</span><span class="p">(</span><span class="dl">"</span><span class="s2">oauth-login-success</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-            <span class="na">detail</span><span class="p">:</span> <span class="p">{</span> <span class="na">userInfo</span><span class="p">:</span> <span class="nx">result</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">user_info</span> <span class="p">},</span>
-          <span class="p">})</span>
-        <span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nb">window</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span>
-        <span class="k">new</span> <span class="nx">CustomEvent</span><span class="p">(</span><span class="dl">"</span><span class="s2">oauth-login-error</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-          <span class="na">detail</span><span class="p">:</span> <span class="p">{</span> <span class="na">error</span><span class="p">:</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="p">},</span>
-        <span class="p">})</span>
-      <span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="c1">// 웹: 일반 OAuth 리다이렉트</span>
-    <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">authorization_url</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// 백엔드로 구글 ID 토큰 전달</span>
-<span class="k">export</span> <span class="kd">const</span> <span class="nx">processGoogleNativeLogin</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
-  <span class="nx">googleIdToken</span><span class="p">:</span> <span class="kr">string</span>
-<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">OAuthLoginResponse</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">getApiUrl</span><span class="p">()}</span><span class="s2">/v1/auth/oauth/google/native`</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span> <span class="p">},</span>
-    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-      <span class="na">google_id_token</span><span class="p">:</span> <span class="nx">googleIdToken</span><span class="p">,</span>
-      <span class="na">device_info</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">platform</span><span class="p">}</span><span class="s2"> - </span><span class="p">${</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
-    <span class="p">}),</span>
-    <span class="na">credentials</span><span class="p">:</span> <span class="dl">"</span><span class="s2">include</span><span class="dl">"</span><span class="p">,</span>
-  <span class="p">});</span>
-
-  <span class="k">return</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<h3 id="26-웹-설정-선택">2.6 웹 설정 (선택)</h3>
-
-<p><code class="language-plaintext highlighter-rouge">index.html</code>:</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;meta</span>
-  <span class="na">name=</span><span class="s">"google-signin-client_id"</span>
-  <span class="na">content=</span><span class="s">"YOUR_WEB_CLIENT_ID.apps.googleusercontent.com"</span>
-<span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="3-백엔드-api-엔드포인트">3. 백엔드 API 엔드포인트</h2>
-
-<h3 id="31-카카오-네이티브-로그인">3.1 카카오 네이티브 로그인</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /v1/auth/oauth/kakao/native
-Content-Type: application/json
-
-{
-  "kakao_access_token": "카카오_액세스_토큰",
-  "device_info": "플랫폼 정보"
-}
-</code></pre></div></div>
-
-<h3 id="32-구글-네이티브-로그인">3.2 구글 네이티브 로그인</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /v1/auth/oauth/google/native
-Content-Type: application/json
-
-{
-  "google_id_token": "구글_ID_토큰",
-  "device_info": "플랫폼 정보"
-}
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="4-체크리스트">4. 체크리스트</h2>
-
-<h3 id="카카오-로그인">카카오 로그인</h3>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">capacitor-kakao-login-plugin</code> 설치</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: Kakao SDK 의존성 추가</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: <code class="language-plaintext highlighter-rouge">AndroidManifest.xml</code> 설정</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: <code class="language-plaintext highlighter-rouge">strings.xml</code>에 앱 키 설정</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: <code class="language-plaintext highlighter-rouge">MainActivity.java</code>에서 SDK 초기화</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />iOS: <code class="language-plaintext highlighter-rouge">Info.plist</code> 설정</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />iOS: <code class="language-plaintext highlighter-rouge">AppDelegate.swift</code>에서 SDK 초기화</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />카카오 개발자 콘솔에 키 해시 등록</li>
-</ul>
-
-<h3 id="구글-로그인">구글 로그인</h3>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">@codetrix-studio/capacitor-google-auth</code> 설치</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Google Console에 웹 클라이언트 ID 생성</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Google Console에 Android 클라이언트 ID 생성 (SHA-1 지문 등록)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Google Console에 iOS 클라이언트 ID 생성 (선택)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: <code class="language-plaintext highlighter-rouge">strings.xml</code>에 웹 클라이언트 ID 설정</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Android: <code class="language-plaintext highlighter-rouge">capacitor.config.ts</code> 설정</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />iOS: <code class="language-plaintext highlighter-rouge">GoogleService.plist</code> 추가</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />iOS: <code class="language-plaintext highlighter-rouge">Info.plist</code>에 <code class="language-plaintext highlighter-rouge">REVERSED_CLIENT_ID</code> 추가</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />웹: <code class="language-plaintext highlighter-rouge">index.html</code>에 meta tag 추가</li>
-</ul>
-
-<hr />
-
-<h2 id="5-참고-자료">5. 참고 자료</h2>
-
-<ul>
-  <li><a href="https://capacitorjs.com/docs">Capacitor 공식 문서</a></li>
-  <li><a href="https://developers.kakao.com/docs/latest/ko/flutter/getting-started#project-scheme">Kakao developer</a></li>
-  <li><a href="https://github.com/nerdFrenzs/capacitor-kakao-login-plugin">capacitor-kakao-login-plugin</a></li>
-  <li><a href="https://github.com/CodetrixStudio/CapacitorGoogleAuth">@codetrix-studio/capacitor-google-auth</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서 카카오/구글 네이티브 로그인을 구현한 방법에 대해 정리해보았습니다.]]></summary></entry></feed>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name><email>dmsskgus@sookmyung.ac.kr</email></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.]]></summary></entry></feed>

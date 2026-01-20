@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor) | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다." />
+<meta property="og:description" content="친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-01-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-01-20T07:36:29+00:00","datePublished":"2026-01-19T00:00:00+00:00","description":"친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.","headline":"[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-01-19-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-01-19-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-01-20T07:37:12+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)",
+    "description": "친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-01-19T00:00:00+00:00",
+    "dateModified": "2026-01-20T07:36:29+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2026-01-19-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)",
+        "item": "https://nan0silver.github.io/projectdiary/2026-01-19-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-01-19-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-01-19T00:00:00+00:00">19 Jan 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 20 Jan 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-01-20T07:36:29+00:00">2026-01-20</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#-문제-발견-배경">문제 발견 배경</a></li>
+  <li>
+    <p><a href="#-근본-원인-분석">근본 원인 분석</a></p>
+
+    <ul>
+      <li><a href="#1-websocket-인증-흐름">1. WebSocket 인증 흐름</a></li>
+      <li><a href="#2-authenticationprincipal의-동작-방식">2. <code class="language-plaintext highlighter-rouge">@AuthenticationPrincipal</code>의 동작 방식</a></li>
+      <li><a href="#3-문제의-핵심-직렬화역직렬화">3. 문제의 핵심: 직렬화/역직렬화</a></li>
+      <li><a href="#4-프로젝트-구현-특성">4. 프로젝트 구현 특성</a></li>
+    </ul>
+  </li>
+  <li><a href="#-해결-방법">해결 방법</a></li>
+  <li><a href="#-authenticationprincipal-vs-simpmessageheaderaccessor">@AuthenticationPrincipal vs SimpMessageHeaderAccessor</a></li>
+  <li><a href="#-핵심-차이점">핵심 차이점</a></li>
+  <li><a href="#-테스트-결과">테스트 결과</a></li>
+  <li><a href="#-추가-개선-사항-선택">추가 개선 사항(선택)</a></li>
+  <li><a href="#-참고-자료">참고자료</a></li>
+  <li><a href="#-결론">결론</a></li>
+</ul>
+
+<hr />
+
+<h2 id="-문제-발견-배경">📖 문제 발견 배경</h2>
+
+<p>실시간 음성 매칭 서비스를 개발하던 중, 통화 중 브라우저를 새로고침했을 때 통화가 비정상적으로 종료되는 문제를 발견했다. 이를 해결하기 위해 Grace Period(유예 시간) 기능을 구현하여, 새로고침 후 30초 이내에 재접속하면 기존 통화를 복구할 수 있도록 했다.</p>
+
+<p>Grace Period 기능 구현을 완료하고 서버를 재시작한 뒤, 통화 종료 기능을 테스트하는 순간 예상치 못한 <code class="language-plaintext highlighter-rouge">NullPointerException</code>이 발생했다. 🥲</p>
+
+<p><strong>당황스러웠던 점은:</strong></p>
+
+<ol>
+  <li>서버 재시작 전까지는 정상적으로 작동했던 기능이었던 점</li>
+  <li>WebSocket CONNECT 시점에는 인증이 완벽하게 성공했는데, MESSAGE 전송 시점에만 에러가 발생했던 점</li>
+  <li>로그를 보니 <code class="language-plaintext highlighter-rouge">CustomUserDetails</code> 객체는 존재하는데 내부의 <code class="language-plaintext highlighter-rouge">user</code> 필드만 null이었던 점..</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WebSocket 연결 인증 성공 - userId: xxx  ✅
+CustomUserDetails.user is null?: false  ✅
+User ID: xxx  ✅
+
+... (통화 종료 버튼 클릭)
+
+User in UserDetails is null  ❌
+NullPointerException: Cannot invoke "User.getId()" because "this.user" is null
+</code></pre></div></div>
+
+<p>코드를 변경한 것도 아닌데 갑자기 작동하지 않는 이 상황이 매우 혼란스러웠다.
+이 글은 이 문제의 원인과 해결 과정을 정리한 트러블슈팅 문서이다.</p>
+
+<hr />
+
+<h2 id="-문제-상황">📋 문제 상황</h2>
+
+<h3 id="증상">증상</h3>
+
+<ul>
+  <li>WebSocket CONNECT 시점: 인증 성공 ✅</li>
+  <li>WebSocket MESSAGE 전송 시점: <code class="language-plaintext highlighter-rouge">NullPointerException</code> 발생 ❌
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.NullPointerException: Cannot invoke "com.ldsilver.chingoohaja.domain.user.User.getId()"
+because "this.user" is null
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="에러-발생-코드">에러 발생 코드</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@MessageMapping</span><span class="o">(</span><span class="s">"/endpoint/{targetId}"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleMessage</span><span class="o">(</span>
+    <span class="nd">@DestinationVariable</span> <span class="nc">Long</span> <span class="n">targetId</span><span class="o">,</span>
+    <span class="nd">@Payload</span> <span class="nc">SomeMessage</span> <span class="n">message</span><span class="o">,</span>
+    <span class="nd">@AuthenticationPrincipal</span> <span class="nc">CustomUserDetails</span> <span class="n">userDetails</span>  <span class="c1">// ❌ 문제 발생</span>
+<span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Long</span> <span class="n">userId</span> <span class="o">=</span> <span class="n">userDetails</span><span class="o">.</span><span class="na">getUserId</span><span class="o">();</span>  <span class="c1">// NullPointerException 발생!</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="로그-분석">로그 분석</h3>
+
+<p><strong>CONNECT 시점 (성공):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WebSocket 연결 인증 성공 - userId: xxx
+Principal is CustomUserDetails?: true
+CustomUserDetails.user is null?: false  ✅
+User ID: xxx
+</code></pre></div></div>
+
+<p><strong>MESSAGE 전송 시점 (실패):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Invoking WebSocketController#handleMessage
+User in UserDetails is null  ❌
+NullPointerException: Cannot invoke "User.getId()" because "this.user" is null
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-근본-원인-분석">🔍 근본 원인 분석</h2>
+
+<h3 id="1-websocket-인증-흐름">1. WebSocket 인증 흐름</h3>
+
+<h4 id="connect-단계">CONNECT 단계</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클라이언트 CONNECT 요청
+    ↓
+JwtChannelInterceptor.preSend() 실행
+    ↓
+토큰 검증 및 User 조회
+    ↓
+CustomUserDetails 생성 (user 필드 포함)
+    ↓
+UsernamePasswordAuthenticationToken 생성
+    ↓
+WebSocket 세션에 Authentication 저장
+</code></pre></div></div>
+
+<p>이 시점에는 <code class="language-plaintext highlighter-rouge">CustomUserDetails.user</code>가 <strong>정상적으로 존재</strong></p>
+
+<h4 id="message-전송-단계">MESSAGE 전송 단계</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클라이언트 MESSAGE 전송
+    ↓
+Spring이 세션에서 Authentication 조회
+    ↓
+@AuthenticationPrincipal로 Principal 주입
+    ↓
+??? CustomUserDetails.user가 null ???
+</code></pre></div></div>
+
+<h3 id="2-authenticationprincipal의-동작-방식">2. <code class="language-plaintext highlighter-rouge">@AuthenticationPrincipal</code>의 동작 방식</h3>
+
+<p><code class="language-plaintext highlighter-rouge">@AuthenticationPrincipal</code>는 내부적으로 다음과 같이 동작한다:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Spring Security 내부 동작 (의사 코드)</span>
+<span class="kd">public</span> <span class="nc">Object</span> <span class="nf">resolveArgument</span><span class="o">(</span><span class="nc">MethodParameter</span> <span class="n">parameter</span><span class="o">,</span> <span class="o">...)</span> <span class="o">{</span>
+    <span class="nc">Authentication</span> <span class="n">authentication</span> <span class="o">=</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">authentication</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nc">Object</span> <span class="n">principal</span> <span class="o">=</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
+
+    <span class="c1">// 🔥 문제: principal이 직렬화/역직렬화되었을 수 있음</span>
+    <span class="c1">// 🔥 WebSocket 세션 저장소(Redis, 메모리)에서 복원될 때 문제 발생 가능</span>
+
+    <span class="k">return</span> <span class="n">principal</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="3-문제의-핵심-직렬화역직렬화">3. 문제의 핵심: 직렬화/역직렬화</h3>
+
+<p>WebSocket 세션은 메모리나 Redis에 저장될 수 있으며, 이 과정에서:</p>
+
+<ol>
+  <li><strong>CONNECT 시점</strong>: <code class="language-plaintext highlighter-rouge">CustomUserDetails</code> 객체가 생성되고 세션에 저장
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">User user</code> 필드가 JPA 엔티티로 완전히 로드됨</li>
+    </ul>
+  </li>
+  <li><strong>MESSAGE 전송 시점</strong>: 세션에서 <code class="language-plaintext highlighter-rouge">Authentication</code> 객체 복원
+    <ul>
+      <li>직렬화/역직렬화 과정에서 <code class="language-plaintext highlighter-rouge">User</code> 객체가 제대로 복원되지 않음</li>
+      <li>또는 세션 스토리지가 얕은 복사만 수행</li>
+      <li><strong>결과</strong>: <code class="language-plaintext highlighter-rouge">CustomUserDetails.user == null</code></li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="4-프로젝트-구현-특성">4. 프로젝트 구현 특성</h3>
+
+<h4 id="customuserdetails-구조">CustomUserDetails 구조</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomUserDetails</span> <span class="kd">implements</span> <span class="nc">UserDetails</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">User</span> <span class="n">user</span><span class="o">;</span>  <span class="c1">// JPA Entity</span>
+
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getUserId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>  <span class="c1">// user가 null이면 NPE 발생!</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getUsername</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>  <span class="c1">// userId를 String으로 저장</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="user-엔티티">User 엔티티</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="c1">// ... 다양한 필드들</span>
+    <span class="c1">// Serializable 구현되지 않음 (문제 요인 중 하나)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="jwtchannelinterceptor">JwtChannelInterceptor</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">Authentication</span> <span class="nf">authenticateToken</span><span class="o">(</span><span class="nc">String</span> <span class="n">token</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Long</span> <span class="n">userId</span> <span class="o">=</span> <span class="n">jwtTokenProvider</span><span class="o">.</span><span class="na">getUserIdFromToken</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">userId</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">(...);</span>
+
+    <span class="nc">CustomUserDetails</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CustomUserDetails</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+
+    <span class="c1">// UsernamePasswordAuthenticationToken 생성</span>
+    <span class="c1">// 이 객체가 WebSocket 세션에 저장됨</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">UsernamePasswordAuthenticationToken</span><span class="o">(</span>
+        <span class="n">userDetails</span><span class="o">,</span>  <span class="c1">// principal</span>
+        <span class="kc">null</span><span class="o">,</span>
+        <span class="n">userDetails</span><span class="o">.</span><span class="na">getAuthorities</span><span class="o">()</span>
+    <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-해결-방법">✅ 해결 방법</h2>
+
+<h3 id="simpmessageheaderaccessor-사용">SimpMessageHeaderAccessor 사용</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@MessageMapping</span><span class="o">(</span><span class="s">"/endpoint/{targetId}"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleMessage</span><span class="o">(</span>
+    <span class="nd">@DestinationVariable</span> <span class="nc">Long</span> <span class="n">targetId</span><span class="o">,</span>
+    <span class="nd">@Payload</span> <span class="nc">SomeMessage</span> <span class="n">message</span><span class="o">,</span>
+    <span class="nc">SimpMessageHeaderAccessor</span> <span class="n">headerAccessor</span>  <span class="c1">// ✅ 변경</span>
+<span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Long</span> <span class="n">userId</span> <span class="o">=</span> <span class="n">extractUserIdFromPrincipal</span><span class="o">(</span><span class="n">headerAccessor</span><span class="o">);</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="nc">Long</span> <span class="nf">extractUserIdFromPrincipal</span><span class="o">(</span><span class="nc">SimpMessageHeaderAccessor</span> <span class="n">headerAccessor</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Principal</span> <span class="n">principal</span> <span class="o">=</span> <span class="n">headerAccessor</span><span class="o">.</span><span class="na">getUser</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">principal</span> <span class="k">instanceof</span> <span class="nc">Authentication</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Authentication</span> <span class="n">auth</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Authentication</span><span class="o">)</span> <span class="n">principal</span><span class="o">;</span>
+        <span class="nc">Object</span> <span class="n">principalObj</span> <span class="o">=</span> <span class="n">auth</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">principalObj</span> <span class="k">instanceof</span> <span class="nc">CustomUserDetails</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">CustomUserDetails</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="o">(</span><span class="nc">CustomUserDetails</span><span class="o">)</span> <span class="n">principalObj</span><span class="o">;</span>
+
+            <span class="c1">// user가 null이어도 username(=userId)에서 추출 가능</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">userDetails</span><span class="o">.</span><span class="na">getUser</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="nc">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">userDetails</span><span class="o">.</span><span class="na">getUsername</span><span class="o">());</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="n">userDetails</span><span class="o">.</span><span class="na">getUserId</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-authenticationprincipal-vs-simpmessageheaderaccessor">🔬 @AuthenticationPrincipal vs SimpMessageHeaderAccessor</h2>
+
+<h3 id="authenticationprincipal-방식">@AuthenticationPrincipal 방식</h3>
+
+<h4 id="장점">장점</h4>
+
+<ul>
+  <li>✅ 코드가 간결함</li>
+  <li>✅ Spring Security의 표준 방식</li>
+  <li>✅ HTTP 요청에서 잘 작동</li>
+</ul>
+
+<h4 id="단점">단점</h4>
+
+<ul>
+  <li>❌ WebSocket 세션 관리에서 불안정</li>
+  <li>❌ 직렬화/역직렬화 이슈에 취약</li>
+  <li>❌ Principal 객체의 내부 필드가 null일 수 있음</li>
+  <li>❌ 디버깅이 어려움 (Spring이 자동으로 주입)</li>
+</ul>
+
+<h4 id="동작-방식">동작 방식</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Spring이 내부적으로 수행</span>
+<span class="nc">Authentication</span> <span class="n">auth</span> <span class="o">=</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+<span class="nc">CustomUserDetails</span> <span class="n">principal</span> <span class="o">=</span> <span class="o">(</span><span class="nc">CustomUserDetails</span><span class="o">)</span> <span class="n">auth</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
+
+<span class="c1">// 🔥 이 principal이 직렬화/역직렬화를 거쳤을 수 있음</span>
+<span class="c1">// 🔥 user 필드가 null일 가능성</span>
+</code></pre></div></div>
+
+<h3 id="simpmessageheaderaccessor-방식">SimpMessageHeaderAccessor 방식</h3>
+
+<h4 id="장점-1">장점</h4>
+
+<ul>
+  <li>✅ WebSocket 메시지의 실제 Principal에 직접 접근</li>
+  <li>✅ 직렬화 이슈 회피 (Principal 객체를 직접 다룸)</li>
+  <li>✅ null 체크 및 fallback 로직 구현 가능</li>
+  <li>✅ 디버깅 용이 (명시적인 코드)</li>
+</ul>
+
+<h4 id="단점-1">단점</h4>
+
+<ul>
+  <li>❌ 코드가 다소 길어짐</li>
+  <li>❌ 헬퍼 메서드 필요</li>
+</ul>
+
+<h4 id="동작-방식-1">동작 방식</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 직접 메시지 헤더에서 Principal 추출</span>
+<span class="nc">Principal</span> <span class="n">principal</span> <span class="o">=</span> <span class="n">headerAccessor</span><span class="o">.</span><span class="na">getUser</span><span class="o">();</span>
+
+<span class="c1">// 이 principal은 JwtChannelInterceptor에서</span>
+<span class="c1">// accessor.setUser(authentication)으로 설정한 바로 그 객체</span>
+<span class="c1">// 중간에 직렬화/역직렬화를 거치지 않음 (같은 요청 컨텍스트 내)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-핵심-차이점">🎯 핵심 차이점</h2>
+
+<h3 id="인증-정보-조회-경로">인증 정보 조회 경로</h3>
+
+<p><strong>@AuthenticationPrincipal:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WebSocket 세션 스토리지 (메모리/Redis)
+    ↓
+직렬화된 Authentication 객체
+    ↓
+역직렬화 (문제 발생 가능)
+    ↓
+SecurityContext
+    ↓
+@AuthenticationPrincipal 주입
+</code></pre></div></div>
+
+<p><strong>SimpMessageHeaderAccessor:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>현재 메시지의 StompHeaderAccessor
+    ↓
+직접 Principal 조회
+    ↓
+명시적 타입 체크 및 변환
+    ↓
+안전한 userId 추출
+</code></pre></div></div>
+
+<h3 id="세션-관리-관점">세션 관리 관점</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>측면</th>
+      <th>@AuthenticationPrincipal</th>
+      <th>SimpMessageHeaderAccessor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>직렬화 의존성</td>
+      <td>높음</td>
+      <td>낮음</td>
+    </tr>
+    <tr>
+      <td>세션 저장소 영향</td>
+      <td>영향 받음</td>
+      <td>영향 적음</td>
+    </tr>
+    <tr>
+      <td>JPA 엔티티 문제</td>
+      <td>발생 가능</td>
+      <td>회피 가능</td>
+    </tr>
+    <tr>
+      <td>Lazy Loading</td>
+      <td>문제 가능</td>
+      <td>문제 없음</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-테스트-결과">🧪 테스트 결과</h2>
+
+<h3 id="before-문제-발생">Before (문제 발생)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WebSocket CONNECT: ✅ 성공
+WebSocket MESSAGE: ❌ NullPointerException
+</code></pre></div></div>
+
+<h3 id="after-해결">After (해결)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WebSocket CONNECT: ✅ 성공
+WebSocket MESSAGE: ✅ 성공
+userId 추출: ✅ 성공
+메시지 처리: ✅ 성공
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-추가-개선-사항-선택">💡 추가 개선 사항 (선택)</h2>
+
+<h3 id="1-user-엔티티를-serializable로-만들기">1. User 엔티티를 Serializable로 만들기</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="2-customuserdetails를-serializable로-만들기">2. CustomUserDetails를 Serializable로 만들기</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomUserDetails</span> <span class="kd">implements</span> <span class="nc">UserDetails</span><span class="o">,</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">User</span> <span class="n">user</span><span class="o">;</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="3-websocket-세션-관리-개선">3. WebSocket 세션 관리 개선</h3>
+
+<ul>
+  <li>Redis를 사용한다면 직렬화 설정 최적화</li>
+  <li>세션 타임아웃 설정 검토</li>
+  <li>재연결 시 인증 갱신 로직 구현</li>
+</ul>
+
+<hr />
+
+<h2 id="-참고-자료">📚 참고 자료</h2>
+
+<ul>
+  <li>Spring WebSocket Documentation: https://docs.spring.io/spring-framework/reference/web/websocket.html</li>
+  <li>Spring Security WebSocket Support: https://docs.spring.io/spring-security/reference/servlet/integrations/websocket.html</li>
+  <li>STOMP Protocol Specification: https://stomp.github.io/</li>
+</ul>
+
+<hr />
+
+<h2 id="-결론">🏁 결론</h2>
+
+<p>WebSocket 환경에서는 HTTP 요청과 달리 <strong>세션 관리 및 직렬화 이슈</strong>가 발생할 수 있다.</p>
+
+<p>특히 <code class="language-plaintext highlighter-rouge">@AuthenticationPrincipal</code>은 편리하지만 WebSocket 세션 저장소를 거치면서 <strong>Principal 객체의 내부 상태가 손실될 위험</strong>이 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">SimpMessageHeaderAccessor</code>를 사용하면:</p>
+
+<ul>
+  <li>✅ 직접 Principal에 접근하여 안정성 확보</li>
+  <li>✅ null 체크 및 fallback 로직 구현 가능</li>
+  <li>✅ 명시적 코드로 디버깅 용이</li>
+</ul>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2026-01-12-diary/" class="flip-title"><span>[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</span></a>  <time class="faded fine" datetime="2026-01-12T00:00:00+00:00">12 Jan 2026</time></li>                        <li class="h4">  <a href="/algorithm/2026-01-09-summary/" class="flip-title"><span>[Algorithm] 코딩테스트 알고리즘 선택방법 요약</span></a>  <time class="faded fine" datetime="2026-01-09T00:00:00+00:00">09 Jan 2026</time></li>                        <li class="h4">  <a href="/algorithm/2025-12-29-floyd-warshall/" class="flip-title"><span>[Algorithm] 플로이드-워셜 알고리즘</span></a>  <time class="faded fine" datetime="2025-12-29T00:00:00+00:00">29 Dec 2025</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (15)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (27)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (63)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>
