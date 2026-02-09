@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다." />
+<meta property="og:description" content="친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-01-22T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-09T03:05:41+00:00","datePublished":"2026-01-22T00:00:00+00:00","description":"친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.","headline":"[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-01-22-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-01-22-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-02-09T03:06:30+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기",
+    "description": "친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-01-22T00:00:00+00:00",
+    "dateModified": "2026-02-09T03:05:41+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2026-01-22-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기",
+        "item": "https://nan0silver.github.io/projectdiary/2026-01-22-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-01-22-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-01-22T00:00:00+00:00">22 Jan 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Feb 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-02-09T03:05:41+00:00">2026-02-09</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>동시 요청으로 통화가 두 번 종료되는 문제 해결하기..!</p>
+</blockquote>
+
+<ul>
+  <li><a href="#서론">서론</a></li>
+</ul>
+
+<hr />
+
+<h2 id="서론">서론</h2>
+
+<p>이번 포스트에서는 제가 개발한 실시간 음성 매칭 서비스에서 발생한 동시성 문제를 해결하기 위해 <strong>비관적 락(Pessimistic Lock)</strong> 을 적용한 경험을 공유하고자 한다.</p>
+
+<p>“동시에 두 요청이 들어오면 어떻게 될까?”</p>
+
+<p>실시간 음성 매칭 플랫폼 “친구하자”를 개발하면서 이 질문에 직면했다. 특히 통화 종료는 Agora Cloud Recording 중지, Session 종료, 통화 기록 저장 등 여러 부수 효과를 동반하는 복잡하고 중요한 작업이였다.
+초기에는 낙관적락(<code class="language-plaintext highlighter-rouge">@Version</code>)으로 동시성을 제어했다. 하지만 사용성테스트를 하면서 네트워크 불안정이나 사용자의 중복 클릭 등으로 동시 요청이 발생한 경우, 한 요청은 성공하고 다른 요청은 <code class="language-plaintext highlighter-rouge">OptimisticLockException</code>을 발생시키지만, 이미 Recording은 두번 중지 요청을 받은 후였다.</p>
+
+<p>통화 종료는 단 한번만 수행되어야 하는 작업이기 때문에 이를 안전하게 처리할 수 있는 방법을 고민했다.
+결국 “충돌이 일어나지 않도록 원천 차단”하는 <strong>비관적 락</strong>을 도입하기로 결정했다.</p>
+
+<p>이 글에서는 두 락 방식의 차이와, 실제 프로젝트에서 비관적 락을 적용한 과정을 정리한다.</p>
+
+<h2 id="1-락lock이란">1. 락(Lock)이란?</h2>
+
+<p>여러 사용자가 동시에 같은 데이터를 수정하려 할 때 <strong>데이터 일관성</strong>을 보장하기 위한 메커니즘이다.</p>
+
+<h3 id="실생활-비유">실생활 비유</h3>
+
+<ul>
+  <li><strong>비관적 락</strong>: 화장실 문을 잠그고 들어가기 (다른 사람은 기다려야 함)</li>
+  <li><strong>낙관적 락</strong>: 화장실에 그냥 들어가되, 나올 때 다른 사람이 먼저 사용했는지 확인 (충돌 시 재시도)</li>
+</ul>
+
+<hr />
+
+<h2 id="2-낙관적-락-optimistic-lock">2. 낙관적 락 (Optimistic Lock)</h2>
+
+<h3 id="개념">개념</h3>
+
+<p>“<strong>충돌은 드물게 일어날 것</strong>“이라고 가정하고, 실제 충돌이 발생했을 때만 처리합니다.</p>
+
+<h3 id="동작-방식">동작 방식</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Call</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="nd">@Version</span>  <span class="c1">// 👈 낙관적 락의 핵심</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">version</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">CallStatus</span> <span class="n">status</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>시나리오:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>시간 순서:
+T1: User1이 Call 조회 (version=0, status=IN_PROGRESS)
+T2: User2가 Call 조회 (version=0, status=IN_PROGRESS)
+T3: User1이 status=COMPLETED 저장 (version=1로 증가) ✅ 성공
+T4: User2가 status=COMPLETED 저장 시도
+    → version=0으로 저장하려 함
+    → DB의 version은 이미 1
+    → OptimisticLockException 발생! ❌
+</code></pre></div></div>
+
+<h3 id="장점">장점</h3>
+
+<ul>
+  <li><strong>성능 우수</strong>: DB 락을 걸지 않아 대기 시간 없음</li>
+  <li><strong>데드락 없음</strong>: 물리적 락이 없어 데드락 불가능</li>
+  <li><strong>읽기 작업 많을 때 유리</strong></li>
+</ul>
+
+<h3 id="단점">단점</h3>
+
+<ul>
+  <li><strong>충돌 시 재시도 필요</strong>: 예외 발생 후 애플리케이션에서 재시도 로직 구현 필요</li>
+  <li><strong>충돌 빈번하면 비효율적</strong>: 재시도가 많아지면 오히려 성능 저하</li>
+</ul>
+
+<h3 id="예제-코드">예제 코드</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">endCallWithOptimisticLock</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="nc">Call</span> <span class="n">call</span> <span class="o">=</span> <span class="n">callRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">callId</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">.</span><span class="na">endCall</span><span class="o">();</span> <span class="c1">// status 변경</span>
+        <span class="n">callRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">call</span><span class="o">);</span> <span class="c1">// version 자동 증가 체크</span>
+
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">OptimisticLockException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 다른 사람이 먼저 수정함 → 재시도 필요</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">"낙관적 락 충돌 - 재시도 필요"</span><span class="o">);</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">CustomException</span><span class="o">(</span><span class="nc">ErrorCode</span><span class="o">.</span><span class="na">CONCURRENT_UPDATE</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-비관적-락-pessimistic-lock">3. 비관적 락 (Pessimistic Lock)</h2>
+
+<h3 id="개념-1">개념</h3>
+
+<p>“<strong>충돌이 자주 일어날 것</strong>“이라고 가정하고, 데이터를 읽는 순간부터 <strong>DB 레벨에서 락</strong>을 걸어 다른 트랜잭션의 접근을 차단합니다.</p>
+
+<h3 id="동작-방식-1">동작 방식</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Lock</span><span class="o">(</span><span class="nc">LockModeType</span><span class="o">.</span><span class="na">PESSIMISTIC_WRITE</span><span class="o">)</span>
+<span class="nd">@Query</span><span class="o">(</span><span class="s">"SELECT c FROM Call c WHERE c.id = :callId"</span><span class="o">)</span>
+<span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Call</span><span class="o">&gt;</span> <span class="nf">findByIdWithLock</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"callId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">callId</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>시나리오:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>시간 순서:
+T1: User1이 Call 조회 + 락 획득 🔒 (status=IN_PROGRESS)
+T2: User2가 Call 조회 시도
+    → User1의 락 때문에 대기... ⏳
+T3: User1이 status=COMPLETED 저장 후 커밋
+    → 락 해제 🔓
+T4: User2가 락 획득 🔒 (status=COMPLETED)
+    → "이미 종료됨" 확인 후 종료
+</code></pre></div></div>
+
+<h3 id="종류">종류</h3>
+
+<h4 id="pessimistic_read-공유-락-s-lock">PESSIMISTIC_READ (공유 락, S Lock)</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Lock</span><span class="o">(</span><span class="nc">LockModeType</span><span class="o">.</span><span class="na">PESSIMISTIC_READ</span><span class="o">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>읽기는 허용</strong>, 쓰기는 차단</li>
+  <li>여러 트랜잭션이 동시에 읽기 가능</li>
+  <li>하나라도 쓰기 시도하면 대기</li>
+</ul>
+
+<h4 id="pessimistic_write-배타-락-x-lock--주로-사용">PESSIMISTIC_WRITE (배타 락, X Lock) ⭐ 주로 사용</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Lock</span><span class="o">(</span><span class="nc">LockModeType</span><span class="o">.</span><span class="na">PESSIMISTIC_WRITE</span><span class="o">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>읽기/쓰기 모두 차단</strong></li>
+  <li>완전히 독점적으로 사용</li>
+  <li>상태 변경 작업에 적합</li>
+</ul>
+
+<h3 id="장점-1">장점</h3>
+
+<ul>
+  <li><strong>충돌 완전 방지</strong>: 동시 수정 100% 차단</li>
+  <li><strong>재시도 불필요</strong>: 순차 처리로 예외 발생 안 함</li>
+  <li><strong>쓰기 작업 많을 때 유리</strong></li>
+</ul>
+
+<h3 id="단점-1">단점</h3>
+
+<ul>
+  <li><strong>성능 저하</strong>: 락 대기 시간으로 응답 지연</li>
+  <li><strong>데드락 가능성</strong>: 여러 리소스에 락 걸면 순환 대기 발생 가능</li>
+  <li><strong>확장성 제한</strong>: 동시 처리량 감소</li>
+</ul>
+
+<h3 id="예제-코드-1">예제 코드</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">endCallWithPessimisticLock</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 🔒 이 순간 락 획득 - 다른 트랜잭션 대기</span>
+    <span class="nc">Call</span> <span class="n">call</span> <span class="o">=</span> <span class="n">callRepository</span><span class="o">.</span><span class="na">findByIdWithLock</span><span class="o">(</span><span class="n">callId</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getCallStatus</span><span class="o">()</span> <span class="o">==</span> <span class="nc">CallStatus</span><span class="o">.</span><span class="na">COMPLETED</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 이미 종료됨 - 중복 요청 무시</span>
+        <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">call</span><span class="o">.</span><span class="na">endCall</span><span class="o">();</span> <span class="c1">// status 변경</span>
+    <span class="n">callRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">call</span><span class="o">);</span>
+    <span class="c1">// 🔓 커밋 시점에 락 해제</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-내-프로젝트-기존-코드-분석">4. 내 프로젝트 기존 코드 분석</h2>
+
+<h3 id="기존-코드-문제점">기존 코드 (문제점)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// CallStatusService.java - 기존</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">CallStatusResponse</span> <span class="nf">endCall</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ❌ 일반 조회 - 락 없음</span>
+    <span class="nc">Call</span> <span class="n">call</span> <span class="o">=</span> <span class="n">callRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">callId</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">CustomException</span><span class="o">(</span><span class="nc">ErrorCode</span><span class="o">.</span><span class="na">CALL_NOT_FOUND</span><span class="o">));</span>
+
+    <span class="c1">// ❌ 상태 체크만으로는 동시성 문제 해결 안 됨</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getCallStatus</span><span class="o">()</span> <span class="o">==</span> <span class="nc">CallStatus</span><span class="o">.</span><span class="na">COMPLETED</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"이미 종료된 통화"</span><span class="o">);</span>
+        <span class="c1">// ...</span>
+    <span class="o">}</span>
+
+    <span class="n">callService</span><span class="o">.</span><span class="na">endCall</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="문제-시나리오">문제 시나리오</h3>
+
+<p><strong>상황: User1과 User2가 거의 동시에 통화 종료 버튼 클릭</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>시간축:
+─────────────────────────────────────────────────────
+User1 Thread                 User2 Thread
+─────────────────────────────────────────────────────
+T1: findById(callId)
+    → status=IN_PROGRESS
+    → version=0
+                              T2: findById(callId)
+                                  → status=IN_PROGRESS
+                                  → version=0
+
+T3: if (status == COMPLETED)
+    → false (통과)
+
+                              T4: if (status == COMPLETED)
+                                  → false (통과)
+
+T5: call.endCall()
+    → status=COMPLETED
+    → version=1
+    → save() ✅
+
+                              T6: call.endCall()
+                                  → status=COMPLETED
+                                  → version=2
+                                  → save() ✅
+─────────────────────────────────────────────────────
+</code></pre></div></div>
+
+<h3 id="발생-가능한-문제들">발생 가능한 문제들</h3>
+
+<h4 id="문제-1-중복-종료-처리">문제 1: 중복 종료 처리</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// User1의 call 객체: status=IN_PROGRESS (조회 시점)</span>
+<span class="c1">// User2의 call 객체: status=IN_PROGRESS (조회 시점)</span>
+
+<span class="c1">// 둘 다 검증 통과 → 둘 다 endCall() 실행</span>
+<span class="c1">// 결과:</span>
+<span class="c1">// - Recording 2번 중지 시도</span>
+<span class="c1">// - Session 2번 업데이트 시도</span>
+<span class="c1">// - 불필요한 리소스 낭비</span>
+</code></pre></div></div>
+
+<h4 id="문제-2-낙관적-락만으로는-불완전">문제 2: 낙관적 락만으로는 불완전</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Call</span> <span class="o">{</span>
+    <span class="nd">@Version</span>  <span class="c1">// 낙관적 락은 있었음</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">version</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// User1: version=0 → 1로 저장 성공 ✅</span>
+<span class="c1">// User2: version=0 → 저장 시도</span>
+<span class="c1">//        → OptimisticLockException 발생! ❌</span>
+<span class="c1">//        → 하지만 이미 Recording 중지 등의 부수 효과 발생됨</span>
+</code></pre></div></div>
+
+<h4 id="문제-3-endat-중복-설정">문제 3: endAt 중복 설정</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// User1이 먼저 저장</span>
+<span class="n">call</span><span class="o">.</span><span class="na">endAt</span> <span class="o">=</span> <span class="mi">2025</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mi">22</span> <span class="mi">10</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">00</span>
+<span class="n">call</span><span class="o">.</span><span class="na">durationSeconds</span> <span class="o">=</span> <span class="mi">120</span>
+
+<span class="c1">// User2가 나중에 저장 (낙관적 락 실패 안 했다면)</span>
+<span class="n">call</span><span class="o">.</span><span class="na">endAt</span> <span class="o">=</span> <span class="mi">2025</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mi">22</span> <span class="mi">10</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">01</span>  <span class="c1">// 1초 차이!</span>
+<span class="n">call</span><span class="o">.</span><span class="na">durationSeconds</span> <span class="o">=</span> <span class="mi">121</span>  <span class="c1">// 잘못된 값</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5-비관적-락-적용-후-개선">5. 비관적 락 적용 후 개선</h2>
+
+<h3 id="개선된-코드">개선된 코드</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// CallStatusService.java - 개선</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">CallStatusResponse</span> <span class="nf">endCall</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ✅ 비관적 락으로 조회 - DB 레벨에서 락 획득</span>
+    <span class="nc">Call</span> <span class="n">call</span> <span class="o">=</span> <span class="n">callRepository</span><span class="o">.</span><span class="na">findByIdWithLock</span><span class="o">(</span><span class="n">callId</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">CustomException</span><span class="o">(</span><span class="nc">ErrorCode</span><span class="o">.</span><span class="na">CALL_NOT_FOUND</span><span class="o">));</span>
+
+    <span class="c1">// ✅ 이 시점에는 다른 트랜잭션이 접근 불가능</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getCallStatus</span><span class="o">()</span> <span class="o">==</span> <span class="nc">CallStatus</span><span class="o">.</span><span class="na">COMPLETED</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"이미 종료된 통화 - 중복 요청 무시"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nf">createResponse</span><span class="o">(</span><span class="n">call</span><span class="o">);</span> <span class="c1">// 바로 반환</span>
+    <span class="o">}</span>
+
+    <span class="n">callService</span><span class="o">.</span><span class="na">endCall</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="개선된-시나리오">개선된 시나리오</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>시간축:
+─────────────────────────────────────────────────────
+User1 Thread                 User2 Thread
+─────────────────────────────────────────────────────
+T1: findByIdWithLock(callId)
+    🔒 락 획득
+    → status=IN_PROGRESS
+                              T2: findByIdWithLock(callId)
+                                  ⏳ 대기... (락 때문에 블록)
+
+T3: if (status == COMPLETED)
+    → false (통과)
+
+T4: call.endCall()
+    → status=COMPLETED
+    → save()
+
+T5: 트랜잭션 커밋
+    🔓 락 해제
+
+                              T6: 🔒 락 획득 (대기 끝)
+                                  → status=COMPLETED (이미 변경됨!)
+
+                              T7: if (status == COMPLETED)
+                                  → true
+                                  → "이미 종료됨" 반환 ✅
+                                  → 중복 처리 없음!
+─────────────────────────────────────────────────────
+</code></pre></div></div>
+
+<h3 id="핵심-개선-사항">핵심 개선 사항</h3>
+
+<h4 id="1-완전한-순차-처리">1. 완전한 순차 처리</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// User1: 락 획득 → 처리 → 커밋 → 락 해제</span>
+<span class="c1">// User2: 대기 → 락 획득 → "이미 종료" 확인 → 종료</span>
+
+<span class="c1">// 결과:</span>
+<span class="c1">// ✅ Recording 1번만 중지</span>
+<span class="c1">// ✅ Session 1번만 업데이트</span>
+<span class="c1">// ✅ endAt 정확히 1번만 설정</span>
+</code></pre></div></div>
+
+<h4 id="2-예외-발생-없음">2. 예외 발생 없음</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 낙관적 락: OptimisticLockException 발생 → 재시도 로직 필요</span>
+<span class="c1">// 비관적 락: 예외 없음 → 자연스럽게 순차 처리</span>
+</code></pre></div></div>
+
+<h4 id="3-데이터-무결성-보장">3. 데이터 무결성 보장</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// endAt: 2025-01-22 10:00:00 (정확히 1번만 설정)</span>
+<span class="c1">// durationSeconds: 120 (정확한 값)</span>
+<span class="c1">// callStatus: COMPLETED (명확한 상태)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-비관적-락--낙관적-락-이중-방어">6. 비관적 락 + 낙관적 락 이중 방어</h2>
+
+<p>현재 코드는 <strong>둘 다 사용</strong>하고 있습니다:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Call</span> <span class="o">{</span>
+    <span class="nd">@Version</span>  <span class="c1">// 낙관적 락 (보험)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">version</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// 비관적 락 (주 방어선)</span>
+<span class="nc">Call</span> <span class="n">call</span> <span class="o">=</span> <span class="n">callRepository</span><span class="o">.</span><span class="na">findByIdWithLock</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="이중-방어의-이유">이중 방어의 이유</h3>
+
+<p><strong>시나리오: 개발자 실수로 일반 findById() 사용</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 실수로 락 없이 조회</span>
+<span class="nc">Call</span> <span class="n">call</span> <span class="o">=</span> <span class="n">callRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>  <span class="c1">// ❌ 실수!</span>
+
+<span class="c1">// 낙관적 락이 여전히 작동</span>
+<span class="n">call</span><span class="o">.</span><span class="na">endCall</span><span class="o">();</span>
+<span class="n">callRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">call</span><span class="o">);</span>
+<span class="c1">// → 충돌 시 OptimisticLockException 발생 ✅</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="7-언제-무엇을-사용할까">7. 언제 무엇을 사용할까?</h2>
+
+<h3 id="낙관적-락-사용-사례">낙관적 락 사용 사례</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 좋은 경우</span>
+<span class="o">-</span> <span class="n">조회가</span> <span class="n">많고</span> <span class="n">수정이</span> <span class="n">적은</span> <span class="n">경우</span>
+<span class="o">-</span> <span class="n">충돌이</span> <span class="n">거의</span> <span class="n">없는</span> <span class="n">경우</span>
+<span class="o">-</span> <span class="n">성능이</span> <span class="n">최우선인</span> <span class="n">경우</span>
+
+<span class="nl">예시:</span>
+<span class="o">-</span> <span class="n">블로그</span> <span class="n">게시글</span> <span class="n">조회수</span> <span class="n">증가</span>
+<span class="o">-</span> <span class="n">상품</span> <span class="n">상세</span> <span class="n">정보</span> <span class="n">조회</span>
+<span class="o">-</span> <span class="n">사용자</span> <span class="n">프로필</span> <span class="n">업데이트</span>
+</code></pre></div></div>
+
+<h3 id="비관적-락-사용-사례">비관적 락 사용 사례</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 좋은 경우</span>
+<span class="o">-</span> <span class="n">충돌이</span> <span class="n">빈번한</span> <span class="n">경우</span>
+<span class="o">-</span> <span class="n">데이터</span> <span class="n">정합성이</span> <span class="n">매우</span> <span class="n">중요한</span> <span class="n">경우</span>
+<span class="o">-</span> <span class="n">재시도</span> <span class="n">로직</span> <span class="n">구현이</span> <span class="n">복잡한</span> <span class="n">경우</span>
+
+<span class="nl">예시:</span>
+<span class="o">-</span> <span class="n">재고</span> <span class="n">차감</span> <span class="o">(</span><span class="n">동시</span> <span class="n">주문</span><span class="o">)</span>
+<span class="o">-</span> <span class="n">좌석</span> <span class="n">예약</span> <span class="o">(</span><span class="n">티케팅</span><span class="o">)</span>
+<span class="o">-</span> <span class="n">통화</span> <span class="n">종료</span> <span class="o">(</span><span class="n">본</span> <span class="n">프로젝트</span><span class="o">)</span> <span class="err">⭐</span>
+<span class="o">-</span> <span class="n">계좌</span> <span class="n">이체</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="8-성능-비교">8. 성능 비교</h2>
+
+<h3 id="응답-시간-예상">응답 시간 예상</h3>
+
+<p><strong>낙관적 락 (충돌 없을 때)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User1: 50ms (조회 10ms + 저장 40ms)
+User2: 50ms (조회 10ms + 저장 40ms)
+평균: 50ms ✅ 빠름
+</code></pre></div></div>
+
+<p><strong>낙관적 락 (충돌 발생 시)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User1: 50ms (성공)
+User2: 150ms (실패 50ms + 재시도 100ms)
+평균: 100ms
+</code></pre></div></div>
+
+<p><strong>비관적 락</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User1: 50ms (조회+락 10ms + 처리 40ms)
+User2: 100ms (락 대기 50ms + 처리 50ms)
+평균: 75ms ⭐ 예측 가능
+</code></pre></div></div>
+
+<h3 id="내-프로젝트에서는">내 프로젝트에서는?</h3>
+
+<p><strong>통화 종료는 비관적 락이 적합한 이유:</strong></p>
+
+<ol>
+  <li>⏰ <strong>충돌 빈도</strong>: 두 사용자가 거의 동시에 종료 버튼 클릭 가능성 높음</li>
+  <li>💰 <strong>부수 효과</strong>: Recording 중지, Session 업데이트 등 비용 큰 작업</li>
+  <li>🎯 <strong>재시도 불가</strong>: 통화 종료는 “한 번만” 처리되어야 함</li>
+  <li>📊 <strong>데이터 정확성</strong>: endAt, durationSeconds 등 정확한 값 필수</li>
+</ol>
+
+<hr />
+
+<h2 id="9-요약-비교표">9. 요약 비교표</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>낙관적 락</th>
+      <th>비관적 락</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>철학</strong></td>
+      <td>충돌 드물 것</td>
+      <td>충돌 많을 것</td>
+    </tr>
+    <tr>
+      <td><strong>락 시점</strong></td>
+      <td>커밋 시</td>
+      <td>조회 시</td>
+    </tr>
+    <tr>
+      <td><strong>DB 락</strong></td>
+      <td>없음</td>
+      <td>있음</td>
+    </tr>
+    <tr>
+      <td><strong>충돌 처리</strong></td>
+      <td>예외 + 재시도</td>
+      <td>대기</td>
+    </tr>
+    <tr>
+      <td><strong>성능</strong></td>
+      <td>빠름 (충돌 없을 때)</td>
+      <td>느림 (항상)</td>
+    </tr>
+    <tr>
+      <td><strong>예측성</strong></td>
+      <td>낮음</td>
+      <td>높음</td>
+    </tr>
+    <tr>
+      <td><strong>데드락</strong></td>
+      <td>없음</td>
+      <td>가능</td>
+    </tr>
+    <tr>
+      <td><strong>사용 사례</strong></td>
+      <td>조회 많음</td>
+      <td>쓰기 많음</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>내 프로젝트 선택: 비관적 락 (PESSIMISTIC_WRITE)</strong></p>
+
+<ul>
+  <li>통화 종료는 충돌 가능성 높고</li>
+  <li>정확성이 중요하며</li>
+  <li>약간의 대기는 허용 가능</li>
+</ul>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/algorithm/2026-02-09-bellman-ford/" class="flip-title"><span>[Algorithm] 벨만-포드 알고리즘</span></a>  <time class="faded fine" datetime="2026-02-09T00:00:00+00:00">09 Feb 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-01-19-diary/" class="flip-title"><span>[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</span></a>  <time class="faded fine" datetime="2026-01-19T00:00:00+00:00">19 Jan 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-01-12-diary/" class="flip-title"><span>[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</span></a>  <time class="faded fine" datetime="2026-01-12T00:00:00+00:00">12 Jan 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (15)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (16)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (27)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (63)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:dmsskgus@sm.ac.kr" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

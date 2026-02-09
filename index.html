@@ -44,7 +44,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-01-20T07:36:29+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-09T03:05:41+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -184,7 +184,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-01-20T07:37:12+00:00',
+    INDEX_KEY: 'index--2026-02-09T03:06:30+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -553,6 +553,149 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 
 
+<article id="post-algorithm-bellman-ford" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/algorithm/2026-02-09-bellman-ford/" class="flip-title">
+        [Algorithm] 벨만-포드 알고리즘
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-02-09T00:00:00+00:00">09 Feb 2026</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      벨만-포드 알고리즘에 대해 정리해보았습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ol>
+  <li><a href="#-1️⃣-벨만-포드란">벨만-포드란?</a></li>
+  <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
+  <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
+  <li><a href="#-4️⃣-음수-사이클-탐지-원리">음수 사이클 탐지 원리</a></li>
+  <li><a href="#-5️⃣-코드-구현">코드 구현</a></li>
+  <li><a href="#-6️⃣-시간복잡도와-공간복잡도">시간복잡도와 공간복잡도</a></li>
+  <li><a href="#-7️⃣-다익스트라와의-비교">다익스트라와의 비교</a></li>
+  <li><a href="#-8️⃣-실전-문제-적용">실전 문제 적용</a></li>
+</ol>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/algorithm/2026-02-09-bellman-ford/">[Algorithm] 벨만-포드 알고리즘</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/projectdiary/2026-01-22-diary/" class="flip-title">
+        [친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-01-22T00:00:00+00:00">22 Jan 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Feb 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-02-09T03:05:41+00:00">2026-02-09</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>동시 요청으로 통화가 두 번 종료되는 문제 해결하기..!</p>
+</blockquote>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/projectdiary/2026-01-22-diary/">[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -573,10 +716,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 20 Jan 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-01-20T07:36:29+00:00">2026-01-20</time>
+              <time datetime="2026-02-09T03:05:41+00:00">2026-02-09</time>
             </span>
           
         
@@ -646,10 +789,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 20 Jan 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-01-20T07:36:29+00:00">2026-01-20</time>
+              <time datetime="2026-02-09T03:05:41+00:00">2026-02-09</time>
             </span>
           
         
@@ -721,10 +864,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 20 Jan 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-01-20T07:36:29+00:00">2026-01-20</time>
+              <time datetime="2026-02-09T03:05:41+00:00">2026-02-09</time>
             </span>
           
         
@@ -792,10 +935,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 20 Jan 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-01-20T07:36:29+00:00">2026-01-20</time>
+              <time datetime="2026-02-09T03:05:41+00:00">2026-02-09</time>
             </span>
           
         
@@ -871,10 +1014,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 20 Jan 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-01-20T07:36:29+00:00">2026-01-20</time>
+              <time datetime="2026-02-09T03:05:41+00:00">2026-02-09</time>
             </span>
           
         
@@ -950,10 +1093,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 20 Jan 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-01-20T07:36:29+00:00">2026-01-20</time>
+              <time datetime="2026-02-09T03:05:41+00:00">2026-02-09</time>
             </span>
           
         
@@ -1032,10 +1175,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 20 Jan 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-01-20T07:36:29+00:00">2026-01-20</time>
+              <time datetime="2026-02-09T03:05:41+00:00">2026-02-09</time>
             </span>
           
         
@@ -1102,10 +1245,10 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 20 Jan 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-01-20T07:36:29+00:00">2026-01-20</time>
+              <time datetime="2026-02-09T03:05:41+00:00">2026-02-09</time>
             </span>
           
         
@@ -1147,152 +1290,6 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/projectdiary/2025-11-20-diary/">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-projectdiary-diary" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/projectdiary/2025-11-18-diary/" class="flip-title">
-        [친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-11-18T00:00:00+00:00">18 Nov 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 20 Jan 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-01-20T07:36:29+00:00">2026-01-20</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 JSONP 에러에 대해 다루었다.</li>
-  <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/projectdiary/2025-11-18-diary/">[친구하자] SockJS Transport와 JSONP: 2025년에 만난 레거시 기술</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-projectdiary-diary" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/projectdiary/2025-11-17-diary/" class="flip-title">
-        [친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-11-17T00:00:00+00:00">17 Nov 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 20 Jan 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-01-20T07:36:29+00:00">2026-01-20</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      Capacitor로 빌드한 Android 앱에서의 웹소켓 오류 중 X-Frame-Options 에러 트러블슈팅을 다룹니다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li>이번 포스팅에서는 Capacitor로 빌드한 Android 앱에서 WebSocket 통신 중 발생한 X-Frame-Options 에러에 대해 다루었다.</li>
-  <li>해결하는 과정에서 공부한 내용에 대해 정리해보았다.</li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/projectdiary/2025-11-17-diary/">[친구하자] Capacitor Android 앱 X-Frame-Options 에러 해결</a>
 
       </p>
     </footer>
