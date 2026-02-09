@@ -73,7 +73,7 @@ menu:
     url: /about/
   - title: JavaScript (8)
     url: /javascript/
-  - title: Algorithm (15)
+  - title: Algorithm (16)
     url: /algorithm/
   - title: Java (12)
     url: /java/
@@ -85,7 +85,7 @@ menu:
     url: /spring/
   - title: Miscellaneous (16)
     url: /miscellaneous/
-  - title: 프로젝트 일기 (27)
+  - title: 프로젝트 일기 (28)
     url: /projectdiary/
   - title: TIL (63)
     url: /til/
