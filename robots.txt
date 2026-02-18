@@ -5,12 +5,10 @@ Allow: /
 Sitemap: https://nan0silver.github.io/sitemap.xml
 
 # Disallow admin and private areas
-Disallow: /_site/
 Disallow: /_includes/
 Disallow: /_layouts/
 Disallow: /_sass/
 Disallow: /assets/bower_components/
-Disallow: /workers-site/
 
 # Allow important directories
 Allow: /assets/img/
