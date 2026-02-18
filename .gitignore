@@ -1,0 +1,16 @@
+# Jekyll
+_site/
+.jekyll-cache
+.sass-cache
+
+# macOS
+.DS_Store
+
+# Editor / OS
+*.log
+*.swp
+*~
+
+# Bundler
+.bundle/
+vendor/bundle
