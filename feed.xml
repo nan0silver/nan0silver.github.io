@@ -1,7 +1,145 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-02-18T07:24:28+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-02-18T07:42:06+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[Algorithm] 벨만-포드 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" rel="alternate" type="text/html" title="[Algorithm] 벨만-포드 알고리즘" /><published>2026-02-09T00:00:00+00:00</published><updated>2026-02-18T07:22:34+00:00</updated><id>https://nan0silver.github.io/algorithm/bellman-ford</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"><![CDATA[<ol>
+</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</title><link href="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/" rel="alternate" type="text/html" title="[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법" /><published>2026-02-18T00:00:00+00:00</published><updated>2026-02-18T07:41:23+00:00</updated><id>https://nan0silver.github.io/algorithm/integer-arraylist-to-int-array</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/"><![CDATA[<p>알고리즘 문제를 풀다 보면 <code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>로 모아둔 결과를 최종적으로 <code class="language-plaintext highlighter-rouge">int[]</code> 배열로 반환해야 하는 경우가 많다. <code class="language-plaintext highlighter-rouge">String</code> 리스트는 <code class="language-plaintext highlighter-rouge">toArray()</code>로 쉽게 변환할 수 있지만, <strong>primitive 타입인 int는 <code class="language-plaintext highlighter-rouge">toArray()</code>를 그대로 쓸 수 없다.</strong> 이번 글에서는 Integer ArrayList를 int 배열로 바꾸는 방법을 정리해보자.</p>
+
+<ol>
+  <li><a href="#-1️⃣-string-list-vs-integer-list">String List vs Integer List</a></li>
+  <li><a href="#-2️⃣-방법-1-반복문-사용">방법 1: 반복문 사용</a></li>
+  <li><a href="#-3️⃣-방법-23-stream--maptoint">방법 2·3: Stream + mapToInt</a></li>
+  <li><a href="#-4️⃣-방법-4-null-필터링이-필요할-때">방법 4: null 필터링이 필요할 때</a></li>
+  <li><a href="#-5️⃣-정리">정리</a></li>
+</ol>
+
+<hr />
+
+<h2 id="-1️⃣-string-list-vs-integer-list">📌 1️⃣ String List vs Integer List</h2>
+
+<p><strong>String 타입의 List</strong>는 <code class="language-plaintext highlighter-rouge">toArray()</code>로 바로 배열로 만들 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"a"</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"b"</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"c"</span><span class="o">);</span>
+
+<span class="c1">// toArray() - 배열 선언과 동시에 할당</span>
+<span class="nc">String</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="nc">String</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>  <span class="c1">// ["a", "b", "c"]</span>
+
+<span class="c1">// toArray() - 배열 선언 후 값 할당</span>
+<span class="nc">String</span><span class="o">[]</span> <span class="n">arr2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">[</span><span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">()];</span>
+<span class="n">list</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="n">arr2</span><span class="o">);</span>  <span class="c1">// ["a", "b", "c"]</span>
+</code></pre></div></div>
+
+<p>반면 <strong>int는 primitive 타입</strong>이라 <code class="language-plaintext highlighter-rouge">List&lt;int&gt;</code> 같은 제네릭이 불가능하고, <code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>를 쓴다. 이때 <code class="language-plaintext highlighter-rouge">toArray()</code>만으로는 <code class="language-plaintext highlighter-rouge">int[]</code>를 얻을 수 없어서 아래와 같은 변환 방법을 사용해야 한다.</p>
+
+<hr />
+
+<h2 id="-2️⃣-방법-1-반복문-사용">🔄 2️⃣ 방법 1: 반복문 사용</h2>
+
+<p>가장 직관적인 방법이다. 리스트 크기만큼 <code class="language-plaintext highlighter-rouge">int[]</code>를 만들고, 각 요소를 <code class="language-plaintext highlighter-rouge">intValue()</code>로 unboxing해서 넣는다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">()];</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">intValue</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>장점</strong>: 코드가 단순하고 의도가 분명함.</li>
+  <li><strong>단점</strong>: 한 줄로 쓰기 어렵고, null이 있으면 NPE 가능.</li>
+</ul>
+
+<hr />
+
+<h2 id="-3️⃣-방법-23-stream--maptoint">🚀 3️⃣ 방법 2·3: Stream + mapToInt</h2>
+
+<p>Stream으로 리스트를 <code class="language-plaintext highlighter-rouge">IntStream</code>으로 바꾼 뒤 <code class="language-plaintext highlighter-rouge">toArray()</code>로 <code class="language-plaintext highlighter-rouge">int[]</code>를 만드는 방법이다. 알고리즘/코테 풀이에서 한 줄로 쓰기 좋다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+
+<span class="c1">// 방법 2: 람다로 자동 unboxing</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">toArray</span><span class="o">();</span>
+
+<span class="c1">// 방법 3: 메서드 레퍼런스로 명시적 변환</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr3</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="nl">Integer:</span><span class="o">:</span><span class="n">intValue</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">toArray</span><span class="o">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>방법 2</strong>: <code class="language-plaintext highlighter-rouge">i -&gt; i</code>에서 Java가 <code class="language-plaintext highlighter-rouge">Integer</code>를 <code class="language-plaintext highlighter-rouge">int</code>로 자동 unboxing 해준다.</li>
+  <li><strong>방법 3</strong>: <code class="language-plaintext highlighter-rouge">Integer::intValue</code>로 직접 int로 변환한다.</li>
+  <li><strong>공통</strong>: 코드가 짧고, 리스트에 null이 없을 때 사용하기 적합하다.</li>
+</ul>
+
+<hr />
+
+<h2 id="️-4️⃣-방법-4-null-필터링이-필요할-때">⚠️ 4️⃣ 방법 4: null 필터링이 필요할 때</h2>
+
+<p>리스트에 <strong>null이 들어갈 수 있는 경우</strong>에는 그대로 <code class="language-plaintext highlighter-rouge">mapToInt</code>를 쓰면 NPE가 난다. 이때는 <code class="language-plaintext highlighter-rouge">filter</code>로 null을 제거한 뒤 변환하면 된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+
+<span class="c1">// null 제거 후 int[] 로 변환</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr4</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">toArray</span><span class="o">();</span>
+<span class="c1">// 결과: [1, 3]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-5️⃣-정리">📋 5️⃣ 정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>상황</th>
+      <th>추천 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>단순 변환, null 없음</td>
+      <td><code class="language-plaintext highlighter-rouge">list.stream().mapToInt(i -&gt; i).toArray()</code></td>
+    </tr>
+    <tr>
+      <td>변환 로직을 명시하고 싶을 때</td>
+      <td><code class="language-plaintext highlighter-rouge">list.stream().mapToInt(Integer::intValue).toArray()</code></td>
+    </tr>
+    <tr>
+      <td>null이 포함될 수 있을 때</td>
+      <td><code class="language-plaintext highlighter-rouge">filter(i -&gt; i != null)</code> 후 <code class="language-plaintext highlighter-rouge">mapToInt(i -&gt; i).toArray()</code></td>
+    </tr>
+    <tr>
+      <td>Stream 없이 명시적으로 쓰고 싶을 때</td>
+      <td>반복문 + <code class="language-plaintext highlighter-rouge">list.get(i).intValue()</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>알고리즘 문제에서 <strong>반환 타입이 <code class="language-plaintext highlighter-rouge">int[]</code>인데 중간에 <code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>로 처리한 경우</strong> 위 방법 중 하나로 마지막에 배열로 바꿔주면 된다.</p>
+
+<hr />
+
+<p><strong>참고</strong></p>
+<ul>
+  <li><a href="https://hoehen-flug.tistory.com/49">내가 개발자라니 - Integer ArrayList을 int 배열로 변환하는 방법</a></li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[알고리즘 문제 풀이 시 Integer ArrayList를 int[] 배열로 변환해야 할 때 사용할 수 있는 방법을 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 벨만-포드 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" rel="alternate" type="text/html" title="[Algorithm] 벨만-포드 알고리즘" /><published>2026-02-09T00:00:00+00:00</published><updated>2026-02-18T07:41:23+00:00</updated><id>https://nan0silver.github.io/algorithm/bellman-ford</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"><![CDATA[<ol>
   <li><a href="#-1️⃣-벨만-포드란">벨만-포드란?</a></li>
   <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
   <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
@@ -212,7 +350,7 @@ dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>
 
 <p>👉 핵심 질문이
 <strong>“최단거리”보다 “음수 사이클 존재 여부”</strong>라면
-벨만-포드를 떠올려야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[벨만-포드 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</title><link href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" rel="alternate" type="text/html" title="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" /><published>2026-01-22T00:00:00+00:00</published><updated>2026-02-18T07:22:34+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-22-diary/"><![CDATA[<blockquote>
+벨만-포드를 떠올려야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[벨만-포드 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</title><link href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" rel="alternate" type="text/html" title="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" /><published>2026-01-22T00:00:00+00:00</published><updated>2026-02-18T07:41:23+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-22-diary/"><![CDATA[<blockquote>
   <p>동시 요청으로 통화가 두 번 종료되는 문제 해결하기..!</p>
 </blockquote>
 
@@ -736,7 +874,7 @@ User2: 100ms (락 대기 50ms + 처리 50ms)
   <li>통화 종료는 충돌 가능성 높고</li>
   <li>정확성이 중요하며</li>
   <li>약간의 대기는 허용 가능</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" rel="alternate" type="text/html" title="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" /><published>2026-01-19T00:00:00+00:00</published><updated>2026-02-18T07:22:34+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-19-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" rel="alternate" type="text/html" title="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" /><published>2026-01-19T00:00:00+00:00</published><updated>2026-02-18T07:41:23+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-19-diary/"><![CDATA[<ul>
   <li><a href="#-문제-발견-배경">문제 발견 배경</a></li>
   <li>
     <p><a href="#-근본-원인-분석">근본 원인 분석</a></p>
@@ -1186,7 +1324,7 @@ userId 추출: ✅ 성공
   <li>✅ 직접 Principal에 접근하여 안정성 확보</li>
   <li>✅ null 체크 및 fallback 로직 구현 가능</li>
   <li>✅ 명시적 코드로 디버깅 용이</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.]]></summary></entry><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-02-18T07:22:34+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.]]></summary></entry><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-02-18T07:41:23+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#ssl-인증서란">SSL 인증서란?</a></li>
   <li><a href="#lets-encrypt와-90일-갱신-주기">Let’s Encrypt와 90일 갱신 주기</a></li>
@@ -1355,7 +1493,7 @@ ESC         # 명령 모드
   <li><a href="https://letsencrypt.org/docs/">Let’s Encrypt 공식 문서</a></li>
   <li><a href="https://certbot.eff.org/">Certbot 사용 가이드</a></li>
   <li><a href="https://docs.aws.amazon.com/linux/">Amazon Linux cron 설정</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</title><link href="https://nan0silver.github.io/algorithm/2026-01-09-summary/" rel="alternate" type="text/html" title="[Algorithm] 코딩테스트 알고리즘 선택방법 요약" /><published>2026-01-09T00:00:00+00:00</published><updated>2026-02-18T07:22:34+00:00</updated><id>https://nan0silver.github.io/algorithm/summary</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-01-09-summary/"><![CDATA[<p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</title><link href="https://nan0silver.github.io/algorithm/2026-01-09-summary/" rel="alternate" type="text/html" title="[Algorithm] 코딩테스트 알고리즘 선택방법 요약" /><published>2026-01-09T00:00:00+00:00</published><updated>2026-02-18T07:41:23+00:00</updated><id>https://nan0silver.github.io/algorithm/summary</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-01-09-summary/"><![CDATA[<p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
 이 글에서는 <strong>코테 기준으로 딱 필요한 만큼만</strong> 정리한다.</p>
 
 <hr />
@@ -1638,7 +1776,7 @@ ESC         # 명령 모드
 <blockquote>
   <p><strong>“알고리즘은 외우는 게 아니라,
 문제 조건으로 제거하고 남는 하나를 고르는 것”</strong></p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2026-02-18T07:22:34+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2026-02-18T07:41:23+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
   <li><a href="#-1️⃣-플로이드-워셜이란">플로이드-워셜이란?</a></li>
   <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
   <li><a href="#-3️⃣-k-i-j의-정확한-의미">k, i, j의 의미</a></li>
@@ -2085,7 +2223,7 @@ dist[1][4] = min(INF, dist[1][2] + dist[2][4])
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />k가 가장 바깥 루프인가?</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기</title><link href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기" /><published>2025-12-25T00:00:00+00:00</published><updated>2026-02-18T07:22:34+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-25-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기</title><link href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기" /><published>2025-12-25T00:00:00+00:00</published><updated>2026-02-18T07:41:23+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-25-diary/"><![CDATA[<ul>
   <li><a href="#들어가며">들어가며</a></li>
   <li><a href="#1-처음-그린-그림">1. 처음 그린 그림</a></li>
   <li><a href="#2-redis-대기열-생각보다-복잡했다">2. Redis 대기열, 생각보다 복잡했다</a></li>
@@ -2544,7 +2682,7 @@ ZADD queue:music 1734840125789 user_205
 <ol>
   <li><a href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/">왜 이 기술들을 선택했나</a></li>
   <li><strong>실시간 매칭 시스템, 생각보다 어려웠던 이야기</strong> ← 현재 글</li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA["버튼 하나면 되는 거 아냐?" 라고 생각했던 나에게 현실이 알려준 것들]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</title><link href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" /><published>2025-12-20T00:00:00+00:00</published><updated>2026-02-18T07:22:34+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-20-diary/"><![CDATA[<ul>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA["버튼 하나면 되는 거 아냐?" 라고 생각했던 나에게 현실이 알려준 것들]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</title><link href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" /><published>2025-12-20T00:00:00+00:00</published><updated>2026-02-18T07:41:23+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-20-diary/"><![CDATA[<ul>
   <li><a href="#들어가며">들어가며</a></li>
   <li><a href="#1-전체-그림-우리-서비스가-필요한-것">1. 전체 그림: 우리 서비스가 필요한 것</a></li>
   <li><a href="#2-backend-spring-boot--webflux를-선택한-이유">2. Backend: Spring Boot + WebFlux를 선택한 이유</a></li>
@@ -3199,7 +3337,7 @@ vs
   <li><a href="https://redis.io/docs/data-types/">Redis 자료구조 가이드</a></li>
   <li><a href="https://docs.agora.io/en/cloud-recording">Agora Cloud Recording</a></li>
   <li><a href="https://capacitorjs.com/docs">Capacitor 공식 문서</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2026-02-18T07:22:34+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록]]></summary></entry><entry><title type="html">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-24-diary/" rel="alternate" type="text/html" title="[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기" /><published>2025-11-24T00:00:00+00:00</published><updated>2026-02-18T07:41:23+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-24-diary/"><![CDATA[<p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
 
 <p>처음에는 단순할 줄 알았는데, 생각보다 에러도 많이 나고 시행착오가 많아서 MVP에서 제외하고 개발했다. 이 글에서는 어떤 문제들을 겪었고, 어떻게 해결했는지를 정리하려고 한다.</p>
 
@@ -3452,234 +3590,4 @@ Secret: 한 번만 보여주니 즉시 복사!
   <li><a href="https://spring.io/guides/gs/async-method">Spring Async 설정</a></li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</title><link href="https://nan0silver.github.io/projectdiary/2025-11-20-diary/" rel="alternate" type="text/html" title="[친구하자] Capacitor 앱 Custom Splash Screen 구현하기" /><published>2025-11-20T00:00:00+00:00</published><updated>2026-02-18T07:22:34+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-11-20-diary/"><![CDATA[<ul>
-  <li>이번 포스팅에선 Capacitor로 빌드한 앱에서 여러 아이콘이 순차적으로 표시되는 커스텀 스플래시 스크린을 구현하는 방법을 정리했다.</li>
-  <li>왜 Custom splash screen이 필요했나?
-    <ul>
-      <li>Capacitor의 기본 splash screen은 단일 정적 이미지만 지원한다.<a href="https://capacitorjs.com/docs/apis/splash-screen">🔗링크</a></li>
-      <li>나는 여러 아이콘을 순차적으로 보여주는 애니메이션을 구현하고 싶어 React 컴포넌트로 직접 구현하였다!</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="목차">목차</h2>
-
-<ul>
-  <li><a href="#1-필요한-패키지-설치">1. 필요한 패키지 설치</a></li>
-  <li><a href="#2-capacitor-설정">2. Capacitor 설정</a></li>
-  <li><a href="#3-커스텀-스플래시-스크린-컴포넌트-생성">3. 커스텀 스플래시 스크린 컴포넌트 생성</a></li>
-  <li><a href="#4-apptsx에-통합">4. App.tsx에 통합</a></li>
-  <li><a href="#핵심-구현-포인트">핵심 구현 포인트</a></li>
-  <li><a href="#주의사항">주의사항</a></li>
-  <li><a href="#참고-문헌">참고 문헌</a></li>
-</ul>
-
-<hr />
-
-<h2 id="1-필요한-패키지-설치">1. 필요한 패키지 설치</h2>
-
-<p>먼저 스플래시 스크린 관련 패키지를 설치하자.</p>
-
-<blockquote>
-  <p>나는 pnpm을 사용하고 있었으므로 pnpm으로 설치했다.</p>
-</blockquote>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pnpm add @capacitor/splash-screen
-pnpm add <span class="nt">-D</span> @capacitor/assets
-</code></pre></div></div>
-
-<h2 id="2-capacitor-설정">2. Capacitor 설정</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">capacitor.config.ts</code> 파일에 스플래시 스크린 설정을 추가하자.</li>
-  <li>‼️ 커스텀 스플래시를 사용하므로 네이티브 스플래시는 최소화!</li>
-</ul>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// &lt;reference types="@capacitor/splash-screen" /&gt;</span>
-
-<span class="k">import</span> <span class="kd">type</span> <span class="p">{</span> <span class="nx">CapacitorConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@capacitor/cli</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="kd">const</span> <span class="nx">config</span><span class="p">:</span> <span class="nx">CapacitorConfig</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="c1">// ... 기타 설정</span>
-  <span class="na">plugins</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">SplashScreen</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">launchShowDuration</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 커스텀 스플래시를 사용하므로 0으로 설정</span>
-      <span class="na">launchAutoHide</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// 자동으로 숨길지 여부</span>
-      <span class="na">launchFadeOutDuration</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 페이드 아웃 애니메이션 시간 (커스텀 스플래시에서 처리)</span>
-      <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ffffff</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 배경색 (hex 형식) - 커스텀 스플래시와 동일하게 설정</span>
-      <span class="c1">// ... 기타 설정</span>
-    <span class="p">},</span>
-  <span class="p">},</span>
-<span class="p">};</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
-</code></pre></div></div>
-
-<h2 id="3-커스텀-스플래시-스크린-컴포넌트-생성">3. 커스텀 스플래시 스크린 컴포넌트 생성</h2>
-
-<p><code class="language-plaintext highlighter-rouge">client/components/CustomSplashScreen.tsx</code> 파일을 생성한다.</p>
-
-<h3 id="props-정의">Props 정의</h3>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">CustomSplashScreenProps</span> <span class="p">{</span>
-  <span class="nl">onComplete</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span> <span class="c1">// 스플래시 완료 시 콜백</span>
-  <span class="nl">icons</span><span class="p">?:</span> <span class="kr">string</span><span class="p">[];</span> <span class="c1">// 표시할 아이콘 배열</span>
-  <span class="nl">iconDuration</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span> <span class="c1">// 각 아이콘 표시 시간(ms)</span>
-  <span class="nl">minDisplayDuration</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span> <span class="c1">// 최소 표시 시간(ms)</span>
-  <span class="nl">animationType</span><span class="p">?:</span> <span class="dl">"</span><span class="s2">slide-up</span><span class="dl">"</span> <span class="o">|</span> <span class="dl">"</span><span class="s2">fade</span><span class="dl">"</span> <span class="o">|</span> <span class="dl">"</span><span class="s2">none</span><span class="dl">"</span><span class="p">;</span>
-  <span class="nl">backgroundColor</span><span class="p">?:</span> <span class="kr">string</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="핵심-로직">핵심 로직</h3>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">CustomSplashScreen</span> <span class="o">=</span> <span class="p">({</span>
-  <span class="nx">onComplete</span><span class="p">,</span>
-  <span class="nx">icons</span> <span class="o">=</span> <span class="p">[],</span>
-  <span class="nx">iconDuration</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
-  <span class="nx">minDisplayDuration</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span>
-  <span class="nx">animationType</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">slide-up</span><span class="dl">"</span><span class="p">,</span>
-  <span class="nx">backgroundColor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">#ffffff</span><span class="dl">"</span><span class="p">,</span>
-<span class="p">}:</span> <span class="nx">CustomSplashScreenProps</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">currentIconIndex</span><span class="p">,</span> <span class="nx">setCurrentIconIndex</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">isVisible</span><span class="p">,</span> <span class="nx">setIsVisible</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-
-  <span class="c1">// 1. 네이티브 스플래시 스크린 즉시 숨기기</span>
-  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">hideNativeSplash</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">try</span> <span class="p">{</span>
-        <span class="k">await</span> <span class="nx">SplashScreen</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
-      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 웹 환경에서는 에러가 발생할 수 있으므로 무시</span>
-      <span class="p">}</span>
-    <span class="p">};</span>
-    <span class="nx">hideNativeSplash</span><span class="p">();</span>
-  <span class="p">},</span> <span class="p">[]);</span>
-
-  <span class="c1">// 2. 아이콘 순차 표시 로직</span>
-  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">icons</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setIsVisible</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">onComplete</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
-      <span class="p">},</span> <span class="nx">minDisplayDuration</span><span class="p">);</span>
-      <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="c1">// 아이콘 전환 인터벌</span>
-    <span class="kd">const</span> <span class="nx">iconInterval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">setCurrentIconIndex</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">prev</span> <span class="o">&lt;</span> <span class="nx">icons</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">prev</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nx">prev</span><span class="p">;</span>
-      <span class="p">});</span>
-    <span class="p">},</span> <span class="nx">iconDuration</span><span class="p">);</span>
-
-    <span class="c1">// 총 표시 시간 계산</span>
-    <span class="kd">const</span> <span class="nx">totalAnimationDuration</span> <span class="o">=</span> <span class="nx">icons</span><span class="p">.</span><span class="nx">length</span> <span class="o">*</span> <span class="nx">iconDuration</span><span class="p">;</span>
-    <span class="kd">const</span> <span class="nx">actualDuration</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">totalAnimationDuration</span><span class="p">,</span> <span class="nx">minDisplayDuration</span><span class="p">);</span>
-
-    <span class="kd">const</span> <span class="nx">completeTimer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">setIsVisible</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-      <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">onComplete</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
-    <span class="p">},</span> <span class="nx">actualDuration</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">iconInterval</span><span class="p">);</span>
-      <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">completeTimer</span><span class="p">);</span>
-    <span class="p">};</span>
-  <span class="p">},</span> <span class="p">[</span><span class="nx">icons</span><span class="p">,</span> <span class="nx">iconDuration</span><span class="p">,</span> <span class="nx">minDisplayDuration</span><span class="p">,</span> <span class="nx">onComplete</span><span class="p">]);</span>
-
-  <span class="c1">// ... 렌더링 로직</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<ul>
-  <li>아이콘 슬라이드 애니메이션과 텍스트 추가 등 개인의 디자인에 맞게 React 코드를 수정해서 꾸며주면 된다!!</li>
-</ul>
-
-<h2 id="4-apptsx에-통합">4. App.tsx에 통합</h2>
-
-<p>메인 앱 컴포넌트에 커스텀 스플래시 스크린을 통합합니다.</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">CustomSplashScreen</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./components/CustomSplashScreen</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="kd">const</span> <span class="nx">AppRoutes</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">showSplash</span><span class="p">,</span> <span class="nx">setShowSplash</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-
-  <span class="c1">// 스플래시 스크린에 표시할 아이콘들</span>
-  <span class="kd">const</span> <span class="nx">splashIcons</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="dl">"</span><span class="s2">/splash-icons/icon1.png</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">/splash-icons/icon2.png</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">/splash-icons/icon3.png</span><span class="dl">"</span><span class="p">,</span>
-    <span class="c1">// ... 더 많은 아이콘</span>
-  <span class="p">];</span>
-
-  <span class="kd">const</span> <span class="nx">handleSplashComplete</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">setShowSplash</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-  <span class="p">};</span>
-
-  <span class="k">if</span> <span class="p">(</span><span class="nx">showSplash</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="nx">CustomSplashScreen</span>
-        <span class="nx">onComplete</span><span class="o">=</span><span class="p">{</span><span class="nx">handleSplashComplete</span><span class="p">}</span>
-        <span class="nx">icons</span><span class="o">=</span><span class="p">{</span><span class="nx">splashIcons</span><span class="p">}</span>
-        <span class="nx">iconDuration</span><span class="o">=</span><span class="p">{</span><span class="mi">400</span><span class="p">}</span>
-        <span class="nx">minDisplayDuration</span><span class="o">=</span><span class="p">{</span><span class="mi">2000</span><span class="p">}</span>
-        <span class="nx">animationType</span><span class="o">=</span><span class="dl">"</span><span class="s2">slide-up</span><span class="dl">"</span>
-      <span class="o">/&gt;</span>
-    <span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="c1">// ... 나머지 앱 로직</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<h2 id="-핵심-구현-포인트-">🍎 핵심 구현 포인트 🍎</h2>
-
-<h3 id="1-네이티브-스플래시와-커스텀-스플래시-분리">1. 네이티브 스플래시와 커스텀 스플래시 분리</h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">launchShowDuration: 0</code>으로 설정하여 네이티브 스플래시를 즉시 숨김</li>
-  <li><code class="language-plaintext highlighter-rouge">SplashScreen.hide()</code>를 컴포넌트 마운트 시 호출</li>
-</ul>
-
-<h3 id="2-텍스트-깜빡임-방지">2. 텍스트 깜빡임 방지</h3>
-
-<p>아이콘과 텍스트를 별도의 <code class="language-plaintext highlighter-rouge">div</code>로 렌더링하여 아이콘이 변경될 때 텍스트가 깜빡이지 않도록 구현</p>
-
-<h3 id="3-부드러운-애니메이션">3. 부드러운 애니메이션</h3>
-
-<p>CSS <code class="language-plaintext highlighter-rouge">transition</code>과 <code class="language-plaintext highlighter-rouge">cubic-bezier</code> 타이밍 함수를 사용하여 자연스러운 전환 효과 구현</p>
-
-<h3 id="4-최소-표시-시간-보장">4. 최소 표시 시간 보장</h3>
-
-<p><code class="language-plaintext highlighter-rouge">minDisplayDuration</code>을 설정하여 애니메이션이 너무 빨리 끝나도 최소 시간은 보장</p>
-
-<h3 id="5-이미지-준비">5. 이미지 준비</h3>
-
-<p>아이콘 이미지는 <code class="language-plaintext highlighter-rouge">public/splash-icons/</code> 디렉토리에 저장합니다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public/
-  splash-icons/
-    icon1.png
-    icon2.png
-    icon3.png
-</code></pre></div></div>
-
-<h2 id="️-주의사항">‼️ 주의사항</h2>
-
-<ul>
-  <li>이미지는 반드시 <code class="language-plaintext highlighter-rouge">public</code> 폴더에 저장 (빌드 시 자동 포함)</li>
-  <li>웹 환경에서는 <code class="language-plaintext highlighter-rouge">SplashScreen.hide()</code>가 에러를 발생시킬 수 있으므로 try-catch 처리 필요</li>
-  <li>Android 12 이상에서는 네이티브 스플래시 API가 강제 적용되므로 초기 0.5초는 네이티브 스플래시가 보일 수 있음</li>
-</ul>
-
-<h2 id="-참고-문헌">🍀 참고 문헌</h2>
-
-<ul>
-  <li><a href="https://github.com/ionic-team/capacitor-assets">Capacitor assets github page</a></li>
-  <li><a href="https://capacitorjs.com/docs/apis/splash-screen">@capacitor/splash-screen DOCS</a></li>
-  <li><a href="https://capacitorjs.com/docs/guides/splash-screens-and-icons">Splash Screens and Icons DOCS</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.]]></summary></entry></feed>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.]]></summary></entry></feed>
