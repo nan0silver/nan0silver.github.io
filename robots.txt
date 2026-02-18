@@ -10,7 +10,6 @@ Disallow: /_includes/
 Disallow: /_layouts/
 Disallow: /_sass/
 Disallow: /assets/bower_components/
-Disallow: /tipuesearch/
 Disallow: /workers-site/
 
 # Allow important directories
