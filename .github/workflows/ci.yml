@@ -16,6 +16,8 @@ jobs:
         with:
           ruby-version: '3.0'  # 필요시 버전 조정
       - run: bundle install
+      - name: Update menu post counts
+        run: ruby scripts/update_menu_counts.rb
       - run: bundle exec jekyll build
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
