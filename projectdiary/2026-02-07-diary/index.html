@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다." />
+<meta property="og:description" content="비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-19T14:12:25+00:00","datePublished":"2026-02-07T00:00:00+00:00","description":"비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다.","headline":"[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-02-07-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-02-07-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-02-19T14:13:12+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유",
+    "description": "비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-02-07T00:00:00+00:00",
+    "dateModified": "2026-02-19T14:12:25+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2026-02-07-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유",
+        "item": "https://nan0silver.github.io/projectdiary/2026-02-07-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-02-07-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-02-07T00:00:00+00:00">07 Feb 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 19 Feb 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-02-19T14:12:25+00:00">2026-02-19</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p><a href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/">이전 일기: 비관적 락 적용기</a>에서 통화 종료에 비관적 락을 적용했다.<br />
+그때 <code class="language-plaintext highlighter-rouge">@Transactional</code> 하나로 전체 흐름을 감쌌는데, <strong>왜 한 트랜잭션으로 묶어야 하고</strong>, <strong>전파 옵션을 잘못 쓰면 락이 어떻게 깨질 수 있는지</strong>를 이번에 정리해 본다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#서론">서론</a></li>
+  <li><a href="#1-트랜잭션-전파propagation란">1. 트랜잭션 전파(Propagation)란?</a></li>
+  <li><a href="#2-spring의-전파-옵션">2. Spring의 전파 옵션</a></li>
+  <li><a href="#3-비관적-락과-트랜잭션-경계">3. 비관적 락과 트랜잭션 경계</a></li>
+  <li><a href="#4-같은-트랜잭션-안에서-락이-유지되는-이유">4. 같은 트랜잭션 안에서 락이 유지되는 이유</a></li>
+  <li><a href="#5-전파를-잘못-쓰면-requires_new-사례">5. 전파를 잘못 쓰면? (REQUIRES_NEW 사례)</a></li>
+  <li><a href="#6-친구하자-endcall에서의-적용">6. 친구하자 endCall에서의 적용</a></li>
+  <li><a href="#7-요약">7. 요약</a></li>
+</ul>
+
+<hr />
+
+<h2 id="서론">서론</h2>
+
+<p>실시간 음성 매칭 서비스 “친구하자”에서는 통화 종료 시 <strong>비관적 락</strong>으로 동시 요청을 순차 처리한다. <code class="language-plaintext highlighter-rouge">findByIdWithLock()</code>으로 조회하는 순간 DB에서 락을 걸고, <code class="language-plaintext highlighter-rouge">endCall()</code> 처리 후 커밋될 때 락이 풀린다.</p>
+
+<p>여기서 중요한 점은 <strong>“락을 건 조회”와 “상태 변경·저장”이 반드시 같은 트랜잭션 안에서 일어나야 한다</strong>는 것이다. 트랜잭션 경계를 나누면 락이 조기 해제되거나, 반대로 불필요하게 오래 잡힐 수 있다. 이 경계를 결정하는 것이 <strong>트랜잭션 전파(Propagation)</strong> 이다.</p>
+
+<p>이 글에서는 전파 옵션을 간단히 정리하고, 비관적 락과 연결해 <strong>같은 트랜잭션 안에서 락이 어떻게 유지되는지</strong>까지 써 본다.</p>
+
+<hr />
+
+<h2 id="1-트랜잭션-전파propagation란">1. 트랜잭션 전파(Propagation)란?</h2>
+
+<p><strong>“이 메서드를 호출했을 때, 기존 트랜잭션에 참여할지, 새 트랜잭션을 시작할지, 트랜잭션 없이 실행할지를 결정하는 규칙”</strong> 이다.</p>
+
+<ul>
+  <li><strong>트랜잭션이 이미 있으면</strong>: 그 트랜잭션에 <strong>참여</strong>할 수도 있고, <strong>무시하고 새 트랜잭션</strong>을 시작할 수도 있다.</li>
+  <li><strong>트랜잭션이 없으면</strong>: <strong>새 트랜잭션을 시작</strong>할 수도 있고, <strong>트랜잭션 없이</strong> 실행할 수도 있다.</li>
+</ul>
+
+<p>Spring은 <code class="language-plaintext highlighter-rouge">@Transactional(propagation = Propagation.XXX)</code> 로 이 동작을 지정한다. 기본값은 <strong>REQUIRED</strong> 이다.</p>
+
+<hr />
+
+<h2 id="2-spring의-전파-옵션">2. Spring의 전파 옵션</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>전파 옵션</th>
+      <th>기존 트랜잭션 있을 때</th>
+      <th>기존 트랜잭션 없을 때</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>REQUIRED</strong> (기본값)</td>
+      <td>기존 트랜잭션에 참여</td>
+      <td>새 트랜잭션 시작</td>
+    </tr>
+    <tr>
+      <td><strong>REQUIRES_NEW</strong></td>
+      <td>기존 트랜잭션 <strong>일시 중단</strong>, 새 트랜잭션 시작</td>
+      <td>새 트랜잭션 시작</td>
+    </tr>
+    <tr>
+      <td><strong>NESTED</strong></td>
+      <td>기존 트랜잭션에 <strong>중첩( savepoint )</strong></td>
+      <td>새 트랜잭션 시작</td>
+    </tr>
+    <tr>
+      <td><strong>MANDATORY</strong></td>
+      <td>기존 트랜잭션에 참여</td>
+      <td><strong>예외</strong> (트랜잭션 필수)</td>
+    </tr>
+    <tr>
+      <td><strong>SUPPORTS</strong></td>
+      <td>기존 트랜잭션에 참여</td>
+      <td>트랜잭션 없이 실행</td>
+    </tr>
+    <tr>
+      <td><strong>NOT_SUPPORTED</strong></td>
+      <td>기존 트랜잭션 <strong>일시 중단</strong>, 트랜잭션 없이 실행</td>
+      <td>트랜잭션 없이 실행</td>
+    </tr>
+    <tr>
+      <td><strong>NEVER</strong></td>
+      <td><strong>예외</strong> (트랜잭션 금지)</td>
+      <td>트랜잭션 없이 실행</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>비관적 락과 연결해 자주 언급되는 것은 <strong>REQUIRED</strong> 와 <strong>REQUIRES_NEW</strong> 이다.</p>
+
+<ul>
+  <li><strong>REQUIRED</strong>: 호출한 쪽과 <strong>같은 트랜잭션</strong> → 락을 건 조회와 그 뒤의 작업이 <strong>한 트랜잭션</strong>으로 묶인다.</li>
+  <li><strong>REQUIRES_NEW</strong>: <strong>새 트랜잭션</strong> → 락을 건 조회를 한 트랜잭션, 나머지 작업을 다른 트랜잭션으로 나누면, 첫 트랜잭션이 끝나는 순간 락이 풀려서 동시성 보장이 깨질 수 있다.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-비관적-락과-트랜잭션-경계">3. 비관적 락과 트랜잭션 경계</h2>
+
+<p>비관적 락(PESSIMISTIC_WRITE)은 <strong>DB가 한 트랜잭션에 대해</strong> row(또는 페이지) 단위로 락을 건다.</p>
+
+<ul>
+  <li>락을 <strong>거는 시점</strong>: <code class="language-plaintext highlighter-rouge">findByIdWithLock()</code> 처럼 락이 걸린 조회를 <strong>실행한 트랜잭션</strong>이 락을 소유한다.</li>
+  <li>락이 <strong>풀리는 시점</strong>: 그 트랜잭션이 <strong>커밋 또는 롤백</strong>될 때까지 유지되고, 커밋/롤백 시점에 해제된다.</li>
+</ul>
+
+<p>그래서:</p>
+
+<ul>
+  <li><strong>락을 건 조회</strong>와 <strong>그 row를 수정·저장하는 작업</strong>이 <strong>같은 트랜잭션</strong> 안에 있으면 → 락이 커밋 전까지 유지되어 동시성 제어가 안전하다.</li>
+  <li><strong>락을 건 조회</strong>만 한 트랜잭션을 먼저 커밋하고, 수정·저장은 다른 트랜잭션에서 하면 → 첫 트랜잭션 커밋 시 락이 풀리므로, 그 사이 다른 트랜잭션이 같은 row를 수정할 수 있어 동시성 문제가 다시 생길 수 있다.</li>
+</ul>
+
+<p>즉, <strong>비관적 락의 유효 범위 = 트랜잭션 경계</strong> 라고 보면 된다.</p>
+
+<hr />
+
+<h2 id="4-같은-트랜잭션-안에서-락이-유지되는-이유">4. 같은 트랜잭션 안에서 락이 유지되는 이유</h2>
+
+<p>친구하자 통화 종료 로직을 단순화하면 다음과 같다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>  <span class="c1">// 기본값: propagation = REQUIRED</span>
+<span class="kd">public</span> <span class="nc">CallStatusResponse</span> <span class="nf">endCall</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ① 이 트랜잭션에서 락 획득</span>
+    <span class="nc">Call</span> <span class="n">call</span> <span class="o">=</span> <span class="n">callRepository</span><span class="o">.</span><span class="na">findByIdWithLock</span><span class="o">(</span><span class="n">callId</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getCallStatus</span><span class="o">()</span> <span class="o">==</span> <span class="nc">CallStatus</span><span class="o">.</span><span class="na">COMPLETED</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">createResponse</span><span class="o">(</span><span class="n">call</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ② 같은 트랜잭션 안에서 상태 변경·저장</span>
+    <span class="n">callService</span><span class="o">.</span><span class="na">endCall</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>
+    <span class="c1">// ... Recording 중지, Session 업데이트 등</span>
+
+    <span class="k">return</span> <span class="nf">createResponse</span><span class="o">(</span><span class="n">call</span><span class="o">);</span>
+    <span class="c1">// ③ 메서드 정상 종료 시 이 트랜잭션 커밋 → 그때 락 해제</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">endCall()</code> 진입 시 <strong>트랜잭션 1개</strong>가 시작되고(또는 상위에서 이미 시작된 트랜잭션에 참여하고),</li>
+  <li>①에서 <strong>그 트랜잭션</strong>이 <code class="language-plaintext highlighter-rouge">findByIdWithLock()</code>으로 해당 <code class="language-plaintext highlighter-rouge">Call</code> row에 대한 락을 건다.</li>
+  <li>②의 <code class="language-plaintext highlighter-rouge">callService.endCall()</code>, <code class="language-plaintext highlighter-rouge">save()</code> 등은 <strong>같은 트랜잭션</strong> 안에서 실행되므로, 락이 풀리지 않는다.</li>
+  <li>③에서 메서드가 정상 종료되면 <strong>그 트랜잭션이 커밋</strong>되고, 그 시점에 락이 해제된다.</li>
+</ul>
+
+<p>정리하면:</p>
+
+<ul>
+  <li><strong>같은 트랜잭션</strong> = 락을 건 시점부터 커밋(또는 롤백) 시점까지 <strong>동일한 DB 연결·트랜잭션 컨텍스트</strong>를 쓰는 구간이다.</li>
+  <li>비관적 락은 <strong>그 트랜잭션</strong>에 묶여 있기 때문에, <strong>같은 트랜잭션 안에서는 락이 유지</strong>되고, <strong>다른 트랜잭션</strong>은 그 row에 대한 락이 풀릴 때까지 대기하게 된다.</li>
+</ul>
+
+<hr />
+
+<h2 id="5-전파를-잘못-쓰면-requires_new-사례">5. 전파를 잘못 쓰면? (REQUIRES_NEW 사례)</h2>
+
+<p>만약 “락만 걸어두는 메서드”와 “실제 종료 처리 메서드”를 나누고, 내부에서 <strong>REQUIRES_NEW</strong> 를 쓰면 어떻게 되는지 보자.</p>
+
+<h3 id="위험한-예시-개념용">위험한 예시 (개념용)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ 이렇게 나누면 안 됨</span>
+<span class="nd">@Transactional</span><span class="o">(</span><span class="n">propagation</span> <span class="o">=</span> <span class="nc">Propagation</span><span class="o">.</span><span class="na">REQUIRES_NEW</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">Call</span> <span class="nf">getCallWithLock</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">callRepository</span><span class="o">.</span><span class="na">findByIdWithLock</span><span class="o">(</span><span class="n">callId</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+    <span class="c1">// 이 메서드가 끝나면 REQUIRES_NEW 트랜잭션이 커밋 → 락 해제!</span>
+<span class="o">}</span>
+
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">CallStatusResponse</span> <span class="nf">endCall</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Call</span> <span class="n">call</span> <span class="o">=</span> <span class="n">getCallWithLock</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>  <span class="c1">// 새 트랜잭션 → 여기서 끝나면 락 해제</span>
+    <span class="c1">// 이 시점부터는 이미 락이 풀린 상태</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getCallStatus</span><span class="o">()</span> <span class="o">==</span> <span class="nc">CallStatus</span><span class="o">.</span><span class="na">COMPLETED</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">createResponse</span><span class="o">(</span><span class="n">call</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="n">callService</span><span class="o">.</span><span class="na">endCall</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>  <span class="c1">// 락 없이 진행 → 동시 요청 시 중복 처리 가능</span>
+    <span class="k">return</span> <span class="nf">createResponse</span><span class="o">(</span><span class="n">call</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">getCallWithLock()</code> 은 <strong>REQUIRES_NEW</strong> 이므로 <strong>새 트랜잭션</strong>에서 실행되고, 메서드가 return 되는 순간 그 트랜잭션이 커밋되며 <strong>락이 해제</strong>된다.</li>
+  <li>그 다음 <code class="language-plaintext highlighter-rouge">endCall()</code> 의 나머지 로직은 <strong>원래 트랜잭션</strong>에서 실행되는데, 이미 락은 풀린 상태라 다른 스레드가 같은 <code class="language-plaintext highlighter-rouge">Call</code>을 수정할 수 있다.</li>
+  <li>결과적으로 <strong>같은 트랜잭션 안에서 락이 유지되지 않아</strong> 비관적 락의 효과가 사라진다.</li>
+</ul>
+
+<p>그래서 비관적 락을 쓸 때는:</p>
+
+<ul>
+  <li><strong>락을 거는 조회</strong>와 <strong>그 row를 수정·저장하는 모든 작업</strong>을 <strong>하나의 트랜잭션(REQUIRED)</strong> 안에 두어야 하고,</li>
+  <li>그 트랜잭션이 커밋(또는 롤백)될 때까지 락이 유지되도록 설계하는 것이 맞다.</li>
+</ul>
+
+<hr />
+
+<h2 id="6-친구하자-endcall에서의-적용">6. 친구하자 endCall에서의 적용</h2>
+
+<p>실제 친구하자 코드에서는:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">endCall()</code> 하나에 <code class="language-plaintext highlighter-rouge">@Transactional</code> (기본 REQUIRED)만 걸고,</li>
+  <li>그 안에서 <code class="language-plaintext highlighter-rouge">findByIdWithLock()</code> → 상태 검사 → <code class="language-plaintext highlighter-rouge">callService.endCall()</code> → 응답 생성까지 <strong>전부 같은 트랜잭션</strong>에서 수행한다.</li>
+</ul>
+
+<p>그래서:</p>
+
+<ol>
+  <li><strong>락 범위가 명확함</strong>: 락 획득부터 커밋까지 한 트랜잭션이므로, 그 사이 다른 트랜잭션은 해당 <code class="language-plaintext highlighter-rouge">Call</code> row에서 대기한다.</li>
+  <li><strong>전파 설정을 따로 안 해도 됨</strong>: 기본값 REQUIRED로, 상위에 트랜잭션이 없으면 여기서 하나 시작하고, 있으면 참여하므로 추가 설정이 필요 없다.</li>
+  <li><strong>REQUIRES_NEW를 쓰지 않음</strong>: 통화 종료처럼 “한 번에 원자적으로 처리해야 하는” 흐름은 락 구간과 수정 구간을 나누지 않는 것이 안전하다.</li>
+</ol>
+
+<p>정리하면, <strong>“같은 트랜잭션 안에서 락이 유지된다”</strong> 는 점을 지키기 위해, 비관적 락을 사용하는 메서드는 <strong>한 트랜잭션(REQUIRED)</strong> 으로 묶고, 그 안에서 조회(락) → 비즈니스 로직 → 저장까지 처리하도록 한 것이다.</p>
+
+<hr />
+
+<h2 id="7-요약">7. 요약</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>트랜잭션 전파</strong></td>
+      <td>메서드가 기존 트랜잭션에 참여할지, 새 트랜잭션을 쓸지 결정하는 규칙. 기본값은 REQUIRED.</td>
+    </tr>
+    <tr>
+      <td><strong>비관적 락과 트랜잭션</strong></td>
+      <td>락은 <strong>트랜잭션 단위</strong>로 유지된다. 락을 건 트랜잭션이 커밋/롤백될 때 락이 해제된다.</td>
+    </tr>
+    <tr>
+      <td><strong>같은 트랜잭션 안에서 락 유지</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">findByIdWithLock()</code> 과 그 뒤의 수정·저장을 <strong>한 트랜잭션(REQUIRED)</strong> 에 두면, 커밋 전까지 락이 유지되어 동시성 제어가 안전하다.</td>
+    </tr>
+    <tr>
+      <td><strong>주의할 점</strong></td>
+      <td>락을 거는 부분만 REQUIRES_NEW 등으로 별도 트랜잭션으로 나누면, 그 트랜잭션이 끝날 때 락이 풀려 동시성 보장이 깨질 수 있다.</td>
+    </tr>
+    <tr>
+      <td><strong>친구하자 endCall</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">@Transactional</code> 하나로 전체를 묶고, 락 조회 ~ 종료 처리까지 같은 트랜잭션에서 수행하도록 설계했다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>비관적 락 적용 시 <strong>“어디서 트랜잭션이 시작되고 끝나는지”</strong> 를 의식하고, <strong>락을 건 구간과 수정 구간이 같은 트랜잭션에 포함되도록</strong> 전파를 두면, “같은 트랜잭션 안에서 락이 유지되는” 동작을 기대한 대로 얻을 수 있다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/algorithm/2026-02-18-integer-arraylist-to-int-array/" class="flip-title"><span>[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</span></a>  <time class="faded fine" datetime="2026-02-18T00:00:00+00:00">18 Feb 2026</time></li>                        <li class="h4">  <a href="/algorithm/2026-02-09-bellman-ford/" class="flip-title"><span>[Algorithm] 벨만-포드 알고리즘</span></a>  <time class="faded fine" datetime="2026-02-09T00:00:00+00:00">09 Feb 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-01-22-diary/" class="flip-title"><span>[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</span></a>  <time class="faded fine" datetime="2026-01-22T00:00:00+00:00">22 Jan 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (13)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (12)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (29)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (63)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>
