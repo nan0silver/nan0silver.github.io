@@ -9,7 +9,7 @@ sitemap: false
 # [Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가
 
 > PATCH/PUT, DTO, Controller 같은 Spring 글을 읽었다면, "요청이 어디서 걸리고, 어떤 순서로 처리될까?"가 궁금할 수 있다.  
-> 이 글에서는 **Filter**, **Interceptor**, **AOP**가 각각 어디에 위치하고, 무엇을 할 때 쓰면 좋은지** 한 번에 정리한다.
+> 이 글에서는 **Filter**, **Interceptor**, **AOP**가 각각 어디에 위치하고, 무엇을 할 때 쓰면 좋은지\*\* 한 번에 정리한다.
 
 - [1. 한눈에 보는 요청 처리 흐름](#-1-한눈에-보는-요청-처리-흐름)
 - [1.5 비유로 이해하기](#-15-비유로-이해하기)
@@ -74,13 +74,15 @@ HTTP 요청이 들어오면 대략 아래 순서로 지나간다.
 
 **"빌딩에 방문객(HTTP 요청)이 들어와서 업무를 보는 과정"**으로 생각해 보자.
 
-| 구성 요소 | 비유 | 하는 일 |
-| --------- | ---- | ------- |
-| **Filter** | **빌딩 1층 경비원** | 모든 방문객이 **반드시** 거치는 곳. 출입증 확인, 짐 검사(인코딩·CORS 등), 위험물 차단. Spring 빌딩 **밖**에서 막춰서, "어느 부서로 갈지"는 모른다. |
-| **DispatcherServlet** | **안내 데스크(리셉션)** | "어디로 가시나요?"라고 물어보고, **URL(요청 경로)**을 보고 "이 방문객은 3층 영업팀(Controller A)으로 보내야 해"라고 **배정**한다. 실제 업무는 안 하고, **누가 처리할지만 결정**한다. |
-| **Interceptor** | **해당 층/회의실 앞 도어맨** | "3층 영업팀이요"라고 온 사람만 검사. **이 부서 들어가기 전**에 "예약 있으세요? 권한 있으세요?"(인증·권한) 확인. 들어간 **후**에 출입 기록 남기기(로깅)도 여기서 할 수 있다. |
-| **Controller** | **실제 업무를 보는 부서** | "회원 정보 주세요", "주문 등록해 주세요" 같은 **요청에 맞는 일**을 한다. 여기서 비즈니스 로직이 실행된다. |
-| **AOP** | **부서 안의 공통 규칙** | "누군가 이 메서드(업무)를 할 때마다 **항상** 실행되는 규칙". 예: "출금할 때마다 로그 남기기", "이 메서드 실행 시 트랜잭션 시작/종료". HTTP 요청과 무관하게 **메서드 호출** 단위로 붙는다. |
+![예시 이미지1](https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-23-pic1.png?raw=true)
+
+| 구성 요소             | 비유                         | 하는 일                                                                                                                                                                                   |
+| --------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Filter**            | **빌딩 1층 경비원**          | 모든 방문객이 **반드시** 거치는 곳. 출입증 확인, 짐 검사(인코딩·CORS 등), 위험물 차단. Spring 빌딩 **밖**에서 막춰서, "어느 부서로 갈지"는 모른다.                                        |
+| **DispatcherServlet** | **안내 데스크(리셉션)**      | "어디로 가시나요?"라고 물어보고, **URL(요청 경로)**을 보고 "이 방문객은 3층 영업팀(Controller A)으로 보내야 해"라고 **배정**한다. 실제 업무는 안 하고, **누가 처리할지만 결정**한다.      |
+| **Interceptor**       | **해당 층/회의실 앞 도어맨** | "3층 영업팀이요"라고 온 사람만 검사. **이 부서 들어가기 전**에 "예약 있으세요? 권한 있으세요?"(인증·권한) 확인. 들어간 **후**에 출입 기록 남기기(로깅)도 여기서 할 수 있다.               |
+| **Controller**        | **실제 업무를 보는 부서**    | "회원 정보 주세요", "주문 등록해 주세요" 같은 **요청에 맞는 일**을 한다. 여기서 비즈니스 로직이 실행된다.                                                                                 |
+| **AOP**               | **부서 안의 공통 규칙**      | "누군가 이 메서드(업무)를 할 때마다 **항상** 실행되는 규칙". 예: "출금할 때마다 로그 남기기", "이 메서드 실행 시 트랜잭션 시작/종료". HTTP 요청과 무관하게 **메서드 호출** 단위로 붙는다. |
 
 **한 줄 요약**
 
@@ -107,11 +109,11 @@ HTTP 요청이 들어오면 대략 아래 순서로 지나간다.
 
 ### 특징
 
-| 항목 | 내용 |
-| ---- | ---- |
-| **소속** | Servlet API (Spring이 아님) |
-| **요청/응답** | `ServletRequest`, `ServletResponse` (Servlet API 타입) |
-| **Spring Bean** | 등록 가능하지만, 동작 자체는 Servlet 컨테이너가 관리 |
+| 항목                | 내용                                                            |
+| ------------------- | --------------------------------------------------------------- |
+| **소속**            | Servlet API (Spring이 아님)                                     |
+| **요청/응답**       | `ServletRequest`, `ServletResponse` (Servlet API 타입)          |
+| **Spring Bean**     | 등록 가능하지만, 동작 자체는 Servlet 컨테이너가 관리            |
 | **Controller 정보** | 모름 (아직 DispatcherServlet을 거치지 않았거나, 이미 지나간 뒤) |
 
 ### 예시: 인코딩 필터
@@ -159,20 +161,20 @@ public class EncodingFilter implements Filter {
 
 ### 세 시점
 
-| 메서드 | 시점 |
-| ------ | ---- |
-| **preHandle** | Controller 실행 **전** |
-| **postHandle** | Controller 실행 **후**, View 렌더링 전 (RestController면 보통 응답 이미 생성됨) |
-| **afterCompletion** | View 렌더링 **후** 또는 예외 발생 **후** (정리·로깅에 유용) |
+| 메서드              | 시점                                                                            |
+| ------------------- | ------------------------------------------------------------------------------- |
+| **preHandle**       | Controller 실행 **전**                                                          |
+| **postHandle**      | Controller 실행 **후**, View 렌더링 전 (RestController면 보통 응답 이미 생성됨) |
+| **afterCompletion** | View 렌더링 **후** 또는 예외 발생 **후** (정리·로깅에 유용)                     |
 
 ### 특징
 
-| 항목 | 내용 |
-| ---- | ---- |
-| **소속** | Spring Framework |
-| **요청/응답** | `HttpServletRequest`, `HttpServletResponse` + **Handler** 정보 |
-| **Spring Bean** | 완전한 Spring Bean (DI 가능) |
-| **Controller 정보** | `Handler`로 “어떤 컨트롤러 메서드가 실행되는지” 알 수 있음 |
+| 항목                | 내용                                                           |
+| ------------------- | -------------------------------------------------------------- |
+| **소속**            | Spring Framework                                               |
+| **요청/응답**       | `HttpServletRequest`, `HttpServletResponse` + **Handler** 정보 |
+| **Spring Bean**     | 완전한 Spring Bean (DI 가능)                                   |
+| **Controller 정보** | `Handler`로 “어떤 컨트롤러 메서드가 실행되는지” 알 수 있음     |
 
 ### 예시: 인증 체크 인터셉터
 
@@ -224,12 +226,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 
 ### 특징
 
-| 항목 | 내용 |
-| ---- | ---- |
-| **소속** | Spring Framework (AOP 모듈) |
-| **단위** | **메서드** (클래스·메서드 단위로 적용 대상 지정) |
-| **요청/응답** | 직접 접근하지 않음. 메서드 **인자, 반환값, 예외**에 접근 가능 |
-| **Spring Bean** | 완전한 Spring Bean (DI 가능) |
+| 항목            | 내용                                                          |
+| --------------- | ------------------------------------------------------------- |
+| **소속**        | Spring Framework (AOP 모듈)                                   |
+| **단위**        | **메서드** (클래스·메서드 단위로 적용 대상 지정)              |
+| **요청/응답**   | 직접 접근하지 않음. 메서드 **인자, 반환값, 예외**에 접근 가능 |
+| **Spring Bean** | 완전한 Spring Bean (DI 가능)                                  |
 
 ### 예시: 메서드 실행 시간 로깅
 
@@ -264,15 +266,15 @@ public class LoggingAspect {
 
 ## 📊 5. 비교표
 
-| 구분 | Filter | Interceptor | AOP |
-| ---- |--------|-------------|-----|
-| **위치** | DispatcherServlet **밖** (앞·뒤) | DispatcherServlet **안**, Controller **앞·뒤** | **메서드** 호출 전/후/예외 |
-| **적용 단위** | URI (전체 요청) | URI + Handler | 메서드(클래스·어노테이션 등) |
-| **스펙** | Servlet API | Spring | Spring AOP |
-| **요청/응답 타입** | ServletRequest/Response | HttpServletRequest/Response | 없음 (메서드 인자·반환값) |
-| **Handler/Controller 정보** | 없음 | 있음 (preHandle 등에서) | 타겟 메서드 정보만 |
-| **Spring Bean** | 등록 가능, 동작은 서블릿 컨테이너 | O | O |
-| **용도 예** | 인코딩, CORS, XSS, 전역 로깅 | 인증·인가, URL 단위 로깅 | 트랜잭션, 로깅, 예외 처리, 캐시 |
+| 구분                        | Filter                            | Interceptor                                    | AOP                             |
+| --------------------------- | --------------------------------- | ---------------------------------------------- | ------------------------------- |
+| **위치**                    | DispatcherServlet **밖** (앞·뒤)  | DispatcherServlet **안**, Controller **앞·뒤** | **메서드** 호출 전/후/예외      |
+| **적용 단위**               | URI (전체 요청)                   | URI + Handler                                  | 메서드(클래스·어노테이션 등)    |
+| **스펙**                    | Servlet API                       | Spring                                         | Spring AOP                      |
+| **요청/응답 타입**          | ServletRequest/Response           | HttpServletRequest/Response                    | 없음 (메서드 인자·반환값)       |
+| **Handler/Controller 정보** | 없음                              | 있음 (preHandle 등에서)                        | 타겟 메서드 정보만              |
+| **Spring Bean**             | 등록 가능, 동작은 서블릿 컨테이너 | O                                              | O                               |
+| **용도 예**                 | 인코딩, CORS, XSS, 전역 로깅      | 인증·인가, URL 단위 로깅                       | 트랜잭션, 로깅, 예외 처리, 캐시 |
 
 ---
 
@@ -294,12 +296,12 @@ public class LoggingAspect {
 
 ## ✅ 7. 요약
 
-| 항목 | 내용 |
-| ---- | ---- |
-| **처리 순서** | Filter → DispatcherServlet → Interceptor(pre) → Controller → Interceptor(post, after) → Filter(응답) |
-| **Filter** | Servlet 레벨, DispatcherServlet 앞뒤, 전역 인코딩·CORS·로깅 등 |
-| **Interceptor** | Spring 레벨, Controller 전/후, URL·Handler 기준 인증·권한·로깅 |
-| **AOP** | 메서드 단위, 트랜잭션·로깅·예외 처리·캐시 등 |
-| **선택** | 요청/응답·진입 전 차단 → Filter, URL/Handler 기준 → Interceptor, 메서드 공통 로직 → AOP |
+| 항목            | 내용                                                                                                 |
+| --------------- | ---------------------------------------------------------------------------------------------------- |
+| **처리 순서**   | Filter → DispatcherServlet → Interceptor(pre) → Controller → Interceptor(post, after) → Filter(응답) |
+| **Filter**      | Servlet 레벨, DispatcherServlet 앞뒤, 전역 인코딩·CORS·로깅 등                                       |
+| **Interceptor** | Spring 레벨, Controller 전/후, URL·Handler 기준 인증·권한·로깅                                       |
+| **AOP**         | 메서드 단위, 트랜잭션·로깅·예외 처리·캐시 등                                                         |
+| **선택**        | 요청/응답·진입 전 차단 → Filter, URL/Handler 기준 → Interceptor, 메서드 공통 로직 → AOP              |
 
 이렇게 세 가지를 구분해 두면, “요청이 어떻게 처리되는지”를 Spring 글들(PATCH/PUT, DTO, Controller)과 함께 한 번에 그릴 수 있다.
