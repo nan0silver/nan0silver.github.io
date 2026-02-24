@@ -1,7 +1,375 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-02-24T02:19:12+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-02-24T04:32:46+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가</title><link href="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/" rel="alternate" type="text/html" title="[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가" /><published>2026-02-23T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/spring/filter-interceptor-aop</id><content type="html" xml:base="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/"><![CDATA[<blockquote>
+</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[Algorithm] 다익스트라 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/" rel="alternate" type="text/html" title="[Algorithm] 다익스트라 알고리즘" /><published>2026-02-24T00:00:00+00:00</published><updated>2026-02-24T04:32:04+00:00</updated><id>https://nan0silver.github.io/algorithm/dijkstra</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/"><![CDATA[<blockquote>
+  <p><strong>최단 경로 시리즈</strong> – <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>(모든 쌍), <a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>(음수 간선·음수 사이클)에 이어, <strong>한 출발점에서 나머지 모든 정점까지</strong>의 최단 경로를 빠르게 구하는 알고리즘이다.</p>
+</blockquote>
+
+<ol>
+  <li><a href="#-1️⃣-다익스트라란">다익스트라란?</a></li>
+  <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
+  <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
+  <li><a href="#-4️⃣-우선순위-큐와-동작-과정">우선순위 큐와 동작 과정</a></li>
+  <li><a href="#-5️⃣-코드-구현">코드 구현</a></li>
+  <li><a href="#-6️⃣-시간복잡도와-공간복잡도">시간복잡도와 공간복잡도</a></li>
+  <li><a href="#-7️⃣-벨만-포드플로이드-워셜과의-비교">벨만-포드·플로이드-워셜과의 비교</a></li>
+  <li><a href="#-8️⃣-실전-문제-적용">실전 문제 적용</a></li>
+</ol>
+
+<hr />
+
+<h2 id="-1️⃣-다익스트라란">🎯 1️⃣ 다익스트라란?</h2>
+
+<h3 id="-한-문장-정의">💡 한 문장 정의</h3>
+
+<p><strong>“음수 간선이 없을 때, 한 출발점에서 모든 정점까지의 최단 경로를 구하는 그리디 알고리즘”</strong></p>
+
+<h3 id="-언제-사용하는가">💡 언제 사용하는가?</h3>
+
+<ul>
+  <li><strong>한 정점(출발점)</strong>에서 <strong>나머지 모든 정점</strong>까지의 최단 거리가 필요할 때</li>
+  <li>간선 가중치가 <strong>모두 0 이상(비음수)</strong>일 때</li>
+  <li>정점·간선이 많아서 플로이드-워셜 O(V³)을 쓰기 어려울 때</li>
+</ul>
+
+<h3 id="-특징">💡 특징</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>특징</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O((V+E)log V) (우선순위 큐 사용 시)</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V)</td>
+    </tr>
+    <tr>
+      <td><strong>음수 간선</strong></td>
+      <td><strong>불가능</strong> (잘못된 결과 가능)</td>
+    </tr>
+    <tr>
+      <td><strong>그래프 종류</strong></td>
+      <td>방향/무방향 모두 가능</td>
+    </tr>
+    <tr>
+      <td><strong>구현 난이도</strong></td>
+      <td>중간 (우선순위 큐 활용)</td>
+    </tr>
+    <tr>
+      <td><strong>성격</strong></td>
+      <td>그리디 (매 순간 가장 가까운 정점 확정)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-2️⃣-핵심-개념-이해하기">🧠 2️⃣ 핵심 개념 이해하기</h2>
+
+<h3 id="-알고리즘의-본질">💡 알고리즘의 본질</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"매 단계마다 '가장 거리가 짧은 정점'을 하나씩 확정하고,
+그 정점을 통해 갈 수 있는 이웃들의 거리를 갱신해 나가는 알고리즘"
+</code></pre></div></div>
+
+<h3 id="-distv의-의미">💡 dist[v]의 의미</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">출발점</span><span class="o">(</span><span class="n">start</span><span class="o">)</span><span class="n">으로부터</span>
+          <span class="n">정점</span> <span class="n">v까지</span> <span class="n">도달하는</span> <span class="n">현재까지의</span> <span class="n">최소</span> <span class="n">비용</span>
+</code></pre></div></div>
+
+<ul>
+  <li>한 번 <strong>확정(방문 처리)</strong>한 정점의 dist 값은 더 이상 바뀌지 않는다.</li>
+  <li>음수 간선이 없기 때문에, “지금 가장 작은 dist를 가진 정점”은 이미 최단 거리가 보장된다.</li>
+</ul>
+
+<h3 id="-그리디한-선택">💡 그리디한 선택</h3>
+
+<ul>
+  <li><strong>“현재 시점에서 dist가 가장 작은 정점”</strong>을 골라서 확정한다.</li>
+  <li>그 정점을 거쳐 가는 경로가 더 짧아질 수 있는 <strong>이웃만</strong> 완화(relax)한다.</li>
+  <li>이렇게 하면 각 정점을 <strong>최대 한 번씩만</strong> 확정 처리하면 되고, 우선순위 큐로 “가장 작은 dist”를 빠르게 꺼낼 수 있다.</li>
+</ul>
+
+<hr />
+
+<h2 id="-3️⃣-간선-완화relaxation">🔁 3️⃣ 간선 완화(Relaxation)</h2>
+
+<h3 id="-간선-완화란">💡 간선 완화란?</h3>
+
+<p><strong>“간선 u → v를 이용했을 때, 출발점에서 v까지 가는 거리가 더 짧아지면 dist[v]를 갱신하는 과정”</strong></p>
+
+<p>(벨만-포드, 플로이드-워셜에서 쓰는 것과 같은 개념이다.)</p>
+
+<h3 id="-완화-조건">💡 완화 조건</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">;</span>
+    <span class="c1">// 우선순위 큐 사용 시: (dist[v], v) 다시 넣거나 갱신</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">u</code>: 방금 확정한 정점</li>
+  <li><code class="language-plaintext highlighter-rouge">v</code>: u의 이웃 정점</li>
+  <li><code class="language-plaintext highlighter-rouge">w</code>: 간선 (u, v)의 가중치</li>
+</ul>
+
+<hr />
+
+<h2 id="-4️⃣-우선순위-큐와-동작-과정">📌 4️⃣ 우선순위 큐와 동작 과정</h2>
+
+<h3 id="-왜-우선순위-큐를-쓰는가">💡 왜 우선순위 큐를 쓰는가?</h3>
+
+<ul>
+  <li><strong>매번 “dist가 가장 작은 정점”</strong>을 골라야 한다.</li>
+  <li>배열로 매번 최솟값을 찾으면 O(V) → 전체 O(V²).</li>
+  <li><strong>우선순위 큐(최소 힙)</strong>를 쓰면 최솟값 추출 O(log V), 간선당 최대 1번 갱신 → <strong>O((V+E)log V)</strong>.</li>
+</ul>
+
+<h3 id="-동작-흐름-요약">💡 동작 흐름 (요약)</h3>
+
+<ol>
+  <li>출발점 <code class="language-plaintext highlighter-rouge">start</code>의 <code class="language-plaintext highlighter-rouge">dist[start] = 0</code>, 나머지는 <strong>무한대(INF)</strong>로 초기화.</li>
+  <li>우선순위 큐에 <code class="language-plaintext highlighter-rouge">(0, start)</code> 넣기. (비용, 정점 번호)</li>
+  <li>큐가 빌 때까지:
+    <ul>
+      <li><strong>비용이 가장 작은 (d, u)</strong> 꺼내기.</li>
+      <li>이미 <code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 이면 <strong>스킵</strong> (예전에 넣은 쓸모없는 정보).</li>
+      <li>u를 <strong>확정</strong>했다고 보고, u와 연결된 각 간선 (u → v, 가중치 w)에 대해 <strong>완화</strong>.</li>
+      <li>완화로 <code class="language-plaintext highlighter-rouge">dist[v]</code>가 줄어들면 <code class="language-plaintext highlighter-rouge">(dist[v], v)</code> 를 큐에 넣기.</li>
+    </ul>
+  </li>
+  <li>종료 후 <code class="language-plaintext highlighter-rouge">dist[]</code>가 <strong>출발점에서 각 정점까지의 최단 거리</strong>.</li>
+</ol>
+
+<h3 id="-확정의-의미">💡 “확정”의 의미</h3>
+
+<ul>
+  <li>음수 간선이 없으므로, <strong>현재 dist가 가장 작은 정점</strong>은 더 이상 다른 경로로 더 짧아질 수 없다.</li>
+  <li>그래서 그 정점은 <strong>한 번만 꺼내서 이웃만 완화</strong>하면 되고, 다시 큐에 넣을 필요 없다.</li>
+  <li><code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 인 경우는 “예전에 넣었던 더 나쁜 값”이므로 무시한다.</li>
+</ul>
+
+<hr />
+
+<h2 id="-5️⃣-코드-구현">💻 5️⃣ 코드 구현</h2>
+
+<h3 id="-인접-리스트--우선순위-큐-java">💡 인접 리스트 + 우선순위 큐 (Java)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Dijkstra</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">INF</span> <span class="o">=</span> <span class="mi">987654321</span><span class="o">;</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;[]</span> <span class="n">graph</span><span class="o">;</span>  <span class="c1">// graph[v] = { {next, cost}, ... }</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">dist</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="no">V</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">dijkstra</span><span class="o">(</span><span class="kt">int</span> <span class="n">start</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">V</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">dist</span><span class="o">,</span> <span class="no">INF</span><span class="o">);</span>
+        <span class="n">dist</span><span class="o">[</span><span class="n">start</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="c1">// (비용, 정점) - 비용 기준 최소 힙</span>
+        <span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">pq</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;&gt;((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">-</span> <span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+        <span class="n">pq</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="n">start</span><span class="o">});</span>
+
+        <span class="k">while</span> <span class="o">(!</span><span class="n">pq</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="kt">int</span><span class="o">[]</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">u</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">d</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">])</span> <span class="k">continue</span><span class="o">;</span>  <span class="c1">// 이미 더 좋은 경로로 갱신된 경우 스킵</span>
+
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">edge</span> <span class="o">:</span> <span class="n">graph</span><span class="o">[</span><span class="n">u</span><span class="o">])</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edge</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">w</span> <span class="o">=</span> <span class="n">edge</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">;</span>
+                    <span class="n">pq</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">],</span> <span class="n">v</span><span class="o">});</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">dist</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="-인접-행렬-버전-정점-수가-작을-때">💡 인접 행렬 버전 (정점 수가 작을 때)</h3>
+
+<ul>
+  <li>정점이 적고 간선이 많을 때는 <strong>인접 행렬 + 매번 최솟값 탐색</strong>으로도 구현 가능.</li>
+  <li>시간복잡도 <strong>O(V²)</strong>. 플로이드-워셜보다는 V가 클 때 유리할 수 있다.</li>
+</ul>
+
+<hr />
+
+<h2 id="️-6️⃣-시간복잡도와-공간복잡도">⏱️ 6️⃣ 시간복잡도와 공간복잡도</h2>
+
+<h3 id="-우선순위-큐-버전">💡 우선순위 큐 버전</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>복잡도</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O((V+E) log V)</td>
+      <td>각 간선 최대 1번 완화, PQ 삽입/삭제 log V</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V)</td>
+      <td>dist[], PQ에 정점 개수만큼</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-인접-행렬--선형-탐색-버전">💡 인접 행렬 + 선형 탐색 버전</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>복잡도</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O(V²)</td>
+      <td>V번 반복, 매번 O(V) 최솟값</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V²)</td>
+      <td>인접 행렬</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-7️⃣-벨만-포드플로이드-워셜과의-비교">⚖️ 7️⃣ 벨만-포드·플로이드-워셜과의 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>다익스트라</th>
+      <th>벨만-포드</th>
+      <th>플로이드-워셜</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>목적</strong></td>
+      <td>한 출발점 → 모든 정점</td>
+      <td>한 출발점 → 모든 정점</td>
+      <td>모든 쌍 최단 경로</td>
+    </tr>
+    <tr>
+      <td><strong>음수 간선</strong></td>
+      <td><strong>불가능</strong></td>
+      <td>가능</td>
+      <td>가능 (음수 사이클 제외)</td>
+    </tr>
+    <tr>
+      <td><strong>음수 사이클</strong></td>
+      <td>해당 없음</td>
+      <td>탐지 가능</td>
+      <td>있으면 사용 불가</td>
+    </tr>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O((V+E)log V) 또는 O(V²)</td>
+      <td>O(VE)</td>
+      <td>O(V³)</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V)</td>
+      <td>O(V)</td>
+      <td>O(V²)</td>
+    </tr>
+    <tr>
+      <td><strong>적용 상황</strong></td>
+      <td>출발점 하나, 음수 간선 없음</td>
+      <td>음수 간선/사이클</td>
+      <td>정점 적을 때, 모든 쌍</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-언제-무엇을-쓸까">💡 언제 무엇을 쓸까?</h3>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-24-pic1.png?raw=true" alt="예시 이미지1" /></p>
+
+<hr />
+
+<h2 id="-8️⃣-실전-문제-적용">🧪 8️⃣ 실전 문제 적용</h2>
+
+<h3 id="-대표-문제-유형">💡 대표 문제 유형</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>유형</th>
+      <th>설명</th>
+      <th>예시 키워드</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>단일 출발 최단 경로</strong></td>
+      <td>한 도시에서 다른 모든 도시까지</td>
+      <td>“1번 노드에서”, “한 점에서”</td>
+    </tr>
+    <tr>
+      <td><strong>가중치가 양수</strong></td>
+      <td>거리, 시간, 비용이 0 이상</td>
+      <td>“최소 비용”, “최단 거리”</td>
+    </tr>
+    <tr>
+      <td><strong>경로 복원</strong></td>
+      <td>최단 경로에 포함된 정점/간선 출력</td>
+      <td>“경로 출력”, “경로 추적”</td>
+    </tr>
+    <tr>
+      <td><strong>2차원 격자</strong></td>
+      <td>칸 이동 비용을 간선으로 두고 적용</td>
+      <td>“다익스트라 + BFS/격자”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-체크리스트">💡 체크리스트</h3>
+
+<p>다익스트라를 쓸 때 확인할 것:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>음수 간선이 없는가?</strong> (있으면 벨만-포드)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>한 출발점에서 나머지 전체</strong>가 필요한가? (모든 쌍이면 플로이드-워셜 고려)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">INF</code> 값을 충분히 크게 설정했는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />같은 정점에 대한 <strong>중복 간선</strong>이 있으면 더 작은 가중치만 남겼는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 스킵 처리로 <strong>이미 갱신된 노드</strong>를 건너뛰었는가?</li>
+</ul>
+
+<hr />
+
+<p>이렇게 <strong>다익스트라</strong>까지 정리하면, <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>·<a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>와 함께 <strong>최단 경로 시리즈</strong>를 한 세트로 다룰 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다.]]></summary></entry><entry><title type="html">[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가</title><link href="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/" rel="alternate" type="text/html" title="[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가" /><published>2026-02-23T00:00:00+00:00</published><updated>2026-02-24T04:32:04+00:00</updated><id>https://nan0silver.github.io/spring/filter-interceptor-aop</id><content type="html" xml:base="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/"><![CDATA[<blockquote>
   <p>PATCH/PUT, DTO, Controller 같은 Spring 글을 읽었다면, “요청이 어디서 걸리고, 어떤 순서로 처리될까?”가 궁금할 수 있다.<br />
 이 글에서는 <strong>Filter</strong>, <strong>Interceptor</strong>, <strong>AOP</strong>가 각각 어디에 위치하고, 무엇을 할 때 쓰면 좋은지** 한 번에 정리한다.</p>
 </blockquote>
@@ -506,7 +874,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   </tbody>
 </table>
 
-<p>이렇게 세 가지를 구분해 두면, “요청이 어떻게 처리되는지”를 Spring 글들(PATCH/PUT, DTO, Controller)과 함께 한 번에 그릴 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</title><link href="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/" rel="alternate" type="text/html" title="[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법" /><published>2026-02-18T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/algorithm/integer-arraylist-to-int-array</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/"><![CDATA[<p>알고리즘 문제를 풀다 보면 <code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>로 모아둔 결과를 최종적으로 <code class="language-plaintext highlighter-rouge">int[]</code> 배열로 반환해야 하는 경우가 많다. <code class="language-plaintext highlighter-rouge">String</code> 리스트는 <code class="language-plaintext highlighter-rouge">toArray()</code>로 쉽게 변환할 수 있지만, <strong>primitive 타입인 int는 <code class="language-plaintext highlighter-rouge">toArray()</code>를 그대로 쓸 수 없다.</strong> 이번 글에서는 Integer ArrayList를 int 배열로 바꾸는 방법을 정리해보자.</p>
+<p>이렇게 세 가지를 구분해 두면, “요청이 어떻게 처리되는지”를 Spring 글들(PATCH/PUT, DTO, Controller)과 함께 한 번에 그릴 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</title><link href="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/" rel="alternate" type="text/html" title="[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법" /><published>2026-02-18T00:00:00+00:00</published><updated>2026-02-24T04:32:04+00:00</updated><id>https://nan0silver.github.io/algorithm/integer-arraylist-to-int-array</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/"><![CDATA[<p>알고리즘 문제를 풀다 보면 <code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>로 모아둔 결과를 최종적으로 <code class="language-plaintext highlighter-rouge">int[]</code> 배열로 반환해야 하는 경우가 많다. <code class="language-plaintext highlighter-rouge">String</code> 리스트는 <code class="language-plaintext highlighter-rouge">toArray()</code>로 쉽게 변환할 수 있지만, <strong>primitive 타입인 int는 <code class="language-plaintext highlighter-rouge">toArray()</code>를 그대로 쓸 수 없다.</strong> 이번 글에서는 Integer ArrayList를 int 배열로 바꾸는 방법을 정리해보자.</p>
 
 <ol>
   <li><a href="#-1️⃣-string-list-vs-integer-list">String List vs Integer List</a></li>
@@ -644,7 +1012,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <p><strong>참고</strong></p>
 <ul>
   <li><a href="https://hoehen-flug.tistory.com/49">내가 개발자라니 - Integer ArrayList을 int 배열로 변환하는 방법</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[알고리즘 문제 풀이 시 Integer ArrayList를 int[] 배열로 변환해야 할 때 사용할 수 있는 방법을 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 벨만-포드 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" rel="alternate" type="text/html" title="[Algorithm] 벨만-포드 알고리즘" /><published>2026-02-09T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/algorithm/bellman-ford</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"><![CDATA[<ol>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[알고리즘 문제 풀이 시 Integer ArrayList를 int[] 배열로 변환해야 할 때 사용할 수 있는 방법을 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 벨만-포드 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" rel="alternate" type="text/html" title="[Algorithm] 벨만-포드 알고리즘" /><published>2026-02-09T00:00:00+00:00</published><updated>2026-02-24T04:32:04+00:00</updated><id>https://nan0silver.github.io/algorithm/bellman-ford</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"><![CDATA[<ol>
   <li><a href="#-1️⃣-벨만-포드란">벨만-포드란?</a></li>
   <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
   <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
@@ -855,7 +1223,7 @@ dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>
 
 <p>👉 핵심 질문이
 <strong>“최단거리”보다 “음수 사이클 존재 여부”</strong>라면
-벨만-포드를 떠올려야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[벨만-포드 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" rel="alternate" type="text/html" title="[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유" /><published>2026-02-07T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-07-diary/"><![CDATA[<blockquote>
+벨만-포드를 떠올려야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[벨만-포드 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" rel="alternate" type="text/html" title="[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유" /><published>2026-02-07T00:00:00+00:00</published><updated>2026-02-24T04:32:04+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-07-diary/"><![CDATA[<blockquote>
   <p><a href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/">이전 일기: 비관적 락 적용기</a>에서 통화 종료에 비관적 락을 적용했다.<br />
 그때 <code class="language-plaintext highlighter-rouge">@Transactional</code> 하나로 전체 흐름을 감쌌는데, <strong>왜 한 트랜잭션으로 묶어야 하고</strong>, <strong>전파 옵션을 잘못 쓰면 락이 어떻게 깨질 수 있는지</strong>를 이번에 정리해 본다.</p>
 </blockquote>
@@ -1106,7 +1474,7 @@ dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>
   </tbody>
 </table>
 
-<p>비관적 락 적용 시 <strong>“어디서 트랜잭션이 시작되고 끝나는지”</strong> 를 의식하고, <strong>락을 건 구간과 수정 구간이 같은 트랜잭션에 포함되도록</strong> 전파를 두면, “같은 트랜잭션 안에서 락이 유지되는” 동작을 기대한 대로 얻을 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</title><link href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" rel="alternate" type="text/html" title="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" /><published>2026-01-22T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-22-diary/"><![CDATA[<blockquote>
+<p>비관적 락 적용 시 <strong>“어디서 트랜잭션이 시작되고 끝나는지”</strong> 를 의식하고, <strong>락을 건 구간과 수정 구간이 같은 트랜잭션에 포함되도록</strong> 전파를 두면, “같은 트랜잭션 안에서 락이 유지되는” 동작을 기대한 대로 얻을 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</title><link href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" rel="alternate" type="text/html" title="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" /><published>2026-01-22T00:00:00+00:00</published><updated>2026-02-24T04:32:04+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-22-diary/"><![CDATA[<blockquote>
   <p>동시 요청으로 통화가 두 번 종료되는 문제 해결하기..!</p>
 </blockquote>
 
@@ -1630,7 +1998,7 @@ User2: 100ms (락 대기 50ms + 처리 50ms)
   <li>통화 종료는 충돌 가능성 높고</li>
   <li>정확성이 중요하며</li>
   <li>약간의 대기는 허용 가능</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" rel="alternate" type="text/html" title="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" /><published>2026-01-19T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-19-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" rel="alternate" type="text/html" title="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" /><published>2026-01-19T00:00:00+00:00</published><updated>2026-02-24T04:32:04+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-19-diary/"><![CDATA[<ul>
   <li><a href="#-문제-발견-배경">문제 발견 배경</a></li>
   <li>
     <p><a href="#-근본-원인-분석">근본 원인 분석</a></p>
@@ -2080,7 +2448,7 @@ userId 추출: ✅ 성공
   <li>✅ 직접 Principal에 접근하여 안정성 확보</li>
   <li>✅ null 체크 및 fallback 로직 구현 가능</li>
   <li>✅ 명시적 코드로 디버깅 용이</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.]]></summary></entry><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.]]></summary></entry><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-02-24T04:32:04+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#ssl-인증서란">SSL 인증서란?</a></li>
   <li><a href="#lets-encrypt와-90일-갱신-주기">Let’s Encrypt와 90일 갱신 주기</a></li>
@@ -2249,7 +2617,7 @@ ESC         # 명령 모드
   <li><a href="https://letsencrypt.org/docs/">Let’s Encrypt 공식 문서</a></li>
   <li><a href="https://certbot.eff.org/">Certbot 사용 가이드</a></li>
   <li><a href="https://docs.aws.amazon.com/linux/">Amazon Linux cron 설정</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</title><link href="https://nan0silver.github.io/algorithm/2026-01-09-summary/" rel="alternate" type="text/html" title="[Algorithm] 코딩테스트 알고리즘 선택방법 요약" /><published>2026-01-09T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/algorithm/summary</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-01-09-summary/"><![CDATA[<p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</title><link href="https://nan0silver.github.io/algorithm/2026-01-09-summary/" rel="alternate" type="text/html" title="[Algorithm] 코딩테스트 알고리즘 선택방법 요약" /><published>2026-01-09T00:00:00+00:00</published><updated>2026-02-24T04:32:04+00:00</updated><id>https://nan0silver.github.io/algorithm/summary</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-01-09-summary/"><![CDATA[<p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
 이 글에서는 <strong>코테 기준으로 딱 필요한 만큼만</strong> 정리한다.</p>
 
 <hr />
@@ -2532,7 +2900,7 @@ ESC         # 명령 모드
 <blockquote>
   <p><strong>“알고리즘은 외우는 게 아니라,
 문제 조건으로 제거하고 남는 하나를 고르는 것”</strong></p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2026-02-24T04:32:04+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
   <li><a href="#-1️⃣-플로이드-워셜이란">플로이드-워셜이란?</a></li>
   <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
   <li><a href="#-3️⃣-k-i-j의-정확한-의미">k, i, j의 의미</a></li>
@@ -2979,463 +3347,4 @@ dist[1][4] = min(INF, dist[1][2] + dist[2][4])
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />k가 가장 바깥 루프인가?</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기</title><link href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기" /><published>2025-12-25T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-25-diary/"><![CDATA[<ul>
-  <li><a href="#들어가며">들어가며</a></li>
-  <li><a href="#1-처음-그린-그림">1. 처음 그린 그림</a></li>
-  <li><a href="#2-redis-대기열-생각보다-복잡했다">2. Redis 대기열, 생각보다 복잡했다</a></li>
-  <li><a href="#3-매칭-알고리즘의-딜레마">3. 매칭 알고리즘의 딜레마</a></li>
-  <li><a href="#4-알림이-안-가요">4. “알림이 안 가요”</a></li>
-  <li><a href="#5-동시성의-늪">5. 동시성의 늪</a></li>
-  <li><a href="#6-db와-redis-사이에서">6. DB와 Redis 사이에서</a></li>
-  <li><a href="#7-배운-것들">7. 배운 것들</a></li>
-</ul>
-
-<hr />
-
-<h2 id="들어가며">들어가며</h2>
-
-<p>“매칭이요? 그냥 대기열 만들고, 2명 되면 연결하면 되는 거 아니에요?”</p>
-
-<p>처음에 나도 그렇게 생각했다. 버튼 하나 누르면 매칭되고, 바로 통화 시작. 간단하지 않나?</p>
-
-<p>그런데 막상 만들기 시작하니까… 전혀 간단하지 않았다.</p>
-
-<hr />
-
-<h2 id="1-처음-그린-그림">1. 처음 그린 그림</h2>
-
-<p>가장 먼저 그린 건 이런 흐름이었다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 사용자가 "매칭 시작" 버튼 클릭
-2. 대기열에 들어감
-3. 다른 사람이 들어오면 자동 매칭
-4. 통화 시작!
-</code></pre></div></div>
-
-<p>어렵지 않아 보였다. 그래서 바로 코딩을 시작했다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 첫 번째 시도</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">startMatching</span><span class="o">(</span><span class="nc">Long</span> <span class="n">userId</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">userId</span><span class="o">);</span>
-
-    <span class="k">if</span> <span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">User</span> <span class="n">user1</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-        <span class="nc">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-        <span class="n">createCall</span><span class="o">(</span><span class="n">user1</span><span class="o">,</span> <span class="n">user2</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>로컬에서 테스트하니까 잘 됐다. “오, 쉽네?” 싶었다.</p>
-
-<p>그런데…</p>
-
-<hr />
-
-<h2 id="2-redis-대기열-생각보다-복잡했다">2. Redis 대기열, 생각보다 복잡했다</h2>
-
-<h3 id="같은-사람이랑-계속-매칭돼요">“같은 사람이랑 계속 매칭돼요”</h3>
-
-<p>첫 번째 문제는 금방 발견됐다. 테스트하던 친구가 말했다.</p>
-
-<p>“어… 나 방금 매칭된 사람이랑 또 매칭됐는데?”</p>
-
-<p>그제야 깨달았다. 그냥 랜덤으로 매칭하면 방금 통화한 사람이랑 또 만날 수 있다는 걸.</p>
-
-<p>“그럼 대기순으로 하면 되겠네!”</p>
-
-<p>List를 써서 먼저 온 사람부터 매칭하도록 바꿨다. 문제 해결!</p>
-
-<h3 id="10분째-기다리고-있는데요">“10분째 기다리고 있는데요”</h3>
-
-<p>그런데 이번엔 다른 문제가 생겼다.</p>
-
-<p>새벽 시간대에 사용자가 적을 때, 한 명이 들어와서 10분을 기다리고 있었다. 상대방이 안 와서.</p>
-
-<p>“아… 타임아웃 처리를 해야 하는구나.”</p>
-
-<p>그런데 List로는 “언제 들어왔는지”를 알 수가 없었다. 그냥 순서만 알 수 있었다.</p>
-
-<p>여기서 Redis의 <strong>Sorted Set(ZSET)</strong> 을 알게 됐다.</p>
-
-<pre><code class="language-redis"># 들어온 시각을 점수로 저장
-ZADD queue:music 1734840123456 user_101
-ZADD queue:music 1734840125789 user_205
-</code></pre>
-
-<p>이제 시간 기준으로 정렬도 되고, 오래된 사람 찾기도 쉬워졌다.</p>
-
-<h3 id="랜덤도-하고-싶은데요">“랜덤도 하고 싶은데요?”</h3>
-
-<p>대기순만 하니까 너무 지루하다는 피드백이 왔다.</p>
-
-<p>“가끔은 랜덤 매칭도 하면 재밌을 것 같아요!”</p>
-
-<p>ZSET의 <code class="language-plaintext highlighter-rouge">ZRANDMEMBER</code> 명령어를 발견했다. 완벽했다.</p>
-
-<p>하지만 여기서 또 고민이 생겼다. 항상 랜덤? 항상 대기순? 어떻게 섞지?</p>
-
-<hr />
-
-<h2 id="3-매칭-알고리즘의-딜레마">3. 매칭 알고리즘의 딜레마</h2>
-
-<h3 id="공정성-vs-다양성">공정성 vs 다양성</h3>
-
-<p>고민을 정리해봤다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>대기순만 하면:
-✅ 공정함
-❌ 지루함
-
-랜덤만 하면:
-✅ 재미있음
-❌ 오래 기다린 사람 불공평
-</code></pre></div></div>
-
-<p>결국 <strong>하이브리드 방식</strong>을 선택했다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 대기순과 랜덤을 적절히 섞기</span>
-<span class="kt">boolean</span> <span class="n">useRandom</span> <span class="o">=</span> <span class="n">shouldUseRandom</span><span class="o">();</span>
-
-<span class="k">if</span> <span class="o">(</span><span class="n">useRandom</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 랜덤 매칭</span>
-<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-    <span class="c1">// 대기순 매칭</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>(비율은 사실 감으로 정했다. 나중에 데이터 보면서 조정할 생각이다.)</p>
-
-<h3 id="스케줄러-vs-실시간">스케줄러 vs 실시간</h3>
-
-<p>또 다른 고민: 누가 들어올 때마다 매칭을 시도할까? 아니면 주기적으로 확인할까?</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>실시간 시도:
-✅ 빠름
-❌ 트래픽 많으면 부하
-
-주기적 확인:
-✅ 안정적
-❌ 약간 느림
-</code></pre></div></div>
-
-<p>일단 <strong>주기적으로 확인하는 스케줄러</strong>로 구현했다. 1분 이내 매칭이 목표였으니까 충분했다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Scheduled</span><span class="o">(</span><span class="n">fixedDelay</span> <span class="o">=</span> <span class="mi">30000</span><span class="o">)</span>  <span class="c1">// 30초</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">processMatching</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// 매칭 로직</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="4-알림이-안-가요">4. “알림이 안 가요”</h2>
-
-<p>매칭은 되는데, 사용자가 모른다는 게 문제였다.</p>
-
-<h3 id="websocket의-등장">WebSocket의 등장</h3>
-
-<p>“알림 어떻게 보내지?”</p>
-
-<p>처음엔 클라이언트가 계속 서버에 물어보는 <strong>폴링</strong> 방식을 생각했다.</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 이렇게?</span>
-<span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">/api/matching/status</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span> <span class="c1">// 1초마다</span>
-</code></pre></div></div>
-
-<p>그런데 이건 너무 비효율적이었다. 서버도 부담스럽고.</p>
-
-<p>그래서 <strong>WebSocket</strong>을 쓰기로 했다.</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 구독하고 기다리면 알림이 옴</span>
-<span class="nx">client</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s2">`/topic/matching/</span><span class="p">${</span><span class="nx">userId</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="c1">// 매칭 완료!</span>
-  <span class="nx">navigate</span><span class="p">(</span><span class="dl">"</span><span class="s2">/call</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<h3 id="타이밍-이슈">타이밍 이슈</h3>
-
-<p>그런데 여기서 또 함정이 있었다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 매칭 완료 → DB 저장
-2. WebSocket 알림 발송
-3. 클라이언트가 통화 정보 조회
-4. ❌ 아직 DB에 커밋 안 됨!
-</code></pre></div></div>
-
-<p>알림은 보냈는데 DB에는 아직 데이터가 없는 상황.</p>
-
-<p>클라이언트에서 에러가 났다. “통화를 찾을 수 없습니다.”</p>
-
-<p><strong>해결:</strong> 트랜잭션 커밋 후에 알림 보내기</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// DB 커밋 성공 후에만 알림</span>
-<span class="nc">TransactionSynchronizationManager</span><span class="o">.</span><span class="na">registerSynchronization</span><span class="o">(</span>
-    <span class="k">new</span> <span class="nf">TransactionSynchronization</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterCommit</span><span class="o">()</span> <span class="o">{</span>
-            <span class="c1">// 이제야 알림 발송</span>
-            <span class="n">sendNotification</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">);</span>
-</code></pre></div></div>
-
-<p>이 부분은 Spring 문서를 뒤져가며 찾았다. “트랜잭션 동기화”라는 개념을 처음 알았다.</p>
-
-<hr />
-
-<h2 id="5-동시성의-늪">5. 동시성의 늪</h2>
-
-<p>로컬에서는 잘 되던 게, 배포하니까 문제가 생겼다.</p>
-
-<h3 id="저-두-명이랑-동시에-매칭됐어요">“저 두 명이랑 동시에 매칭됐어요”</h3>
-
-<p>한 사용자가 두 개의 통화에 동시에 매칭되는 버그였다.</p>
-
-<p>원인을 찾아보니… 여러 스레드가 동시에 매칭 로직을 실행하면서 생긴 문제였다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[스레드 A] 사용자 101, 102 매칭 시작
-[스레드 B] 사용자 101, 103 매칭 시작
-     ↓
-사용자 101이 두 번 매칭됨!
-</code></pre></div></div>
-
-<p><strong>해결:</strong> 사용자 상태 체크</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// "나 지금 매칭 중이야" 표시</span>
-<span class="nc">String</span> <span class="n">lockKey</span> <span class="o">=</span> <span class="s">"user:queued:"</span> <span class="o">+</span> <span class="n">userId</span><span class="o">;</span>
-
-<span class="nc">Boolean</span> <span class="n">acquired</span> <span class="o">=</span> <span class="n">redisTemplate</span><span class="o">.</span><span class="na">opsForValue</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">setIfAbsent</span><span class="o">(</span><span class="n">lockKey</span><span class="o">,</span> <span class="s">"1"</span><span class="o">,</span> <span class="nc">Duration</span><span class="o">.</span><span class="na">ofMinutes</span><span class="o">(</span><span class="mi">10</span><span class="o">));</span>
-
-<span class="k">if</span> <span class="o">(!</span><span class="n">acquired</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nf">AlreadyInQueueException</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Redis의 <code class="language-plaintext highlighter-rouge">SETNX</code> (Set if Not eXists) 명령어를 쓰면 원자적으로 체크하고 설정할 수 있다는 걸 배웠다.</p>
-
-<h3 id="카테고리별-독립-처리">카테고리별 독립 처리</h3>
-
-<p>음악, 영화, 게임… 카테고리가 여러 개인데, 하나의 카테고리에서 에러가 나면 다른 카테고리 매칭도 다 실패했다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 문제가 있던 코드</span>
-<span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">processMatching</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">for</span> <span class="o">(</span><span class="nc">Category</span> <span class="n">category</span> <span class="o">:</span> <span class="n">categories</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">matchCategory</span><span class="o">(</span><span class="n">category</span><span class="o">);</span>  <span class="c1">// 하나 실패하면 전체 롤백!</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><strong>해결:</strong> 각 카테고리마다 독립적인 트랜잭션</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span><span class="o">(</span><span class="n">propagation</span> <span class="o">=</span> <span class="nc">Propagation</span><span class="o">.</span><span class="na">REQUIRES_NEW</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">matchCategory</span><span class="o">(</span><span class="nc">Category</span> <span class="n">category</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 이제 하나 실패해도 다른 카테고리는 계속 진행</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">REQUIRES_NEW</code>라는 옵션이 있다는 걸 이때 알았다. Spring은 정말 배울 게 많다.</p>
-
-<hr />
-
-<h2 id="6-db와-redis-사이에서">6. DB와 Redis 사이에서</h2>
-
-<h3 id="어디에-뭘-저장할까">어디에 뭘 저장할까?</h3>
-
-<p>처음엔 Redis에만 대기열을 관리했다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Redis만 사용:
-✅ 빠름
-❌ 서버 재시작하면 대기열 사라짐
-❌ 누가 언제 들어왔는지 기록 없음
-</code></pre></div></div>
-
-<p>그래서 DB에도 저장하기로 했다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. DB에 저장</span>
-<span class="nc">MatchingQueue</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">matchingQueueRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span>
-    <span class="k">new</span> <span class="nf">MatchingQueue</span><span class="o">(</span><span class="n">userId</span><span class="o">,</span> <span class="n">categoryId</span><span class="o">)</span>
-<span class="o">);</span>
-
-<span class="c1">// 2. Redis에도 추가</span>
-<span class="n">redisService</span><span class="o">.</span><span class="na">enqueue</span><span class="o">(</span><span class="n">userId</span><span class="o">,</span> <span class="n">categoryId</span><span class="o">);</span>
-</code></pre></div></div>
-
-<h3 id="그런데-redis-추가가-실패하면">그런데 Redis 추가가 실패하면?</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. DB 저장 성공 ✅
-2. Redis 추가 실패 ❌
-   ↓
-대기열에는 없는데 DB엔 있는 상태
-</code></pre></div></div>
-
-<p>이게 생각보다 골치 아팠다.</p>
-
-<p>처음엔 “둘 다 성공하게 만들어야지!” 라고 생각했다. 그런데 현실은 그렇지 않았다.</p>
-
-<p>DB와 Redis는 완전히 다른 시스템이다. 하나의 트랜잭션으로 묶을 수 없다.</p>
-
-<p><strong>결론:</strong> 완벽한 일치는 불가능하다.</p>
-
-<p>대신 이렇게 접근했다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. DB는 "기록용"
-   - 누가 언제 매칭을 시도했는지
-   - 통계와 분석용
-
-2. Redis는 "실시간 처리용"
-   - 지금 대기 중인 사람들
-   - 빠른 매칭용
-
-3. 불일치가 생기면?
-   - Redis 실패하면 로그 남기고
-   - 서버 시작할 때 DB에서 복구
-</code></pre></div></div>
-
-<p>“최선”을 “완벽” 대신 선택했다.</p>
-
-<hr />
-
-<h2 id="7-배운-것들">7. 배운 것들</h2>
-
-<h3 id="간단해-보이는-기능도-간단하지-않다">“간단해 보이는 기능도 간단하지 않다”</h3>
-
-<p>“매칭 버튼 하나면 되는 거 아니야?”</p>
-
-<p>아니었다. 정말 아니었다.</p>
-
-<ul>
-  <li>타임아웃 처리</li>
-  <li>중복 방지</li>
-  <li>알림 발송</li>
-  <li>동시성 제어</li>
-  <li>데이터 일관성</li>
-  <li>서버 재시작 대응</li>
-  <li>…</li>
-</ul>
-
-<p>하나하나 다 신경 써야 할 게 있었다.</p>
-
-<h3 id="완벽은-없다">“완벽은 없다”</h3>
-
-<p>처음엔 “완벽하게 만들어야지!” 라고 생각했다.</p>
-
-<p>DB와 Redis가 항상 일치해야 하고, 알림이 절대 빠지면 안 되고, 매칭이 1초 만에 되어야 하고…</p>
-
-<p>그런데 현실은:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Redis는 가끔 연결이 끊긴다
-- 알림은 가끔 실패한다
-- 네트워크는 언제나 불안정하다
-</code></pre></div></div>
-
-<p>완벽을 추구하다가 영원히 못 끝낼 뻔했다.</p>
-
-<p><strong>대신 이렇게 접근했다:</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ 대부분의 경우 잘 작동하면 OK
-✅ 실패해도 복구할 수 있으면 OK
-✅ 사용자가 크게 불편하지 않으면 OK
-</code></pre></div></div>
-
-<h3 id="문제는-운영하면서-발견된다">“문제는 운영하면서 발견된다”</h3>
-
-<p>로컬에서는 몰랐던 문제들:</p>
-
-<ul>
-  <li>동시성 이슈</li>
-  <li>타임아웃 처리</li>
-  <li>메모리 관리</li>
-  <li>네트워크 지연</li>
-</ul>
-
-<p>다 운영하면서 만났다.</p>
-
-<p>그리고 하나씩 해결했다.</p>
-
-<h3 id="설계보다-중요한-건-개선">“설계보다 중요한 건 개선”</h3>
-
-<p>처음 설계가 완벽할 순 없다.</p>
-
-<p>중요한 건:</p>
-
-<ul>
-  <li>문제를 빨리 발견하고</li>
-  <li>빨리 고치고</li>
-  <li>다시 배포하는 것</li>
-</ul>
-
-<p>이 사이클을 빠르게 돌리는 게 핵심이었다.</p>
-
-<h3 id="검색과-시도의-힘">“검색과 시도의 힘”</h3>
-
-<p>이 과정에서 새로 배운 것들:</p>
-
-<ul>
-  <li>Redis ZSET</li>
-  <li>WebSocket과 STOMP</li>
-  <li>트랜잭션 동기화</li>
-  <li>SETNX (원자적 연산)</li>
-  <li>REQUIRES_NEW 전파 속성</li>
-</ul>
-
-<p>하나도 몰랐다. 다 검색하고, 블로그 읽고, 시도하고, 실패하고, 다시 해보면서 배웠다.</p>
-
-<p>“모르는 게 부끄러운 게 아니라, 배우지 않는 게 부끄러운 것”이라는 걸 다시 한번 느꼈다.</p>
-
-<hr />
-
-<h2 id="마치며">마치며</h2>
-
-<p>6개월 전 “매칭 기능 만들어야지!” 라고 생각했을 때는 몰랐다.</p>
-
-<p>이렇게 많은 고민과 삽질이 필요할 줄.</p>
-
-<p>하지만 돌아보니, 이 과정에서 정말 많이 배웠다.</p>
-
-<ul>
-  <li>Redis의 다양한 자료구조</li>
-  <li>WebSocket 실시간 통신</li>
-  <li>동시성 제어</li>
-  <li>분산 시스템의 어려움</li>
-  <li>완벽함보다 실용성</li>
-</ul>
-
-<p>그리고 가장 중요한 것:</p>
-
-<p><strong>“모르는 건 부끄러운 게 아니다. 배우면 된다.”</strong></p>
-
-<p>하나씩 검색하고, 블로그 읽고, 시도해보고, 실패하고, 다시 해보고.</p>
-
-<p>그렇게 만들어졌다.</p>
-
-<p>완벽하진 않지만, 작동한다.</p>
-
-<p>그리고 계속 개선하고 있다.</p>
-
-<hr />
-
-<p>다음 편에서는 이 시스템을 운영하면서 만난 <strong>진짜 문제들</strong>을 이야기해보려고 한다.</p>
-
-<ul>
-  <li>Redis 메모리가 터졌던 날</li>
-  <li>WebSocket이 다 끊어졌던 날</li>
-  <li>매칭이 안 되는 버그를 3일 동안 찾았던 이야기</li>
-</ul>
-
-<p>기대해주시길!</p>
-
-<hr />
-
-<p><strong>시리즈:</strong></p>
-
-<ol>
-  <li><a href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/">왜 이 기술들을 선택했나</a></li>
-  <li><strong>실시간 매칭 시스템, 생각보다 어려웠던 이야기</strong> ← 현재 글</li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA["버튼 하나면 되는 거 아냐?" 라고 생각했던 나에게 현실이 알려준 것들]]></summary></entry></feed>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry></feed>

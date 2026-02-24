@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Algorithm] 벨만-포드 알고리즘 | NAHYUN BLOG</title>
+<title>[Algorithm] 다익스트라 알고리즘 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Algorithm] 벨만-포드 알고리즘" />
+<meta property="og:title" content="[Algorithm] 다익스트라 알고리즘" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="벨만-포드 알고리즘에 대해 정리해보았습니다." />
-<meta property="og:description" content="벨만-포드 알고리즘에 대해 정리해보았습니다." />
-<link rel="canonical" href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" />
-<meta property="og:url" content="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" />
+<meta name="description" content="다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다." />
+<meta property="og:description" content="다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다." />
+<link rel="canonical" href="https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/" />
+<meta property="og:url" content="https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2026-02-09T00:00:00+00:00" />
+<meta property="article:published_time" content="2026-02-24T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Algorithm] 벨만-포드 알고리즘" />
+<meta property="twitter:title" content="[Algorithm] 다익스트라 알고리즘" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-24T04:32:04+00:00","datePublished":"2026-02-09T00:00:00+00:00","description":"벨만-포드 알고리즘에 대해 정리해보았습니다.","headline":"[Algorithm] 벨만-포드 알고리즘","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-24T04:32:04+00:00","datePublished":"2026-02-24T00:00:00+00:00","description":"다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다.","headline":"[Algorithm] 다익스트라 알고리즘","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[Algorithm] 벨만-포드 알고리즘",
-    "description": "벨만-포드 알고리즘에 대해 정리해보았습니다.
+    "headline": "[Algorithm] 다익스트라 알고리즘",
+    "description": "다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2026-02-09T00:00:00+00:00",
+    "datePublished": "2026-02-24T00:00:00+00:00",
     "dateModified": "2026-02-24T04:32:04+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"
+      "@id": "https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" />
+<link rel="canonical" href="https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -287,8 +287,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[Algorithm] 벨만-포드 알고리즘",
-        "item": "https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"
+        "name": "[Algorithm] 다익스트라 알고리즘",
+        "item": "https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/"
       }
     ]
   }
@@ -365,7 +365,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         
           <span>/</span>
-          <span>2026-02-09-bellman-ford</span>
+          <span>2026-02-24-dijkstra</span>
         
       </li>
     
@@ -382,31 +382,23 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-algorithm-bellman-ford" class="page post mb6" role="article">
+<article id="post-algorithm-dijkstra" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Algorithm] 벨만-포드 알고리즘
+        [Algorithm] 다익스트라 알고리즘
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2026-02-09T00:00:00+00:00">09 Feb 2026</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
+        <time datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
       </span>
       
         
           
           
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-02-24T04:32:04+00:00">2026-02-24</time>
-            </span>
           
         
       
@@ -421,7 +413,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      벨만-포드 알고리즘에 대해 정리해보았습니다.
+      다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다.
 
     </p>
   
@@ -430,31 +422,35 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <ol>
-  <li><a href="#-1️⃣-벨만-포드란">벨만-포드란?</a></li>
+    <blockquote>
+  <p><strong>최단 경로 시리즈</strong> – <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>(모든 쌍), <a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>(음수 간선·음수 사이클)에 이어, <strong>한 출발점에서 나머지 모든 정점까지</strong>의 최단 경로를 빠르게 구하는 알고리즘이다.</p>
+</blockquote>
+
+<ol>
+  <li><a href="#-1️⃣-다익스트라란">다익스트라란?</a></li>
   <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
   <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
-  <li><a href="#-4️⃣-음수-사이클-탐지-원리">음수 사이클 탐지 원리</a></li>
+  <li><a href="#-4️⃣-우선순위-큐와-동작-과정">우선순위 큐와 동작 과정</a></li>
   <li><a href="#-5️⃣-코드-구현">코드 구현</a></li>
   <li><a href="#-6️⃣-시간복잡도와-공간복잡도">시간복잡도와 공간복잡도</a></li>
-  <li><a href="#-7️⃣-다익스트라와의-비교">다익스트라와의 비교</a></li>
+  <li><a href="#-7️⃣-벨만-포드플로이드-워셜과의-비교">벨만-포드·플로이드-워셜과의 비교</a></li>
   <li><a href="#-8️⃣-실전-문제-적용">실전 문제 적용</a></li>
 </ol>
 
 <hr />
 
-<h2 id="-1️⃣-벨만-포드란">🎯 1️⃣ 벨만-포드란?</h2>
+<h2 id="-1️⃣-다익스트라란">🎯 1️⃣ 다익스트라란?</h2>
 
 <h3 id="-한-문장-정의">💡 한 문장 정의</h3>
 
-<p><strong>“음수 가중치를 허용하며, 음수 사이클 존재 여부까지 판별할 수 있는 최단 경로 알고리즘”</strong></p>
+<p><strong>“음수 간선이 없을 때, 한 출발점에서 모든 정점까지의 최단 경로를 구하는 그리디 알고리즘”</strong></p>
 
 <h3 id="-언제-사용하는가">💡 언제 사용하는가?</h3>
 
 <ul>
-  <li>간선 가중치가 <strong>음수일 수 있을 때</strong></li>
-  <li>“이 그래프에 음수 사이클이 존재하는가?”를 판단해야 할 때</li>
-  <li>최단 경로 자체보다 <strong>사이클 판별이 중요한 문제</strong>일 때</li>
+  <li><strong>한 정점(출발점)</strong>에서 <strong>나머지 모든 정점</strong>까지의 최단 거리가 필요할 때</li>
+  <li>간선 가중치가 <strong>모두 0 이상(비음수)</strong>일 때</li>
+  <li>정점·간선이 많아서 플로이드-워셜 O(V³)을 쓰기 어려울 때</li>
 </ul>
 
 <h3 id="-특징">💡 특징</h3>
@@ -469,7 +465,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   <tbody>
     <tr>
       <td><strong>시간복잡도</strong></td>
-      <td>O(VE)</td>
+      <td>O((V+E)log V) (우선순위 큐 사용 시)</td>
     </tr>
     <tr>
       <td><strong>공간복잡도</strong></td>
@@ -477,11 +473,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     </tr>
     <tr>
       <td><strong>음수 간선</strong></td>
-      <td>처리 가능</td>
-    </tr>
-    <tr>
-      <td><strong>음수 사이클</strong></td>
-      <td>탐지 가능</td>
+      <td><strong>불가능</strong> (잘못된 결과 가능)</td>
     </tr>
     <tr>
       <td><strong>그래프 종류</strong></td>
@@ -489,7 +481,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     </tr>
     <tr>
       <td><strong>구현 난이도</strong></td>
-      <td>중간 (반복 구조 이해 필요)</td>
+      <td>중간 (우선순위 큐 활용)</td>
+    </tr>
+    <tr>
+      <td><strong>성격</strong></td>
+      <td>그리디 (매 순간 가장 가까운 정점 확정)</td>
     </tr>
   </tbody>
 </table>
@@ -500,21 +496,28 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 <h3 id="-알고리즘의-본질">💡 알고리즘의 본질</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-"모든 간선을 반복적으로 확인하면서,
-더 짧은 경로가 발견되면 거리 정보를 갱신하고,
-이 갱신이 끝없이 발생하는지를 확인하는 알고리즘"
-
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"매 단계마다 '가장 거리가 짧은 정점'을 하나씩 확정하고,
+그 정점을 통해 갈 수 있는 이웃들의 거리를 갱신해 나가는 알고리즘"
 </code></pre></div></div>
 
 <h3 id="-distv의-의미">💡 dist[v]의 의미</h3>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">어떤</span> <span class="n">시작점으로부터</span>
-          <span class="n">정점</span> <span class="n">v까지</span> <span class="n">도달할</span> <span class="n">수</span> <span class="n">있는</span> <span class="n">현재까지의</span> <span class="n">최소</span> <span class="n">비용</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">출발점</span><span class="o">(</span><span class="n">start</span><span class="o">)</span><span class="n">으로부터</span>
+          <span class="n">정점</span> <span class="n">v까지</span> <span class="n">도달하는</span> <span class="n">현재까지의</span> <span class="n">최소</span> <span class="n">비용</span>
 </code></pre></div></div>
 
-<p>※ 음수 사이클 탐지 문제에서는
-dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>가 더 중요하다.</p>
+<ul>
+  <li>한 번 <strong>확정(방문 처리)</strong>한 정점의 dist 값은 더 이상 바뀌지 않는다.</li>
+  <li>음수 간선이 없기 때문에, “지금 가장 작은 dist를 가진 정점”은 이미 최단 거리가 보장된다.</li>
+</ul>
+
+<h3 id="-그리디한-선택">💡 그리디한 선택</h3>
+
+<ul>
+  <li><strong>“현재 시점에서 dist가 가장 작은 정점”</strong>을 골라서 확정한다.</li>
+  <li>그 정점을 거쳐 가는 경로가 더 짧아질 수 있는 <strong>이웃만</strong> 완화(relax)한다.</li>
+  <li>이렇게 하면 각 정점을 <strong>최대 한 번씩만</strong> 확정 처리하면 되고, 우선순위 큐로 “가장 작은 dist”를 빠르게 꺼낼 수 있다.</li>
+</ul>
 
 <hr />
 
@@ -522,126 +525,272 @@ dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>
 
 <h3 id="-간선-완화란">💡 간선 완화란?</h3>
 
-<p><strong>“간선 u → v를 이용했을 때 더 짧은 경로가 생기면 dist[v]를 갱신하는 과정”</strong></p>
+<p><strong>“간선 u → v를 이용했을 때, 출발점에서 v까지 가는 거리가 더 짧아지면 dist[v]를 갱신하는 과정”</strong></p>
+
+<p>(벨만-포드, 플로이드-워셜에서 쓰는 것과 같은 개념이다.)</p>
 
 <h3 id="-완화-조건">💡 완화 조건</h3>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">;</span>
+    <span class="c1">// 우선순위 큐 사용 시: (dist[v], v) 다시 넣거나 갱신</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h3 id="-왜-반복하는가">💡 왜 반복하는가?</h3>
-
 <ul>
-  <li>최단 경로는 최대 <strong>V-1개의 간선</strong>으로 구성됨</li>
-  <li>한 번의 완화로는 정보가 충분히 퍼지지 않음</li>
-  <li>그래서 <strong>모든 간선을 V-1번 반복해서 완화</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">u</code>: 방금 확정한 정점</li>
+  <li><code class="language-plaintext highlighter-rouge">v</code>: u의 이웃 정점</li>
+  <li><code class="language-plaintext highlighter-rouge">w</code>: 간선 (u, v)의 가중치</li>
 </ul>
 
 <hr />
 
-<h2 id="️-4️⃣-음수-사이클-탐지-원리">⚠️ 4️⃣ 음수 사이클 탐지 원리</h2>
+<h2 id="-4️⃣-우선순위-큐와-동작-과정">📌 4️⃣ 우선순위 큐와 동작 과정</h2>
 
-<h3 id="-핵심-아이디어">💡 핵심 아이디어</h3>
+<h3 id="-왜-우선순위-큐를-쓰는가">💡 왜 우선순위 큐를 쓰는가?</h3>
 
 <ul>
-  <li>정상적인 그래프라면
-→ <strong>V-1번 완화 이후 더 이상 갱신이 발생하지 않음</strong></li>
-  <li>그런데도
-→ <strong>V번째 완화에서 갱신 발생?</strong>
-→ <strong>음수 사이클 존재</strong></li>
+  <li><strong>매번 “dist가 가장 작은 정점”</strong>을 골라야 한다.</li>
+  <li>배열로 매번 최솟값을 찾으면 O(V) → 전체 O(V²).</li>
+  <li><strong>우선순위 큐(최소 힙)</strong>를 쓰면 최솟값 추출 O(log V), 간선당 최대 1번 갱신 → <strong>O((V+E)log V)</strong>.</li>
 </ul>
 
-<h3 id="-의미-해석">💡 의미 해석</h3>
+<h3 id="-동작-흐름-요약">💡 동작 흐름 (요약)</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"같은 경로를 계속 돌수록
-비용이 줄어든다"
-= 시간 여행이 가능한 루프
-</code></pre></div></div>
+<ol>
+  <li>출발점 <code class="language-plaintext highlighter-rouge">start</code>의 <code class="language-plaintext highlighter-rouge">dist[start] = 0</code>, 나머지는 <strong>무한대(INF)</strong>로 초기화.</li>
+  <li>우선순위 큐에 <code class="language-plaintext highlighter-rouge">(0, start)</code> 넣기. (비용, 정점 번호)</li>
+  <li>큐가 빌 때까지:
+    <ul>
+      <li><strong>비용이 가장 작은 (d, u)</strong> 꺼내기.</li>
+      <li>이미 <code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 이면 <strong>스킵</strong> (예전에 넣은 쓸모없는 정보).</li>
+      <li>u를 <strong>확정</strong>했다고 보고, u와 연결된 각 간선 (u → v, 가중치 w)에 대해 <strong>완화</strong>.</li>
+      <li>완화로 <code class="language-plaintext highlighter-rouge">dist[v]</code>가 줄어들면 <code class="language-plaintext highlighter-rouge">(dist[v], v)</code> 를 큐에 넣기.</li>
+    </ul>
+  </li>
+  <li>종료 후 <code class="language-plaintext highlighter-rouge">dist[]</code>가 <strong>출발점에서 각 정점까지의 최단 거리</strong>.</li>
+</ol>
+
+<h3 id="-확정의-의미">💡 “확정”의 의미</h3>
+
+<ul>
+  <li>음수 간선이 없으므로, <strong>현재 dist가 가장 작은 정점</strong>은 더 이상 다른 경로로 더 짧아질 수 없다.</li>
+  <li>그래서 그 정점은 <strong>한 번만 꺼내서 이웃만 완화</strong>하면 되고, 다시 큐에 넣을 필요 없다.</li>
+  <li><code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 인 경우는 “예전에 넣었던 더 나쁜 값”이므로 무시한다.</li>
+</ul>
 
 <hr />
 
-<h2 id="-5️⃣-코드-구현-구조-중심">🧩 5️⃣ 코드 구현 (구조 중심)</h2>
+<h2 id="-5️⃣-코드-구현">💻 5️⃣ 코드 구현</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="no">V</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-    <span class="k">for</span> <span class="o">(</span><span class="nc">Edge</span> <span class="n">e</span> <span class="o">:</span> <span class="n">edges</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">e</span><span class="o">.</span><span class="na">to</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">e</span><span class="o">.</span><span class="na">from</span><span class="o">]</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">cost</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">dist</span><span class="o">[</span><span class="n">e</span><span class="o">.</span><span class="na">to</span><span class="o">]</span> <span class="o">=</span> <span class="n">dist</span><span class="o">[</span><span class="n">e</span><span class="o">.</span><span class="na">from</span><span class="o">]</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">cost</span><span class="o">;</span>
+<h3 id="-인접-리스트--우선순위-큐-java">💡 인접 리스트 + 우선순위 큐 (Java)</h3>
 
-            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="no">V</span><span class="o">)</span> <span class="o">{</span>
-                <span class="c1">// 음수 사이클 발견</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Dijkstra</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">INF</span> <span class="o">=</span> <span class="mi">987654321</span><span class="o">;</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;[]</span> <span class="n">graph</span><span class="o">;</span>  <span class="c1">// graph[v] = { {next, cost}, ... }</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">dist</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="no">V</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">dijkstra</span><span class="o">(</span><span class="kt">int</span> <span class="n">start</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">V</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">dist</span><span class="o">,</span> <span class="no">INF</span><span class="o">);</span>
+        <span class="n">dist</span><span class="o">[</span><span class="n">start</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="c1">// (비용, 정점) - 비용 기준 최소 힙</span>
+        <span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">pq</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;&gt;((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">-</span> <span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+        <span class="n">pq</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="n">start</span><span class="o">});</span>
+
+        <span class="k">while</span> <span class="o">(!</span><span class="n">pq</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="kt">int</span><span class="o">[]</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">u</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">d</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">])</span> <span class="k">continue</span><span class="o">;</span>  <span class="c1">// 이미 더 좋은 경로로 갱신된 경우 스킵</span>
+
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">edge</span> <span class="o">:</span> <span class="n">graph</span><span class="o">[</span><span class="n">u</span><span class="o">])</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edge</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">w</span> <span class="o">=</span> <span class="n">edge</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">;</span>
+                    <span class="n">pq</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">],</span> <span class="n">v</span><span class="o">});</span>
+                <span class="o">}</span>
             <span class="o">}</span>
         <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">dist</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
+<h3 id="-인접-행렬-버전-정점-수가-작을-때">💡 인접 행렬 버전 (정점 수가 작을 때)</h3>
+
 <ul>
-  <li>바깥 루프: <strong>반복 횟수 (라운드)</strong></li>
-  <li>안쪽 루프: <strong>모든 간선 완화</strong></li>
-  <li>V번째 라운드에서 갱신 발생 여부가 핵심</li>
+  <li>정점이 적고 간선이 많을 때는 <strong>인접 행렬 + 매번 최솟값 탐색</strong>으로도 구현 가능.</li>
+  <li>시간복잡도 <strong>O(V²)</strong>. 플로이드-워셜보다는 V가 클 때 유리할 수 있다.</li>
 </ul>
 
 <hr />
 
 <h2 id="️-6️⃣-시간복잡도와-공간복잡도">⏱️ 6️⃣ 시간복잡도와 공간복잡도</h2>
 
-<ul>
-  <li><strong>시간복잡도</strong>: O(VE)</li>
-  <li><strong>공간복잡도</strong>: O(V)</li>
-  <li>정점 수가 크고 간선이 많으면 느릴 수 있음</li>
-</ul>
-
-<hr />
-
-<h2 id="️-7️⃣-다익스트라와의-비교">⚖️ 7️⃣ 다익스트라와의 비교</h2>
+<h3 id="-우선순위-큐-버전">💡 우선순위 큐 버전</h3>
 
 <table>
   <thead>
     <tr>
       <th>구분</th>
-      <th>벨만-포드</th>
-      <th>다익스트라</th>
+      <th>복잡도</th>
+      <th>설명</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>음수 간선</td>
-      <td>가능</td>
-      <td>불가능</td>
+      <td><strong>시간복잡도</strong></td>
+      <td>O((V+E) log V)</td>
+      <td>각 간선 최대 1번 완화, PQ 삽입/삭제 log V</td>
     </tr>
     <tr>
-      <td>음수 사이클</td>
-      <td>탐지 가능</td>
-      <td>불가</td>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V)</td>
+      <td>dist[], PQ에 정점 개수만큼</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-인접-행렬--선형-탐색-버전">💡 인접 행렬 + 선형 탐색 버전</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>복잡도</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O(V²)</td>
+      <td>V번 반복, 매번 O(V) 최솟값</td>
     </tr>
     <tr>
-      <td>시간복잡도</td>
-      <td>느림</td>
-      <td>빠름</td>
-    </tr>
-    <tr>
-      <td>사용 목적</td>
-      <td>안정성 / 사이클 판별</td>
-      <td>빠른 최단경로</td>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V²)</td>
+      <td>인접 행렬</td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
+<h2 id="️-7️⃣-벨만-포드플로이드-워셜과의-비교">⚖️ 7️⃣ 벨만-포드·플로이드-워셜과의 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>다익스트라</th>
+      <th>벨만-포드</th>
+      <th>플로이드-워셜</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>목적</strong></td>
+      <td>한 출발점 → 모든 정점</td>
+      <td>한 출발점 → 모든 정점</td>
+      <td>모든 쌍 최단 경로</td>
+    </tr>
+    <tr>
+      <td><strong>음수 간선</strong></td>
+      <td><strong>불가능</strong></td>
+      <td>가능</td>
+      <td>가능 (음수 사이클 제외)</td>
+    </tr>
+    <tr>
+      <td><strong>음수 사이클</strong></td>
+      <td>해당 없음</td>
+      <td>탐지 가능</td>
+      <td>있으면 사용 불가</td>
+    </tr>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O((V+E)log V) 또는 O(V²)</td>
+      <td>O(VE)</td>
+      <td>O(V³)</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V)</td>
+      <td>O(V)</td>
+      <td>O(V²)</td>
+    </tr>
+    <tr>
+      <td><strong>적용 상황</strong></td>
+      <td>출발점 하나, 음수 간선 없음</td>
+      <td>음수 간선/사이클</td>
+      <td>정점 적을 때, 모든 쌍</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-언제-무엇을-쓸까">💡 언제 무엇을 쓸까?</h3>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-24-pic1.png?raw=true" alt="예시 이미지1" /></p>
+
+<hr />
+
 <h2 id="-8️⃣-실전-문제-적용">🧪 8️⃣ 실전 문제 적용</h2>
 
-<ul>
-  <li><strong>웜홀 문제</strong></li>
-  <li><strong>시간 여행 / 이익 루프 판별</strong></li>
-  <li><strong>“되돌아왔을 때 더 이득인가?” 유형</strong></li>
+<h3 id="-대표-문제-유형">💡 대표 문제 유형</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>유형</th>
+      <th>설명</th>
+      <th>예시 키워드</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>단일 출발 최단 경로</strong></td>
+      <td>한 도시에서 다른 모든 도시까지</td>
+      <td>“1번 노드에서”, “한 점에서”</td>
+    </tr>
+    <tr>
+      <td><strong>가중치가 양수</strong></td>
+      <td>거리, 시간, 비용이 0 이상</td>
+      <td>“최소 비용”, “최단 거리”</td>
+    </tr>
+    <tr>
+      <td><strong>경로 복원</strong></td>
+      <td>최단 경로에 포함된 정점/간선 출력</td>
+      <td>“경로 출력”, “경로 추적”</td>
+    </tr>
+    <tr>
+      <td><strong>2차원 격자</strong></td>
+      <td>칸 이동 비용을 간선으로 두고 적용</td>
+      <td>“다익스트라 + BFS/격자”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-체크리스트">💡 체크리스트</h3>
+
+<p>다익스트라를 쓸 때 확인할 것:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>음수 간선이 없는가?</strong> (있으면 벨만-포드)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>한 출발점에서 나머지 전체</strong>가 필요한가? (모든 쌍이면 플로이드-워셜 고려)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">INF</code> 값을 충분히 크게 설정했는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />같은 정점에 대한 <strong>중복 간선</strong>이 있으면 더 작은 가중치만 남겼는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 스킵 처리로 <strong>이미 갱신된 노드</strong>를 건너뛰었는가?</li>
 </ul>
 
-<p>👉 핵심 질문이
-<strong>“최단거리”보다 “음수 사이클 존재 여부”</strong>라면
-벨만-포드를 떠올려야 한다.</p>
+<hr />
+
+<p>이렇게 <strong>다익스트라</strong>까지 정리하면, <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>·<a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>와 함께 <strong>최단 경로 시리즈</strong>를 한 세트로 다룰 수 있다.</p>
 
   
 </article>
@@ -744,7 +893,7 @@ dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/algorithm/2026-02-24-dijkstra/" class="flip-title"><span>[Algorithm] 다익스트라 알고리즘</span></a>  <time class="faded fine" datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time></li>                        <li class="h4">  <a href="/spring/2026-02-23-filter-interceptor-aop/" class="flip-title"><span>[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가</span></a>  <time class="faded fine" datetime="2026-02-23T00:00:00+00:00">23 Feb 2026</time></li>                        <li class="h4">  <a href="/algorithm/2026-02-18-integer-arraylist-to-int-array/" class="flip-title"><span>[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</span></a>  <time class="faded fine" datetime="2026-02-18T00:00:00+00:00">18 Feb 2026</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/spring/2026-02-23-filter-interceptor-aop/" class="flip-title"><span>[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가</span></a>  <time class="faded fine" datetime="2026-02-23T00:00:00+00:00">23 Feb 2026</time></li>                        <li class="h4">  <a href="/algorithm/2026-02-18-integer-arraylist-to-int-array/" class="flip-title"><span>[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</span></a>  <time class="faded fine" datetime="2026-02-18T00:00:00+00:00">18 Feb 2026</time></li>                        <li class="h4">  <a href="/algorithm/2026-02-09-bellman-ford/" class="flip-title"><span>[Algorithm] 벨만-포드 알고리즘</span></a>  <time class="faded fine" datetime="2026-02-09T00:00:00+00:00">09 Feb 2026</time></li>            </ul></aside>
 
   
 
