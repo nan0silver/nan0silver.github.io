@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다." />
+<meta property="og:description" content="친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-02-24-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2026-02-24-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-24T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-24T06:46:26+00:00","datePublished":"2026-02-24T00:00:00+00:00","description":"친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.","headline":"[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-02-24-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-02-24-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2026-02-24-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-02-24T06:47:14+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기",
+    "description": "친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-02-24T00:00:00+00:00",
+    "dateModified": "2026-02-24T06:46:26+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2026-02-24-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-02-24-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기",
+        "item": "https://nan0silver.github.io/projectdiary/2026-02-24-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-02-24-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#시작하기-전에">시작하기 전에</a></li>
+  <li><a href="#1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</a></li>
+  <li><a href="#2-docker가-왜-필요한가요">2. Docker가 왜 필요한가요?</a></li>
+  <li><a href="#3-aws-ec2란-무엇인가요">3. AWS EC2란 무엇인가요?</a></li>
+  <li><a href="#4-aws-ecs란-무엇인가요">4. AWS ECS란 무엇인가요?</a></li>
+  <li><a href="#5-ecr이란-무엇인가요">5. ECR이란 무엇인가요?</a></li>
+  <li><a href="#6-지금-내-프로젝트의-전체-흐름">6. 지금 내 프로젝트의 전체 흐름</a></li>
+  <li><a href="#7-정리">7. 정리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="시작하기-전에">시작하기 전에</h2>
+
+<p>현재 Android 앱 “친구하자”의 백엔드를 Spring Boot로 개발하고 있다. 소규모로 시작해서 테스트 유저 10명 이하로 운영 중이며, 곧 Play Store 출시를 앞두고 있다.</p>
+
+<p>출시를 준비하면서 지금까지 당연하게 해왔던 배포 방식을 돌아보게 됐다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-i</span> <span class="s2">"my-key.pem"</span> ec2-user@xxx.xxx.xxx.xxx
+<span class="c"># 접속 후 직접 명령어 실행...</span>
+</code></pre></div></div>
+
+<p>매번 터미널을 열고, SSH로 접속하고, 직접 명령어를 치는 방식이었다. 테스트 유저가 적을 때는 괜찮았지만 출시가 다가오니 이런 생각이 들었다.</p>
+
+<blockquote>
+  <p>“코드 push하고 나서 배포까지 내가 직접 해야 하나? 이거 자동화할 수 없나?”</p>
+</blockquote>
+
+<p>그래서 CI/CD를 도입하게 됐고, 그 과정에서 배운 내용을 정리해 본다.</p>
+
+<hr />
+
+<h2 id="1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</h2>
+
+<h3 id="ci-continuous-integration--지속적-통합">CI (Continuous Integration) — 지속적 통합</h3>
+
+<blockquote>
+  <p>“코드를 push하면 테스트까지 자동으로”</p>
+</blockquote>
+
+<p>코드를 GitHub에 push할 때마다 자동으로 <strong>빌드 + 테스트</strong>를 돌려서, 작성한 코드가 기존 코드를 망가뜨리지 않았는지 바로 확인한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자가 push
+    ↓
+GitHub Actions가 자동으로 실행
+    ↓
+빌드 → 테스트
+    ↓
+통과 ✅  or  실패 ❌ (즉시 알림)
+</code></pre></div></div>
+
+<p>이 프로젝트에서는 Redis를 활용한 매칭 큐, 이벤트 리스너 등 여러 컴포넌트를 테스트해야 했는데, 매번 로컬에서 직접 테스트를 돌리다 보니 빠뜨리는 경우가 생겼다. CI를 붙이고 나서는 push할 때마다 자동으로 전체 테스트가 돌아가니 훨씬 안심이 됐다.</p>
+
+<p><strong>핵심 가치</strong>: 문제를 빠르게 발견한다. 나중에 발견할수록 고치기 어렵다.</p>
+
+<hr />
+
+<h3 id="cd-continuous-deployment--지속적-배포">CD (Continuous Deployment) — 지속적 배포</h3>
+
+<blockquote>
+  <p>“테스트까지 통과하면 서버 배포도 자동으로”</p>
+</blockquote>
+
+<p>CI가 성공하면 자동으로 <strong>서버에 새 버전을 배포</strong>한다. 매번 SSH로 직접 접속해서 배포하던 방식이 완전히 사라진다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CI 성공 ✅
+    ↓
+Docker 이미지 빌드
+    ↓
+ECR(이미지 저장소)에 업로드
+    ↓
+EC2 서버에 새 버전 자동 배포
+    ↓
+개발자는 push만 했을 뿐인데 배포 완료 🎉
+</code></pre></div></div>
+
+<p><strong>도입 전 vs 도입 후</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>도입 전</th>
+      <th>도입 후</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>배포 방법</td>
+      <td>SSH 접속 → 직접 명령어 실행</td>
+      <td>git push 한 번</td>
+    </tr>
+    <tr>
+      <td>테스트</td>
+      <td>까먹으면 안 함</td>
+      <td>항상 자동 실행</td>
+    </tr>
+    <tr>
+      <td>실수 가능성</td>
+      <td>있음 (손으로 하니까)</td>
+      <td>없음</td>
+    </tr>
+    <tr>
+      <td>배포 시간</td>
+      <td>10~15분</td>
+      <td>기다리면 자동 완료</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-docker가-왜-필요한가요">2. Docker가 왜 필요한가요?</h2>
+
+<p>CI/CD 흐름에서 Docker는 빠질 수 없다.</p>
+
+<p>개발 환경과 서버 환경이 다르면 이런 일이 생긴다.</p>
+
+<blockquote>
+  <p>“내 맥에서는 되는데 서버에서는 왜 안 되지?”</p>
+</blockquote>
+
+<p>Docker는 앱 실행에 필요한 <strong>모든 것(코드, 라이브러리, 설정)을 하나의 박스에 담아 버린다.</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dockerfile (조리법)
+    ↓  빌드
+Docker 이미지 (완성된 통조림)
+    ↓  실행
+컨테이너 (실제로 접시에 담아 먹는 상태)
+</code></pre></div></div>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-24-pic2.png?raw=true" alt="예시 이미지1" /></p>
+
+<p>어디서 실행해도 똑같이 동작하기 때문에 환경 차이로 인한 문제가 사라진다.</p>
+
+<hr />
+
+<h2 id="3-aws-ec2란-무엇인가요">3. AWS EC2란 무엇인가요?</h2>
+
+<p><strong>EC2 (Elastic Compute Cloud)</strong>는 AWS에서 빌려 쓰는 가상 컴퓨터이다.</p>
+
+<p>Spring Boot 백엔드 서버를 EC2 위에서 Docker 컨테이너로 돌리고 있다. 처음에는 아래처럼 직접 SSH로 접속해서 배포했다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 매번 이걸 직접 했었음</span>
+ssh <span class="nt">-i</span> <span class="s2">"my-key.pem"</span> ec2-user@서버IP
+
+docker stop my-app
+docker <span class="nb">rm </span>my-app
+docker pull 새이미지
+docker run <span class="nt">-d</span> <span class="nt">--name</span> my-app <span class="nt">-p</span> 8080:8080 새이미지
+</code></pre></div></div>
+
+<p>한두 번은 괜찮지만, 기능 추가할 때마다 반복하다 보면 꽤 번거롭다. 게다가 <code class="language-plaintext highlighter-rouge">docker stop</code> 하고 <code class="language-plaintext highlighter-rouge">docker run</code> 하는 사이에 서비스가 잠깐 끊기는 <strong>순단</strong>이 발생한다. 테스트 유저 10명일 때는 몰랐는데, Play Store 출시 후 실 사용자가 생기면 문제가 될 수 있겠다 싶었다.</p>
+
+<hr />
+
+<h2 id="4-aws-ecs란-무엇인가요">4. AWS ECS란 무엇인가요?</h2>
+
+<p><strong>ECS (Elastic Container Service)</strong>는 Docker 컨테이너를 AWS가 대신 관리해 주는 서비스이다.</p>
+
+<p>EC2가 “컴퓨터를 빌려 드릴게요”라면, ECS는 “컨테이너 실행·관리까지 다 해 드릴게요”이다.</p>
+
+<h3 id="핵심-개념-3가지">핵심 개념 3가지</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클러스터 (Cluster)
+└── 컨테이너들이 실행되는 공간 전체 (운동장)
+
+서비스 (Service)
+└── "이 컨테이너를 항상 N개 유지해줘" (운동장 관리자)
+
+태스크 정의 (Task Definition)
+└── 컨테이너 실행 설정 명세서
+    (어떤 이미지, CPU/메모리 얼마, 포트는 몇 번 등)
+</code></pre></div></div>
+
+<h3 id="ecs의-핵심-장점-롤링-업데이트-무중단-배포">ECS의 핵심 장점: 롤링 업데이트 (무중단 배포)</h3>
+
+<p>EC2 직접 배포는 이렇게 된다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>기존 컨테이너 중지 → 💀 서비스 잠깐 중단 → 새 컨테이너 시작
+</code></pre></div></div>
+
+<p>ECS 롤링 업데이트는 이렇게 된다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>새 컨테이너 먼저 시작 &amp; 정상 확인
+         ↓
+기존 컨테이너 중지  ← 사용자는 아무것도 못 느낌 ✅
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5-ecr이란-무엇인가요">5. ECR이란 무엇인가요?</h2>
+
+<p><strong>ECR (Elastic Container Registry)</strong>은 Docker 이미지를 저장하는 AWS 전용 창고이다.</p>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-24-pic1.png?raw=true" alt="예시 이미지1" /></p>
+
+<hr />
+
+<h2 id="6-지금-내-프로젝트의-전체-흐름">6. 지금 내 프로젝트의 전체 흐름</h2>
+
+<h3 id="현재-구조-ec2--자동-배포">현재 구조 (EC2 + 자동 배포)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>main 브랜치에 push
+        ↓
+[CI]
+  Redis 컨테이너 띄우기
+  → 빌드 + 전체 테스트 자동 실행
+  → 실패 시 여기서 중단 ❌
+
+        ↓ CI 성공
+
+[CD]
+  Docker 이미지 빌드
+  → ECR에 푸시
+  → EC2에 SSH로 자동 접속
+  → 새 이미지로 컨테이너 재시작
+
+        ↓
+사용자가 새 버전 사용 🎉
+</code></pre></div></div>
+
+<p>예전에는 이 과정을 손으로 직접 했는데, 이제는 push 한 번이면 끝이다.</p>
+
+<h3 id="play-store-출시-이후엔-ecs로-전환-예정">Play Store 출시 이후엔 ECS로 전환 예정</h3>
+
+<p>지금은 소규모라 EC2 직접 배포로도 충분하다. 하지만 출시 후 트래픽이 늘어나면 아래 두 가지가 필요해질 것이다.</p>
+
+<ul>
+  <li><strong>무중단 배포</strong>: 배포할 때 앱이 잠깐이라도 끊기면 사용자 경험이 나빠짐</li>
+  <li><strong>오토스케일링</strong>: 갑자기 사용자가 몰려도 자동으로 서버를 늘려줌</li>
+</ul>
+
+<p>그때 ECS로 전환할 예정이며, CD 파이프라인에서 ECS 배포 스텝만 교체하면 되기 때문에 마이그레이션 비용도 크지 않다.</p>
+
+<hr />
+
+<h2 id="7-정리">7. 정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>EC2 직접 배포 (현재)</th>
+      <th>ECS (출시 후)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>배포 방식</strong></td>
+      <td>컨테이너 재시작</td>
+      <td>롤링 업데이트</td>
+    </tr>
+    <tr>
+      <td><strong>서비스 중단</strong></td>
+      <td>순단 가능</td>
+      <td>없음</td>
+    </tr>
+    <tr>
+      <td><strong>스케일링</strong></td>
+      <td>수동</td>
+      <td>자동</td>
+    </tr>
+    <tr>
+      <td><strong>비용</strong></td>
+      <td>저렴</td>
+      <td>상대적으로 높음</td>
+    </tr>
+    <tr>
+      <td><strong>적합한 시점</strong></td>
+      <td>초기 소규모</td>
+      <td>트래픽 증가 후</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>한 줄 요약:</strong></p>
+
+<blockquote>
+  <p>push 한 번으로 테스트부터 배포까지. 지금은 EC2로 가볍게, 트래픽 늘면 ECS로 전환.</p>
+</blockquote>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/spring/2026-02-23-filter-interceptor-aop/" class="flip-title"><span>[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가</span></a>  <time class="faded fine" datetime="2026-02-23T00:00:00+00:00">23 Feb 2026</time></li>                        <li class="h4">  <a href="/algorithm/2026-02-21-dijkstra/" class="flip-title"><span>[Algorithm] 다익스트라 알고리즘</span></a>  <time class="faded fine" datetime="2026-02-21T00:00:00+00:00">21 Feb 2026</time></li>                        <li class="h4">  <a href="/algorithm/2026-02-18-integer-arraylist-to-int-array/" class="flip-title"><span>[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</span></a>  <time class="faded fine" datetime="2026-02-18T00:00:00+00:00">18 Feb 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (18)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (13)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (13)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (30)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (63)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

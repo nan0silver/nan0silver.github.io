@@ -1,375 +1,288 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-02-24T04:34:38+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-02-24T06:47:14+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[Algorithm] 다익스트라 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/" rel="alternate" type="text/html" title="[Algorithm] 다익스트라 알고리즘" /><published>2026-02-24T00:00:00+00:00</published><updated>2026-02-24T04:33:54+00:00</updated><id>https://nan0silver.github.io/algorithm/dijkstra</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-24-dijkstra/"><![CDATA[<blockquote>
-  <p><strong>최단 경로 시리즈</strong> – <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>(모든 쌍), <a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>(음수 간선·음수 사이클)에 이어, <strong>한 출발점에서 나머지 모든 정점까지</strong>의 최단 경로를 빠르게 구하는 알고리즘이다.</p>
+</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기</title><link href="https://nan0silver.github.io/projectdiary/2026-02-24-diary/" rel="alternate" type="text/html" title="[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기" /><published>2026-02-24T00:00:00+00:00</published><updated>2026-02-24T06:46:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-24-diary/"><![CDATA[<ul>
+  <li><a href="#시작하기-전에">시작하기 전에</a></li>
+  <li><a href="#1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</a></li>
+  <li><a href="#2-docker가-왜-필요한가요">2. Docker가 왜 필요한가요?</a></li>
+  <li><a href="#3-aws-ec2란-무엇인가요">3. AWS EC2란 무엇인가요?</a></li>
+  <li><a href="#4-aws-ecs란-무엇인가요">4. AWS ECS란 무엇인가요?</a></li>
+  <li><a href="#5-ecr이란-무엇인가요">5. ECR이란 무엇인가요?</a></li>
+  <li><a href="#6-지금-내-프로젝트의-전체-흐름">6. 지금 내 프로젝트의 전체 흐름</a></li>
+  <li><a href="#7-정리">7. 정리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="시작하기-전에">시작하기 전에</h2>
+
+<p>현재 Android 앱 “친구하자”의 백엔드를 Spring Boot로 개발하고 있다. 소규모로 시작해서 테스트 유저 10명 이하로 운영 중이며, 곧 Play Store 출시를 앞두고 있다.</p>
+
+<p>출시를 준비하면서 지금까지 당연하게 해왔던 배포 방식을 돌아보게 됐다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-i</span> <span class="s2">"my-key.pem"</span> ec2-user@xxx.xxx.xxx.xxx
+<span class="c"># 접속 후 직접 명령어 실행...</span>
+</code></pre></div></div>
+
+<p>매번 터미널을 열고, SSH로 접속하고, 직접 명령어를 치는 방식이었다. 테스트 유저가 적을 때는 괜찮았지만 출시가 다가오니 이런 생각이 들었다.</p>
+
+<blockquote>
+  <p>“코드 push하고 나서 배포까지 내가 직접 해야 하나? 이거 자동화할 수 없나?”</p>
 </blockquote>
 
-<ol>
-  <li><a href="#-1️⃣-다익스트라란">다익스트라란?</a></li>
-  <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
-  <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
-  <li><a href="#-4️⃣-우선순위-큐와-동작-과정">우선순위 큐와 동작 과정</a></li>
-  <li><a href="#-5️⃣-코드-구현">코드 구현</a></li>
-  <li><a href="#-6️⃣-시간복잡도와-공간복잡도">시간복잡도와 공간복잡도</a></li>
-  <li><a href="#-7️⃣-벨만-포드플로이드-워셜과의-비교">벨만-포드·플로이드-워셜과의 비교</a></li>
-  <li><a href="#-8️⃣-실전-문제-적용">실전 문제 적용</a></li>
-</ol>
+<p>그래서 CI/CD를 도입하게 됐고, 그 과정에서 배운 내용을 정리해 본다.</p>
 
 <hr />
 
-<h2 id="-1️⃣-다익스트라란">🎯 1️⃣ 다익스트라란?</h2>
+<h2 id="1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</h2>
 
-<h3 id="-한-문장-정의">💡 한 문장 정의</h3>
+<h3 id="ci-continuous-integration--지속적-통합">CI (Continuous Integration) — 지속적 통합</h3>
 
-<p><strong>“음수 간선이 없을 때, 한 출발점에서 모든 정점까지의 최단 경로를 구하는 그리디 알고리즘”</strong></p>
+<blockquote>
+  <p>“코드를 push하면 테스트까지 자동으로”</p>
+</blockquote>
 
-<h3 id="-언제-사용하는가">💡 언제 사용하는가?</h3>
+<p>코드를 GitHub에 push할 때마다 자동으로 <strong>빌드 + 테스트</strong>를 돌려서, 작성한 코드가 기존 코드를 망가뜨리지 않았는지 바로 확인한다.</p>
 
-<ul>
-  <li><strong>한 정점(출발점)</strong>에서 <strong>나머지 모든 정점</strong>까지의 최단 거리가 필요할 때</li>
-  <li>간선 가중치가 <strong>모두 0 이상(비음수)</strong>일 때</li>
-  <li>정점·간선이 많아서 플로이드-워셜 O(V³)을 쓰기 어려울 때</li>
-</ul>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자가 push
+    ↓
+GitHub Actions가 자동으로 실행
+    ↓
+빌드 → 테스트
+    ↓
+통과 ✅  or  실패 ❌ (즉시 알림)
+</code></pre></div></div>
 
-<h3 id="-특징">💡 특징</h3>
+<p>이 프로젝트에서는 Redis를 활용한 매칭 큐, 이벤트 리스너 등 여러 컴포넌트를 테스트해야 했는데, 매번 로컬에서 직접 테스트를 돌리다 보니 빠뜨리는 경우가 생겼다. CI를 붙이고 나서는 push할 때마다 자동으로 전체 테스트가 돌아가니 훨씬 안심이 됐다.</p>
+
+<p><strong>핵심 가치</strong>: 문제를 빠르게 발견한다. 나중에 발견할수록 고치기 어렵다.</p>
+
+<hr />
+
+<h3 id="cd-continuous-deployment--지속적-배포">CD (Continuous Deployment) — 지속적 배포</h3>
+
+<blockquote>
+  <p>“테스트까지 통과하면 서버 배포도 자동으로”</p>
+</blockquote>
+
+<p>CI가 성공하면 자동으로 <strong>서버에 새 버전을 배포</strong>한다. 매번 SSH로 직접 접속해서 배포하던 방식이 완전히 사라진다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CI 성공 ✅
+    ↓
+Docker 이미지 빌드
+    ↓
+ECR(이미지 저장소)에 업로드
+    ↓
+EC2 서버에 새 버전 자동 배포
+    ↓
+개발자는 push만 했을 뿐인데 배포 완료 🎉
+</code></pre></div></div>
+
+<p><strong>도입 전 vs 도입 후</strong></p>
 
 <table>
   <thead>
     <tr>
-      <th>특징</th>
-      <th>설명</th>
+      <th> </th>
+      <th>도입 전</th>
+      <th>도입 후</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>시간복잡도</strong></td>
-      <td>O((V+E)log V) (우선순위 큐 사용 시)</td>
+      <td>배포 방법</td>
+      <td>SSH 접속 → 직접 명령어 실행</td>
+      <td>git push 한 번</td>
     </tr>
     <tr>
-      <td><strong>공간복잡도</strong></td>
-      <td>O(V)</td>
+      <td>테스트</td>
+      <td>까먹으면 안 함</td>
+      <td>항상 자동 실행</td>
     </tr>
     <tr>
-      <td><strong>음수 간선</strong></td>
-      <td><strong>불가능</strong> (잘못된 결과 가능)</td>
+      <td>실수 가능성</td>
+      <td>있음 (손으로 하니까)</td>
+      <td>없음</td>
     </tr>
     <tr>
-      <td><strong>그래프 종류</strong></td>
-      <td>방향/무방향 모두 가능</td>
-    </tr>
-    <tr>
-      <td><strong>구현 난이도</strong></td>
-      <td>중간 (우선순위 큐 활용)</td>
-    </tr>
-    <tr>
-      <td><strong>성격</strong></td>
-      <td>그리디 (매 순간 가장 가까운 정점 확정)</td>
+      <td>배포 시간</td>
+      <td>10~15분</td>
+      <td>기다리면 자동 완료</td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-<h2 id="-2️⃣-핵심-개념-이해하기">🧠 2️⃣ 핵심 개념 이해하기</h2>
+<h2 id="2-docker가-왜-필요한가요">2. Docker가 왜 필요한가요?</h2>
 
-<h3 id="-알고리즘의-본질">💡 알고리즘의 본질</h3>
+<p>CI/CD 흐름에서 Docker는 빠질 수 없다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"매 단계마다 '가장 거리가 짧은 정점'을 하나씩 확정하고,
-그 정점을 통해 갈 수 있는 이웃들의 거리를 갱신해 나가는 알고리즘"
+<p>개발 환경과 서버 환경이 다르면 이런 일이 생긴다.</p>
+
+<blockquote>
+  <p>“내 맥에서는 되는데 서버에서는 왜 안 되지?”</p>
+</blockquote>
+
+<p>Docker는 앱 실행에 필요한 <strong>모든 것(코드, 라이브러리, 설정)을 하나의 박스에 담아 버린다.</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dockerfile (조리법)
+    ↓  빌드
+Docker 이미지 (완성된 통조림)
+    ↓  실행
+컨테이너 (실제로 접시에 담아 먹는 상태)
 </code></pre></div></div>
 
-<h3 id="-distv의-의미">💡 dist[v]의 의미</h3>
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-24-pic2.png?raw=true" alt="예시 이미지1" /></p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">출발점</span><span class="o">(</span><span class="n">start</span><span class="o">)</span><span class="n">으로부터</span>
-          <span class="n">정점</span> <span class="n">v까지</span> <span class="n">도달하는</span> <span class="n">현재까지의</span> <span class="n">최소</span> <span class="n">비용</span>
+<p>어디서 실행해도 똑같이 동작하기 때문에 환경 차이로 인한 문제가 사라진다.</p>
+
+<hr />
+
+<h2 id="3-aws-ec2란-무엇인가요">3. AWS EC2란 무엇인가요?</h2>
+
+<p><strong>EC2 (Elastic Compute Cloud)</strong>는 AWS에서 빌려 쓰는 가상 컴퓨터이다.</p>
+
+<p>Spring Boot 백엔드 서버를 EC2 위에서 Docker 컨테이너로 돌리고 있다. 처음에는 아래처럼 직접 SSH로 접속해서 배포했다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 매번 이걸 직접 했었음</span>
+ssh <span class="nt">-i</span> <span class="s2">"my-key.pem"</span> ec2-user@서버IP
+
+docker stop my-app
+docker <span class="nb">rm </span>my-app
+docker pull 새이미지
+docker run <span class="nt">-d</span> <span class="nt">--name</span> my-app <span class="nt">-p</span> 8080:8080 새이미지
 </code></pre></div></div>
 
-<ul>
-  <li>한 번 <strong>확정(방문 처리)</strong>한 정점의 dist 값은 더 이상 바뀌지 않는다.</li>
-  <li>음수 간선이 없기 때문에, “지금 가장 작은 dist를 가진 정점”은 이미 최단 거리가 보장된다.</li>
-</ul>
-
-<h3 id="-그리디한-선택">💡 그리디한 선택</h3>
-
-<ul>
-  <li><strong>“현재 시점에서 dist가 가장 작은 정점”</strong>을 골라서 확정한다.</li>
-  <li>그 정점을 거쳐 가는 경로가 더 짧아질 수 있는 <strong>이웃만</strong> 완화(relax)한다.</li>
-  <li>이렇게 하면 각 정점을 <strong>최대 한 번씩만</strong> 확정 처리하면 되고, 우선순위 큐로 “가장 작은 dist”를 빠르게 꺼낼 수 있다.</li>
-</ul>
+<p>한두 번은 괜찮지만, 기능 추가할 때마다 반복하다 보면 꽤 번거롭다. 게다가 <code class="language-plaintext highlighter-rouge">docker stop</code> 하고 <code class="language-plaintext highlighter-rouge">docker run</code> 하는 사이에 서비스가 잠깐 끊기는 <strong>순단</strong>이 발생한다. 테스트 유저 10명일 때는 몰랐는데, Play Store 출시 후 실 사용자가 생기면 문제가 될 수 있겠다 싶었다.</p>
 
 <hr />
 
-<h2 id="-3️⃣-간선-완화relaxation">🔁 3️⃣ 간선 완화(Relaxation)</h2>
+<h2 id="4-aws-ecs란-무엇인가요">4. AWS ECS란 무엇인가요?</h2>
 
-<h3 id="-간선-완화란">💡 간선 완화란?</h3>
+<p><strong>ECS (Elastic Container Service)</strong>는 Docker 컨테이너를 AWS가 대신 관리해 주는 서비스이다.</p>
 
-<p><strong>“간선 u → v를 이용했을 때, 출발점에서 v까지 가는 거리가 더 짧아지면 dist[v]를 갱신하는 과정”</strong></p>
+<p>EC2가 “컴퓨터를 빌려 드릴게요”라면, ECS는 “컨테이너 실행·관리까지 다 해 드릴게요”이다.</p>
 
-<p>(벨만-포드, 플로이드-워셜에서 쓰는 것과 같은 개념이다.)</p>
+<h3 id="핵심-개념-3가지">핵심 개념 3가지</h3>
 
-<h3 id="-완화-조건">💡 완화 조건</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클러스터 (Cluster)
+└── 컨테이너들이 실행되는 공간 전체 (운동장)
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">;</span>
-    <span class="c1">// 우선순위 큐 사용 시: (dist[v], v) 다시 넣거나 갱신</span>
-<span class="o">}</span>
+서비스 (Service)
+└── "이 컨테이너를 항상 N개 유지해줘" (운동장 관리자)
+
+태스크 정의 (Task Definition)
+└── 컨테이너 실행 설정 명세서
+    (어떤 이미지, CPU/메모리 얼마, 포트는 몇 번 등)
 </code></pre></div></div>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">u</code>: 방금 확정한 정점</li>
-  <li><code class="language-plaintext highlighter-rouge">v</code>: u의 이웃 정점</li>
-  <li><code class="language-plaintext highlighter-rouge">w</code>: 간선 (u, v)의 가중치</li>
-</ul>
+<h3 id="ecs의-핵심-장점-롤링-업데이트-무중단-배포">ECS의 핵심 장점: 롤링 업데이트 (무중단 배포)</h3>
 
-<hr />
+<p>EC2 직접 배포는 이렇게 된다:</p>
 
-<h2 id="-4️⃣-우선순위-큐와-동작-과정">📌 4️⃣ 우선순위 큐와 동작 과정</h2>
-
-<h3 id="-왜-우선순위-큐를-쓰는가">💡 왜 우선순위 큐를 쓰는가?</h3>
-
-<ul>
-  <li><strong>매번 “dist가 가장 작은 정점”</strong>을 골라야 한다.</li>
-  <li>배열로 매번 최솟값을 찾으면 O(V) → 전체 O(V²).</li>
-  <li><strong>우선순위 큐(최소 힙)</strong>를 쓰면 최솟값 추출 O(log V), 간선당 최대 1번 갱신 → <strong>O((V+E)log V)</strong>.</li>
-</ul>
-
-<h3 id="-동작-흐름-요약">💡 동작 흐름 (요약)</h3>
-
-<ol>
-  <li>출발점 <code class="language-plaintext highlighter-rouge">start</code>의 <code class="language-plaintext highlighter-rouge">dist[start] = 0</code>, 나머지는 <strong>무한대(INF)</strong>로 초기화.</li>
-  <li>우선순위 큐에 <code class="language-plaintext highlighter-rouge">(0, start)</code> 넣기. (비용, 정점 번호)</li>
-  <li>큐가 빌 때까지:
-    <ul>
-      <li><strong>비용이 가장 작은 (d, u)</strong> 꺼내기.</li>
-      <li>이미 <code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 이면 <strong>스킵</strong> (예전에 넣은 쓸모없는 정보).</li>
-      <li>u를 <strong>확정</strong>했다고 보고, u와 연결된 각 간선 (u → v, 가중치 w)에 대해 <strong>완화</strong>.</li>
-      <li>완화로 <code class="language-plaintext highlighter-rouge">dist[v]</code>가 줄어들면 <code class="language-plaintext highlighter-rouge">(dist[v], v)</code> 를 큐에 넣기.</li>
-    </ul>
-  </li>
-  <li>종료 후 <code class="language-plaintext highlighter-rouge">dist[]</code>가 <strong>출발점에서 각 정점까지의 최단 거리</strong>.</li>
-</ol>
-
-<h3 id="-확정의-의미">💡 “확정”의 의미</h3>
-
-<ul>
-  <li>음수 간선이 없으므로, <strong>현재 dist가 가장 작은 정점</strong>은 더 이상 다른 경로로 더 짧아질 수 없다.</li>
-  <li>그래서 그 정점은 <strong>한 번만 꺼내서 이웃만 완화</strong>하면 되고, 다시 큐에 넣을 필요 없다.</li>
-  <li><code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 인 경우는 “예전에 넣었던 더 나쁜 값”이므로 무시한다.</li>
-</ul>
-
-<hr />
-
-<h2 id="-5️⃣-코드-구현">💻 5️⃣ 코드 구현</h2>
-
-<h3 id="-인접-리스트--우선순위-큐-java">💡 인접 리스트 + 우선순위 큐 (Java)</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
-
-<span class="kd">class</span> <span class="nc">Dijkstra</span> <span class="o">{</span>
-    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">INF</span> <span class="o">=</span> <span class="mi">987654321</span><span class="o">;</span>
-    <span class="nc">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;[]</span> <span class="n">graph</span><span class="o">;</span>  <span class="c1">// graph[v] = { {next, cost}, ... }</span>
-    <span class="kt">int</span><span class="o">[]</span> <span class="n">dist</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="no">V</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">dijkstra</span><span class="o">(</span><span class="kt">int</span> <span class="n">start</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">dist</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">V</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
-        <span class="nc">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">dist</span><span class="o">,</span> <span class="no">INF</span><span class="o">);</span>
-        <span class="n">dist</span><span class="o">[</span><span class="n">start</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-
-        <span class="c1">// (비용, 정점) - 비용 기준 최소 힙</span>
-        <span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">pq</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;&gt;((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">-</span> <span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
-        <span class="n">pq</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="n">start</span><span class="o">});</span>
-
-        <span class="k">while</span> <span class="o">(!</span><span class="n">pq</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
-            <span class="kt">int</span><span class="o">[]</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-            <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">u</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
-
-            <span class="k">if</span> <span class="o">(</span><span class="n">d</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">])</span> <span class="k">continue</span><span class="o">;</span>  <span class="c1">// 이미 더 좋은 경로로 갱신된 경우 스킵</span>
-
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">edge</span> <span class="o">:</span> <span class="n">graph</span><span class="o">[</span><span class="n">u</span><span class="o">])</span> <span class="o">{</span>
-                <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edge</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">w</span> <span class="o">=</span> <span class="n">edge</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">;</span>
-                    <span class="n">pq</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">],</span> <span class="n">v</span><span class="o">});</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">dist</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>기존 컨테이너 중지 → 💀 서비스 잠깐 중단 → 새 컨테이너 시작
 </code></pre></div></div>
 
-<h3 id="-인접-행렬-버전-정점-수가-작을-때">💡 인접 행렬 버전 (정점 수가 작을 때)</h3>
+<p>ECS 롤링 업데이트는 이렇게 된다:</p>
 
-<ul>
-  <li>정점이 적고 간선이 많을 때는 <strong>인접 행렬 + 매번 최솟값 탐색</strong>으로도 구현 가능.</li>
-  <li>시간복잡도 <strong>O(V²)</strong>. 플로이드-워셜보다는 V가 클 때 유리할 수 있다.</li>
-</ul>
-
-<hr />
-
-<h2 id="️-6️⃣-시간복잡도와-공간복잡도">⏱️ 6️⃣ 시간복잡도와 공간복잡도</h2>
-
-<h3 id="-우선순위-큐-버전">💡 우선순위 큐 버전</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>복잡도</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>시간복잡도</strong></td>
-      <td>O((V+E) log V)</td>
-      <td>각 간선 최대 1번 완화, PQ 삽입/삭제 log V</td>
-    </tr>
-    <tr>
-      <td><strong>공간복잡도</strong></td>
-      <td>O(V)</td>
-      <td>dist[], PQ에 정점 개수만큼</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="-인접-행렬--선형-탐색-버전">💡 인접 행렬 + 선형 탐색 버전</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>복잡도</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>시간복잡도</strong></td>
-      <td>O(V²)</td>
-      <td>V번 반복, 매번 O(V) 최솟값</td>
-    </tr>
-    <tr>
-      <td><strong>공간복잡도</strong></td>
-      <td>O(V²)</td>
-      <td>인접 행렬</td>
-    </tr>
-  </tbody>
-</table>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>새 컨테이너 먼저 시작 &amp; 정상 확인
+         ↓
+기존 컨테이너 중지  ← 사용자는 아무것도 못 느낌 ✅
+</code></pre></div></div>
 
 <hr />
 
-<h2 id="️-7️⃣-벨만-포드플로이드-워셜과의-비교">⚖️ 7️⃣ 벨만-포드·플로이드-워셜과의 비교</h2>
+<h2 id="5-ecr이란-무엇인가요">5. ECR이란 무엇인가요?</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>다익스트라</th>
-      <th>벨만-포드</th>
-      <th>플로이드-워셜</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>목적</strong></td>
-      <td>한 출발점 → 모든 정점</td>
-      <td>한 출발점 → 모든 정점</td>
-      <td>모든 쌍 최단 경로</td>
-    </tr>
-    <tr>
-      <td><strong>음수 간선</strong></td>
-      <td><strong>불가능</strong></td>
-      <td>가능</td>
-      <td>가능 (음수 사이클 제외)</td>
-    </tr>
-    <tr>
-      <td><strong>음수 사이클</strong></td>
-      <td>해당 없음</td>
-      <td>탐지 가능</td>
-      <td>있으면 사용 불가</td>
-    </tr>
-    <tr>
-      <td><strong>시간복잡도</strong></td>
-      <td>O((V+E)log V) 또는 O(V²)</td>
-      <td>O(VE)</td>
-      <td>O(V³)</td>
-    </tr>
-    <tr>
-      <td><strong>공간복잡도</strong></td>
-      <td>O(V)</td>
-      <td>O(V)</td>
-      <td>O(V²)</td>
-    </tr>
-    <tr>
-      <td><strong>적용 상황</strong></td>
-      <td>출발점 하나, 음수 간선 없음</td>
-      <td>음수 간선/사이클</td>
-      <td>정점 적을 때, 모든 쌍</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="-언제-무엇을-쓸까">💡 언제 무엇을 쓸까?</h3>
+<p><strong>ECR (Elastic Container Registry)</strong>은 Docker 이미지를 저장하는 AWS 전용 창고이다.</p>
 
 <p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-24-pic1.png?raw=true" alt="예시 이미지1" /></p>
 
 <hr />
 
-<h2 id="-8️⃣-실전-문제-적용">🧪 8️⃣ 실전 문제 적용</h2>
+<h2 id="6-지금-내-프로젝트의-전체-흐름">6. 지금 내 프로젝트의 전체 흐름</h2>
 
-<h3 id="-대표-문제-유형">💡 대표 문제 유형</h3>
+<h3 id="현재-구조-ec2--자동-배포">현재 구조 (EC2 + 자동 배포)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>main 브랜치에 push
+        ↓
+[CI]
+  Redis 컨테이너 띄우기
+  → 빌드 + 전체 테스트 자동 실행
+  → 실패 시 여기서 중단 ❌
+
+        ↓ CI 성공
+
+[CD]
+  Docker 이미지 빌드
+  → ECR에 푸시
+  → EC2에 SSH로 자동 접속
+  → 새 이미지로 컨테이너 재시작
+
+        ↓
+사용자가 새 버전 사용 🎉
+</code></pre></div></div>
+
+<p>예전에는 이 과정을 손으로 직접 했는데, 이제는 push 한 번이면 끝이다.</p>
+
+<h3 id="play-store-출시-이후엔-ecs로-전환-예정">Play Store 출시 이후엔 ECS로 전환 예정</h3>
+
+<p>지금은 소규모라 EC2 직접 배포로도 충분하다. 하지만 출시 후 트래픽이 늘어나면 아래 두 가지가 필요해질 것이다.</p>
+
+<ul>
+  <li><strong>무중단 배포</strong>: 배포할 때 앱이 잠깐이라도 끊기면 사용자 경험이 나빠짐</li>
+  <li><strong>오토스케일링</strong>: 갑자기 사용자가 몰려도 자동으로 서버를 늘려줌</li>
+</ul>
+
+<p>그때 ECS로 전환할 예정이며, CD 파이프라인에서 ECS 배포 스텝만 교체하면 되기 때문에 마이그레이션 비용도 크지 않다.</p>
+
+<hr />
+
+<h2 id="7-정리">7. 정리</h2>
 
 <table>
   <thead>
     <tr>
-      <th>유형</th>
-      <th>설명</th>
-      <th>예시 키워드</th>
+      <th> </th>
+      <th>EC2 직접 배포 (현재)</th>
+      <th>ECS (출시 후)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>단일 출발 최단 경로</strong></td>
-      <td>한 도시에서 다른 모든 도시까지</td>
-      <td>“1번 노드에서”, “한 점에서”</td>
+      <td><strong>배포 방식</strong></td>
+      <td>컨테이너 재시작</td>
+      <td>롤링 업데이트</td>
     </tr>
     <tr>
-      <td><strong>가중치가 양수</strong></td>
-      <td>거리, 시간, 비용이 0 이상</td>
-      <td>“최소 비용”, “최단 거리”</td>
+      <td><strong>서비스 중단</strong></td>
+      <td>순단 가능</td>
+      <td>없음</td>
     </tr>
     <tr>
-      <td><strong>경로 복원</strong></td>
-      <td>최단 경로에 포함된 정점/간선 출력</td>
-      <td>“경로 출력”, “경로 추적”</td>
+      <td><strong>스케일링</strong></td>
+      <td>수동</td>
+      <td>자동</td>
     </tr>
     <tr>
-      <td><strong>2차원 격자</strong></td>
-      <td>칸 이동 비용을 간선으로 두고 적용</td>
-      <td>“다익스트라 + BFS/격자”</td>
+      <td><strong>비용</strong></td>
+      <td>저렴</td>
+      <td>상대적으로 높음</td>
+    </tr>
+    <tr>
+      <td><strong>적합한 시점</strong></td>
+      <td>초기 소규모</td>
+      <td>트래픽 증가 후</td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="-체크리스트">💡 체크리스트</h3>
+<p><strong>한 줄 요약:</strong></p>
 
-<p>다익스트라를 쓸 때 확인할 것:</p>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>음수 간선이 없는가?</strong> (있으면 벨만-포드)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>한 출발점에서 나머지 전체</strong>가 필요한가? (모든 쌍이면 플로이드-워셜 고려)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">INF</code> 값을 충분히 크게 설정했는가?</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />같은 정점에 대한 <strong>중복 간선</strong>이 있으면 더 작은 가중치만 남겼는가?</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 스킵 처리로 <strong>이미 갱신된 노드</strong>를 건너뛰었는가?</li>
-</ul>
-
-<hr />
-
-<p>이렇게 <strong>다익스트라</strong>까지 정리하면, <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>·<a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>와 함께 <strong>최단 경로 시리즈</strong>를 한 세트로 다룰 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다.]]></summary></entry><entry><title type="html">[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가</title><link href="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/" rel="alternate" type="text/html" title="[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가" /><published>2026-02-23T00:00:00+00:00</published><updated>2026-02-24T04:33:54+00:00</updated><id>https://nan0silver.github.io/spring/filter-interceptor-aop</id><content type="html" xml:base="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/"><![CDATA[<blockquote>
+<blockquote>
+  <p>push 한 번으로 테스트부터 배포까지. 지금은 EC2로 가볍게, 트래픽 늘면 ECS로 전환.</p>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.]]></summary></entry><entry><title type="html">[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가</title><link href="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/" rel="alternate" type="text/html" title="[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가" /><published>2026-02-23T00:00:00+00:00</published><updated>2026-02-24T06:46:26+00:00</updated><id>https://nan0silver.github.io/spring/filter-interceptor-aop</id><content type="html" xml:base="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/"><![CDATA[<blockquote>
   <p>PATCH/PUT, DTO, Controller 같은 Spring 글을 읽었다면, “요청이 어디서 걸리고, 어떤 순서로 처리될까?”가 궁금할 수 있다.<br />
 이 글에서는 <strong>Filter</strong>, <strong>Interceptor</strong>, <strong>AOP</strong>가 각각 어디에 위치하고, 무엇을 할 때 쓰면 좋은지** 한 번에 정리한다.</p>
 </blockquote>
@@ -874,7 +787,375 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   </tbody>
 </table>
 
-<p>이렇게 세 가지를 구분해 두면, “요청이 어떻게 처리되는지”를 Spring 글들(PATCH/PUT, DTO, Controller)과 함께 한 번에 그릴 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</title><link href="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/" rel="alternate" type="text/html" title="[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법" /><published>2026-02-18T00:00:00+00:00</published><updated>2026-02-24T04:33:54+00:00</updated><id>https://nan0silver.github.io/algorithm/integer-arraylist-to-int-array</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/"><![CDATA[<p>알고리즘 문제를 풀다 보면 <code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>로 모아둔 결과를 최종적으로 <code class="language-plaintext highlighter-rouge">int[]</code> 배열로 반환해야 하는 경우가 많다. <code class="language-plaintext highlighter-rouge">String</code> 리스트는 <code class="language-plaintext highlighter-rouge">toArray()</code>로 쉽게 변환할 수 있지만, <strong>primitive 타입인 int는 <code class="language-plaintext highlighter-rouge">toArray()</code>를 그대로 쓸 수 없다.</strong> 이번 글에서는 Integer ArrayList를 int 배열로 바꾸는 방법을 정리해보자.</p>
+<p>이렇게 세 가지를 구분해 두면, “요청이 어떻게 처리되는지”를 Spring 글들(PATCH/PUT, DTO, Controller)과 함께 한 번에 그릴 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 다익스트라 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-21-dijkstra/" rel="alternate" type="text/html" title="[Algorithm] 다익스트라 알고리즘" /><published>2026-02-21T00:00:00+00:00</published><updated>2026-02-24T06:46:26+00:00</updated><id>https://nan0silver.github.io/algorithm/dijkstra</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-21-dijkstra/"><![CDATA[<blockquote>
+  <p><strong>최단 경로 시리즈</strong> – <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>(모든 쌍), <a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>(음수 간선·음수 사이클)에 이어, <strong>한 출발점에서 나머지 모든 정점까지</strong>의 최단 경로를 빠르게 구하는 알고리즘이다.</p>
+</blockquote>
+
+<ol>
+  <li><a href="#-1️⃣-다익스트라란">다익스트라란?</a></li>
+  <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
+  <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
+  <li><a href="#-4️⃣-우선순위-큐와-동작-과정">우선순위 큐와 동작 과정</a></li>
+  <li><a href="#-5️⃣-코드-구현">코드 구현</a></li>
+  <li><a href="#-6️⃣-시간복잡도와-공간복잡도">시간복잡도와 공간복잡도</a></li>
+  <li><a href="#-7️⃣-벨만-포드플로이드-워셜과의-비교">벨만-포드·플로이드-워셜과의 비교</a></li>
+  <li><a href="#-8️⃣-실전-문제-적용">실전 문제 적용</a></li>
+</ol>
+
+<hr />
+
+<h2 id="-1️⃣-다익스트라란">🎯 1️⃣ 다익스트라란?</h2>
+
+<h3 id="-한-문장-정의">💡 한 문장 정의</h3>
+
+<p><strong>“음수 간선이 없을 때, 한 출발점에서 모든 정점까지의 최단 경로를 구하는 그리디 알고리즘”</strong></p>
+
+<h3 id="-언제-사용하는가">💡 언제 사용하는가?</h3>
+
+<ul>
+  <li><strong>한 정점(출발점)</strong>에서 <strong>나머지 모든 정점</strong>까지의 최단 거리가 필요할 때</li>
+  <li>간선 가중치가 <strong>모두 0 이상(비음수)</strong>일 때</li>
+  <li>정점·간선이 많아서 플로이드-워셜 O(V³)을 쓰기 어려울 때</li>
+</ul>
+
+<h3 id="-특징">💡 특징</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>특징</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O((V+E)log V) (우선순위 큐 사용 시)</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V)</td>
+    </tr>
+    <tr>
+      <td><strong>음수 간선</strong></td>
+      <td><strong>불가능</strong> (잘못된 결과 가능)</td>
+    </tr>
+    <tr>
+      <td><strong>그래프 종류</strong></td>
+      <td>방향/무방향 모두 가능</td>
+    </tr>
+    <tr>
+      <td><strong>구현 난이도</strong></td>
+      <td>중간 (우선순위 큐 활용)</td>
+    </tr>
+    <tr>
+      <td><strong>성격</strong></td>
+      <td>그리디 (매 순간 가장 가까운 정점 확정)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-2️⃣-핵심-개념-이해하기">🧠 2️⃣ 핵심 개념 이해하기</h2>
+
+<h3 id="-알고리즘의-본질">💡 알고리즘의 본질</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"매 단계마다 '가장 거리가 짧은 정점'을 하나씩 확정하고,
+그 정점을 통해 갈 수 있는 이웃들의 거리를 갱신해 나가는 알고리즘"
+</code></pre></div></div>
+
+<h3 id="-distv의-의미">💡 dist[v]의 의미</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">출발점</span><span class="o">(</span><span class="n">start</span><span class="o">)</span><span class="n">으로부터</span>
+          <span class="n">정점</span> <span class="n">v까지</span> <span class="n">도달하는</span> <span class="n">현재까지의</span> <span class="n">최소</span> <span class="n">비용</span>
+</code></pre></div></div>
+
+<ul>
+  <li>한 번 <strong>확정(방문 처리)</strong>한 정점의 dist 값은 더 이상 바뀌지 않는다.</li>
+  <li>음수 간선이 없기 때문에, “지금 가장 작은 dist를 가진 정점”은 이미 최단 거리가 보장된다.</li>
+</ul>
+
+<h3 id="-그리디한-선택">💡 그리디한 선택</h3>
+
+<ul>
+  <li><strong>“현재 시점에서 dist가 가장 작은 정점”</strong>을 골라서 확정한다.</li>
+  <li>그 정점을 거쳐 가는 경로가 더 짧아질 수 있는 <strong>이웃만</strong> 완화(relax)한다.</li>
+  <li>이렇게 하면 각 정점을 <strong>최대 한 번씩만</strong> 확정 처리하면 되고, 우선순위 큐로 “가장 작은 dist”를 빠르게 꺼낼 수 있다.</li>
+</ul>
+
+<hr />
+
+<h2 id="-3️⃣-간선-완화relaxation">🔁 3️⃣ 간선 완화(Relaxation)</h2>
+
+<h3 id="-간선-완화란">💡 간선 완화란?</h3>
+
+<p><strong>“간선 u → v를 이용했을 때, 출발점에서 v까지 가는 거리가 더 짧아지면 dist[v]를 갱신하는 과정”</strong></p>
+
+<p>(벨만-포드, 플로이드-워셜에서 쓰는 것과 같은 개념이다.)</p>
+
+<h3 id="-완화-조건">💡 완화 조건</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">;</span>
+    <span class="c1">// 우선순위 큐 사용 시: (dist[v], v) 다시 넣거나 갱신</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">u</code>: 방금 확정한 정점</li>
+  <li><code class="language-plaintext highlighter-rouge">v</code>: u의 이웃 정점</li>
+  <li><code class="language-plaintext highlighter-rouge">w</code>: 간선 (u, v)의 가중치</li>
+</ul>
+
+<hr />
+
+<h2 id="-4️⃣-우선순위-큐와-동작-과정">📌 4️⃣ 우선순위 큐와 동작 과정</h2>
+
+<h3 id="-왜-우선순위-큐를-쓰는가">💡 왜 우선순위 큐를 쓰는가?</h3>
+
+<ul>
+  <li><strong>매번 “dist가 가장 작은 정점”</strong>을 골라야 한다.</li>
+  <li>배열로 매번 최솟값을 찾으면 O(V) → 전체 O(V²).</li>
+  <li><strong>우선순위 큐(최소 힙)</strong>를 쓰면 최솟값 추출 O(log V), 간선당 최대 1번 갱신 → <strong>O((V+E)log V)</strong>.</li>
+</ul>
+
+<h3 id="-동작-흐름-요약">💡 동작 흐름 (요약)</h3>
+
+<ol>
+  <li>출발점 <code class="language-plaintext highlighter-rouge">start</code>의 <code class="language-plaintext highlighter-rouge">dist[start] = 0</code>, 나머지는 <strong>무한대(INF)</strong>로 초기화.</li>
+  <li>우선순위 큐에 <code class="language-plaintext highlighter-rouge">(0, start)</code> 넣기. (비용, 정점 번호)</li>
+  <li>큐가 빌 때까지:
+    <ul>
+      <li><strong>비용이 가장 작은 (d, u)</strong> 꺼내기.</li>
+      <li>이미 <code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 이면 <strong>스킵</strong> (예전에 넣은 쓸모없는 정보).</li>
+      <li>u를 <strong>확정</strong>했다고 보고, u와 연결된 각 간선 (u → v, 가중치 w)에 대해 <strong>완화</strong>.</li>
+      <li>완화로 <code class="language-plaintext highlighter-rouge">dist[v]</code>가 줄어들면 <code class="language-plaintext highlighter-rouge">(dist[v], v)</code> 를 큐에 넣기.</li>
+    </ul>
+  </li>
+  <li>종료 후 <code class="language-plaintext highlighter-rouge">dist[]</code>가 <strong>출발점에서 각 정점까지의 최단 거리</strong>.</li>
+</ol>
+
+<h3 id="-확정의-의미">💡 “확정”의 의미</h3>
+
+<ul>
+  <li>음수 간선이 없으므로, <strong>현재 dist가 가장 작은 정점</strong>은 더 이상 다른 경로로 더 짧아질 수 없다.</li>
+  <li>그래서 그 정점은 <strong>한 번만 꺼내서 이웃만 완화</strong>하면 되고, 다시 큐에 넣을 필요 없다.</li>
+  <li><code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 인 경우는 “예전에 넣었던 더 나쁜 값”이므로 무시한다.</li>
+</ul>
+
+<hr />
+
+<h2 id="-5️⃣-코드-구현">💻 5️⃣ 코드 구현</h2>
+
+<h3 id="-인접-리스트--우선순위-큐-java">💡 인접 리스트 + 우선순위 큐 (Java)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Dijkstra</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">INF</span> <span class="o">=</span> <span class="mi">987654321</span><span class="o">;</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;[]</span> <span class="n">graph</span><span class="o">;</span>  <span class="c1">// graph[v] = { {next, cost}, ... }</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">dist</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="no">V</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">dijkstra</span><span class="o">(</span><span class="kt">int</span> <span class="n">start</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">V</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">dist</span><span class="o">,</span> <span class="no">INF</span><span class="o">);</span>
+        <span class="n">dist</span><span class="o">[</span><span class="n">start</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="c1">// (비용, 정점) - 비용 기준 최소 힙</span>
+        <span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">pq</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;&gt;((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">-</span> <span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+        <span class="n">pq</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="n">start</span><span class="o">});</span>
+
+        <span class="k">while</span> <span class="o">(!</span><span class="n">pq</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="kt">int</span><span class="o">[]</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">u</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">d</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">])</span> <span class="k">continue</span><span class="o">;</span>  <span class="c1">// 이미 더 좋은 경로로 갱신된 경우 스킵</span>
+
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">edge</span> <span class="o">:</span> <span class="n">graph</span><span class="o">[</span><span class="n">u</span><span class="o">])</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edge</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">w</span> <span class="o">=</span> <span class="n">edge</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">]</span> <span class="o">+</span> <span class="n">w</span><span class="o">;</span>
+                    <span class="n">pq</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">dist</span><span class="o">[</span><span class="n">v</span><span class="o">],</span> <span class="n">v</span><span class="o">});</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">dist</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="-인접-행렬-버전-정점-수가-작을-때">💡 인접 행렬 버전 (정점 수가 작을 때)</h3>
+
+<ul>
+  <li>정점이 적고 간선이 많을 때는 <strong>인접 행렬 + 매번 최솟값 탐색</strong>으로도 구현 가능.</li>
+  <li>시간복잡도 <strong>O(V²)</strong>. 플로이드-워셜보다는 V가 클 때 유리할 수 있다.</li>
+</ul>
+
+<hr />
+
+<h2 id="️-6️⃣-시간복잡도와-공간복잡도">⏱️ 6️⃣ 시간복잡도와 공간복잡도</h2>
+
+<h3 id="-우선순위-큐-버전">💡 우선순위 큐 버전</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>복잡도</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O((V+E) log V)</td>
+      <td>각 간선 최대 1번 완화, PQ 삽입/삭제 log V</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V)</td>
+      <td>dist[], PQ에 정점 개수만큼</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-인접-행렬--선형-탐색-버전">💡 인접 행렬 + 선형 탐색 버전</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>복잡도</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O(V²)</td>
+      <td>V번 반복, 매번 O(V) 최솟값</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V²)</td>
+      <td>인접 행렬</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-7️⃣-벨만-포드플로이드-워셜과의-비교">⚖️ 7️⃣ 벨만-포드·플로이드-워셜과의 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>다익스트라</th>
+      <th>벨만-포드</th>
+      <th>플로이드-워셜</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>목적</strong></td>
+      <td>한 출발점 → 모든 정점</td>
+      <td>한 출발점 → 모든 정점</td>
+      <td>모든 쌍 최단 경로</td>
+    </tr>
+    <tr>
+      <td><strong>음수 간선</strong></td>
+      <td><strong>불가능</strong></td>
+      <td>가능</td>
+      <td>가능 (음수 사이클 제외)</td>
+    </tr>
+    <tr>
+      <td><strong>음수 사이클</strong></td>
+      <td>해당 없음</td>
+      <td>탐지 가능</td>
+      <td>있으면 사용 불가</td>
+    </tr>
+    <tr>
+      <td><strong>시간복잡도</strong></td>
+      <td>O((V+E)log V) 또는 O(V²)</td>
+      <td>O(VE)</td>
+      <td>O(V³)</td>
+    </tr>
+    <tr>
+      <td><strong>공간복잡도</strong></td>
+      <td>O(V)</td>
+      <td>O(V)</td>
+      <td>O(V²)</td>
+    </tr>
+    <tr>
+      <td><strong>적용 상황</strong></td>
+      <td>출발점 하나, 음수 간선 없음</td>
+      <td>음수 간선/사이클</td>
+      <td>정점 적을 때, 모든 쌍</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-언제-무엇을-쓸까">💡 언제 무엇을 쓸까?</h3>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-21-pic1.png?raw=true" alt="예시 이미지1" /></p>
+
+<hr />
+
+<h2 id="-8️⃣-실전-문제-적용">🧪 8️⃣ 실전 문제 적용</h2>
+
+<h3 id="-대표-문제-유형">💡 대표 문제 유형</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>유형</th>
+      <th>설명</th>
+      <th>예시 키워드</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>단일 출발 최단 경로</strong></td>
+      <td>한 도시에서 다른 모든 도시까지</td>
+      <td>“1번 노드에서”, “한 점에서”</td>
+    </tr>
+    <tr>
+      <td><strong>가중치가 양수</strong></td>
+      <td>거리, 시간, 비용이 0 이상</td>
+      <td>“최소 비용”, “최단 거리”</td>
+    </tr>
+    <tr>
+      <td><strong>경로 복원</strong></td>
+      <td>최단 경로에 포함된 정점/간선 출력</td>
+      <td>“경로 출력”, “경로 추적”</td>
+    </tr>
+    <tr>
+      <td><strong>2차원 격자</strong></td>
+      <td>칸 이동 비용을 간선으로 두고 적용</td>
+      <td>“다익스트라 + BFS/격자”</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-체크리스트">💡 체크리스트</h3>
+
+<p>다익스트라를 쓸 때 확인할 것:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>음수 간선이 없는가?</strong> (있으면 벨만-포드)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>한 출발점에서 나머지 전체</strong>가 필요한가? (모든 쌍이면 플로이드-워셜 고려)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">INF</code> 값을 충분히 크게 설정했는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />같은 정점에 대한 <strong>중복 간선</strong>이 있으면 더 작은 가중치만 남겼는가?</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">d &gt; dist[u]</code> 스킵 처리로 <strong>이미 갱신된 노드</strong>를 건너뛰었는가?</li>
+</ul>
+
+<hr />
+
+<p>이렇게 <strong>다익스트라</strong>까지 정리하면, <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>·<a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>와 함께 <strong>최단 경로 시리즈</strong>를 한 세트로 다룰 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다.]]></summary></entry><entry><title type="html">[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</title><link href="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/" rel="alternate" type="text/html" title="[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법" /><published>2026-02-18T00:00:00+00:00</published><updated>2026-02-24T06:46:26+00:00</updated><id>https://nan0silver.github.io/algorithm/integer-arraylist-to-int-array</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/"><![CDATA[<p>알고리즘 문제를 풀다 보면 <code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>로 모아둔 결과를 최종적으로 <code class="language-plaintext highlighter-rouge">int[]</code> 배열로 반환해야 하는 경우가 많다. <code class="language-plaintext highlighter-rouge">String</code> 리스트는 <code class="language-plaintext highlighter-rouge">toArray()</code>로 쉽게 변환할 수 있지만, <strong>primitive 타입인 int는 <code class="language-plaintext highlighter-rouge">toArray()</code>를 그대로 쓸 수 없다.</strong> 이번 글에서는 Integer ArrayList를 int 배열로 바꾸는 방법을 정리해보자.</p>
 
 <ol>
   <li><a href="#-1️⃣-string-list-vs-integer-list">String List vs Integer List</a></li>
@@ -1012,7 +1293,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <p><strong>참고</strong></p>
 <ul>
   <li><a href="https://hoehen-flug.tistory.com/49">내가 개발자라니 - Integer ArrayList을 int 배열로 변환하는 방법</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[알고리즘 문제 풀이 시 Integer ArrayList를 int[] 배열로 변환해야 할 때 사용할 수 있는 방법을 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 벨만-포드 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" rel="alternate" type="text/html" title="[Algorithm] 벨만-포드 알고리즘" /><published>2026-02-09T00:00:00+00:00</published><updated>2026-02-24T04:33:54+00:00</updated><id>https://nan0silver.github.io/algorithm/bellman-ford</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"><![CDATA[<ol>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[알고리즘 문제 풀이 시 Integer ArrayList를 int[] 배열로 변환해야 할 때 사용할 수 있는 방법을 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 벨만-포드 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" rel="alternate" type="text/html" title="[Algorithm] 벨만-포드 알고리즘" /><published>2026-02-09T00:00:00+00:00</published><updated>2026-02-24T06:46:26+00:00</updated><id>https://nan0silver.github.io/algorithm/bellman-ford</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"><![CDATA[<ol>
   <li><a href="#-1️⃣-벨만-포드란">벨만-포드란?</a></li>
   <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
   <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
@@ -1223,7 +1504,7 @@ dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>
 
 <p>👉 핵심 질문이
 <strong>“최단거리”보다 “음수 사이클 존재 여부”</strong>라면
-벨만-포드를 떠올려야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[벨만-포드 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" rel="alternate" type="text/html" title="[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유" /><published>2026-02-07T00:00:00+00:00</published><updated>2026-02-24T04:33:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-07-diary/"><![CDATA[<blockquote>
+벨만-포드를 떠올려야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[벨만-포드 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" rel="alternate" type="text/html" title="[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유" /><published>2026-02-07T00:00:00+00:00</published><updated>2026-02-24T06:46:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-07-diary/"><![CDATA[<blockquote>
   <p><a href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/">이전 일기: 비관적 락 적용기</a>에서 통화 종료에 비관적 락을 적용했다.<br />
 그때 <code class="language-plaintext highlighter-rouge">@Transactional</code> 하나로 전체 흐름을 감쌌는데, <strong>왜 한 트랜잭션으로 묶어야 하고</strong>, <strong>전파 옵션을 잘못 쓰면 락이 어떻게 깨질 수 있는지</strong>를 이번에 정리해 본다.</p>
 </blockquote>
@@ -1474,7 +1755,7 @@ dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>
   </tbody>
 </table>
 
-<p>비관적 락 적용 시 <strong>“어디서 트랜잭션이 시작되고 끝나는지”</strong> 를 의식하고, <strong>락을 건 구간과 수정 구간이 같은 트랜잭션에 포함되도록</strong> 전파를 두면, “같은 트랜잭션 안에서 락이 유지되는” 동작을 기대한 대로 얻을 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</title><link href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" rel="alternate" type="text/html" title="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" /><published>2026-01-22T00:00:00+00:00</published><updated>2026-02-24T04:33:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-22-diary/"><![CDATA[<blockquote>
+<p>비관적 락 적용 시 <strong>“어디서 트랜잭션이 시작되고 끝나는지”</strong> 를 의식하고, <strong>락을 건 구간과 수정 구간이 같은 트랜잭션에 포함되도록</strong> 전파를 두면, “같은 트랜잭션 안에서 락이 유지되는” 동작을 기대한 대로 얻을 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</title><link href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" rel="alternate" type="text/html" title="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" /><published>2026-01-22T00:00:00+00:00</published><updated>2026-02-24T06:46:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-22-diary/"><![CDATA[<blockquote>
   <p>동시 요청으로 통화가 두 번 종료되는 문제 해결하기..!</p>
 </blockquote>
 
@@ -1998,7 +2279,7 @@ User2: 100ms (락 대기 50ms + 처리 50ms)
   <li>통화 종료는 충돌 가능성 높고</li>
   <li>정확성이 중요하며</li>
   <li>약간의 대기는 허용 가능</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" rel="alternate" type="text/html" title="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" /><published>2026-01-19T00:00:00+00:00</published><updated>2026-02-24T04:33:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-19-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" rel="alternate" type="text/html" title="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" /><published>2026-01-19T00:00:00+00:00</published><updated>2026-02-24T06:46:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-19-diary/"><![CDATA[<ul>
   <li><a href="#-문제-발견-배경">문제 발견 배경</a></li>
   <li>
     <p><a href="#-근본-원인-분석">근본 원인 분석</a></p>
@@ -2448,7 +2729,7 @@ userId 추출: ✅ 성공
   <li>✅ 직접 Principal에 접근하여 안정성 확보</li>
   <li>✅ null 체크 및 fallback 로직 구현 가능</li>
   <li>✅ 명시적 코드로 디버깅 용이</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.]]></summary></entry><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-02-24T04:33:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.]]></summary></entry><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-02-24T06:46:26+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#ssl-인증서란">SSL 인증서란?</a></li>
   <li><a href="#lets-encrypt와-90일-갱신-주기">Let’s Encrypt와 90일 갱신 주기</a></li>
@@ -2617,7 +2898,7 @@ ESC         # 명령 모드
   <li><a href="https://letsencrypt.org/docs/">Let’s Encrypt 공식 문서</a></li>
   <li><a href="https://certbot.eff.org/">Certbot 사용 가이드</a></li>
   <li><a href="https://docs.aws.amazon.com/linux/">Amazon Linux cron 설정</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</title><link href="https://nan0silver.github.io/algorithm/2026-01-09-summary/" rel="alternate" type="text/html" title="[Algorithm] 코딩테스트 알고리즘 선택방법 요약" /><published>2026-01-09T00:00:00+00:00</published><updated>2026-02-24T04:33:54+00:00</updated><id>https://nan0silver.github.io/algorithm/summary</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-01-09-summary/"><![CDATA[<p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</title><link href="https://nan0silver.github.io/algorithm/2026-01-09-summary/" rel="alternate" type="text/html" title="[Algorithm] 코딩테스트 알고리즘 선택방법 요약" /><published>2026-01-09T00:00:00+00:00</published><updated>2026-02-24T06:46:26+00:00</updated><id>https://nan0silver.github.io/algorithm/summary</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-01-09-summary/"><![CDATA[<p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
 이 글에서는 <strong>코테 기준으로 딱 필요한 만큼만</strong> 정리한다.</p>
 
 <hr />
@@ -2900,451 +3181,4 @@ ESC         # 명령 모드
 <blockquote>
   <p><strong>“알고리즘은 외우는 게 아니라,
 문제 조건으로 제거하고 남는 하나를 고르는 것”</strong></p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2026-02-24T04:33:54+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
-  <li><a href="#-1️⃣-플로이드-워셜이란">플로이드-워셜이란?</a></li>
-  <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
-  <li><a href="#-3️⃣-k-i-j의-정확한-의미">k, i, j의 의미</a></li>
-  <li><a href="#-4️⃣-동작-과정-시각화">동작 과정 시각화</a></li>
-  <li><a href="#-5️⃣-코드-구현">코드 구현</a></li>
-  <li><a href="#-6️⃣-시간복잡도와-공간복잡도">시간복잡도와 공간복잡도</a></li>
-  <li><a href="#-7️⃣-다익스트라와의-비교">다익스트라와의 비교</a></li>
-  <li><a href="#-8️⃣-실전-문제-적용">실전 문제 적용</a></li>
-</ol>
-
-<hr />
-
-<h2 id="-1️⃣-플로이드-워셜이란">🎯 1️⃣ 플로이드-워셜이란?</h2>
-
-<h3 id="-한-문장-정의">💡 한 문장 정의</h3>
-
-<p><strong>“모든 정점 쌍 사이의 최단 경로를 한 번에 구하는 알고리즘”</strong></p>
-
-<h3 id="-언제-사용하는가">💡 언제 사용하는가?</h3>
-
-<ul>
-  <li>“A 도시에서 B 도시로 가는 최단 거리는?” → 모든 도시 쌍에 대해 물어볼 때</li>
-  <li>“경유지를 거쳐가는 것이 더 빠른가?” → 중간 노드를 허용하며 최적 경로를 찾을 때</li>
-  <li>그래프의 모든 쌍 최단 거리를 구해야 할 때</li>
-</ul>
-
-<h3 id="-특징">💡 특징</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>특징</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>시간복잡도</strong></td>
-      <td>O(V³) - 정점 개수의 세제곱</td>
-    </tr>
-    <tr>
-      <td><strong>공간복잡도</strong></td>
-      <td>O(V²) - 2차원 배열</td>
-    </tr>
-    <tr>
-      <td><strong>음수 간선</strong></td>
-      <td>처리 가능 (단, 음수 사이클은 불가)</td>
-    </tr>
-    <tr>
-      <td><strong>그래프 종류</strong></td>
-      <td>방향/무방향 모두 가능</td>
-    </tr>
-    <tr>
-      <td><strong>구현 난이도</strong></td>
-      <td>매우 쉬움 (3중 for문)</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-2️⃣-핵심-개념-이해하기">🧠 2️⃣ 핵심 개념 이해하기</h2>
-
-<h3 id="-알고리즘의-본질">💡 알고리즘의 본질</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"도시 i에서 도시 j로 갈 때,
-k번 도시를 중간에 한 번 거쳐도 되는지를
-매 단계마다 허용해가며 최소 비용을 갱신하는 알고리즘"
-</code></pre></div></div>
-
-<h3 id="-distij의-의미">💡 dist[i][j]의 의미</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">지금까지</span> <span class="n">허용된</span> <span class="n">중간</span> <span class="n">도시들만</span> <span class="n">이용해서</span>
-             <span class="n">i</span> <span class="err">→</span> <span class="n">j로</span> <span class="n">가는</span> <span class="n">최소</span> <span class="n">비용</span>
-</code></pre></div></div>
-
-<p>여기서 “지금까지 허용된”이 핵심이다. k값에 따라 허용 범위가 달라진다.</p>
-
-<h3 id="-동적-계획법dp으로서의-플로이드-워셜">💡 동적 계획법(DP)으로서의 플로이드-워셜</h3>
-
-<p>플로이드-워셜의 본질적인 점화식:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DP[k][i][j] = 중간 도시를 1~k까지만 써서 i→j로 가는 최소 비용
-
-DP[k][i][j] = min(
-    DP[k-1][i][j],           // k를 거치지 않는 경우
-    DP[k-1][i][k] + DP[k-1][k][j]  // k를 거치는 경우
-)
-</code></pre></div></div>
-
-<p>실제 코드는 3차원 배열 대신 2차원 배열을 덮어쓰면서 k 단계를 확장한다.</p>
-
-<hr />
-
-<h2 id="-3️⃣-k-i-j의-정확한-의미">🔑 3️⃣ k, i, j의 정확한 의미</h2>
-
-<h3 id="-기본-구조">💡 기본 구조</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>        <span class="c1">// 중간 노드</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>    <span class="c1">// 출발 노드</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">// 도착 노드</span>
-            <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span>
-                <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">],</span>
-                <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span>
-            <span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="-각-변수의-의미">💡 각 변수의 의미</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>변수</th>
-      <th>의미</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>k</strong></td>
-      <td>중간에 거쳐도 되는 도시 번호</td>
-      <td>k=1일 때는 1번만, k=2일 때는 1,2번까지 허용</td>
-    </tr>
-    <tr>
-      <td><strong>i</strong></td>
-      <td>출발 도시</td>
-      <td>모든 출발지를 순회</td>
-    </tr>
-    <tr>
-      <td><strong>j</strong></td>
-      <td>도착 도시</td>
-      <td>모든 도착지를 순회</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="-핵심-로직의-의미">💡 핵심 로직의 의미</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span>
-    <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">],</span>          <span class="c1">// 원래 알고 있던 i → j 최단 경로</span>
-    <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span>  <span class="c1">// i → k → j로 가는 새로운 경로</span>
-<span class="o">);</span>
-</code></pre></div></div>
-
-<p>이 코드가 묻는 질문:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"i에서 j로 바로 가는 게 낫나?"
-"아니면 k를 한 번 들렀다 가는 게 낫나?"
-</code></pre></div></div>
-
-<p>시각적 표현:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>i ─────────▶ j  (직접)
-│
-│
-▼
-k
-</code></pre></div></div>
-
-<h3 id="-왜-k가-가장-바깥-루프인가">💡 왜 k가 가장 바깥 루프인가?</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 올바른 순서</span>
-<span class="k">for</span> <span class="n">k</span>
-  <span class="k">for</span> <span class="n">i</span>
-    <span class="k">for</span> <span class="n">j</span>
-
-<span class="c1">// ❌ 잘못된 순서</span>
-<span class="k">for</span> <span class="n">i</span>
-  <span class="k">for</span> <span class="n">j</span>
-    <span class="k">for</span> <span class="n">k</span>
-</code></pre></div></div>
-
-<p><strong>이유</strong>: k는 “중간 도시로 k까지 허용한 상태에서 모든 i→j 최단거리를 갱신”한다는 의미다. 만약 i나 j가 바깥에 있으면 아직 허용되지 않은 중간 도시를 사용하게 되어 DP의 단계적 의미가 깨진다.</p>
-
-<hr />
-
-<h2 id="-4️⃣-동작-과정-시각화">📊 4️⃣ 동작 과정 시각화</h2>
-
-<h3 id="-예시-그래프">💡 예시 그래프</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    1 ──(4)── 2
-    │         │
-   (3)       (2)
-    │         │
-    3 ──(5)── 4
-</code></pre></div></div>
-
-<h3 id="-초기-상태-k--0-중간-노드-허용-안-함">💡 초기 상태 (k = 0, 중간 노드 허용 안 함)</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dist[i][j] = 직접 연결된 간선만 사용
-
-      1    2    3    4
-1  [  0    4   INF  INF ]
-2  [  4    0   INF   2  ]
-3  [ INF  INF   0    5  ]
-4  [ INF   2    5    0  ]
-</code></pre></div></div>
-
-<h3 id="-k--1-1번-노드를-중간에-사용-가능">💡 k = 1 (1번 노드를 중간에 사용 가능)</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"1번을 거쳐가면 더 빠른 경로가 있나?"
-
-i=2, j=3일 때:
-dist[2][3] = min(INF, dist[2][1] + dist[1][3])
-           = min(INF, 4 + INF) = INF
-
-i=3, j=2일 때:
-dist[3][2] = min(INF, dist[3][1] + dist[1][2])
-           = min(INF, INF + 4) = INF
-</code></pre></div></div>
-
-<h3 id="-k--2-12번-노드를-중간에-사용-가능">💡 k = 2 (1,2번 노드를 중간에 사용 가능)</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"2번을 거쳐가면 더 빠른 경로가 있나?"
-
-i=1, j=4일 때:
-dist[1][4] = min(INF, dist[1][2] + dist[2][4])
-           = min(INF, 4 + 2) = 6
-</code></pre></div></div>
-
-<h3 id="-최종-결과-k--4-모든-노드-허용">💡 최종 결과 (k = 4, 모든 노드 허용)</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      1    2    3    4
-1  [  0    4    8    6  ]
-2  [  4    0    7    2  ]
-3  [  8    7    0    5  ]
-4  [  6    2    5    0  ]
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="-5️⃣-코드-구현">💻 5️⃣ 코드 구현</h2>
-
-<h3 id="-기본-템플릿">💡 기본 템플릿</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FloydWarshall</span> <span class="o">{</span>
-    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">INF</span> <span class="o">=</span> <span class="mi">987654321</span><span class="o">;</span>  <span class="c1">// 충분히 큰 값</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">solution</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">graph</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span><span class="o">[][]</span> <span class="n">dist</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="o">][</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
-
-        <span class="c1">// 1. 초기화</span>
-
-        <span class="c1">// 2. 간선 정보 입력</span>
-
-        <span class="c1">// 3. 플로이드-워셜 알고리즘</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-                    <span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">!=</span> <span class="no">INF</span> <span class="o">&amp;&amp;</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">!=</span> <span class="no">INF</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">],</span>
-                                              <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
-                    <span class="o">}</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 4. 결과 출력</span>
-        <span class="n">printDistances</span><span class="o">(</span><span class="n">dist</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="-6️⃣-시간복잡도와-공간복잡도">📈 6️⃣ 시간복잡도와 공간복잡도</h2>
-
-<h3 id="-시간복잡도">💡 시간복잡도</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>연산</th>
-      <th>복잡도</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>플로이드-워셜</strong></td>
-      <td>O(V³)</td>
-      <td>3중 for문</td>
-    </tr>
-    <tr>
-      <td><strong>초기화</strong></td>
-      <td>O(V²)</td>
-      <td>2차원 배열 초기화</td>
-    </tr>
-    <tr>
-      <td><strong>전체</strong></td>
-      <td>O(V³)</td>
-      <td>플로이드-워셜이 지배적</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="-공간복잡도">💡 공간복잡도</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>자료구조</th>
-      <th>크기</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>거리 배열</strong></td>
-      <td>O(V²)</td>
-      <td>dist[n][n]</td>
-    </tr>
-    <tr>
-      <td><strong>경로 배열</strong></td>
-      <td>O(V²)</td>
-      <td>next[n][n] (선택적)</td>
-    </tr>
-    <tr>
-      <td><strong>전체</strong></td>
-      <td>O(V²)</td>
-      <td>2차원 배열</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="️-7️⃣-다익스트라와의-비교">⚖️ 7️⃣ 다익스트라와의 비교</h2>
-
-<h3 id="-핵심-차이점">💡 핵심 차이점</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>플로이드-워셜</th>
-      <th>다익스트라</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>목적</strong></td>
-      <td>모든 쌍 최단 경로</td>
-      <td>한 정점에서 모든 정점으로</td>
-    </tr>
-    <tr>
-      <td><strong>시간복잡도</strong></td>
-      <td>O(V³)</td>
-      <td>O((V+E)logV)</td>
-    </tr>
-    <tr>
-      <td><strong>공간복잡도</strong></td>
-      <td>O(V²)</td>
-      <td>O(V)</td>
-    </tr>
-    <tr>
-      <td><strong>음수 간선</strong></td>
-      <td>가능 (음수 사이클 제외)</td>
-      <td>불가능</td>
-    </tr>
-    <tr>
-      <td><strong>구현 난이도</strong></td>
-      <td>매우 쉬움</td>
-      <td>중간 (우선순위 큐)</td>
-    </tr>
-    <tr>
-      <td><strong>적용 상황</strong></td>
-      <td>정점이 적을 때 (V ≤ 500)</td>
-      <td>정점이 많을 때, 특정 출발점</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="-언제-무엇을-쓸까">💡 언제 무엇을 쓸까?</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 플로이드-워셜을 쓸 때</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">모든</span> <span class="n">정점</span> <span class="n">쌍의</span> <span class="n">최단</span> <span class="n">거리가</span> <span class="n">필요</span> <span class="o">&amp;&amp;</span> <span class="n">정점</span> <span class="n">수</span> <span class="err">≤</span> <span class="mi">500</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">플로이드워셜</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="c1">// ✅ 다익스트라를 쓸 때</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">특정</span> <span class="n">출발점에서</span> <span class="n">모든</span> <span class="n">정점까지</span> <span class="o">&amp;&amp;</span> <span class="n">음수</span> <span class="n">간선</span> <span class="n">없음</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">다익스트라</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="c1">// ✅ 벨만-포드를 쓸 때</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">음수</span> <span class="n">간선</span> <span class="n">있음</span> <span class="o">&amp;&amp;</span> <span class="n">음수</span> <span class="n">사이클</span> <span class="n">감지</span> <span class="n">필요</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">벨만포드</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="-8️⃣-실전-문제-적용">🎯 8️⃣ 실전 문제 적용</h2>
-
-<h3 id="-대표-문제-유형">💡 대표 문제 유형</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>유형</th>
-      <th>설명</th>
-      <th>예시 문제</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>모든 쌍 최단 경로</strong></td>
-      <td>모든 도시 간 최단 거리</td>
-      <td>백준 11404 플로이드</td>
-    </tr>
-    <tr>
-      <td><strong>경유지 문제</strong></td>
-      <td>특정 경유지를 거쳐야 할 때</td>
-      <td>프로그래머스 순위</td>
-    </tr>
-    <tr>
-      <td><strong>연결성 판단</strong></td>
-      <td>모든 노드가 연결되어 있는가?</td>
-      <td>백준 1389 케빈 베이컨</td>
-    </tr>
-    <tr>
-      <td><strong>최단 경로 개수</strong></td>
-      <td>최단 경로가 몇 개인가?</td>
-      <td>백준 1613 역사</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="-체크리스트">💡 체크리스트</h3>
-
-<p>플로이드-워셜 문제를 풀 때 확인할 것:</p>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />정점 수가 500 이하인가? (아니면 다익스트라 고려)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />모든 쌍의 최단 거리가 필요한가?</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />음수 간선이 있는가?</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />음수 사이클을 감지해야 하는가?</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />INF 값을 충분히 크게 설정했는가?</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />중복 간선 처리를 했는가?</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />k가 가장 바깥 루프인가?</li>
-</ul>
-
-<hr />]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry></feed>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.]]></summary></entry></feed>

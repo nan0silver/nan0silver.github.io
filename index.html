@@ -44,7 +44,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-24T04:33:54+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-24T06:46:26+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -184,7 +184,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-02-24T04:34:38+00:00',
+    INDEX_KEY: 'index--2026-02-24T06:47:14+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -432,7 +432,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
           class="sidebar-nav-item "
           
         >
-          프로젝트 일기 (29)
+          프로젝트 일기 (30)
         </a>
       </li>
     
@@ -529,18 +529,18 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 
 
-<article id="post-algorithm-dijkstra" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
-      <a href="/algorithm/2026-02-24-dijkstra/" class="flip-title">
-        [Algorithm] 다익스트라 알고리즘
+      <a href="/projectdiary/2026-02-24-diary/" class="flip-title">
+        [친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기
       </a>
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
+        <time datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
@@ -560,7 +560,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
   
     <p class="note-sm" >
-      다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다.
+      친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.
 
     </p>
   
@@ -569,9 +569,16 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
   </header>
 
   
-    <blockquote>
-  <p><strong>최단 경로 시리즈</strong> – <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>(모든 쌍), <a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>(음수 간선·음수 사이클)에 이어, <strong>한 출발점에서 나머지 모든 정점까지</strong>의 최단 경로를 빠르게 구하는 알고리즘이다.</p>
-</blockquote>
+    <ul>
+  <li><a href="#시작하기-전에">시작하기 전에</a></li>
+  <li><a href="#1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</a></li>
+  <li><a href="#2-docker가-왜-필요한가요">2. Docker가 왜 필요한가요?</a></li>
+  <li><a href="#3-aws-ec2란-무엇인가요">3. AWS EC2란 무엇인가요?</a></li>
+  <li><a href="#4-aws-ecs란-무엇인가요">4. AWS ECS란 무엇인가요?</a></li>
+  <li><a href="#5-ecr이란-무엇인가요">5. ECR이란 무엇인가요?</a></li>
+  <li><a href="#6-지금-내-프로젝트의-전체-흐름">6. 지금 내 프로젝트의 전체 흐름</a></li>
+  <li><a href="#7-정리">7. 정리</a></li>
+</ul>
 
 
 
@@ -579,7 +586,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/algorithm/2026-02-24-dijkstra/">[Algorithm] 다익스트라 알고리즘</a>
+        Continue reading <a class="heading flip-title" href="/projectdiary/2026-02-24-diary/">[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기</a>
 
       </p>
     </footer>
@@ -616,7 +623,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-02-24T04:33:54+00:00">2026-02-24</time>
+              <time datetime="2026-02-24T06:46:26+00:00">2026-02-24</time>
             </span>
           
         
@@ -666,6 +673,78 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 
 
 
+<article id="post-algorithm-dijkstra" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/algorithm/2026-02-21-dijkstra/" class="flip-title">
+        [Algorithm] 다익스트라 알고리즘
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-02-21T00:00:00+00:00">21 Feb 2026</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-02-24T06:46:26+00:00">2026-02-24</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p><strong>최단 경로 시리즈</strong> – <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>(모든 쌍), <a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>(음수 간선·음수 사이클)에 이어, <strong>한 출발점에서 나머지 모든 정점까지</strong>의 최단 경로를 빠르게 구하는 알고리즘이다.</p>
+</blockquote>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/algorithm/2026-02-21-dijkstra/">[Algorithm] 다익스트라 알고리즘</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-algorithm-integer-arraylist-to-int-array" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -689,7 +768,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-02-24T04:33:54+00:00">2026-02-24</time>
+              <time datetime="2026-02-24T06:46:26+00:00">2026-02-24</time>
             </span>
           
         
@@ -759,7 +838,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-02-24T04:33:54+00:00">2026-02-24</time>
+              <time datetime="2026-02-24T06:46:26+00:00">2026-02-24</time>
             </span>
           
         
@@ -838,7 +917,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-02-24T04:33:54+00:00">2026-02-24</time>
+              <time datetime="2026-02-24T06:46:26+00:00">2026-02-24</time>
             </span>
           
         
@@ -911,7 +990,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-02-24T04:33:54+00:00">2026-02-24</time>
+              <time datetime="2026-02-24T06:46:26+00:00">2026-02-24</time>
             </span>
           
         
@@ -983,7 +1062,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-02-24T04:33:54+00:00">2026-02-24</time>
+              <time datetime="2026-02-24T06:46:26+00:00">2026-02-24</time>
             </span>
           
         
@@ -1056,7 +1135,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-02-24T04:33:54+00:00">2026-02-24</time>
+              <time datetime="2026-02-24T06:46:26+00:00">2026-02-24</time>
             </span>
           
         
@@ -1131,7 +1210,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
             <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-02-24T04:33:54+00:00">2026-02-24</time>
+              <time datetime="2026-02-24T06:46:26+00:00">2026-02-24</time>
             </span>
           
         
@@ -1166,85 +1245,6 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/algorithm/2026-01-09-summary/">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-algorithm-floyd-warshall" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/algorithm/2025-12-29-floyd-warshall/" class="flip-title">
-        [Algorithm] 플로이드-워셜 알고리즘
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-12-29T00:00:00+00:00">29 Dec 2025</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-02-24T04:33:54+00:00">2026-02-24</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      플로이드-워셜 알고리즘에 대해 정리해보았습니다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ol>
-  <li><a href="#-1️⃣-플로이드-워셜이란">플로이드-워셜이란?</a></li>
-  <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
-  <li><a href="#-3️⃣-k-i-j의-정확한-의미">k, i, j의 의미</a></li>
-  <li><a href="#-4️⃣-동작-과정-시각화">동작 과정 시각화</a></li>
-  <li><a href="#-5️⃣-코드-구현">코드 구현</a></li>
-  <li><a href="#-6️⃣-시간복잡도와-공간복잡도">시간복잡도와 공간복잡도</a></li>
-  <li><a href="#-7️⃣-다익스트라와의-비교">다익스트라와의 비교</a></li>
-  <li><a href="#-8️⃣-실전-문제-적용">실전 문제 적용</a></li>
-</ol>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/algorithm/2025-12-29-floyd-warshall/">[Algorithm] 플로이드-워셜 알고리즘</a>
 
       </p>
     </footer>
