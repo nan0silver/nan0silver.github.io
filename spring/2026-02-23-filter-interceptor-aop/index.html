@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다." />
+<meta property="og:description" content="Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/" />
+<meta property="og:url" content="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-23T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-24T02:18:30+00:00","datePublished":"2026-02-23T00:00:00+00:00","description":"Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다.","headline":"[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-02-24T02:19:12+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가",
+    "description": "Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-02-23T00:00:00+00:00",
+    "dateModified": "2026-02-24T02:18:30+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "spring",
+        "item": "https://nan0silver.github.io/spring/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가",
+        "item": "https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/spring/">spring</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-02-23-filter-interceptor-aop</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-spring-filter-interceptor-aop" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-02-23T00:00:00+00:00">23 Feb 2026</time> in <a href="/spring/" class="flip-title">SPRING</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 24 Feb 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-02-24T02:18:30+00:00">2026-02-24</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>PATCH/PUT, DTO, Controller 같은 Spring 글을 읽었다면, “요청이 어디서 걸리고, 어떤 순서로 처리될까?”가 궁금할 수 있다.<br />
+이 글에서는 <strong>Filter</strong>, <strong>Interceptor</strong>, <strong>AOP</strong>가 각각 어디에 위치하고, 무엇을 할 때 쓰면 좋은지** 한 번에 정리한다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#-1-한눈에-보는-요청-처리-흐름">1. 한눈에 보는 요청 처리 흐름</a></li>
+  <li><a href="#-15-비유로-이해하기">1.5 비유로 이해하기</a></li>
+  <li><a href="#-2-filter">2. Filter</a></li>
+  <li><a href="#-3-interceptor">3. Interceptor</a></li>
+  <li><a href="#-4-aop">4. AOP</a></li>
+  <li><a href="#-5-비교표">5. 비교표</a></li>
+  <li><a href="#-6-언제-무엇을-쓸까">6. 언제 무엇을 쓸까?</a></li>
+  <li><a href="#-7-요약">7. 요약</a></li>
+</ul>
+
+<hr />
+
+<h2 id="-1-한눈에-보는-요청-처리-흐름">🎯 1. 한눈에 보는 요청 처리 흐름</h2>
+
+<p>HTTP 요청이 들어오면 대략 아래 순서로 지나간다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[클라이언트]
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Filter 1 → Filter 2 → ... (Servlet 컨테이너 레벨)           │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  DispatcherServlet (Spring 진입점)                           │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Interceptor (preHandle)                                     │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  @Controller / @RestController (핸들러 메서드)               │
+│  └─ 이 안에서 @Transactional, AOP 등 적용 가능              │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Interceptor (postHandle → afterCompletion)                  │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Filter (응답 처리)                                          │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+[클라이언트]
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Filter</strong>: Servlet API 일부. <strong>DispatcherServlet 이전/이후</strong>에서 동작. 모든 요청(정적 자원 포함)에 적용될 수 있음.</li>
+  <li><strong>Interceptor</strong>: Spring이 제공. <strong>DispatcherServlet 안</strong>에서, <strong>Controller 호출 전/후</strong>에 동작. Spring이 매핑한 요청만 처리.</li>
+  <li><strong>AOP</strong>: Spring이 제공. <strong>특정 메서드(예: Service, Controller) 호출 전/후/예외</strong>에 동작. 비즈니스 로직·트랜잭션·로깅 등에 많이 사용.</li>
+</ul>
+
+<hr />
+
+<h3 id="-15-비유로-이해하기">🏢 1.5 비유로 이해하기</h3>
+
+<p><strong>“빌딩에 방문객(HTTP 요청)이 들어와서 업무를 보는 과정”</strong>으로 생각해 보자.</p>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-23-pic1.png?raw=true" alt="예시 이미지1" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구성 요소</th>
+      <th>비유</th>
+      <th>하는 일</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Filter</strong></td>
+      <td><strong>빌딩 1층 경비원</strong></td>
+      <td>모든 방문객이 <strong>반드시</strong> 거치는 곳. 출입증 확인, 짐 검사(인코딩·CORS 등), 위험물 차단. Spring 빌딩 <strong>밖</strong>에서 막춰서, “어느 부서로 갈지”는 모른다.</td>
+    </tr>
+    <tr>
+      <td><strong>DispatcherServlet</strong></td>
+      <td><strong>안내 데스크(리셉션)</strong></td>
+      <td>“어디로 가시나요?”라고 물어보고, <strong>URL(요청 경로)</strong>을 보고 “이 방문객은 3층 영업팀(Controller A)으로 보내야 해”라고 <strong>배정</strong>한다. 실제 업무는 안 하고, <strong>누가 처리할지만 결정</strong>한다.</td>
+    </tr>
+    <tr>
+      <td><strong>Interceptor</strong></td>
+      <td><strong>해당 층/회의실 앞 도어맨</strong></td>
+      <td>“3층 영업팀이요”라고 온 사람만 검사. <strong>이 부서 들어가기 전</strong>에 “예약 있으세요? 권한 있으세요?”(인증·권한) 확인. 들어간 <strong>후</strong>에 출입 기록 남기기(로깅)도 여기서 할 수 있다.</td>
+    </tr>
+    <tr>
+      <td><strong>Controller</strong></td>
+      <td><strong>실제 업무를 보는 부서</strong></td>
+      <td>“회원 정보 주세요”, “주문 등록해 주세요” 같은 <strong>요청에 맞는 일</strong>을 한다. 여기서 비즈니스 로직이 실행된다.</td>
+    </tr>
+    <tr>
+      <td><strong>AOP</strong></td>
+      <td><strong>부서 안의 공통 규칙</strong></td>
+      <td>“누군가 이 메서드(업무)를 할 때마다 <strong>항상</strong> 실행되는 규칙”. 예: “출금할 때마다 로그 남기기”, “이 메서드 실행 시 트랜잭션 시작/종료”. HTTP 요청과 무관하게 <strong>메서드 호출</strong> 단위로 붙는다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>한 줄 요약</strong></p>
+
+<ul>
+  <li><strong>Filter</strong> → 빌딩 <strong>입구</strong>에서 모든 사람에게 적용되는 검사.</li>
+  <li><strong>DispatcherServlet</strong> → <strong>“이 요청은 저 컨트롤러로”</strong> 배정만 하는 안내 데스크.</li>
+  <li><strong>Interceptor</strong> → <strong>그 컨트롤러로 가기 직전/직후</strong>에만 거치는 층별 검사.</li>
+  <li><strong>Controller</strong> → 실제 <strong>일을 처리하는 부서</strong>.</li>
+  <li><strong>AOP</strong> → <strong>그 부서 안에서</strong> “이런 일 할 때마다 공통으로 치는 규칙”.</li>
+</ul>
+
+<hr />
+
+<h2 id="-2-filter">🔷 2. Filter</h2>
+
+<h3 id="무엇인가">무엇인가?</h3>
+
+<ul>
+  <li><strong>Servlet 스펙</strong>에 정의된 컴포넌트.</li>
+  <li><code class="language-plaintext highlighter-rouge">javax.servlet.Filter</code> 인터페이스를 구현한다.</li>
+  <li><strong>요청/응답</strong>을 감싸서 전후 처리(인코딩, 로깅, 인증 등)를 할 수 있다.</li>
+</ul>
+
+<h3 id="어디서-동작하는가">어디서 동작하는가?</h3>
+
+<ul>
+  <li><strong>DispatcherServlet 앞뒤</strong>. 즉 Spring 진입 <strong>전</strong>에 한 번, Spring 처리 <strong>후</strong> 응답 나가기 <strong>전</strong>에 한 번씩 거친다.</li>
+  <li>URI로 “어떤 요청에만 적용할지” 지정할 수 있지만, 기본적으로 <strong>모든 요청</strong>이 Filter 체인을 통과한다 (설정에 따라 정적 자원 제외 가능).</li>
+</ul>
+
+<h3 id="특징">특징</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>소속</strong></td>
+      <td>Servlet API (Spring이 아님)</td>
+    </tr>
+    <tr>
+      <td><strong>요청/응답</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">ServletRequest</code>, <code class="language-plaintext highlighter-rouge">ServletResponse</code> (Servlet API 타입)</td>
+    </tr>
+    <tr>
+      <td><strong>Spring Bean</strong></td>
+      <td>등록 가능하지만, 동작 자체는 Servlet 컨테이너가 관리</td>
+    </tr>
+    <tr>
+      <td><strong>Controller 정보</strong></td>
+      <td>모름 (아직 DispatcherServlet을 거치지 않았거나, 이미 지나간 뒤)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="예시-인코딩-필터">예시: 인코딩 필터</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Order</span><span class="o">(</span><span class="nc">Ordered</span><span class="o">.</span><span class="na">HIGHEST_PRECEDENCE</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EncodingFilter</span> <span class="kd">implements</span> <span class="nc">Filter</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="nc">ServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">ServletResponse</span> <span class="n">response</span><span class="o">,</span>
+                         <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+        <span class="n">request</span><span class="o">.</span><span class="na">setCharacterEncoding</span><span class="o">(</span><span class="s">"UTF-8"</span><span class="o">);</span>
+        <span class="n">response</span><span class="o">.</span><span class="na">setCharacterEncoding</span><span class="o">(</span><span class="s">"UTF-8"</span><span class="o">);</span>
+        <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>  <span class="c1">// 다음 Filter 또는 Servlet으로 전달</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">chain.doFilter()</code> 를 호출하기 <strong>전</strong>: 요청 전처리 (인코딩 설정 등).</li>
+  <li><code class="language-plaintext highlighter-rouge">chain.doFilter()</code> 를 호출한 <strong>후</strong>: 응답 후처리 (필요 시).</li>
+  <li><code class="language-plaintext highlighter-rouge">doFilter()</code> 를 호출하지 않으면 요청이 Controller까지 가지 않는다 (요청 차단 가능).</li>
+</ul>
+
+<h3 id="쓰기-좋은-경우">쓰기 좋은 경우</h3>
+
+<ul>
+  <li>전역 <strong>인코딩 설정</strong></li>
+  <li><strong>CORS</strong> 처리 (응답 헤더 추가)</li>
+  <li><strong>XSS</strong> 방지용 요청/응답 래핑</li>
+  <li><strong>로깅</strong> (요청 URI, 메서드, IP 등) — 단, Interceptor나 AOP로도 가능</li>
+</ul>
+
+<hr />
+
+<h2 id="-3-interceptor">🔷 3. Interceptor</h2>
+
+<h3 id="무엇인가-1">무엇인가?</h3>
+
+<ul>
+  <li><strong>Spring</strong>이 제공하는 <strong>HandlerInterceptor</strong>.</li>
+  <li><code class="language-plaintext highlighter-rouge">DispatcherServlet</code>이 요청을 받은 <strong>이후</strong>, <strong>Controller(핸들러)를 호출하기 전/후/완료 후</strong>에 끼어든다.</li>
+</ul>
+
+<h3 id="어디서-동작하는가-1">어디서 동작하는가?</h3>
+
+<ul>
+  <li><strong>DispatcherServlet 내부</strong>.</li>
+  <li><strong>HandlerMapping</strong>으로 “이 URL은 이 Controller 메서드로” 결정된 <strong>이후</strong>에만 동작한다.</li>
+  <li>따라서 <strong>Spring이 매핑한 요청</strong>에만 적용할 수 있고, 어떤 <strong>Handler(Controller 메서드)</strong> 에 붙었는지 알 수 있다.</li>
+</ul>
+
+<h3 id="세-시점">세 시점</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>메서드</th>
+      <th>시점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>preHandle</strong></td>
+      <td>Controller 실행 <strong>전</strong></td>
+    </tr>
+    <tr>
+      <td><strong>postHandle</strong></td>
+      <td>Controller 실행 <strong>후</strong>, View 렌더링 전 (RestController면 보통 응답 이미 생성됨)</td>
+    </tr>
+    <tr>
+      <td><strong>afterCompletion</strong></td>
+      <td>View 렌더링 <strong>후</strong> 또는 예외 발생 <strong>후</strong> (정리·로깅에 유용)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="특징-1">특징</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>소속</strong></td>
+      <td>Spring Framework</td>
+    </tr>
+    <tr>
+      <td><strong>요청/응답</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">HttpServletRequest</code>, <code class="language-plaintext highlighter-rouge">HttpServletResponse</code> + <strong>Handler</strong> 정보</td>
+    </tr>
+    <tr>
+      <td><strong>Spring Bean</strong></td>
+      <td>완전한 Spring Bean (DI 가능)</td>
+    </tr>
+    <tr>
+      <td><strong>Controller 정보</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">Handler</code>로 “어떤 컨트롤러 메서드가 실행되는지” 알 수 있음</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="예시-인증-체크-인터셉터">예시: 인증 체크 인터셉터</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthInterceptor</span> <span class="kd">implements</span> <span class="nc">HandlerInterceptor</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">preHandle</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+                             <span class="nc">Object</span> <span class="n">handler</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">handler</span> <span class="k">instanceof</span> <span class="nc">HandlerMethod</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">HandlerMethod</span> <span class="n">hm</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HandlerMethod</span><span class="o">)</span> <span class="n">handler</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">hm</span><span class="o">.</span><span class="na">hasMethodAnnotation</span><span class="o">(</span><span class="nc">LoginRequired</span><span class="o">.</span><span class="na">class</span><span class="o">))</span> <span class="o">{</span>
+                <span class="c1">// 로그인 여부 확인 후 미로그인 시 false 반환 → Controller 미실행</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">isLoggedIn</span><span class="o">(</span><span class="n">request</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">response</span><span class="o">.</span><span class="na">sendError</span><span class="o">(</span><span class="nc">HttpServletResponse</span><span class="o">.</span><span class="na">SC_UNAUTHORIZED</span><span class="o">);</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>  <span class="c1">// true면 다음 Interceptor / Controller 실행</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>등록</strong>은 <code class="language-plaintext highlighter-rouge">WebMvcConfigurer.addInterceptors()</code> 에서 <code class="language-plaintext highlighter-rouge">addPathPatterns</code>, <code class="language-plaintext highlighter-rouge">excludePathPatterns</code> 로 URI 패턴 지정.</li>
+</ul>
+
+<h3 id="쓰기-좋은-경우-1">쓰기 좋은 경우</h3>
+
+<ul>
+  <li><strong>인증/권한</strong> 체크 (특정 URL만)</li>
+  <li><strong>로그인 사용자 정보</strong>를 request에 넣기</li>
+  <li><strong>접근 로그</strong> (어떤 URL, 어떤 메서드가 호출됐는지)</li>
+  <li>Controller <strong>실행 전/후</strong>에만 하고 싶은 공통 처리</li>
+</ul>
+
+<hr />
+
+<h2 id="-4-aop">🔷 4. AOP</h2>
+
+<h3 id="무엇인가-2">무엇인가?</h3>
+
+<ul>
+  <li><strong>Aspect-Oriented Programming</strong>. “여러 메서드에 공통으로 들어가는 부가 기능”을 한곳에서 정의하는 방식.</li>
+  <li>Spring AOP는 <strong>프록시 기반</strong>이라, <strong>Spring이 관리하는 Bean의 메서드 호출</strong>에만 적용된다.</li>
+</ul>
+
+<h3 id="어디서-동작하는가-2">어디서 동작하는가?</h3>
+
+<ul>
+  <li><strong>Controller, Service, Repository</strong> 등 <strong>Bean의 메서드가 호출될 때</strong>.</li>
+  <li>Filter/Interceptor와 달리 “HTTP 요청”에 묶이지 않고, <strong>메서드 호출</strong> 단위로 동작한다.</li>
+  <li>같은 메서드라도 <strong>Spring 컨텍스트 밖에서 호출</strong>되면 AOP가 적용되지 않는다 (예: 같은 클래스 내부에서 <code class="language-plaintext highlighter-rouge">this.method()</code> 호출).</li>
+</ul>
+
+<h3 id="특징-2">특징</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>소속</strong></td>
+      <td>Spring Framework (AOP 모듈)</td>
+    </tr>
+    <tr>
+      <td><strong>단위</strong></td>
+      <td><strong>메서드</strong> (클래스·메서드 단위로 적용 대상 지정)</td>
+    </tr>
+    <tr>
+      <td><strong>요청/응답</strong></td>
+      <td>직접 접근하지 않음. 메서드 <strong>인자, 반환값, 예외</strong>에 접근 가능</td>
+    </tr>
+    <tr>
+      <td><strong>Spring Bean</strong></td>
+      <td>완전한 Spring Bean (DI 가능)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="예시-메서드-실행-시간-로깅">예시: 메서드 실행 시간 로깅</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Aspect</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LoggingAspect</span> <span class="o">{</span>
+
+    <span class="nd">@Around</span><span class="o">(</span><span class="s">"@annotation(org.springframework.web.bind.annotation.GetMapping)"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">logExecutionTime</span><span class="o">(</span><span class="nc">ProceedingJoinPoint</span> <span class="n">joinPoint</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Throwable</span> <span class="o">{</span>
+        <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+        <span class="nc">Object</span> <span class="n">result</span> <span class="o">=</span> <span class="n">joinPoint</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>  <span class="c1">// 실제 메서드 실행</span>
+        <span class="kt">long</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">start</span><span class="o">;</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"{} executed in {} ms"</span><span class="o">,</span> <span class="n">joinPoint</span><span class="o">.</span><span class="na">getSignature</span><span class="o">(),</span> <span class="n">elapsed</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Around</code>: 메서드 <strong>앞뒤</strong> 모두 제어.</li>
+  <li><code class="language-plaintext highlighter-rouge">@Before</code>, <code class="language-plaintext highlighter-rouge">@After</code>, <code class="language-plaintext highlighter-rouge">@AfterReturning</code>, <code class="language-plaintext highlighter-rouge">@AfterThrowing</code> 등으로 “전/후/반환 후/예외 시”만 넣을 수도 있다.</li>
+</ul>
+
+<h3 id="쓰기-좋은-경우-2">쓰기 좋은 경우</h3>
+
+<ul>
+  <li><strong>로깅</strong> (메서드명, 인자, 실행 시간, 예외)</li>
+  <li><strong>트랜잭션</strong> (<code class="language-plaintext highlighter-rouge">@Transactional</code> 도 AOP로 동작)</li>
+  <li><strong>권한 체크</strong> (메서드 단위, 예: <code class="language-plaintext highlighter-rouge">@PreAuthorize</code> 와 유사한 커스텀)</li>
+  <li><strong>예외 변환</strong> (특정 예외를 공통 API 응답으로 감싸기)</li>
+  <li><strong>캐싱</strong> (메서드 결과 캐시)</li>
+</ul>
+
+<hr />
+
+<h2 id="-5-비교표">📊 5. 비교표</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>Filter</th>
+      <th>Interceptor</th>
+      <th>AOP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>위치</strong></td>
+      <td>DispatcherServlet <strong>밖</strong> (앞·뒤)</td>
+      <td>DispatcherServlet <strong>안</strong>, Controller <strong>앞·뒤</strong></td>
+      <td><strong>메서드</strong> 호출 전/후/예외</td>
+    </tr>
+    <tr>
+      <td><strong>적용 단위</strong></td>
+      <td>URI (전체 요청)</td>
+      <td>URI + Handler</td>
+      <td>메서드(클래스·어노테이션 등)</td>
+    </tr>
+    <tr>
+      <td><strong>스펙</strong></td>
+      <td>Servlet API</td>
+      <td>Spring</td>
+      <td>Spring AOP</td>
+    </tr>
+    <tr>
+      <td><strong>요청/응답 타입</strong></td>
+      <td>ServletRequest/Response</td>
+      <td>HttpServletRequest/Response</td>
+      <td>없음 (메서드 인자·반환값)</td>
+    </tr>
+    <tr>
+      <td><strong>Handler/Controller 정보</strong></td>
+      <td>없음</td>
+      <td>있음 (preHandle 등에서)</td>
+      <td>타겟 메서드 정보만</td>
+    </tr>
+    <tr>
+      <td><strong>Spring Bean</strong></td>
+      <td>등록 가능, 동작은 서블릿 컨테이너</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <td><strong>용도 예</strong></td>
+      <td>인코딩, CORS, XSS, 전역 로깅</td>
+      <td>인증·인가, URL 단위 로깅</td>
+      <td>트랜잭션, 로깅, 예외 처리, 캐시</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-6-언제-무엇을-쓸까">🧩 6. 언제 무엇을 쓸까?</h2>
+
+<ul>
+  <li>
+    <p><strong>요청/응답 자체를 바꾸거나, Spring 진입 전에 막고 싶을 때</strong><br />
+→ <strong>Filter</strong> (인코딩, CORS, 전역 보안 래퍼 등)</p>
+  </li>
+  <li>
+    <p><strong>“이 URL은 로그인 필요해”처럼 URL·Handler 기준으로 막거나 가공할 때</strong><br />
+→ <strong>Interceptor</strong> (인증, 권한, URL 단위 로깅)</p>
+  </li>
+  <li>
+    <p><strong>“이 메서드 실행 전/후/예외 시 항상 이 로직”을 넣고 싶을 때</strong><br />
+→ <strong>AOP</strong> (로깅, 트랜잭션, 예외 변환, 캐시 등)</p>
+  </li>
+  <li>
+    <p><strong>이미 Spring 글들(PATCH/PUT, DTO 등)을 읽었다면</strong><br />
+→ 요청은 <strong>Filter → DispatcherServlet → Interceptor → Controller</strong> 순으로 들어가고, <strong>Controller/Service 메서드 안</strong>에서 <strong>AOP</strong>가 도는 구간이라고 보면 된다.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-7-요약">✅ 7. 요약</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>처리 순서</strong></td>
+      <td>Filter → DispatcherServlet → Interceptor(pre) → Controller → Interceptor(post, after) → Filter(응답)</td>
+    </tr>
+    <tr>
+      <td><strong>Filter</strong></td>
+      <td>Servlet 레벨, DispatcherServlet 앞뒤, 전역 인코딩·CORS·로깅 등</td>
+    </tr>
+    <tr>
+      <td><strong>Interceptor</strong></td>
+      <td>Spring 레벨, Controller 전/후, URL·Handler 기준 인증·권한·로깅</td>
+    </tr>
+    <tr>
+      <td><strong>AOP</strong></td>
+      <td>메서드 단위, 트랜잭션·로깅·예외 처리·캐시 등</td>
+    </tr>
+    <tr>
+      <td><strong>선택</strong></td>
+      <td>요청/응답·진입 전 차단 → Filter, URL/Handler 기준 → Interceptor, 메서드 공통 로직 → AOP</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이렇게 세 가지를 구분해 두면, “요청이 어떻게 처리되는지”를 Spring 글들(PATCH/PUT, DTO, Controller)과 함께 한 번에 그릴 수 있다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/algorithm/2026-02-18-integer-arraylist-to-int-array/" class="flip-title"><span>[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</span></a>  <time class="faded fine" datetime="2026-02-18T00:00:00+00:00">18 Feb 2026</time></li>                        <li class="h4">  <a href="/algorithm/2026-02-09-bellman-ford/" class="flip-title"><span>[Algorithm] 벨만-포드 알고리즘</span></a>  <time class="faded fine" datetime="2026-02-09T00:00:00+00:00">09 Feb 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-02-07-diary/" class="flip-title"><span>[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유</span></a>  <time class="faded fine" datetime="2026-02-07T00:00:00+00:00">07 Feb 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          JavaScript (8)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (13)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (13)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          Miscellaneous (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (29)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (63)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

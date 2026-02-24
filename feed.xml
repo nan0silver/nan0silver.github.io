@@ -1,7 +1,512 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-02-19T14:13:12+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-02-24T02:19:12+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</title><link href="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/" rel="alternate" type="text/html" title="[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법" /><published>2026-02-18T00:00:00+00:00</published><updated>2026-02-19T14:12:25+00:00</updated><id>https://nan0silver.github.io/algorithm/integer-arraylist-to-int-array</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/"><![CDATA[<p>알고리즘 문제를 풀다 보면 <code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>로 모아둔 결과를 최종적으로 <code class="language-plaintext highlighter-rouge">int[]</code> 배열로 반환해야 하는 경우가 많다. <code class="language-plaintext highlighter-rouge">String</code> 리스트는 <code class="language-plaintext highlighter-rouge">toArray()</code>로 쉽게 변환할 수 있지만, <strong>primitive 타입인 int는 <code class="language-plaintext highlighter-rouge">toArray()</code>를 그대로 쓸 수 없다.</strong> 이번 글에서는 Integer ArrayList를 int 배열로 바꾸는 방법을 정리해보자.</p>
+</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가</title><link href="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/" rel="alternate" type="text/html" title="[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가" /><published>2026-02-23T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/spring/filter-interceptor-aop</id><content type="html" xml:base="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/"><![CDATA[<blockquote>
+  <p>PATCH/PUT, DTO, Controller 같은 Spring 글을 읽었다면, “요청이 어디서 걸리고, 어떤 순서로 처리될까?”가 궁금할 수 있다.<br />
+이 글에서는 <strong>Filter</strong>, <strong>Interceptor</strong>, <strong>AOP</strong>가 각각 어디에 위치하고, 무엇을 할 때 쓰면 좋은지** 한 번에 정리한다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#-1-한눈에-보는-요청-처리-흐름">1. 한눈에 보는 요청 처리 흐름</a></li>
+  <li><a href="#-15-비유로-이해하기">1.5 비유로 이해하기</a></li>
+  <li><a href="#-2-filter">2. Filter</a></li>
+  <li><a href="#-3-interceptor">3. Interceptor</a></li>
+  <li><a href="#-4-aop">4. AOP</a></li>
+  <li><a href="#-5-비교표">5. 비교표</a></li>
+  <li><a href="#-6-언제-무엇을-쓸까">6. 언제 무엇을 쓸까?</a></li>
+  <li><a href="#-7-요약">7. 요약</a></li>
+</ul>
+
+<hr />
+
+<h2 id="-1-한눈에-보는-요청-처리-흐름">🎯 1. 한눈에 보는 요청 처리 흐름</h2>
+
+<p>HTTP 요청이 들어오면 대략 아래 순서로 지나간다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[클라이언트]
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Filter 1 → Filter 2 → ... (Servlet 컨테이너 레벨)           │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  DispatcherServlet (Spring 진입점)                           │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Interceptor (preHandle)                                     │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  @Controller / @RestController (핸들러 메서드)               │
+│  └─ 이 안에서 @Transactional, AOP 등 적용 가능              │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Interceptor (postHandle → afterCompletion)                  │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Filter (응답 처리)                                          │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ▼
+[클라이언트]
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Filter</strong>: Servlet API 일부. <strong>DispatcherServlet 이전/이후</strong>에서 동작. 모든 요청(정적 자원 포함)에 적용될 수 있음.</li>
+  <li><strong>Interceptor</strong>: Spring이 제공. <strong>DispatcherServlet 안</strong>에서, <strong>Controller 호출 전/후</strong>에 동작. Spring이 매핑한 요청만 처리.</li>
+  <li><strong>AOP</strong>: Spring이 제공. <strong>특정 메서드(예: Service, Controller) 호출 전/후/예외</strong>에 동작. 비즈니스 로직·트랜잭션·로깅 등에 많이 사용.</li>
+</ul>
+
+<hr />
+
+<h3 id="-15-비유로-이해하기">🏢 1.5 비유로 이해하기</h3>
+
+<p><strong>“빌딩에 방문객(HTTP 요청)이 들어와서 업무를 보는 과정”</strong>으로 생각해 보자.</p>
+
+<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-23-pic1.png?raw=true" alt="예시 이미지1" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구성 요소</th>
+      <th>비유</th>
+      <th>하는 일</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Filter</strong></td>
+      <td><strong>빌딩 1층 경비원</strong></td>
+      <td>모든 방문객이 <strong>반드시</strong> 거치는 곳. 출입증 확인, 짐 검사(인코딩·CORS 등), 위험물 차단. Spring 빌딩 <strong>밖</strong>에서 막춰서, “어느 부서로 갈지”는 모른다.</td>
+    </tr>
+    <tr>
+      <td><strong>DispatcherServlet</strong></td>
+      <td><strong>안내 데스크(리셉션)</strong></td>
+      <td>“어디로 가시나요?”라고 물어보고, <strong>URL(요청 경로)</strong>을 보고 “이 방문객은 3층 영업팀(Controller A)으로 보내야 해”라고 <strong>배정</strong>한다. 실제 업무는 안 하고, <strong>누가 처리할지만 결정</strong>한다.</td>
+    </tr>
+    <tr>
+      <td><strong>Interceptor</strong></td>
+      <td><strong>해당 층/회의실 앞 도어맨</strong></td>
+      <td>“3층 영업팀이요”라고 온 사람만 검사. <strong>이 부서 들어가기 전</strong>에 “예약 있으세요? 권한 있으세요?”(인증·권한) 확인. 들어간 <strong>후</strong>에 출입 기록 남기기(로깅)도 여기서 할 수 있다.</td>
+    </tr>
+    <tr>
+      <td><strong>Controller</strong></td>
+      <td><strong>실제 업무를 보는 부서</strong></td>
+      <td>“회원 정보 주세요”, “주문 등록해 주세요” 같은 <strong>요청에 맞는 일</strong>을 한다. 여기서 비즈니스 로직이 실행된다.</td>
+    </tr>
+    <tr>
+      <td><strong>AOP</strong></td>
+      <td><strong>부서 안의 공통 규칙</strong></td>
+      <td>“누군가 이 메서드(업무)를 할 때마다 <strong>항상</strong> 실행되는 규칙”. 예: “출금할 때마다 로그 남기기”, “이 메서드 실행 시 트랜잭션 시작/종료”. HTTP 요청과 무관하게 <strong>메서드 호출</strong> 단위로 붙는다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>한 줄 요약</strong></p>
+
+<ul>
+  <li><strong>Filter</strong> → 빌딩 <strong>입구</strong>에서 모든 사람에게 적용되는 검사.</li>
+  <li><strong>DispatcherServlet</strong> → <strong>“이 요청은 저 컨트롤러로”</strong> 배정만 하는 안내 데스크.</li>
+  <li><strong>Interceptor</strong> → <strong>그 컨트롤러로 가기 직전/직후</strong>에만 거치는 층별 검사.</li>
+  <li><strong>Controller</strong> → 실제 <strong>일을 처리하는 부서</strong>.</li>
+  <li><strong>AOP</strong> → <strong>그 부서 안에서</strong> “이런 일 할 때마다 공통으로 치는 규칙”.</li>
+</ul>
+
+<hr />
+
+<h2 id="-2-filter">🔷 2. Filter</h2>
+
+<h3 id="무엇인가">무엇인가?</h3>
+
+<ul>
+  <li><strong>Servlet 스펙</strong>에 정의된 컴포넌트.</li>
+  <li><code class="language-plaintext highlighter-rouge">javax.servlet.Filter</code> 인터페이스를 구현한다.</li>
+  <li><strong>요청/응답</strong>을 감싸서 전후 처리(인코딩, 로깅, 인증 등)를 할 수 있다.</li>
+</ul>
+
+<h3 id="어디서-동작하는가">어디서 동작하는가?</h3>
+
+<ul>
+  <li><strong>DispatcherServlet 앞뒤</strong>. 즉 Spring 진입 <strong>전</strong>에 한 번, Spring 처리 <strong>후</strong> 응답 나가기 <strong>전</strong>에 한 번씩 거친다.</li>
+  <li>URI로 “어떤 요청에만 적용할지” 지정할 수 있지만, 기본적으로 <strong>모든 요청</strong>이 Filter 체인을 통과한다 (설정에 따라 정적 자원 제외 가능).</li>
+</ul>
+
+<h3 id="특징">특징</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>소속</strong></td>
+      <td>Servlet API (Spring이 아님)</td>
+    </tr>
+    <tr>
+      <td><strong>요청/응답</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">ServletRequest</code>, <code class="language-plaintext highlighter-rouge">ServletResponse</code> (Servlet API 타입)</td>
+    </tr>
+    <tr>
+      <td><strong>Spring Bean</strong></td>
+      <td>등록 가능하지만, 동작 자체는 Servlet 컨테이너가 관리</td>
+    </tr>
+    <tr>
+      <td><strong>Controller 정보</strong></td>
+      <td>모름 (아직 DispatcherServlet을 거치지 않았거나, 이미 지나간 뒤)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="예시-인코딩-필터">예시: 인코딩 필터</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Order</span><span class="o">(</span><span class="nc">Ordered</span><span class="o">.</span><span class="na">HIGHEST_PRECEDENCE</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EncodingFilter</span> <span class="kd">implements</span> <span class="nc">Filter</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="nc">ServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">ServletResponse</span> <span class="n">response</span><span class="o">,</span>
+                         <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+        <span class="n">request</span><span class="o">.</span><span class="na">setCharacterEncoding</span><span class="o">(</span><span class="s">"UTF-8"</span><span class="o">);</span>
+        <span class="n">response</span><span class="o">.</span><span class="na">setCharacterEncoding</span><span class="o">(</span><span class="s">"UTF-8"</span><span class="o">);</span>
+        <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>  <span class="c1">// 다음 Filter 또는 Servlet으로 전달</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">chain.doFilter()</code> 를 호출하기 <strong>전</strong>: 요청 전처리 (인코딩 설정 등).</li>
+  <li><code class="language-plaintext highlighter-rouge">chain.doFilter()</code> 를 호출한 <strong>후</strong>: 응답 후처리 (필요 시).</li>
+  <li><code class="language-plaintext highlighter-rouge">doFilter()</code> 를 호출하지 않으면 요청이 Controller까지 가지 않는다 (요청 차단 가능).</li>
+</ul>
+
+<h3 id="쓰기-좋은-경우">쓰기 좋은 경우</h3>
+
+<ul>
+  <li>전역 <strong>인코딩 설정</strong></li>
+  <li><strong>CORS</strong> 처리 (응답 헤더 추가)</li>
+  <li><strong>XSS</strong> 방지용 요청/응답 래핑</li>
+  <li><strong>로깅</strong> (요청 URI, 메서드, IP 등) — 단, Interceptor나 AOP로도 가능</li>
+</ul>
+
+<hr />
+
+<h2 id="-3-interceptor">🔷 3. Interceptor</h2>
+
+<h3 id="무엇인가-1">무엇인가?</h3>
+
+<ul>
+  <li><strong>Spring</strong>이 제공하는 <strong>HandlerInterceptor</strong>.</li>
+  <li><code class="language-plaintext highlighter-rouge">DispatcherServlet</code>이 요청을 받은 <strong>이후</strong>, <strong>Controller(핸들러)를 호출하기 전/후/완료 후</strong>에 끼어든다.</li>
+</ul>
+
+<h3 id="어디서-동작하는가-1">어디서 동작하는가?</h3>
+
+<ul>
+  <li><strong>DispatcherServlet 내부</strong>.</li>
+  <li><strong>HandlerMapping</strong>으로 “이 URL은 이 Controller 메서드로” 결정된 <strong>이후</strong>에만 동작한다.</li>
+  <li>따라서 <strong>Spring이 매핑한 요청</strong>에만 적용할 수 있고, 어떤 <strong>Handler(Controller 메서드)</strong> 에 붙었는지 알 수 있다.</li>
+</ul>
+
+<h3 id="세-시점">세 시점</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>메서드</th>
+      <th>시점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>preHandle</strong></td>
+      <td>Controller 실행 <strong>전</strong></td>
+    </tr>
+    <tr>
+      <td><strong>postHandle</strong></td>
+      <td>Controller 실행 <strong>후</strong>, View 렌더링 전 (RestController면 보통 응답 이미 생성됨)</td>
+    </tr>
+    <tr>
+      <td><strong>afterCompletion</strong></td>
+      <td>View 렌더링 <strong>후</strong> 또는 예외 발생 <strong>후</strong> (정리·로깅에 유용)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="특징-1">특징</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>소속</strong></td>
+      <td>Spring Framework</td>
+    </tr>
+    <tr>
+      <td><strong>요청/응답</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">HttpServletRequest</code>, <code class="language-plaintext highlighter-rouge">HttpServletResponse</code> + <strong>Handler</strong> 정보</td>
+    </tr>
+    <tr>
+      <td><strong>Spring Bean</strong></td>
+      <td>완전한 Spring Bean (DI 가능)</td>
+    </tr>
+    <tr>
+      <td><strong>Controller 정보</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">Handler</code>로 “어떤 컨트롤러 메서드가 실행되는지” 알 수 있음</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="예시-인증-체크-인터셉터">예시: 인증 체크 인터셉터</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthInterceptor</span> <span class="kd">implements</span> <span class="nc">HandlerInterceptor</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">preHandle</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+                             <span class="nc">Object</span> <span class="n">handler</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">handler</span> <span class="k">instanceof</span> <span class="nc">HandlerMethod</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">HandlerMethod</span> <span class="n">hm</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HandlerMethod</span><span class="o">)</span> <span class="n">handler</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">hm</span><span class="o">.</span><span class="na">hasMethodAnnotation</span><span class="o">(</span><span class="nc">LoginRequired</span><span class="o">.</span><span class="na">class</span><span class="o">))</span> <span class="o">{</span>
+                <span class="c1">// 로그인 여부 확인 후 미로그인 시 false 반환 → Controller 미실행</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">isLoggedIn</span><span class="o">(</span><span class="n">request</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">response</span><span class="o">.</span><span class="na">sendError</span><span class="o">(</span><span class="nc">HttpServletResponse</span><span class="o">.</span><span class="na">SC_UNAUTHORIZED</span><span class="o">);</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>  <span class="c1">// true면 다음 Interceptor / Controller 실행</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>등록</strong>은 <code class="language-plaintext highlighter-rouge">WebMvcConfigurer.addInterceptors()</code> 에서 <code class="language-plaintext highlighter-rouge">addPathPatterns</code>, <code class="language-plaintext highlighter-rouge">excludePathPatterns</code> 로 URI 패턴 지정.</li>
+</ul>
+
+<h3 id="쓰기-좋은-경우-1">쓰기 좋은 경우</h3>
+
+<ul>
+  <li><strong>인증/권한</strong> 체크 (특정 URL만)</li>
+  <li><strong>로그인 사용자 정보</strong>를 request에 넣기</li>
+  <li><strong>접근 로그</strong> (어떤 URL, 어떤 메서드가 호출됐는지)</li>
+  <li>Controller <strong>실행 전/후</strong>에만 하고 싶은 공통 처리</li>
+</ul>
+
+<hr />
+
+<h2 id="-4-aop">🔷 4. AOP</h2>
+
+<h3 id="무엇인가-2">무엇인가?</h3>
+
+<ul>
+  <li><strong>Aspect-Oriented Programming</strong>. “여러 메서드에 공통으로 들어가는 부가 기능”을 한곳에서 정의하는 방식.</li>
+  <li>Spring AOP는 <strong>프록시 기반</strong>이라, <strong>Spring이 관리하는 Bean의 메서드 호출</strong>에만 적용된다.</li>
+</ul>
+
+<h3 id="어디서-동작하는가-2">어디서 동작하는가?</h3>
+
+<ul>
+  <li><strong>Controller, Service, Repository</strong> 등 <strong>Bean의 메서드가 호출될 때</strong>.</li>
+  <li>Filter/Interceptor와 달리 “HTTP 요청”에 묶이지 않고, <strong>메서드 호출</strong> 단위로 동작한다.</li>
+  <li>같은 메서드라도 <strong>Spring 컨텍스트 밖에서 호출</strong>되면 AOP가 적용되지 않는다 (예: 같은 클래스 내부에서 <code class="language-plaintext highlighter-rouge">this.method()</code> 호출).</li>
+</ul>
+
+<h3 id="특징-2">특징</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>소속</strong></td>
+      <td>Spring Framework (AOP 모듈)</td>
+    </tr>
+    <tr>
+      <td><strong>단위</strong></td>
+      <td><strong>메서드</strong> (클래스·메서드 단위로 적용 대상 지정)</td>
+    </tr>
+    <tr>
+      <td><strong>요청/응답</strong></td>
+      <td>직접 접근하지 않음. 메서드 <strong>인자, 반환값, 예외</strong>에 접근 가능</td>
+    </tr>
+    <tr>
+      <td><strong>Spring Bean</strong></td>
+      <td>완전한 Spring Bean (DI 가능)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="예시-메서드-실행-시간-로깅">예시: 메서드 실행 시간 로깅</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Aspect</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LoggingAspect</span> <span class="o">{</span>
+
+    <span class="nd">@Around</span><span class="o">(</span><span class="s">"@annotation(org.springframework.web.bind.annotation.GetMapping)"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">logExecutionTime</span><span class="o">(</span><span class="nc">ProceedingJoinPoint</span> <span class="n">joinPoint</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Throwable</span> <span class="o">{</span>
+        <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+        <span class="nc">Object</span> <span class="n">result</span> <span class="o">=</span> <span class="n">joinPoint</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>  <span class="c1">// 실제 메서드 실행</span>
+        <span class="kt">long</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">start</span><span class="o">;</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"{} executed in {} ms"</span><span class="o">,</span> <span class="n">joinPoint</span><span class="o">.</span><span class="na">getSignature</span><span class="o">(),</span> <span class="n">elapsed</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Around</code>: 메서드 <strong>앞뒤</strong> 모두 제어.</li>
+  <li><code class="language-plaintext highlighter-rouge">@Before</code>, <code class="language-plaintext highlighter-rouge">@After</code>, <code class="language-plaintext highlighter-rouge">@AfterReturning</code>, <code class="language-plaintext highlighter-rouge">@AfterThrowing</code> 등으로 “전/후/반환 후/예외 시”만 넣을 수도 있다.</li>
+</ul>
+
+<h3 id="쓰기-좋은-경우-2">쓰기 좋은 경우</h3>
+
+<ul>
+  <li><strong>로깅</strong> (메서드명, 인자, 실행 시간, 예외)</li>
+  <li><strong>트랜잭션</strong> (<code class="language-plaintext highlighter-rouge">@Transactional</code> 도 AOP로 동작)</li>
+  <li><strong>권한 체크</strong> (메서드 단위, 예: <code class="language-plaintext highlighter-rouge">@PreAuthorize</code> 와 유사한 커스텀)</li>
+  <li><strong>예외 변환</strong> (특정 예외를 공통 API 응답으로 감싸기)</li>
+  <li><strong>캐싱</strong> (메서드 결과 캐시)</li>
+</ul>
+
+<hr />
+
+<h2 id="-5-비교표">📊 5. 비교표</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>Filter</th>
+      <th>Interceptor</th>
+      <th>AOP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>위치</strong></td>
+      <td>DispatcherServlet <strong>밖</strong> (앞·뒤)</td>
+      <td>DispatcherServlet <strong>안</strong>, Controller <strong>앞·뒤</strong></td>
+      <td><strong>메서드</strong> 호출 전/후/예외</td>
+    </tr>
+    <tr>
+      <td><strong>적용 단위</strong></td>
+      <td>URI (전체 요청)</td>
+      <td>URI + Handler</td>
+      <td>메서드(클래스·어노테이션 등)</td>
+    </tr>
+    <tr>
+      <td><strong>스펙</strong></td>
+      <td>Servlet API</td>
+      <td>Spring</td>
+      <td>Spring AOP</td>
+    </tr>
+    <tr>
+      <td><strong>요청/응답 타입</strong></td>
+      <td>ServletRequest/Response</td>
+      <td>HttpServletRequest/Response</td>
+      <td>없음 (메서드 인자·반환값)</td>
+    </tr>
+    <tr>
+      <td><strong>Handler/Controller 정보</strong></td>
+      <td>없음</td>
+      <td>있음 (preHandle 등에서)</td>
+      <td>타겟 메서드 정보만</td>
+    </tr>
+    <tr>
+      <td><strong>Spring Bean</strong></td>
+      <td>등록 가능, 동작은 서블릿 컨테이너</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <td><strong>용도 예</strong></td>
+      <td>인코딩, CORS, XSS, 전역 로깅</td>
+      <td>인증·인가, URL 단위 로깅</td>
+      <td>트랜잭션, 로깅, 예외 처리, 캐시</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-6-언제-무엇을-쓸까">🧩 6. 언제 무엇을 쓸까?</h2>
+
+<ul>
+  <li>
+    <p><strong>요청/응답 자체를 바꾸거나, Spring 진입 전에 막고 싶을 때</strong><br />
+→ <strong>Filter</strong> (인코딩, CORS, 전역 보안 래퍼 등)</p>
+  </li>
+  <li>
+    <p><strong>“이 URL은 로그인 필요해”처럼 URL·Handler 기준으로 막거나 가공할 때</strong><br />
+→ <strong>Interceptor</strong> (인증, 권한, URL 단위 로깅)</p>
+  </li>
+  <li>
+    <p><strong>“이 메서드 실행 전/후/예외 시 항상 이 로직”을 넣고 싶을 때</strong><br />
+→ <strong>AOP</strong> (로깅, 트랜잭션, 예외 변환, 캐시 등)</p>
+  </li>
+  <li>
+    <p><strong>이미 Spring 글들(PATCH/PUT, DTO 등)을 읽었다면</strong><br />
+→ 요청은 <strong>Filter → DispatcherServlet → Interceptor → Controller</strong> 순으로 들어가고, <strong>Controller/Service 메서드 안</strong>에서 <strong>AOP</strong>가 도는 구간이라고 보면 된다.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-7-요약">✅ 7. 요약</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>처리 순서</strong></td>
+      <td>Filter → DispatcherServlet → Interceptor(pre) → Controller → Interceptor(post, after) → Filter(응답)</td>
+    </tr>
+    <tr>
+      <td><strong>Filter</strong></td>
+      <td>Servlet 레벨, DispatcherServlet 앞뒤, 전역 인코딩·CORS·로깅 등</td>
+    </tr>
+    <tr>
+      <td><strong>Interceptor</strong></td>
+      <td>Spring 레벨, Controller 전/후, URL·Handler 기준 인증·권한·로깅</td>
+    </tr>
+    <tr>
+      <td><strong>AOP</strong></td>
+      <td>메서드 단위, 트랜잭션·로깅·예외 처리·캐시 등</td>
+    </tr>
+    <tr>
+      <td><strong>선택</strong></td>
+      <td>요청/응답·진입 전 차단 → Filter, URL/Handler 기준 → Interceptor, 메서드 공통 로직 → AOP</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이렇게 세 가지를 구분해 두면, “요청이 어떻게 처리되는지”를 Spring 글들(PATCH/PUT, DTO, Controller)과 함께 한 번에 그릴 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</title><link href="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/" rel="alternate" type="text/html" title="[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법" /><published>2026-02-18T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/algorithm/integer-arraylist-to-int-array</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/"><![CDATA[<p>알고리즘 문제를 풀다 보면 <code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>로 모아둔 결과를 최종적으로 <code class="language-plaintext highlighter-rouge">int[]</code> 배열로 반환해야 하는 경우가 많다. <code class="language-plaintext highlighter-rouge">String</code> 리스트는 <code class="language-plaintext highlighter-rouge">toArray()</code>로 쉽게 변환할 수 있지만, <strong>primitive 타입인 int는 <code class="language-plaintext highlighter-rouge">toArray()</code>를 그대로 쓸 수 없다.</strong> 이번 글에서는 Integer ArrayList를 int 배열로 바꾸는 방법을 정리해보자.</p>
 
 <ol>
   <li><a href="#-1️⃣-string-list-vs-integer-list">String List vs Integer List</a></li>
@@ -139,7 +644,7 @@ Hi, I’m Nahyun Eun, a student from South Korea studying backend development wi
 <p><strong>참고</strong></p>
 <ul>
   <li><a href="https://hoehen-flug.tistory.com/49">내가 개발자라니 - Integer ArrayList을 int 배열로 변환하는 방법</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[알고리즘 문제 풀이 시 Integer ArrayList를 int[] 배열로 변환해야 할 때 사용할 수 있는 방법을 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 벨만-포드 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" rel="alternate" type="text/html" title="[Algorithm] 벨만-포드 알고리즘" /><published>2026-02-09T00:00:00+00:00</published><updated>2026-02-19T14:12:25+00:00</updated><id>https://nan0silver.github.io/algorithm/bellman-ford</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"><![CDATA[<ol>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[알고리즘 문제 풀이 시 Integer ArrayList를 int[] 배열로 변환해야 할 때 사용할 수 있는 방법을 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 벨만-포드 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" rel="alternate" type="text/html" title="[Algorithm] 벨만-포드 알고리즘" /><published>2026-02-09T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/algorithm/bellman-ford</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"><![CDATA[<ol>
   <li><a href="#-1️⃣-벨만-포드란">벨만-포드란?</a></li>
   <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
   <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
@@ -350,7 +855,7 @@ dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>
 
 <p>👉 핵심 질문이
 <strong>“최단거리”보다 “음수 사이클 존재 여부”</strong>라면
-벨만-포드를 떠올려야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[벨만-포드 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" rel="alternate" type="text/html" title="[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유" /><published>2026-02-07T00:00:00+00:00</published><updated>2026-02-19T14:12:25+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-07-diary/"><![CDATA[<blockquote>
+벨만-포드를 떠올려야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[벨만-포드 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" rel="alternate" type="text/html" title="[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유" /><published>2026-02-07T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-07-diary/"><![CDATA[<blockquote>
   <p><a href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/">이전 일기: 비관적 락 적용기</a>에서 통화 종료에 비관적 락을 적용했다.<br />
 그때 <code class="language-plaintext highlighter-rouge">@Transactional</code> 하나로 전체 흐름을 감쌌는데, <strong>왜 한 트랜잭션으로 묶어야 하고</strong>, <strong>전파 옵션을 잘못 쓰면 락이 어떻게 깨질 수 있는지</strong>를 이번에 정리해 본다.</p>
 </blockquote>
@@ -601,7 +1106,7 @@ dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>
   </tbody>
 </table>
 
-<p>비관적 락 적용 시 <strong>“어디서 트랜잭션이 시작되고 끝나는지”</strong> 를 의식하고, <strong>락을 건 구간과 수정 구간이 같은 트랜잭션에 포함되도록</strong> 전파를 두면, “같은 트랜잭션 안에서 락이 유지되는” 동작을 기대한 대로 얻을 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</title><link href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" rel="alternate" type="text/html" title="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" /><published>2026-01-22T00:00:00+00:00</published><updated>2026-02-19T14:12:25+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-22-diary/"><![CDATA[<blockquote>
+<p>비관적 락 적용 시 <strong>“어디서 트랜잭션이 시작되고 끝나는지”</strong> 를 의식하고, <strong>락을 건 구간과 수정 구간이 같은 트랜잭션에 포함되도록</strong> 전파를 두면, “같은 트랜잭션 안에서 락이 유지되는” 동작을 기대한 대로 얻을 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</title><link href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" rel="alternate" type="text/html" title="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" /><published>2026-01-22T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-22-diary/"><![CDATA[<blockquote>
   <p>동시 요청으로 통화가 두 번 종료되는 문제 해결하기..!</p>
 </blockquote>
 
@@ -1125,7 +1630,7 @@ User2: 100ms (락 대기 50ms + 처리 50ms)
   <li>통화 종료는 충돌 가능성 높고</li>
   <li>정확성이 중요하며</li>
   <li>약간의 대기는 허용 가능</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" rel="alternate" type="text/html" title="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" /><published>2026-01-19T00:00:00+00:00</published><updated>2026-02-19T14:12:25+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-19-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" rel="alternate" type="text/html" title="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" /><published>2026-01-19T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-19-diary/"><![CDATA[<ul>
   <li><a href="#-문제-발견-배경">문제 발견 배경</a></li>
   <li>
     <p><a href="#-근본-원인-분석">근본 원인 분석</a></p>
@@ -1575,7 +2080,7 @@ userId 추출: ✅ 성공
   <li>✅ 직접 Principal에 접근하여 안정성 확보</li>
   <li>✅ null 체크 및 fallback 로직 구현 가능</li>
   <li>✅ 명시적 코드로 디버깅 용이</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.]]></summary></entry><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-02-19T14:12:25+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.]]></summary></entry><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#ssl-인증서란">SSL 인증서란?</a></li>
   <li><a href="#lets-encrypt와-90일-갱신-주기">Let’s Encrypt와 90일 갱신 주기</a></li>
@@ -1744,7 +2249,7 @@ ESC         # 명령 모드
   <li><a href="https://letsencrypt.org/docs/">Let’s Encrypt 공식 문서</a></li>
   <li><a href="https://certbot.eff.org/">Certbot 사용 가이드</a></li>
   <li><a href="https://docs.aws.amazon.com/linux/">Amazon Linux cron 설정</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</title><link href="https://nan0silver.github.io/algorithm/2026-01-09-summary/" rel="alternate" type="text/html" title="[Algorithm] 코딩테스트 알고리즘 선택방법 요약" /><published>2026-01-09T00:00:00+00:00</published><updated>2026-02-19T14:12:25+00:00</updated><id>https://nan0silver.github.io/algorithm/summary</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-01-09-summary/"><![CDATA[<p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[SSH 인증서가 만료되어 이에 대해 공부한 내용과 해결한 내용에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</title><link href="https://nan0silver.github.io/algorithm/2026-01-09-summary/" rel="alternate" type="text/html" title="[Algorithm] 코딩테스트 알고리즘 선택방법 요약" /><published>2026-01-09T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/algorithm/summary</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-01-09-summary/"><![CDATA[<p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
 이 글에서는 <strong>코테 기준으로 딱 필요한 만큼만</strong> 정리한다.</p>
 
 <hr />
@@ -2027,7 +2532,7 @@ ESC         # 명령 모드
 <blockquote>
   <p><strong>“알고리즘은 외우는 게 아니라,
 문제 조건으로 제거하고 남는 하나를 고르는 것”</strong></p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2026-02-19T14:12:25+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[Algorithm] 플로이드-워셜 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/" rel="alternate" type="text/html" title="[Algorithm] 플로이드-워셜 알고리즘" /><published>2025-12-29T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/algorithm/floyd-warshall</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2025-12-29-floyd-warshall/"><![CDATA[<ol>
   <li><a href="#-1️⃣-플로이드-워셜이란">플로이드-워셜이란?</a></li>
   <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
   <li><a href="#-3️⃣-k-i-j의-정확한-의미">k, i, j의 의미</a></li>
@@ -2474,7 +2979,7 @@ dist[1][4] = min(INF, dist[1][2] + dist[2][4])
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />k가 가장 바깥 루프인가?</li>
 </ul>
 
-<hr />]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기</title><link href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기" /><published>2025-12-25T00:00:00+00:00</published><updated>2026-02-19T14:12:25+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-25-diary/"><![CDATA[<ul>
+<hr />]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[플로이드-워셜 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기</title><link href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기" /><published>2025-12-25T00:00:00+00:00</published><updated>2026-02-24T02:18:30+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-25-diary/"><![CDATA[<ul>
   <li><a href="#들어가며">들어가며</a></li>
   <li><a href="#1-처음-그린-그림">1. 처음 그린 그림</a></li>
   <li><a href="#2-redis-대기열-생각보다-복잡했다">2. Redis 대기열, 생각보다 복잡했다</a></li>
@@ -2933,659 +3438,4 @@ ZADD queue:music 1734840125789 user_205
 <ol>
   <li><a href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/">왜 이 기술들을 선택했나</a></li>
   <li><strong>실시간 매칭 시스템, 생각보다 어려웠던 이야기</strong> ← 현재 글</li>
-</ol>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA["버튼 하나면 되는 거 아냐?" 라고 생각했던 나에게 현실이 알려준 것들]]></summary></entry><entry><title type="html">[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</title><link href="https://nan0silver.github.io/projectdiary/2025-12-20-diary/" rel="alternate" type="text/html" title="[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나" /><published>2025-12-20T00:00:00+00:00</published><updated>2026-02-19T14:12:25+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2025-12-20-diary/"><![CDATA[<ul>
-  <li><a href="#들어가며">들어가며</a></li>
-  <li><a href="#1-전체-그림-우리-서비스가-필요한-것">1. 전체 그림: 우리 서비스가 필요한 것</a></li>
-  <li><a href="#2-backend-spring-boot--webflux를-선택한-이유">2. Backend: Spring Boot + WebFlux를 선택한 이유</a></li>
-  <li><a href="#3-database-mysql을-선택한-이유">3. Database: MySQL을 선택한 이유</a></li>
-  <li><a href="#4-cache--queue-redis를-선택한-이유">4. Cache &amp; Queue: Redis를 선택한 이유</a></li>
-  <li><a href="#5-webrtc-agora를-선택한-이유">5. WebRTC: Agora를 선택한 이유</a></li>
-  <li><a href="#6-file-storage-firebase-storage를-선택한-이유">6. File Storage: Firebase Storage를 선택한 이유</a></li>
-  <li><a href="#7-frontend-react--capacitor를-선택한-이유">7. Frontend: React + Capacitor를 선택한 이유</a></li>
-  <li><a href="#8-배포-환경-aws--vercel">8. 배포 환경: AWS + Vercel</a></li>
-  <li><a href="#9-기술-선택의-원칙">9. 기술 선택의 원칙</a></li>
-  <li><a href="#10-마치며">10. 마치며</a></li>
-</ul>
-
-<hr />
-
-<h2 id="들어가며">들어가며</h2>
-
-<p>“관심사 기반 1:1 랜덤 음성 통화”라는 아이디어를 떠올렸을 때, 가장 먼저 든 생각은 “어떻게 구현하지?”였다. 학부와 석사 과정에서 배운 이론과 토이 프로젝트 경험은 있었지만, 실제 사용자가 쓸 서비스를 만드는 것은 처음이었다.</p>
-
-<p>기술 스택을 선택하는 과정에서 수많은 블로그 글을 읽었고, 여러 서비스를 비교했다. 하지만 결국 깨달은 건 <strong>“정답은 없다”</strong>는 것이었다. 각 기술은 장단점이 있고, 중요한 건 우리 서비스의 맥락에서 어떤 게 적합한가였다.</p>
-
-<p>이 글에서는 내가 왜 이런 선택을 했는지, 어떤 고민을 했는지를 솔직하게 공유해보려 한다.</p>
-
-<hr />
-
-<h2 id="1-전체-그림-우리-서비스가-필요한-것">1. 전체 그림: 우리 서비스가 필요한 것</h2>
-
-<p>기술을 선택하기 전에, 먼저 우리 서비스의 특성을 정리했다.</p>
-
-<h3 id="핵심-요구사항">핵심 요구사항</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 실시간성
-   - 매칭 대기 시간을 최소화 (목표: 1분 이내)
-   - 매칭 완료 즉시 알림
-   - 끊김 없는 음성 통화
-
-2. 확장성
-   - 초기엔 소규모지만, 사용자 증가에 대응 가능해야 함
-   - 트래픽 급증 시나리오 고려
-
-3. 운영 편의성
-   - 문제 발생 시 빠른 파악과 대응
-   - 모니터링과 로깅
-   - 배포 자동화
-
-4. 비용 효율성
-   - MVP 단계에서 과도한 인프라 비용 지양
-   - 사용량에 따른 탄력적 비용 구조
-</code></pre></div></div>
-
-<p>이 네 가지 축을 기준으로 모든 기술 선택을 평가했다.</p>
-
-<hr />
-
-<h2 id="2-backend-spring-boot--webflux를-선택한-이유">2. Backend: Spring Boot + WebFlux를 선택한 이유</h2>
-
-<h3 id="왜-비동기가-필요했나">왜 비동기가 필요했나?</h3>
-
-<p>처음에는 익숙한 Spring MVC를 쓸까 고민했다. 하지만 우리 서비스의 특성을 생각해보니 WebFlux가 더 적합해 보였다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 시나리오: 통화 종료 후 녹음 저장</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">endCall</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 1. 통화 종료 처리</span>
-    <span class="n">callService</span><span class="o">.</span><span class="na">endCall</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>
-
-    <span class="c1">// 2. Agora API 호출 (외부 API, 2-3초 소요)</span>
-    <span class="n">agoraService</span><span class="o">.</span><span class="na">stopRecording</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>  <span class="c1">// ← 여기서 블로킹!</span>
-
-    <span class="c1">// 3. 평가 페이지로 리다이렉트</span>
-    <span class="k">return</span> <span class="s">"redirect:/evaluation"</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>동기 방식의 문제는 Agora API 응답을 기다리는 2-3초 동안 스레드가 블로킹된다는 거였다. 200개 스레드로 동시 200명만 처리 가능하고, 대기 시간이 증가하면 사용자 경험이 저하된다.</p>
-
-<p>비동기 방식을 쓰면:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Mono</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">endCall</span><span class="o">(</span><span class="nc">Long</span> <span class="n">callId</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">callService</span><span class="o">.</span><span class="na">endCall</span><span class="o">(</span><span class="n">callId</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">agoraService</span><span class="o">.</span><span class="na">stopRecording</span><span class="o">(</span><span class="n">callId</span><span class="o">))</span>  <span class="c1">// 논블로킹</span>
-        <span class="o">.</span><span class="na">then</span><span class="o">();</span>
-    <span class="c1">// 스레드가 즉시 다른 요청 처리 가능</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="실제-경험-webflux의-학습-곡선">실제 경험: WebFlux의 학습 곡선</h3>
-
-<p>솔직히 말하면, WebFlux는 쉽지 않았다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ 이렇게 하면 안 됨</span>
-<span class="kd">public</span> <span class="nc">Mono</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">getUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">block</span><span class="o">();</span>  <span class="c1">// 블로킹!</span>
-    <span class="k">return</span> <span class="nc">Mono</span><span class="o">.</span><span class="na">just</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="c1">// ✅ 올바른 방법</span>
-<span class="kd">public</span> <span class="nc">Mono</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">getUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>  <span class="c1">// 논블로킹 체인</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">block()</code>을 쓰는 순간 비동기의 의미가 사라진다. “Reactive하게 생각하기”까지 시간이 필요했지만, 익숙해지니 외부 API 호출이 많은 우리 서비스에 딱 맞았다.</p>
-
-<h3 id="언제-webflux를-쓰면-좋을까">언제 WebFlux를 쓰면 좋을까?</h3>
-
-<p>내 경험상 이런 경우 WebFlux가 적합하다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ WebFlux 추천:
-- 외부 API 호출이 많은 서비스
-- WebSocket 등 실시간 통신 필요
-- I/O 대기 시간이 긴 작업
-- 동시 접속자가 많은 서비스
-
-❌ WebFlux 비추천:
-- CPU 집약적 작업 (이미지 처리, 암호화 등)
-- 간단한 CRUD 중심 서비스
-- 팀이 Spring MVC에 익숙하고, 학습 시간이 부족한 경우
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="3-database-mysql을-선택한-이유">3. Database: MySQL을 선택한 이유</h2>
-
-<h3 id="mysql-vs-nosql-고민">MySQL vs NoSQL 고민</h3>
-
-<p>“요즘 트렌드는 NoSQL 아닌가?”라는 생각도 했다. MongoDB를 쓸까 진지하게 고민했다.</p>
-
-<p>우리 데이터의 특성을 분석해봤다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User ←→ Friendships ←→ User
-  ↓
-Calls ←→ CallRecordings
-  ↓
-CallEvaluations
-</code></pre></div></div>
-
-<p>친구 관계는 양방향이고 상태 관리가 필요하다 (요청중/수락/차단). 통화 이력은 두 사용자 간의 연결이고, 평가는 통화와 1:1 관계다.</p>
-
-<p>이런 구조를 보니 관계형 데이터베이스가 더 자연스러웠다.</p>
-
-<h3 id="데이터-일관성의-중요성">데이터 일관성의 중요성</h3>
-
-<p>특히 친구 관계에서 일관성이 중요했다.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 친구 요청은 반드시 양쪽 모두 저장되어야 함</span>
-<span class="k">BEGIN</span> <span class="n">TRANSACTION</span><span class="p">;</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">friendships</span> <span class="p">(</span><span class="n">user_a_id</span><span class="p">,</span> <span class="n">user_b_id</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'PENDING'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">friendships</span> <span class="p">(</span><span class="n">user_b_id</span><span class="p">,</span> <span class="n">user_a_id</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'REQUESTED'</span><span class="p">);</span>
-<span class="k">COMMIT</span><span class="p">;</span>
-
-<span class="c1">-- 하나라도 실패하면 전체 롤백</span>
-</code></pre></div></div>
-
-<p>NoSQL에서는 이런 트랜잭션 보장이 상대적으로 약하다.</p>
-
-<h3 id="쿼리-복잡도">쿼리 복잡도</h3>
-
-<p>통화 이력 조회 같은 경우, JOIN이 필요했다:</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 내 통화 이력 + 상대방 정보 + 친구 상태</span>
-<span class="k">SELECT</span>
-    <span class="k">c</span><span class="p">.</span><span class="o">*</span><span class="p">,</span>
-    <span class="n">u</span><span class="p">.</span><span class="n">nickname</span> <span class="k">as</span> <span class="n">partner_name</span><span class="p">,</span>
-    <span class="n">f</span><span class="p">.</span><span class="n">status</span> <span class="k">as</span> <span class="n">friend_status</span>
-<span class="k">FROM</span> <span class="n">calls</span> <span class="k">c</span>
-<span class="k">JOIN</span> <span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">user_a_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">OR</span> <span class="k">c</span><span class="p">.</span><span class="n">user_b_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="k">AND</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="o">!=</span> <span class="p">:</span><span class="n">myId</span>
-<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">friendships</span> <span class="n">f</span> <span class="k">ON</span> <span class="n">f</span><span class="p">.</span><span class="n">friend_id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">AND</span> <span class="n">f</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">myId</span>
-<span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">user_a_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">myId</span> <span class="k">OR</span> <span class="k">c</span><span class="p">.</span><span class="n">user_b_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">myId</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">c</span><span class="p">.</span><span class="n">created_at</span> <span class="k">DESC</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>NoSQL에서 이런 쿼리는 애플리케이션 레벨에서 여러 번 조회해야 한다.</p>
-
-<h3 id="그럼-nosql은-언제">그럼 NoSQL은 언제?</h3>
-
-<p>내가 생각하는 NoSQL 적합 케이스:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ NoSQL 추천:
-- 스키마가 자주 변하는 경우
-- 단순 Key-Value 조회가 대부분
-- 대용량 로그/이벤트 데이터
-- 수평 확장이 필수적인 경우
-
-❌ NoSQL 비추천:
-- 복잡한 관계와 트랜잭션 필요
-- JOIN 쿼리가 많은 경우
-- 데이터 일관성이 중요한 비즈니스 로직
-</code></pre></div></div>
-
-<p>결론은 MySQL로 시작하고, 필요시 캐시(Redis)와 조합하기로 했다.</p>
-
-<hr />
-
-<h2 id="4-cache--queue-redis를-선택한-이유">4. Cache &amp; Queue: Redis를 선택한 이유</h2>
-
-<h3 id="redis의-세-가지-역할">Redis의 세 가지 역할</h3>
-
-<p>우리 서비스에서 Redis는 단순 캐시를 넘어 세 가지 역할을 한다:</p>
-
-<ol>
-  <li><strong>매칭 대기열</strong> - 카테고리별로 대기 중인 사용자 관리</li>
-  <li><strong>실시간 세션 관리</strong> - WebSocket 연결 정보</li>
-  <li><strong>캐시</strong> - 자주 조회되는 카테고리 정보</li>
-</ol>
-
-<h3 id="자료구조-선택-zset-vs-set-vs-list">자료구조 선택: ZSET vs SET vs List</h3>
-
-<p>매칭 대기열을 어떤 자료구조로 구현할지 고민이 많았다.</p>
-
-<h4 id="시도-1-list-lpushrpop">시도 1: List (LPUSH/RPOP)</h4>
-
-<pre><code class="language-redis"># 입장
-LPUSH wait:music userId_101
-
-# 매칭 (2명 추출)
-RPOP wait:music  # userId_101
-RPOP wait:music  # userId_205
-</code></pre>
-
-<p>문제점은 대기 순서는 보장되지만, 타임아웃 처리가 어렵고 랜덤 매칭이 불가능했다.</p>
-
-<h4 id="시도-2-set-saddspop">시도 2: Set (SADD/SPOP)</h4>
-
-<pre><code class="language-redis"># 입장
-SADD wait:music userId_101
-
-# 매칭 (랜덤 2명)
-SPOP wait:music 2
-</code></pre>
-
-<p>랜덤은 쉽지만 대기 순서를 알 수 없어서 공정성이 없었다.</p>
-
-<h4 id="최종-선택-zset-sorted-set">최종 선택: ZSET (Sorted Set)</h4>
-
-<pre><code class="language-redis"># 입장 (점수 = 대기 시작 시각)
-ZADD wait:music 1725430000456 userId_101
-ZADD wait:music 1725430001234 userId_205
-
-# 대기순 매칭
-ZPOPMIN wait:music 2
-
-# 랜덤 매칭
-ZRANDMEMBER wait:music 2
-</code></pre>
-
-<p>장점이 명확했다:</p>
-
-<ul>
-  <li>대기 시간 기준 정렬 ✅</li>
-  <li>대기순/랜덤 모두 가능 ✅</li>
-  <li>타임아웃 쉬움 (점수 기준 삭제) ✅</li>
-</ul>
-
-<h3 id="왜-별도의-메시지-큐를-안-썼나">왜 별도의 메시지 큐를 안 썼나?</h3>
-
-<p>RabbitMQ, Kafka 같은 전문 메시지 큐도 고려했다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>Redis</th>
-      <th>RabbitMQ</th>
-      <th>Kafka</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>학습 곡선</td>
-      <td>낮음</td>
-      <td>중간</td>
-      <td>높음</td>
-    </tr>
-    <tr>
-      <td>운영 복잡도</td>
-      <td>낮음</td>
-      <td>중간</td>
-      <td>높음</td>
-    </tr>
-    <tr>
-      <td>성능 (우리 규모)</td>
-      <td>충분</td>
-      <td>충분</td>
-      <td>과함</td>
-    </tr>
-    <tr>
-      <td>비용</td>
-      <td>낮음</td>
-      <td>중간</td>
-      <td>높음</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>초기 단계에서는 Redis로 충분하다고 판단했다. 트래픽이 늘면 그때 전환을 고려하기로 했다. “과도한 엔지니어링”을 경계해야 한다고 생각했다.</p>
-
-<hr />
-
-<h2 id="5-webrtc-agora를-선택한-이유">5. WebRTC: Agora를 선택한 이유</h2>
-
-<h3 id="직접-구현-vs-saas">직접 구현 vs SaaS</h3>
-
-<p>WebRTC를 직접 구현할지, SaaS를 쓸지 고민했다.</p>
-
-<p>직접 구현 시나리오를 생각해보니:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>필요한 것:
-- STUN/TURN 서버 구축 및 운영
-- Signaling 서버 개발
-- NAT Traversal 처리
-- 통화 품질 모니터링
-- 녹음 기능 구현
-
-예상 개발 시간: 2-3개월
-예상 운영 부담: 높음
-</code></pre></div></div>
-
-<p>SaaS 사용 시나리오:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>필요한 것:
-- SDK 통합 (1-2주)
-- 설정 및 테스트
-
-예상 개발 시간: 2주
-예상 운영 부담: 낮음
-</code></pre></div></div>
-
-<p>MVP는 빠르게 검증하는 게 중요하다고 생각해서 SaaS를 선택했다.</p>
-
-<h3 id="agora-vs-twilio-vs-daily">Agora vs Twilio vs Daily</h3>
-
-<p>WebRTC SaaS를 비교 분석했다.</p>
-
-<p>비교 기준:</p>
-
-<ol>
-  <li><strong>통화 품질</strong> - 모두 우수한 수준, 한국 리전 지원 여부가 중요</li>
-  <li><strong>Cloud Recording</strong> - 우리 서비스에 필수 기능</li>
-  <li><strong>가격</strong> - 초기 단계라 비용 민감</li>
-  <li><strong>문서 및 커뮤니티</strong> - 문제 해결이 쉬운가</li>
-</ol>
-
-<p>최종적으로 Agora를 선택한 이유:</p>
-
-<ul>
-  <li>Cloud Recording 기능이 강력 (Individual Mode 지원)</li>
-  <li>Firebase Storage 직접 연동 가능</li>
-  <li>가격 경쟁력</li>
-  <li>한국어 문서와 한국 리전 지원</li>
-</ul>
-
-<p>다만 Twilio보다 커뮤니티가 작고, 일부 고급 기능은 Twilio가 우세하다는 점은 고려사항이었다.</p>
-
-<h3 id="실제-사용-후기">실제 사용 후기</h3>
-
-<p>Agora를 6개월간 사용한 경험을 정리하면:</p>
-
-<p>만족스러운 점:</p>
-
-<ul>
-  <li>SDK 통합이 생각보다 쉬움</li>
-  <li>녹음 기능이 안정적</li>
-  <li>통화 품질 좋음</li>
-</ul>
-
-<p>아쉬운 점:</p>
-
-<ul>
-  <li>일부 에러 메시지가 불친절</li>
-  <li>고급 설정 시 영어 문서 의존도 높음</li>
-</ul>
-
-<hr />
-
-<h2 id="6-file-storage-firebase-storage를-선택한-이유">6. File Storage: Firebase Storage를 선택한 이유</h2>
-
-<h3 id="왜-aws-s3가-아닌가">왜 AWS S3가 아닌가?</h3>
-
-<p>통화 녹음 파일을 저장할 곳이 필요했다. 가장 먼저 떠오른 건 AWS S3였다.</p>
-
-<p>고민한 점:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AWS S3:
-✅ 업계 표준
-✅ 많은 레퍼런스
-✅ 강력한 기능
-
-Firebase Storage:
-✅ 이미 프로필 이미지에 사용 중
-✅ GCS 기반 (Agora와 호환성 좋음)
-✅ Firebase 생태계 활용 가능
-</code></pre></div></div>
-
-<h3 id="실용적-판단">실용적 판단</h3>
-
-<p>결정적이었던 건 <strong>이미 사용하고 있다</strong>는 점이었다.</p>
-
-<p>새로운 기술을 도입하면:</p>
-
-<ul>
-  <li>학습 시간</li>
-  <li>설정 및 테스트</li>
-  <li>운영 노하우 축적</li>
-  <li>문제 해결 경험</li>
-</ul>
-
-<p>이 모든 비용이 든다.</p>
-
-<p>기존 기술을 활용하면:</p>
-
-<ul>
-  <li>즉시 사용 가능</li>
-  <li>이미 익숙함</li>
-  <li>통합 관리 편함</li>
-</ul>
-
-<p>“최신/유명 != 우리에게 최선”이라는 걸 다시 한번 깨달았다.</p>
-
-<h3 id="agora와의-통합">Agora와의 통합</h3>
-
-<p>특히 Agora Cloud Recording이 GCS(Google Cloud Storage)와 직접 연동된다는 점이 좋았다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Agora → Firebase Storage (GCS 기반)
-- HMAC 인증으로 직접 업로드
-- 별도의 파일 전송 서버 불필요
-- 자동 업로드 (15초마다 segment)
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="7-frontend-react--capacitor를-선택한-이유">7. Frontend: React + Capacitor를 선택한 이유</h2>
-
-<h3 id="웹인가-앱인가">웹인가, 앱인가?</h3>
-
-<p>처음부터 모바일 앱을 목표로 했다. 음성 통화 특성상 앱이 더 자연스럽다고 판단했다.</p>
-
-<p>선택지를 정리하면:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 웹 (React)만 개발
-   → 빠르지만 접근성 낮음
-
-2. React Native
-   → 네이티브 성능, 웹 코드 재사용 불가
-
-3. Flutter
-   → 성능 좋음, Dart 새로 학습 필요
-
-4. Capacitor (선택!)
-   → 웹 코드 100% 재사용, WebView 기반
-</code></pre></div></div>
-
-<h3 id="capacitor의-장점">Capacitor의 장점</h3>
-
-<p>가장 큰 장점은 빠른 개발이었다.</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 기존 React 웹 코드</span>
-<span class="kd">const</span> <span class="nx">CallPage</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">setChannel</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
-  <span class="c1">// Agora WebRTC 로직</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
-
-<span class="c1">// Capacitor 추가 후</span>
-<span class="nx">npm</span> <span class="nx">install</span> <span class="p">@</span><span class="nd">capacitor</span><span class="sr">/cor</span><span class="err">e
-</span><span class="nx">npx</span> <span class="nx">cap</span> <span class="nx">add</span> <span class="nx">android</span> <span class="nx">ios</span>
-
-<span class="c1">// 앱 빌드 완료!</span>
-</code></pre></div></div>
-
-<p>단일 코드베이스로 관리할 수 있다는 것도 큰 장점이었다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/
-  components/
-    CallPage.tsx      ← 웹, Android, iOS 모두 사용
-    MatchingButton.tsx
-  lib/
-    agora.ts          ← 한 번만 작성
-    websocket.ts
-</code></pre></div></div>
-
-<h3 id="네이티브-기능-접근">네이티브 기능 접근</h3>
-
-<p>Capacitor 플러그인으로 네이티브 기능도 사용 가능했다:</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 카카오 네이티브 로그인</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">KakaoLoginPlugin</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">capacitor-kakao-login-plugin</span><span class="dl">"</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">KakaoLoginPlugin</span><span class="p">.</span><span class="nx">goLogin</span><span class="p">();</span>
-
-<span class="c1">// 구글 네이티브 로그인</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">GoogleAuth</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@codetrix-studio/capacitor-google-auth</span><span class="dl">"</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">GoogleAuth</span><span class="p">.</span><span class="nx">signIn</span><span class="p">();</span>
-</code></pre></div></div>
-
-<h3 id="한계와-트레이드오프">한계와 트레이드오프</h3>
-
-<p>WebView 제약이 있다:</p>
-
-<ul>
-  <li>네이티브 앱보다 성능 떨어짐</li>
-  <li>일부 브라우저 제약 (CORS, Cookie 등)</li>
-  <li>플랫폼별 차이 (iOS vs Android)</li>
-</ul>
-
-<p>그럼에도 선택한 이유는:</p>
-
-<ul>
-  <li><strong>속도:</strong> 2-3개월 단축</li>
-  <li><strong>유지보수:</strong> 하나의 코드베이스</li>
-  <li><strong>검증:</strong> MVP 빠르게 출시</li>
-</ul>
-
-<p>초기에는 Capacitor로 시작하고, 성장하면 부분적으로 네이티브 전환을 고려하기로 했다.</p>
-
-<hr />
-
-<h2 id="8-배포-환경-aws--vercel">8. 배포 환경: AWS + Vercel</h2>
-
-<h3 id="backend-aws-ec2">Backend: AWS EC2</h3>
-
-<p>“왜 컨테이너(ECS, EKS)가 아닌가?”라는 질문을 받을 수 있는데:</p>
-
-<p>우리 상황:</p>
-
-<ul>
-  <li>단일 서버로 충분</li>
-  <li>오토 스케일링 아직 불필요</li>
-  <li>운영 복잡도 최소화</li>
-</ul>
-
-<p>선택:</p>
-
-<ul>
-  <li>EC2 단일 인스턴스</li>
-  <li>Nginx 리버스 프록시</li>
-  <li>Let’s Encrypt SSL</li>
-</ul>
-
-<p>비용도 고려했다. ECS/EKS는 추가 비용이 들고, Elastic Load Balancer도 고정 비용이 든다. EC2 단독이 가장 경제적이었다.</p>
-
-<h3 id="frontend-vercel">Frontend: Vercel</h3>
-
-<p>왜 Vercel인가?</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✅ 장점:
-- Git push → 자동 배포
-- HTTPS 기본 제공
-- CDN 자동 설정
-- 무료 플랜으로 충분
-
-vs
-
-AWS S3 + CloudFront:
-- 직접 설정 필요
-- 비용 발생
-- CI/CD 직접 구축
-</code></pre></div></div>
-
-<p>프론트엔드는 정적 파일이므로 Vercel이 훨씬 편했다.</p>
-
-<hr />
-
-<h2 id="9-기술-선택의-원칙">9. 기술 선택의 원칙</h2>
-
-<p>6개월간의 경험을 돌아보니, 내게는 몇 가지 원칙이 생겼다.</p>
-
-<h3 id="원칙-1-맥락이-가장-중요하다">원칙 1: “맥락”이 가장 중요하다</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❌ "요즘 A가 대세니까 A를 써야지"
-✅ "우리 상황에서는 B가 더 적합해"
-</code></pre></div></div>
-
-<p>예시:</p>
-
-<ul>
-  <li>Kafka는 강력하지만 우리 규모에는 과함 → Redis 선택</li>
-  <li>React Native는 좋지만 웹 코드 재사용 중요 → Capacitor 선택</li>
-</ul>
-
-<h3 id="원칙-2-mvp는-빠르게-확장은-점진적으로">원칙 2: MVP는 빠르게, 확장은 점진적으로</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>처음부터 완벽한 설계 (X)
-빠른 검증 → 점진적 개선 (O)
-</code></pre></div></div>
-
-<p>실제 적용:</p>
-
-<ul>
-  <li>단일 EC2로 시작 → 트래픽 증가 시 확장 고려</li>
-  <li>Redis 대기열 → 필요시 Kafka 전환</li>
-  <li>Capacitor → 성장하면 부분 네이티브</li>
-</ul>
-
-<h3 id="원칙-3-익숙함도-중요한-가치">원칙 3: “익숙함”도 중요한 가치</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>새로운 기술 학습 비용 vs 익숙한 기술 활용
-
-학부/석사에서 Spring 사용 경험
-→ Spring Boot 선택이 자연스러움
-</code></pre></div></div>
-
-<h3 id="원칙-4-비용은-현실적-제약">원칙 4: 비용은 현실적 제약</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>초기 단계의 인프라 비용:
-- EC2, RDS, Redis, Agora, Firebase
-→ 월 수십 달러 수준으로 통제
-
-vs
-
-이상적 아키텍처:
-- ECS, ELB, CloudFront, Kafka...
-→ 월 수백 달러
-</code></pre></div></div>
-
-<p>서비스 검증이 우선이고, 인프라는 필요 시 확장하기로 했다.</p>
-
-<hr />
-
-<h2 id="10-마치며">10. 마치며</h2>
-
-<p>기술 선택은 트레이드오프의 연속이었다.</p>
-
-<ul>
-  <li>성능 vs 개발 속도</li>
-  <li>이상 vs 현실</li>
-  <li>최신 기술 vs 익숙한 기술</li>
-  <li>비용 vs 확장성</li>
-</ul>
-
-<p>중요한 건 “정답”을 찾는 게 아니라, “우리에게 맞는 답”을 찾는 것이었다.</p>
-
-<p>6개월간 이 기술들로 서비스를 만들고 운영하며 정말 많이 배웠다.
-선택이 완벽하진 않았지만, 후회는 없다.
-각 선택의 이유를 명확히 알고 있고, 필요하면 언제든 바꿀 수 있다는 확신이 있기 때문이다!</p>
-
-<p><strong>“왜?”라는 질문을 끊임없이 던지자. 그 답이 쌓이면, 그게 바로 우리의 기술 철학이 된다.</strong></p>
-
-<hr />
-
-<p><strong>시리즈:</strong></p>
-
-<ol>
-  <li><strong>왜 이 기술들을 선택했나</strong> ← 현재 글</li>
-  <li><a href="https://nan0silver.github.io/projectdiary/2025-12-25-diary/">실시간 매칭 시스템 설계</a></li>
-</ol>
-
-<hr />
-
-<h2 id="참고-자료">참고 자료</h2>
-
-<ul>
-  <li><a href="https://docs.spring.io/spring-framework/reference/web/webflux.html">Spring WebFlux 공식 문서</a></li>
-  <li><a href="https://redis.io/docs/data-types/">Redis 자료구조 가이드</a></li>
-  <li><a href="https://docs.agora.io/en/cloud-recording">Agora Cloud Recording</a></li>
-  <li><a href="https://capacitorjs.com/docs">Capacitor 공식 문서</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록]]></summary></entry></feed>
+</ol>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA["버튼 하나면 되는 거 아냐?" 라고 생각했던 나에게 현실이 알려준 것들]]></summary></entry></feed>
