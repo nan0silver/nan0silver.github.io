@@ -46,7 +46,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-24T06:46:26+00:00","datePublished":"2026-02-24T00:00:00+00:00","description":"친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.","headline":"[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-02-24-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-02-24-diary/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-24T07:12:08+00:00","datePublished":"2026-02-24T00:00:00+00:00","description":"친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.","headline":"[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-02-24-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-02-24-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -186,7 +186,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-02-24T06:47:14+00:00',
+    INDEX_KEY: 'index--2026-02-24T07:12:53+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -236,7 +236,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       }
     },
     "datePublished": "2026-02-24T00:00:00+00:00",
-    "dateModified": "2026-02-24T06:46:26+00:00",
+    "dateModified": "2026-02-24T07:12:08+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://nan0silver.github.io/projectdiary/2026-02-24-diary/"
@@ -453,6 +453,9 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 <p>그래서 CI/CD를 도입하게 됐고, 그 과정에서 배운 내용을 정리해 본다.</p>
 
+<p><strong>이 글에서 다루는 것</strong><br />
+CI/CD만 이야기하면 “push하면 자동으로 테스트하고 배포한다”로 끝나는데, <strong>실제로 그 배포가 돌아가려면</strong> 몇 가지가 필요하다. (1) <strong>뭘</strong> 배포할지 정하는 단위 → Docker 이미지, (2) 그 이미지를 <strong>어디에</strong> 보관할지 → ECR, (3) 그 이미지를 <strong>어디서</strong> 실행할지 → EC2, (4) 나중에 트래픽이 늘면 <strong>어떻게</strong> 관리·확장할지 → ECS. 아래에서는 이 순서대로 “왜 이걸 쓰는지” 맥락을 붙여서 정리한다.</p>
+
 <hr />
 
 <h2 id="1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</h2>
@@ -537,7 +540,7 @@ EC2 서버에 새 버전 자동 배포
 
 <h2 id="2-docker가-왜-필요한가요">2. Docker가 왜 필요한가요?</h2>
 
-<p>CI/CD 흐름에서 Docker는 빠질 수 없다.</p>
+<p>CD는 “테스트 통과한 코드를 <strong>서버에 그대로</strong> 올리는 것”이다. 이때 “그대로”를 보장하려면 <strong>배포 단위</strong>가 정해져 있어야 한다. 로컬에서 돌리던 걸 그냥 서버에 복사하면 환경이 달라서 실패하는 경우가 많다. 그래서 CI/CD 흐름에서는 <strong>Docker 이미지</strong>를 그 단위로 쓰고, 그 이미지를 서버에서 실행하는 방식이 일반적이다. 즉 Docker는 “CD가 <strong>뭘</strong> 배포할지 정의하는 방식”이라서 빠질 수 없다.</p>
 
 <p>개발 환경과 서버 환경이 다르면 이런 일이 생긴다.</p>
 
@@ -562,6 +565,8 @@ Docker 이미지 (완성된 통조림)
 
 <h2 id="3-aws-ec2란-무엇인가요">3. AWS EC2란 무엇인가요?</h2>
 
+<p>CD가 “Docker 이미지를 서버에 배포한다”고 했을 때, <strong>그 서버가 어디인지</strong>가 정해져 있어야 한다. 친구하자 프로젝트에서는 그 역할을 <strong>EC2 한 대</strong>가 맡고 있다. EC2 위에서 빌드된 Docker 이미지를 받아서 컨테이너로 실행하면, 사용자 요청을 처리하는 백엔드 서버가 되는 식이다.</p>
+
 <p><strong>EC2 (Elastic Compute Cloud)</strong>는 AWS에서 빌려 쓰는 가상 컴퓨터이다.</p>
 
 <p>Spring Boot 백엔드 서버를 EC2 위에서 Docker 컨테이너로 돌리고 있다. 처음에는 아래처럼 직접 SSH로 접속해서 배포했다.</p>
@@ -580,6 +585,8 @@ docker run <span class="nt">-d</span> <span class="nt">--name</span> my-app <spa
 <hr />
 
 <h2 id="4-aws-ecs란-무엇인가요">4. AWS ECS란 무엇인가요?</h2>
+
+<p>지금은 EC2 한 대에서 컨테이너를 직접 올리고 내리는 방식으로 CD가 동작한다. 이 방식은 단순하지만, 배포 시 잠깐 서비스가 끊기는 <strong>순단</strong>이 있고, 사용자가 몰렸을 때 서버를 늘리는 것도 수동이다. <strong>트래픽이 늘어나면</strong> “배포할 때도 끊기지 않게(무중단 배포)” “부하가 크면 컨테이너를 자동으로 늘리게(오토스케일링)”가 필요해진다. 그때 CD의 <strong>배포 대상</strong>을 EC2 직접 제어에서 <strong>ECS</strong>로 바꾸면, 컨테이너 실행·롤링 업데이트·스케일링을 AWS가 관리해 준다.</p>
 
 <p><strong>ECS (Elastic Container Service)</strong>는 Docker 컨테이너를 AWS가 대신 관리해 주는 서비스이다.</p>
 
@@ -615,6 +622,8 @@ docker run <span class="nt">-d</span> <span class="nt">--name</span> my-app <spa
 <hr />
 
 <h2 id="5-ecr이란-무엇인가요">5. ECR이란 무엇인가요?</h2>
+
+<p>CD 흐름을 다시 보면, “CI 통과 → Docker 이미지 빌드 → <strong>어딘가에 보관</strong> → EC2(또는 ECS)가 그걸 가져가서 실행”이다. 이미지를 <strong>보관하는 곳</strong>이 없으면 EC2나 ECS가 “어떤 이미지로 컨테이너를 띄울지” 가져올 수 없다. 그 보관소 역할을 AWS에서는 <strong>ECR</strong>이 한다. GitHub Actions에서 이미지를 빌드한 뒤 ECR에 푸시하고, EC2(또는 ECS)는 ECR에서 이미지를 pull 해서 컨테이너를 띄우는 식으로 연결된다.</p>
 
 <p><strong>ECR (Elastic Container Registry)</strong>은 Docker 이미지를 저장하는 AWS 전용 창고이다.</p>
 
