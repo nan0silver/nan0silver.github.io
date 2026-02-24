@@ -74,7 +74,7 @@ menu:
     url: /about/
   - title: JavaScript (8)
     url: /javascript/
-  - title: Algorithm (17)
+  - title: Algorithm (18)
     url: /algorithm/
   - title: Java (13)
     url: /java/
@@ -82,7 +82,7 @@ menu:
     url: /git/
   - title: Flask (2)
     url: /flask/
-  - title: Spring (12)
+  - title: Spring (13)
     url: /spring/
   - title: Miscellaneous (17)
     url: /miscellaneous/
