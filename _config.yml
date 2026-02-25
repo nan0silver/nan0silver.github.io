@@ -72,6 +72,8 @@ menu:
   #   url:               /docs/
   - title: About
     url: /about/
+  - title: AWS (2)
+    url: /aws/
   - title: JavaScript (8)
     url: /javascript/
   - title: Algorithm (18)
