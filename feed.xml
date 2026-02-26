@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-02-26T05:28:48+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-02-26T10:03:40+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun’s Development Blog
 Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java.  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
  Follow along as I dive into the world of coding!
-</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">AWS ECS 배포 공식 문서 정리 (개발자용)</title><link href="https://nan0silver.github.io/aws/2026-02-24-ecs-deployment-developer-guide/" rel="alternate" type="text/html" title="AWS ECS 배포 공식 문서 정리 (개발자용)" /><published>2026-02-24T00:00:00+00:00</published><updated>2026-02-26T05:28:08+00:00</updated><id>https://nan0silver.github.io/aws/ecs-deployment-developer-guide</id><content type="html" xml:base="https://nan0silver.github.io/aws/2026-02-24-ecs-deployment-developer-guide/"><![CDATA[<p>Amazon ECS 서비스 배포와 관련된 AWS 공식 문서를 개발자 관점에서 정리한 문서다.<br />
+</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">AWS ECS 배포 공식 문서 정리 (개발자용)</title><link href="https://nan0silver.github.io/aws/2026-02-24-ecs-deployment-developer-guide/" rel="alternate" type="text/html" title="AWS ECS 배포 공식 문서 정리 (개발자용)" /><published>2026-02-24T00:00:00+00:00</published><updated>2026-02-26T10:02:53+00:00</updated><id>https://nan0silver.github.io/aws/ecs-deployment-developer-guide</id><content type="html" xml:base="https://nan0silver.github.io/aws/2026-02-24-ecs-deployment-developer-guide/"><![CDATA[<p>Amazon ECS 서비스 배포와 관련된 AWS 공식 문서를 개발자 관점에서 정리한 문서다.<br />
 기준 문서: <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html">Deploy Amazon ECS services by replacing tasks</a> 및 연관 문서.</p>
 
 <hr />
@@ -593,7 +593,7 @@ aws ecs stop-service-deployment <span class="se">\</span>
 
 <hr />
 
-<p><em>이 문서는 AWS 공식 문서를 바탕으로 정리했으며, 실제 구현 시 최신 Developer Guide와 API Reference를 반드시 확인하는 것이 좋다.</em></p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="aws" /><summary type="html"><![CDATA[ECS 서비스 배포(롤링 업데이트, Blue/Green, Circuit Breaker, CloudWatch Alarms, 이미지 해석 등) 관련 AWS 공식 문서를 개발자 관점에서 정리했다.]]></summary></entry><entry><title type="html">[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기</title><link href="https://nan0silver.github.io/projectdiary/2026-02-24-diary/" rel="alternate" type="text/html" title="[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기" /><published>2026-02-24T00:00:00+00:00</published><updated>2026-02-26T05:28:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-24-diary/"><![CDATA[<ul>
+<p><em>이 문서는 AWS 공식 문서를 바탕으로 정리했으며, 실제 구현 시 최신 Developer Guide와 API Reference를 반드시 확인하는 것이 좋다.</em></p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="aws" /><summary type="html"><![CDATA[ECS 서비스 배포(롤링 업데이트, Blue/Green, Circuit Breaker, CloudWatch Alarms, 이미지 해석 등) 관련 AWS 공식 문서를 개발자 관점에서 정리했다.]]></summary></entry><entry><title type="html">[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기</title><link href="https://nan0silver.github.io/projectdiary/2026-02-24-diary/" rel="alternate" type="text/html" title="[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기" /><published>2026-02-24T00:00:00+00:00</published><updated>2026-02-26T10:02:53+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-24-diary/"><![CDATA[<ul>
   <li><a href="#시작하기-전에">시작하기 전에</a></li>
   <li><a href="#1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</a></li>
   <li><a href="#2-docker가-왜-필요한가요">2. Docker가 왜 필요한가요?</a></li>
@@ -631,7 +631,40 @@ CI/CD만 이야기하면 “push하면 자동으로 테스트하고 배포한다
 
 <h2 id="1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</h2>
 
-<h3 id="ci-continuous-integration--지속적-통합">CI (Continuous Integration) — 지속적 통합</h3>
+<h3 id="수동-배포의-문제점">수동 배포의 문제점</h3>
+
+<p>내가 처음에 하던 배포 방식:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">./gradlew build</code> 로컬에서 빌드</li>
+  <li><code class="language-plaintext highlighter-rouge">scp</code>로 JAR 파일 EC2에 전송</li>
+  <li>EC2 SSH 접속</li>
+  <li>기존 프로세스 종료</li>
+  <li><code class="language-plaintext highlighter-rouge">java -jar app.jar &amp;</code> 실행</li>
+</ol>
+
+<p>매번 이걸 반복해야 한다. 실수할 가능성도 높고, 시간도 낭비다.</p>
+
+<h3 id="cicd-개념">CI/CD 개념</h3>
+
+<ul>
+  <li><strong>CI (Continuous Integration, 지속적 통합)</strong>: 코드를 push할 때마다 자동으로
+빌드하고 테스트를 실행</li>
+  <li><strong>CD (Continuous Deployment, 지속적 배포)</strong>: CI가 성공하면 자동으로 서버에 배포</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자 코드 push
+       ↓
+CI: 빌드 + 테스트 실행 (자동)
+       ↓ (성공 시)
+CD: 서버에 자동 배포 (자동)
+       ↓
+사용자는 새 버전 접속
+</code></pre></div></div>
+
+<p>이 프로젝트에서는 <strong>GitHub Actions</strong>를 CI/CD 도구로 사용했다.</p>
+
+<h3 id="1️⃣-ci-continuous-integration--지속적-통합">1️⃣ CI (Continuous Integration) — 지속적 통합</h3>
 
 <blockquote>
   <p>“코드를 push하면 테스트까지 자동으로”</p>
@@ -654,7 +687,7 @@ GitHub Actions가 자동으로 실행
 
 <hr />
 
-<h3 id="cd-continuous-deployment--지속적-배포">CD (Continuous Deployment) — 지속적 배포</h3>
+<h3 id="2️⃣-cd-continuous-deployment--지속적-배포">2️⃣ CD (Continuous Deployment) — 지속적 배포</h3>
 
 <blockquote>
   <p>“테스트까지 통과하면 서버 배포도 자동으로”</p>
@@ -713,13 +746,18 @@ EC2 서버에 새 버전 자동 배포
 
 <p>CD는 “테스트 통과한 코드를 <strong>서버에 그대로</strong> 올리는 것”이다. 이때 “그대로”를 보장하려면 <strong>배포 단위</strong>가 정해져 있어야 한다. 로컬에서 돌리던 걸 그냥 서버에 복사하면 환경이 달라서 실패하는 경우가 많다. 그래서 CI/CD 흐름에서는 <strong>Docker 이미지</strong>를 그 단위로 쓰고, 그 이미지를 서버에서 실행하는 방식이 일반적이다. 즉 Docker는 “CD가 <strong>뭘</strong> 배포할지 정의하는 방식”이라서 빠질 수 없다.</p>
 
-<p>개발 환경과 서버 환경이 다르면 이런 일이 생긴다.</p>
+<p>개발자라면 한 번쯤 들어봤을 말이다. 로컬에서는 잘 되던 코드가 서버에 올리면 안 되는 이유는
+뭘까?</p>
 
-<blockquote>
-  <p>“내 맥에서는 되는데 서버에서는 왜 안 되지?”</p>
-</blockquote>
+<ul>
+  <li>로컬: Java 17, MySQL 8.0, Ubuntu 22.04</li>
+  <li>서버: Java 11, MySQL 5.7, Amazon Linux 2</li>
+</ul>
 
-<p>Docker는 앱 실행에 필요한 <strong>모든 것(코드, 라이브러리, 설정)을 하나의 박스에 담아 버린다.</strong></p>
+<p><strong>환경이 다르기 때문이다.</strong></p>
+
+<p>Docker는 이 문제를 해결한다. 애플리케이션과 그것이 실행되는 환경(런타임, 라이브러리, 설정)
+을 <strong>하나의 박스(컨테이너)</strong>에 묶어서 어디서든 똑같이 실행되게 만든다.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dockerfile (조리법)
     ↓  빌드
@@ -731,6 +769,20 @@ Docker 이미지 (완성된 통조림)
 <p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-24-pic2.png?raw=true" alt="예시 이미지1" /></p>
 
 <p>어디서 실행해도 똑같이 동작하기 때문에 환경 차이로 인한 문제가 사라진다.</p>
+
+<h3 id="실제-dockerfile-예시-spring-boot">실제 Dockerfile 예시 (Spring Boot)</h3>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> eclipse-temurin:17-jre-alpine</span>
+
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="k">COPY</span><span class="s"> build/libs/app.jar app.jar</span>
+
+<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
+</code></pre></div></div>
+
+<p>읽으면 직관적이다. “Java 17 JRE가 설치된 Alpine Linux 위에서, <code class="language-plaintext highlighter-rouge">app.jar</code>를
+실행해라.”</p>
 
 <hr />
 
@@ -883,7 +935,7 @@ docker run <span class="nt">-d</span> <span class="nt">--name</span> my-app <spa
 
 <blockquote>
   <p>push 한 번으로 테스트부터 배포까지. 지금은 EC2로 가볍게, 트래픽 늘면 ECS로 전환.</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.]]></summary></entry><entry><title type="html">[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가</title><link href="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/" rel="alternate" type="text/html" title="[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가" /><published>2026-02-23T00:00:00+00:00</published><updated>2026-02-26T05:28:08+00:00</updated><id>https://nan0silver.github.io/spring/filter-interceptor-aop</id><content type="html" xml:base="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/"><![CDATA[<blockquote>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.]]></summary></entry><entry><title type="html">[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가</title><link href="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/" rel="alternate" type="text/html" title="[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가" /><published>2026-02-23T00:00:00+00:00</published><updated>2026-02-26T10:02:53+00:00</updated><id>https://nan0silver.github.io/spring/filter-interceptor-aop</id><content type="html" xml:base="https://nan0silver.github.io/spring/2026-02-23-filter-interceptor-aop/"><![CDATA[<blockquote>
   <p>PATCH/PUT, DTO, Controller 같은 Spring 글을 읽었다면, “요청이 어디서 걸리고, 어떤 순서로 처리될까?”가 궁금할 수 있다.<br />
 이 글에서는 <strong>Filter</strong>, <strong>Interceptor</strong>, <strong>AOP</strong>가 각각 어디에 위치하고, 무엇을 할 때 쓰면 좋은지** 한 번에 정리한다.</p>
 </blockquote>
@@ -1388,7 +1440,7 @@ docker run <span class="nt">-d</span> <span class="nt">--name</span> my-app <spa
   </tbody>
 </table>
 
-<p>이렇게 세 가지를 구분해 두면, “요청이 어떻게 처리되는지”를 Spring 글들(PATCH/PUT, DTO, Controller)과 함께 한 번에 그릴 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 다익스트라 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-21-dijkstra/" rel="alternate" type="text/html" title="[Algorithm] 다익스트라 알고리즘" /><published>2026-02-21T00:00:00+00:00</published><updated>2026-02-26T05:28:08+00:00</updated><id>https://nan0silver.github.io/algorithm/dijkstra</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-21-dijkstra/"><![CDATA[<blockquote>
+<p>이렇게 세 가지를 구분해 두면, “요청이 어떻게 처리되는지”를 Spring 글들(PATCH/PUT, DTO, Controller)과 함께 한 번에 그릴 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="spring" /><summary type="html"><![CDATA[Spring에서 HTTP 요청이 Controller에 도달하기까지 거치는 Filter, Interceptor, AOP의 역할과 차이, 그리고 요청 처리 순서를 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 다익스트라 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-21-dijkstra/" rel="alternate" type="text/html" title="[Algorithm] 다익스트라 알고리즘" /><published>2026-02-21T00:00:00+00:00</published><updated>2026-02-26T10:02:53+00:00</updated><id>https://nan0silver.github.io/algorithm/dijkstra</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-21-dijkstra/"><![CDATA[<blockquote>
   <p><strong>최단 경로 시리즈</strong> – <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>(모든 쌍), <a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>(음수 간선·음수 사이클)에 이어, <strong>한 출발점에서 나머지 모든 정점까지</strong>의 최단 경로를 빠르게 구하는 알고리즘이다.</p>
 </blockquote>
 
@@ -1756,7 +1808,7 @@ docker run <span class="nt">-d</span> <span class="nt">--name</span> my-app <spa
 
 <hr />
 
-<p>이렇게 <strong>다익스트라</strong>까지 정리하면, <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>·<a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>와 함께 <strong>최단 경로 시리즈</strong>를 한 세트로 다룰 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다.]]></summary></entry><entry><title type="html">[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</title><link href="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/" rel="alternate" type="text/html" title="[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법" /><published>2026-02-18T00:00:00+00:00</published><updated>2026-02-26T05:28:08+00:00</updated><id>https://nan0silver.github.io/algorithm/integer-arraylist-to-int-array</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/"><![CDATA[<p>알고리즘 문제를 풀다 보면 <code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>로 모아둔 결과를 최종적으로 <code class="language-plaintext highlighter-rouge">int[]</code> 배열로 반환해야 하는 경우가 많다. <code class="language-plaintext highlighter-rouge">String</code> 리스트는 <code class="language-plaintext highlighter-rouge">toArray()</code>로 쉽게 변환할 수 있지만, <strong>primitive 타입인 int는 <code class="language-plaintext highlighter-rouge">toArray()</code>를 그대로 쓸 수 없다.</strong> 이번 글에서는 Integer ArrayList를 int 배열로 바꾸는 방법을 정리해보자.</p>
+<p>이렇게 <strong>다익스트라</strong>까지 정리하면, <a href="/algorithm/2025-12-29-floyd-warshall/">플로이드-워셜</a>·<a href="/algorithm/2026-02-09-bellman-ford/">벨만-포드</a>와 함께 <strong>최단 경로 시리즈</strong>를 한 세트로 다룰 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[다익스트라 알고리즘에 대해 정리해보았습니다. 한 정점에서 모든 정점까지의 최단 경로를 구하는 대표 알고리즘입니다.]]></summary></entry><entry><title type="html">[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</title><link href="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/" rel="alternate" type="text/html" title="[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법" /><published>2026-02-18T00:00:00+00:00</published><updated>2026-02-26T10:02:53+00:00</updated><id>https://nan0silver.github.io/algorithm/integer-arraylist-to-int-array</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-18-integer-arraylist-to-int-array/"><![CDATA[<p>알고리즘 문제를 풀다 보면 <code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>로 모아둔 결과를 최종적으로 <code class="language-plaintext highlighter-rouge">int[]</code> 배열로 반환해야 하는 경우가 많다. <code class="language-plaintext highlighter-rouge">String</code> 리스트는 <code class="language-plaintext highlighter-rouge">toArray()</code>로 쉽게 변환할 수 있지만, <strong>primitive 타입인 int는 <code class="language-plaintext highlighter-rouge">toArray()</code>를 그대로 쓸 수 없다.</strong> 이번 글에서는 Integer ArrayList를 int 배열로 바꾸는 방법을 정리해보자.</p>
 
 <ol>
   <li><a href="#-1️⃣-string-list-vs-integer-list">String List vs Integer List</a></li>
@@ -1894,7 +1946,7 @@ docker run <span class="nt">-d</span> <span class="nt">--name</span> my-app <spa
 <p><strong>참고</strong></p>
 <ul>
   <li><a href="https://hoehen-flug.tistory.com/49">내가 개발자라니 - Integer ArrayList을 int 배열로 변환하는 방법</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[알고리즘 문제 풀이 시 Integer ArrayList를 int[] 배열로 변환해야 할 때 사용할 수 있는 방법을 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 벨만-포드 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" rel="alternate" type="text/html" title="[Algorithm] 벨만-포드 알고리즘" /><published>2026-02-09T00:00:00+00:00</published><updated>2026-02-26T05:28:08+00:00</updated><id>https://nan0silver.github.io/algorithm/bellman-ford</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"><![CDATA[<ol>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[알고리즘 문제 풀이 시 Integer ArrayList를 int[] 배열로 변환해야 할 때 사용할 수 있는 방법을 정리했습니다.]]></summary></entry><entry><title type="html">[Algorithm] 벨만-포드 알고리즘</title><link href="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/" rel="alternate" type="text/html" title="[Algorithm] 벨만-포드 알고리즘" /><published>2026-02-09T00:00:00+00:00</published><updated>2026-02-26T10:02:53+00:00</updated><id>https://nan0silver.github.io/algorithm/bellman-ford</id><content type="html" xml:base="https://nan0silver.github.io/algorithm/2026-02-09-bellman-ford/"><![CDATA[<ol>
   <li><a href="#-1️⃣-벨만-포드란">벨만-포드란?</a></li>
   <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
   <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
@@ -2105,7 +2157,7 @@ dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>
 
 <p>👉 핵심 질문이
 <strong>“최단거리”보다 “음수 사이클 존재 여부”</strong>라면
-벨만-포드를 떠올려야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[벨만-포드 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" rel="alternate" type="text/html" title="[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유" /><published>2026-02-07T00:00:00+00:00</published><updated>2026-02-26T05:28:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-07-diary/"><![CDATA[<blockquote>
+벨만-포드를 떠올려야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="algorithm" /><summary type="html"><![CDATA[벨만-포드 알고리즘에 대해 정리해보았습니다.]]></summary></entry><entry><title type="html">[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-02-07-diary/" rel="alternate" type="text/html" title="[친구하자] 트랜잭션 전파(Propagation)와 비관적 락 - 같은 트랜잭션 안에서 락이 유지되는 이유" /><published>2026-02-07T00:00:00+00:00</published><updated>2026-02-26T10:02:53+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-07-diary/"><![CDATA[<blockquote>
   <p><a href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/">이전 일기: 비관적 락 적용기</a>에서 통화 종료에 비관적 락을 적용했다.<br />
 그때 <code class="language-plaintext highlighter-rouge">@Transactional</code> 하나로 전체 흐름을 감쌌는데, <strong>왜 한 트랜잭션으로 묶어야 하고</strong>, <strong>전파 옵션을 잘못 쓰면 락이 어떻게 깨질 수 있는지</strong>를 이번에 정리해 본다.</p>
 </blockquote>
@@ -2356,7 +2408,7 @@ dist의 <strong>정확한 값보다 ‘계속 줄어드는지 여부’</strong>
   </tbody>
 </table>
 
-<p>비관적 락 적용 시 <strong>“어디서 트랜잭션이 시작되고 끝나는지”</strong> 를 의식하고, <strong>락을 건 구간과 수정 구간이 같은 트랜잭션에 포함되도록</strong> 전파를 두면, “같은 트랜잭션 안에서 락이 유지되는” 동작을 기대한 대로 얻을 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</title><link href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" rel="alternate" type="text/html" title="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" /><published>2026-01-22T00:00:00+00:00</published><updated>2026-02-26T05:28:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-22-diary/"><![CDATA[<blockquote>
+<p>비관적 락 적용 시 <strong>“어디서 트랜잭션이 시작되고 끝나는지”</strong> 를 의식하고, <strong>락을 건 구간과 수정 구간이 같은 트랜잭션에 포함되도록</strong> 전파를 두면, “같은 트랜잭션 안에서 락이 유지되는” 동작을 기대한 대로 얻을 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[비관적 락을 적용한 통화 종료 로직에서 트랜잭션 전파가 중요한 이유, 그리고 같은 트랜잭션 안에서 DB 락이 어떻게 유지되는지 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기</title><link href="https://nan0silver.github.io/projectdiary/2026-01-22-diary/" rel="alternate" type="text/html" title="[친구하자] 실시간 음성 매칭 서비스의 동시성 제어 - 비관적 락 적용기" /><published>2026-01-22T00:00:00+00:00</published><updated>2026-02-26T10:02:53+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-22-diary/"><![CDATA[<blockquote>
   <p>동시 요청으로 통화가 두 번 종료되는 문제 해결하기..!</p>
 </blockquote>
 
@@ -2880,7 +2932,7 @@ User2: 100ms (락 대기 50ms + 처리 50ms)
   <li>통화 종료는 충돌 가능성 높고</li>
   <li>정확성이 중요하며</li>
   <li>약간의 대기는 허용 가능</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" rel="alternate" type="text/html" title="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" /><published>2026-01-19T00:00:00+00:00</published><updated>2026-02-26T05:28:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-19-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 실시간 음성 매칭 서비스를 개발하면서 비관적 락을 적용하여 동시성을 처리했던 경험에 대해 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-19-diary/" rel="alternate" type="text/html" title="[친구하자] WebSocket 메시지 핸들러 인증 문제 트러블슈팅 (@AuthenticationPrincipal와 SimpMessageHeaderAccessor)" /><published>2026-01-19T00:00:00+00:00</published><updated>2026-02-26T10:02:53+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-19-diary/"><![CDATA[<ul>
   <li><a href="#-문제-발견-배경">문제 발견 배경</a></li>
   <li>
     <p><a href="#-근본-원인-분석">근본 원인 분석</a></p>
@@ -3330,7 +3382,7 @@ userId 추출: ✅ 성공
   <li>✅ 직접 Principal에 접근하여 안정성 확보</li>
   <li>✅ null 체크 및 fallback 로직 구현 가능</li>
   <li>✅ 명시적 코드로 디버깅 용이</li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.]]></summary></entry><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-02-26T05:28:08+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자를 개발하면서 통화 중 에러를 처리하던 중 발견한 WebSocket 메시지 핸들러 인증 문제 트러블슈팅입니다.]]></summary></entry><entry><title type="html">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</title><link href="https://nan0silver.github.io/projectdiary/2026-01-12-diary/" rel="alternate" type="text/html" title="[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)" /><published>2026-01-12T00:00:00+00:00</published><updated>2026-02-26T10:02:53+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-01-12-diary/"><![CDATA[<ul>
   <li><a href="#문제-상황">문제 상황</a></li>
   <li><a href="#ssl-인증서란">SSL 인증서란?</a></li>
   <li><a href="#lets-encrypt와-90일-갱신-주기">Let’s Encrypt와 90일 갱신 주기</a></li>

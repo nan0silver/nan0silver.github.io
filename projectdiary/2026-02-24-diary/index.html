@@ -46,7 +46,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-26T05:28:08+00:00","datePublished":"2026-02-24T00:00:00+00:00","description":"친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.","headline":"[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-02-24-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-02-24-diary/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-26T10:02:53+00:00","datePublished":"2026-02-24T00:00:00+00:00","description":"친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.","headline":"[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-02-24-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-02-24-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -186,7 +186,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-02-26T05:28:48+00:00',
+    INDEX_KEY: 'index--2026-02-26T10:03:40+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -236,7 +236,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       }
     },
     "datePublished": "2026-02-24T00:00:00+00:00",
-    "dateModified": "2026-02-26T05:28:08+00:00",
+    "dateModified": "2026-02-26T10:02:53+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://nan0silver.github.io/projectdiary/2026-02-24-diary/"
@@ -405,7 +405,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 26 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-02-26T05:28:08+00:00">2026-02-26</time>
+              <time datetime="2026-02-26T10:02:53+00:00">2026-02-26</time>
             </span>
           
         
@@ -468,7 +468,40 @@ CI/CD만 이야기하면 “push하면 자동으로 테스트하고 배포한다
 
 <h2 id="1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</h2>
 
-<h3 id="ci-continuous-integration--지속적-통합">CI (Continuous Integration) — 지속적 통합</h3>
+<h3 id="수동-배포의-문제점">수동 배포의 문제점</h3>
+
+<p>내가 처음에 하던 배포 방식:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">./gradlew build</code> 로컬에서 빌드</li>
+  <li><code class="language-plaintext highlighter-rouge">scp</code>로 JAR 파일 EC2에 전송</li>
+  <li>EC2 SSH 접속</li>
+  <li>기존 프로세스 종료</li>
+  <li><code class="language-plaintext highlighter-rouge">java -jar app.jar &amp;</code> 실행</li>
+</ol>
+
+<p>매번 이걸 반복해야 한다. 실수할 가능성도 높고, 시간도 낭비다.</p>
+
+<h3 id="cicd-개념">CI/CD 개념</h3>
+
+<ul>
+  <li><strong>CI (Continuous Integration, 지속적 통합)</strong>: 코드를 push할 때마다 자동으로
+빌드하고 테스트를 실행</li>
+  <li><strong>CD (Continuous Deployment, 지속적 배포)</strong>: CI가 성공하면 자동으로 서버에 배포</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자 코드 push
+       ↓
+CI: 빌드 + 테스트 실행 (자동)
+       ↓ (성공 시)
+CD: 서버에 자동 배포 (자동)
+       ↓
+사용자는 새 버전 접속
+</code></pre></div></div>
+
+<p>이 프로젝트에서는 <strong>GitHub Actions</strong>를 CI/CD 도구로 사용했다.</p>
+
+<h3 id="1️⃣-ci-continuous-integration--지속적-통합">1️⃣ CI (Continuous Integration) — 지속적 통합</h3>
 
 <blockquote>
   <p>“코드를 push하면 테스트까지 자동으로”</p>
@@ -491,7 +524,7 @@ GitHub Actions가 자동으로 실행
 
 <hr />
 
-<h3 id="cd-continuous-deployment--지속적-배포">CD (Continuous Deployment) — 지속적 배포</h3>
+<h3 id="2️⃣-cd-continuous-deployment--지속적-배포">2️⃣ CD (Continuous Deployment) — 지속적 배포</h3>
 
 <blockquote>
   <p>“테스트까지 통과하면 서버 배포도 자동으로”</p>
@@ -550,13 +583,18 @@ EC2 서버에 새 버전 자동 배포
 
 <p>CD는 “테스트 통과한 코드를 <strong>서버에 그대로</strong> 올리는 것”이다. 이때 “그대로”를 보장하려면 <strong>배포 단위</strong>가 정해져 있어야 한다. 로컬에서 돌리던 걸 그냥 서버에 복사하면 환경이 달라서 실패하는 경우가 많다. 그래서 CI/CD 흐름에서는 <strong>Docker 이미지</strong>를 그 단위로 쓰고, 그 이미지를 서버에서 실행하는 방식이 일반적이다. 즉 Docker는 “CD가 <strong>뭘</strong> 배포할지 정의하는 방식”이라서 빠질 수 없다.</p>
 
-<p>개발 환경과 서버 환경이 다르면 이런 일이 생긴다.</p>
+<p>개발자라면 한 번쯤 들어봤을 말이다. 로컬에서는 잘 되던 코드가 서버에 올리면 안 되는 이유는
+뭘까?</p>
 
-<blockquote>
-  <p>“내 맥에서는 되는데 서버에서는 왜 안 되지?”</p>
-</blockquote>
+<ul>
+  <li>로컬: Java 17, MySQL 8.0, Ubuntu 22.04</li>
+  <li>서버: Java 11, MySQL 5.7, Amazon Linux 2</li>
+</ul>
 
-<p>Docker는 앱 실행에 필요한 <strong>모든 것(코드, 라이브러리, 설정)을 하나의 박스에 담아 버린다.</strong></p>
+<p><strong>환경이 다르기 때문이다.</strong></p>
+
+<p>Docker는 이 문제를 해결한다. 애플리케이션과 그것이 실행되는 환경(런타임, 라이브러리, 설정)
+을 <strong>하나의 박스(컨테이너)</strong>에 묶어서 어디서든 똑같이 실행되게 만든다.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dockerfile (조리법)
     ↓  빌드
@@ -568,6 +606,20 @@ Docker 이미지 (완성된 통조림)
 <p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-24-pic2.png?raw=true" alt="예시 이미지1" /></p>
 
 <p>어디서 실행해도 똑같이 동작하기 때문에 환경 차이로 인한 문제가 사라진다.</p>
+
+<h3 id="실제-dockerfile-예시-spring-boot">실제 Dockerfile 예시 (Spring Boot)</h3>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> eclipse-temurin:17-jre-alpine</span>
+
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="k">COPY</span><span class="s"> build/libs/app.jar app.jar</span>
+
+<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
+</code></pre></div></div>
+
+<p>읽으면 직관적이다. “Java 17 JRE가 설치된 Alpine Linux 위에서, <code class="language-plaintext highlighter-rouge">app.jar</code>를
+실행해라.”</p>
 
 <hr />
 
