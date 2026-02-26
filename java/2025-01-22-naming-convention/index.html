@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Etc] immutable, final, constant | NAHYUN BLOG</title>
+<title>[Etc] Naming Convention | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Etc] immutable, final, constant" />
+<meta property="og:title" content="[Etc] Naming Convention" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자." />
-<meta property="og:description" content="값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자." />
-<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/" />
-<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/" />
+<meta name="description" content="식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자." />
+<meta property="og:description" content="식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/java/2025-01-22-naming-convention/" />
+<meta property="og:url" content="https://nan0silver.github.io/java/2025-01-22-naming-convention/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-03-06T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-01-22T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Etc] immutable, final, constant" />
+<meta property="twitter:title" content="[Etc] Naming Convention" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-25T05:08:46+00:00","datePublished":"2025-03-06T00:00:00+00:00","description":"값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자.","headline":"[Etc] immutable, final, constant","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-26T05:16:31+00:00","datePublished":"2025-01-22T00:00:00+00:00","description":"식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.","headline":"[Etc] Naming Convention","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2025-01-22-naming-convention/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/java/2025-01-22-naming-convention/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/java/2025-01-22-naming-convention/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -186,7 +186,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-02-25T05:09:27+00:00',
+    INDEX_KEY: 'index--2026-02-26T05:17:15+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[Etc] immutable, final, constant",
-    "description": "값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자.
+    "headline": "[Etc] Naming Convention",
+    "description": "식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-03-06T00:00:00+00:00",
-    "dateModified": "2026-02-25T05:08:46+00:00",
+    "datePublished": "2025-01-22T00:00:00+00:00",
+    "dateModified": "2026-02-26T05:16:31+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/"
+      "@id": "https://nan0silver.github.io/java/2025-01-22-naming-convention/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/" />
+<link rel="canonical" href="https://nan0silver.github.io/java/2025-01-22-naming-convention/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "miscellaneous",
-        "item": "https://nan0silver.github.io/miscellaneous/"
+        "name": "java",
+        "item": "https://nan0silver.github.io/java/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[Etc] immutable, final, constant",
-        "item": "https://nan0silver.github.io/miscellaneous/2025-03-06-immutable/"
+        "name": "[Etc] Naming Convention",
+        "item": "https://nan0silver.github.io/java/2025-01-22-naming-convention/"
       }
     ]
   }
@@ -358,14 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/miscellaneous/">miscellaneous</a>
+          <a href="/java/">java</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-03-06-immutable</span>
+          <span>2025-01-22-naming-convention</span>
         
       </li>
     
@@ -382,18 +382,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-immutable" class="page post mb6" role="article">
+<article id="post-java-naming-convention" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Etc] immutable, final, constant
+        [Etc] Naming Convention
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-03-06T00:00:00+00:00">06 Mar 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+        <time datetime="2025-01-22T00:00:00+00:00">22 Jan 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
       </span>
       
         
@@ -402,10 +402,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 25 Feb 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 26 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-02-25T05:08:46+00:00">2026-02-25</time>
+              <time datetime="2026-02-26T05:16:31+00:00">2026-02-26</time>
             </span>
           
         
@@ -421,7 +421,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자.
+      식별자를 만들 때 가독성이 좋도록 규정한 이름짓는 규칙인 naming convention에 대해 알아보자.
 
     </p>
   
@@ -431,137 +431,151 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#immutable-불변"><code class="language-plaintext highlighter-rouge">Immutable</code></a></li>
-  <li><a href="#final-최종-변경-불가"><code class="language-plaintext highlighter-rouge">final</code></a></li>
-  <li><a href="#const-상수"><code class="language-plaintext highlighter-rouge">const</code></a></li>
+  <li><a href="#naming-convention이란">Naming Convention이란?</a></li>
+  <li><a href="#1-케밥-케이스-kebab-case">케밥 케이스 (Kebab-case)</a></li>
+  <li><a href="#2-카멜-케이스-camelcase">카멜 케이스 (camelCase)</a></li>
+  <li><a href="#3-스네이크-케이스-snake_case">스네이크 케이스 (snake_case)</a></li>
+  <li><a href="#4-파스칼-케이스-pascalcase">파스칼 케이스 (PascalCase)</a></li>
+  <li><a href="#선택-기준">선택 기준</a></li>
 </ul>
 
 <hr />
 
-<h2 id="immutable-불변"><code class="language-plaintext highlighter-rouge">Immutable</code> (불변)</h2>
-
-<blockquote>
-  <p>생성 후 객체 자체의 상태를 변경할 수 없음
-Java의 키워드는 아님, 다양한 언어에서 사용되는 객체의 속성 개념</p>
-</blockquote>
+<h2 id="naming-convention이란">Naming Convention이란?</h2>
 
 <ul>
-  <li>객체와 관련됨</li>
+  <li>프로그래밍에서 변수, 함수, 클래스 이름 등을 작성하는 규칙</li>
+</ul>
+
+<hr />
+
+<h2 id="1-케밥-케이스-kebab-case">1. 케밥 케이스 (Kebab-case)</h2>
+
+<ul>
+  <li>단어를 <strong>하이픈(-)</strong>으로 구분하며, 모든 문자를 소문자로 작성</li>
+  <li>모양이 케밥을 닮았다고 해서 붙여진 이름</li>
   <li>특징
     <ul>
-      <li>모든 필드가 <code class="language-plaintext highlighter-rouge">final</code>이고 <code class="language-plaintext highlighter-rouge">private</code></li>
-      <li>setter 메서드가 없음</li>
-      <li>모든 가변 참조 필드가 방어적 복사를 통해 보호됨</li>
-    </ul>
-  </li>
-  <li>중요한 점
-    <ul>
-      <li>불변 객체는 멀티 스레드 환경에서 안전하게 사용 가능</li>
-      <li>내부 상태를 변경하는 메서드를 제공하지 않아야 함.</li>
-    </ul>
-  </li>
-  <li>예 : String, Integer, BigDecimal
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">String</code> 클래스는 자바에서 대표적인 불변 객체
-        <blockquote>
-          <p><code class="language-plaintext highlighter-rouge">String</code>객체를 한 번 생성하면 내부 값이 변경되지 않음.
-새로운 값을 할당하려면 새로운 객체가 만들어짐.</p>
-        </blockquote>
+      <li>가독성이 좋음</li>
+      <li>HTML, CSS에서 자주 사용됨</li>
+      <li>언어에 따라 변수나 함수이름으로는 사용할 수 없는 경우도 있음
         <ul>
-          <li>
-            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nc">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span>
-  <span class="nc">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">concat</span><span class="o">(</span><span class="s">" World"</span><span class="o">);</span>
-  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s1</span><span class="o">);</span> <span class="c1">// 여전히 "Hello"</span>
-</code></pre></div>            </div>
-          </li>
+          <li>하이픈이 연산자로 해석될 수 있어서</li>
         </ul>
       </li>
     </ul>
+  </li>
+  <li>
+    <p>예시</p>
+
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* CSS 클래스 이름 */</span>
+<span class="nc">.button-primary</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* 파일 이름 */</span>
+<span class="nt">my-awesome-file</span><span class="nc">.js</span>
+</code></pre></div>    </div>
   </li>
 </ul>
 
-<h2 id="final-최종-변경-불가"><code class="language-plaintext highlighter-rouge">Final</code> (최종, 변경 불가)</h2>
-
-<blockquote>
-  <p>한 번 할당되면 값을 변경할 수 없는 변수 또는 참조
-Java의 키워드</p>
-</blockquote>
+<h2 id="2-카멜-케이스-camelcase">2. 카멜 케이스 (camelCase)</h2>
 
 <ul>
+  <li>첫 단어는 소문자로 시작하고, 이후 단어의 첫 글자를 대문자로 작성</li>
+  <li>이름이 낙타의 등처럼 튀어나온 형태를 닮아서 붙인 이름</li>
   <li>특징
     <ul>
-      <li>변수에 사용 : 초기화 후 재할당 불가</li>
-      <li>메서드에 사용 : 오버라이딩 불가</li>
-      <li>클래스에 사용 : 상속 불가</li>
+      <li>JavaScript, Java, C#, Python 등에서 변수와 함수 이름으로 자주 사용됨</li>
+      <li>대문자 없이 단어를 연결해 코드 가독성을 높이는 데 도움을 줌</li>
     </ul>
   </li>
-  <li>중요한 점
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">final</code>은 참조의 변경을 막지만, 참조가 가리키는 객체의 내용 변경은 막지 않음</li>
-    </ul>
-  </li>
-  <li>실무에서 활용
-    <ol>
-      <li>메서드 파라미터
-        <ul>
-          <li>메서드 내에서 파라미터 값이 변경되지 않도록 보장</li>
-          <li>
-            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processUser</span><span class="o">(</span><span class="kd">final</span> <span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
-</code></pre></div>            </div>
-          </li>
-        </ul>
-      </li>
-      <li>람다 표현식
-        <ul>
-          <li>람다에서 외부 변수를 사용할 때는 반드시 <code class="language-plaintext highlighter-rouge">final</code> 또는 <code class="language-plaintext highlighter-rouge">effectively final</code>이어야 함</li>
-          <li>
-            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">final</span> <span class="nc">String</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s">"User-"</span><span class="o">;</span>
-  <span class="n">userList</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-      <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">user</span> <span class="o">-&gt;</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">())</span>
-      <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-</code></pre></div>            </div>
-          </li>
-        </ul>
-      </li>
-      <li>스레드 안정성
-        <ul>
-          <li>멀티스레드 환경에서 불변성 보장에 도움</li>
-        </ul>
-      </li>
-    </ol>
+  <li>예시
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// JavaScript 변수와 함수</span>
+<span class="kd">let</span> <span class="nx">userName</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">getUserData</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">userName</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
   </li>
 </ul>
 
-<h2 id="const-상수"><code class="language-plaintext highlighter-rouge">Const</code> (상수)</h2>
-
-<blockquote>
-  <p>프로그램 전체에서 변경되지 않는 고정 값
-Java의 키워드</p>
-</blockquote>
+<h2 id="3-스네이크-케이스-snake_case">3. 스네이크 케이스 (snake_case)</h2>
 
 <ul>
+  <li>단어를 <strong>밑줄(_)</strong>로 구분하며, 모든 문자를 소문자로 작성</li>
+  <li>뱀이 기어다니는 모양을 닮아서 붙여진 이름</li>
   <li>특징
     <ul>
-      <li>일반적으로 <code class="language-plaintext highlighter-rouge">static final</code>로 선언</li>
-      <li>클래스 로딩 시점에 초기화</li>
-      <li>관례적으로 대문자와 언더스코어 사용 (UPPER_SNAKE_CASE)</li>
-      <li>예
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">public static final int MAX_USERS = 100;</code></li>
-        </ul>
-      </li>
+      <li>Python, SQL, Ruby, C, C++, PHP, JSON 데이터 스키마에서 변수와 함수 이름으로 자주 사용됨</li>
     </ul>
   </li>
-  <li><code class="language-plaintext highlighter-rouge">static</code>
+  <li>
+    <p>예시</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Python 변수 이름
+</span><span class="n">user_name</span> <span class="o">=</span> <span class="s">"Alice"</span>
+
+<span class="c1"># Python 함수 이름
+</span><span class="k">def</span> <span class="nf">get_user_data</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">user_name</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="4-파스칼-케이스-pascalcase">4. 파스칼 케이스 (PascalCase)</h2>
+
+<ul>
+  <li>각 단어의 첫 글자를 대문자로 작성
     <ul>
-      <li>상수(<code class="language-plaintext highlighter-rouge">const</code>)와 자주 함께 사용되는 변수</li>
-      <li>클래스 수준에서 사용되며, 객체가 아닌 클래스에 종속됨
+      <li>카멜 케이스와 비슷하지만 첫 단어도 대문자</li>
+    </ul>
+  </li>
+  <li>특징
+    <ul>
+      <li>Java, TypeScript등의 클래스 이름과 타입 이름으로 자주 사용됨</li>
+    </ul>
+  </li>
+  <li>
+    <p>예시</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Java 클래스 이름</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserAccount</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="nc">UserName</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">UserAccount</span><span class="o">(</span><span class="nc">String</span> <span class="n">userName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">UserName</span> <span class="o">=</span> <span class="n">userName</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="선택-기준">선택 기준</h2>
+
+<ul>
+  <li>언어/환경의 표준에 따라 케이스를 선택
+    <ul>
+      <li>JavaScript, Java
         <ul>
-          <li>클래스 로딩 시 한 번만 초기화되며 모든 객체가 공유</li>
+          <li>camelCase (변수/함수)</li>
+          <li>PascalCase (클래스)</li>
+        </ul>
+      </li>
+      <li>Python
+        <ul>
+          <li>snake_case</li>
+        </ul>
+      </li>
+      <li>CSS/HTML
+        <ul>
+          <li>kebab-case</li>
         </ul>
       </li>
     </ul>
   </li>
+  <li>팀 또는 프로젝트의 코딩 컨벤션에 따라 일관성 유지가 중요 (가독성을 위해)</li>
 </ul>
 
   
@@ -801,11 +815,23 @@ Java의 키워드</p>
       <li>
         <a
           
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
           href="/javascript/"
           class="sidebar-nav-item "
           
         >
-          JavaScript (8)
+          Frontend (9)
         </a>
       </li>
     
@@ -829,7 +855,7 @@ Java의 키워드</p>
           class="sidebar-nav-item "
           
         >
-          Java (13)
+          Java (17)
         </a>
       </li>
     
@@ -853,7 +879,7 @@ Java의 키워드</p>
           class="sidebar-nav-item "
           
         >
-          Flask (2)
+          Flask (3)
         </a>
       </li>
     
@@ -865,7 +891,7 @@ Java의 키워드</p>
           class="sidebar-nav-item "
           
         >
-          Spring (13)
+          Spring (17)
         </a>
       </li>
     
@@ -877,7 +903,7 @@ Java의 키워드</p>
           class="sidebar-nav-item "
           
         >
-          Miscellaneous (16)
+          기타 (4)
         </a>
       </li>
     

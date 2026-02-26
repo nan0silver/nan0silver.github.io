@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Etc] 🤖 Layered Architecture &amp; MVC pattern | NAHYUN BLOG</title>
+<title>[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization) | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Etc] 🤖 Layered Architecture &amp; MVC pattern" />
+<meta property="og:title" content="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자." />
-<meta property="og:description" content="레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자." />
-<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" />
-<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" />
+<meta name="description" content="직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자." />
+<meta property="og:description" content="직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/java/2025-02-04-serialization/" />
+<meta property="og:url" content="https://nan0silver.github.io/java/2025-02-04-serialization/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-03-17T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-02-04T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Etc] 🤖 Layered Architecture &amp; MVC pattern" />
+<meta property="twitter:title" content="[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-25T05:08:46+00:00","datePublished":"2025-03-17T00:00:00+00:00","description":"레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.","headline":"[Etc] 🤖 Layered Architecture &amp; MVC pattern","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-26T05:16:31+00:00","datePublished":"2025-02-04T00:00:00+00:00","description":"직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.","headline":"[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2025-02-04-serialization/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/java/2025-02-04-serialization/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/java/2025-02-04-serialization/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -186,7 +186,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-02-25T05:09:27+00:00',
+    INDEX_KEY: 'index--2026-02-26T05:17:15+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[Etc] 🤖 Layered Architecture &amp;amp; MVC pattern",
-    "description": "레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.
+    "headline": "[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)",
+    "description": "직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-03-17T00:00:00+00:00",
-    "dateModified": "2026-02-25T05:08:46+00:00",
+    "datePublished": "2025-02-04T00:00:00+00:00",
+    "dateModified": "2026-02-26T05:16:31+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"
+      "@id": "https://nan0silver.github.io/java/2025-02-04-serialization/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/" />
+<link rel="canonical" href="https://nan0silver.github.io/java/2025-02-04-serialization/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "miscellaneous",
-        "item": "https://nan0silver.github.io/miscellaneous/"
+        "name": "java",
+        "item": "https://nan0silver.github.io/java/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[Etc] 🤖 Layered Architecture &amp; MVC pattern",
-        "item": "https://nan0silver.github.io/miscellaneous/2025-03-17-layered-architecture/"
+        "name": "[Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)",
+        "item": "https://nan0silver.github.io/java/2025-02-04-serialization/"
       }
     ]
   }
@@ -358,14 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/miscellaneous/">miscellaneous</a>
+          <a href="/java/">java</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-03-17-layered-architecture</span>
+          <span>2025-02-04-serialization</span>
         
       </li>
     
@@ -382,18 +382,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-layered-architecture" class="page post mb6" role="article">
+<article id="post-java-serialization" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Etc] 🤖 Layered Architecture &amp; MVC pattern
+        [Etc] 직렬화 (Serialization)와 역직렬화(Deserialization)
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-03-17T00:00:00+00:00">17 Mar 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> 
+        <time datetime="2025-02-04T00:00:00+00:00">04 Feb 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
       </span>
       
         
@@ -402,10 +402,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 25 Feb 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 26 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-02-25T05:08:46+00:00">2026-02-25</time>
+              <time datetime="2026-02-26T05:16:31+00:00">2026-02-26</time>
             </span>
           
         
@@ -421,7 +421,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      레이어드 아키텍쳐와 MVC 패턴에 대해 알아보자.
+      직렬화 (Serialization)와 역직렬화(Deserialization)에 대해 알아보자.
 
     </p>
   
@@ -431,145 +431,209 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</a></li>
-  <li><a href="#mvc란">MVC란?</a></li>
-  <li><a href="#레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</a></li>
+  <li><a href="#직렬화serialization과-역직렬화deserialization--️-">직렬화와 역직렬화</a></li>
+  <li><a href="#직렬화-serialization-이란-">직렬화란? 📦</a></li>
+  <li><a href="#역직렬화-deserialization-이란--️-">역직렬화란? 📦 ➡️ 💻</a></li>
+  <li><a href="#언어별-직렬화-및-역직렬화-예시">언어별 직렬화 및 역직렬화 예시</a></li>
 </ul>
 
 <hr />
 
-<h2 id="레이어드-아키텍쳐layered-architecture란">레이어드 아키텍쳐(Layered Architecture)란?</h2>
+<h2 id="직렬화serialization과-역직렬화deserialization--️-">직렬화(Serialization)과 역직렬화(Deserialization) 💾 ➡️ 💻</h2>
 
 <ul>
-  <li>여러 수평 레이어가 수직적으로 쌓인 구조 (상위 레이어에서 하위 레이어로 단방향 의존성)</li>
-  <li>
-    <p>각 계층이 명확한 역할을 가지며, 하위 계층만 접근할 수 있도록 설계하여 유지보수성과 확장성을 높이는 것이 목적</p>
-
-    <ol>
-      <li>
-        <p>Presentation Layer (프레젠테이션 계층) : 1층로비, 방문객 맞이하고 안내</p>
-
-        <blockquote>
-          <p>예시: Spring Boot의 <code class="language-plaintext highlighter-rouge">Controller</code></p>
-        </blockquote>
-
-        <ul>
-          <li><strong>사용자와 직접 상호작용</strong>하는 계층 (예: 웹 UI, API 컨트롤러)</li>
-          <li>사용자의 입력을 받아 <strong>비즈니스 로직을 호출</strong>하고, 응답을 반환</li>
-        </ul>
-      </li>
-      <li>Business Logic Layer (비즈니스 로직 계층) : 실제 회사 업무 설계 및 규칙 수립
-        <blockquote>
-          <p>예시: Spring Boot의 <code class="language-plaintext highlighter-rouge">Service</code></p>
-        </blockquote>
-        <ul>
-          <li>핵심 비즈니스 로직을 처리하는 계층</li>
-          <li>도메인 규칙을 적용하여 데이터 검증 및 가공 수행</li>
-        </ul>
-      </li>
-      <li>Data Access Layer (데이터 접근 계층) : 비즈니스 레이어의 명령 실행
-        <blockquote>
-          <p>예시: Spring Boot의 <code class="language-plaintext highlighter-rouge">Repository</code></p>
-        </blockquote>
-        <ul>
-          <li>데이터베이스와 직접 상호작용하는 계층</li>
-          <li>DAO(Repository)를 통해 데이터를 저장하고 조회하는 역할</li>
-        </ul>
-      </li>
-      <li>Database Layer (데이터베이스 계층) : 필요한 정보 저장 및 검색
-        <ul>
-          <li>실제 데이터를 저장하는 <strong>물리적 데이터베이스</strong> (MySQL, PostgreSQL 등)</li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-  <li>데이터 흐름
+  <li><strong>직렬화</strong>
     <ul>
-      <li>요청 → 컨트롤러 → 서비스 → 레포지토리</li>
+      <li>프로그램에서 사용하는 데이터를 파일이나 네트워크를 통해 전송하거나 저장하기 쉬운 형태로 변환하는 과정</li>
     </ul>
   </li>
-  <li>사용 이유
+  <li><strong>역직렬화</strong>
     <ul>
-      <li><strong>모듈화:</strong> 각 레이어가 독립적이라 변경 사항이 영향을 최소화</li>
-      <li><strong>유지보수성:</strong> 비즈니스 로직(Service)과 DB 접근(Repository)을 분리</li>
-      <li><strong>테스트 용이:</strong> 단위 테스트 작성이 쉬움 (ex: Service 레이어만 Mock 테스트 가능)</li>
+      <li>그 반대로, 저장되거나 전송된 데이터를 다시 프로그램에서 사용할 수 있는 원래의 데이터 형태로 복원하는 과정</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="레이어-간-관계">레이어 간 관계</h3>
+<h2 id="직렬화-serialization-이란-">직렬화 (Serialization) 이란? 📦</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[클라이언트]
-    ↓
-[Presentation Layer]  →  Controller
-    ↓
-[Business Logic Layer]  →  Service
-    ↓
-[Data Access Layer]  →  Repository (DAO)
-    ↓
-[Database Layer]  →  DB (MySQL, PostgreSQL)
+<p><strong>직렬화</strong>는 메모리 상에 있는 객체나 데이터 구조를 바이트 스트림 형태로 변환하는 것을 의미한다.</p>
+
+<blockquote>
+  <p>마치 택배 상자에 물건을 포장하는 것처럼, 데이터를 “직렬” 형태로 나열하여 보관하거나 전송하기 좋게 만드는 것.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><strong>주요 목적</strong>:</p>
+
+    <ul>
+      <li><strong>데이터 저장</strong>: 객체의 상태를 파일이나 데이터베이스에 저장하여 영구적으로 보관 💾</li>
+      <li><strong>데이터 전송</strong>: 네트워크를 통해 객체를 다른 시스템으로 전송 🌐</li>
+      <li><strong>원격 호출 (RPC, RMI)</strong>: 객체를 네트워크를 통해 다른 시스템의 메소드 인자로 전달 📞</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>예시</strong>:</p>
+    <ul>
+      <li>객체를 JSON이나 XML 형태로 변환하여 텍스트 파일에 저장</li>
+      <li>객체를 바이너리 형태로 변환하여 네트워크 소켓을 통해 전송</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="역직렬화-deserialization-이란--️-">역직렬화 (Deserialization) 이란? 📦 ➡️ 💻</h2>
+
+<p><strong>역직렬화</strong>는 직렬화된 바이트 스트림을 다시 원래의 객체나 데이터 구조로 복원하는 과정</p>
+
+<blockquote>
+  <p>택배 상자를 열어 내용물을 꺼내는 것과 비슷하게, 직렬화된 데이터를 “역으로 직렬”화하여 프로그램이 이해할 수 있는 형태로 되돌리는 것.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><strong>주요 목적</strong>:</p>
+
+    <ul>
+      <li><strong>저장된 데이터 로드</strong>: 파일이나 데이터베이스에서 직렬화된 객체를 읽어와 메모리에 복원 💾 ➡️ 💻</li>
+      <li><strong>전송된 데이터 수신</strong>: 네트워크를 통해 수신된 직렬화된 데이터를 객체로 변환 🌐 ➡️ 💻</li>
+      <li><strong>원격 호출 결과 처리</strong>: 원격 시스템으로부터 직렬화된 객체 형태로 결과를 받아 원래 객체로 복원 📞 ➡️ 💻</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>예시</strong>:</p>
+    <ul>
+      <li>JSON이나 XML 텍스트 파일을 읽어 객체로 복원</li>
+      <li>바이너리 데이터를 네트워크 소켓으로부터 읽어 객체로 복원</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="언어별-직렬화-및-역직렬화-예시">언어별 직렬화 및 역직렬화 예시</h2>
+
+<h3 id="javascripnt-nodejs">JavaScripnt (Node.js)</h3>
+
+<p>JavaScript에서는 기본적으로 JSON 객체를 사용하여 직렬화 및 역직렬화를 많이 수행</p>
+
+<ul>
+  <li>바이너리 직렬화는 Buffer 객체 등을 활용해야 합니다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 직렬화 (Serialization)</span>
+<span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">David</span><span class="dl">"</span><span class="p">,</span> <span class="na">city</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Seoul</span><span class="dl">"</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">jsonString</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// 📦 -&gt; JSON String</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jsonString</span><span class="p">);</span> <span class="c1">// {"name":"David","city":"Seoul"}</span>
+
+<span class="c1">// 역직렬화 (Deserialization)</span>
+<span class="kd">const</span> <span class="nx">loadedData</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">jsonString</span><span class="p">);</span> <span class="c1">// JSON String -&gt; 📦 -&gt; 💻</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">loadedData</span><span class="p">);</span> <span class="c1">// { name: 'David', city: 'Seoul' }</span>
 </code></pre></div></div>
 
-<ul>
-  <li>상위 계층(Presentation)은 <strong>하위 계층(Business Logic)만 호출</strong>할 수 있음.</li>
-  <li>데이터베이스 관련 로직이 <strong>비즈니스 로직과 분리</strong>되어 유지보수가 쉬움.</li>
-</ul>
+<h3 id="python">Python</h3>
 
-<hr />
-
-<h2 id="mvc란">MVC란?</h2>
+<p>Python에서는 <code class="language-plaintext highlighter-rouge">pickle</code> 모듈을 사용하여 직렬화 및 역직렬화를 기본적으로 지원한다.</p>
 
 <ul>
-  <li>Model-View-Controller
-    <ul>
-      <li>Model : 요리사가 실제 음식을 준비하고 만드는 작업</li>
-      <li>View : 음식의 플레이팅</li>
-      <li>Controller : 고객의 주문을 받고, 요리사에게 전달하여 완성된 요리를 테이블에 서빙 (백엔드)</li>
-      <li>3개의 요소가 유기적으로 협력</li>
-    </ul>
-  </li>
-  <li>사용자 인터페이스와 비즈니스 로직 분리</li>
-  <li>데이터 흐름
-    <ul>
-      <li>요청 → 컨트롤러 → 모델 → 뷰</li>
-    </ul>
-  </li>
-  <li>사용 이유
-    <ul>
-      <li><strong>역할 분리:</strong> View, Model, Controller가 독립적으로 동작하여 유지보수 용이</li>
-      <li><strong>유연한 확장:</strong> UI 변경(View)이나 비즈니스 로직(Model)을 따로 수정 가능</li>
-      <li><strong>재사용성 증가:</strong> 같은 Model을 여러 View에서 사용 가능</li>
-    </ul>
-  </li>
+  <li>JSON, <code class="language-plaintext highlighter-rouge">marshal</code> 등 다양한 모듈도 활용 가능</li>
 </ul>
 
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-03-17-image.png?raw=true" alt="Layered Architecture &amp; MVC pattern" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">import</span> <span class="nn">pickle</span>
 
-<h2 id="레이어드-아키텍쳐와-mvc를-함께-사용">레이어드 아키텍쳐와 MVC를 함께 사용</h2>
+    <span class="c1"># 직렬화 (Serialization)
+</span>    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'Alice'</span><span class="p">,</span> <span class="s">'age'</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data.pickle'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="c1"># 📦 -&gt; 💾
+</span>
+    <span class="c1"># 역직렬화 (Deserialization)
+</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data.pickle'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">loaded_data</span> <span class="o">=</span> <span class="n">pickle</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="c1"># 💾 -&gt; 📦 -&gt; 💻
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">loaded_data</span><span class="p">)</span> <span class="c1"># {'name': 'Alice', 'age': 30}
+</span></code></pre></div></div>
+
+<h3 id="java">Java</h3>
+
+<p>Java는 <code class="language-plaintext highlighter-rouge">java.io.Serializable</code> 인터페이스를 구현한 클래스에 대해 직렬화를 기본적으로 지원합니다.</p>
 
 <ul>
-  <li><strong>둘을 함께 사용하면 유지보수성과 확장성이 좋아진다.</strong>
-    <ul>
-      <li><strong>Controller는 최대한 가볍게 (Thin Controller, Fat Service)</strong></li>
-      <li><strong>비즈니스 로직은 Service Layer에서 처리 (SRP 원칙 준수)</strong></li>
-    </ul>
-  </li>
+  <li>JSON 라이브러리 (Jackson, Gson 등)를 사용하여 JSON 직렬화/역직렬화도 많이 사용됨.</li>
 </ul>
 
-<h3 id="둘을-함께-사용했을-때-관계-흐름-요청--응답">둘을 함께 사용했을 때 관계 흐름 (요청 → 응답)</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
 
-<ol>
-  <li>사용자 (Client) 가 요청을 보냄</li>
-  <li>Controller (입력 처리, 요청 매핑)</li>
-  <li>Service (비즈니스 로직 처리)</li>
-  <li>Repository (데이터베이스 접근)</li>
-  <li>Service → Controller 로 응답 반환</li>
-  <li>Controller → View (또는 JSON)</li>
-</ol>
+<span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Person</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Person{name='"</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">"', age="</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="sc">'}'</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SerializationExample</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 직렬화 (Serialization)</span>
+        <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Bob"</span><span class="o">,</span> <span class="mi">25</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">FileOutputStream</span> <span class="n">fileOut</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"person.ser"</span><span class="o">);</span>
+             <span class="nc">ObjectOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectOutputStream</span><span class="o">(</span><span class="n">fileOut</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">out</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">person</span><span class="o">);</span> <span class="c1">// 📦 -&gt; 💾</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Serialized data is saved in person.ser"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">i</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 역직렬화 (Deserialization)</span>
+        <span class="nc">Person</span> <span class="n">loadedPerson</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">FileInputStream</span> <span class="n">fileIn</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"person.ser"</span><span class="o">);</span>
+             <span class="nc">ObjectInputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span><span class="n">fileIn</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">loadedPerson</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Person</span><span class="o">)</span> <span class="n">in</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span> <span class="c1">// 💾 -&gt; 📦 -&gt; 💻</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">i</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ClassNotFoundException</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Person class not found"</span><span class="o">);</span>
+            <span class="n">c</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Deserialized Person: "</span> <span class="o">+</span> <span class="n">loadedPerson</span><span class="o">);</span> <span class="c1">// Deserialized Person: Person{name='Bob', age=25}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="kotlin">Kotlin</h3>
+
+<p>Kotlin은 Java와 유사하게 <code class="language-plaintext highlighter-rouge">java.io.Serializable</code> 인터페이스를 사용하거나, Jackson, Gson 같은 JSON 라이브러리를 활용</p>
 
 <ul>
-  <li>MVC는 역할을 분리하고, 레이어드 아키텍처는 각 계층을 더 체계적으로 조직화하여 유지보수성과 확장성을 높인다</li>
+  <li>Kotlin Serialization library를 사용하여 더 간편하게 직렬화/역직렬화를 할 수도 있음</li>
 </ul>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">import</span> <span class="nn">kotlinx.serialization.*</span>
+    <span class="k">import</span> <span class="nn">kotlinx.serialization.json.*</span>
+    <span class="k">import</span> <span class="nn">java.io.*</span>
+
+    <span class="nd">@Serializable</span>
+    <span class="kd">data class</span> <span class="nc">User</span><span class="p">(</span><span class="kd">val</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span> <span class="kd">val</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span>
+
+    <span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 직렬화 (Serialization)</span>
+        <span class="kd">val</span> <span class="py">user</span> <span class="p">=</span> <span class="nc">User</span><span class="p">(</span><span class="s">"Eve"</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+        <span class="kd">val</span> <span class="py">json</span> <span class="p">=</span> <span class="nc">Json</span><span class="p">.</span><span class="nf">encodeToString</span><span class="p">(</span><span class="nc">User</span><span class="p">.</span><span class="nf">serializer</span><span class="p">(),</span> <span class="n">user</span><span class="p">)</span> <span class="err">#</span> <span class="err">📦</span> <span class="p">-&gt;</span> <span class="nc">JSON</span> <span class="nc">String</span>
+        <span class="nf">println</span><span class="p">(</span><span class="n">json</span><span class="p">)</span> <span class="err">#</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span><span class="s">"Eve"</span><span class="p">,</span><span class="s">"age"</span><span class="p">:</span><span class="mi">28</span><span class="p">}</span>
+
+        <span class="c1">// 역직렬화 (Deserialization)</span>
+        <span class="kd">val</span> <span class="py">loadedUser</span> <span class="p">=</span> <span class="nc">Json</span><span class="p">.</span><span class="nf">decodeFromString</span><span class="p">(</span><span class="nc">User</span><span class="p">.</span><span class="nf">serializer</span><span class="p">(),</span> <span class="n">json</span><span class="p">)</span> <span class="err">#</span> <span class="nc">JSON</span> <span class="nc">String</span> <span class="p">-&gt;</span> <span class="err">📦</span> <span class="p">-&gt;</span> <span class="err">💻</span>
+        <span class="nf">println</span><span class="p">(</span><span class="n">loadedUser</span><span class="p">)</span> <span class="err">#</span> <span class="nc">User</span><span class="p">(</span><span class="n">name</span><span class="p">=</span><span class="nc">Eve</span><span class="p">,</span> <span class="n">age</span><span class="p">=</span><span class="mi">28</span><span class="p">)</span>
+
+
+        <span class="c1">// Java Serializable 사용 (Java와 동일)</span>
+        <span class="c1">// ... (Java 예시 코드와 유사)</span>
+    <span class="p">}</span>
+</code></pre></div></div>
 
   
 </article>
@@ -808,11 +872,23 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         <a
           
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
           href="/javascript/"
           class="sidebar-nav-item "
           
         >
-          JavaScript (8)
+          Frontend (9)
         </a>
       </li>
     
@@ -836,7 +912,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Java (13)
+          Java (17)
         </a>
       </li>
     
@@ -860,7 +936,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Flask (2)
+          Flask (3)
         </a>
       </li>
     
@@ -872,7 +948,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Spring (13)
+          Spring (17)
         </a>
       </li>
     
@@ -884,7 +960,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Miscellaneous (16)
+          기타 (4)
         </a>
       </li>
     

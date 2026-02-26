@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교 | NAHYUN BLOG</title>
+<title>[Etc] immutable, final, constant | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교" />
+<meta property="og:title" content="[Etc] immutable, final, constant" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="2025-07-20 FastAPI vs Flask" />
-<meta property="og:description" content="2025-07-20 FastAPI vs Flask" />
-<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" />
-<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" />
+<meta name="description" content="값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자." />
+<meta property="og:description" content="값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/java/2025-03-06-immutable/" />
+<meta property="og:url" content="https://nan0silver.github.io/java/2025-03-06-immutable/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-07-20T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-03-06T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교" />
+<meta property="twitter:title" content="[Etc] immutable, final, constant" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-07-23T16:30:00+00:00","datePublished":"2025-07-20T00:00:00+00:00","description":"2025-07-20 FastAPI vs Flask","headline":"[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-26T05:16:31+00:00","datePublished":"2025-03-06T00:00:00+00:00","description":"값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자.","headline":"[Etc] immutable, final, constant","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/java/2025-03-06-immutable/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/java/2025-03-06-immutable/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/java/2025-03-06-immutable/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -186,7 +186,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-02-25T05:09:27+00:00',
+    INDEX_KEY: 'index--2026-02-26T05:17:15+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교",
-    "description": "2025-07-20 FastAPI vs Flask
+    "headline": "[Etc] immutable, final, constant",
+    "description": "값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-07-20T00:00:00+00:00",
-    "dateModified": "2025-07-23T16:30:00+00:00",
+    "datePublished": "2025-03-06T00:00:00+00:00",
+    "dateModified": "2026-02-26T05:16:31+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"
+      "@id": "https://nan0silver.github.io/java/2025-03-06-immutable/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/" />
+<link rel="canonical" href="https://nan0silver.github.io/java/2025-03-06-immutable/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "miscellaneous",
-        "item": "https://nan0silver.github.io/miscellaneous/"
+        "name": "java",
+        "item": "https://nan0silver.github.io/java/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교",
-        "item": "https://nan0silver.github.io/miscellaneous/til/2025-07-20-flask-fastAPI/"
+        "name": "[Etc] immutable, final, constant",
+        "item": "https://nan0silver.github.io/java/2025-03-06-immutable/"
       }
     ]
   }
@@ -358,23 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/miscellaneous/">miscellaneous</a>
+          <a href="/java/">java</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          
-          
-          <a href="/miscellaneous/til/">til</a>
-        
-      </li>
-    
-      <li>
-        
-          <span>/</span>
-          <span>2025-07-20-flask-fastAPI</span>
+          <span>2025-03-06-immutable</span>
         
       </li>
     
@@ -391,18 +382,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-miscellaneous-til-flask-fastAPI" class="page post mb6" role="article">
+<article id="post-java-immutable" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교
+        [Etc] immutable, final, constant
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-07-20T00:00:00+00:00">20 Jul 2025</time> in <a href="/miscellaneous/" class="flip-title">Miscellaneous</a> / <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Fastapi</span>, <span>Flask</span>, <span>Backend</span>
+        <time datetime="2025-03-06T00:00:00+00:00">06 Mar 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
       </span>
       
         
@@ -411,10 +402,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 23 Jul 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 26 Feb 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-07-23T16:30:00+00:00">2025-07-23</time>
+              <time datetime="2026-02-26T05:16:31+00:00">2026-02-26</time>
             </span>
           
         
@@ -430,7 +421,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      2025-07-20 FastAPI vs Flask
+      값이나 상태를 변경하지 못하도록 하는데 사용되는 immutable, final, constant에 대해 알아보자.
 
     </p>
   
@@ -440,171 +431,137 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#-새롭게-배운-것">새롭게 배운 것</a></li>
-  <li><a href="#-오늘의-문제-상황--해결-과정">오늘의 문제 상황 &amp; 해결 과정</a></li>
-  <li><a href="#-pydantic이란">Pydantic이란?</a></li>
-  <li><a href="#-spring-boot-dto와-pydantic의-비교">Spring Boot DTO와 Pydantic의 비교</a></li>
-  <li><a href="#-느낀-점">느낀 점</a></li>
+  <li><a href="#immutable-불변"><code class="language-plaintext highlighter-rouge">Immutable</code></a></li>
+  <li><a href="#final-최종-변경-불가"><code class="language-plaintext highlighter-rouge">final</code></a></li>
+  <li><a href="#const-상수"><code class="language-plaintext highlighter-rouge">const</code></a></li>
 </ul>
 
 <hr />
 
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<ul>
-  <li>Python 백엔드 프레임워크인 <strong>FastAPI</strong>와 <strong>Flask</strong>를 비교해보았다.</li>
-  <li>두 프레임워크 모두 경량 웹 서버를 빠르게 개발할 수 있도록 도와주지만, 철학과 기능 면에서 차이가 존재한다.</li>
-  <li>주요 비교 항목: 비동기 처리, 타입 힌트 지원, 성능, 문서 자동화, 커뮤니티 및 생태계 등</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th><strong>FastAPI</strong></th>
-      <th><strong>Flask</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>출시 연도</strong></td>
-      <td>2018</td>
-      <td>2010</td>
-    </tr>
-    <tr>
-      <td><strong>비동기 지원</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">async/await</code> 기반 비동기 처리 완전 지원</td>
-      <td>기본은 동기, 비동기 처리는 별도 패키지 필요</td>
-    </tr>
-    <tr>
-      <td><strong>타입 힌트</strong></td>
-      <td>필수적으로 사용하며, 자동 문서화 및 검증에 활용</td>
-      <td>선택적 사용, 검증은 외부 라이브러리 의존</td>
-    </tr>
-    <tr>
-      <td><strong>문서 자동화</strong></td>
-      <td>Swagger UI 및 Redoc 자동 생성</td>
-      <td>기본 제공 없음 (Flasgger 등으로 보완)</td>
-    </tr>
-    <tr>
-      <td><strong>성능</strong></td>
-      <td>매우 빠름 (Starlette 기반, Uvicorn 활용)</td>
-      <td>상대적으로 느림</td>
-    </tr>
-    <tr>
-      <td><strong>러닝 커브</strong></td>
-      <td>초기 진입 장벽이 다소 높음 (타입, Pydantic 등)</td>
-      <td>매우 쉬운 진입, 학습 곡선 완만</td>
-    </tr>
-    <tr>
-      <td><strong>커뮤니티</strong></td>
-      <td>빠르게 성장 중</td>
-      <td>매우 크고 안정적인 생태계</td>
-    </tr>
-    <tr>
-      <td><strong>데이터 검증</strong></td>
-      <td>Pydantic 기반의 자동 검증</td>
-      <td>별도 유효성 검사 코드 필요</td>
-    </tr>
-    <tr>
-      <td><strong>REST API 개발</strong></td>
-      <td>RESTful 설계에 최적화</td>
-      <td>자유도가 높음, 규칙이 느슨함</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-오늘의-문제-상황--해결-과정">🍎 오늘의 문제 상황 &amp; 해결 과정</h2>
-
-<ul>
-  <li>지금까지는 Flask의 간결함과 진입 장벽이 낮은 점이 마음에 들어 주로 Flask를 사용해왔다.</li>
-  <li>하지만 이번에는 FastAPI를 직접 적용해보고 싶어 새 프로젝트에 도입해보았다.</li>
-  <li>특히 <code class="language-plaintext highlighter-rouge">Pydantic</code> 모델이 처음엔 어렵게 느껴질까 걱정했지만, 막상 사용해보니 <strong>Spring Boot의 DTO와 매우 유사한 느낌</strong>이 들어 빠르게 익숙해졌다.</li>
-  <li>타입 기반 구조와 자동 검증, 문서화 덕분에 프로젝트가 자연스럽게 구조화되고 개발 속도도 빨랐다.</li>
-</ul>
-
-<hr />
-
-<h2 id="-pydantic이란">📌 Pydantic이란?</h2>
-
-<ul>
-  <li><strong>Pydantic</strong>은 FastAPI에서 입력/출력 데이터의 구조를 정의하고, 유효성을 검사하며, JSON 직렬화를 자동으로 처리하는 핵심 컴포넌트다.</li>
-  <li>Python의 <strong>타입 힌트(type hint)</strong>를 기반으로 동작하며, <code class="language-plaintext highlighter-rouge">BaseModel</code>을 상속하여 필드와 제약 조건을 선언할 수 있다.</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
-
-<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
-</code></pre></div></div>
-
-<ul>
-  <li>위와 같이 작성하면, FastAPI는 요청 데이터가 이 조건을 만족하는지 자동으로 검증하고, Swagger 문서까지 자동 생성해준다.</li>
-</ul>
-
-<hr />
-
-<h2 id="-spring-boot-dto와-pydantic의-비교">🔍 Spring Boot DTO와 Pydantic의 비교</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>Spring Boot DTO</th>
-      <th>FastAPI Pydantic Model</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>역할</strong></td>
-      <td>요청/응답 객체 정의 + 유효성 검사</td>
-      <td>요청/응답 객체 정의 + 유효성 검사</td>
-    </tr>
-    <tr>
-      <td><strong>유효성 검사 도구</strong></td>
-      <td>JSR 380 (e.g., <code class="language-plaintext highlighter-rouge">@NotNull</code>, <code class="language-plaintext highlighter-rouge">@Size</code>)</td>
-      <td>Pydantic (<code class="language-plaintext highlighter-rouge">Field</code>, <code class="language-plaintext highlighter-rouge">validator</code>)</td>
-    </tr>
-    <tr>
-      <td><strong>직렬화/역직렬화</strong></td>
-      <td>Jackson 사용</td>
-      <td>내장 기능으로 자동 처리</td>
-    </tr>
-    <tr>
-      <td><strong>중첩 구조 지원</strong></td>
-      <td>중첩 DTO 클래스</td>
-      <td>중첩 <code class="language-plaintext highlighter-rouge">BaseModel</code>을 통한 자연스러운 처리</td>
-    </tr>
-    <tr>
-      <td><strong>문서화 연동</strong></td>
-      <td>Swagger/OpenAPI 설정 필요</td>
-      <td>FastAPI에 자동 내장</td>
-    </tr>
-    <tr>
-      <td><strong>확장성</strong></td>
-      <td>Bean Validation 위주</td>
-      <td>타입 변환, 커스텀 직렬화 등 더 다양한 기능 내장</td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="immutable-불변"><code class="language-plaintext highlighter-rouge">Immutable</code> (불변)</h2>
 
 <blockquote>
-  <p>결론적으로 <strong>Pydantic은 Spring의 DTO와 유사한 사용 경험을 제공하면서도</strong>, 그 이상의 기능(데이터 직렬화, 문서화, 타입 변환 등)을 하나의 모델에서 처리할 수 있다는 점에서 <strong>DTO + Validator + Mapper + Serializer의 통합체</strong>로 볼 수 있다.</p>
+  <p>생성 후 객체 자체의 상태를 변경할 수 없음
+Java의 키워드는 아님, 다양한 언어에서 사용되는 객체의 속성 개념</p>
 </blockquote>
 
-<hr />
+<ul>
+  <li>객체와 관련됨</li>
+  <li>특징
+    <ul>
+      <li>모든 필드가 <code class="language-plaintext highlighter-rouge">final</code>이고 <code class="language-plaintext highlighter-rouge">private</code></li>
+      <li>setter 메서드가 없음</li>
+      <li>모든 가변 참조 필드가 방어적 복사를 통해 보호됨</li>
+    </ul>
+  </li>
+  <li>중요한 점
+    <ul>
+      <li>불변 객체는 멀티 스레드 환경에서 안전하게 사용 가능</li>
+      <li>내부 상태를 변경하는 메서드를 제공하지 않아야 함.</li>
+    </ul>
+  </li>
+  <li>예 : String, Integer, BigDecimal
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">String</code> 클래스는 자바에서 대표적인 불변 객체
+        <blockquote>
+          <p><code class="language-plaintext highlighter-rouge">String</code>객체를 한 번 생성하면 내부 값이 변경되지 않음.
+새로운 값을 할당하려면 새로운 객체가 만들어짐.</p>
+        </blockquote>
+        <ul>
+          <li>
+            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nc">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span>
+  <span class="nc">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">concat</span><span class="o">(</span><span class="s">" World"</span><span class="o">);</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s1</span><span class="o">);</span> <span class="c1">// 여전히 "Hello"</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-<h2 id="-느낀-점">🦄 느낀 점</h2>
+<h2 id="final-최종-변경-불가"><code class="language-plaintext highlighter-rouge">Final</code> (최종, 변경 불가)</h2>
+
+<blockquote>
+  <p>한 번 할당되면 값을 변경할 수 없는 변수 또는 참조
+Java의 키워드</p>
+</blockquote>
 
 <ul>
-  <li>Flask는 여전히 빠른 개발과 간단한 구조를 원할 때 유용한 선택지다.</li>
-  <li>반면 FastAPI는 프로젝트 구조를 더 명확히 하고, 자동화된 유효성 검사 및 문서화 기능까지 갖추고 있어 <strong>중·대형 규모 프로젝트나 협업 시에 훨씬 효율적</strong>이라는 점을 느꼈다.</li>
-  <li>개인적으로는 Pydantic이 예상보다 익숙했고, Spring Boot의 DTO를 써본 경험이 FastAPI 적응에 큰 도움이 되었다.</li>
-  <li>앞으로는 프로젝트의 성격에 따라 Flask와 FastAPI를 유연하게 선택하며, 각 도구의 장점을 상황에 맞게 활용할 계획이다.</li>
+  <li>특징
+    <ul>
+      <li>변수에 사용 : 초기화 후 재할당 불가</li>
+      <li>메서드에 사용 : 오버라이딩 불가</li>
+      <li>클래스에 사용 : 상속 불가</li>
+    </ul>
+  </li>
+  <li>중요한 점
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">final</code>은 참조의 변경을 막지만, 참조가 가리키는 객체의 내용 변경은 막지 않음</li>
+    </ul>
+  </li>
+  <li>실무에서 활용
+    <ol>
+      <li>메서드 파라미터
+        <ul>
+          <li>메서드 내에서 파라미터 값이 변경되지 않도록 보장</li>
+          <li>
+            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processUser</span><span class="o">(</span><span class="kd">final</span> <span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>람다 표현식
+        <ul>
+          <li>람다에서 외부 변수를 사용할 때는 반드시 <code class="language-plaintext highlighter-rouge">final</code> 또는 <code class="language-plaintext highlighter-rouge">effectively final</code>이어야 함</li>
+          <li>
+            <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">final</span> <span class="nc">String</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s">"User-"</span><span class="o">;</span>
+  <span class="n">userList</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">user</span> <span class="o">-&gt;</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">())</span>
+      <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>스레드 안정성
+        <ul>
+          <li>멀티스레드 환경에서 불변성 보장에 도움</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="const-상수"><code class="language-plaintext highlighter-rouge">Const</code> (상수)</h2>
+
+<blockquote>
+  <p>프로그램 전체에서 변경되지 않는 고정 값
+Java의 키워드</p>
+</blockquote>
+
+<ul>
+  <li>특징
+    <ul>
+      <li>일반적으로 <code class="language-plaintext highlighter-rouge">static final</code>로 선언</li>
+      <li>클래스 로딩 시점에 초기화</li>
+      <li>관례적으로 대문자와 언더스코어 사용 (UPPER_SNAKE_CASE)</li>
+      <li>예
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">public static final int MAX_USERS = 100;</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">static</code>
+    <ul>
+      <li>상수(<code class="language-plaintext highlighter-rouge">const</code>)와 자주 함께 사용되는 변수</li>
+      <li>클래스 수준에서 사용되며, 객체가 아닌 클래스에 종속됨
+        <ul>
+          <li>클래스 로딩 시 한 번만 초기화되며 모든 객체가 공유</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
   
@@ -844,11 +801,23 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         <a
           
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
           href="/javascript/"
           class="sidebar-nav-item "
           
         >
-          JavaScript (8)
+          Frontend (9)
         </a>
       </li>
     
@@ -872,7 +841,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Java (13)
+          Java (17)
         </a>
       </li>
     
@@ -896,7 +865,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Flask (2)
+          Flask (3)
         </a>
       </li>
     
@@ -908,7 +877,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Spring (13)
+          Spring (17)
         </a>
       </li>
     
@@ -920,7 +889,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Miscellaneous (16)
+          기타 (4)
         </a>
       </li>
     
