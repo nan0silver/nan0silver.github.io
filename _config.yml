@@ -74,7 +74,9 @@ menu:
     url: /about/
   - title: AWS (2)
     url: /aws/
-  - title: JavaScript (8)
+  - title: AI (2)
+    url: /ai/
+  - title: Frontend (8)
     url: /javascript/
   - title: Algorithm (18)
     url: /algorithm/
@@ -86,7 +88,7 @@ menu:
     url: /flask/
   - title: Spring (13)
     url: /spring/
-  - title: Miscellaneous (17)
+  - title: 기타 (17)
     url: /miscellaneous/
   - title: 프로젝트 일기 (29)
     url: /projectdiary/
