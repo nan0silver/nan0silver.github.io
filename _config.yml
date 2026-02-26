@@ -74,14 +74,14 @@ menu:
   - title: About
     url: /about/
   # 백엔드 (Java, Spring, Flask)
-  - title: Java (13)
+  - title: Java (17)
     url: /java/
-  - title: Spring (13)
+  - title: Spring (17)
     url: /spring/
-  - title: Flask (2)
+  - title: Flask (3)
     url: /flask/
   # 프론트
-  - title: Frontend (8)
+  - title: Frontend (9)
     url: /javascript/
   # 인프라 (AWS, Git)
   - title: AWS (2)
@@ -94,10 +94,10 @@ menu:
   - title: AI (2)
     url: /ai/
   # 기타
-  - title: 기타 (17)
+  - title: 기타 (4)
     url: /miscellaneous/
   # 일상 (프로젝트 일기, TIL)
-  - title: 프로젝트 일기 (29)
+  - title: 프로젝트 일기 (31)
     url: /projectdiary/
   - title: TIL (63)
     url: /til/
