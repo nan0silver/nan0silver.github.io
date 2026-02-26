@@ -70,26 +70,33 @@ menu:
   #   url:               /example/
   # - title:             Documentation
   #   url:               /docs/
+  # About
   - title: About
     url: /about/
-  - title: AWS (2)
-    url: /aws/
-  - title: AI (2)
-    url: /ai/
-  - title: Frontend (8)
-    url: /javascript/
-  - title: Algorithm (18)
-    url: /algorithm/
+  # 백엔드 (Java, Spring, Flask)
   - title: Java (13)
     url: /java/
-  - title: Git (3)
-    url: /git/
-  - title: Flask (2)
-    url: /flask/
   - title: Spring (13)
     url: /spring/
+  - title: Flask (2)
+    url: /flask/
+  # 프론트
+  - title: Frontend (8)
+    url: /javascript/
+  # 인프라 (AWS, Git)
+  - title: AWS (2)
+    url: /aws/
+  - title: Git (3)
+    url: /git/
+  # 알고리즘 · AI
+  - title: Algorithm (18)
+    url: /algorithm/
+  - title: AI (2)
+    url: /ai/
+  # 기타
   - title: 기타 (17)
     url: /miscellaneous/
+  # 일상 (프로젝트 일기, TIL)
   - title: 프로젝트 일기 (29)
     url: /projectdiary/
   - title: TIL (63)
