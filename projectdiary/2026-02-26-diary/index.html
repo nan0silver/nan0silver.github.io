@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="이전 글에서 다룬 CI/CD·Docker·ECR·EC2에 이어, 실제 파이프라인 구축 과정과 EC2 배포 시 겪은 트러블슈팅을 정리했습니다." />
+<meta property="og:description" content="이전 글에서 다룬 CI/CD·Docker·ECR·EC2에 이어, 실제 파이프라인 구축 과정과 EC2 배포 시 겪은 트러블슈팅을 정리했습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-02-26-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2026-02-26-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-02-27T07:15:09+00:00","datePublished":"2026-02-26T00:00:00+00:00","description":"이전 글에서 다룬 CI/CD·Docker·ECR·EC2에 이어, 실제 파이프라인 구축 과정과 EC2 배포 시 겪은 트러블슈팅을 정리했습니다.","headline":"[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-02-26-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-02-26-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2026-02-26-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-02-27T07:15:57+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화",
+    "description": "이전 글에서 다룬 CI/CD·Docker·ECR·EC2에 이어, 실제 파이프라인 구축 과정과 EC2 배포 시 겪은 트러블슈팅을 정리했습니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-02-26T00:00:00+00:00",
+    "dateModified": "2026-02-27T07:15:09+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2026-02-26-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-02-26-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화",
+        "item": "https://nan0silver.github.io/projectdiary/2026-02-26-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-02-26-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-02-26T00:00:00+00:00">26 Feb 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 27 Feb 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-02-27T07:15:09+00:00">2026-02-27</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      이전 글에서 다룬 CI/CD·Docker·ECR·EC2에 이어, 실제 파이프라인 구축 과정과 EC2 배포 시 겪은 트러블슈팅을 정리했습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p><a href="https://nan0silver.github.io/projectdiary/2026-02-24-diary/">이전 일기: Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS</a>에서 CI/CD, Docker, ECR, EC2 개념과 전체 흐름을 다뤘다.<br />
+이번에는 <strong>실제로 파이프라인을 구축한 과정</strong>과 <strong>배포하면서 겪은 트러블슈팅</strong>을 중심으로 정리한다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#1-전체-아키텍처">1. 전체 아키텍처</a></li>
+  <li><a href="#2-aws-ecr에-이미지-푸시">2. AWS ECR에 이미지 푸시</a></li>
+  <li><a href="#3-ec2-배포">3. EC2 배포</a></li>
+  <li><a href="#4-트러블슈팅-실제로-겪은-5가지-문제">4. 트러블슈팅: 실제로 겪은 5가지 문제</a></li>
+  <li><a href="#5-iam-instance-role-장기-자격증명-없이-ecr-접근">5. IAM Instance Role</a></li>
+  <li><a href="#6-환경변수-관리-env-파일-전략">6. 환경변수 관리</a></li>
+  <li><a href="#마무리-완성된-cd-흐름">마무리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="1-전체-아키텍처">1. 전체 아키텍처</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ 개발자 ]
+    │ git push (main 브랜치)
+    ↓
+[ GitHub ]
+    │ CI 워크플로우 실행 (ci.yml)
+    │ - Gradle 빌드
+    │ - 테스트 실행
+    ↓ (CI 성공 시)
+[ CD 워크플로우 실행 (cd.yml) ]
+    │
+    ├─ Docker 이미지 빌드
+    │
+    ├─ AWS ECR(컨테이너 레지스트리)에 이미지 push
+    │
+    └─ EC2 서버에 SSH 접속
+           │
+           ├─ ECR에서 새 이미지 pull
+           ├─ 기존 컨테이너 종료 &amp; 삭제
+           └─ 새 컨테이너 실행
+</code></pre></div></div>
+
+<p><strong>왜 CI와 CD를 나눌까?</strong><br />
+CI 워크플로우(ci.yml)는 push할 때마다 빌드·테스트만 하고, CD 워크플로우(cd.yml)는 <strong>CI가 성공했을 때만</strong> 배포를 맡는다. 이렇게 나누면 테스트가 실패한 코드는 절대 서버에 올라가지 않는다. 한 파일에 다 넣어도 되지만, <code class="language-plaintext highlighter-rouge">workflow_run</code>으로 “다른 워크플로우 완료”를 트리거로 쓰면 CI 결과에 따라 CD 실행 여부를 분리하기 쉽다.</p>
+
+<hr />
+
+<h2 id="2-aws-ecr에-이미지-푸시">2. AWS ECR에 이미지 푸시</h2>
+
+<p>이전 글에서 ECR의 역할을 다뤘다. 여기서는 <strong>GitHub Actions에서 ECR에 푸시하는 방법</strong>을 본다.</p>
+
+<p>GitHub Actions 워크플로우는 GitHub이 제공하는 <strong>Runner(가상 머신)</strong> 위에서 실행된다. 이 Runner에는 Docker가 미리 설치되어 있어서, 워크플로우 안에서 <code class="language-plaintext highlighter-rouge">docker build</code>, <code class="language-plaintext highlighter-rouge">docker tag</code>, <code class="language-plaintext highlighter-rouge">docker push</code> 같은 <strong>Docker CLI 명령어</strong>를 그대로 쓸 수 있다. 즉, “이미지 빌드”는 Runner에서 Docker로 하고, “저장”만 ECR에 하는 구조다. ECR은 이미지 보관소일 뿐, 빌드를 대신 해 주지 않는다. 그래서 CI 단계에서 Docker로 이미지를 만들고, 만든 이미지를 ECR 주소로 푸시하는 방식이 된다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>로컬/CI 서버          AWS ECR                  EC2
+docker build  →  docker push  →  docker pull → docker run
+(이미지 생성)    (업로드)         (다운로드)     (실행)
+</code></pre></div></div>
+
+<h3 id="github-actions에서-ecr에-push하는-코드">GitHub Actions에서 ECR에 push하는 코드</h3>
+
+<p><strong>필요한 사전 설정</strong><br />
+<code class="language-plaintext highlighter-rouge">secrets.AWS_ACCESS_KEY_ID</code>, <code class="language-plaintext highlighter-rouge">AWS_SECRET_ACCESS_KEY</code>, <code class="language-plaintext highlighter-rouge">AWS_REGION</code> 값은 <strong>GitHub 저장소 → Settings → Secrets and variables → Actions</strong>에서 등록해야 한다. 워크플로우 안에서는 <code class="language-plaintext highlighter-rouge">$</code>으로만 참조할 수 있고, 로그에는 값이 노출되지 않는다.</p>
+
+<p><strong>ECR 로그인을 왜 하냐면</strong><br />
+Docker는 이미지를 푸시할 때 레지스트리(ECR 포함)에 <strong>인증</strong>을 요구한다. <code class="language-plaintext highlighter-rouge">amazon-ecr-login</code> 액션은 위에서 설정한 AWS 자격증명으로 ECR에 로그인해 두어서, 그 다음 <code class="language-plaintext highlighter-rouge">docker push</code>가 비공개 레지스트리에 올라갈 수 있게 해 준다.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">AWS 자격증명 설정</span>
+  <span class="na">uses</span><span class="pi">:</span> <span class="s">aws-actions/configure-aws-credentials@v4</span>
+  <span class="na">with</span><span class="pi">:</span>
+    <span class="na">aws-access-key-id</span><span class="pi">:</span> <span class="s">$</span>
+    <span class="na">aws-secret-access-key</span><span class="pi">:</span> <span class="s">$</span>
+    <span class="na">aws-region</span><span class="pi">:</span> <span class="s">$</span>
+
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ECR 로그인</span>
+  <span class="na">id</span><span class="pi">:</span> <span class="s">login-ecr</span>
+  <span class="na">uses</span><span class="pi">:</span> <span class="s">aws-actions/amazon-ecr-login@v2</span>
+
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Docker 이미지 빌드 및 ECR 푸시</span>
+  <span class="na">env</span><span class="pi">:</span>
+    <span class="na">ECR_REGISTRY</span><span class="pi">:</span> <span class="s">$</span>
+    <span class="na">ECR_REPOSITORY</span><span class="pi">:</span> <span class="s">chingoo-haja</span>
+    <span class="na">IMAGE_TAG</span><span class="pi">:</span> <span class="s">$</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="s">docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .</span>
+    <span class="s">docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \</span>
+               <span class="s">$ECR_REGISTRY/$ECR_REPOSITORY:latest</span>
+    <span class="s">docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG</span>
+    <span class="s">docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest</span>
+</code></pre></div></div>
+
+<p>이미지에 <strong>두 개의 태그</strong>를 붙인다:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">$</code></strong> (커밋 해시): “이 커밋에서 만든 이미지”를 정확히 가리킨다. 롤백할 때 <code class="language-plaintext highlighter-rouge">docker pull ...:abc123</code>처럼 특정 버전을 지정할 수 있고, 어떤 배포가 어떤 코드에서 나왔는지 추적하기 좋다.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">latest</code></strong>: “지금 최신” 이미지를 가리킨다. 매번 같은 이름을 쓰면 EC2에서 <code class="language-plaintext highlighter-rouge">docker pull ...:latest</code>만 해도 최신으로 갱신할 수 있다.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-ec2-배포">3. EC2 배포</h2>
+
+<h3 id="cd-워크플로우-트리거-설정">CD 워크플로우 트리거 설정</h3>
+
+<p>CD는 CI가 성공했을 때만 실행되어야 한다. <code class="language-plaintext highlighter-rouge">workflow_run</code>으로 설정:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">on</span><span class="pi">:</span>
+  <span class="na">workflow_run</span><span class="pi">:</span>
+    <span class="na">workflows</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CI"</span><span class="pi">]</span>
+    <span class="na">types</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">completed</span><span class="pi">]</span>
+    <span class="na">branches</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">main</span><span class="pi">]</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">deploy</span><span class="pi">:</span>
+    <span class="na">if</span><span class="pi">:</span> <span class="s">$</span>
+</code></pre></div></div>
+
+<p><strong>개발자가 꼭 알아둘 점</strong><br />
+<code class="language-plaintext highlighter-rouge">types: [completed]</code>는 CI 워크플로우가 <strong>끝났을 때</strong>(성공이든 실패든) CD를 트리거한다는 뜻이다. 그래서 <strong>반드시</strong> <code class="language-plaintext highlighter-rouge">if: conclusion == 'success'</code>를 걸어야 한다. 이 조건이 없으면 CI가 실패(테스트 실패, 빌드 실패)해도 CD가 돌아가서, 깨진 코드가 서버에 배포될 수 있다.</p>
+
+<h3 id="ssh로-ec2에-접속해서-배포">SSH로 EC2에 접속해서 배포</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">EC2에 SSH 배포</span>
+  <span class="na">uses</span><span class="pi">:</span> <span class="s">appleboy/ssh-action@v1.2.2</span>
+  <span class="na">with</span><span class="pi">:</span>
+    <span class="na">host</span><span class="pi">:</span> <span class="s">$</span>
+    <span class="na">username</span><span class="pi">:</span> <span class="s">$</span>
+    <span class="na">key</span><span class="pi">:</span> <span class="s">$</span>
+    <span class="na">script</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s"># ECR에서 최신 이미지 다운로드 (아래 변수들은 job env에서 전달해야 함)</span>
+      <span class="s">aws ecr get-login-password --region $AWS_REGION | \</span>
+        <span class="s">docker login --username AWS --password-stdin $ECR_REGISTRY</span>
+
+      <span class="s">docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG</span>
+
+      <span class="s"># 기존 컨테이너 종료 &amp; 삭제</span>
+      <span class="s">docker stop chingoo-haja || true</span>
+      <span class="s">docker rm chingoo-haja || true</span>
+
+      <span class="s"># 새 컨테이너 실행</span>
+      <span class="s">docker run -d \</span>
+        <span class="s">--name chingoo-haja \</span>
+        <span class="s">--restart unless-stopped \</span>
+        <span class="s">-p 8080:8080 \</span>
+        <span class="s">--env-file $HOME/app/.env \</span>
+        <span class="s">-v $HOME/app/firebase-service-account.json:/firebase-service-account.json:ro \</span>
+        <span class="s">$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG</span>
+</code></pre></div></div>
+
+<p>각 옵션의 의미:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-d</code>: 백그라운드 실행 (detached mode)</li>
+  <li><code class="language-plaintext highlighter-rouge">--name chingoo-haja</code>: 컨테이너에 이름 부여</li>
+  <li><code class="language-plaintext highlighter-rouge">--restart unless-stopped</code>: 서버 재시작 시 자동으로 컨테이너도 재시작</li>
+  <li><code class="language-plaintext highlighter-rouge">-p 8080:8080</code>: 호스트의 8080 포트 → 컨테이너의 8080 포트로 연결</li>
+  <li><code class="language-plaintext highlighter-rouge">--env-file</code>: 환경변수 파일 주입</li>
+  <li><code class="language-plaintext highlighter-rouge">-v</code>: 파일 시스템 마운트 (볼륨). <code class="language-plaintext highlighter-rouge">:ro</code>는 read-only라서 컨테이너 안에서는 해당 경로를 수정할 수 없고, 보안·실수 방지에 유리하다.</li>
+</ul>
+
+<p><strong>EC2 script에서 쓰는 변수</strong><br />
+<code class="language-plaintext highlighter-rouge">$ECR_REGISTRY</code>, <code class="language-plaintext highlighter-rouge">$ECR_REPOSITORY</code>, <code class="language-plaintext highlighter-rouge">$IMAGE_TAG</code>, <code class="language-plaintext highlighter-rouge">$AWS_REGION</code>은 CD job의 <code class="language-plaintext highlighter-rouge">env</code>에서 정의해 두어야 한다. ECR 푸시 단계에서 쓴 값과 동일하게, 같은 워크플로우 안에서 <code class="language-plaintext highlighter-rouge">env</code>나 <code class="language-plaintext highlighter-rouge">steps.xxx.outputs</code>로 넘겨 주면 된다. 이 값들이 없으면 EC2에 SSH로 들어가도 “어떤 이미지를 pull할지” 알 수 없다.</p>
+
+<hr />
+
+<h2 id="4-트러블슈팅-실제로-겪은-5가지-문제">4. 트러블슈팅: 실제로 겪은 5가지 문제</h2>
+
+<h3 id="문제-1-docker-command-not-found">문제 1: <code class="language-plaintext highlighter-rouge">docker: command not found</code></h3>
+
+<p><strong>증상</strong>: CD가 실패하면서 “docker: command not found” 에러</p>
+
+<p><strong>원인</strong>: EC2 인스턴스에 Docker가 설치되어 있지 않았다.</p>
+
+<p><strong>해결</strong>: EC2에 SSH 접속 후 Docker 직접 설치</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum <span class="nb">install</span> <span class="nt">-y</span> docker
+<span class="nb">sudo </span>systemctl start docker
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>docker          <span class="c"># 서버 재시작 시 자동 시작</span>
+<span class="nb">sudo </span>usermod <span class="nt">-aG</span> docker ec2-user      <span class="c"># sudo 없이 docker 명령 실행</span>
+</code></pre></div></div>
+
+<p><strong>참고</strong>: <code class="language-plaintext highlighter-rouge">usermod -aG docker ec2-user</code>를 적용한 뒤에는 <strong>해당 사용자로 한 번 재로그인</strong>해야 그룹 변경이 반영된다. SSH로 접속한 세션이라면 한 번 끊었다가 다시 접속하거나, 새 터미널에서 SSH로 들어가면 된다.</p>
+
+<h3 id="문제-2-address-already-in-use-포트-8080-충돌">문제 2: <code class="language-plaintext highlighter-rouge">address already in use</code> (포트 8080 충돌)</h3>
+
+<p><strong>증상</strong>: 새 컨테이너 실행 시 “bind: address already in use” 에러</p>
+
+<p><strong>원인</strong>: 기존에 <code class="language-plaintext highlighter-rouge">java -jar</code> 방식으로 직접 실행 중이던 Spring Boot 프로세스가 아직 8080 포트를 점유하고 있었다.</p>
+
+<p><strong>해결</strong>: Docker 배포 전 포트를 강제로 해제</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>fuser <span class="nt">-k</span> 8080/tcp <span class="o">||</span> <span class="nb">true</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">fuser</code>는 특정 포트를 사용 중인 프로세스를 찾아서 종료하는 명령이다. <code class="language-plaintext highlighter-rouge">|| true</code>는 “이미 아무도 없어도 에러 내지 마라”는 의미.</p>
+
+<h3 id="문제-3-컨테이너가-created-상태에서-멈춤">문제 3: 컨테이너가 <code class="language-plaintext highlighter-rouge">created</code> 상태에서 멈춤</h3>
+
+<p><strong>증상</strong>: <code class="language-plaintext highlighter-rouge">docker ps</code>에서 컨테이너가 <code class="language-plaintext highlighter-rouge">created</code> 상태 (실행 전 상태)로 멈춰있음</p>
+
+<p><strong>원인</strong>: 포트 충돌로 인해 컨테이너가 시작 자체를 못 함</p>
+
+<p><strong>해결</strong>: 헬스체크 코드에서 <code class="language-plaintext highlighter-rouge">created</code>도 실패로 처리</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">STATUS</span><span class="o">=</span><span class="si">$(</span>docker inspect <span class="nt">--format</span><span class="o">=</span><span class="s1">''</span> chingoo-haja<span class="si">)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$STATUS</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"exited"</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$STATUS</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"dead"</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$STATUS</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"created"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+  </span><span class="nb">echo</span> <span class="s2">"컨테이너 기동 실패 (status: </span><span class="nv">$STATUS</span><span class="s2">)"</span>
+  docker logs chingoo-haja <span class="nt">--tail</span> 50
+  <span class="nb">exit </span>1
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>이 검사는 <strong>CD 스크립트 안에서</strong> <code class="language-plaintext highlighter-rouge">docker run</code> 직후(또는 짧은 대기 후) 실행한다. <code class="language-plaintext highlighter-rouge">exit 1</code>로 빠지면 GitHub Actions job이 실패 처리되어 “배포는 했는데 컨테이너가 안 떴다”는 상황을 CI/CD 단계에서 바로 알 수 있다.</p>
+
+<h3 id="문제-4-env-파일-수정-후에도-변경이-반영되지-않음">문제 4: <code class="language-plaintext highlighter-rouge">.env</code> 파일 수정 후에도 변경이 반영되지 않음</h3>
+
+<p><strong>증상</strong>: EC2의 <code class="language-plaintext highlighter-rouge">.env</code> 파일을 수정하고 <code class="language-plaintext highlighter-rouge">docker restart</code>를 했는데 여전히 이전 값이 사용됨</p>
+
+<p><strong>원인</strong>: <strong><code class="language-plaintext highlighter-rouge">docker restart</code>는 <code class="language-plaintext highlighter-rouge">--env-file</code>을 다시 읽지 않는다!</strong></p>
+
+<p>이게 초보자가 가장 많이 실수하는 부분이다. Docker 컨테이너의 환경변수는 <code class="language-plaintext highlighter-rouge">docker run</code> 시점에 한 번만 읽혀서 컨테이너 내부에 고정된다. <code class="language-plaintext highlighter-rouge">docker restart</code>는 같은 환경변수로 재시작할 뿐이다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ❌ 이렇게 해도 .env 변경사항이 반영되지 않음</span>
+docker restart chingoo-haja
+
+<span class="c"># ✅ 컨테이너를 완전히 삭제하고 새로 실행해야 함</span>
+docker stop chingoo-haja <span class="o">&amp;&amp;</span> docker <span class="nb">rm </span>chingoo-haja
+docker run <span class="nt">-d</span> <span class="nt">--name</span> chingoo-haja <span class="nt">--env-file</span> ~/app/.env ...
+</code></pre></div></div>
+
+<h3 id="문제-5-firebase-서비스-계정-json-파일-누락">문제 5: Firebase 서비스 계정 JSON 파일 누락</h3>
+
+<p><strong>증상</strong>: 컨테이너 시작 시 <code class="language-plaintext highlighter-rouge">FileNotFoundException: class path resource [firebase-service-account.json] cannot be opened</code></p>
+
+<p><strong>원인</strong>: Firebase 인증에 필요한 JSON 파일은 보안상 <code class="language-plaintext highlighter-rouge">.gitignore</code>에 등록되어 있다. 따라서 Git에 커밋되지 않고, Docker 이미지에도 포함되지 않는다.</p>
+
+<p><strong>잘못된 접근</strong>: 파일을 Git에 커밋 → 보안 사고</p>
+
+<p><strong>올바른 접근</strong>: 두 가지 변경</p>
+
+<ol>
+  <li><strong>코드 수정</strong>: <code class="language-plaintext highlighter-rouge">ClassPathResource</code> → <code class="language-plaintext highlighter-rouge">ResourceLoader</code>로 변경</li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">ClassPathResource</code>는 JAR/classpath 안의 리소스만 찾을 수 있다. 서버에서는 파일을 컨테이너 밖(EC2 경로)에 두고 <code class="language-plaintext highlighter-rouge">file:</code> 경로로 넘기므로, Spring의 <code class="language-plaintext highlighter-rouge">Resource</code> 추상화를 쓰는 <code class="language-plaintext highlighter-rouge">ResourceLoader.getResource(path)</code>로 바꾸면 <code class="language-plaintext highlighter-rouge">classpath:</code>, <code class="language-plaintext highlighter-rouge">file:</code> 둘 다 지원한다. <code class="language-plaintext highlighter-rouge">path</code>에 <code class="language-plaintext highlighter-rouge">file:/firebase-service-account.json</code>처럼 넘기면 컨테이너 내부의 해당 경로(볼륨으로 마운트된 파일)를 읽게 된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Before: JAR 내부에서만 파일을 찾음</span>
+<span class="nc">ClassPathResource</span> <span class="n">serviceAccount</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ClassPathResource</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+
+<span class="c1">// After: classpath:, file: 등 다양한 위치 지원</span>
+<span class="nc">Resource</span> <span class="n">serviceAccount</span> <span class="o">=</span> <span class="n">resourceLoader</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+</code></pre></div></div>
+
+<ol>
+  <li><strong>파일을 EC2에 직접 올리고 볼륨 마운트</strong></li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># EC2에 파일 업로드 (로컬에서)</span>
+scp <span class="nt">-i</span> key.pem firebase-service-account.json ec2-user@&lt;EC2_IP&gt;:~/app/
+
+<span class="c"># .env에서 경로 설정</span>
+<span class="nv">FIREBASE_SERVICE_ACCOUNT_PATH</span><span class="o">=</span>file:/firebase-service-account.json
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># cd.yml에서 볼륨 마운트</span>
+<span class="s">docker run -d \</span>
+<span class="s">-v $HOME/app/firebase-service-account.json:/firebase-service-account.json:ro \</span>
+<span class="nn">...</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">file:</code> 접두사는 파일 시스템 경로를, <code class="language-plaintext highlighter-rouge">classpath:</code> 접두사는 JAR 내부를 의미한다.</p>
+
+<hr />
+
+<h2 id="5-iam-instance-role-장기-자격증명-없이-ecr-접근">5. IAM Instance Role: 장기 자격증명 없이 ECR 접근</h2>
+
+<p>처음에는 EC2의 배포 스크립트에 <code class="language-plaintext highlighter-rouge">AWS_ACCESS_KEY_ID</code>, <code class="language-plaintext highlighter-rouge">AWS_SECRET_ACCESS_KEY</code>를 환경변수로 넘기려 했다. 이는 보안상 좋지 않다.</p>
+
+<p><strong>더 나은 방법: IAM Instance Role</strong></p>
+
+<p>EC2 인스턴스 자체에 <strong>IAM 역할(Instance Profile)</strong>을 붙여 두면, 그 EC2 안에서 돌아가는 프로세스(배포 스크립트 포함)가 <strong>별도 액세스 키 없이</strong> 해당 역할의 권한을 쓰게 된다. AWS 콘솔에서 IAM 역할을 만들고 “EC2가 ECR에서 pull할 수 있음” 같은 정책을 붙인 뒤, EC2 인스턴스 설정에서 “해당 역할 연결”만 해 주면 된다. 그러면 EC2 안에서는 위처럼 액세스 키 없이 <code class="language-plaintext highlighter-rouge">aws ecr get-login-password</code>가 동작한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># EC2 내에서 자격증명 없이 ECR 로그인 가능</span>
+aws ecr get-login-password <span class="nt">--region</span> ap-northeast-2 | <span class="se">\</span>
+  docker login <span class="nt">--username</span> AWS <span class="nt">--password-stdin</span> &lt;ECR_URI&gt;
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-환경변수-관리-env-파일-전략">6. 환경변수 관리: .env 파일 전략</h2>
+
+<p>운영 서버에는 수십 개의 민감한 설정값(DB URL, 비밀번호, API 키 등)이 필요하다. 이를 <code class="language-plaintext highlighter-rouge">~/app/.env</code> 파일에 한 줄에 <code class="language-plaintext highlighter-rouge">KEY=VALUE</code> 형태로 모아 두고, Docker 실행 시 <code class="language-plaintext highlighter-rouge">--env-file</code>로 넘기면 컨테이너 안의 프로세스(예: Spring Boot)가 그 값을 환경변수로 읽을 수 있다. Spring은 <code class="language-plaintext highlighter-rouge">SPRING_PROFILES_ACTIVE</code>, <code class="language-plaintext highlighter-rouge">MYSQL_URL</code> 같은 이름을 자동으로 인식한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ~/app/.env</span>
+<span class="nv">SPRING_PROFILES_ACTIVE</span><span class="o">=</span>prod
+<span class="nv">MYSQL_URL</span><span class="o">=</span>jdbc:mysql://db.amazonaws.com:3306/chingoo_db?...
+<span class="nv">MYSQL_USERNAME</span><span class="o">=</span>admin
+<span class="nv">MYSQL_PASSWORD</span><span class="o">=</span>secret
+<span class="nv">REDIS_HOST</span><span class="o">=</span>my-redis.cache.amazonaws.com
+<span class="nv">JWT_SECRET</span><span class="o">=</span>very-long-secret-key
+<span class="nv">FIREBASE_SERVICE_ACCOUNT_PATH</span><span class="o">=</span>file:/firebase-service-account.json
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Docker 실행 시 주입</span>
+docker run <span class="nt">--env-file</span> ~/app/.env ...
+</code></pre></div></div>
+
+<p><strong>주의할 점</strong>: 이 <code class="language-plaintext highlighter-rouge">.env</code> 파일에는 비밀번호·API 키가 들어가므로 <strong>절대 Git에 올리면 안 된다.</strong> 저장소 루트의 <code class="language-plaintext highlighter-rouge">.gitignore</code>에 <code class="language-plaintext highlighter-rouge">.env</code>를 추가하고, 운영 서버용 값은 EC2에만 직접 만들어 두거나 시크릿 관리 도구를 쓰는 것이 안전하다.</p>
+
+<hr />
+
+<h2 id="마무리-완성된-cd-흐름">마무리: 완성된 CD 흐름</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push main
+     │
+     ▼
+GitHub Actions CI (ci.yml)
+  - Gradle 빌드
+  - 단위/통합 테스트 실행
+     │
+     │ 성공 시
+     ▼
+GitHub Actions CD (cd.yml)
+  - Docker 이미지 빌드
+  - AWS ECR에 push
+  - EC2에 SSH 접속
+       ├─ ECR에서 새 이미지 pull
+       ├─ 기존 컨테이너 종료 &amp; 삭제
+       ├─ 포트 해제 (fuser)
+       ├─ 새 컨테이너 실행 (볼륨 마운트 포함)
+       └─ 기동 상태 확인 (최대 60초)
+</code></pre></div></div>
+
+<p>이 과정을 직접 구축하면서 가장 많이 배운 것은 <strong>“왜 안 되는지”를 로그에서 찾는 능력</strong>이다. 에러 메시지를 끝까지 읽고, 그 원인을 이해하고, 해결하는 과정이 인프라 공부의 핵심이라고 생각한다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2026-02-24-diary/" class="flip-title"><span>[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기</span></a>  <time class="faded fine" datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time></li>                        <li class="h4">  <a href="/aws/2026-02-24-ecs-deployment-developer-guide/" class="flip-title"><span>AWS ECS 배포 공식 문서 정리 (개발자용)</span></a>  <time class="faded fine" datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time></li>                        <li class="h4">  <a href="/spring/2026-02-23-filter-interceptor-aop/" class="flip-title"><span>[Algorithm] Filter vs Interceptor vs AOP - 요청이 어떻게 처리되는가</span></a>  <time class="faded fine" datetime="2026-02-23T00:00:00+00:00">23 Feb 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Welcome to Nahyun Devlog!
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          Frontend (9)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/aws/"
+          class="sidebar-nav-item "
+          
+        >
+          AWS (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (18)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          기타 (4)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (31)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (63)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>
