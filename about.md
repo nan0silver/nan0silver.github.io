@@ -16,8 +16,9 @@ redirect_from:
 안녕하세요 👋<br>
 풀스택 개발자로 성장 중인 **은나현**입니다. 1인 개발로 서비스를 만들고 있으며, **창업을 준비**하고 있습니다.<br>
 백엔드는 **Java·Spring Boot**와 **Python(FastAPI, Flask)**를, AI는 서비스에 바로 써보며 익히고 있습니다.<br>
-블로그에는 실전에서 부딪힌 것들(CI/CD, 인프라, 트러블슈팅)과 배운 내용을 정리해 둡니다. 방문해 주셔서 감사합니다 🤗<br>
-궁금한 점이나 연락이 필요하시면 편히 보내 주세요.<br>
+블로그에는 실전에서 부딪힌 것들(CI/CD, 인프라, 트러블슈팅)과 배운 내용을 정리하고 있습니다.<br>
+블로그에 와주셔서 감사합니다🤗<br>
+궁금한 점이 있으시다면 언제든 연락 환영입니다!<br>
 (데브코스 우수 수강생 인터뷰) [🔗 링크](https://www.youtube.com/watch?v=U7GfbGXO6As)<br><br>
 
 <span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> <br>

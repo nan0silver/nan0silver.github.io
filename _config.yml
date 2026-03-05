@@ -112,7 +112,7 @@ legal:
   - title: GitHub
     url: https://github.com/nan0silver
   # 연락하기: mailto:이메일 또는 연락처 페이지 URL로 수정 (예: mailto:hello@example.com)
-  - title: 연락하기
+  - title: Gmail
     url: mailto:silvernh1220@gmail.com
 
 # This text will appear in a `<small>` tag in the footer of every page.
