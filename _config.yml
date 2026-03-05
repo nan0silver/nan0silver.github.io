@@ -104,14 +104,16 @@ menu:
     url: /til/
 
 # Add links to the footer.
-# Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
+# GitHub / 연락처는 아래 url을 본인 정보로 수정해 주세요.
 legal:
   - title: LICENSE
     url: /LICENSE/
-  - title: NOTICE
-    url: /NOTICE/
-  - title: CHANGELOG
-    url: /CHANGELOG/
+  # GitHub: 본인 프로필 주소로 수정
+  - title: GitHub
+    url: https://github.com/nan0silver
+  # 연락하기: mailto:이메일 또는 연락처 페이지 URL로 수정 (예: mailto:hello@example.com)
+  - title: 연락하기
+    url: mailto:silvernh1220@gmail.com
 
 # This text will appear in a `<small>` tag in the footer of every page.
 copyright: © 2021–2026. All rights reserved.

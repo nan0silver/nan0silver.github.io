@@ -18,7 +18,7 @@ redirect_from:
 백엔드는 **Java·Spring Boot**와 **Python(FastAPI, Flask)**를, AI는 서비스에 바로 써보며 익히고 있습니다.<br>
 블로그에는 실전에서 부딪힌 것들(CI/CD, 인프라, 트러블슈팅)과 배운 내용을 정리해 둡니다. 방문해 주셔서 감사합니다 🤗<br>
 궁금한 점이나 연락이 필요하시면 편히 보내 주세요.<br>
-(데브코스 우수 수강생 인터뷰) [🔗 링크](https://www.youtube.com/watch?v=U7GfbGXO6As)<br>
+(데브코스 우수 수강생 인터뷰) [🔗 링크](https://www.youtube.com/watch?v=U7GfbGXO6As)<br><br>
 
 <span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> <br>
 Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
@@ -118,31 +118,3 @@ Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>
 <a href="https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11113801">[Link]</a><br>
 <span style="background-color:#DDDDDD">2022년 한국컴퓨터종합학술대회 (KCC 2022) 논문집</span><br>
 논문 출판 및 국내 학술 대회 Poster 발표<br>
-
-[blog]: /
-[portfolio]: https://hydejack.com/examples/
-[resume]: https://hydejack.com/resume/
-[download]: https://hydejack.com/download/
-[welcome]: https://hydejack.com/
-[forms]: https://hydejack.com/forms-by-example/
-[features]: #features
-[news]: #build-an-audience
-[syntax]: syntax-highlighting
-[latex]: #beautiful-math
-[dark]: https://hydejack.com/blog/hydejack/2018-09-01-introducing-dark-mode/
-[search]: https://hydejack.com/#_search-input
-[grid]: https://hydejack.com/blog/hydejack/
-[lic]: LICENSE.md
-[pro]: licenses/PRO.md
-[docs]: docs/README.md
-[ofln]: docs/advanced.md#enabling-offline-support
-[math]: docs/writing.md#adding-math
-[kit]: https://github.com/hydecorp/hydejack-starter-kit/releases
-[src]: https://github.com/hydecorp/hydejack
-[gem]: https://rubygems.org/gems/jekyll-theme-hydejack
-[buy]: https://gum.co/nuOluY
-[gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fhydejack.com%2Fdocs%2F
-[rouge]: http://rouge.jneen.net
-[katex]: https://khan.github.io/KaTeX/
-[mathjax]: https://www.mathjax.org/
-[tinyletter]: https://tinyletter.com/
