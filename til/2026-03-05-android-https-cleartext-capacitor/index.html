@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[TIL] JS Callback, Promise, Fetch, Axios | NAHYUN BLOG</title>
+<title>[TIL] Android(Capacitor) HTTPS 전용 설정 · Manifest merger · usesCleartextTraffic과 CORS | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[TIL] JS Callback, Promise, Fetch, Axios" />
+<meta property="og:title" content="[TIL] Android(Capacitor) HTTPS 전용 설정 · Manifest merger · usesCleartextTraffic과 CORS" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="2025-02-06 TIL" />
-<meta property="og:description" content="2025-02-06 TIL" />
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-02-06-til/" />
-<meta property="og:url" content="https://nan0silver.github.io/til/2025-02-06-til/" />
+<meta name="description" content="Capacitor Android 앱에서 HTTPS만 사용하도록 usesCleartextTraffic을 false로 설정할 때, 카카오 SDK와의 Manifest merger 충돌을 tools:replace로 해결하는 방법과, CORS와의 관계를 정리했습니다." />
+<meta property="og:description" content="Capacitor Android 앱에서 HTTPS만 사용하도록 usesCleartextTraffic을 false로 설정할 때, 카카오 SDK와의 Manifest merger 충돌을 tools:replace로 해결하는 방법과, CORS와의 관계를 정리했습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-03-05-android-https-cleartext-capacitor/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2026-03-05-android-https-cleartext-capacitor/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-02-06T00:00:00+00:00" />
+<meta property="article:published_time" content="2026-03-05T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[TIL] JS Callback, Promise, Fetch, Axios" />
+<meta property="twitter:title" content="[TIL] Android(Capacitor) HTTPS 전용 설정 · Manifest merger · usesCleartextTraffic과 CORS" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-02-07T01:36:41+00:00","datePublished":"2025-02-06T00:00:00+00:00","description":"2025-02-06 TIL","headline":"[TIL] JS Callback, Promise, Fetch, Axios","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-02-06-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-02-06-til/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-05T00:00:00+00:00","datePublished":"2026-03-05T00:00:00+00:00","description":"Capacitor Android 앱에서 HTTPS만 사용하도록 usesCleartextTraffic을 false로 설정할 때, 카카오 SDK와의 Manifest merger 충돌을 tools:replace로 해결하는 방법과, CORS와의 관계를 정리했습니다.","headline":"[TIL] Android(Capacitor) HTTPS 전용 설정 · Manifest merger · usesCleartextTraffic과 CORS","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2026-03-05-android-https-cleartext-capacitor/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2026-03-05-android-https-cleartext-capacitor/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/til/2025-02-06-til/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/til/2026-03-05-android-https-cleartext-capacitor/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[TIL] JS Callback, Promise, Fetch, Axios",
-    "description": "2025-02-06 TIL
+    "headline": "[TIL] Android(Capacitor) HTTPS 전용 설정 · Manifest merger · usesCleartextTraffic과 CORS",
+    "description": "Capacitor Android 앱에서 HTTPS만 사용하도록 usesCleartextTraffic을 false로 설정할 때, 카카오 SDK와의 Manifest merger 충돌을 tools:replace로 해결하는 방법과, CORS와의 관계를 정리했습니다.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-02-06T00:00:00+00:00",
-    "dateModified": "2025-02-07T01:36:41+00:00",
+    "datePublished": "2026-03-05T00:00:00+00:00",
+    "dateModified": "2026-03-05T00:00:00+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/til/2025-02-06-til/"
+      "@id": "https://nan0silver.github.io/til/2026-03-05-android-https-cleartext-capacitor/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-02-06-til/" />
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-03-05-android-https-cleartext-capacitor/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -287,8 +287,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[TIL] JS Callback, Promise, Fetch, Axios",
-        "item": "https://nan0silver.github.io/til/2025-02-06-til/"
+        "name": "[TIL] Android(Capacitor) HTTPS 전용 설정 · Manifest merger · usesCleartextTraffic과 CORS",
+        "item": "https://nan0silver.github.io/til/2026-03-05-android-https-cleartext-capacitor/"
       }
     ]
   }
@@ -365,7 +365,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         
           <span>/</span>
-          <span>2025-02-06-til</span>
+          <span>2026-03-05-android-https-cleartext-capacitor</span>
         
       </li>
     
@@ -382,31 +382,23 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-til-til" class="page post mb6" role="article">
+<article id="post-til-android-https-cleartext-capacitor" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [TIL] JS Callback, Promise, Fetch, Axios
+        [TIL] Android(Capacitor) HTTPS 전용 설정 · Manifest merger · usesCleartextTraffic과 CORS
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-02-06T00:00:00+00:00">06 Feb 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Javascript</span>
+        <time datetime="2026-03-05T00:00:00+00:00">05 Mar 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Android</span>, <span>Capacitor</span>, <span>보안</span>, <span>Https</span>, <span>Manifest</span>
       </span>
       
         
           
           
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Feb 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-02-07T01:36:41+00:00">2025-02-07</time>
-            </span>
           
         
       
@@ -421,7 +413,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      2025-02-06 TIL
+      Capacitor Android 앱에서 HTTPS만 사용하도록 usesCleartextTraffic을 false로 설정할 때, 카카오 SDK와의 Manifest merger 충돌을 tools:replace로 해결하는 방법과, CORS와의 관계를 정리했습니다.
 
     </p>
   
@@ -432,59 +424,156 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   
     <blockquote>
   <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/12">#12</a><br />
-📅 <strong>작성일</strong>: 2025-02-06<br />
-🔄 <strong>최종 수정</strong>: 2025년 02월 07일</p>
+Capacitor로 빌드한 Android 앱에서 <strong>HTTPS만 사용하도록</strong> 보안 설정을 바꾸다가, 카카오 SDK와 Manifest merger 충돌이 났고, <code class="language-plaintext highlighter-rouge">tools:replace</code>로 해결했다.<br />
+이 과정에서 <strong>usesCleartextTraffic이 무엇인지</strong>, <strong>CORS와는 어떻게 다른지</strong>까지 정리해 본다.</p>
 </blockquote>
+
+<ul>
+  <li><a href="#-1-배경-하고-싶었던-일">1. 배경: 하고 싶었던 일</a></li>
+  <li><a href="#-2-usescleartexttraffic이란">2. usesCleartextTraffic이란?</a></li>
+  <li><a href="#-3-실제로-한-설정-변경">3. 실제로 한 설정 변경</a></li>
+  <li><a href="#-4-manifest-merger-충돌-카카오-sdk">4. Manifest merger 충돌 (카카오 SDK)</a></li>
+  <li><a href="#-5-toolsreplace로-해결">5. tools:replace로 해결</a></li>
+  <li><a href="#-6-혼동하기-쉬운-점-cors">6. 혼동하기 쉬운 점 (CORS)</a></li>
+  <li><a href="#-7-배포-시-주의사항--정리">7. 배포 시 주의사항 · 정리</a></li>
+</ul>
 
 <hr />
 
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+<h2 id="-1-배경-하고-싶었던-일">🎯 1. 배경: 하고 싶었던 일</h2>
+
 <ul>
-  <li>JavaScript 비동기 처리
+  <li><strong>Capacitor</strong>로 웹 앱을 감싼 Android 앱을 쓰고 있음.</li>
+  <li>백엔드/API는 모두 <strong>HTTPS</strong>(예: <code class="language-plaintext highlighter-rouge">chingoohaja.app</code>)만 사용함.</li>
+  <li>그래서 앱에서 <strong>HTTP(암호화되지 않은 통신)는 허용하지 않고, HTTPS만 쓰도록</strong> 하고 싶었다.</li>
+  <li>Android에서는 이걸 <strong><code class="language-plaintext highlighter-rouge">usesCleartextTraffic</code></strong> 과 <strong>Network Security Config</strong> 로 제어한다.</li>
+</ul>
+
+<hr />
+
+<h2 id="-2-usescleartexttraffic이란">📌 2. usesCleartextTraffic이란?</h2>
+
+<p><strong>Cleartext</strong> = 암호화되지 않은 평문 통신. 즉 <strong>HTTP</strong>를 의미한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">값</th>
+      <th style="text-align: left">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td style="text-align: left">앱이 <strong>HTTP</strong> 주소로도 요청 가능 (개발/테스트용으로 자주 켜 둠)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left"><strong>HTTPS만</strong> 허용, HTTP 요청은 <strong>차단</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>즉, <strong>“앱이 HTTP를 쓸 수 있게 할지 여부”</strong>만 정하는 설정이다.<br />
+API가 전부 HTTPS라면 보안을 위해 <code class="language-plaintext highlighter-rouge">false</code>로 두는 것이 맞다.</p>
+
+<hr />
+
+<h2 id="-3-실제로-한-설정-변경">🔧 3. 실제로 한 설정 변경</h2>
+
+<h3 id="31-androidmanifestxml">3.1 AndroidManifest.xml</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">android:usesCleartextTraffic="true"</code> → <strong><code class="language-plaintext highlighter-rouge">false</code></strong> 로 변경</li>
+  <li>(이미 있다면) <code class="language-plaintext highlighter-rouge">android:networkSecurityConfig="@xml/network_security_config"</code> 유지</li>
+</ul>
+
+<h3 id="32-network_security_configxml">3.2 network_security_config.xml</h3>
+
+<ul>
+  <li><strong>base-config</strong> 의 <code class="language-plaintext highlighter-rouge">cleartextTrafficPermitted="true"</code> → <strong><code class="language-plaintext highlighter-rouge">false</code></strong></li>
+  <li>API가 모두 HTTPS(<code class="language-plaintext highlighter-rouge">chingoohaja.app</code> 등)이므로, cleartext를 허용하던 <strong>domain-config</strong> 블록은 제거</li>
+</ul>
+
+<p>이렇게 하면 앱 전체에서 HTTP는 막히고, HTTPS만 허용된다.</p>
+
+<hr />
+
+<h2 id="️-4-manifest-merger-충돌-카카오-sdk">⚠️ 4. Manifest merger 충돌 (카카오 SDK)</h2>
+
+<p>위처럼 바꾼 뒤 <strong>Android Studio에서 빌드</strong>하면 아래와 같은 에러가 날 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Manifest merger failed : Attribute application@usesCleartextTraffic value=(false) from AndroidManifest.xml:4:9-45
+is also present at [com.kakao.sdk:v2-friend:2.20.1] AndroidManifest.xml:10:18-53 value=(true).
+Suggestion: add 'tools:replace="android:usesCleartextTraffic"' to &lt;application&gt; element at AndroidManifest.xml:3:5-74:19 to override.
+</code></pre></div></div>
+
+<p><strong>원인</strong></p>
+
+<ul>
+  <li>우리 앱: <code class="language-plaintext highlighter-rouge">usesCleartextTraffic="false"</code></li>
+  <li>카카오 SDK(<code class="language-plaintext highlighter-rouge">com.kakao.sdk:v2-friend</code>): 자체 Manifest에서 <code class="language-plaintext highlighter-rouge">usesCleartextTraffic="true"</code> 선언</li>
+  <li><strong>Manifest merger</strong>가 여러 Manifest를 합칠 때, 같은 속성에 서로 다른 값이 있으면 충돌로 처리한다.</li>
+</ul>
+
+<p>그래서 “예전처럼 cleartext를 다시 켜야 하나?”라고 생각할 수 있지만, <strong>되돌릴 필요는 없다.</strong><br />
+대신 <strong>우리 앱의 값(false)을 우선시키면</strong> 된다.</p>
+
+<hr />
+
+<h2 id="-5-toolsreplace로-해결">✅ 5. tools:replace로 해결</h2>
+
+<p>에러 메시지에서 제안한 대로, <strong><code class="language-plaintext highlighter-rouge">&lt;application&gt;</code> 태그에 <code class="language-plaintext highlighter-rouge">tools:replace="android:usesCleartextTraffic"</code></strong> 를 추가하면 된다.</p>
+
+<p><strong>의미</strong></p>
+
+<ul>
+  <li>머지 시 <strong>카카오 SDK의 <code class="language-plaintext highlighter-rouge">true</code></strong> 대신 <strong>우리 앱의 <code class="language-plaintext highlighter-rouge">false</code></strong> 가 적용된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">xmlns:tools</code> 는 보통 manifest 최상단에 이미 있으므로, 별도 선언 없이 <code class="language-plaintext highlighter-rouge">tools:replace</code>만 추가하면 된다.</li>
+</ul>
+
+<p><strong>변경 예시 (AndroidManifest.xml)</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;application</span>
+    <span class="na">android:usesCleartextTraffic=</span><span class="s">"false"</span>
+    <span class="na">tools:replace=</span><span class="s">"android:usesCleartextTraffic"</span>
+    <span class="na">android:networkSecurityConfig=</span><span class="s">"@xml/network_security_config"</span>
+    <span class="err">...</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>이렇게 하면 빌드는 통과하고, 앱은 계속 <strong>HTTPS만</strong> 사용하게 된다.<br />
+카카오 로그인 등도 실제로 HTTPS를 쓰고 있다면 동작에는 문제 없다.</p>
+
+<hr />
+
+<h2 id="-6-혼동하기-쉬운-점-cors">🔗 6. 혼동하기 쉬운 점 (CORS)</h2>
+
+<p><strong>“이 설정 바꾸면 CORS 나오지 않나?”</strong> 하고 헷갈릴 수 있는데, <strong>CORS와는 별개</strong>다.<br />
+usesCleartextTraffic은 “앱이 HTTP를 허용할지”만 정하고, CORS는 “어떤 출처를 서버가 허용할지”를 서버가 정한다.<br />
+그래서 이 값을 false로 둔다고 CORS가 생기거나 사라지지 않으며, CORS는 백엔드 허용 origin/헤더 설정으로만 처리하면 된다.</p>
+
+<hr />
+
+<h2 id="-7-배포-시-주의사항--정리">📋 7. 배포 시 주의사항 · 정리</h2>
+
+<ul>
+  <li><strong>usesCleartextTraffic=”false”</strong>
     <ul>
-      <li>Callback</li>
-      <li>Promise, async, await</li>
+      <li>HTTP 차단, HTTPS만 허용 → 보안상 유리.</li>
+      <li>API가 전부 HTTPS면 배포 후에도 그대로 두면 된다.</li>
     </ul>
   </li>
-  <li>JavaScript 네트워크 요청
+  <li><strong>Manifest merger 충돌</strong>
     <ul>
-      <li>Fetch, Axios</li>
+      <li>서드파티 SDK가 <code class="language-plaintext highlighter-rouge">usesCleartextTraffic="true"</code> 를 들고 오면,<br />
+<strong>되돌리지 말고</strong> <code class="language-plaintext highlighter-rouge">tools:replace="android:usesCleartextTraffic"</code> 로 <strong>우리 값(false)</strong> 을 우선 적용하는 것이 좋다.</li>
     </ul>
   </li>
+  <li><strong>CORS</strong>는 서버 쪽 허용 설정의 영역이라, 이 Android 설정과는 무관하다.</li>
 </ul>
 
-<h2 id="-오늘의-문제-상황">🍎 오늘의 문제 상황</h2>
-<ul>
-  <li>GitHub Actions를 사용하여 TIL 목록을 자동으로 업데이트하는 작업을 진행했지만, 매번 전체 TIL 리스트가 중보 추가되는 문제가 발생했다.</li>
-</ul>
-
-<h3 id="원인-분석">원인 분석</h3>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">gh issue list</code> 명령어를 실행할 때마다 최신 TIL 10개를 가져와 덮어쓰기 때문에 기존 목록과 중복된 항목이 계속 추가됨</li>
-  <li><code class="language-plaintext highlighter-rouge">sort -u</code>로 중복을 제거하려 했지만 이미 있는 내용과 비교하는 기능이 없었음
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">awk</code>를 사용한 TIL리스트 추출 방식이 정확하지 않아 비교 대상이 제대로 생성되지 않았을 수도 있음</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="해결-과정">해결 과정</h3>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">awk</code>대신 <code class="language-plaintext highlighter-rouge">sed</code>를 사용하여 TIL List 이후 목록을 정확히 가져옴</li>
-  <li><code class="language-plaintext highlighter-rouge">grep -Fxvf</code>를 사용하여 기존 리스트에 없는 새로운 TIL만 추출</li>
-  <li>새로운 TIL이 있는 경우 <code class="language-plaintext highlighter-rouge">sed</code>로 기존 TIL 리스트 완전 삭제 후 새로운 TIL을 포함한 리스트 모두 새로 추가</li>
-  <li>새로 추가된 TIL이 없는 경우 커밋 만들지 않은 코드 추가</li>
-</ul>
-
-<h2 id="-느낀-점">🦄 느낀 점</h2>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">gh issue list</code>가 GitHub의 REST API를 활용하는 방식으로, JS의 fetch나 axios와 유사한 원리로 작동한다고 한다.</li>
-  <li>스크립트 언어는 처음 봤고, 잘 몰랐었는데 뜯어보니가 작동 방식은 비슷했다.</li>
-  <li>단순히 자동화를 하는것이 아니라 데이터를 관리하고 처리하는 것이 내가 원하는 기능을 구현한는데 더 중요한 것 같다.</li>
-</ul>
-
-<h2 id="-참고-자료">🐬 참고 자료</h2>
+<p>정리하면, <strong>되돌릴 필요 없이</strong> <code class="language-plaintext highlighter-rouge">false</code> + <code class="language-plaintext highlighter-rouge">tools:replace</code> 로 두고 배포해도 되고,<br />
+API와 카카오가 HTTPS만 사용한다면 그대로 두는 것이 맞다.</p>
 
   
 </article>
@@ -587,7 +676,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2026-03-05-android-https-cleartext-capacitor/" class="flip-title"><span>[TIL] Android(Capacitor) HTTPS 전용 설정 · Manifest merger · usesCleartextTraffic과 CORS</span></a>  <time class="faded fine" datetime="2026-03-05T00:00:00+00:00">05 Mar 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-02-26-diary/" class="flip-title"><span>[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화</span></a>  <time class="faded fine" datetime="2026-02-26T00:00:00+00:00">26 Feb 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-02-24-diary/" class="flip-title"><span>[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기</span></a>  <time class="faded fine" datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2026-02-26-diary/" class="flip-title"><span>[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화</span></a>  <time class="faded fine" datetime="2026-02-26T00:00:00+00:00">26 Feb 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-02-24-diary/" class="flip-title"><span>[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기</span></a>  <time class="faded fine" datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time></li>                        <li class="h4">  <a href="/aws/2026-02-24-ecs-deployment-developer-guide/" class="flip-title"><span>AWS ECS 배포 공식 문서 정리 (개발자용)</span></a>  <time class="faded fine" datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time></li>            </ul></aside>
 
   
 
