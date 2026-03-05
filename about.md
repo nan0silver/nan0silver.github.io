@@ -13,14 +13,12 @@ redirect_from:
 
 <h3>🩷Introduction🩷</h3>
 
-안녕하세요👋 <br>
-저는 풀스택 개발자를 위해 공부하고 있는 은나현입니다.<br>
-저의 최종 목적은 솔로프리너가 되는 것입니다🙌 <br>
-JAVA와 PYTHON를 이용한 백엔드 개발과 AI활용 서비스 개발에 관련해서 공부하고 있습니다.<br>
-Spring Boot, FastAPI, Flask를 공부하고 있으며, AI를 활용한 서비스 개발을 위해 공부하고 있습니다.<br>
-블로그에 와주셔서 감사합니다🤗<br>
-저에 대해서 더 알고 싶으시다면 언제든 연락 환영입니다!<br>
-(우수 수강생 인터뷰 참여) [🔗링크](https://www.youtube.com/watch?v=U7GfbGXO6As)<br>
+안녕하세요 👋<br>
+풀스택 개발자로 성장 중인 **은나현**입니다. 1인 개발로 서비스를 만들고 있으며, **창업을 준비**하고 있습니다.<br>
+백엔드는 **Java·Spring Boot**와 **Python(FastAPI, Flask)**를, AI는 서비스에 바로 써보며 익히고 있습니다.<br>
+블로그에는 실전에서 부딪힌 것들(CI/CD, 인프라, 트러블슈팅)과 배운 내용을 정리해 둡니다. 방문해 주셔서 감사합니다 🤗<br>
+궁금한 점이나 연락이 필요하시면 편히 보내 주세요.<br>
+(데브코스 우수 수강생 인터뷰) [🔗 링크](https://www.youtube.com/watch?v=U7GfbGXO6As)<br>
 
 <span style="background-color:#FFDDFF">M.S. in IT Engineering)</span> <br>
 Dept. of IT Engineering, Sookmyung Women's University, Seoul, South Korea <br>

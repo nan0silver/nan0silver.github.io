@@ -26,18 +26,19 @@ title: NAHYUN BLOG
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description: >
-  Nahyun’s Development Blog
-
-  Hi, I’m Nahyun Eun, a student from South Korea studying backend development with Java. 
-  In this blog, I organize and share my learning journey in programming, with notes and insights on backend concepts and practical examples.
-   Follow along as I dive into the world of coding!
+  Nahyun Eun (은나현). Full-stack developer building products solo, preparing for startup.
+  Java, Spring Boot, Python, AI. Project diaries, backend/infra notes, and TIL.
 
 # A shorter description for the sidebar.
-tagline: Welcome to Nahyun Devlog!
+tagline: Full-stack · 1인 개발 · 창업 준비
 
 # A list of keywords for your blog
 keywords:
   [
+    풀스택,
+    1인개발,
+    창업,
+    AI,
     개발,
     프로그래밍,
     Java,
