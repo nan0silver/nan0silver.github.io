@@ -98,9 +98,9 @@ menu:
   - title: 기타 (4)
     url: /miscellaneous/
   # 일상 (프로젝트 일기, TIL)
-  - title: 프로젝트 일기 (31)
+  - title: 프로젝트 일기 (32)
     url: /projectdiary/
-  - title: TIL (63)
+  - title: TIL (66)
     url: /til/
 
 # Add links to the footer.
