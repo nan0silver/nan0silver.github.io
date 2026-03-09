@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[TIL] 멀티스레드 Race Condition과 AtomicBoolean (volatile의 한계) | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[TIL] 멀티스레드 Race Condition과 AtomicBoolean (volatile의 한계)" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="멀티스레드 환경에서 volatile의 한계(가시성 vs 원자성)와 check-then-act 레이스 컨디션을 AtomicBoolean.compareAndSet(CAS)으로 해결하는 방법을 정리했습니다." />
+<meta property="og:description" content="멀티스레드 환경에서 volatile의 한계(가시성 vs 원자성)와 check-then-act 레이스 컨디션을 AtomicBoolean.compareAndSet(CAS)으로 해결하는 방법을 정리했습니다." />
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-03-07-til/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2026-03-07-til/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[TIL] 멀티스레드 Race Condition과 AtomicBoolean (volatile의 한계)" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-07T00:00:00+00:00","datePublished":"2026-03-07T00:00:00+00:00","description":"멀티스레드 환경에서 volatile의 한계(가시성 vs 원자성)와 check-then-act 레이스 컨디션을 AtomicBoolean.compareAndSet(CAS)으로 해결하는 방법을 정리했습니다.","headline":"[TIL] 멀티스레드 Race Condition과 AtomicBoolean (volatile의 한계)","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2026-03-07-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2026-03-07-til/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/til/2026-03-07-til/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-03-09T02:07:14+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[TIL] 멀티스레드 Race Condition과 AtomicBoolean (volatile의 한계)",
+    "description": "멀티스레드 환경에서 volatile의 한계(가시성 vs 원자성)와 check-then-act 레이스 컨디션을 AtomicBoolean.compareAndSet(CAS)으로 해결하는 방법을 정리했습니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-03-07T00:00:00+00:00",
+    "dateModified": "2026-03-07T00:00:00+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/til/2026-03-07-til/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-03-07-til/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "til",
+        "item": "https://nan0silver.github.io/til/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[TIL] 멀티스레드 Race Condition과 AtomicBoolean (volatile의 한계)",
+        "item": "https://nan0silver.github.io/til/2026-03-07-til/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/til/">til</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-03-07-til</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-til-til" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [TIL] 멀티스레드 Race Condition과 AtomicBoolean (volatile의 한계)
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-03-07T00:00:00+00:00">07 Mar 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Java</span>, <span>동시성</span>, <span>Racecondition</span>, <span>Volatile</span>, <span>Atomicboolean</span>, <span>Cas</span>, <span>Webflux</span>
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      멀티스레드 환경에서 volatile의 한계(가시성 vs 원자성)와 check-then-act 레이스 컨디션을 AtomicBoolean.compareAndSet(CAS)으로 해결하는 방법을 정리했습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong> \n+&gt; <code class="language-plaintext highlighter-rouge">volatile</code>만으로는 해결되지 않는 문제가 있다. "가시성"과 "원자성"은 다르고, <code class="language-plaintext highlighter-rouge">check-then-act</code> 패턴이 섞이면 레이스 컨디션이 터진다. 이걸 <code class="language-plaintext highlighter-rouge">AtomicBoolean.compareAndSet</code>으로 정리해 본다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">volatile</code>은 <strong>가시성(visibility)</strong> 은 해결하지만, <strong>원자성(atomicity)</strong> 은 해결하지 못한다.</li>
+  <li>"읽고 → 조건 확인하고 → 쓰는" <code class="language-plaintext highlighter-rouge">check-then-act</code>는 멀티스레드에서 레이스가 나기 쉽다.</li>
+  <li><code class="language-plaintext highlighter-rouge">AtomicBoolean.compareAndSet(true, false)</code>는 <strong>한 번만 상태 전환</strong>되도록 만들어 주는 대표 패턴이다. (CAS 기반)</li>
+</ul>
+
+<hr />
+
+<h2 id="1-배경-왜-이런-문제가-생기는가">1. 배경: 왜 이런 문제가 생기는가?</h2>
+
+<p>Spring WebFlux는 <strong>비동기·논블로킹</strong> 스택이고, 소수의 Netty I/O 스레드가 많은 작업을 번갈아 처리한다. 그래서 같은 객체의 메서드가 <strong>서로 다른 스레드에서 거의 동시에</strong> 호출되는 상황이 자연스럽게 발생한다.</p>
+
+<p>예를 들어 <code class="language-plaintext highlighter-rouge">GeminiLiveSession</code>에서 아래 흐름이 동시에 일어날 수 있다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Netty I/O 스레드 A] → Gemini로부터 오디오 수신 → handleIncoming() → session.onError()
+[Netty I/O 스레드 B] → WebSocket 연결 끊김 감지 → disconnect()     → session.close()
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">close()</code>와 <code class="language-plaintext highlighter-rouge">onError()</code>가 <strong>동시에 호출</strong>될 수 있고, 이때 둘 다 "세션 종료"를 시도하면 문제가 생긴다.</p>
+
+<hr />
+
+<h2 id="2-문제-1--가시성-visibility">2. 문제 1 — 가시성 (Visibility)</h2>
+
+<p>멀티코어 CPU는 성능을 위해 <strong>각 코어마다 캐시(L1/L2 Cache)</strong> 를 가진다. 그래서 어떤 스레드가 값을 바꿔도, 다른 스레드는 <strong>캐시에 남아 있는 오래된 값</strong>을 읽을 수 있다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[CPU 코어 A]           [CPU 코어 B]
+  캐시: active = true    캐시: active = true
+        ↑ RAM 반영 전            ↑ RAM 반영 전
+  RAM: active = false (이미 변경됨)
+</code></pre></div></div>
+
+<p>코어 A가 <code class="language-plaintext highlighter-rouge">active = false</code>로 바꿨더라도, 코어 B는 여전히 <code class="language-plaintext highlighter-rouge">true</code>를 볼 수 있다. 이게 <strong>가시성 문제</strong>다.</p>
+
+<h3 id="volatile은-가시성을-해결한다"><code class="language-plaintext highlighter-rouge">volatile</code>은 가시성을 해결한다</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">active</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">volatile</code>은 “이 변수를 읽고 쓸 때 <strong>항상 메인 메모리(RAM)에서</strong> 직접 읽고 써라”는 JVM에 대한 명령입니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[CPU 코어 A]         RAM           [CPU 코어 B]
+  write active=false ──→ RAM 즉시 반영
+                              RAM에서 직접 읽음 ←── read active
+</code></pre></div></div>
+
+<p>코어 B는 항상 최신 값을 봅니다. <strong>가시성 문제 해결!</strong></p>
+
+<hr />
+
+<h2 id="3-문제-2--check-then-act-race-condition">3. 문제 2 — Check-Then-Act Race Condition</h2>
+
+<p><code class="language-plaintext highlighter-rouge">volatile</code>로 가시성을 해결해도, 더 근본적인 문제가 남는다. 바로 <strong>check-then-act</strong> 패턴이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// volatile boolean 버전</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">active</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>   <span class="c1">// ① check: active 읽기</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>        <span class="c1">// ② act: active 쓰기</span>
+    <span class="n">outboundSink</span><span class="o">.</span><span class="na">tryEmitComplete</span><span class="o">();</span>
+    <span class="n">inboundAudioSink</span><span class="o">.</span><span class="na">tryEmitComplete</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>①과 ②는 <strong>서로 다른 연산</strong>이다. 그 사이에 다른 스레드가 끼어들 수 있다.</p>
+
+<h3 id="문제가-되는-시나리오">문제가 되는 시나리오</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>시간 →
+
+스레드 A (close 호출)         스레드 B (onError 호출)
+────────────────────────────────────────────────────
+① active 읽음 → true
+                           ① active 읽음 → true  ← volatile이라 최신값(true) 보임
+② active = false 씀
+                           ② active = false 씀   ← 이미 false지만 또 씀 (괜찮음)
+outboundSink.tryEmitComplete()
+                           outboundSink.tryEmitError()  ← 💥 이미 complete된 sink에 error!
+inboundAudioSink.tryEmitComplete()
+                           inboundAudioSink.tryEmitError() ← 💥 또 충돌!
+</code></pre></div></div>
+
+<p>두 스레드 모두 ①에서 <code class="language-plaintext highlighter-rouge">true</code>를 읽고 통과한다. <code class="language-plaintext highlighter-rouge">volatile</code>은 최신 값을 보장하지만, <strong>“내가 읽은 순간부터 내가 쓸 때까지 다른 스레드가 건드리지 않는다”는 보장은 없다.</strong></p>
+
+<p>이것이 <strong>Check-Then-Act Race Condition</strong></p>
+
+<ul>
+  <li><strong>Check</strong>: <code class="language-plaintext highlighter-rouge">if (!active)</code> — 조건 확인</li>
+  <li><strong>Then-Act</strong>: <code class="language-plaintext highlighter-rouge">active = false</code> — 상태 변경</li>
+</ul>
+
+<p>그래서 <code class="language-plaintext highlighter-rouge">check-then-act</code>가 <strong>원자적(Atomic)</strong> 이지 않으면 레이스 컨디션이 발생한다.</p>
+
+<blockquote>
+  <p>💡 <strong>원자성(Atomicity)</strong>: "쪼갤 수 없는 한 덩어리"처럼 실행되는 성질. 중간에 다른 스레드가 끼어들 수 없음.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="4-해결책--atomicboolean과-compareandset-cas">4. 해결책 — <code class="language-plaintext highlighter-rouge">AtomicBoolean</code>과 <code class="language-plaintext highlighter-rouge">compareAndSet</code> (CAS)</h2>
+
+<h3 id="atomicboolean이란"><code class="language-plaintext highlighter-rouge">AtomicBoolean</code>이란?</h3>
+
+<p><code class="language-plaintext highlighter-rouge">java.util.concurrent.atomic</code> 패키지의 클래스로, boolean에 대해 <strong>원자적 연산</strong>을 제공한다. 내부적으로 CPU의 <strong>CAS(Compare-And-Swap)</strong> 를 사용한다.</p>
+
+<h3 id="compareandsetexpect-update이-하는-일"><code class="language-plaintext highlighter-rouge">compareAndSet(expect, update)</code>이 하는 일</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">atomicBoolean</span><span class="o">.</span><span class="na">compareAndSet</span><span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>이 한 줄이 하드웨어 수준에서 <strong>원자적으로</strong> 실행하는 작업:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>① 현재 값을 읽는다
+② 현재 값 == expect(true) 이면?
+    → 값을 update(false)로 바꾸고 true 반환
+③ 현재 값 != expect(true) 이면?
+    → 아무것도 안 하고 false 반환
+</code></pre></div></div>
+
+<p>이 세 단계가 <strong>나눌 수 없는 하나의 연산</strong>으로 실행된다. 중간에 다른 스레드가 절대 끼어들 수 없다.</p>
+
+<h3 id="같은-시나리오를-다시-보면">같은 시나리오를 다시 보면</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// AtomicBoolean 버전</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">active</span><span class="o">.</span><span class="na">compareAndSet</span><span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="kc">false</span><span class="o">))</span> <span class="k">return</span><span class="o">;</span>  <span class="c1">// 원자적으로 check + act</span>
+    <span class="n">outboundSink</span><span class="o">.</span><span class="na">tryEmitComplete</span><span class="o">();</span>
+    <span class="n">inboundAudioSink</span><span class="o">.</span><span class="na">tryEmitComplete</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>시간 →
+
+스레드 A (close 호출)              스레드 B (onError 호출)
+───────────────────────────────────────────────────────────
+compareAndSet(true→false) 성공 ✅
+  → active가 false로 변경됨
+  → true 반환, 계속 실행
+                                   compareAndSet(true→false) 실패 ❌
+                                     → 현재값이 이미 false
+                                     → false 반환, return으로 탈출
+outboundSink.tryEmitComplete()     (아무것도 안 함)
+inboundAudioSink.tryEmitComplete() (아무것도 안 함)
+</code></pre></div></div>
+
+<p>스레드 A만 통과하고, 스레드 B는 자동으로 탈출한다. <strong>정확히 하나만 실행!</strong></p>
+
+<hr />
+
+<h2 id="5-최종-코드-비교">5. 최종 코드 비교</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ Before: volatile — 가시성만 해결, race condition 존재</span>
+<span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">active</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">active</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>   <span class="c1">// check</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>        <span class="c1">// act  ← 이 사이에 다른 스레드 침입 가능</span>
+    <span class="n">outboundSink</span><span class="o">.</span><span class="na">tryEmitComplete</span><span class="o">();</span>
+    <span class="n">inboundAudioSink</span><span class="o">.</span><span class="na">tryEmitComplete</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="nc">Throwable</span> <span class="n">error</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">active</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>   <span class="c1">// 두 스레드 모두 통과 가능</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="n">outboundSink</span><span class="o">.</span><span class="na">tryEmitError</span><span class="o">(</span><span class="n">error</span><span class="o">);</span>     <span class="c1">// close()와 충돌</span>
+    <span class="n">inboundAudioSink</span><span class="o">.</span><span class="na">tryEmitError</span><span class="o">(</span><span class="n">error</span><span class="o">);</span> <span class="c1">// close()와 충돌</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ After: AtomicBoolean — 가시성 + 원자성 모두 해결</span>
+<span class="kd">private</span> <span class="kd">final</span> <span class="nc">AtomicBoolean</span> <span class="n">active</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicBoolean</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">active</span><span class="o">.</span><span class="na">compareAndSet</span><span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="kc">false</span><span class="o">))</span> <span class="k">return</span><span class="o">;</span>  <span class="c1">// check + act = 원자적</span>
+    <span class="n">outboundSink</span><span class="o">.</span><span class="na">tryEmitComplete</span><span class="o">();</span>   <span class="c1">// 오직 하나의 스레드만 도달</span>
+    <span class="n">inboundAudioSink</span><span class="o">.</span><span class="na">tryEmitComplete</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="nc">Throwable</span> <span class="n">error</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">active</span><span class="o">.</span><span class="na">compareAndSet</span><span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="kc">false</span><span class="o">))</span> <span class="k">return</span><span class="o">;</span>  <span class="c1">// 나머지 스레드는 여기서 탈출</span>
+    <span class="n">outboundSink</span><span class="o">.</span><span class="na">tryEmitError</span><span class="o">(</span><span class="n">error</span><span class="o">);</span>
+    <span class="n">inboundAudioSink</span><span class="o">.</span><span class="na">tryEmitError</span><span class="o">(</span><span class="n">error</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이렇게 하면 <code class="language-plaintext highlighter-rouge">close()</code>와 <code class="language-plaintext highlighter-rouge">onError()</code> 중 <strong>둘 중 하나만</strong> 본문을 실행한다. 나머지는 <code class="language-plaintext highlighter-rouge">compareAndSet</code>이 실패하면서 즉시 return 된다.</p>
+
+<p>즉, "세션 종료"라는 상태 전환이 <strong>정확히 한 번만</strong> 일어나게 된다.</p>
+
+<hr />
+
+<h2 id="6-정리-spring-개발자가-기억할-것">6. 정리: Spring 개발자가 기억할 것</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th><code class="language-plaintext highlighter-rouge">volatile</code></th>
+      <th><code class="language-plaintext highlighter-rouge">AtomicBoolean</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>해결하는 문제</strong></td>
+      <td>가시성 (최신 값 보장)</td>
+      <td>가시성 + 원자성</td>
+    </tr>
+    <tr>
+      <td><strong>check-then-act</strong></td>
+      <td>❌ 안전하지 않음</td>
+      <td>✅ <code class="language-plaintext highlighter-rouge">compareAndSet</code>으로 안전</td>
+    </tr>
+    <tr>
+      <td><strong>주요 용도</strong></td>
+      <td>단순 플래그 읽기/쓰기</td>
+      <td>상태 전환이 <strong>딱 한 번</strong> 일어나야 할 때</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="언제-atomicboolean을-써야-하나">언제 <code class="language-plaintext highlighter-rouge">AtomicBoolean</code>을 써야 하나?</h3>
+
+<p>"읽고 → 조건 확인하고 → 쓰는" 흐름이 있고, 그 흐름이 <strong>한 번만</strong> 일어나야 한다면 <code class="language-plaintext highlighter-rouge">AtomicBoolean</code>을 먼저 떠올리면 좋다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 이런 패턴이 보이면 AtomicBoolean 고려</span>
+<span class="k">if</span> <span class="o">(!</span><span class="n">flag</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>  <span class="c1">// check</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>        <span class="c1">// act</span>
+<span class="n">doSomethingOnce</span><span class="o">();</span>  <span class="c1">// 딱 한 번만!</span>
+</code></pre></div></div>
+
+<p>실제로 Spring 애플리케이션에서는 이런 상황이 자주 등장한다.</p>
+
+<ul>
+  <li>리소스를 <strong>딱 한 번만</strong> 초기화/해제할 때</li>
+  <li>WebSocket/SSE 연결을 <strong>한 번만</strong> 닫을 때</li>
+  <li>이벤트를 <strong>중복 없이</strong> 발행할 때</li>
+</ul>
+
+<hr />
+
+<blockquote>
+  <p>📌 <strong>핵심 한 줄 요약</strong> \n+&gt; <code class="language-plaintext highlighter-rouge">volatile</code>은 "다른 스레드가 쓴 값을 내가 볼 수 있게" 해주고, \n+&gt; <code class="language-plaintext highlighter-rouge">AtomicBoolean.compareAndSet</code>은 "check-then-act를 아무도 못 끼어드는 하나의 동작"으로 만들어준다.</p>
+</blockquote>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2026-03-06-til/" class="flip-title"><span>[TIL] ArrayDeque vs ArrayBlockingQueue — 코드리뷰로 배우는 Java Queue 정리</span></a>  <time class="faded fine" datetime="2026-03-06T00:00:00+00:00">06 Mar 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-03-06-diary/" class="flip-title"><span>[친구하자] OkHttp vs Spring WebFlux WebSocket — 우리가 starter-webflux를 선택한 이유</span></a>  <time class="faded fine" datetime="2026-03-06T00:00:00+00:00">06 Mar 2026</time></li>                        <li class="h4">  <a href="/til/2026-03-05-android-https-cleartext-capacitor/" class="flip-title"><span>[TIL] Android(Capacitor) HTTPS 전용 설정 · Manifest merger · usesCleartextTraffic과 CORS</span></a>  <time class="faded fine" datetime="2026-03-05T00:00:00+00:00">05 Mar 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="https://github.com/nan0silver">GitHub</a>
+      |
+    
+      
+      <a class="heading flip-title" href="mailto:silvernh1220@gmail.com">Gmail</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Full-stack · 1인 개발 · 창업 준비
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          Frontend (9)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/aws/"
+          class="sidebar-nav-item "
+          
+        >
+          AWS (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (18)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          기타 (4)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (32)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (66)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

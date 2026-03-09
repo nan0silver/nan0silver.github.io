@@ -44,7 +44,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-06T06:23:57+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-09T02:06:30+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -184,7 +184,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-03-06T06:24:40+00:00',
+    INDEX_KEY: 'index--2026-03-09T02:07:14+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -467,7 +467,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          TIL (65)
+          TIL (66)
         </a>
       </li>
     
@@ -545,6 +545,70 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
   
+
+  
+
+
+
+
+
+<article id="post-til-til" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/til/2026-03-07-til/" class="flip-title">
+        [TIL] 멀티스레드 Race Condition과 AtomicBoolean (volatile의 한계)
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-03-07T00:00:00+00:00">07 Mar 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Java</span>, <span>동시성</span>, <span>Racecondition</span>, <span>Volatile</span>, <span>Atomicboolean</span>, <span>Cas</span>, <span>Webflux</span>
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      멀티스레드 환경에서 volatile의 한계(가시성 vs 원자성)와 check-then-act 레이스 컨디션을 AtomicBoolean.compareAndSet(CAS)으로 해결하는 방법을 정리했습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong> \n+&gt; <code class="language-plaintext highlighter-rouge">volatile</code>만으로는 해결되지 않는 문제가 있다. "가시성"과 "원자성"은 다르고, <code class="language-plaintext highlighter-rouge">check-then-act</code> 패턴이 섞이면 레이스 컨디션이 터진다. 이걸 <code class="language-plaintext highlighter-rouge">AtomicBoolean.compareAndSet</code>으로 정리해 본다.</p>
+</blockquote>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/til/2026-03-07-til/">[TIL] 멀티스레드 Race Condition과 AtomicBoolean (volatile의 한계)</a>
+
+      </p>
+    </footer>
+  
+</article>
+
 
   
 
@@ -634,6 +698,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         
           
           
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
+            </span>
           
         
       
@@ -767,10 +839,10 @@ Capacitor로 빌드한 Android 앱에서 <strong>HTTPS만 사용하도록</stron
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -840,10 +912,10 @@ Capacitor로 빌드한 Android 앱에서 <strong>HTTPS만 사용하도록</stron
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -919,10 +991,10 @@ Capacitor로 빌드한 Android 앱에서 <strong>HTTPS만 사용하도록</stron
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -990,10 +1062,10 @@ Capacitor로 빌드한 Android 앱에서 <strong>HTTPS만 사용하도록</stron
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -1063,10 +1135,10 @@ Capacitor로 빌드한 Android 앱에서 <strong>HTTPS만 사용하도록</stron
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -1135,10 +1207,10 @@ Capacitor로 빌드한 Android 앱에서 <strong>HTTPS만 사용하도록</stron
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -1172,85 +1244,6 @@ Capacitor로 빌드한 Android 앱에서 <strong>HTTPS만 사용하도록</stron
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/algorithm/2026-02-18-integer-arraylist-to-int-array/">[Algorithm] Integer ArrayList을 int 배열로 변환하는 방법</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-algorithm-bellman-ford" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/algorithm/2026-02-09-bellman-ford/" class="flip-title">
-        [Algorithm] 벨만-포드 알고리즘
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2026-02-09T00:00:00+00:00">09 Feb 2026</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      벨만-포드 알고리즘에 대해 정리해보았습니다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ol>
-  <li><a href="#-1️⃣-벨만-포드란">벨만-포드란?</a></li>
-  <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
-  <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
-  <li><a href="#-4️⃣-음수-사이클-탐지-원리">음수 사이클 탐지 원리</a></li>
-  <li><a href="#-5️⃣-코드-구현">코드 구현</a></li>
-  <li><a href="#-6️⃣-시간복잡도와-공간복잡도">시간복잡도와 공간복잡도</a></li>
-  <li><a href="#-7️⃣-다익스트라와의-비교">다익스트라와의 비교</a></li>
-  <li><a href="#-8️⃣-실전-문제-적용">실전 문제 적용</a></li>
-</ol>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/algorithm/2026-02-09-bellman-ford/">[Algorithm] 벨만-포드 알고리즘</a>
 
       </p>
     </footer>

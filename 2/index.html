@@ -45,7 +45,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-06T06:23:57+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-09T02:06:30+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -185,7 +185,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-03-06T06:24:40+00:00',
+    INDEX_KEY: 'index--2026-03-09T02:07:14+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -468,7 +468,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          TIL (65)
+          TIL (66)
         </a>
       </li>
     
@@ -563,6 +563,85 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
+<article id="post-algorithm-bellman-ford" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/algorithm/2026-02-09-bellman-ford/" class="flip-title">
+        [Algorithm] 벨만-포드 알고리즘
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-02-09T00:00:00+00:00">09 Feb 2026</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      벨만-포드 알고리즘에 대해 정리해보았습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ol>
+  <li><a href="#-1️⃣-벨만-포드란">벨만-포드란?</a></li>
+  <li><a href="#-2️⃣-핵심-개념-이해하기">핵심 개념 이해하기</a></li>
+  <li><a href="#-3️⃣-간선-완화relaxation">간선 완화(Relaxation)</a></li>
+  <li><a href="#-4️⃣-음수-사이클-탐지-원리">음수 사이클 탐지 원리</a></li>
+  <li><a href="#-5️⃣-코드-구현">코드 구현</a></li>
+  <li><a href="#-6️⃣-시간복잡도와-공간복잡도">시간복잡도와 공간복잡도</a></li>
+  <li><a href="#-7️⃣-다익스트라와의-비교">다익스트라와의 비교</a></li>
+  <li><a href="#-8️⃣-실전-문제-적용">실전 문제 적용</a></li>
+</ol>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/algorithm/2026-02-09-bellman-ford/">[Algorithm] 벨만-포드 알고리즘</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -583,10 +662,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -656,10 +735,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -728,10 +807,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -801,10 +880,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -876,10 +955,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -947,10 +1026,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -1026,10 +1105,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -1105,10 +1184,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -1187,10 +1266,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
+              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
             </span>
           
         
@@ -1224,84 +1303,6 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/projectdiary/2025-11-24-diary/">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-projectdiary-diary" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/projectdiary/2025-11-20-diary/" class="flip-title">
-        [친구하자] Capacitor 앱 Custom Splash Screen 구현하기
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-11-20T00:00:00+00:00">20 Nov 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 06 Mar 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-03-06T06:23:57+00:00">2026-03-06</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      Capacitor로 빌드한 앱에서 Splash Screen을 React로 직접 구현한 내용에 대해 다룹니다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li>이번 포스팅에선 Capacitor로 빌드한 앱에서 여러 아이콘이 순차적으로 표시되는 커스텀 스플래시 스크린을 구현하는 방법을 정리했다.</li>
-  <li>왜 Custom splash screen이 필요했나?
-    <ul>
-      <li>Capacitor의 기본 splash screen은 단일 정적 이미지만 지원한다.<a href="https://capacitorjs.com/docs/apis/splash-screen">🔗링크</a></li>
-      <li>나는 여러 아이콘을 순차적으로 보여주는 애니메이션을 구현하고 싶어 React 컴포넌트로 직접 구현하였다!</li>
-    </ul>
-  </li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/projectdiary/2025-11-20-diary/">[친구하자] Capacitor 앱 Custom Splash Screen 구현하기</a>
 
       </p>
     </footer>
