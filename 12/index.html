@@ -45,7 +45,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-09T02:06:30+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/12/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-18T07:24:28+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/12/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -185,7 +185,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-03-09T02:07:14+00:00',
+    INDEX_KEY: 'index--2026-03-18T07:25:15+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -456,7 +456,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          프로젝트 일기 (32)
+          프로젝트 일기 (33)
         </a>
       </li>
     
@@ -468,7 +468,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          TIL (66)
+          TIL (68)
         </a>
       </li>
     
@@ -563,6 +563,237 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
+<article id="post-java-arraylist-array" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/java/2025-02-25-arraylist-array/" class="flip-title">
+        [JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-02-25T00:00:00+00:00">25 Feb 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      ArrayList와 배열(int[])의 성능을 비교해보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#-arraylistinteger는-언제-더-유리할까"><code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code>는 언제 더 유리할까?</a></li>
+  <li><a href="#-int-배열이-더-유리한-경우"><code class="language-plaintext highlighter-rouge">int[] 배열</code>이 더 유리한 경우</a></li>
+  <li><a href="#-성능-비교-실험-java">성능 비교 실험 (Java)</a></li>
+  <li><a href="#-결론-언제-arraylist를-쓰고-언제-배열int을-써야-할까">결론: 언제 <code class="language-plaintext highlighter-rouge">ArrayList</code>를 쓰고, 언제 <code class="language-plaintext highlighter-rouge">배열(int[])</code>을 써야 할까?</a></li>
+  <li><a href="#추가--hashmapinteger-integer와의-성능-비교">추가 : HashMap&lt;Integer, Integer&gt;와의 성능 비교</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/java/2025-02-25-arraylist-array/">[JAVA] 🚀 ArrayList vs 배열(int[]) 성능 비교</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-java-solid" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/java/2025-02-23-solid/" class="flip-title">
+        [JAVA] SOLID 원칙
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-02-23T00:00:00+00:00">23 Feb 2025</time> in <a href="/java/" class="flip-title">JAVA</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      유지보수와 확장이 쉬운 소프트웨어를 만들기 위한 5가지 설계 원칙인 SOLID 원칙에 대해 알아보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#1-srp-single-responsibility-principle">1. 단일 책임 원칙</a></li>
+  <li><a href="#2-ocp-openclosed-principle">2. 개방-폐쇄 원칙</a></li>
+  <li><a href="#3-lsp-liskov-substitution-principle">3. 리스코프 치환 원칙</a></li>
+  <li><a href="#4-isp-interface-segregation-principle">4. 인터페이스 분리 원칙</a></li>
+  <li><a href="#5-dip-dependency-inversion-principle">5. 의존성 역전 원칙</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/java/2025-02-23-solid/">[JAVA] SOLID 원칙</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-spring-token" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/spring/2025-02-22-token/" class="flip-title">
+        [Etc] 🔑 Access Token과 Refresh Token 완벽 정리
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-02-22T00:00:00+00:00">22 Feb 2025</time> in <a href="/spring/" class="flip-title">SPRING</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      OAuth 2.0을 사용할때 핵심인 Access Token과 Refresh Token에 대해 알아보자.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#1-access-token과-refresh-token이란">Access Token과 Refresh Token이란?</a></li>
+  <li><a href="#2-access-token">Access Token</a></li>
+  <li><a href="#3-refresh-token">Refresh Token</a></li>
+  <li><a href="#4-access-token-vs-refresh-token-비교">Access Token vs. Refresh Token 비교</a></li>
+  <li><a href="#5-access-token과-refresh-token을-사용하는-이유">Access Token과 Refresh Token을 사용하는 이유</a></li>
+  <li><a href="#6-access-token과-refresh-token을-활용한-인증-흐름">Access Token과 Refresh Token을 활용한 인증 흐름</a></li>
+  <li><a href="#7-access-token--refresh-token-보안-고려-사항">Access Token &amp; Refresh Token 보안 고려 사항</a></li>
+  <li><a href="#8-access-token--refresh-token-실제-코드-구현-java-spring-security">실제 코드 구현 (Java, Spring Security)</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/spring/2025-02-22-token/">[Etc] 🔑 Access Token과 Refresh Token 완벽 정리</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-spring-OAuth" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -583,10 +814,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
             </span>
           
         
@@ -661,10 +892,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
             </span>
           
         
@@ -1062,231 +1293,6 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/til/2025-02-12-til/">[TIL] JWT로 Kakao &amp; Google Login, Supabase DB 연동 (Flask)</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-til-til" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/til/2025-02-11-til/" class="flip-title">
-        [TIL] Kakao Login 구현
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-02-11T00:00:00+00:00">11 Feb 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 14 Feb 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-02-14T14:13:46+00:00">2025-02-14</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      2025-02-11 TIL
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/14">#14</a><br />
-📅 <strong>작성일</strong>: 2025-02-11<br />
-🔄 <strong>최종 수정</strong>: 2025년 02월 14일</p>
-</blockquote>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/til/2025-02-11-til/">[TIL] Kakao Login 구현</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-til-til" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/til/2025-02-10-til/" class="flip-title">
-        [TIL] Express.js, nodemon, dotenv, 다단계 AI호출
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-02-10T00:00:00+00:00">10 Feb 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Javascript</span>
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 05 Mar 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-03-05T11:06:39+00:00">2025-03-05</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      2025-02-10 TIL
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/13">#13</a><br />
-📅 <strong>작성일</strong>: 2025-02-10<br />
-🔄 <strong>최종 수정</strong>: 2025년 03월 05일</p>
-</blockquote>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/til/2025-02-10-til/">[TIL] Express.js, nodemon, dotenv, 다단계 AI호출</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-til-til" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/til/2025-02-06-til/" class="flip-title">
-        [TIL] JS Callback, Promise, Fetch, Axios
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-02-06T00:00:00+00:00">06 Feb 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Javascript</span>
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 07 Feb 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-02-07T01:36:41+00:00">2025-02-07</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      2025-02-06 TIL
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/12">#12</a><br />
-📅 <strong>작성일</strong>: 2025-02-06<br />
-🔄 <strong>최종 수정</strong>: 2025년 02월 07일</p>
-</blockquote>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/til/2025-02-06-til/">[TIL] JS Callback, Promise, Fetch, Axios</a>
 
       </p>
     </footer>

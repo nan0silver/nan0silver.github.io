@@ -45,7 +45,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-09T02:06:30+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/3/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-18T07:24:28+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/3/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -185,7 +185,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-03-09T02:07:14+00:00',
+    INDEX_KEY: 'index--2026-03-18T07:25:15+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -456,7 +456,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          프로젝트 일기 (32)
+          프로젝트 일기 (33)
         </a>
       </li>
     
@@ -468,7 +468,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          TIL (66)
+          TIL (68)
         </a>
       </li>
     
@@ -566,6 +566,237 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 <article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
+      <a href="/projectdiary/2025-12-25-diary/" class="flip-title">
+        [친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-12-25T00:00:00+00:00">25 Dec 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      “버튼 하나면 되는 거 아냐?” 라고 생각했던 나에게 현실이 알려준 것들
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-처음-그린-그림">1. 처음 그린 그림</a></li>
+  <li><a href="#2-redis-대기열-생각보다-복잡했다">2. Redis 대기열, 생각보다 복잡했다</a></li>
+  <li><a href="#3-매칭-알고리즘의-딜레마">3. 매칭 알고리즘의 딜레마</a></li>
+  <li><a href="#4-알림이-안-가요">4. “알림이 안 가요”</a></li>
+  <li><a href="#5-동시성의-늪">5. 동시성의 늪</a></li>
+  <li><a href="#6-db와-redis-사이에서">6. DB와 Redis 사이에서</a></li>
+  <li><a href="#7-배운-것들">7. 배운 것들</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-12-25-diary/">[친구하자 2025 회고] 실시간 매칭 시스템, 생각보다 어려웠던 이야기</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/projectdiary/2025-12-20-diary/" class="flip-title">
+        [친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-12-20T00:00:00+00:00">20 Dec 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      컴퓨터공학 석사 출신 개발자가 첫 실전 프로젝트에서 마주한 기술 선택의 기록
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-전체-그림-우리-서비스가-필요한-것">1. 전체 그림: 우리 서비스가 필요한 것</a></li>
+  <li><a href="#2-backend-spring-boot--webflux를-선택한-이유">2. Backend: Spring Boot + WebFlux를 선택한 이유</a></li>
+  <li><a href="#3-database-mysql을-선택한-이유">3. Database: MySQL을 선택한 이유</a></li>
+  <li><a href="#4-cache--queue-redis를-선택한-이유">4. Cache &amp; Queue: Redis를 선택한 이유</a></li>
+  <li><a href="#5-webrtc-agora를-선택한-이유">5. WebRTC: Agora를 선택한 이유</a></li>
+  <li><a href="#6-file-storage-firebase-storage를-선택한-이유">6. File Storage: Firebase Storage를 선택한 이유</a></li>
+  <li><a href="#7-frontend-react--capacitor를-선택한-이유">7. Frontend: React + Capacitor를 선택한 이유</a></li>
+  <li><a href="#8-배포-환경-aws--vercel">8. 배포 환경: AWS + Vercel</a></li>
+  <li><a href="#9-기술-선택의-원칙">9. 기술 선택의 원칙</a></li>
+  <li><a href="#10-마치며">10. 마치며</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-12-20-diary/">[친구하자 2025 회고] 실시간 음성 매칭 서비스, 왜 이 기술들을 선택했나</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/projectdiary/2025-11-24-diary/" class="flip-title">
+        [친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2025-11-24T00:00:00+00:00">24 Nov 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Agora Cloud Recording을 통한 통화 녹음과 이를 Firebase Storage에 저장하는 기능을 구현하면서 경험한 것과 느낀 점을 정리해보았습니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <p>‘친구하자’를 개발하며 통화 녹음 기능을 구현해야 했다. AI 개발과 통화 분석 등 추후 기능들을 위해 통화를 녹음하는 것을 전제로 구현을 시작했다.</p>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/projectdiary/2025-11-24-diary/">[친구하자] Agora Cloud Recording과 Firebase Storage로 음성 통화 녹음 구현하기</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
       <a href="/projectdiary/2025-11-20-diary/" class="flip-title">
         [친구하자] Capacitor 앱 Custom Splash Screen 구현하기
       </a>
@@ -583,10 +814,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
             </span>
           
         
@@ -661,10 +892,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
             </span>
           
         
@@ -734,10 +965,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
             </span>
           
         
@@ -807,10 +1038,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
             </span>
           
         
@@ -885,10 +1116,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
             </span>
           
         
@@ -963,10 +1194,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
             </span>
           
         
@@ -1042,10 +1273,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
             </span>
           
         
@@ -1087,233 +1318,6 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/algorithm/2025-10-23-collections/">[Algorithm] 코테에서 자주 쓰이는 Collection 모음</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-projectdiary-diary" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/projectdiary/2025-10-20-diary/" class="flip-title">
-        [친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-10-20T00:00:00+00:00">20 Oct 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      음성 통화 녹음 기능 구현 중 비동기 처리에서 발생한 LazyInitializationException과 OptimisticLockingFailureException을 해결한 과정을 정리했습니다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#1-문제-발견">1. 문제 발견</a></li>
-  <li><a href="#2-lazyinitializationexception-이해하기">2. LazyInitializationException 이해하기</a></li>
-  <li><a href="#3-optimisticlockingfailureexception-이해하기">3. OptimisticLockingFailureException 이해하기</a></li>
-  <li><a href="#4-문제-원인-분석">4. 문제 원인 분석</a></li>
-  <li><a href="#5-해결-방법">5. 해결 방법</a></li>
-  <li><a href="#6-핵심-개념-정리">6. 핵심 개념 정리</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/projectdiary/2025-10-20-diary/">[친구하자] Agora Cloud Recording 구현 시 Hibernate 에러 트러블슈팅</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-projectdiary-diary" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/projectdiary/2025-10-16-diary/" class="flip-title">
-        [친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-10-16T00:00:00+00:00">16 Oct 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다!
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#1-csrf-토큰-패턴">1. CSRF 토큰 패턴</a></li>
-  <li><a href="#2-originreferer-검증">2. Origin/Referer 검증</a></li>
-  <li><a href="#3-jwt의-이중-검증">3. JWT의 이중 검증</a></li>
-  <li><a href="#4-samsite--csrf-토큰-조합">4. SamSite + CSRF 토큰 조합</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/projectdiary/2025-10-16-diary/">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제 #2</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-projectdiary-diary" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/projectdiary/2025-10-15-diary/" class="flip-title">
-        [친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2025-10-15T00:00:00+00:00">15 Oct 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Mar 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-03-09T02:06:30+00:00">2026-03-09</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      백엔드, 프론트 도메인이 다른 크로스 도메인의 Production 환경에서 Refresh Token이 사라지는 문제에 대해 정리해보았습니다! (해결은 다음편)
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <ul>
-  <li><a href="#문제-상황">문제 상황</a></li>
-  <li><a href="#원인-분석">원인 분석</a></li>
-  <li><a href="#해결-방법">해결방법</a></li>
-  <li><a href="#참고-사항">참고사항</a></li>
-</ul>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/projectdiary/2025-10-15-diary/">[친구하자] 크로스 도메인 환경에서 Refresh Token 쿠키 소실 문제</a>
 
       </p>
     </footer>

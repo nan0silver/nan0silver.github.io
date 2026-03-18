@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="@Transactional 범위 안에서 외부 네트워크 호출(Gemini WebSocket)을 처리했다가, DB 커넥션 점유 시간이 길어져 커넥션 풀 고갈 위험이 생긴 문제와 해결(TransactionTemplate)을 정리합니다." />
+<meta property="og:description" content="@Transactional 범위 안에서 외부 네트워크 호출(Gemini WebSocket)을 처리했다가, DB 커넥션 점유 시간이 길어져 커넥션 풀 고갈 위험이 생긴 문제와 해결(TransactionTemplate)을 정리합니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-03-09-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2026-03-09-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-09T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-18T07:24:28+00:00","datePublished":"2026-03-09T00:00:00+00:00","description":"@Transactional 범위 안에서 외부 네트워크 호출(Gemini WebSocket)을 처리했다가, DB 커넥션 점유 시간이 길어져 커넥션 풀 고갈 위험이 생긴 문제와 해결(TransactionTemplate)을 정리합니다.","headline":"[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-03-09-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-03-09-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2026-03-09-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-03-18T07:25:15+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유",
+    "description": "@Transactional 범위 안에서 외부 네트워크 호출(Gemini WebSocket)을 처리했다가, DB 커넥션 점유 시간이 길어져 커넥션 풀 고갈 위험이 생긴 문제와 해결(TransactionTemplate)을 정리합니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-03-09T00:00:00+00:00",
+    "dateModified": "2026-03-18T07:24:28+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2026-03-09-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-03-09-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유",
+        "item": "https://nan0silver.github.io/projectdiary/2026-03-09-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-03-09-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-03-09T00:00:00+00:00">09 Mar 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      @Transactional 범위 안에서 외부 네트워크 호출(Gemini WebSocket)을 처리했다가, DB 커넥션 점유 시간이 길어져 커넥션 풀 고갈 위험이 생긴 문제와 해결(TransactionTemplate)을 정리합니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p><code class="language-plaintext highlighter-rouge">@Transactional</code> 범위 안에 외부 네트워크 호출을 끼워 넣으면 DB 커넥션 풀이 고갈될 수 있다. 그리고 “메서드만 분리하면 되겠지”라는 생각은 Spring의 프록시 구조(self-invocation)에 막힌다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#처음-작성한-코드">처음 작성한 코드</a></li>
+  <li><a href="#왜-문제인가">왜 문제인가?</a></li>
+  <li><a href="#1차-시도-메서드를-분리하면-되겠지">1차 시도: 메서드를 분리하면 되겠지?</a></li>
+  <li><a href="#spring-transactional의-작동-원리-프록시">Spring @Transactional의 작동 원리: 프록시</a></li>
+  <li><a href="#2차-시도-transactiontemplate">2차 시도: TransactionTemplate</a></li>
+  <li><a href="#추가로-발견한-것-try-finally의-중요성">추가로 발견한 것: try-finally의 중요성</a></li>
+  <li><a href="#정리">정리</a></li>
+  <li><a href="#참고">참고</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>AI 통화 기능을 개발하고 있었다. 사용자가 앱에서 AI와 실시간으로 음성 통화를 나누는 기능이다. 기술 스택은 Spring WebSocket(raw) + Google Gemini Live API. 사용자의 목소리는 PCM16 바이너리로 WebSocket을 통해 서버에 전달되고, 서버는 이를 Gemini로 중계한다. Gemini가 답변 음성을 내려주면 다시 사용자에게 스트리밍한다.</p>
+
+<p>통화가 끊길 때 정리해야 할 것이 두 가지였다.</p>
+
+<ol>
+  <li><strong>DB 상태 업데이트</strong> – <code class="language-plaintext highlighter-rouge">AiCall</code>을 COMPLETED/FAILED로 전환, <code class="language-plaintext highlighter-rouge">AiCallSession</code>을 LEFT로 전환</li>
+  <li><strong>Gemini 네트워크 연결 종료</strong> – WebSocket 연결을 닫아 리소스 해제</li>
+</ol>
+
+<p>처음에는 이 두 작업을 하나의 <code class="language-plaintext highlighter-rouge">@Transactional</code> 메서드 안에서 처리했다.</p>
+
+<hr />
+
+<h2 id="처음-작성한-코드">처음 작성한 코드</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">disconnectSession</span><span class="o">(</span><span class="nc">Long</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isNormal</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 1. DB 상태 업데이트</span>
+    <span class="n">aiCallSessionRepository</span><span class="o">.</span><span class="na">findByWebsocketSessionId</span><span class="o">(</span><span class="n">wsSessionId</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">session</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">session</span><span class="o">.</span><span class="na">leaveSession</span><span class="o">();</span>
+                <span class="n">aiCallSessionRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
+            <span class="o">});</span>
+
+    <span class="n">aiCallRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">).</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">aiCall</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isNormal</span><span class="o">)</span> <span class="n">aiCall</span><span class="o">.</span><span class="na">endCall</span><span class="o">();</span>
+        <span class="k">else</span> <span class="n">aiCall</span><span class="o">.</span><span class="na">failCall</span><span class="o">();</span>
+        <span class="n">aiCallRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">aiCall</span><span class="o">);</span>
+    <span class="o">});</span>
+
+    <span class="c1">// 2. Gemini 네트워크 연결 종료 ← 여기가 문제!</span>
+    <span class="n">geminiLiveApiClient</span><span class="o">.</span><span class="na">disconnect</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>코드 리뷰에서 이 부분이 지적됐다. <em>“@Transactional 메서드 안에서 외부 네트워크 호출을 하면 안 됩니다.”</em> 처음엔 “DB 저장하고, 네트워크 끊고, 커밋하면 되는 거 아닌가?” 싶었다.</p>
+
+<hr />
+
+<h2 id="왜-문제인가">왜 문제인가?</h2>
+
+<p>아래처럼 <code class="language-plaintext highlighter-rouge">@Transactional</code>이 걸린 메서드 안에 “DB 작업 + 외부 네트워크 호출”이 함께 들어가면, <strong>네트워크 대기 시간 동안 DB 커넥션이 계속 점유</strong>된다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>시간 →
+[트랜잭션 시작] ── [DB 작업] ── [외부 네트워크 호출(최대 수 초)] ── [커밋/롤백] ── [DB 커넥션 반납]
+                         ▲
+                         └─ 이 구간 내내 커넥션을 붙들고 있음
+</code></pre></div></div>
+
+<p>Spring의 <code class="language-plaintext highlighter-rouge">@Transactional</code>은 메서드 시작 시 DB 커넥션을 커넥션 풀에서 가져오고, 메서드가 끝날 때까지 그 커넥션을 <strong>계속 붙들고 있는다</strong>. 커밋이나 롤백은 메서드가 완전히 종료될 때 일어난다.</p>
+
+<p>Gemini Live API WebSocket 연결을 끊는 작업이 얼마나 걸릴지는 모른다. 네트워크 상태에 따라 수백ms에서 수 초까지 늘어날 수 있다. 이 시간 동안 <strong>DB 커넥션은 아무 것도 안 하면서 자리만 차지하고 있다.</strong></p>
+
+<p>커넥션 풀 기본값은 보통 10개 내외다. 동시 통화가 10건 이상 발생해 동시에 종료된다면?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>커넥션 풀 고갈 → 새 DB 요청 대기 → 타임아웃 → 서비스 장애
+</code></pre></div></div>
+
+<p>단순히 비효율의 문제가 아니라, <strong>트래픽이 몰리면 서비스 전체가 멈출 수 있는</strong> 문제였다.</p>
+
+<p>간단히 커넥션 풀을 10개라고 가정하면, 통화 종료가 몰리는 순간은 이런 모양이 된다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>커넥션 풀(10)
+[1][2][3][4][5][6][7][8][9][10]
+ W  W  W  W  W  W  W  W  W   W    (W = 네트워크 대기 중, 커넥션 점유)
+
+새 요청:  ───────────────▶  (획득 실패) 대기/타임아웃
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="1차-시도-메서드를-분리하면-되겠지">1차 시도: 메서드를 분리하면 되겠지?</h2>
+
+<p>“그러면 DB 작업 메서드와 네트워크 호출 메서드를 분리하면 되지 않나?”라고 생각했다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 트랜잭션은 여기서만</span>
+<span class="nd">@Transactional</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">updateDbState</span><span class="o">(</span><span class="nc">Long</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isNormal</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// DB 작업만...</span>
+<span class="o">}</span>
+
+<span class="c1">// 네트워크는 트랜잭션 밖에서</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">disconnectSession</span><span class="o">(</span><span class="nc">Long</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isNormal</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">updateDbState</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">,</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="n">isNormal</span><span class="o">);</span> <span class="c1">// @Transactional 메서드 호출</span>
+    <span class="n">geminiLiveApiClient</span><span class="o">.</span><span class="na">disconnect</span><span class="o">(...);</span>             <span class="c1">// 트랜잭션 밖</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>실행해봤다. DB가 업데이트되지 않았다. <code class="language-plaintext highlighter-rouge">@Transactional</code>이 아무 효과가 없었다.</p>
+
+<hr />
+
+<h2 id="spring-transactional의-작동-원리-프록시">Spring @Transactional의 작동 원리: 프록시</h2>
+
+<p>핵심은 <strong>프록시를 거쳐야 트랜잭션이 열린다</strong>는 점이다. 같은 클래스 내부에서 <code class="language-plaintext highlighter-rouge">this</code>로 호출하면 프록시를 우회한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>외부 호출
+Controller ──▶ [프록시] ──▶ (실제 빈).updateDbState()   ✅ 트랜잭션 적용
+
+내부 호출(self-invocation)
+(실제 빈).disconnectSession()
+        └── this.updateDbState()                         ❌ 프록시 우회
+</code></pre></div></div>
+
+<p>Spring <code class="language-plaintext highlighter-rouge">@Transactional</code>은 AOP(Aspect Oriented Programming) 기반이다. Spring이 빈(Bean)을 등록할 때 <code class="language-plaintext highlighter-rouge">@Transactional</code>이 붙은 메서드가 있으면, 그 빈을 <strong>프록시 객체로 감싼다</strong>. 외부에서 해당 메서드를 호출하면 프록시가 가로채서 트랜잭션을 열고, 실제 메서드를 실행하고, 커밋/롤백을 처리한다.</p>
+
+<p>문제는 <strong>같은 클래스 내부에서 <code class="language-plaintext highlighter-rouge">this.메서드()</code>를 호출하면 프록시를 거치지 않는다</strong>는 점이다. <code class="language-plaintext highlighter-rouge">this</code>는 프록시가 아닌 실제 객체를 가리키기 때문에, <code class="language-plaintext highlighter-rouge">@Transactional</code>이 붙어 있어도 트랜잭션이 시작되지 않는다. 이것이 Spring의 유명한 <strong>self-invocation 문제</strong>다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>외부 호출: Controller → [프록시] → disconnectSession()  ✅ 트랜잭션 적용
+내부 호출: disconnectSession() → this.updateDbState()   ❌ 프록시 우회, 트랜잭션 없음
+</code></pre></div></div>
+
+<p>단순히 <code class="language-plaintext highlighter-rouge">private</code>를 <code class="language-plaintext highlighter-rouge">public</code>으로 바꿔도 소용없다. 같은 클래스 안에서 <code class="language-plaintext highlighter-rouge">this</code>로 호출하는 이상, 항상 프록시를 우회한다.</p>
+
+<hr />
+
+<h2 id="2차-시도-transactiontemplate">2차 시도: TransactionTemplate</h2>
+
+<p>Self-invocation 문제를 피하는 방법은 여러 가지가 있다:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>방법</th>
+      <th>설명</th>
+      <th>단점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>메서드를 다른 클래스로 분리</td>
+      <td>새 빈으로 분리하면 프록시 적용됨</td>
+      <td>억지로 클래스를 쪼개야 함, 응집도 저하</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ApplicationContext</code>로 자기 자신 주입</td>
+      <td><code class="language-plaintext highlighter-rouge">self.updateDbState()</code> 형태로 프록시 통해 호출</td>
+      <td>코드가 지저분, 순환 의존성 느낌</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">TransactionTemplate</code> 직접 사용</td>
+      <td>프로그래밍 방식으로 트랜잭션 경계 명시</td>
+      <td>약간 verbose하지만 명확함</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이 상황에서는 <code class="language-plaintext highlighter-rouge">TransactionTemplate</code>이 가장 깔끔했다. DB 작업의 범위를 코드로 직접 명시할 수 있고, 트랜잭션이 끝나는 시점을 정확하게 제어할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// PlatformTransactionManager 주입</span>
+<span class="kd">private</span> <span class="kd">final</span> <span class="nc">PlatformTransactionManager</span> <span class="n">transactionManager</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">disconnectSession</span><span class="o">(</span><span class="nc">Long</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isNormal</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="c1">// ① 트랜잭션 범위를 람다로 명시적으로 감싼다</span>
+        <span class="k">new</span> <span class="nf">TransactionTemplate</span><span class="o">(</span><span class="n">transactionManager</span><span class="o">).</span><span class="na">executeWithoutResult</span><span class="o">(</span><span class="n">txStatus</span> <span class="o">-&gt;</span>
+            <span class="n">updateDbStateOnDisconnect</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">,</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="n">isNormal</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="c1">// ② 트랜잭션 커밋 완료 후, 커넥션 반납 후 네트워크 호출</span>
+        <span class="n">geminiLiveApiClient</span><span class="o">.</span><span class="na">disconnect</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">));</span>
+
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"[릴레이] 세션 정리 중 오류: aiCallId={}"</span><span class="o">,</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+        <span class="c1">// ③ DB/네트워크 오류와 관계없이 인메모리 리소스는 반드시 정리</span>
+        <span class="n">sessionManager</span><span class="o">.</span><span class="na">cancelRelay</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// @Transactional 없이 그냥 private 메서드</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">updateDbStateOnDisconnect</span><span class="o">(</span><span class="nc">Long</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isNormal</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// DB 작업만</span>
+    <span class="n">aiCallSessionRepository</span><span class="o">.</span><span class="na">findByWebsocketSessionId</span><span class="o">(</span><span class="n">wsSessionId</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">session</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="n">session</span><span class="o">.</span><span class="na">leaveSession</span><span class="o">();</span> <span class="n">aiCallSessionRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">session</span><span class="o">);</span> <span class="o">});</span>
+
+    <span class="n">aiCallRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">).</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">aiCall</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isNormal</span><span class="o">)</span> <span class="n">aiCall</span><span class="o">.</span><span class="na">endCall</span><span class="o">();</span>
+        <span class="k">else</span> <span class="n">aiCall</span><span class="o">.</span><span class="na">failCall</span><span class="o">();</span>
+        <span class="n">aiCallRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">aiCall</span><span class="o">);</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이제 타임라인이 아래처럼 바뀐다. <strong>커밋과 커넥션 반납이 먼저 끝나고</strong>, 그 다음에 네트워크 호출이 시작된다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>시간 →
+[트랜잭션 시작] ── [DB 작업] ── [커밋 &amp; 커넥션 반납] ── [외부 네트워크 호출]
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">TransactionTemplate.executeWithoutResult()</code> 람다가 종료되는 순간 커밋이 일어나고, DB 커넥션이 풀로 반환된다. 그 이후에야 Gemini 네트워크 연결 종료가 시작된다. 아무리 오래 걸려도 커넥션 풀에는 영향을 주지 않는다.</p>
+
+<hr />
+
+<h2 id="추가로-발견한-것-try-finally의-중요성">추가로 발견한 것: try-finally의 중요성</h2>
+
+<p>수정 과정에서 또 다른 패턴을 적용했다. <code class="language-plaintext highlighter-rouge">finally</code> 블록에서 인메모리 리소스를 정리하는 것이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isOwner</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">sessionManager</span><span class="o">.</span><span class="na">cancelRelay</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>        <span class="c1">// Reactor 구독 취소</span>
+        <span class="n">sessionManager</span><span class="o">.</span><span class="na">unregisterSession</span><span class="o">(</span><span class="n">callId</span><span class="o">,</span> <span class="n">wsSessionId</span><span class="o">);</span> <span class="c1">// 세션 맵에서 제거</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>DB 업데이트나 Gemini 연결 종료에서 예외가 발생하더라도, <strong>인메모리의 릴레이 구독과 세션 참조는 반드시 해제되어야 한다.</strong> 메모리 누수와 “고아” Reactor 구독을 막기 위해서다.</p>
+
+<hr />
+
+<h2 id="정리">정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>수정 전</th>
+      <th>수정 후</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DB 커넥션 점유 시간</td>
+      <td>DB 작업 + 네트워크 대기</td>
+      <td>DB 작업만</td>
+    </tr>
+    <tr>
+      <td>트랜잭션 경계</td>
+      <td><code class="language-plaintext highlighter-rouge">@Transactional</code> 메서드 전체</td>
+      <td><code class="language-plaintext highlighter-rouge">TransactionTemplate</code> 람다 내부만</td>
+    </tr>
+    <tr>
+      <td>동시 통화 종료 내성</td>
+      <td>커넥션 풀 고갈 위험</td>
+      <td>안전</td>
+    </tr>
+    <tr>
+      <td>코드 명확성</td>
+      <td>트랜잭션 범위 암묵적</td>
+      <td>트랜잭션 범위 코드로 명시</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>핵심 원칙 두 가지:</strong></p>
+
+<ol>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">@Transactional</code> 메서드 안에는 DB 작업만 넣어라.</strong> 외부 HTTP/WebSocket 호출, 파일 I/O, 긴 계산은 모두 트랜잭션 밖으로 꺼내야 한다.</p>
+  </li>
+  <li>
+    <p><strong>같은 클래스 안에서 트랜잭션 범위를 세밀하게 제어해야 한다면 <code class="language-plaintext highlighter-rouge">TransactionTemplate</code>을 써라.</strong> Self-invocation 문제를 피하면서, 트랜잭션 경계를 코드로 명시적으로 표현할 수 있다.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="참고">참고</h2>
+
+<ul>
+  <li><a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-decl-explained.html">Spring Docs - Understanding the Spring Framework’s Declarative Transaction Implementation</a></li>
+  <li><a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html">Spring Docs - Programmatic Transaction Management (TransactionTemplate)</a></li>
+</ul>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2026-03-11-til/" class="flip-title"><span>[TIL] 트랜잭션·Redis 정합성, TOCTOU, 보상 트랜잭션 — #150에서 배운 백엔드 포인트</span></a>  <time class="faded fine" datetime="2026-03-11T00:00:00+00:00">11 Mar 2026</time></li>                        <li class="h4">  <a href="/til/2026-03-10-til/" class="flip-title"><span>[TIL] Spring Events, @Async, Redis, STOMP — #148·#149에서 배운 백엔드 포인트</span></a>  <time class="faded fine" datetime="2026-03-10T00:00:00+00:00">10 Mar 2026</time></li>                        <li class="h4">  <a href="/til/2026-03-07-til/" class="flip-title"><span>[TIL] 멀티스레드 Race Condition과 AtomicBoolean (volatile의 한계)</span></a>  <time class="faded fine" datetime="2026-03-07T00:00:00+00:00">07 Mar 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="https://github.com/nan0silver">GitHub</a>
+      |
+    
+      
+      <a class="heading flip-title" href="mailto:silvernh1220@gmail.com">Gmail</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Full-stack · 1인 개발 · 창업 준비
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          Frontend (9)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/aws/"
+          class="sidebar-nav-item "
+          
+        >
+          AWS (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (18)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          기타 (4)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (33)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (68)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>
