@@ -44,7 +44,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-18T07:24:28+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-04-16T02:51:52+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -184,7 +184,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-03-18T07:25:15+00:00',
+    INDEX_KEY: 'index--2026-04-16T02:52:43+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -467,7 +467,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          TIL (68)
+          TIL (69)
         </a>
       </li>
     
@@ -545,6 +545,71 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
   
+
+  
+
+
+
+
+
+<article id="post-til-til" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/til/2026-03-29-til/" class="flip-title">
+        [TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-03-29T00:00:00+00:00">29 Mar 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Spring</span>, <span>트랜잭션</span>, <span>이벤트</span>, <span>Async</span>
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      트랜잭션 커밋 전 <code class="language-plaintext highlighter-rouge">publishEvent()</code>를 호출했을 때 발생한 타이밍 문제와 <code class="language-plaintext highlighter-rouge">@TransactionalEventListener(AFTER_COMMIT)</code> 및 <code class="language-plaintext highlighter-rouge">afterCommit()</code> 해결 방식을 정리한 글이다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+<code class="language-plaintext highlighter-rouge">@Transactional</code> 안에서 <code class="language-plaintext highlighter-rouge">publishEvent()</code>를 호출하면 <code class="language-plaintext highlighter-rouge">@Async</code> 리스너가 커밋 전 데이터를 읽으려다 실패할 수 있다. 이 문제는 <code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager.afterCommit()</code> 또는 <code class="language-plaintext highlighter-rouge">@TransactionalEventListener(AFTER_COMMIT)</code>로 해결한다.</p>
+</blockquote>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/til/2026-03-29-til/">[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)</a>
+
+      </p>
+    </footer>
+  
+</article>
+
 
   
 
@@ -702,10 +767,10 @@ DB 트랜잭션과 외부 시스템(Redis)이 함께 움직일 때, “원자성
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 16 Apr 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
+              <time datetime="2026-04-16T02:51:52+00:00">2026-04-16</time>
             </span>
           
         
@@ -903,10 +968,10 @@ DB 트랜잭션과 외부 시스템(Redis)이 함께 움직일 때, “원자성
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 16 Apr 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
+              <time datetime="2026-04-16T02:51:52+00:00">2026-04-16</time>
             </span>
           
         
@@ -1041,10 +1106,10 @@ Capacitor로 빌드한 Android 앱에서 <strong>HTTPS만 사용하도록</stron
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 16 Apr 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
+              <time datetime="2026-04-16T02:51:52+00:00">2026-04-16</time>
             </span>
           
         
@@ -1114,10 +1179,10 @@ Capacitor로 빌드한 Android 앱에서 <strong>HTTPS만 사용하도록</stron
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 16 Apr 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
+              <time datetime="2026-04-16T02:51:52+00:00">2026-04-16</time>
             </span>
           
         
@@ -1160,77 +1225,6 @@ Capacitor로 빌드한 Android 앱에서 <strong>HTTPS만 사용하도록</stron
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/projectdiary/2026-02-24-diary/">[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-aws-ecs-deployment-developer-guide" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/aws/2026-02-24-ecs-deployment-developer-guide/" class="flip-title">
-        AWS ECS 배포 공식 문서 정리 (개발자용)
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time> in <a href="/aws/" class="flip-title">AWS</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 18 Mar 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-03-18T07:24:28+00:00">2026-03-18</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      ECS 서비스 배포(롤링 업데이트, Blue/Green, Circuit Breaker, CloudWatch Alarms, 이미지 해석 등) 관련 AWS 공식 문서를 개발자 관점에서 정리했다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>Amazon ECS 서비스 배포와 관련된 AWS 공식 문서를 개발자 관점에서 정리한 문서다.<br />
-기준 문서: <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html">Deploy Amazon ECS services by replacing tasks</a> 및 연관 문서.</p>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/aws/2026-02-24-ecs-deployment-developer-guide/">AWS ECS 배포 공식 문서 정리 (개발자용)</a>
 
       </p>
     </footer>

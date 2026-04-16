@@ -1,5 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-03-18T07:25:15+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun Eun (은나현). Full-stack developer building products solo, preparing for startup. Java, Spring Boot, Python, AI. Project diaries, backend/infra notes, and TIL.
-</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[TIL] 트랜잭션·Redis 정합성, TOCTOU, 보상 트랜잭션 — #150에서 배운 백엔드 포인트</title><link href="https://nan0silver.github.io/til/2026-03-11-til/" rel="alternate" type="text/html" title="[TIL] 트랜잭션·Redis 정합성, TOCTOU, 보상 트랜잭션 — #150에서 배운 백엔드 포인트" /><published>2026-03-11T00:00:00+00:00</published><updated>2026-03-11T00:00:00+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2026-03-11-til/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-04-16T02:52:43+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun Eun (은나현). Full-stack developer building products solo, preparing for startup. Java, Spring Boot, Python, AI. Project diaries, backend/infra notes, and TIL.
+</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)</title><link href="https://nan0silver.github.io/til/2026-03-29-til/" rel="alternate" type="text/html" title="[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)" /><published>2026-03-29T00:00:00+00:00</published><updated>2026-03-29T00:00:00+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2026-03-29-til/"><![CDATA[<blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+<code class="language-plaintext highlighter-rouge">@Transactional</code> 안에서 <code class="language-plaintext highlighter-rouge">publishEvent()</code>를 호출하면 <code class="language-plaintext highlighter-rouge">@Async</code> 리스너가 커밋 전 데이터를 읽으려다 실패할 수 있다. 이 문제는 <code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager.afterCommit()</code> 또는 <code class="language-plaintext highlighter-rouge">@TransactionalEventListener(AFTER_COMMIT)</code>로 해결한다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-문제-상황">1. 문제 상황</a></li>
+  <li><a href="#2-왜-이런-일이-생기는가">2. 왜 이런 일이 생기는가</a></li>
+  <li><a href="#3-해결책-1-transactionsynchronizationmanageraftercommit">3. 해결책 1: TransactionSynchronizationManager.afterCommit()</a></li>
+  <li><a href="#4-해결책-2-transactionaleventlistenerafter_commit">4. 해결책 2: @TransactionalEventListener(AFTER_COMMIT)</a></li>
+  <li><a href="#5-선택-가이드">5. 선택 가이드</a></li>
+  <li><a href="#정리">정리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>Spring 애플리케이션에서는 비즈니스 로직이 끝난 뒤 이벤트를 발행하는 패턴을 자주 사용한다. 하지만 트랜잭션과 비동기가 함께 얽히면 타이밍 문제가 쉽게 발생한다.</p>
+
+<p>실제로 친구 1:1 통화 기능을 구현하면서 다음 버그를 겪었다.</p>
+
+<ul>
+  <li>친구 통화 수락 시 Agora 녹음 시작이 실패한다.</li>
+  <li>Call 레코드를 찾을 수 없다는 에러가 발생한다.</li>
+</ul>
+
+<p>흐름 자체는 단순하다. 통화 정보를 DB에 저장하고 <code class="language-plaintext highlighter-rouge">CallStartedEvent</code>를 발행한 뒤, 리스너에서 녹음을 시작한다. 겉보기에는 정상처럼 보이지만 이벤트 발행 시점에 함정이 있다.</p>
+
+<h2 id="1-문제-상황">1. 문제 상황</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// FriendCallService.java (버그가 있던 코드)</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">CallTokenResponse</span> <span class="nf">acceptOffer</span><span class="o">(</span><span class="nc">Long</span> <span class="n">offerId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">calleeId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ... Call 엔티티 생성 및 저장</span>
+    <span class="n">call</span><span class="o">.</span><span class="na">startCall</span><span class="o">();</span>
+
+    <span class="c1">// 트랜잭션이 아직 커밋되지 않은 상태에서 이벤트 발행</span>
+    <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">channelName</span><span class="o">));</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// CallEventListener.java</span>
+<span class="nd">@Async</span><span class="o">(</span><span class="s">"recordingTaskExecutor"</span><span class="o">)</span>
+<span class="nd">@EventListener</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleCallStarted</span><span class="o">(</span><span class="nc">CallStartedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 이 시점에 DB에 Call이 없을 수 있음</span>
+    <span class="nc">RecordingRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">RecordingRequest</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getCallId</span><span class="o">(),</span> <span class="n">event</span><span class="o">.</span><span class="na">getChannelName</span><span class="o">());</span>
+    <span class="n">agoraRecordingService</span><span class="o">.</span><span class="na">startRecording</span><span class="o">(</span><span class="n">request</span><span class="o">);</span> <span class="c1">// Call 조회 실패</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-왜-이런-일이-생기는가">2. 왜 이런 일이 생기는가</h2>
+
+<p>핵심은 <code class="language-plaintext highlighter-rouge">@Async</code> 리스너가 별도 스레드에서 실행된다는 점이다. 이벤트를 발행하는 메서드는 트랜잭션 내부에서 동작하고 있지만, 리스너는 그 트랜잭션 바깥에서 DB를 조회한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">READ COMMITTED</code> 격리 수준에서는 커밋되지 않은 데이터를 읽을 수 없으므로, 리스너에서 Call 레코드를 찾지 못하는 현상이 발생한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// @Async 없이 동기 리스너로 처리한 경우</span>
+<span class="nd">@EventListener</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleCallStarted</span><span class="o">(</span><span class="nc">CallStartedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">agoraRecordingService</span><span class="o">.</span><span class="na">startRecording</span><span class="o">(...);</span> <span class="c1">// 같은 스레드, 같은 트랜잭션</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>동기 <code class="language-plaintext highlighter-rouge">@EventListener</code>는 같은 스레드/같은 트랜잭션 컨텍스트이므로 커밋 전 데이터 접근이 가능하다. 하지만 다른 문제가 생긴다.</p>
+
+<ul>
+  <li>리스너 예외가 원래 트랜잭션까지 롤백시킨다.</li>
+  <li>외부 I/O(Agora API) 실패가 통화 수락 자체 실패로 번진다.</li>
+</ul>
+
+<p>즉, 사이드 이펙트를 핵심 트랜잭션과 분리하려고 <code class="language-plaintext highlighter-rouge">@Async</code>를 쓰면, 이번에는 타이밍 문제가 드러난다.</p>
+
+<hr />
+
+<h2 id="3-해결책-1-transactionsynchronizationmanageraftercommit">3. 해결책 1: TransactionSynchronizationManager.afterCommit()</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// FriendCallService.java (수정된 코드)</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">CallTokenResponse</span> <span class="nf">acceptOffer</span><span class="o">(</span><span class="nc">Long</span> <span class="n">offerId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">calleeId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ... Call 엔티티 생성 및 저장</span>
+    <span class="n">call</span><span class="o">.</span><span class="na">startCall</span><span class="o">();</span>
+
+    <span class="kd">final</span> <span class="nc">Long</span> <span class="n">callId</span> <span class="o">=</span> <span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+    <span class="kd">final</span> <span class="nc">String</span> <span class="n">finalChannelName</span> <span class="o">=</span> <span class="n">channelName</span><span class="o">;</span>
+
+    <span class="c1">// 트랜잭션 커밋 이후에 이벤트 발행</span>
+    <span class="nc">TransactionSynchronizationManager</span><span class="o">.</span><span class="na">registerSynchronization</span><span class="o">(</span><span class="k">new</span> <span class="nc">TransactionSynchronization</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterCommit</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">callId</span><span class="o">,</span> <span class="n">finalChannelName</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager</code>는 현재 트랜잭션에 콜백을 등록하는 저수준 API이다. <code class="language-plaintext highlighter-rouge">afterCommit()</code>에 등록한 코드는 커밋 직후 실행된다.</p>
+
+<p>수정 후에는 다음 흐름이 된다.</p>
+
+<ul>
+  <li>트랜잭션 내부에서 <code class="language-plaintext highlighter-rouge">afterCommit()</code> 콜백만 등록한다.</li>
+  <li>실제 이벤트 발행은 커밋이 끝난 뒤 실행된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">@Async</code> 리스너가 조회할 때는 이미 DB 반영이 완료된 상태이다.</li>
+</ul>
+
+<p>주의할 점도 있다. <code class="language-plaintext highlighter-rouge">afterCommit()</code> 안에서 엔티티를 직접 건드리지 말고, 필요한 값을 미리 뽑아둬야 한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ 위험: afterCommit 안에서 엔티티 접근</span>
+<span class="n">afterCommit</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="o">...));</span>
+<span class="o">}</span>
+
+<span class="c1">// ✅ 안전: 미리 값을 추출</span>
+<span class="kd">final</span> <span class="nc">Long</span> <span class="n">callId</span> <span class="o">=</span> <span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+<span class="n">afterCommit</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">callId</span><span class="o">,</span> <span class="o">...));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-해결책-2-transactionaleventlistenerafter_commit">4. 해결책 2: @TransactionalEventListener(AFTER_COMMIT)</h2>
+
+<p>Spring은 이 문제를 위한 전용 어노테이션을 제공한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Async</span><span class="o">(</span><span class="s">"taskExecutor"</span><span class="o">)</span>
+<span class="nd">@TransactionalEventListener</span><span class="o">(</span><span class="n">phase</span> <span class="o">=</span> <span class="nc">TransactionPhase</span><span class="o">.</span><span class="na">AFTER_COMMIT</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleFriendCallOfferCreated</span><span class="o">(</span><span class="nc">FriendCallOfferCreatedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">fcmNotificationService</span><span class="o">.</span><span class="na">sendFriendCallOfferNotification</span><span class="o">(...);</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"FCM 알림 전송 실패"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">webSocketEventService</span><span class="o">.</span><span class="na">sendFriendCallOfferNotification</span><span class="o">(...);</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"WS 알림 전송 실패"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">@TransactionalEventListener(phase = AFTER_COMMIT)</code>을 사용하면 리스너가 커밋 이후에만 실행된다. 이벤트 발행 측 코드를 바꾸지 않고 수신 측에서 처리 타이밍을 제어할 수 있다.</p>
+
+<hr />
+
+<h2 id="5-선택-가이드">5. 선택 가이드</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager</code></th>
+      <th><code class="language-plaintext highlighter-rouge">@TransactionalEventListener</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>수정 위치</td>
+      <td>이벤트 발행 측</td>
+      <td>이벤트 수신 측</td>
+    </tr>
+    <tr>
+      <td>적용 범위</td>
+      <td>특정 발행 지점</td>
+      <td>해당 리스너 전체</td>
+    </tr>
+    <tr>
+      <td>트랜잭션 없이 호출 시</td>
+      <td>등록 자체가 실패할 수 있음</td>
+      <td>기본적으로 이벤트를 무시함</td>
+    </tr>
+    <tr>
+      <td>유연성</td>
+      <td><code class="language-plaintext highlighter-rouge">beforeCommit</code>, <code class="language-plaintext highlighter-rouge">afterCompletion</code> 등 세밀한 훅 제공</td>
+      <td><code class="language-plaintext highlighter-rouge">phase</code> 기반 제어</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>트랜잭션 없는 컨텍스트에서도 이벤트가 발행될 수 있다면 <code class="language-plaintext highlighter-rouge">@TransactionalEventListener</code>의 기본 동작(AFTER_COMMIT + no tx 시 무시)을 반드시 고려해야 한다. 필요하면 <code class="language-plaintext highlighter-rouge">fallbackExecution = true</code>를 사용한다.</p>
+
+<hr />
+
+<h2 id="정리">정리</h2>
+
+<p>문제의 본질은 트랜잭션 커밋 시점과 이벤트 소비 시점이 어긋난다는 점이다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>동기 <code class="language-plaintext highlighter-rouge">@EventListener</code></th>
+      <th><code class="language-plaintext highlighter-rouge">@Async @EventListener</code></th>
+      <th><code class="language-plaintext highlighter-rouge">@Async @TransactionalEventListener(AFTER_COMMIT)</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>실행 스레드</td>
+      <td>동일</td>
+      <td>별도</td>
+      <td>별도</td>
+    </tr>
+    <tr>
+      <td>트랜잭션 컨텍스트</td>
+      <td>공유</td>
+      <td>없음</td>
+      <td>없음</td>
+    </tr>
+    <tr>
+      <td>커밋 전 데이터 접근</td>
+      <td>가능</td>
+      <td>불가</td>
+      <td>커밋 후 실행으로 안전</td>
+    </tr>
+    <tr>
+      <td>리스너 예외 영향</td>
+      <td>원 트랜잭션 롤백 가능</td>
+      <td>독립</td>
+      <td>독립</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Spring 이벤트를 사용할 때는 다음 규칙을 기억하면 된다.</p>
+
+<ol>
+  <li>리스너가 @Async라면, 커밋 전 데이터를 읽을 수 없다.</li>
+  <li>이벤트 발행 측을 수정할 수 있다면,
+TransactionSynchronizationManager.registerSynchronization().afterCommit()을 사용한다.</li>
+  <li>리스너 측에서만 처리하고 싶다면, @TransactionalEventListener(phase =
+AFTER_COMMIT)을 사용한다.</li>
+  <li>어떤 방식이든 afterCommit() 콜백 안에서는 엔티티를 직접 참조하지 않고, 미리 추출한
+원시 값(Long id 등)을 사용한다.</li>
+</ol>
+
+<hr />
+
+<p>결론적으로 <code class="language-plaintext highlighter-rouge">@Async</code> + <code class="language-plaintext highlighter-rouge">publishEvent()</code> 조합에서는 “커밋 이후에 소비되도록 보장하는 장치”를 반드시 넣어야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Spring" /><category term="트랜잭션" /><category term="이벤트" /><category term="Async" /><summary type="html"><![CDATA[트랜잭션 커밋 전 `publishEvent()`를 호출했을 때 발생한 타이밍 문제와 `@TransactionalEventListener(AFTER_COMMIT)` 및 `afterCommit()` 해결 방식을 정리한 글이다.]]></summary></entry><entry><title type="html">[TIL] 트랜잭션·Redis 정합성, TOCTOU, 보상 트랜잭션 — #150에서 배운 백엔드 포인트</title><link href="https://nan0silver.github.io/til/2026-03-11-til/" rel="alternate" type="text/html" title="[TIL] 트랜잭션·Redis 정합성, TOCTOU, 보상 트랜잭션 — #150에서 배운 백엔드 포인트" /><published>2026-03-11T00:00:00+00:00</published><updated>2026-03-11T00:00:00+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2026-03-11-til/"><![CDATA[<blockquote>
   <p>📝 <strong>TIL (Today I Learned)</strong><br />
 DB 트랜잭션과 외부 시스템(Redis)이 함께 움직일 때, “원자성”과 “정합성”을 어떻게 지켜야 하는지 #150 구현에서 다시 정리했다.</p>
 </blockquote>
@@ -427,7 +673,7 @@ Redis 트랜잭션(MULTI/EXEC)과 Lua 스크립트의 차이, Spring의 <code cl
   <li><strong>운영</strong>: 스케줄러는 기능별 설정으로 나누고, dead code와 이름이 비슷한 상수는 사용처를 한 번씩 검색해 본다.</li>
 </ul>
 
-<p>이렇게 정리해 두면, 비슷한 “실시간 알림 + DB + Redis + 스케줄러” 구조를 다룰 때 다시 참고하기 좋다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Spring" /><category term="Redis" /><category term="WebSocket" /><category term="STOMP" /><category term="트랜잭션" /><category term="분산시스템" /><summary type="html"><![CDATA[Spring Events(@TransactionalEventListener, AFTER_COMMIT), @Async와 LazyInitializationException, Redis ZSET·Lua·TOCTOU, STOMP WebSocket 사용자별 전송, 스케줄러 설계 등 #148·#149 구현에서 정리한 백엔드 포인트입니다.]]></summary></entry><entry><title type="html">[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-03-09-diary/" rel="alternate" type="text/html" title="[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유" /><published>2026-03-09T00:00:00+00:00</published><updated>2026-03-18T07:24:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-03-09-diary/"><![CDATA[<blockquote>
+<p>이렇게 정리해 두면, 비슷한 “실시간 알림 + DB + Redis + 스케줄러” 구조를 다룰 때 다시 참고하기 좋다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Spring" /><category term="Redis" /><category term="WebSocket" /><category term="STOMP" /><category term="트랜잭션" /><category term="분산시스템" /><summary type="html"><![CDATA[Spring Events(@TransactionalEventListener, AFTER_COMMIT), @Async와 LazyInitializationException, Redis ZSET·Lua·TOCTOU, STOMP WebSocket 사용자별 전송, 스케줄러 설계 등 #148·#149 구현에서 정리한 백엔드 포인트입니다.]]></summary></entry><entry><title type="html">[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-03-09-diary/" rel="alternate" type="text/html" title="[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유" /><published>2026-03-09T00:00:00+00:00</published><updated>2026-04-16T02:51:52+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-03-09-diary/"><![CDATA[<blockquote>
   <p><code class="language-plaintext highlighter-rouge">@Transactional</code> 범위 안에 외부 네트워크 호출을 끼워 넣으면 DB 커넥션 풀이 고갈될 수 있다. 그리고 “메서드만 분리하면 되겠지”라는 생각은 Spring의 프록시 구조(self-invocation)에 막힌다.</p>
 </blockquote>
 
@@ -958,7 +1204,7 @@ inboundAudioSink.tryEmitComplete() (아무것도 안 함)
 
 <blockquote>
   <p>📌 <strong>핵심 한 줄 요약</strong> \n+&gt; <code class="language-plaintext highlighter-rouge">volatile</code>은 "다른 스레드가 쓴 값을 내가 볼 수 있게" 해주고, \n+&gt; <code class="language-plaintext highlighter-rouge">AtomicBoolean.compareAndSet</code>은 "check-then-act를 아무도 못 끼어드는 하나의 동작"으로 만들어준다.</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Java" /><category term="동시성" /><category term="RaceCondition" /><category term="volatile" /><category term="AtomicBoolean" /><category term="CAS" /><category term="WebFlux" /><summary type="html"><![CDATA[멀티스레드 환경에서 volatile의 한계(가시성 vs 원자성)와 check-then-act 레이스 컨디션을 AtomicBoolean.compareAndSet(CAS)으로 해결하는 방법을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] OkHttp vs Spring WebFlux WebSocket — 우리가 starter-webflux를 선택한 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-03-06-diary/" rel="alternate" type="text/html" title="[친구하자] OkHttp vs Spring WebFlux WebSocket — 우리가 starter-webflux를 선택한 이유" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-03-18T07:24:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-03-06-diary/"><![CDATA[<blockquote>
+</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Java" /><category term="동시성" /><category term="RaceCondition" /><category term="volatile" /><category term="AtomicBoolean" /><category term="CAS" /><category term="WebFlux" /><summary type="html"><![CDATA[멀티스레드 환경에서 volatile의 한계(가시성 vs 원자성)와 check-then-act 레이스 컨디션을 AtomicBoolean.compareAndSet(CAS)으로 해결하는 방법을 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] OkHttp vs Spring WebFlux WebSocket — 우리가 starter-webflux를 선택한 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-03-06-diary/" rel="alternate" type="text/html" title="[친구하자] OkHttp vs Spring WebFlux WebSocket — 우리가 starter-webflux를 선택한 이유" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-04-16T02:51:52+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-03-06-diary/"><![CDATA[<blockquote>
   <p>Gemini Live API를 WebSocket으로 연동하면서 <strong>클라이언트 라이브러리 선택</strong>에 대한 고민을 정리합니다.</p>
 </blockquote>
 
@@ -1916,7 +2162,7 @@ usesCleartextTraffic은 “앱이 HTTP를 허용할지”만 정하고, CORS는 
 </ul>
 
 <p>정리하면, <strong>되돌릴 필요 없이</strong> <code class="language-plaintext highlighter-rouge">false</code> + <code class="language-plaintext highlighter-rouge">tools:replace</code> 로 두고 배포해도 되고,<br />
-API와 카카오가 HTTPS만 사용한다면 그대로 두는 것이 맞다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Android" /><category term="Capacitor" /><category term="보안" /><category term="HTTPS" /><category term="Manifest" /><summary type="html"><![CDATA[Capacitor Android 앱에서 HTTPS만 사용하도록 usesCleartextTraffic을 false로 설정할 때, 카카오 SDK와의 Manifest merger 충돌을 tools:replace로 해결하는 방법과, CORS와의 관계를 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화</title><link href="https://nan0silver.github.io/projectdiary/2026-02-26-diary/" rel="alternate" type="text/html" title="[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화" /><published>2026-02-26T00:00:00+00:00</published><updated>2026-03-18T07:24:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-26-diary/"><![CDATA[<blockquote>
+API와 카카오가 HTTPS만 사용한다면 그대로 두는 것이 맞다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Android" /><category term="Capacitor" /><category term="보안" /><category term="HTTPS" /><category term="Manifest" /><summary type="html"><![CDATA[Capacitor Android 앱에서 HTTPS만 사용하도록 usesCleartextTraffic을 false로 설정할 때, 카카오 SDK와의 Manifest merger 충돌을 tools:replace로 해결하는 방법과, CORS와의 관계를 정리했습니다.]]></summary></entry><entry><title type="html">[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화</title><link href="https://nan0silver.github.io/projectdiary/2026-02-26-diary/" rel="alternate" type="text/html" title="[친구하자] CI/CD 파이프라인 구축기: GitHub Actions + Docker + AWS ECR/EC2 배포 자동화" /><published>2026-02-26T00:00:00+00:00</published><updated>2026-04-16T02:51:52+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-26-diary/"><![CDATA[<blockquote>
   <p><a href="https://nan0silver.github.io/projectdiary/2026-02-24-diary/">이전 일기: Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS</a>에서 CI/CD, Docker, ECR, EC2 개념과 전체 흐름을 다뤘다.<br />
 이번에는 <strong>실제로 파이프라인을 구축한 과정</strong>과 <strong>배포하면서 겪은 트러블슈팅</strong>을 중심으로 정리한다.</p>
 </blockquote>
@@ -2246,7 +2492,7 @@ GitHub Actions CD (cd.yml)
        └─ 기동 상태 확인 (최대 60초)
 </code></pre></div></div>
 
-<p>이 과정을 직접 구축하면서 가장 많이 배운 것은 <strong>“왜 안 되는지”를 로그에서 찾는 능력</strong>이다. 에러 메시지를 끝까지 읽고, 그 원인을 이해하고, 해결하는 과정이 인프라 공부의 핵심이라고 생각한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[이전 글에서 다룬 CI/CD·Docker·ECR·EC2에 이어, 실제 파이프라인 구축 과정과 EC2 배포 시 겪은 트러블슈팅을 정리했습니다.]]></summary></entry><entry><title type="html">AWS ECS 배포 공식 문서 정리 (개발자용)</title><link href="https://nan0silver.github.io/aws/2026-02-24-ecs-deployment-developer-guide/" rel="alternate" type="text/html" title="AWS ECS 배포 공식 문서 정리 (개발자용)" /><published>2026-02-24T00:00:00+00:00</published><updated>2026-03-18T07:24:28+00:00</updated><id>https://nan0silver.github.io/aws/ecs-deployment-developer-guide</id><content type="html" xml:base="https://nan0silver.github.io/aws/2026-02-24-ecs-deployment-developer-guide/"><![CDATA[<p>Amazon ECS 서비스 배포와 관련된 AWS 공식 문서를 개발자 관점에서 정리한 문서다.<br />
+<p>이 과정을 직접 구축하면서 가장 많이 배운 것은 <strong>“왜 안 되는지”를 로그에서 찾는 능력</strong>이다. 에러 메시지를 끝까지 읽고, 그 원인을 이해하고, 해결하는 과정이 인프라 공부의 핵심이라고 생각한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[이전 글에서 다룬 CI/CD·Docker·ECR·EC2에 이어, 실제 파이프라인 구축 과정과 EC2 배포 시 겪은 트러블슈팅을 정리했습니다.]]></summary></entry><entry><title type="html">AWS ECS 배포 공식 문서 정리 (개발자용)</title><link href="https://nan0silver.github.io/aws/2026-02-24-ecs-deployment-developer-guide/" rel="alternate" type="text/html" title="AWS ECS 배포 공식 문서 정리 (개발자용)" /><published>2026-02-24T00:00:00+00:00</published><updated>2026-04-16T02:51:52+00:00</updated><id>https://nan0silver.github.io/aws/ecs-deployment-developer-guide</id><content type="html" xml:base="https://nan0silver.github.io/aws/2026-02-24-ecs-deployment-developer-guide/"><![CDATA[<p>Amazon ECS 서비스 배포와 관련된 AWS 공식 문서를 개발자 관점에서 정리한 문서다.<br />
 기준 문서: <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html">Deploy Amazon ECS services by replacing tasks</a> 및 연관 문서.</p>
 
 <hr />
@@ -2838,346 +3084,4 @@ aws ecs stop-service-deployment <span class="se">\</span>
 
 <hr />
 
-<p><em>이 문서는 AWS 공식 문서를 바탕으로 정리했으며, 실제 구현 시 최신 Developer Guide와 API Reference를 반드시 확인하는 것이 좋다.</em></p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="aws" /><summary type="html"><![CDATA[ECS 서비스 배포(롤링 업데이트, Blue/Green, Circuit Breaker, CloudWatch Alarms, 이미지 해석 등) 관련 AWS 공식 문서를 개발자 관점에서 정리했다.]]></summary></entry><entry><title type="html">[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기</title><link href="https://nan0silver.github.io/projectdiary/2026-02-24-diary/" rel="alternate" type="text/html" title="[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기" /><published>2026-02-24T00:00:00+00:00</published><updated>2026-03-18T07:24:28+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-02-24-diary/"><![CDATA[<ul>
-  <li><a href="#시작하기-전에">시작하기 전에</a></li>
-  <li><a href="#1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</a></li>
-  <li><a href="#2-docker가-왜-필요한가요">2. Docker가 왜 필요한가요?</a></li>
-  <li><a href="#3-aws-ec2란-무엇인가요">3. AWS EC2란 무엇인가요?</a></li>
-  <li><a href="#4-aws-ecs란-무엇인가요">4. AWS ECS란 무엇인가요?</a></li>
-  <li><a href="#5-ecr이란-무엇인가요">5. ECR이란 무엇인가요?</a></li>
-  <li><a href="#6-지금-내-프로젝트의-전체-흐름">6. 지금 내 프로젝트의 전체 흐름</a></li>
-  <li><a href="#7-정리">7. 정리</a></li>
-</ul>
-
-<hr />
-
-<h2 id="시작하기-전에">시작하기 전에</h2>
-
-<p>현재 Android 앱 “친구하자”의 백엔드를 Spring Boot로 개발하고 있다. 소규모로 시작해서 테스트 유저 10명 이하로 운영 중이며, 곧 Play Store 출시를 앞두고 있다.</p>
-
-<p>출시를 준비하면서 지금까지 당연하게 해왔던 배포 방식을 돌아보게 됐다.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-i</span> <span class="s2">"my-key.pem"</span> ec2-user@xxx.xxx.xxx.xxx
-<span class="c"># 접속 후 직접 명령어 실행...</span>
-</code></pre></div></div>
-
-<p>매번 터미널을 열고, SSH로 접속하고, 직접 명령어를 치는 방식이었다. 테스트 유저가 적을 때는 괜찮았지만 출시가 다가오니 이런 생각이 들었다.</p>
-
-<blockquote>
-  <p>“코드 push하고 나서 배포까지 내가 직접 해야 하나? 이거 자동화할 수 없나?”</p>
-</blockquote>
-
-<p>그래서 CI/CD를 도입하게 됐고, 그 과정에서 배운 내용을 정리해 본다.</p>
-
-<p><strong>이 글에서 다루는 것</strong><br />
-CI/CD만 이야기하면 “push하면 자동으로 테스트하고 배포한다”로 끝나는데, <strong>실제로 그 배포가 돌아가려면</strong> 몇 가지가 필요하다. (1) <strong>뭘</strong> 배포할지 정하는 단위 → Docker 이미지, (2) 그 이미지를 <strong>어디에</strong> 보관할지 → ECR, (3) 그 이미지를 <strong>어디서</strong> 실행할지 → EC2, (4) 나중에 트래픽이 늘면 <strong>어떻게</strong> 관리·확장할지 → ECS. 아래에서는 이 순서대로 “왜 이걸 쓰는지” 맥락을 붙여서 정리한다.</p>
-
-<hr />
-
-<h2 id="1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</h2>
-
-<h3 id="수동-배포의-문제점">수동 배포의 문제점</h3>
-
-<p>내가 처음에 하던 배포 방식:</p>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">./gradlew build</code> 로컬에서 빌드</li>
-  <li><code class="language-plaintext highlighter-rouge">scp</code>로 JAR 파일 EC2에 전송</li>
-  <li>EC2 SSH 접속</li>
-  <li>기존 프로세스 종료</li>
-  <li><code class="language-plaintext highlighter-rouge">java -jar app.jar &amp;</code> 실행</li>
-</ol>
-
-<p>매번 이걸 반복해야 한다. 실수할 가능성도 높고, 시간도 낭비다.</p>
-
-<h3 id="cicd-개념">CI/CD 개념</h3>
-
-<ul>
-  <li><strong>CI (Continuous Integration, 지속적 통합)</strong>: 코드를 push할 때마다 자동으로
-빌드하고 테스트를 실행</li>
-  <li><strong>CD (Continuous Deployment, 지속적 배포)</strong>: CI가 성공하면 자동으로 서버에 배포</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자 코드 push
-       ↓
-CI: 빌드 + 테스트 실행 (자동)
-       ↓ (성공 시)
-CD: 서버에 자동 배포 (자동)
-       ↓
-사용자는 새 버전 접속
-</code></pre></div></div>
-
-<p>이 프로젝트에서는 <strong>GitHub Actions</strong>를 CI/CD 도구로 사용했다.</p>
-
-<h3 id="1️⃣-ci-continuous-integration--지속적-통합">1️⃣ CI (Continuous Integration) — 지속적 통합</h3>
-
-<blockquote>
-  <p>“코드를 push하면 테스트까지 자동으로”</p>
-</blockquote>
-
-<p>코드를 GitHub에 push할 때마다 자동으로 <strong>빌드 + 테스트</strong>를 돌려서, 작성한 코드가 기존 코드를 망가뜨리지 않았는지 바로 확인한다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자가 push
-    ↓
-GitHub Actions가 자동으로 실행
-    ↓
-빌드 → 테스트
-    ↓
-통과 ✅  or  실패 ❌ (즉시 알림)
-</code></pre></div></div>
-
-<p>이 프로젝트에서는 Redis를 활용한 매칭 큐, 이벤트 리스너 등 여러 컴포넌트를 테스트해야 했는데, 매번 로컬에서 직접 테스트를 돌리다 보니 빠뜨리는 경우가 생겼다. CI를 붙이고 나서는 push할 때마다 자동으로 전체 테스트가 돌아가니 훨씬 안심이 됐다.</p>
-
-<p><strong>핵심 가치</strong>: 문제를 빠르게 발견한다. 나중에 발견할수록 고치기 어렵다.</p>
-
-<hr />
-
-<h3 id="2️⃣-cd-continuous-deployment--지속적-배포">2️⃣ CD (Continuous Deployment) — 지속적 배포</h3>
-
-<blockquote>
-  <p>“테스트까지 통과하면 서버 배포도 자동으로”</p>
-</blockquote>
-
-<p>CI가 성공하면 자동으로 <strong>서버에 새 버전을 배포</strong>한다. 매번 SSH로 직접 접속해서 배포하던 방식이 완전히 사라진다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CI 성공 ✅
-    ↓
-Docker 이미지 빌드
-    ↓
-ECR(이미지 저장소)에 업로드
-    ↓
-EC2 서버에 새 버전 자동 배포
-    ↓
-개발자는 push만 했을 뿐인데 배포 완료 🎉
-</code></pre></div></div>
-
-<p><strong>도입 전 vs 도입 후</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>도입 전</th>
-      <th>도입 후</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>배포 방법</td>
-      <td>SSH 접속 → 직접 명령어 실행</td>
-      <td>git push 한 번</td>
-    </tr>
-    <tr>
-      <td>테스트</td>
-      <td>까먹으면 안 함</td>
-      <td>항상 자동 실행</td>
-    </tr>
-    <tr>
-      <td>실수 가능성</td>
-      <td>있음 (손으로 하니까)</td>
-      <td>없음</td>
-    </tr>
-    <tr>
-      <td>배포 시간</td>
-      <td>10~15분</td>
-      <td>기다리면 자동 완료</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="2-docker가-왜-필요한가요">2. Docker가 왜 필요한가요?</h2>
-
-<p>CD는 “테스트 통과한 코드를 <strong>서버에 그대로</strong> 올리는 것”이다. 이때 “그대로”를 보장하려면 <strong>배포 단위</strong>가 정해져 있어야 한다. 로컬에서 돌리던 걸 그냥 서버에 복사하면 환경이 달라서 실패하는 경우가 많다. 그래서 CI/CD 흐름에서는 <strong>Docker 이미지</strong>를 그 단위로 쓰고, 그 이미지를 서버에서 실행하는 방식이 일반적이다. 즉 Docker는 “CD가 <strong>뭘</strong> 배포할지 정의하는 방식”이라서 빠질 수 없다.</p>
-
-<p>개발자라면 한 번쯤 들어봤을 말이다. 로컬에서는 잘 되던 코드가 서버에 올리면 안 되는 이유는
-뭘까?</p>
-
-<ul>
-  <li>로컬: Java 17, MySQL 8.0, Ubuntu 22.04</li>
-  <li>서버: Java 11, MySQL 5.7, Amazon Linux 2</li>
-</ul>
-
-<p><strong>환경이 다르기 때문이다.</strong></p>
-
-<p>Docker는 이 문제를 해결한다. 애플리케이션과 그것이 실행되는 환경(런타임, 라이브러리, 설정)
-을 <strong>하나의 박스(컨테이너)</strong>에 묶어서 어디서든 똑같이 실행되게 만든다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dockerfile (조리법)
-    ↓  빌드
-Docker 이미지 (완성된 통조림)
-    ↓  실행
-컨테이너 (실제로 접시에 담아 먹는 상태)
-</code></pre></div></div>
-
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-24-pic2.png?raw=true" alt="예시 이미지1" /></p>
-
-<p>어디서 실행해도 똑같이 동작하기 때문에 환경 차이로 인한 문제가 사라진다.</p>
-
-<h3 id="실제-dockerfile-예시-spring-boot">실제 Dockerfile 예시 (Spring Boot)</h3>
-
-<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> eclipse-temurin:17-jre-alpine</span>
-
-<span class="k">WORKDIR</span><span class="s"> /app</span>
-
-<span class="k">COPY</span><span class="s"> build/libs/app.jar app.jar</span>
-
-<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
-</code></pre></div></div>
-
-<p>읽으면 직관적이다. “Java 17 JRE가 설치된 Alpine Linux 위에서, <code class="language-plaintext highlighter-rouge">app.jar</code>를
-실행해라.”</p>
-
-<hr />
-
-<h2 id="3-aws-ec2란-무엇인가요">3. AWS EC2란 무엇인가요?</h2>
-
-<p>CD가 “Docker 이미지를 서버에 배포한다”고 했을 때, <strong>그 서버가 어디인지</strong>가 정해져 있어야 한다. 친구하자 프로젝트에서는 그 역할을 <strong>EC2 한 대</strong>가 맡고 있다. EC2 위에서 빌드된 Docker 이미지를 받아서 컨테이너로 실행하면, 사용자 요청을 처리하는 백엔드 서버가 되는 식이다.</p>
-
-<p><strong>EC2 (Elastic Compute Cloud)</strong>는 AWS에서 빌려 쓰는 가상 컴퓨터이다.</p>
-
-<p>Spring Boot 백엔드 서버를 EC2 위에서 Docker 컨테이너로 돌리고 있다. 처음에는 아래처럼 직접 SSH로 접속해서 배포했다.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 매번 이걸 직접 했었음</span>
-ssh <span class="nt">-i</span> <span class="s2">"my-key.pem"</span> ec2-user@서버IP
-
-docker stop my-app
-docker <span class="nb">rm </span>my-app
-docker pull 새이미지
-docker run <span class="nt">-d</span> <span class="nt">--name</span> my-app <span class="nt">-p</span> 8080:8080 새이미지
-</code></pre></div></div>
-
-<p>한두 번은 괜찮지만, 기능 추가할 때마다 반복하다 보면 꽤 번거롭다. 게다가 <code class="language-plaintext highlighter-rouge">docker stop</code> 하고 <code class="language-plaintext highlighter-rouge">docker run</code> 하는 사이에 서비스가 잠깐 끊기는 <strong>순단</strong>이 발생한다. 테스트 유저 10명일 때는 몰랐는데, Play Store 출시 후 실 사용자가 생기면 문제가 될 수 있겠다 싶었다.</p>
-
-<hr />
-
-<h2 id="4-aws-ecs란-무엇인가요">4. AWS ECS란 무엇인가요?</h2>
-
-<p>지금은 EC2 한 대에서 컨테이너를 직접 올리고 내리는 방식으로 CD가 동작한다. 이 방식은 단순하지만, 배포 시 잠깐 서비스가 끊기는 <strong>순단</strong>이 있고, 사용자가 몰렸을 때 서버를 늘리는 것도 수동이다. <strong>트래픽이 늘어나면</strong> “배포할 때도 끊기지 않게(무중단 배포)” “부하가 크면 컨테이너를 자동으로 늘리게(오토스케일링)”가 필요해진다. 그때 CD의 <strong>배포 대상</strong>을 EC2 직접 제어에서 <strong>ECS</strong>로 바꾸면, 컨테이너 실행·롤링 업데이트·스케일링을 AWS가 관리해 준다.</p>
-
-<p><strong>ECS (Elastic Container Service)</strong>는 Docker 컨테이너를 AWS가 대신 관리해 주는 서비스이다.</p>
-
-<p>EC2가 “컴퓨터를 빌려 드릴게요”라면, ECS는 “컨테이너 실행·관리까지 다 해 드릴게요”이다.</p>
-
-<h3 id="핵심-개념-3가지">핵심 개념 3가지</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클러스터 (Cluster)
-└── 컨테이너들이 실행되는 공간 전체 (운동장)
-
-서비스 (Service)
-└── "이 컨테이너를 항상 N개 유지해줘" (운동장 관리자)
-
-태스크 정의 (Task Definition)
-└── 컨테이너 실행 설정 명세서
-    (어떤 이미지, CPU/메모리 얼마, 포트는 몇 번 등)
-</code></pre></div></div>
-
-<h3 id="ecs의-핵심-장점-롤링-업데이트-무중단-배포">ECS의 핵심 장점: 롤링 업데이트 (무중단 배포)</h3>
-
-<p>EC2 직접 배포는 이렇게 된다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>기존 컨테이너 중지 → 💀 서비스 잠깐 중단 → 새 컨테이너 시작
-</code></pre></div></div>
-
-<p>ECS 롤링 업데이트는 이렇게 된다:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>새 컨테이너 먼저 시작 &amp; 정상 확인
-         ↓
-기존 컨테이너 중지  ← 사용자는 아무것도 못 느낌 ✅
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="5-ecr이란-무엇인가요">5. ECR이란 무엇인가요?</h2>
-
-<p>CD 흐름을 다시 보면, “CI 통과 → Docker 이미지 빌드 → <strong>어딘가에 보관</strong> → EC2(또는 ECS)가 그걸 가져가서 실행”이다. 이미지를 <strong>보관하는 곳</strong>이 없으면 EC2나 ECS가 “어떤 이미지로 컨테이너를 띄울지” 가져올 수 없다. 그 보관소 역할을 AWS에서는 <strong>ECR</strong>이 한다. GitHub Actions에서 이미지를 빌드한 뒤 ECR에 푸시하고, EC2(또는 ECS)는 ECR에서 이미지를 pull 해서 컨테이너를 띄우는 식으로 연결된다.</p>
-
-<p><strong>ECR (Elastic Container Registry)</strong>은 Docker 이미지를 저장하는 AWS 전용 창고이다.</p>
-
-<p><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2026-02-24-pic1.png?raw=true" alt="예시 이미지1" /></p>
-
-<hr />
-
-<h2 id="6-지금-내-프로젝트의-전체-흐름">6. 지금 내 프로젝트의 전체 흐름</h2>
-
-<h3 id="현재-구조-ec2--자동-배포">현재 구조 (EC2 + 자동 배포)</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>main 브랜치에 push
-        ↓
-[CI]
-  Redis 컨테이너 띄우기
-  → 빌드 + 전체 테스트 자동 실행
-  → 실패 시 여기서 중단 ❌
-
-        ↓ CI 성공
-
-[CD]
-  Docker 이미지 빌드
-  → ECR에 푸시
-  → EC2에 SSH로 자동 접속
-  → 새 이미지로 컨테이너 재시작
-
-        ↓
-사용자가 새 버전 사용 🎉
-</code></pre></div></div>
-
-<p>예전에는 이 과정을 손으로 직접 했는데, 이제는 push 한 번이면 끝이다.</p>
-
-<h3 id="play-store-출시-이후엔-ecs로-전환-예정">Play Store 출시 이후엔 ECS로 전환 예정</h3>
-
-<p>지금은 소규모라 EC2 직접 배포로도 충분하다. 하지만 출시 후 트래픽이 늘어나면 아래 두 가지가 필요해질 것이다.</p>
-
-<ul>
-  <li><strong>무중단 배포</strong>: 배포할 때 앱이 잠깐이라도 끊기면 사용자 경험이 나빠짐</li>
-  <li><strong>오토스케일링</strong>: 갑자기 사용자가 몰려도 자동으로 서버를 늘려줌</li>
-</ul>
-
-<p>그때 ECS로 전환할 예정이며, CD 파이프라인에서 ECS 배포 스텝만 교체하면 되기 때문에 마이그레이션 비용도 크지 않다.</p>
-
-<hr />
-
-<h2 id="7-정리">7. 정리</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>EC2 직접 배포 (현재)</th>
-      <th>ECS (출시 후)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>배포 방식</strong></td>
-      <td>컨테이너 재시작</td>
-      <td>롤링 업데이트</td>
-    </tr>
-    <tr>
-      <td><strong>서비스 중단</strong></td>
-      <td>순단 가능</td>
-      <td>없음</td>
-    </tr>
-    <tr>
-      <td><strong>스케일링</strong></td>
-      <td>수동</td>
-      <td>자동</td>
-    </tr>
-    <tr>
-      <td><strong>비용</strong></td>
-      <td>저렴</td>
-      <td>상대적으로 높음</td>
-    </tr>
-    <tr>
-      <td><strong>적합한 시점</strong></td>
-      <td>초기 소규모</td>
-      <td>트래픽 증가 후</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>한 줄 요약:</strong></p>
-
-<blockquote>
-  <p>push 한 번으로 테스트부터 배포까지. 지금은 EC2로 가볍게, 트래픽 늘면 ECS로 전환.</p>
-</blockquote>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.]]></summary></entry></feed>
+<p><em>이 문서는 AWS 공식 문서를 바탕으로 정리했으며, 실제 구현 시 최신 Developer Guide와 API Reference를 반드시 확인하는 것이 좋다.</em></p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="aws" /><summary type="html"><![CDATA[ECS 서비스 배포(롤링 업데이트, Blue/Green, Circuit Breaker, CloudWatch Alarms, 이미지 해석 등) 관련 AWS 공식 문서를 개발자 관점에서 정리했다.]]></summary></entry></feed>

@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196) | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="트랜잭션 커밋 전 publishEvent()를 호출했을 때 발생한 타이밍 문제와 @TransactionalEventListener(AFTER_COMMIT) 및 afterCommit() 해결 방식을 정리한 글이다." />
+<meta property="og:description" content="트랜잭션 커밋 전 publishEvent()를 호출했을 때 발생한 타이밍 문제와 @TransactionalEventListener(AFTER_COMMIT) 및 afterCommit() 해결 방식을 정리한 글이다." />
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-03-29-til/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2026-03-29-til/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-29T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-03-29T00:00:00+00:00","datePublished":"2026-03-29T00:00:00+00:00","description":"트랜잭션 커밋 전 publishEvent()를 호출했을 때 발생한 타이밍 문제와 @TransactionalEventListener(AFTER_COMMIT) 및 afterCommit() 해결 방식을 정리한 글이다.","headline":"[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2026-03-29-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2026-03-29-til/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/til/2026-03-29-til/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-04-16T02:52:43+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)",
+    "description": "트랜잭션 커밋 전 `publishEvent()`를 호출했을 때 발생한 타이밍 문제와 `@TransactionalEventListener(AFTER_COMMIT)` 및 `afterCommit()` 해결 방식을 정리한 글이다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-03-29T00:00:00+00:00",
+    "dateModified": "2026-03-29T00:00:00+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/til/2026-03-29-til/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-03-29-til/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "til",
+        "item": "https://nan0silver.github.io/til/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)",
+        "item": "https://nan0silver.github.io/til/2026-03-29-til/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/til/">til</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-03-29-til</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-til-til" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-03-29T00:00:00+00:00">29 Mar 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Spring</span>, <span>트랜잭션</span>, <span>이벤트</span>, <span>Async</span>
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      트랜잭션 커밋 전 <code class="language-plaintext highlighter-rouge">publishEvent()</code>를 호출했을 때 발생한 타이밍 문제와 <code class="language-plaintext highlighter-rouge">@TransactionalEventListener(AFTER_COMMIT)</code> 및 <code class="language-plaintext highlighter-rouge">afterCommit()</code> 해결 방식을 정리한 글이다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+<code class="language-plaintext highlighter-rouge">@Transactional</code> 안에서 <code class="language-plaintext highlighter-rouge">publishEvent()</code>를 호출하면 <code class="language-plaintext highlighter-rouge">@Async</code> 리스너가 커밋 전 데이터를 읽으려다 실패할 수 있다. 이 문제는 <code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager.afterCommit()</code> 또는 <code class="language-plaintext highlighter-rouge">@TransactionalEventListener(AFTER_COMMIT)</code>로 해결한다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-문제-상황">1. 문제 상황</a></li>
+  <li><a href="#2-왜-이런-일이-생기는가">2. 왜 이런 일이 생기는가</a></li>
+  <li><a href="#3-해결책-1-transactionsynchronizationmanageraftercommit">3. 해결책 1: TransactionSynchronizationManager.afterCommit()</a></li>
+  <li><a href="#4-해결책-2-transactionaleventlistenerafter_commit">4. 해결책 2: @TransactionalEventListener(AFTER_COMMIT)</a></li>
+  <li><a href="#5-선택-가이드">5. 선택 가이드</a></li>
+  <li><a href="#정리">정리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>Spring 애플리케이션에서는 비즈니스 로직이 끝난 뒤 이벤트를 발행하는 패턴을 자주 사용한다. 하지만 트랜잭션과 비동기가 함께 얽히면 타이밍 문제가 쉽게 발생한다.</p>
+
+<p>실제로 친구 1:1 통화 기능을 구현하면서 다음 버그를 겪었다.</p>
+
+<ul>
+  <li>친구 통화 수락 시 Agora 녹음 시작이 실패한다.</li>
+  <li>Call 레코드를 찾을 수 없다는 에러가 발생한다.</li>
+</ul>
+
+<p>흐름 자체는 단순하다. 통화 정보를 DB에 저장하고 <code class="language-plaintext highlighter-rouge">CallStartedEvent</code>를 발행한 뒤, 리스너에서 녹음을 시작한다. 겉보기에는 정상처럼 보이지만 이벤트 발행 시점에 함정이 있다.</p>
+
+<h2 id="1-문제-상황">1. 문제 상황</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// FriendCallService.java (버그가 있던 코드)</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">CallTokenResponse</span> <span class="nf">acceptOffer</span><span class="o">(</span><span class="nc">Long</span> <span class="n">offerId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">calleeId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ... Call 엔티티 생성 및 저장</span>
+    <span class="n">call</span><span class="o">.</span><span class="na">startCall</span><span class="o">();</span>
+
+    <span class="c1">// 트랜잭션이 아직 커밋되지 않은 상태에서 이벤트 발행</span>
+    <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">channelName</span><span class="o">));</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// CallEventListener.java</span>
+<span class="nd">@Async</span><span class="o">(</span><span class="s">"recordingTaskExecutor"</span><span class="o">)</span>
+<span class="nd">@EventListener</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleCallStarted</span><span class="o">(</span><span class="nc">CallStartedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 이 시점에 DB에 Call이 없을 수 있음</span>
+    <span class="nc">RecordingRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">RecordingRequest</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getCallId</span><span class="o">(),</span> <span class="n">event</span><span class="o">.</span><span class="na">getChannelName</span><span class="o">());</span>
+    <span class="n">agoraRecordingService</span><span class="o">.</span><span class="na">startRecording</span><span class="o">(</span><span class="n">request</span><span class="o">);</span> <span class="c1">// Call 조회 실패</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-왜-이런-일이-생기는가">2. 왜 이런 일이 생기는가</h2>
+
+<p>핵심은 <code class="language-plaintext highlighter-rouge">@Async</code> 리스너가 별도 스레드에서 실행된다는 점이다. 이벤트를 발행하는 메서드는 트랜잭션 내부에서 동작하고 있지만, 리스너는 그 트랜잭션 바깥에서 DB를 조회한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">READ COMMITTED</code> 격리 수준에서는 커밋되지 않은 데이터를 읽을 수 없으므로, 리스너에서 Call 레코드를 찾지 못하는 현상이 발생한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// @Async 없이 동기 리스너로 처리한 경우</span>
+<span class="nd">@EventListener</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleCallStarted</span><span class="o">(</span><span class="nc">CallStartedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">agoraRecordingService</span><span class="o">.</span><span class="na">startRecording</span><span class="o">(...);</span> <span class="c1">// 같은 스레드, 같은 트랜잭션</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>동기 <code class="language-plaintext highlighter-rouge">@EventListener</code>는 같은 스레드/같은 트랜잭션 컨텍스트이므로 커밋 전 데이터 접근이 가능하다. 하지만 다른 문제가 생긴다.</p>
+
+<ul>
+  <li>리스너 예외가 원래 트랜잭션까지 롤백시킨다.</li>
+  <li>외부 I/O(Agora API) 실패가 통화 수락 자체 실패로 번진다.</li>
+</ul>
+
+<p>즉, 사이드 이펙트를 핵심 트랜잭션과 분리하려고 <code class="language-plaintext highlighter-rouge">@Async</code>를 쓰면, 이번에는 타이밍 문제가 드러난다.</p>
+
+<hr />
+
+<h2 id="3-해결책-1-transactionsynchronizationmanageraftercommit">3. 해결책 1: TransactionSynchronizationManager.afterCommit()</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// FriendCallService.java (수정된 코드)</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">CallTokenResponse</span> <span class="nf">acceptOffer</span><span class="o">(</span><span class="nc">Long</span> <span class="n">offerId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">calleeId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ... Call 엔티티 생성 및 저장</span>
+    <span class="n">call</span><span class="o">.</span><span class="na">startCall</span><span class="o">();</span>
+
+    <span class="kd">final</span> <span class="nc">Long</span> <span class="n">callId</span> <span class="o">=</span> <span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+    <span class="kd">final</span> <span class="nc">String</span> <span class="n">finalChannelName</span> <span class="o">=</span> <span class="n">channelName</span><span class="o">;</span>
+
+    <span class="c1">// 트랜잭션 커밋 이후에 이벤트 발행</span>
+    <span class="nc">TransactionSynchronizationManager</span><span class="o">.</span><span class="na">registerSynchronization</span><span class="o">(</span><span class="k">new</span> <span class="nc">TransactionSynchronization</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterCommit</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">callId</span><span class="o">,</span> <span class="n">finalChannelName</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager</code>는 현재 트랜잭션에 콜백을 등록하는 저수준 API이다. <code class="language-plaintext highlighter-rouge">afterCommit()</code>에 등록한 코드는 커밋 직후 실행된다.</p>
+
+<p>수정 후에는 다음 흐름이 된다.</p>
+
+<ul>
+  <li>트랜잭션 내부에서 <code class="language-plaintext highlighter-rouge">afterCommit()</code> 콜백만 등록한다.</li>
+  <li>실제 이벤트 발행은 커밋이 끝난 뒤 실행된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">@Async</code> 리스너가 조회할 때는 이미 DB 반영이 완료된 상태이다.</li>
+</ul>
+
+<p>주의할 점도 있다. <code class="language-plaintext highlighter-rouge">afterCommit()</code> 안에서 엔티티를 직접 건드리지 말고, 필요한 값을 미리 뽑아둬야 한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ 위험: afterCommit 안에서 엔티티 접근</span>
+<span class="n">afterCommit</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="o">...));</span>
+<span class="o">}</span>
+
+<span class="c1">// ✅ 안전: 미리 값을 추출</span>
+<span class="kd">final</span> <span class="nc">Long</span> <span class="n">callId</span> <span class="o">=</span> <span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+<span class="n">afterCommit</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">callId</span><span class="o">,</span> <span class="o">...));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-해결책-2-transactionaleventlistenerafter_commit">4. 해결책 2: @TransactionalEventListener(AFTER_COMMIT)</h2>
+
+<p>Spring은 이 문제를 위한 전용 어노테이션을 제공한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Async</span><span class="o">(</span><span class="s">"taskExecutor"</span><span class="o">)</span>
+<span class="nd">@TransactionalEventListener</span><span class="o">(</span><span class="n">phase</span> <span class="o">=</span> <span class="nc">TransactionPhase</span><span class="o">.</span><span class="na">AFTER_COMMIT</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleFriendCallOfferCreated</span><span class="o">(</span><span class="nc">FriendCallOfferCreatedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">fcmNotificationService</span><span class="o">.</span><span class="na">sendFriendCallOfferNotification</span><span class="o">(...);</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"FCM 알림 전송 실패"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">webSocketEventService</span><span class="o">.</span><span class="na">sendFriendCallOfferNotification</span><span class="o">(...);</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"WS 알림 전송 실패"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">@TransactionalEventListener(phase = AFTER_COMMIT)</code>을 사용하면 리스너가 커밋 이후에만 실행된다. 이벤트 발행 측 코드를 바꾸지 않고 수신 측에서 처리 타이밍을 제어할 수 있다.</p>
+
+<hr />
+
+<h2 id="5-선택-가이드">5. 선택 가이드</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager</code></th>
+      <th><code class="language-plaintext highlighter-rouge">@TransactionalEventListener</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>수정 위치</td>
+      <td>이벤트 발행 측</td>
+      <td>이벤트 수신 측</td>
+    </tr>
+    <tr>
+      <td>적용 범위</td>
+      <td>특정 발행 지점</td>
+      <td>해당 리스너 전체</td>
+    </tr>
+    <tr>
+      <td>트랜잭션 없이 호출 시</td>
+      <td>등록 자체가 실패할 수 있음</td>
+      <td>기본적으로 이벤트를 무시함</td>
+    </tr>
+    <tr>
+      <td>유연성</td>
+      <td><code class="language-plaintext highlighter-rouge">beforeCommit</code>, <code class="language-plaintext highlighter-rouge">afterCompletion</code> 등 세밀한 훅 제공</td>
+      <td><code class="language-plaintext highlighter-rouge">phase</code> 기반 제어</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>트랜잭션 없는 컨텍스트에서도 이벤트가 발행될 수 있다면 <code class="language-plaintext highlighter-rouge">@TransactionalEventListener</code>의 기본 동작(AFTER_COMMIT + no tx 시 무시)을 반드시 고려해야 한다. 필요하면 <code class="language-plaintext highlighter-rouge">fallbackExecution = true</code>를 사용한다.</p>
+
+<hr />
+
+<h2 id="정리">정리</h2>
+
+<p>문제의 본질은 트랜잭션 커밋 시점과 이벤트 소비 시점이 어긋난다는 점이다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>동기 <code class="language-plaintext highlighter-rouge">@EventListener</code></th>
+      <th><code class="language-plaintext highlighter-rouge">@Async @EventListener</code></th>
+      <th><code class="language-plaintext highlighter-rouge">@Async @TransactionalEventListener(AFTER_COMMIT)</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>실행 스레드</td>
+      <td>동일</td>
+      <td>별도</td>
+      <td>별도</td>
+    </tr>
+    <tr>
+      <td>트랜잭션 컨텍스트</td>
+      <td>공유</td>
+      <td>없음</td>
+      <td>없음</td>
+    </tr>
+    <tr>
+      <td>커밋 전 데이터 접근</td>
+      <td>가능</td>
+      <td>불가</td>
+      <td>커밋 후 실행으로 안전</td>
+    </tr>
+    <tr>
+      <td>리스너 예외 영향</td>
+      <td>원 트랜잭션 롤백 가능</td>
+      <td>독립</td>
+      <td>독립</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Spring 이벤트를 사용할 때는 다음 규칙을 기억하면 된다.</p>
+
+<ol>
+  <li>리스너가 @Async라면, 커밋 전 데이터를 읽을 수 없다.</li>
+  <li>이벤트 발행 측을 수정할 수 있다면,
+TransactionSynchronizationManager.registerSynchronization().afterCommit()을 사용한다.</li>
+  <li>리스너 측에서만 처리하고 싶다면, @TransactionalEventListener(phase =
+AFTER_COMMIT)을 사용한다.</li>
+  <li>어떤 방식이든 afterCommit() 콜백 안에서는 엔티티를 직접 참조하지 않고, 미리 추출한
+원시 값(Long id 등)을 사용한다.</li>
+</ol>
+
+<hr />
+
+<p>결론적으로 <code class="language-plaintext highlighter-rouge">@Async</code> + <code class="language-plaintext highlighter-rouge">publishEvent()</code> 조합에서는 “커밋 이후에 소비되도록 보장하는 장치”를 반드시 넣어야 한다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2026-03-11-til/" class="flip-title"><span>[TIL] 트랜잭션·Redis 정합성, TOCTOU, 보상 트랜잭션 — #150에서 배운 백엔드 포인트</span></a>  <time class="faded fine" datetime="2026-03-11T00:00:00+00:00">11 Mar 2026</time></li>                        <li class="h4">  <a href="/til/2026-03-10-til/" class="flip-title"><span>[TIL] Spring Events, @Async, Redis, STOMP — #148·#149에서 배운 백엔드 포인트</span></a>  <time class="faded fine" datetime="2026-03-10T00:00:00+00:00">10 Mar 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-03-09-diary/" class="flip-title"><span>[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유</span></a>  <time class="faded fine" datetime="2026-03-09T00:00:00+00:00">09 Mar 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="https://github.com/nan0silver">GitHub</a>
+      |
+    
+      
+      <a class="heading flip-title" href="mailto:silvernh1220@gmail.com">Gmail</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Full-stack · 1인 개발 · 창업 준비
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          Frontend (9)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/aws/"
+          class="sidebar-nav-item "
+          
+        >
+          AWS (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (18)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          기타 (4)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (33)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (69)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>
