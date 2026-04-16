@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[TIL] Spring Cloud Gateway | NAHYUN BLOG</title>
+<title>[친구하자] JPA @Modifying(clearAutomatically = true)의 함정 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[TIL] Spring Cloud Gateway" />
+<meta property="og:title" content="[친구하자] JPA @Modifying(clearAutomatically = true)의 함정" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="2025-04-28 TIL" />
-<meta property="og:description" content="2025-04-28 TIL" />
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-04-28-til/" />
-<meta property="og:url" content="https://nan0silver.github.io/til/2025-04-28-til/" />
+<meta name="description" content="@Modifying(clearAutomatically = true) 사용 시 영속성 컨텍스트가 비워지면서 엔티티가 detached 되어, 상태 변경이 DB에 반영되지 않았던 버그 원인과 해결 과정을 정리합니다." />
+<meta property="og:description" content="@Modifying(clearAutomatically = true) 사용 시 영속성 컨텍스트가 비워지면서 엔티티가 detached 되어, 상태 변경이 DB에 반영되지 않았던 버그 원인과 해결 과정을 정리합니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-04-16-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2026-04-16-diary/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-04-28T00:00:00+00:00" />
+<meta property="article:published_time" content="2026-04-16T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[TIL] Spring Cloud Gateway" />
+<meta property="twitter:title" content="[친구하자] JPA @Modifying(clearAutomatically = true)의 함정" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-05-02T05:22:36+00:00","datePublished":"2025-04-28T00:00:00+00:00","description":"2025-04-28 TIL","headline":"[TIL] Spring Cloud Gateway","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2025-04-28-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2025-04-28-til/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-04-16T02:57:44+00:00","datePublished":"2026-04-16T00:00:00+00:00","description":"@Modifying(clearAutomatically = true) 사용 시 영속성 컨텍스트가 비워지면서 엔티티가 detached 되어, 상태 변경이 DB에 반영되지 않았던 버그 원인과 해결 과정을 정리합니다.","headline":"[친구하자] JPA @Modifying(clearAutomatically = true)의 함정","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-04-16-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-04-16-diary/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/til/2025-04-28-til/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2026-04-16-diary/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[TIL] Spring Cloud Gateway",
-    "description": "2025-04-28 TIL
+    "headline": "[친구하자] JPA @Modifying(clearAutomatically = true)의 함정",
+    "description": "@Modifying(clearAutomatically = true) 사용 시 영속성 컨텍스트가 비워지면서 엔티티가 detached 되어, 상태 변경이 DB에 반영되지 않았던 버그 원인과 해결 과정을 정리합니다.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-04-28T00:00:00+00:00",
-    "dateModified": "2025-05-02T05:22:36+00:00",
+    "datePublished": "2026-04-16T00:00:00+00:00",
+    "dateModified": "2026-04-16T02:57:44+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/til/2025-04-28-til/"
+      "@id": "https://nan0silver.github.io/projectdiary/2026-04-16-diary/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/til/2025-04-28-til/" />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-04-16-diary/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "til",
-        "item": "https://nan0silver.github.io/til/"
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[TIL] Spring Cloud Gateway",
-        "item": "https://nan0silver.github.io/til/2025-04-28-til/"
+        "name": "[친구하자] JPA @Modifying(clearAutomatically = true)의 함정",
+        "item": "https://nan0silver.github.io/projectdiary/2026-04-16-diary/"
       }
     ]
   }
@@ -358,14 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/til/">til</a>
+          <a href="/projectdiary/">projectdiary</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-04-28-til</span>
+          <span>2026-04-16-diary</span>
         
       </li>
     
@@ -382,31 +382,23 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-til-til" class="page post mb6" role="article">
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [TIL] Spring Cloud Gateway
+        [친구하자] JPA @Modifying(clearAutomatically = true)의 함정
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-04-28T00:00:00+00:00">28 Apr 2025</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Spring</span>, <span>Project</span>, <span>Cloud</span>
+        <time datetime="2026-04-16T00:00:00+00:00">16 Apr 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
       </span>
       
         
           
           
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 02 May 2025">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2025-05-02T05:22:36+00:00">2025-05-02</time>
-            </span>
           
         
       
@@ -421,7 +413,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      2025-04-28 TIL
+      @Modifying(clearAutomatically = true) 사용 시 영속성 컨텍스트가 비워지면서 엔티티가 detached 되어, 상태 변경이 DB에 반영되지 않았던 버그 원인과 해결 과정을 정리합니다.
 
     </p>
   
@@ -431,97 +423,166 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-🔗 <strong>원본 이슈</strong>: <a href="https://github.com/nan0silver/TIL/issues/47">#47</a><br />
-📅 <strong>작성일</strong>: 2025-04-28<br />
-🔄 <strong>최종 수정</strong>: 2025년 05월 02일</p>
+  <p>정기 예약 취소 API에서 <code class="language-plaintext highlighter-rouge">CallReservation</code>은 정상적으로 취소되는데 <code class="language-plaintext highlighter-rouge">RecurringReservation</code> 상태만 <code class="language-plaintext highlighter-rouge">ACTIVE</code>로 남는 버그를 겪었다. 원인은 <code class="language-plaintext highlighter-rouge">@Modifying(clearAutomatically = true)</code>로 인해 영속 엔티티가 detached 된 뒤 상태를 변경한 것이었다.</p>
 </blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-배경-지식">1. 배경 지식</a></li>
+  <li><a href="#2-버그-발생-과정">2. 버그 발생 과정</a></li>
+  <li><a href="#3-수정-방법">3. 수정 방법</a></li>
+  <li><a href="#4-교훈">4. 교훈</a></li>
+  <li><a href="#마치며">마치며</a></li>
+</ul>
 
 <hr />
 
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
+<h2 id="들어가며">들어가며</h2>
+
+<p>정기 예약 취소 API를 개발한 뒤 테스트 코드는 모두 통과했지만, 실제 DB를 조회해보니 <code class="language-plaintext highlighter-rouge">recurring_reservations.status</code>가 여전히 <code class="language-plaintext highlighter-rouge">ACTIVE</code>로 남아 있었다. <code class="language-plaintext highlighter-rouge">CallReservation</code> 데이터는 정상적으로 <code class="language-plaintext highlighter-rouge">CANCELLED</code>가 되었는데, 정작 정기 예약 상태는 바뀌지 않은 것이다.</p>
+
+<p>원인을 추적해보니 JPA의 영속성 컨텍스트(Persistence Context), <code class="language-plaintext highlighter-rouge">AUTO</code> flush 모드, 그리고 <code class="language-plaintext highlighter-rouge">@Modifying(clearAutomatically = true)</code>가 맞물려 발생한 문제였다. 이 글에서는 왜 이런 현상이 생겼는지와 실제 해결 방법을 정리한다.</p>
+
+<hr />
+
+<h2 id="1-배경-지식">1. 배경 지식</h2>
+
+<h3 id="영속성-컨텍스트persistence-context">영속성 컨텍스트(Persistence Context)</h3>
+
+<p>JPA에서 엔티티는 단순한 Java 객체가 아니라, <code class="language-plaintext highlighter-rouge">EntityManager</code>가 관리하는 1차 캐시(영속성 컨텍스트) 안에서 상태가 추적된다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[트랜잭션 시작]
+    ↓
+EntityManager 생성
+    ↓
+영속성 컨텍스트 활성화
+    ↓
+findById(id) → 엔티티 로드 (managed 상태)
+    ↓
+entity.setXxx(...) → dirty-check 대상 등록
+    ↓
+[트랜잭션 커밋] → flush 시점에 UPDATE SQL 반영
+</code></pre></div></div>
 
 <ul>
-  <li>Spring Cloud Gateway
-    <ul>
-      <li>아래의 문제 상황 해결을 위한 해결방법</li>
-      <li>앞으로 좀 더 공부하며 차근차근 구현 할 예정이다.</li>
-    </ul>
-  </li>
+  <li>영속 컨텍스트에 있는 엔티티는 <code class="language-plaintext highlighter-rouge">managed</code> 상태이며, 변경사항이 자동 추적된다.</li>
+  <li>컨텍스트에서 분리되면 <code class="language-plaintext highlighter-rouge">detached</code> 상태가 되고, 필드를 바꿔도 DB 반영 대상이 아니다.</li>
 </ul>
 
-<h2 id="-오늘의-문제-상황">🍎 오늘의 문제 상황</h2>
+<h3 id="flush와-auto-모드">Flush와 AUTO 모드</h3>
 
-<ul>
-  <li>현재 버티 서비스는 백엔드 서버의 도메인이 2개로 되어있다.</li>
-  <li>
-    <p>프론트와 연동을 하기 직전 과정에서 CORS 문제 해결과 이 과정에서 Render배포의 리소스 제약 문제를 어떤 식으로 해결하는 것이 좋은지 아래 내용과 같이 조사해보았다.</p>
-  </li>
-  <li>현재 버티 구조
-    <ul>
-      <li>서버 구조: 서버 도메인 URL이 2개 (회원 정보는 한쪽에만 존재)</li>
-      <li>프론트엔드: 도메인 URL이 1개
-        <ul>
-          <li>인증 방식: JWT 기반 인증 구현 중</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>문제점:
-    <ul>
-      <li>사용자 프로필 업데이트 기능이 있어 JWT에 프로필 정보 포함 어려움</li>
-      <li>프론트엔드와 백엔드 간 CORS 이슈 발생 가능</li>
-      <li>Render 프리티어 환경으로 리소스 제약 존재</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="-해결-방안-모색">🦄 해결 방안 모색</h2>
+<p><code class="language-plaintext highlighter-rouge">flush</code>는 영속성 컨텍스트의 변경사항을 DB에 동기화하는 동작이다. Spring Data JPA 기본 flush 모드는 <code class="language-plaintext highlighter-rouge">AUTO</code>이며, 다음 시점에 자동으로 동작한다.</p>
 
 <ol>
-  <li>
-    <p>API Gateway 패턴 도입</p>
-
-    <ul>
-      <li>목적: 프론트엔드에 단일 진입점 제공, CORS 문제 해결</li>
-      <li>구현 방식: Spring Cloud Gateway 활용</li>
-      <li>장점:
-        <ul>
-          <li>단일 도메인으로 프론트엔드 요청 처리</li>
-          <li>중앙화된 인증/인가 처리</li>
-          <li>요청 라우팅 관리 용이</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>회원 정보 공유 방식</p>
-    <blockquote>
-      <p>현재 버티 서비스는 JWT에 프로필 정보를 포함하기 어려운 상황이므로: (로그인 후 사용자 프로필을 업데이트 하기 때문)</p>
-    </blockquote>
-    <ul>
-      <li>서비스 간 직접 통신 방식
-        <ul>
-          <li>기본 개념: 회원 정보가 필요할 때 회원 서비스의 API를 직접 호출하여 최신 정보를 가져오는 방식</li>
-          <li>구현 내용:
-            <ul>
-              <li>회원 서비스에 내부용 API 엔드포인트 추가 (예: /api/internal/users/{userId})</li>
-              <li>이 API는 외부 접근이 아닌 서비스 간 통신용으로만 사용</li>
-              <li>기능 서비스에서 특정 사용자 정보가 필요할 때 이 API를 호출하여 최신 정보 획득</li>
-              <li>내부 API 키를 사용해 인증 (서비스 간 통신이 안전하게 이루어지도록)</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li>트랜잭션 커밋 시점</li>
+  <li>JPQL 쿼리 실행 직전</li>
 </ol>
 
-<h2 id="-깃블로그-정리">🐬 깃블로그 정리</h2>
+<p>이 버그에서는 2번이 핵심이었다.</p>
 
-<ul>
-  <li><a href="https://nan0silver.github.io/projectdiary/2025-04-28-diary/">좀 더 자세한 정리</a></li>
-</ul>
+<h3 id="modifyingclearautomatically--true">@Modifying(clearAutomatically = true)</h3>
+
+<p>벌크 UPDATE/DELETE JPQL은 영속성 컨텍스트를 거치지 않고 DB에 직접 반영된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Modifying</span><span class="o">(</span><span class="n">clearAutomatically</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="nd">@Query</span><span class="o">(</span><span class="s">"UPDATE CallReservation r SET r.status = :cancelStatus ..."</span><span class="o">)</span>
+<span class="kt">int</span> <span class="nf">cancelFuturePendingByRecurringId</span><span class="o">(...);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">clearAutomatically = true</code>를 쓰면 벌크 쿼리 실행 후 영속성 컨텍스트를 비운다. 이때 기존 <code class="language-plaintext highlighter-rouge">managed</code> 엔티티들이 전부 <code class="language-plaintext highlighter-rouge">detached</code> 상태가 된다.</p>
+
+<hr />
+
+<h2 id="2-버그-발생-과정">2. 버그 발생 과정</h2>
+
+<p>문제가 발생한 코드를 요약하면 다음과 같다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">cancelRecurringReservation</span><span class="o">(</span><span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">recurringReservationId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 1) rr 로드 (managed)</span>
+    <span class="nc">RecurringReservation</span> <span class="n">rr</span> <span class="o">=</span> <span class="n">recurringReservationRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">recurringReservationId</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(...);</span>
+
+    <span class="c1">// 2) 미래 ENQUEUED 예약 취소</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CallReservation</span><span class="o">&gt;</span> <span class="n">futureEnqueued</span> <span class="o">=</span> <span class="n">callReservationRepository</span><span class="o">.</span><span class="na">findFutureEnqueuedByRecurringId</span><span class="o">(...);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">CallReservation</span> <span class="n">reservation</span> <span class="o">:</span> <span class="n">futureEnqueued</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">reservation</span><span class="o">.</span><span class="na">cancel</span><span class="o">();</span> <span class="c1">// managed라 dirty-check 대상</span>
+        <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(...);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 3) 벌크 UPDATE + clearAutomatically</span>
+    <span class="n">callReservationRepository</span><span class="o">.</span><span class="na">cancelFuturePendingByRecurringId</span><span class="o">(...);</span>
+
+    <span class="c1">// 4) 이미 detached 된 rr 변경</span>
+    <span class="n">rr</span><span class="o">.</span><span class="na">cancel</span><span class="o">();</span> <span class="c1">// DB에 반영되지 않음</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>실제 실행 흐름은 다음과 같았다.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">rr</code>는 처음엔 managed 상태</li>
+  <li>벌크 쿼리 실행 직전에 <code class="language-plaintext highlighter-rouge">AUTO flush</code>가 동작해 일부 변경 반영</li>
+  <li>벌크 쿼리 후 <code class="language-plaintext highlighter-rouge">clearAutomatically</code>로 영속성 컨텍스트 초기화</li>
+  <li><code class="language-plaintext highlighter-rouge">rr</code>가 detached 상태가 된 뒤 <code class="language-plaintext highlighter-rouge">rr.cancel()</code> 호출</li>
+  <li>메모리 값은 바뀌지만 DB에는 UPDATE가 발생하지 않음</li>
+</ol>
+
+<p>그래서 <code class="language-plaintext highlighter-rouge">CallReservation</code>은 취소되지만 <code class="language-plaintext highlighter-rouge">RecurringReservation</code>은 <code class="language-plaintext highlighter-rouge">ACTIVE</code>로 남았다.</p>
+
+<hr />
+
+<h2 id="3-수정-방법">3. 수정 방법</h2>
+
+<p>핵심은 간단하다. <code class="language-plaintext highlighter-rouge">rr.cancel()</code> 호출을 벌크 UPDATE 이전으로 옮긴다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">cancelRecurringReservation</span><span class="o">(</span><span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">recurringReservationId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">RecurringReservation</span> <span class="n">rr</span> <span class="o">=</span> <span class="n">recurringReservationRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">recurringReservationId</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(...);</span>
+
+    <span class="c1">// ... 기타 로직</span>
+
+    <span class="c1">// managed 상태일 때 먼저 상태 변경</span>
+    <span class="n">rr</span><span class="o">.</span><span class="na">cancel</span><span class="o">();</span>
+
+    <span class="c1">// 이후 벌크 UPDATE 실행</span>
+    <span class="n">callReservationRepository</span><span class="o">.</span><span class="na">cancelFuturePendingByRecurringId</span><span class="o">(...);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>수정 후 흐름:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rr.cancel() 호출 (managed)
+    ↓
+벌크 쿼리 직전 AUTO flush
+    ↓
+rr 상태 변경 UPDATE 반영
+    ↓
+벌크 UPDATE 실행
+    ↓
+clearAutomatically (이미 필요한 변경 반영 완료)
+</code></pre></div></div>
+
+<p>이제 <code class="language-plaintext highlighter-rouge">RecurringReservation</code> 상태도 정상적으로 <code class="language-plaintext highlighter-rouge">CANCELLED</code>로 저장된다.</p>
+
+<hr />
+
+<h2 id="4-교훈">4. 교훈</h2>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">clearAutomatically = true</code>는 기존 엔티티를 모두 detached 상태로 만든다.</li>
+  <li>벌크 UPDATE 이후에는 기존 엔티티를 상태 변경 대상으로 가정하면 안 된다.</li>
+  <li>엔티티 상태 변경은 벌크 쿼리보다 먼저 수행하는 것이 안전하다.</li>
+  <li>Mockito 기반 단위 테스트만으로는 이런 문제를 놓치기 쉽다.</li>
+  <li><code class="language-plaintext highlighter-rouge">@DataJpaTest</code>, <code class="language-plaintext highlighter-rouge">@SpringBootTest</code> 같은 통합 테스트가 필요하다.</li>
+</ol>
+
+<hr />
+
+<h2 id="마치며">마치며</h2>
+
+<p>JPA의 영속성 컨텍스트는 강력하지만, 내부 동작을 정확히 이해하지 않으면 예상 못 한 버그가 생긴다. 특히 벌크 UPDATE와 dirty-check를 같은 트랜잭션에서 함께 사용할 때는 실행 순서와 엔티티 상태(<code class="language-plaintext highlighter-rouge">managed</code>/<code class="language-plaintext highlighter-rouge">detached</code>)를 반드시 의식해야 한다.</p>
 
   
 </article>
@@ -624,7 +685,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2026-04-16-diary/" class="flip-title"><span>[친구하자] JPA @Modifying(clearAutomatically = true)의 함정</span></a>  <time class="faded fine" datetime="2026-04-16T00:00:00+00:00">16 Apr 2026</time></li>                        <li class="h4">  <a href="/til/2026-03-29-til/" class="flip-title"><span>[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)</span></a>  <time class="faded fine" datetime="2026-03-29T00:00:00+00:00">29 Mar 2026</time></li>                        <li class="h4">  <a href="/til/2026-03-11-til/" class="flip-title"><span>[TIL] 트랜잭션·Redis 정합성, TOCTOU, 보상 트랜잭션 — #150에서 배운 백엔드 포인트</span></a>  <time class="faded fine" datetime="2026-03-11T00:00:00+00:00">11 Mar 2026</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2026-03-29-til/" class="flip-title"><span>[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)</span></a>  <time class="faded fine" datetime="2026-03-29T00:00:00+00:00">29 Mar 2026</time></li>                        <li class="h4">  <a href="/til/2026-03-11-til/" class="flip-title"><span>[TIL] 트랜잭션·Redis 정합성, TOCTOU, 보상 트랜잭션 — #150에서 배운 백엔드 포인트</span></a>  <time class="faded fine" datetime="2026-03-11T00:00:00+00:00">11 Mar 2026</time></li>                        <li class="h4">  <a href="/til/2026-03-10-til/" class="flip-title"><span>[TIL] Spring Events, @Async, Redis, STOMP — #148·#149에서 배운 백엔드 포인트</span></a>  <time class="faded fine" datetime="2026-03-10T00:00:00+00:00">10 Mar 2026</time></li>            </ul></aside>
 
   
 
