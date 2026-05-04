@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="감정 분석 API에서 7가지 감정 점수를 소수점 둘째 자리 백분율로 보여주되 합계는 반드시 100.00%가 되게 하는 문제, 반올림 함정과 Largest Remainder Method(최대 잔여 방식) 해법, 구현 시 부동소수점·동점 처리 등을 정리합니다." />
+<meta property="og:description" content="감정 분석 API에서 7가지 감정 점수를 소수점 둘째 자리 백분율로 보여주되 합계는 반드시 100.00%가 되게 하는 문제, 반올림 함정과 Largest Remainder Method(최대 잔여 방식) 해법, 구현 시 부동소수점·동점 처리 등을 정리합니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-04-13-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2026-04-13-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-13T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-05-04T08:04:27+00:00","datePublished":"2026-04-13T00:00:00+00:00","description":"감정 분석 API에서 7가지 감정 점수를 소수점 둘째 자리 백분율로 보여주되 합계는 반드시 100.00%가 되게 하는 문제, 반올림 함정과 Largest Remainder Method(최대 잔여 방식) 해법, 구현 시 부동소수점·동점 처리 등을 정리합니다.","headline":"[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-04-13-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-04-13-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2026-04-13-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-05-04T08:05:43+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method",
+    "description": "감정 분석 API에서 7가지 감정 점수를 소수점 둘째 자리 백분율로 보여주되 합계는 반드시 100.00%가 되게 하는 문제, 반올림 함정과 Largest Remainder Method(최대 잔여 방식) 해법, 구현 시 부동소수점·동점 처리 등을 정리합니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-04-13T00:00:00+00:00",
+    "dateModified": "2026-05-04T08:04:27+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2026-04-13-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-04-13-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method",
+        "item": "https://nan0silver.github.io/projectdiary/2026-04-13-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-04-13-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-04-13T00:00:00+00:00">13 Apr 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 04 May 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-05-04T08:04:27+00:00">2026-05-04</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      감정 분석 API에서 7가지 감정 점수를 소수점 둘째 자리 백분율로 보여주되 합계는 반드시 100.00%가 되게 하는 문제, 반올림 함정과 Largest Remainder Method(최대 잔여 방식) 해법, 구현 시 부동소수점·동점 처리 등을 정리합니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>감정 분석 API를 만들면서 “각 항목은 소수점 둘째 자리로 보이게 하되, 합계는 반드시 100.00%”라는 요구를 만났다. 단순 반올림과 흔한 보정 방식의 함정, 최대 잔여 방식(Largest Remainder, Hamilton 방식으로도 알려짐)으로 맞춘 과정과 구현 시 체크 포인트를 정리한다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-문제-반올림하면-합계가-어긋난다">1. 문제: 반올림하면 합계가 어긋난다</a></li>
+  <li><a href="#2-흔한-해결-시도와-한계">2. 흔한 해결 시도와 한계</a></li>
+  <li><a href="#3-해법-largest-remainder-method">3. 해법: Largest Remainder Method</a></li>
+  <li><a href="#4-동작-검증">4. 동작 검증</a></li>
+  <li><a href="#5-왜-음수가-나오지-않을까">5. 왜 음수가 나오지 않을까</a></li>
+  <li><a href="#6-주의-반올림된-값으로-대표값을-뽑지-말-것">6. 주의: 반올림된 값으로 대표값을 뽑지 말 것</a></li>
+  <li><a href="#7-이-패턴이-필요한-곳">7. 이 패턴이 필요한 곳</a></li>
+  <li><a href="#8-개발자가-알아두면-좋은-것">8. 개발자가 알아두면 좋은 것</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>감정 분석 API를 개발하던 중 이런 요구가 생겼다.</p>
+
+<ul>
+  <li>“7가지 감정 점수를 소수점 둘째 자리 백분율로 보여주되, 합계는 반드시 100.00%여야 한다.”</li>
+</ul>
+
+<p>겉으로는 단순해 보이지만, 구현보면 꽤 까다롭다. 이 글은 그 과정에서 만난 함정과 해법을 정리한 글이다.</p>
+
+<hr />
+
+<h2 id="1-문제-반올림하면-합계가-어긋난다">1. 문제: 반올림하면 합계가 어긋난다</h2>
+
+<p>모델이 반환한 7개 감정 점수가 있다고 하자.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>감정</th>
+      <th>원본</th>
+      <th>×100 (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>joy</td>
+      <td>0.1432</td>
+      <td>14.32</td>
+    </tr>
+    <tr>
+      <td>neutral</td>
+      <td>0.1431</td>
+      <td>14.31</td>
+    </tr>
+    <tr>
+      <td>…</td>
+      <td>…</td>
+      <td>…</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>각 값에 100을 곱하고 소수점 둘째 자리로 반올림하면, 운이 좋으면 합이 딱 100.00이 된다. 하지만 실제로는 자주 어긋난다.</p>
+
+<p>예를 들어 비슷한 비율이 여러 개일 때:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>16.667% → 16.67 (×6) + 16.665% → 16.67 등
+→ 반올림만으로는 합이 100.02%처럼 벗어날 수 있다.
+</code></pre></div></div>
+
+<p>각 항목의 반올림은 그 자체로는 타당해도, <strong>합계 제약</strong>과 동시에 만족시키기 어렵다.</p>
+
+<hr />
+
+<h2 id="2-흔한-해결-시도와-한계">2. 흔한 해결 시도와 한계</h2>
+
+<h3 id="시도-1-마지막-항목에-나머지-할당">시도 1: 마지막 항목에 나머지 할당</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">values</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">rounded</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">round</span><span class="o">(</span><span class="n">values</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">*</span> <span class="mi">10000</span><span class="o">)</span> <span class="o">/</span> <span class="mf">100.0</span><span class="o">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">rounded</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+<span class="o">}</span>
+<span class="n">rounded</span><span class="o">[</span><span class="n">last</span><span class="o">]</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">-</span> <span class="n">sum</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>직관적이지만, 앞쪽 항목이 과하게 올림되어 합이 이미 100을 넘으면 마지막 항목이 <strong>음수</strong>가 될 수 있다. 감정 점수로는 말이 안 되는 결과다.</p>
+
+<h3 id="시도-2-합계로-정규화한-뒤-반올림">시도 2: 합계로 정규화한 뒤 반올림</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">total</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="na">values</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">mapToDouble</span><span class="o">(</span><span class="n">v</span> <span class="o">-&gt;</span> <span class="n">v</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+<span class="n">scores</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">((</span><span class="n">k</span><span class="o">,</span> <span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="nc">Math</span><span class="o">.</span><span class="na">round</span><span class="o">(</span><span class="n">v</span> <span class="o">/</span> <span class="n">total</span> <span class="o">*</span> <span class="mi">10000</span><span class="o">)</span> <span class="o">/</span> <span class="mf">100.0</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>정규화해도 <strong>항목별 반올림의 누적 오차</strong>는 그대로 남는다. 합계 100.00을 보장하지 못한다.</p>
+
+<hr />
+
+<h2 id="3-해법-largest-remainder-method">3. 해법: Largest Remainder Method</h2>
+
+<p>Largest Remainder Method(최대 잔여 방식)는 비율을 <strong>정수 몫</strong>으로 나눈 뒤 남는 단위를 <strong>가장 큰 소수부(잔여)</strong>부터 채우는 방식이다. 미국 초기 의회 의석 배분 논의 등에서 Hamilton이 제안한 방식과 같은 계열로 자주 인용되며, 오늘날에도 일부 선거·의석 배분 맥락에서 쓰인다(국가·제도마다 d’Hondt 등 <strong>다른 배분법</strong>을 쓰는 경우도 많으니, “의석 배분 = 항상 LRM”은 아니다).</p>
+
+<p><strong>전제:</strong> 각 항목의 가중치가 <strong>0 이상</strong>이고, 합을 <code class="language-plaintext highlighter-rouge">total</code>로 나눠 비중이 합쳐서 1이 되도록 정규화한 값에 대해 적용한다. 음수 가중치가 있으면 <code class="language-plaintext highlighter-rouge">floor</code>만으로는 “항상 0 이상”을 말하기 어렵다.</p>
+
+<p>핵심 단계는 다음과 같다.</p>
+
+<ol>
+  <li>총 단위(예: 소수점 둘째 자리면 <code class="language-plaintext highlighter-rouge">10000 = 100 × 100</code>)로 스케일한다.</li>
+  <li>각 항목에 <strong>바닥값(floor)</strong>을 배분한다.</li>
+  <li>목표 합(<code class="language-plaintext highlighter-rouge">10000</code>)과의 차이만큼, <strong>소수부가 큰 순</strong>으로 1씩 더 나눠준다.</li>
+  <li>최종 정수를 다시 100으로 나눠 백분율로 표현한다.</li>
+</ol>
+
+<h3 id="java-구현-예시">Java 구현 예시</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">EmotionType</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="nf">toPercentageScores</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">EmotionType</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">rawScores</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="n">total</span> <span class="o">=</span> <span class="n">rawScores</span><span class="o">.</span><span class="na">values</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">mapToDouble</span><span class="o">(</span><span class="n">v</span> <span class="o">-&gt;</span> <span class="n">v</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">total</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Map</span><span class="o">.</span><span class="na">of</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">EmotionType</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="n">intParts</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">EmotionType</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">fracParts</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="kt">long</span> <span class="n">intTotal</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="nc">EmotionType</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">entry</span> <span class="o">:</span> <span class="n">rawScores</span><span class="o">.</span><span class="na">entrySet</span><span class="o">())</span> <span class="o">{</span>
+        <span class="kt">double</span> <span class="n">scaled</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">/</span> <span class="n">total</span> <span class="o">*</span> <span class="mi">10000</span><span class="o">;</span>
+        <span class="kt">long</span> <span class="n">floor</span> <span class="o">=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span> <span class="n">scaled</span><span class="o">;</span>
+        <span class="n">intParts</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">getKey</span><span class="o">(),</span> <span class="n">floor</span><span class="o">);</span>
+        <span class="n">fracParts</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">getKey</span><span class="o">(),</span> <span class="n">scaled</span> <span class="o">-</span> <span class="n">floor</span><span class="o">);</span>
+        <span class="n">intTotal</span> <span class="o">+=</span> <span class="n">floor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kt">long</span> <span class="n">remainder</span> <span class="o">=</span> <span class="mi">10000</span> <span class="o">-</span> <span class="n">intTotal</span><span class="o">;</span>
+
+    <span class="c1">// 소수부 내림차순, 동점이면 키(예: enum 이름)로 결정적 정렬 — 테스트·API 응답 재현성</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">EmotionType</span><span class="o">&gt;</span> <span class="n">sortedByFrac</span> <span class="o">=</span> <span class="n">fracParts</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">.&lt;</span><span class="nc">EmotionType</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span><span class="n">comparingByValue</span><span class="o">().</span><span class="na">reversed</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">thenComparing</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">getKey</span><span class="o">().</span><span class="na">name</span><span class="o">()))</span>
+            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getKey</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">toList</span><span class="o">();</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">remainder</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="nc">EmotionType</span> <span class="n">key</span> <span class="o">=</span> <span class="n">sortedByFrac</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="n">intParts</span><span class="o">.</span><span class="na">merge</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="mi">1L</span><span class="o">,</span> <span class="nl">Long:</span><span class="o">:</span><span class="n">sum</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">EmotionType</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="nc">EmotionType</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="n">entry</span> <span class="o">:</span> <span class="n">intParts</span><span class="o">.</span><span class="na">entrySet</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">result</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">getKey</span><span class="o">(),</span> <span class="n">entry</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">/</span> <span class="mf">100.0</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-동작-검증">4. 동작 검증</h2>
+
+<p><strong>케이스 A</strong> — <code class="language-plaintext highlighter-rouge">floor</code> 합이 이미 10000인 경우:</p>
+
+<ul>
+  <li>나머지 배분이 0이면, 그대로 합계 100.00이 된다.</li>
+</ul>
+
+<p><strong>케이스 B</strong> — 7등분에 가까운 비율:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">floor</code>만으로는 합이 9996처럼 모자라면 <code class="language-plaintext highlighter-rouge">remainder</code>만큼 소수부가 큰 항목에 +1씩 부여한다.</li>
+  <li>항목별로 14.29와 14.28이 섞여도 <strong>합은 정확히 100.00</strong>이 된다.</li>
+</ul>
+
+<p>음수가 나올 여지가 없고, 목표 정수 합을 맞추는 구조라 합계 오차도 구조적으로 없어진다.</p>
+
+<hr />
+
+<h2 id="5-왜-음수가-나오지-않을까">5. 왜 음수가 나오지 않을까</h2>
+
+<p>아래는 <strong>비율이 모두 0 이상</strong>이고, 위처럼 정규화된 가중치에 LRM을 적용할 때의 이야기다.</p>
+
+<ul>
+  <li>각 항목의 하한은 <code class="language-plaintext highlighter-rouge">floor(비율 × 10000) / 100.0</code>이므로 <strong>0 이상</strong>이다.</li>
+  <li>나머지 분배는 <strong>덧셈만</strong> 하므로 값이 줄지 않는다.</li>
+  <li>“마지막 항목 = 100 − (나머지 합)”처럼 빼서 맞추는 방식과 달리, 그 차이 때문에 마지막만 음수가 되는 경로가 없다.</li>
+</ul>
+
+<p>항목별 <strong>가장 가까운 반올림값</strong>을 동시에 만족시키는 알고리즘은 아니다. “정수 단위(여기서는 만분율) 합을 정확히 맞추면서, 가능한 한 원 비율에 가깝게” 분배하는 방식이라는 점만 기억하면 된다.</p>
+
+<hr />
+
+<h2 id="6-주의-반올림된-값으로-대표값을-뽑지-말-것">6. 주의: 반올림된 값으로 대표값을 뽑지 말 것</h2>
+
+<p>구현 후 또 하나의 함정이 있었다.</p>
+
+<ul>
+  <li>“오늘의 대표 감정(dominant emotion)을 어디서 고를 것인가?”</li>
+</ul>
+
+<p>처음에는 <code class="language-plaintext highlighter-rouge">toPercentageScores()</code> 결과에서 최댓값을 찾았다. 그러면 반올림 때문에 원래 2위였던 감정이 1위와 <strong>같은 표시값</strong>이 되어 대표가 바뀌는 일이 생길 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ 표시용 맵에서 최댓값 선택 — 반올림 왜곡 가능</span>
+<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">EmotionType</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">display</span> <span class="o">=</span> <span class="n">toPercentageScores</span><span class="o">(</span><span class="n">raw</span><span class="o">);</span>
+<span class="nc">EmotionType</span> <span class="n">dominant</span> <span class="o">=</span> <span class="n">display</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">.</span><span class="na">comparingByValue</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getKey</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>의사결정(대표 감정)</strong>은 반올림 전 원시 평균에서 고르고, <strong>화면 표시</strong>만 LRM 결과를 쓰는 편이 안전하다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 원시 평균에서 대표 선택</span>
+<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">EmotionType</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">rawAverages</span> <span class="o">=</span> <span class="n">computeRawAverages</span><span class="o">(</span><span class="n">scoreMaps</span><span class="o">);</span>
+<span class="nc">EmotionType</span> <span class="n">dominant</span> <span class="o">=</span> <span class="n">rawAverages</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">.</span><span class="na">comparingByValue</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getKey</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+
+<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">EmotionType</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">display</span> <span class="o">=</span> <span class="n">toPercentageScores</span><span class="o">(</span><span class="n">rawAverages</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>집계·판단용 값</strong>과 <strong>표시용 값</strong>을 분리하는 설계가 필요하다.</p>
+
+<hr />
+
+<h2 id="7-이-패턴이-필요한-곳">7. 이 패턴이 필요한 곳</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>분야</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>선거</td>
+      <td>정당별 의석 배분</td>
+    </tr>
+    <tr>
+      <td>데이터 시각화</td>
+      <td>파이·도넛 차트</td>
+    </tr>
+    <tr>
+      <td>통계 대시보드</td>
+      <td>카테고리별 비율 합계</td>
+    </tr>
+    <tr>
+      <td>재무</td>
+      <td>세금·수수료 분담</td>
+    </tr>
+    <tr>
+      <td>게임</td>
+      <td>확률 표시</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>항목이 많고 비율이 비슷할수록 단순 반올림 오차가 커진다. API에서 서버가 합계 100.00을 보장해 주면 클라이언트는 별도 보정 없이 차트를 그릴 수 있다.</p>
+
+<hr />
+
+<h2 id="8-개발자가-알아두면-좋은-것">8. 개발자가 알아두면 좋은 것</h2>
+
+<h3 id="부동소수점double">부동소수점(<code class="language-plaintext highlighter-rouge">double</code>)</h3>
+
+<p>이론상 <code class="language-plaintext highlighter-rouge">value / total * 10000</code>을 항목마다 더하면 합이 정확히 <code class="language-plaintext highlighter-rouge">10000</code>이지만, <strong><code class="language-plaintext highlighter-rouge">double</code> 연산에서는 항목별 <code class="language-plaintext highlighter-rouge">scaled</code>가 미세하게 틀어질 수 있다.</strong> 그 결과 <code class="language-plaintext highlighter-rouge">floor</code>가 한 단계 내려가거나, <code class="language-plaintext highlighter-rouge">remainder</code> 계산이 기대와 어긋날 여지가 있다.</p>
+
+<ul>
+  <li>금액·감사 로그처럼 <strong>재현성·정확도</strong>가 중요하면 <code class="language-plaintext highlighter-rouge">BigDecimal</code>으로 스케일·<code class="language-plaintext highlighter-rouge">floor</code>·나머지 배분을 하거나, 모델 출력을 <strong>고정 소수 자릿수의 정수</strong>(예: 백만분율)로 받은 뒤 정수만으로 LRM을 돌리는 편이 안전하다.</li>
+  <li>감정 점수처럼 소수 자릿수가 제한되면 <code class="language-plaintext highlighter-rouge">double</code>로도 실무에서 통하는 경우가 많지만, <strong>단위 테스트에 “동률 소수부”“합이 1에 아주 가까운 값”</strong> 같은 케이스를 넣어 두는 것이 좋다.</li>
+</ul>
+
+<h3 id="동점소수부가-같을-때">동점(소수부가 같을 때)</h3>
+
+<p>나머지를 나눠줄 때 소수부가 같은 항목이 여러 개면, 정렬 순서에 따라 <strong>누가 +1을 받는지</strong>가 바뀐다. API 응답·스냅샷 테스트가 흔들리지 않도록 <strong>2차 정렬 키</strong>(enum 이름, 도메인 고정 순서 등)를 반드시 둔다. 위 코드 예시의 <code class="language-plaintext highlighter-rouge">thenComparing(e -&gt; e.getKey().name())</code>이 그 역할이다.</p>
+
+<h3 id="total--0전부-0"><code class="language-plaintext highlighter-rouge">total == 0</code>·전부 0</h3>
+
+<p><code class="language-plaintext highlighter-rouge">total &lt;= 0</code>이면 비율을 정의할 수 없다. 빈 맵을 반환할지, 7축 모두 0%를 보낼지는 <strong>제품 요구</strong>에 맞춰 명시적으로 정한다.</p>
+
+<h3 id="lrm과-항목마다-반올림의-차이">LRM과 “항목마다 반올림”의 차이</h3>
+
+<p>클라이언트가 “각 줄은 반올림한 것처럼 보여야 해”라고 기대하면, LRM 결과가 항목별로는 <strong>가장 가까운 반올림 숫자와 다를 수 있다</strong>는 점을 UI·기획과 맞춰 두는 것이 좋다. 대신 <strong>합계 100.00</strong>은 보장된다.</p>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p>백분율은 단순해 보여도 반올림이 끼면 <strong>항목 정확도</strong>와 <strong>합계 제약</strong>이 동시에 걸린다. Largest Remainder Method는 그 둘을 수학적으로 맞추는 실용적인 해법이다.</p>
+
+<ul>
+  <li>(비음수·정규화된 비율에서) 마지막 항목만 음수로 맞추는 식의 함정을 피할 수 있다.</li>
+  <li>목표 합(예: 100.00%)을 정확히 만족한다.</li>
+  <li>구현 부담도 크지 않다. 대신 <code class="language-plaintext highlighter-rouge">double</code> 정밀도·동점 정렬·표시 vs 의사결정 데이터 분리는 따로 챙기면 된다.</li>
+</ul>
+
+<p>한 번 흐름을 익혀 두면, 백분율·비율을 다루는 다른 기능에서도 같은 패턴을 적용하기 쉽다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2026-04-28-diary/" class="flip-title"><span>[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계</span></a>  <time class="faded fine" datetime="2026-04-28T00:00:00+00:00">28 Apr 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-04-16-diary/" class="flip-title"><span>[친구하자] JPA @Modifying(clearAutomatically = true)의 함정</span></a>  <time class="faded fine" datetime="2026-04-16T00:00:00+00:00">16 Apr 2026</time></li>                        <li class="h4">  <a href="/til/2026-03-29-til/" class="flip-title"><span>[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)</span></a>  <time class="faded fine" datetime="2026-03-29T00:00:00+00:00">29 Mar 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="https://github.com/nan0silver">GitHub</a>
+      |
+    
+      
+      <a class="heading flip-title" href="mailto:silvernh1220@gmail.com">Gmail</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Full-stack · 1인 개발 · 창업 준비
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          Frontend (9)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/aws/"
+          class="sidebar-nav-item "
+          
+        >
+          AWS (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (18)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          기타 (4)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (36)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (69)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

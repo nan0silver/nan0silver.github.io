@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="Call과 CallEmotionResult를 SQL처럼 LEFT JOIN하고 싶지만 표준 JPQL은 연관관계 기반 JOIN이 기본이라 막히는 문제, Hibernate HQL 확장과의 차이, 네이티브 쿼리·두 쿼리 분리 후 Java 병합, 구현 시 주의점까지 정리합니다." />
+<meta property="og:description" content="Call과 CallEmotionResult를 SQL처럼 LEFT JOIN하고 싶지만 표준 JPQL은 연관관계 기반 JOIN이 기본이라 막히는 문제, Hibernate HQL 확장과의 차이, 네이티브 쿼리·두 쿼리 분리 후 Java 병합, 구현 시 주의점까지 정리합니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-04-28-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2026-04-28-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-28T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-05-04T08:04:27+00:00","datePublished":"2026-04-28T00:00:00+00:00","description":"Call과 CallEmotionResult를 SQL처럼 LEFT JOIN하고 싶지만 표준 JPQL은 연관관계 기반 JOIN이 기본이라 막히는 문제, Hibernate HQL 확장과의 차이, 네이티브 쿼리·두 쿼리 분리 후 Java 병합, 구현 시 주의점까지 정리합니다.","headline":"[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-04-28-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-04-28-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2026-04-28-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-05-04T08:05:43+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계",
+    "description": "Call과 CallEmotionResult를 SQL처럼 LEFT JOIN하고 싶지만 표준 JPQL은 연관관계 기반 JOIN이 기본이라 막히는 문제, Hibernate HQL 확장과의 차이, 네이티브 쿼리·두 쿼리 분리 후 Java 병합, 구현 시 주의점까지 정리합니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-04-28T00:00:00+00:00",
+    "dateModified": "2026-05-04T08:04:27+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2026-04-28-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-04-28-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계",
+        "item": "https://nan0silver.github.io/projectdiary/2026-04-28-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-04-28-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-04-28T00:00:00+00:00">28 Apr 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 04 May 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-05-04T08:04:27+00:00">2026-05-04</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Call과 CallEmotionResult를 SQL처럼 LEFT JOIN하고 싶지만 표준 JPQL은 연관관계 기반 JOIN이 기본이라 막히는 문제, Hibernate HQL 확장과의 차이, 네이티브 쿼리·두 쿼리 분리 후 Java 병합, 구현 시 주의점까지 정리합니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Call</code>과 <code class="language-plaintext highlighter-rouge">CallEmotionResult</code>를 SQL처럼 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>하고 싶은데, <strong>표준 JPQL</strong>은 연관 경로가 없으면 객체 그래프 기반 조인을 쓰기 어렵다. Hibernate HQL은 버전에 따라 엔티티 <code class="language-plaintext highlighter-rouge">JOIN … ON</code>이 열리기도 하지만 포터빌리티와 트레이드오프가 있다. SQL·JPQL의 차이와, 우리가 택한 두 쿼리 + 병합, 구현 시 주의점까지 정리한다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-jpql-left-join의-제약">1. JPQL LEFT JOIN의 제약</a></li>
+  <li><a href="#2-연관관계를-선언하지-않은-이유">2. 연관관계를 선언하지 않은 이유</a></li>
+  <li><a href="#3-임의-조건-join을-jpql로-옮기려-할-때">3. 임의 조건 JOIN을 JPQL로 옮기려 할 때</a></li>
+  <li><a href="#4-해결-방법-1-네이티브-쿼리">4. 해결 방법 1: 네이티브 쿼리</a></li>
+  <li><a href="#5-해결-방법-2-두-쿼리-분리-후-java에서-병합">5. 해결 방법 2: 두 쿼리 분리 후 Java에서 병합</a></li>
+  <li><a href="#6-두-접근-방식-비교">6. 두 접근 방식 비교</a></li>
+  <li><a href="#7-어떤-경우에-어떤-방식을-선택할까">7. 어떤 경우에 어떤 방식을 선택할까</a></li>
+  <li><a href="#8-실무에서-비슷한-패턴">8. 실무에서 비슷한 패턴</a></li>
+  <li><a href="#9-구현-시-알아두면-좋은-것">9. 구현 시 알아두면 좋은 것</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>JPA를 쓰다 보면 이런 요구를 만난다.</p>
+
+<ul>
+  <li>“메인 테이블과 부가 기록 테이블을 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>해서, 부가 행이 <strong>없는</strong> 메인 행도 목록에 넣고 싶다.”</li>
+</ul>
+
+<p>SQL로는 대략 다음처럼 쓸 수 있다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">p</span><span class="p">.</span><span class="o">*</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="o">*</span>
+<span class="k">FROM</span> <span class="n">parent_records</span> <span class="n">p</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">extension_records</span> <span class="n">e</span>
+  <span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">parent_id</span> <span class="k">AND</span> <span class="n">e</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="o">?</span>
+<span class="k">WHERE</span> <span class="n">p</span><span class="p">.</span><span class="n">participant_a_id</span> <span class="o">=</span> <span class="o">?</span> <span class="k">OR</span> <span class="n">p</span><span class="p">.</span><span class="n">participant_b_id</span> <span class="o">=</span> <span class="o">?</span>
+</code></pre></div></div>
+
+<p>(위 SQL의 테이블·컬럼명은 실제 스키마와 무관한 <strong>예시용 익명</strong>이다.)</p>
+
+<p>그런데 이걸 JPQL로 그대로 옮기려 하면, 포터블한 JPQL만으로는 예상과 다른 벽에 부딪히는 경우가 많다.</p>
+
+<hr />
+
+<h2 id="1-jpql-left-join의-제약">1. JPQL LEFT JOIN의 제약</h2>
+
+<p>표준 JPQL에서 <code class="language-plaintext highlighter-rouge">JOIN</code>은 보통 <strong>엔티티에 선언된 연관관계</strong>(<code class="language-plaintext highlighter-rouge">@OneToMany</code>, <code class="language-plaintext highlighter-rouge">@ManyToOne</code> 등)를 따라간다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 연관관계가 있으면 JPQL LEFT JOIN 가능</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Call</span> <span class="o">{</span>
+    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"call"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CallEmotionResult</span><span class="o">&gt;</span> <span class="n">emotionResults</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"""
+    SELECT c FROM Call c
+    LEFT JOIN c.emotionResults cer
+    WHERE (c.user1.id = :userId OR c.user2.id = :userId)
+    """</span><span class="o">)</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Call</span><span class="o">&gt;</span> <span class="nf">findWithEmotionResults</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"userId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>연관관계가 <strong>없으면</strong> <code class="language-plaintext highlighter-rouge">c.emotionResults</code> 같은 경로 자체가 없어서, 위와 같은 객체 그래프 기반 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>을 쓸 수 없다.</p>
+
+<hr />
+
+<h2 id="2-연관관계를-선언하지-않은-이유">2. 연관관계를 선언하지 않은 이유</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Call</code>에 <code class="language-plaintext highlighter-rouge">@OneToMany List&lt;CallEmotionResult&gt;</code>를 붙이지 않은 데는 실무적인 이유가 있다.</p>
+
+<ol>
+  <li><strong>결합도</strong> — 통화 엔티티가 분석 결과 컬렉션을 직접 들고 있으면, 통화 흐름만 다룰 때도 분석 도메인이 끼어들 여지가 커진다.</li>
+  <li><strong>N+1·실수 여지</strong> — <code class="language-plaintext highlighter-rouge">@OneToMany</code>는 기본이 <code class="language-plaintext highlighter-rouge">LAZY</code>지만, <code class="language-plaintext highlighter-rouge">fetch</code> 없이 접근하면 N+1이 나기 쉽다.</li>
+  <li><strong>방향성</strong> — “분석 결과 조회”는 분석 쪽 책임으로 두고, <code class="language-plaintext highlighter-rouge">Call</code>이 <code class="language-plaintext highlighter-rouge">CallEmotionResult</code>를 알 필요가 없다고 본다.</li>
+</ol>
+
+<p>의도적으로 JPA 연관을 끊어 두는 선택은 흔하다. 대신 그만큼 <strong>JPQL 한 줄로 SQL식 LEFT JOIN</strong>을 재현하기 어려워진다.</p>
+
+<hr />
+
+<h2 id="3-임의-조건-join을-jpql로-옮기려-할-때">3. 임의 조건 JOIN을 JPQL로 옮기려 할 때</h2>
+
+<p>연관관계 없이 SQL처럼 <code class="language-plaintext highlighter-rouge">ON</code> 절만으로 붙이려는 시도 예시는 다음과 같다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 표준 JPQL(Jakarta Persistence)만 놓고 보면: 이 형태를 그대로 보장하지 않는다.</span>
+<span class="c1">// Hibernate를 쓴다면: 버전에 따라 HQL에서 "엔티티 조인 + ON"이 지원되기도 한다.</span>
+<span class="nd">@Query</span><span class="o">(</span><span class="s">"""
+    SELECT c FROM Call c
+    LEFT JOIN CallEmotionResult cer ON c.id = cer.callId AND cer.userId = :userId
+    WHERE c.user1.id = :userId OR c.user2.id = :userId
+    """</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p><strong>표준 JPQL</strong>은 조인 대상을 <strong><code class="language-plaintext highlighter-rouge">FROM</code> 엔티티에서 출발한 연관 경로</strong>로 잡는 경우가 대부분이다. 매핑이 없으면 <code class="language-plaintext highlighter-rouge">c.emotionResults</code> 같은 탐색 경로 자체가 없어서, SQL에서 당연한 “두 테이블을 FK만으로 LEFT JOIN”을 <strong>이식한 JPQL 한 줄</strong>로 끝내기 어렵다.</p>
+
+<p><strong>Hibernate HQL</strong>은 구현체 확장이라 버전마다 다르다. Hibernate 6 계열에서는 HQL에 <strong>연관관계 없이 두 엔티티를 <code class="language-plaintext highlighter-rouge">JOIN … ON</code>으로 묶는</strong> 문법이 강화된 편이라, 위와 비슷한 쿼리가 <strong>동작할 수도</strong> 있다. 다만 그 순간 쿼리는 “표준 JPQL”이라기보다 <strong>Hibernate에 묶인 HQL</strong>이 되고, 다른 구현체로 바꾸거나 스펙만 맞춰야 할 때는 다시 막힐 수 있다.</p>
+
+<p>그래서 팀에서 <strong>포터빌리티</strong>를 중시하면 여전히 “연관 추가 / 네이티브 / 두 번 조회 + 병합” 쪽으로 가는 경우가 많다.</p>
+
+<hr />
+
+<h2 id="4-해결-방법-1-네이티브-쿼리">4. 해결 방법 1: 네이티브 쿼리</h2>
+
+<p>가장 직접적인 방법은 <code class="language-plaintext highlighter-rouge">@Query(nativeQuery = true)</code>로 SQL을 그대로 쓰는 것이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"""
+    SELECT p.id, p.started_at, p.ended_at, p.duration_seconds,
+           e.detail_payload, e.summary_label
+    FROM parent_records p
+    LEFT JOIN extension_records e
+      ON p.id = e.parent_id AND e.user_id = :userId
+    WHERE (p.participant_a_id = :userId OR p.participant_b_id = :userId)
+      AND p.lifecycle_state = 'COMPLETED'
+    """</span><span class="o">,</span> <span class="n">nativeQuery</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">[]&gt;</span> <span class="nf">findMonthlyRaw</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"userId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>단점·주의 요약</strong></p>
+
+<ul>
+  <li>기본적으로는 <code class="language-plaintext highlighter-rouge">List&lt;Object[]&gt;</code>처럼 <strong>행 단위 튜플</strong>에 가깝게 받게 되기 쉽다. Spring Data JPA에서는 컬럼 별칭·매핑을 맞추면 인터페이스/클래스 <strong>프로젝션</strong>으로 감쌀 수도 있지만, JPQL 생성자 표현식만큼 단순하진 않다.</li>
+  <li>DB 방언·테이블/컬럼 이름에 직접 의존한다.</li>
+  <li>리팩터링 시 컴파일러가 SQL 문자열 오류를 잡아주지 못한다.</li>
+  <li>JSON 컬럼 등은 타입 변환·역직렬화를 애플리케이션에서 책임져야 할 수 있다.</li>
+</ul>
+
+<hr />
+
+<h2 id="5-해결-방법-2-두-쿼리-분리-후-java에서-병합">5. 해결 방법 2: 두 쿼리 분리 후 Java에서 병합</h2>
+
+<p>이 프로젝트에서 택한 방식이다. 레포지토리에서 각각 조회한 뒤 서비스에서 합친다.</p>
+
+<p><strong>Step 1 — 완료 통화만 JPQL로 조회</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"""
+    SELECT c FROM Call c
+    WHERE (c.user1.id = :userId OR c.user2.id = :userId)
+      AND c.callStatus = 'COMPLETED'
+      AND c.endAt &gt;= :startDate AND c.endAt &lt; :endDate
+    ORDER BY c.endAt, c.id
+    """</span><span class="o">)</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Call</span><span class="o">&gt;</span> <span class="nf">findCompletedCallsByUserInDateRange</span><span class="o">(</span>
+        <span class="nd">@Param</span><span class="o">(</span><span class="s">"userId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span>
+        <span class="nd">@Param</span><span class="o">(</span><span class="s">"startDate"</span><span class="o">)</span> <span class="nc">LocalDateTime</span> <span class="n">startDate</span><span class="o">,</span>
+        <span class="nd">@Param</span><span class="o">(</span><span class="s">"endDate"</span><span class="o">)</span> <span class="nc">LocalDateTime</span> <span class="n">endDate</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>Step 2 — 감정 결과만 별도 조회</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">CallEmotionResult</span><span class="o">&gt;</span> <span class="nf">findByCallIdInAndUserId</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">callIds</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>Step 3 — 서비스에서 Map으로 매칭 (LEFT JOIN과 같은 효과)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">DailyEmotionSummaryResponse</span><span class="o">&gt;</span> <span class="nf">getMonthlyEmotionResults</span><span class="o">(</span>
+        <span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span> <span class="kt">int</span> <span class="n">year</span><span class="o">,</span> <span class="kt">int</span> <span class="n">month</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="nc">LocalDateTime</span> <span class="n">startDate</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">year</span><span class="o">,</span> <span class="n">month</span><span class="o">,</span> <span class="mi">1</span><span class="o">).</span><span class="na">atStartOfDay</span><span class="o">();</span>
+    <span class="nc">LocalDateTime</span> <span class="n">endDate</span> <span class="o">=</span> <span class="n">startDate</span><span class="o">.</span><span class="na">plusMonths</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Call</span><span class="o">&gt;</span> <span class="n">calls</span> <span class="o">=</span> <span class="n">callRepository</span><span class="o">.</span><span class="na">findCompletedCallsByUserInDateRange</span><span class="o">(</span>
+            <span class="n">userId</span><span class="o">,</span> <span class="n">startDate</span><span class="o">,</span> <span class="n">endDate</span><span class="o">);</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">callIds</span> <span class="o">=</span> <span class="n">calls</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="nl">Call:</span><span class="o">:</span><span class="n">getId</span><span class="o">).</span><span class="na">toList</span><span class="o">();</span>
+
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">,</span> <span class="nc">CallEmotionResult</span><span class="o">&gt;</span> <span class="n">resultByCallId</span> <span class="o">=</span> <span class="n">callIds</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span>
+            <span class="o">?</span> <span class="nc">Map</span><span class="o">.</span><span class="na">of</span><span class="o">()</span>
+            <span class="o">:</span> <span class="n">callEmotionResultRepository</span><span class="o">.</span><span class="na">findByCallIdInAndUserId</span><span class="o">(</span><span class="n">callIds</span><span class="o">,</span> <span class="n">userId</span><span class="o">).</span><span class="na">stream</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toMap</span><span class="o">(</span>
+                            <span class="nl">CallEmotionResult:</span><span class="o">:</span><span class="n">getCallId</span><span class="o">,</span>
+                            <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">r</span><span class="o">,</span>
+                            <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">));</span> <span class="c1">// 동일 callId·userId에 행이 둘 이상이면 정책 필요</span>
+
+    <span class="k">return</span> <span class="nf">buildDailySummaries</span><span class="o">(</span><span class="n">calls</span><span class="o">,</span> <span class="n">resultByCallId</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>분석이 없는 통화는 <code class="language-plaintext highlighter-rouge">resultByCallId.get(callId)</code>가 <code class="language-plaintext highlighter-rouge">null</code>이 되어, SQL <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>과 같은 “한쪽만 있어도 행이 살아 있는” 형태를 애플리케이션에서 재현한다. (위 예시는 <code class="language-plaintext highlighter-rouge">callIds</code>가 비었을 때 두 번째 쿼리를 생략하고 빈 맵을 쓰는 형태다.)</p>
+
+<hr />
+
+<h2 id="6-두-접근-방식-비교">6. 두 접근 방식 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>DB JOIN (네이티브)</th>
+      <th>두 쿼리 + Java 병합</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>쿼리 횟수</td>
+      <td>1회</td>
+      <td>2회</td>
+    </tr>
+    <tr>
+      <td>반환 타입</td>
+      <td><code class="language-plaintext highlighter-rouge">Object[]</code> 등</td>
+      <td>엔티티(타입 안전)</td>
+    </tr>
+    <tr>
+      <td>DB 방언 의존</td>
+      <td>큼</td>
+      <td>JPQL 쪽은 상대적으로 작음</td>
+    </tr>
+    <tr>
+      <td>스키마 변경</td>
+      <td>SQL 수정</td>
+      <td>엔티티·쿼리 조정</td>
+    </tr>
+    <tr>
+      <td>데이터 규모</td>
+      <td>DB가 조인 최적화</td>
+      <td><code class="language-plaintext highlighter-rouge">callIds</code> 많으면 메모리 부담</td>
+    </tr>
+    <tr>
+      <td>테스트</td>
+      <td>통합 비중 큼</td>
+      <td>단위·통합 모두 구성하기 쉬움</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="7-어떤-경우에-어떤-방식을-선택할까">7. 어떤 경우에 어떤 방식을 선택할까</h2>
+
+<p><strong>두 쿼리 + Java 병합이 나은 경우</strong></p>
+
+<ul>
+  <li>한 유저·한 기간 등으로 <strong>건수가 수백~수천</strong> 수준이고, 각 쿼리가 인덱스를 잘 탄다.</li>
+  <li>도메인을 느슨하게 유지하고 싶다.</li>
+  <li>엔티티 매핑·타입 안전성을 유지하고 싶다.</li>
+</ul>
+
+<p><strong>네이티브 쿼리 또는 연관관계 추가가 나은 경우</strong></p>
+
+<ul>
+  <li>조인·집계가 커서 <strong>DB 한 번에</strong> 처리하는 편이 확실히 유리하다.</li>
+  <li>두 테이블이 항상 함께 쓰이고, 분리 조회 이점이 크지 않다.</li>
+</ul>
+
+<hr />
+
+<h2 id="8-실무에서-비슷한-패턴">8. 실무에서 비슷한 패턴</h2>
+
+<p>“한쪽은 없어도 다른 쪽은 나와야 한다(LEFT JOIN 의미)”인데, “JPA로 두 도메인을 굳이 묶고 싶지 않다”가 겹칠 때 자주 나온다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Order</code> ↔ <code class="language-plaintext highlighter-rouge">Review</code>: 리뷰 없는 주문도 목록에 넣을 때</li>
+  <li><code class="language-plaintext highlighter-rouge">User</code> ↔ <code class="language-plaintext highlighter-rouge">PushNotificationToken</code>: 토큰이 없을 수 있을 때</li>
+  <li><code class="language-plaintext highlighter-rouge">Post</code> ↔ <code class="language-plaintext highlighter-rouge">ReadHistory</code>: 읽음을 별도 테이블로 둘 때</li>
+</ul>
+
+<p>이때 <strong>두 쿼리 + <code class="language-plaintext highlighter-rouge">Map</code> 매칭</strong>은 단순하면서 타입 안전성을 지키기 쉬운 실용적인 선택이다.</p>
+
+<hr />
+
+<h2 id="9-구현-시-알아두면-좋은-것">9. 구현 시 알아두면 좋은 것</h2>
+
+<h3 id="collectorstomap과-중복-키"><code class="language-plaintext highlighter-rouge">Collectors.toMap</code>과 중복 키</h3>
+
+<p><code class="language-plaintext highlighter-rouge">(callId, userId)</code> 조합당 결과가 <strong>한 행</strong>이라는 전제가 깨지면 <code class="language-plaintext highlighter-rouge">toMap</code>은 런타임 예외를 낸다. DB에 유니크가 없거나 버그로 중복이 생길 수 있다면 <code class="language-plaintext highlighter-rouge">merge</code> 함수를 두거나, 조회 직후 검증·로그를 두는 편이 안전하다.</p>
+
+<h3 id="빈-in--리스트">빈 <code class="language-plaintext highlighter-rouge">IN (...)</code> 리스트</h3>
+
+<p><code class="language-plaintext highlighter-rouge">callIds</code>가 비어 있는데도 <code class="language-plaintext highlighter-rouge">IN :ids</code>만 던지면 구현체·DB에 따라 이상한 SQL이 나가거나 비용만 드는 경우가 있다. 위 예시처럼 <strong>비었으면 두 번째 쿼리를 호출하지 않기</strong>가 흔한 패턴이다.</p>
+
+<h3 id="in-크기-한도"><code class="language-plaintext highlighter-rouge">IN</code> 크기 한도</h3>
+
+<p><code class="language-plaintext highlighter-rouge">callIds</code>가 매우 클 때(수만 건) DB나 드라이버에서 <code class="language-plaintext highlighter-rouge">IN</code> 리스트 크기 제한에 걸릴 수 있다. 필요하면 <strong>배치(예: 500~1000건씩)</strong>로 나눠 조회한 뒤 맵에 합친다.</p>
+
+<h3 id="연관관계를-읽기-전용으로만-두는-타협">연관관계를 “읽기 전용”으로만 두는 타협</h3>
+
+<p>조회 한정으로 <code class="language-plaintext highlighter-rouge">@ManyToOne(fetch = LAZY)</code>만 <code class="language-plaintext highlighter-rouge">CallEmotionResult</code> 쪽에 두고, <code class="language-plaintext highlighter-rouge">Call</code>에는 컬렉션을 노출하지 않는 식으로 <strong>단방향만</strong> 두면 JPQL <code class="language-plaintext highlighter-rouge">JOIN</code> 경로는 생기면서도 <code class="language-plaintext highlighter-rouge">Call</code> 애그리게이트가 컬렉션을 들고 다니지 않게 할 수 있다. 다만 팀 규칙·경계 설계와 맞는지 함께 본다.</p>
+
+<h3 id="left-join-fetch는-연관이-있을-때"><code class="language-plaintext highlighter-rouge">LEFT JOIN FETCH</code>는 연관이 있을 때</h3>
+
+<p><code class="language-plaintext highlighter-rouge">LEFT JOIN FETCH c.emotionResults</code>처럼 한 번에 끌어오려면 결국 엔티티 그래프에 <strong>연관이 있어야</strong> 한다. “매핑 없이 fetch join”은 불가에 가깝다.</p>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p>JPQL의 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>은 <strong>연관관계가 엔티티에 열려 있을 때</strong> 가장 자연스럽다. 설계상 연관을 두지 않았다면, <strong>Hibernate 버전에 맞는 HQL 확장</strong>을 쓸지, <strong>네이티브</strong>로 감수할지, <strong>조회를 쪼개고 서비스에서 병합</strong>할지를 트레이드오프로 선택하면 된다.</p>
+
+<p>“SQL로는 되는데 JPQL로는 왜 안 되지?”라는 순간에, <strong>표준 JPQL은 객체 그래프 탐색용</strong>에 가깝고, SQL과 1:1 대응이 안 되는 구간이 있다는 점을 떠올리면 원인 정리와 다음 설계 결정이 빨라진다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2026-04-16-diary/" class="flip-title"><span>[친구하자] JPA @Modifying(clearAutomatically = true)의 함정</span></a>  <time class="faded fine" datetime="2026-04-16T00:00:00+00:00">16 Apr 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-04-13-diary/" class="flip-title"><span>[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method</span></a>  <time class="faded fine" datetime="2026-04-13T00:00:00+00:00">13 Apr 2026</time></li>                        <li class="h4">  <a href="/til/2026-03-29-til/" class="flip-title"><span>[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)</span></a>  <time class="faded fine" datetime="2026-03-29T00:00:00+00:00">29 Mar 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="https://github.com/nan0silver">GitHub</a>
+      |
+    
+      
+      <a class="heading flip-title" href="mailto:silvernh1220@gmail.com">Gmail</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Full-stack · 1인 개발 · 창업 준비
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          Frontend (9)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/aws/"
+          class="sidebar-nav-item "
+          
+        >
+          AWS (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (18)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          기타 (4)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (36)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (69)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>
