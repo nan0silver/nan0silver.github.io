@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다." />
+<meta property="og:description" content="API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다." />
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-05-04-til/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2026-05-04-til/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-05-04T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-05-04T00:00:00+00:00","datePublished":"2026-05-04T00:00:00+00:00","description":"API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.","headline":"[TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2026-05-04-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2026-05-04-til/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/til/2026-05-04-til/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-05-04T08:22:37+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법",
+    "description": "API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-05-04T00:00:00+00:00",
+    "dateModified": "2026-05-04T00:00:00+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/til/2026-05-04-til/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-05-04-til/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "til",
+        "item": "https://nan0silver.github.io/til/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법",
+        "item": "https://nan0silver.github.io/til/2026-05-04-til/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/til/">til</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-05-04-til</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-til-til" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-05-04T00:00:00+00:00">04 May 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Api</span>, <span>Null</span>, <span>Json</span>, <span>검증</span>, <span>Jackson</span>
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+<code class="language-plaintext highlighter-rouge">null</code>이나 빈 맵을 모두 <code class="language-plaintext highlighter-rouge">Map.of()</code>로 흡수하면, 미분석·점수 누락·합계 0인 분석이 한데 섞인다. 변환 전에 <code class="language-plaintext highlighter-rouge">isValidScoreMap()</code>으로 걸러내고, 무효면 <code class="language-plaintext highlighter-rouge">null</code>을 유지하면 집계·UI에서 의미가 살아난다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-두-종류의-점수-없음">1. 두 종류의 “점수 없음”</a></li>
+  <li><a href="#2-버그가-생기는-과정">2. 버그가 생기는 과정</a></li>
+  <li><a href="#3-집계에서-오차가-누적되는-방식">3. 집계에서 오차가 누적되는 방식</a></li>
+  <li><a href="#4-해결-변환-전에-유효성을-검증한다">4. 해결: 변환 전에 유효성을 검증한다</a></li>
+  <li><a href="#5-api-응답에서-null-vs-필드-제외">5. API 응답에서 null vs 필드 제외</a></li>
+  <li><a href="#6-집계-시-유효한-데이터만-포함">6. 집계 시 유효한 데이터만 포함</a></li>
+  <li><a href="#7-패턴-정리">7. 패턴 정리</a></li>
+  <li><a href="#8-이-문제가-나타나는-곳">8. 이 문제가 나타나는 곳</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>데이터 분석 결과를 조회하는 API를 만들다 보면 이런 요구를 만난다.</p>
+
+<ul>
+  <li>“분석이 완료되지 않은 항목도 목록에 포함하되, <strong>분석 결과가 없다</strong>는 것을 명확히 표시해야 한다.”</li>
+</ul>
+
+<p>겉으로는 단순해 보이지만, 구현 중에는 <strong>예외도 없고 테스트도 통과하는데</strong> 응답 의미만 틀어지는 버그가 나기 쉽다.</p>
+
+<hr />
+
+<h2 id="1-두-종류의-점수-없음">1. 두 종류의 “점수 없음”</h2>
+
+<p>비슷해 보여도 의미가 다르다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>상태</th>
+      <th>의미</th>
+      <th>점수 데이터</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>미분석</td>
+      <td>분석 자체가 실행되지 않음</td>
+      <td><code class="language-plaintext highlighter-rouge">null</code> (데이터 없음)</td>
+    </tr>
+    <tr>
+      <td>분석 완료·저점</td>
+      <td>분석했고 특정 항목이 0에 가까움</td>
+      <td><code class="language-plaintext highlighter-rouge">{ "a": 0.0, "b": 0.05, ... }</code> 등</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>“데이터가 없다”와 “측정했더니 0에 가깝다”는 완전히 다른 정보다. API에서 이 구분이 사라지면 클라이언트는 두 상태를 구별할 수 없다.</p>
+
+<hr />
+
+<h2 id="2-버그가-생기는-과정">2. 버그가 생기는 과정</h2>
+
+<p>흔히 이런 변환 함수를 둔다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="nf">toPercentageScores</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">rawScores</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">rawScores</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">rawScores</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Map</span><span class="o">.</span><span class="na">of</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="kt">double</span> <span class="n">total</span> <span class="o">=</span> <span class="n">rawScores</span><span class="o">.</span><span class="na">values</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">mapToDouble</span><span class="o">(</span><span class="n">v</span> <span class="o">-&gt;</span> <span class="n">v</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">total</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Map</span><span class="o">.</span><span class="na">of</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="c1">// ... 정규화 로직</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>호출부는 이렇게 쓸 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// result가 없으면 미분석, 있으면 변환</span>
+<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">result</span> <span class="o">!=</span> <span class="kc">null</span>
+        <span class="o">?</span> <span class="n">toPercentageScores</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">getScores</span><span class="o">())</span>
+        <span class="o">:</span> <span class="nc">Map</span><span class="o">.</span><span class="na">of</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>세 경우를 보면:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">result == null</code> — 미분석 → <code class="language-plaintext highlighter-rouge">Map.of()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">result.getScores() == null</code> — 분석 시도했지만 점수 누락 → <code class="language-plaintext highlighter-rouge">toPercentageScores(null)</code> → <code class="language-plaintext highlighter-rouge">Map.of()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">result.getScores()</code>의 합계가 0 — 모든 점수가 0 → <code class="language-plaintext highlighter-rouge">Map.of()</code></li>
+</ol>
+
+<p><strong>서로 다른 의미인데 모두 동일한 빈 맵</strong>으로 뭉개진다. 미분석과 “합계 0인 분석”을 구별할 수 없게 된다.</p>
+
+<hr />
+
+<h2 id="3-집계에서-오차가-누적되는-방식">3. 집계에서 오차가 누적되는 방식</h2>
+
+<p>이 구분이 무너지면 집계에서 조용히 틀어진다.</p>
+
+<p>예: 하루 통화 3건 중 1건만 분석 완료, 2건은 미분석이라 하자.</p>
+
+<ul>
+  <li>분석 완료: 점수 0.7</li>
+  <li>미분석(1): <code class="language-plaintext highlighter-rouge">Map.of()</code> → 클라이언트나 후속 로직이 <strong>0.0으로 취급</strong></li>
+  <li>미분석(2): 동일</li>
+</ul>
+
+<p>잘못된 평균: <code class="language-plaintext highlighter-rouge">(0.7 + 0.0 + 0.0) / 3 ≈ 0.23</code><br />
+올바른 관점: 분석 완료 1건만 분모에 두면 <code class="language-plaintext highlighter-rouge">0.70</code></p>
+
+<p>미분석이 분모에 섞이면 수치가 희석된다. 예외 메시지도 없어 발견이 늦어진다.</p>
+
+<hr />
+
+<h2 id="4-해결-변환-전에-유효성을-검증한다">4. 해결: 변환 전에 유효성을 검증한다</h2>
+
+<p>원칙은 하나다.</p>
+
+<ul>
+  <li><strong>변환 로직 앞에</strong> 유효성 검증을 두고, 유효하지 않은 입력은 <strong>변환 자체를 하지 않는다.</strong></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isValidScoreMap</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">scores</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">scores</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">scores</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Double</span> <span class="n">v</span> <span class="o">:</span> <span class="n">scores</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">!</span><span class="nc">Double</span><span class="o">.</span><span class="na">isFinite</span><span class="o">(</span><span class="n">v</span><span class="o">)</span> <span class="o">||</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="na">values</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">mapToDouble</span><span class="o">(</span><span class="n">v</span> <span class="o">-&gt;</span> <span class="n">v</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+    <span class="k">return</span> <span class="n">sum</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>각 조건의 이유:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">null</code> / <code class="language-plaintext highlighter-rouge">isEmpty()</code> — 데이터 자체가 없음</li>
+  <li><code class="language-plaintext highlighter-rouge">!Double.isFinite(v)</code> — <code class="language-plaintext highlighter-rouge">NaN</code>, <code class="language-plaintext highlighter-rouge">Infinity</code> 방어(외부 API 파싱 오류 등)</li>
+  <li><code class="language-plaintext highlighter-rouge">v &lt; 0</code> — 점수·확률이 음수인 것은 도메인에 맞지 않는 경우가 많음</li>
+  <li><code class="language-plaintext highlighter-rouge">sum == 0</code> — 모두 0이면 “의미 있는 비율 변환”의 전제가 깨짐(제품 정책에 따라 조정)</li>
+</ul>
+
+<p>호출부는 예를 들어 이렇게 바꿀 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">scores</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">result</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">isValidScoreMap</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">getScores</span><span class="o">()))</span> <span class="o">{</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">toPercentageScores</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">getScores</span><span class="o">());</span>
+<span class="o">}</span>
+<span class="c1">// 유효하지 않으면 scores는 null 유지</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>케이스</th>
+      <th><code class="language-plaintext highlighter-rouge">scores</code> 반환</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>미분석</td>
+      <td><code class="language-plaintext highlighter-rouge">null</code></td>
+    </tr>
+    <tr>
+      <td>결과는 있으나 점수 이상</td>
+      <td><code class="language-plaintext highlighter-rouge">null</code></td>
+    </tr>
+    <tr>
+      <td>분석 완료·유효한 점수</td>
+      <td><code class="language-plaintext highlighter-rouge">{ … }</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="5-api-응답에서-null-vs-필드-제외">5. API 응답에서 null vs 필드 제외</h2>
+
+<p><code class="language-plaintext highlighter-rouge">null</code>을 쓰더라도 JSON 직렬화 방식에 따라 의미 전달이 달라진다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@JsonInclude</span><span class="o">(</span><span class="nc">JsonInclude</span><span class="o">.</span><span class="na">Include</span><span class="o">.</span><span class="na">NON_NULL</span><span class="o">)</span>
+<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">scores</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p><strong>분석 완료 예시</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">70.0</span><span class="p">,</span><span class="w"> </span><span class="nl">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">30.0</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>미분석 예시</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>방식</th>
+      <th>JSON에서의 모습</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">null</code>을 필드에 넣음</td>
+      <td><code class="language-plaintext highlighter-rouge">"scores": null</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">NON_NULL</code>로 필드 제외</td>
+      <td><code class="language-plaintext highlighter-rouge">scores</code> 키 없음</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="language-plaintext highlighter-rouge">"scores": null</code>은 “분석했는데 값이 없다”로 오해될 수 있다. 팀 규칙에 따라 <strong><code class="language-plaintext highlighter-rouge">scores</code> 키 자체를 빼서</strong> “이 항목에는 분석 데이터가 없다”를 더 분명히 할 수도 있다.</p>
+
+<hr />
+
+<h2 id="6-집계-시-유효한-데이터만-포함">6. 집계 시 유효한 데이터만 포함</h2>
+
+<p>평균 등을 낼 때는 <strong>유효하지 않은 항목을 분모에서도 제외</strong>해야 한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;&gt;</span> <span class="n">validMaps</span> <span class="o">=</span> <span class="n">allScoreMaps</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">isValidScoreMap</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">toList</span><span class="o">();</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">validMaps</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nc">Map</span><span class="o">.</span><span class="na">of</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">validMaps</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+<span class="c1">// 분모는 전체 행 수가 아니라 validMaps.size()</span>
+</code></pre></div></div>
+
+<p>전체 항목 수가 아니라 <strong>유효한 항목 수</strong>를 분모로 쓰는 것이 핵심이다.</p>
+
+<hr />
+
+<h2 id="7-패턴-정리">7. 패턴 정리</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[원시 데이터] → isValid() → [유효] → transform() → [표시용 값]
+              → [무효] → null (변환 생략)
+</code></pre></div></div>
+
+<ul>
+  <li>변환 함수는 <strong>유효한 입력만</strong> 받는다고 가정하고 단순하게 유지한다.</li>
+  <li>유효성 검증은 변환 <strong>앞</strong>에서 수행한다.</li>
+  <li>“결과 없음”을 빈 컬렉션(<code class="language-plaintext highlighter-rouge">[]</code>, <code class="language-plaintext highlighter-rouge">{}</code>)과 <code class="language-plaintext highlighter-rouge">null</code>로 뒤섞지 말고, 팀에서 <strong><code class="language-plaintext highlighter-rouge">null</code> = 없음</strong>처럼 규칙을 통일한다.</li>
+</ul>
+
+<p>빈 컬렉션은 “있는데 비어 있다”, <code class="language-plaintext highlighter-rouge">null</code>은 “없다”로 쓰면 구분이 선명해진다.</p>
+
+<hr />
+
+<h2 id="8-이-문제가-나타나는-곳">8. 이 문제가 나타나는 곳</h2>
+
+<p>같은 패턴이 필요한 경우는 흔하다.</p>
+
+<ul>
+  <li>사용자 프로필 — 작성 이력이 없는 소개(<code class="language-plaintext highlighter-rouge">null</code>) vs 의도적으로 빈 문자열(<code class="language-plaintext highlighter-rouge">""</code>)</li>
+  <li>설문 — 미응답 vs 의도적 0점</li>
+  <li>센서 — 측정 실패(값 없음) vs 실제 0</li>
+  <li>외부 API — 아직 없는 결과 vs 처리 완료 후 빈 결과</li>
+</ul>
+
+<p>어떤 경우든 <strong>“데이터가 없다”</strong>와 <strong>“확인했더니 0(또는 빈 값)”</strong>은 API 계약에서 분리하는 편이 안전하다.</p>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p><code class="language-plaintext highlighter-rouge">null</code>과 빈 값·0을 한 덩어리로 처리하고 싶은 유혹은 자주 생긴다. 당장 코드가 짧아지기 때문이다. 하지만 이 구분이 무너지면 집계 왜곡·UI 오해처럼 <strong>디버깅이 어려운 문제</strong>가 쌓인다.</p>
+
+<p>변환 앞에 유효성 검증을 두는 작은 습관만으로도 예방할 수 있다는 점만 기억해도 충분하다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2026-04-28-diary/" class="flip-title"><span>[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계</span></a>  <time class="faded fine" datetime="2026-04-28T00:00:00+00:00">28 Apr 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-04-16-diary/" class="flip-title"><span>[친구하자] JPA @Modifying(clearAutomatically = true)의 함정</span></a>  <time class="faded fine" datetime="2026-04-16T00:00:00+00:00">16 Apr 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-04-13-diary/" class="flip-title"><span>[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method</span></a>  <time class="faded fine" datetime="2026-04-13T00:00:00+00:00">13 Apr 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="https://github.com/nan0silver">GitHub</a>
+      |
+    
+      
+      <a class="heading flip-title" href="mailto:silvernh1220@gmail.com">Gmail</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Full-stack · 1인 개발 · 창업 준비
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          Frontend (9)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/aws/"
+          class="sidebar-nav-item "
+          
+        >
+          AWS (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (18)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          기타 (4)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (36)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (70)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

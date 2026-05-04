@@ -44,7 +44,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-05-04T08:04:27+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-05-04T08:21:52+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -184,7 +184,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-05-04T08:05:43+00:00',
+    INDEX_KEY: 'index--2026-05-04T08:22:37+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -467,7 +467,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          TIL (69)
+          TIL (70)
         </a>
       </li>
     
@@ -552,6 +552,71 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
+<article id="post-til-til" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/til/2026-05-04-til/" class="flip-title">
+        [TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-05-04T00:00:00+00:00">04 May 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Api</span>, <span>Null</span>, <span>Json</span>, <span>검증</span>, <span>Jackson</span>
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>📝 <strong>TIL (Today I Learned)</strong><br />
+<code class="language-plaintext highlighter-rouge">null</code>이나 빈 맵을 모두 <code class="language-plaintext highlighter-rouge">Map.of()</code>로 흡수하면, 미분석·점수 누락·합계 0인 분석이 한데 섞인다. 변환 전에 <code class="language-plaintext highlighter-rouge">isValidScoreMap()</code>으로 걸러내고, 무효면 <code class="language-plaintext highlighter-rouge">null</code>을 유지하면 집계·UI에서 의미가 살아난다.</p>
+</blockquote>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/til/2026-05-04-til/">[TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-projectdiary-diary" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -575,7 +640,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 May 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-05-04T08:04:27+00:00">2026-05-04</time>
+              <time datetime="2026-05-04T08:21:52+00:00">2026-05-04</time>
             </span>
           
         
@@ -647,7 +712,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 May 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-05-04T08:04:27+00:00">2026-05-04</time>
+              <time datetime="2026-05-04T08:21:52+00:00">2026-05-04</time>
             </span>
           
         
@@ -719,7 +784,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 04 May 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-05-04T08:04:27+00:00">2026-05-04</time>
+              <time datetime="2026-05-04T08:21:52+00:00">2026-05-04</time>
             </span>
           
         
@@ -986,7 +1051,7 @@ DB 트랜잭션과 외부 시스템(Redis)이 함께 움직일 때, “원자성
             <span class="ellipsis" data-tippy-content="Last modified at: 04 May 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-05-04T08:04:27+00:00">2026-05-04</time>
+              <time datetime="2026-05-04T08:21:52+00:00">2026-05-04</time>
             </span>
           
         
@@ -1151,78 +1216,6 @@ DB 트랜잭션과 외부 시스템(Redis)이 함께 움직일 때, “원자성
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/til/2026-03-06-til/">[TIL] ArrayDeque vs ArrayBlockingQueue — 코드리뷰로 배우는 Java Queue 정리</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-projectdiary-diary" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/projectdiary/2026-03-06-diary/" class="flip-title">
-        [친구하자] OkHttp vs Spring WebFlux WebSocket — 우리가 starter-webflux를 선택한 이유
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2026-03-06T00:00:00+00:00">06 Mar 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 04 May 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-05-04T08:04:27+00:00">2026-05-04</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      Gemini Live API를 WebSocket으로 연동하면서 OkHttp와 Spring WebFlux WebSocket 클라이언트를 비교하고, 우리가 spring-boot-starter-webflux를 선택한 이유를 정리했습니다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <blockquote>
-  <p>Gemini Live API를 WebSocket으로 연동하면서 <strong>클라이언트 라이브러리 선택</strong>에 대한 고민을 정리합니다.</p>
-</blockquote>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/projectdiary/2026-03-06-diary/">[친구하자] OkHttp vs Spring WebFlux WebSocket — 우리가 starter-webflux를 선택한 이유</a>
 
       </p>
     </footer>
