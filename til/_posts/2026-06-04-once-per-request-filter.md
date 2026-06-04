@@ -157,3 +157,150 @@ protected boolean shouldNotFilter(HttpServletRequest request) {
 2편에서 다룬 Actuator `health`만 외부에 열어두는 설정과 맞물리면, 헬스체크 경로는 필터 대상에서 빼 두는 것이 자연스럽다.
 
 ---
+
+## 5. 실전 예시: 내부 API 키 검증 필터
+
+2편의 `SecurityProperties`를 주입받아, 내부 API 경로만 API 키를 검증하는 필터 예시다.
+
+```java
+public class InternalApiKeyFilter extends OncePerRequestFilter {
+
+    private static final String API_KEY_HEADER = "X-Internal-Api-Key";
+
+    private final SecurityProperties securityProperties;
+
+    public InternalApiKeyFilter(SecurityProperties securityProperties) {
+        this.securityProperties = securityProperties;
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        return !request.getRequestURI().startsWith("/internal/");
+    }
+
+    @Override
+    protected void doFilterInternal(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain) throws ServletException, IOException {
+
+        String apiKey = request.getHeader(API_KEY_HEADER);
+        String expected = securityProperties.getInternalApiKey();
+
+        if (expected.equals(apiKey)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+}
+```
+
+이 예시에서 보이는 패턴:
+
+- **경로 분기**: `/internal/**`만 검증
+- **설정 주입**: 2편에서 검증한 `SecurityProperties` 재사용
+- **실패 시 조기 종료**: 401 후 `doFilter` 미호출
+
+4편에서는 이 필터를 Spring Security `FilterChain`의 **어느 위치에** 넣을지(`addFilterBefore` 등) 다룰 예정이다. 3편에서는 **필터 자체를 어떻게 작성하는지**에 집중한다.
+
+---
+
+## 6. 필터에서 응답을 끊을 때와 이어갈 때
+
+필터는 "문지기" 역할이다. 통과/차단만 명확히 하면 된다.
+
+### 차단 (응답 종료)
+
+```java
+response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+// 필요하면 response.getWriter().write("...");
+return;
+```
+
+### 통과 (체인 계속)
+
+```java
+filterChain.doFilter(request, response);
+```
+
+주의할 점:
+
+- 차단 후에도 `doFilter`를 호출하면 안 된다.
+- 통과 후 `return` 전에 `doFilter`를 **한 번만** 호출한다.
+- 응답 본문을 쓴 뒤 `doFilter`를 호출하면 응답이 이미 커밋된 상태일 수 있다.
+
+필터는 가능한 한 **가볍게** 유지하는 것이 좋다. DB 조회나 외부 API 호출 같은 무거운 작업은 서비스 레이어로 내리고, 필터에는 헤더·IP·경로 수준 검증만 두는 편이 낫다.
+
+---
+
+## 7. @Component로 등록할 때 주의할 점
+
+`@Component`만 붙이면 Spring Boot가 필터를 자동 등록한다.
+
+```java
+@Component
+public class InternalApiKeyFilter extends OncePerRequestFilter { ... }
+```
+
+편하지만 부작용이 있다.
+
+- **모든 테스트 컨텍스트**에서 필터 빈이 로드될 수 있다.
+- 필터가 `SecurityProperties` 등 다른 빈에 의존하면, `@WebMvcTest`처럼 웹 레이어만 띄운 테스트에서 `NoSuchBeanDefinitionException`이 날 수 있다.
+
+그래서 운영 전용 필터는 다음 패턴을 자주 쓴다.
+
+- `@Component` 대신 **4편에서 볼** `@Bean` + `@Profile("prod")`로 명시 등록
+- 또는 필터 클래스는 순수하게 두고, 등록은 Security 설정 클래스에서 담당
+
+3편에서 필터 **구현**을 익혔다면, 4편에서 **등록 위치와 프로파일 분리**까지 맞추면 운영·테스트 모두 다루기 쉬워진다.
+
+---
+
+## 8. 흔한 실수와 점검 포인트
+
+### 실수 1: `filterChain.doFilter()` 누락
+
+통과 경로에서 `doFilter`를 호출하지 않으면 요청이 멈춘다.
+
+### 실수 2: 차단 후에도 `doFilter` 호출
+
+401/403을 쓴 뒤 체인을 이어가면, 컨트롤러까지 요청이 흘러갈 수 있다.
+
+### 실수 3: `Filter`를 직접 구현해 forward 시 중복 실행
+
+같은 요청에 검증이 두 번 돌거나, 로그가 중복된다.
+
+### 실수 4: `shouldNotFilter()` 경로가 실제 URI와 안 맞음
+
+로컬에서는 되는데 운영에서만 막히는 경우, 컨텍스트 경로·프록시 경로 rewrite를 의심한다.
+
+### 실수 5: 필터에 비즈니스 로직 과다
+
+필터는 공통 게이트웨이 역할에 가깝다. 도메인 규칙은 서비스·컨트롤러에 두는 편이 테스트와 유지보수에 유리하다.
+
+---
+
+## 9. 적용 체크리스트
+
+- [ ] `OncePerRequestFilter`를 상속해 요청당 1회 실행을 보장했는가
+- [ ] 통과 시 `filterChain.doFilter()`를 호출하는가
+- [ ] 차단 시 `doFilter` 없이 상태 코드만 반환하는가
+- [ ] `shouldNotFilter()`로 health·공개 경로를 제외했는가
+- [ ] 필터가 의존하는 설정 빈(2편)과 경로 정책(1편)이 일치하는가
+- [ ] `@Component` 자동 등록이 테스트에 미치는 영향을 확인했는가
+
+---
+
+## 마무리
+
+`OncePerRequestFilter`는 "요청이 컨트롤러에 닿기 전, 한 번만 검사한다"는 패턴을 안전하게 구현하는 도구다.
+
+정리하면 아래 세 가지면 충분하다.
+
+- `doFilterInternal()`에서 검증한다.
+- 통과하면 `filterChain.doFilter()`로 체인을 이어간다.
+- 필요 없는 경로는 `shouldNotFilter()`로 건너뛴다.
+
+1편은 노출 범위, 2편은 설정 검증, 3편은 **요청 단위 검증 로직을 필터로 작성**하는 단계다. 4편에서는 이 필터를 Spring Security `FilterChain`에 어떻게 끼워 넣을지 이어서 보면 된다.
