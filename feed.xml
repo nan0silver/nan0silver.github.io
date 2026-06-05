@@ -1,5 +1,322 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-06-05T05:30:26+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun Eun (은나현). Full-stack developer building products solo, preparing for startup. Java, Spring Boot, Python, AI. Project diaries, backend/infra notes, and TIL.
-</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[TIL] @ConfigurationProperties + @Validated — 설정값 검증과 fail-fast</title><link href="https://nan0silver.github.io/til/2026-06-02-configuration-properties-validated-fail-fast/" rel="alternate" type="text/html" title="[TIL] @ConfigurationProperties + @Validated — 설정값 검증과 fail-fast" /><published>2026-06-02T00:00:00+00:00</published><updated>2026-06-02T00:00:00+00:00</updated><id>https://nan0silver.github.io/til/configuration-properties-validated-fail-fast</id><content type="html" xml:base="https://nan0silver.github.io/til/2026-06-02-configuration-properties-validated-fail-fast/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-06-05T06:14:38+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun Eun (은나현). Full-stack developer building products solo, preparing for startup. Java, Spring Boot, Python, AI. Project diaries, backend/infra notes, and TIL.
+</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴</title><link href="https://nan0silver.github.io/til/2026-06-04-once-per-request-filter/" rel="alternate" type="text/html" title="[TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴" /><published>2026-06-04T00:00:00+00:00</published><updated>2026-06-04T00:00:00+00:00</updated><id>https://nan0silver.github.io/til/once-per-request-filter</id><content type="html" xml:base="https://nan0silver.github.io/til/2026-06-04-once-per-request-filter/"><![CDATA[<blockquote>
+  <p>Spring에서 커스텀 필터를 만들 때 <code class="language-plaintext highlighter-rouge">Filter</code>를 직접 구현하면 forward/include 시 같은 요청에 필터가 여러 번 돌 수 있다. <code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>를 쓰면 요청당 한 번만 실행되고, <code class="language-plaintext highlighter-rouge">shouldNotFilter()</code>로 특정 경로를 건너뛰며, <code class="language-plaintext highlighter-rouge">doFilterInternal()</code>에서 검증 후 <code class="language-plaintext highlighter-rouge">filterChain.doFilter()</code>로 체인을 이어갈 수 있다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-서블릿-필터가-하는-일">1. 서블릿 필터가 하는 일</a></li>
+  <li><a href="#2-왜-onceperrequestfilter인가">2. 왜 OncePerRequestFilter인가</a></li>
+  <li><a href="#3-기본-구조-dofilterinternal과-filterchain">3. 기본 구조: doFilterInternal과 filterChain</a></li>
+  <li><a href="#4-shouldnotfilter로-경로-선택-적용">4. shouldNotFilter()로 경로 선택 적용</a></li>
+  <li><a href="#5-실전-예시-내부-api-키-검증-필터">5. 실전 예시: 내부 API 키 검증 필터</a></li>
+  <li><a href="#6-필터에서-응답을-끊을-때와-이어갈-때">6. 필터에서 응답을 끊을 때와 이어갈 때</a></li>
+  <li><a href="#7-component로-등록할-때-주의할-점">7. @Component로 등록할 때 주의할 점</a></li>
+  <li><a href="#8-흔한-실수와-점검-포인트">8. 흔한 실수와 점검 포인트</a></li>
+  <li><a href="#9-적용-체크리스트">9. 적용 체크리스트</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>컨트롤러에 도달하기 전에 공통 검증을 넣고 싶을 때가 있다.</p>
+
+<ul>
+  <li>내부 API 키 확인</li>
+  <li>허용 IP 검사</li>
+  <li>특정 경로만 추가 인증</li>
+</ul>
+
+<p>이런 로직을 컨트롤러마다 복붙하기보다, <strong>서블릿 필터</strong>로 앞단에 두는 편이 낫다. 요청이 들어오면 필터 → 컨트롤러 순으로 지나가고, 필터에서 막으면 컨트롤러까지 가지 않는다.</p>
+
+<p>Spring에서는 이 패턴을 <code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>로 구현하는 경우가 많다.</p>
+
+<hr />
+
+<h2 id="1-서블릿-필터가-하는-일">1. 서블릿 필터가 하는 일</h2>
+
+<p>서블릿 필터는 HTTP 요청·응답 파이프라인의 <strong>앞단 훅</strong>이다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[클라이언트] → [Filter 1] → [Filter 2] → ... → [DispatcherServlet] → [Controller]
+</code></pre></div></div>
+
+<p>필터의 역할:</p>
+
+<ul>
+  <li>요청을 <strong>검증</strong>하거나 헤더를 읽는다.</li>
+  <li>조건을 만족하지 않으면 <strong>401/403</strong> 등으로 응답을 끝낸다.</li>
+  <li>통과시키면 <code class="language-plaintext highlighter-rouge">filterChain.doFilter()</code>로 <strong>다음 필터·서블릿</strong>으로 넘긴다.</li>
+</ul>
+
+<p>컨트롤러보다 앞에서 공통 정책을 적용할 수 있어, 보안·로깅·트레이싱에 자주 쓰인다.</p>
+
+<hr />
+
+<h2 id="2-왜-onceperrequestfilter인가">2. 왜 OncePerRequestFilter인가</h2>
+
+<p><code class="language-plaintext highlighter-rouge">jakarta.servlet.Filter</code>를 직접 구현해도 필터는 만들 수 있다. 그런데 서블릿 스펙상 <strong>forward</strong>나 <strong>include</strong>가 발생하면, 같은 HTTP 요청 안에서 필터가 <strong>여러 번</strong> 호출될 수 있다.</p>
+
+<p>예:</p>
+
+<ul>
+  <li>에러 페이지로 forward</li>
+  <li>내부 JSP include</li>
+  <li>일부 프레임워크 내부 디스패치</li>
+</ul>
+
+<p>이때 일반 <code class="language-plaintext highlighter-rouge">Filter</code> 구현은 같은 요청에 대해 검증 로직이 두 번 돌 수 있다. API 키 검증, IP 체크처럼 “요청당 한 번”이 전제인 로직에서는 부작용이 생긴다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>는 Spring이 제공하는 추상 클래스로, <strong>요청당 정확히 한 번</strong> <code class="language-plaintext highlighter-rouge">doFilterInternal()</code>이 실행되도록 보장한다.</p>
+
+<p>정리:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>방식</th>
+      <th>요청당 실행 횟수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Filter</code> 직접 구현</td>
+      <td>forward/include 시 중복 가능</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code></td>
+      <td>요청당 1회 보장</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>커스텀 보안·인증 필터를 만들 때는 <code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>를 상속하는 것이 일반적인 선택이다.</p>
+
+<hr />
+
+<h2 id="3-기본-구조-dofilterinternal과-filterchain">3. 기본 구조: doFilterInternal과 filterChain</h2>
+
+<p><code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>를 쓰면 직접 구현할 메서드는 사실상 <code class="language-plaintext highlighter-rouge">doFilterInternal()</code> 하나다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleFilter</span> <span class="kd">extends</span> <span class="nc">OncePerRequestFilter</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doFilterInternal</span><span class="o">(</span>
+            <span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
+            <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+            <span class="nc">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+
+        <span class="c1">// 1. 요청 전처리 (검증, 로깅 등)</span>
+        <span class="kt">boolean</span> <span class="n">allowed</span> <span class="o">=</span> <span class="n">checkSomething</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(!</span><span class="n">allowed</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">response</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="nc">HttpServletResponse</span><span class="o">.</span><span class="na">SC_UNAUTHORIZED</span><span class="o">);</span>
+            <span class="k">return</span><span class="o">;</span> <span class="c1">// 체인을 이어가지 않음 → 컨트롤러까지 가지 않음</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 2. 통과 시 다음 필터·서블릿으로 전달</span>
+        <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>핵심 규칙:</p>
+
+<ul>
+  <li>검증 실패: 응답 상태를 쓰고 <strong><code class="language-plaintext highlighter-rouge">return</code></strong> ( <code class="language-plaintext highlighter-rouge">doFilter</code> 호출 안 함 )</li>
+  <li>검증 통과: 반드시 <strong><code class="language-plaintext highlighter-rouge">filterChain.doFilter(request, response)</code></strong> 호출</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">doFilter</code>를 빼먹으면 요청이 다음 단계로 가지 않아 <strong>응답이 비거나 타임아웃</strong>처럼 보일 수 있다. 필터를 처음 만들 때 가장 흔한 실수 중 하나다.</p>
+
+<hr />
+
+<h2 id="4-shouldnotfilter로-경로-선택-적용">4. shouldNotFilter()로 경로 선택 적용</h2>
+
+<p>모든 요청에 필터를 걸 필요는 없다. 헬스체크, 정적 리소스, 공개 API는 제외하고 싶을 때가 많다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">shouldNotFilter()</code>를 오버라이드하면 된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">shouldNotFilter</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">path</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getRequestURI</span><span class="o">();</span>
+    <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"/actuator/health"</span><span class="o">)</span>
+            <span class="o">||</span> <span class="n">path</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"/public/"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">shouldNotFilter()</code>가 <code class="language-plaintext highlighter-rouge">true</code> → 이 필터는 <strong>건너뜀</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">false</code> → <code class="language-plaintext highlighter-rouge">doFilterInternal()</code> 실행</li>
+</ul>
+
+<p>경로 매칭 시 주의:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">getRequestURI()</code>는 컨텍스트 경로를 포함할 수 있다. (<code class="language-plaintext highlighter-rouge">/my-app/api/...</code>)</li>
+  <li>서블릿 등록 시 <code class="language-plaintext highlighter-rouge">/*</code> 패턴과 조합해 동작을 확인한다.</li>
+  <li>Spring MVC의 <code class="language-plaintext highlighter-rouge">@RequestMapping</code> 경로와 1:1이 아닐 수 있으니, 실제 요청 URI로 테스트한다.</li>
+</ul>
+
+<p>2편에서 다룬 Actuator <code class="language-plaintext highlighter-rouge">health</code>만 외부에 열어두는 설정과 맞물리면, 헬스체크 경로는 필터 대상에서 빼 두는 것이 자연스럽다.</p>
+
+<hr />
+
+<h2 id="5-실전-예시-내부-api-키-검증-필터">5. 실전 예시: 내부 API 키 검증 필터</h2>
+
+<p>2편의 <code class="language-plaintext highlighter-rouge">SecurityProperties</code>를 주입받아, 내부 API 경로만 API 키를 검증하는 필터 예시다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InternalApiKeyFilter</span> <span class="kd">extends</span> <span class="nc">OncePerRequestFilter</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">API_KEY_HEADER</span> <span class="o">=</span> <span class="s">"X-Internal-Api-Key"</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">SecurityProperties</span> <span class="n">securityProperties</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">InternalApiKeyFilter</span><span class="o">(</span><span class="nc">SecurityProperties</span> <span class="n">securityProperties</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">securityProperties</span> <span class="o">=</span> <span class="n">securityProperties</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">shouldNotFilter</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">!</span><span class="n">request</span><span class="o">.</span><span class="na">getRequestURI</span><span class="o">().</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"/internal/"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doFilterInternal</span><span class="o">(</span>
+            <span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
+            <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+            <span class="nc">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+
+        <span class="nc">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getHeader</span><span class="o">(</span><span class="no">API_KEY_HEADER</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">securityProperties</span><span class="o">.</span><span class="na">getInternalApiKey</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">expected</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">apiKey</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="nc">HttpServletResponse</span><span class="o">.</span><span class="na">SC_UNAUTHORIZED</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 예시에서 보이는 패턴:</p>
+
+<ul>
+  <li><strong>경로 분기</strong>: <code class="language-plaintext highlighter-rouge">/internal/**</code>만 검증</li>
+  <li><strong>설정 주입</strong>: 2편에서 검증한 <code class="language-plaintext highlighter-rouge">SecurityProperties</code> 재사용</li>
+  <li><strong>실패 시 조기 종료</strong>: 401 후 <code class="language-plaintext highlighter-rouge">doFilter</code> 미호출</li>
+</ul>
+
+<p>4편에서는 이 필터를 Spring Security <code class="language-plaintext highlighter-rouge">FilterChain</code>의 <strong>어느 위치에</strong> 넣을지(<code class="language-plaintext highlighter-rouge">addFilterBefore</code> 등) 다룰 예정이다. 3편에서는 <strong>필터 자체를 어떻게 작성하는지</strong>에 집중한다.</p>
+
+<hr />
+
+<h2 id="6-필터에서-응답을-끊을-때와-이어갈-때">6. 필터에서 응답을 끊을 때와 이어갈 때</h2>
+
+<p>필터는 “문지기” 역할이다. 통과/차단만 명확히 하면 된다.</p>
+
+<h3 id="차단-응답-종료">차단 (응답 종료)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">response</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="nc">HttpServletResponse</span><span class="o">.</span><span class="na">SC_FORBIDDEN</span><span class="o">);</span>
+<span class="c1">// 필요하면 response.getWriter().write("...");</span>
+<span class="k">return</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="통과-체인-계속">통과 (체인 계속)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>주의할 점:</p>
+
+<ul>
+  <li>차단 후에도 <code class="language-plaintext highlighter-rouge">doFilter</code>를 호출하면 안 된다.</li>
+  <li>통과 후 <code class="language-plaintext highlighter-rouge">return</code> 전에 <code class="language-plaintext highlighter-rouge">doFilter</code>를 <strong>한 번만</strong> 호출한다.</li>
+  <li>응답 본문을 쓴 뒤 <code class="language-plaintext highlighter-rouge">doFilter</code>를 호출하면 응답이 이미 커밋된 상태일 수 있다.</li>
+</ul>
+
+<p>필터는 가능한 한 <strong>가볍게</strong> 유지하는 것이 좋다. DB 조회나 외부 API 호출 같은 무거운 작업은 서비스 레이어로 내리고, 필터에는 헤더·IP·경로 수준 검증만 두는 편이 낫다.</p>
+
+<hr />
+
+<h2 id="7-component로-등록할-때-주의할-점">7. @Component로 등록할 때 주의할 점</h2>
+
+<p><code class="language-plaintext highlighter-rouge">@Component</code>만 붙이면 Spring Boot가 필터를 자동 등록한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">InternalApiKeyFilter</span> <span class="kd">extends</span> <span class="nc">OncePerRequestFilter</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+</code></pre></div></div>
+
+<p>편하지만 부작용이 있다.</p>
+
+<ul>
+  <li><strong>모든 테스트 컨텍스트</strong>에서 필터 빈이 로드될 수 있다.</li>
+  <li>필터가 <code class="language-plaintext highlighter-rouge">SecurityProperties</code> 등 다른 빈에 의존하면, <code class="language-plaintext highlighter-rouge">@WebMvcTest</code>처럼 웹 레이어만 띄운 테스트에서 <code class="language-plaintext highlighter-rouge">NoSuchBeanDefinitionException</code>이 날 수 있다.</li>
+</ul>
+
+<p>그래서 운영 전용 필터는 다음 패턴을 자주 쓴다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Component</code> 대신 <strong>4편에서 볼</strong> <code class="language-plaintext highlighter-rouge">@Bean</code> + <code class="language-plaintext highlighter-rouge">@Profile("prod")</code>로 명시 등록</li>
+  <li>또는 필터 클래스는 순수하게 두고, 등록은 Security 설정 클래스에서 담당</li>
+</ul>
+
+<p>3편에서 필터 <strong>구현</strong>을 익혔다면, 4편에서 <strong>등록 위치와 프로파일 분리</strong>까지 맞추면 운영·테스트 모두 다루기 쉬워진다.</p>
+
+<hr />
+
+<h2 id="8-흔한-실수와-점검-포인트">8. 흔한 실수와 점검 포인트</h2>
+
+<h3 id="실수-1-filterchaindofilter-누락">실수 1: <code class="language-plaintext highlighter-rouge">filterChain.doFilter()</code> 누락</h3>
+
+<p>통과 경로에서 <code class="language-plaintext highlighter-rouge">doFilter</code>를 호출하지 않으면 요청이 멈춘다.</p>
+
+<h3 id="실수-2-차단-후에도-dofilter-호출">실수 2: 차단 후에도 <code class="language-plaintext highlighter-rouge">doFilter</code> 호출</h3>
+
+<p>401/403을 쓴 뒤 체인을 이어가면, 컨트롤러까지 요청이 흘러갈 수 있다.</p>
+
+<h3 id="실수-3-filter를-직접-구현해-forward-시-중복-실행">실수 3: <code class="language-plaintext highlighter-rouge">Filter</code>를 직접 구현해 forward 시 중복 실행</h3>
+
+<p>같은 요청에 검증이 두 번 돌거나, 로그가 중복된다.</p>
+
+<h3 id="실수-4-shouldnotfilter-경로가-실제-uri와-안-맞음">실수 4: <code class="language-plaintext highlighter-rouge">shouldNotFilter()</code> 경로가 실제 URI와 안 맞음</h3>
+
+<p>로컬에서는 되는데 운영에서만 막히는 경우, 컨텍스트 경로·프록시 경로 rewrite를 의심한다.</p>
+
+<h3 id="실수-5-필터에-비즈니스-로직-과다">실수 5: 필터에 비즈니스 로직 과다</h3>
+
+<p>필터는 공통 게이트웨이 역할에 가깝다. 도메인 규칙은 서비스·컨트롤러에 두는 편이 테스트와 유지보수에 유리하다.</p>
+
+<hr />
+
+<h2 id="9-적용-체크리스트">9. 적용 체크리스트</h2>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>를 상속해 요청당 1회 실행을 보장했는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />통과 시 <code class="language-plaintext highlighter-rouge">filterChain.doFilter()</code>를 호출하는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />차단 시 <code class="language-plaintext highlighter-rouge">doFilter</code> 없이 상태 코드만 반환하는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">shouldNotFilter()</code>로 health·공개 경로를 제외했는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />필터가 의존하는 설정 빈(2편)과 경로 정책(1편)이 일치하는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">@Component</code> 자동 등록이 테스트에 미치는 영향을 확인했는가</li>
+</ul>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p><code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>는 “요청이 컨트롤러에 닿기 전, 한 번만 검사한다”는 패턴을 안전하게 구현하는 도구다.</p>
+
+<p>정리하면 아래 세 가지면 충분하다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">doFilterInternal()</code>에서 검증한다.</li>
+  <li>통과하면 <code class="language-plaintext highlighter-rouge">filterChain.doFilter()</code>로 체인을 이어간다.</li>
+  <li>필요 없는 경로는 <code class="language-plaintext highlighter-rouge">shouldNotFilter()</code>로 건너뛴다.</li>
+</ul>
+
+<p>1편은 노출 범위, 2편은 설정 검증, 3편은 <strong>요청 단위 검증 로직을 필터로 작성</strong>하는 단계다. 4편에서는 이 필터를 Spring Security <code class="language-plaintext highlighter-rouge">FilterChain</code>에 어떻게 끼워 넣을지 이어서 보면 된다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Spring Boot" /><category term="Filter" /><category term="OncePerRequestFilter" /><category term="Servlet" /><category term="Security" /><summary type="html"><![CDATA[Spring의 OncePerRequestFilter로 요청당 1회만 실행되는 서블릿 필터를 만드는 방법, shouldNotFilter()로 경로를 선택 적용하고 doFilterInternal()에서 체인을 이어가는 패턴을 정리한 글이다.]]></summary></entry><entry><title type="html">[TIL] @ConfigurationProperties + @Validated — 설정값 검증과 fail-fast</title><link href="https://nan0silver.github.io/til/2026-06-02-configuration-properties-validated-fail-fast/" rel="alternate" type="text/html" title="[TIL] @ConfigurationProperties + @Validated — 설정값 검증과 fail-fast" /><published>2026-06-02T00:00:00+00:00</published><updated>2026-06-02T00:00:00+00:00</updated><id>https://nan0silver.github.io/til/configuration-properties-validated-fail-fast</id><content type="html" xml:base="https://nan0silver.github.io/til/2026-06-02-configuration-properties-validated-fail-fast/"><![CDATA[<blockquote>
   <p>운영 환경변수가 빠져 있어도 앱이 뜨고, 첫 요청에서야 터지는 상황은 디버깅 비용이 크다. <code class="language-plaintext highlighter-rouge">@ConfigurationProperties</code>에 <code class="language-plaintext highlighter-rouge">@Validated</code>를 붙이고 <code class="language-plaintext highlighter-rouge">@NotBlank</code>로 필수값을 선언하면, 배포 직후 시작 단계에서 바로 실패(fail-fast)시킬 수 있다.</p>
 </blockquote>
 
@@ -798,7 +1115,7 @@
 
 <p><code class="language-plaintext highlighter-rouge">null</code>과 빈 값·0을 한 덩어리로 처리하고 싶은 유혹은 자주 생긴다. 당장 코드가 짧아지기 때문이다. 하지만 이 구분이 무너지면 집계 왜곡·UI 오해처럼 <strong>디버깅이 어려운 문제</strong>가 쌓인다.</p>
 
-<p>변환 앞에 유효성 검증을 두는 작은 습관만으로도 예방할 수 있다는 점만 기억해도 충분하다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="API" /><category term="null" /><category term="JSON" /><category term="검증" /><category term="Jackson" /><summary type="html"><![CDATA[API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.]]></summary></entry><entry><title type="html">[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계</title><link href="https://nan0silver.github.io/projectdiary/2026-04-28-diary/" rel="alternate" type="text/html" title="[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계" /><published>2026-04-28T00:00:00+00:00</published><updated>2026-06-05T05:29:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-28-diary/"><![CDATA[<blockquote>
+<p>변환 앞에 유효성 검증을 두는 작은 습관만으로도 예방할 수 있다는 점만 기억해도 충분하다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="API" /><category term="null" /><category term="JSON" /><category term="검증" /><category term="Jackson" /><summary type="html"><![CDATA[API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.]]></summary></entry><entry><title type="html">[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계</title><link href="https://nan0silver.github.io/projectdiary/2026-04-28-diary/" rel="alternate" type="text/html" title="[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계" /><published>2026-04-28T00:00:00+00:00</published><updated>2026-06-05T06:13:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-28-diary/"><![CDATA[<blockquote>
   <p><code class="language-plaintext highlighter-rouge">Call</code>과 <code class="language-plaintext highlighter-rouge">CallEmotionResult</code>를 SQL처럼 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>하고 싶은데, <strong>표준 JPQL</strong>은 연관 경로가 없으면 객체 그래프 기반 조인을 쓰기 어렵다. Hibernate HQL은 버전에 따라 엔티티 <code class="language-plaintext highlighter-rouge">JOIN … ON</code>이 열리기도 하지만 포터빌리티와 트레이드오프가 있다. SQL·JPQL의 차이와, 우리가 택한 두 쿼리 + 병합, 구현 시 주의점까지 정리한다.</p>
 </blockquote>
 
@@ -1086,7 +1403,7 @@
 
 <p>JPQL의 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>은 <strong>연관관계가 엔티티에 열려 있을 때</strong> 가장 자연스럽다. 설계상 연관을 두지 않았다면, <strong>Hibernate 버전에 맞는 HQL 확장</strong>을 쓸지, <strong>네이티브</strong>로 감수할지, <strong>조회를 쪼개고 서비스에서 병합</strong>할지를 트레이드오프로 선택하면 된다.</p>
 
-<p>“SQL로는 되는데 JPQL로는 왜 안 되지?”라는 순간에, <strong>표준 JPQL은 객체 그래프 탐색용</strong>에 가깝고, SQL과 1:1 대응이 안 되는 구간이 있다는 점을 떠올리면 원인 정리와 다음 설계 결정이 빨라진다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Call과 CallEmotionResult를 SQL처럼 LEFT JOIN하고 싶지만 표준 JPQL은 연관관계 기반 JOIN이 기본이라 막히는 문제, Hibernate HQL 확장과의 차이, 네이티브 쿼리·두 쿼리 분리 후 Java 병합, 구현 시 주의점까지 정리합니다.]]></summary></entry><entry><title type="html">[친구하자] JPA @Modifying(clearAutomatically = true)의 함정</title><link href="https://nan0silver.github.io/projectdiary/2026-04-16-diary/" rel="alternate" type="text/html" title="[친구하자] JPA @Modifying(clearAutomatically = true)의 함정" /><published>2026-04-16T00:00:00+00:00</published><updated>2026-06-05T05:29:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-16-diary/"><![CDATA[<blockquote>
+<p>“SQL로는 되는데 JPQL로는 왜 안 되지?”라는 순간에, <strong>표준 JPQL은 객체 그래프 탐색용</strong>에 가깝고, SQL과 1:1 대응이 안 되는 구간이 있다는 점을 떠올리면 원인 정리와 다음 설계 결정이 빨라진다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Call과 CallEmotionResult를 SQL처럼 LEFT JOIN하고 싶지만 표준 JPQL은 연관관계 기반 JOIN이 기본이라 막히는 문제, Hibernate HQL 확장과의 차이, 네이티브 쿼리·두 쿼리 분리 후 Java 병합, 구현 시 주의점까지 정리합니다.]]></summary></entry><entry><title type="html">[친구하자] JPA @Modifying(clearAutomatically = true)의 함정</title><link href="https://nan0silver.github.io/projectdiary/2026-04-16-diary/" rel="alternate" type="text/html" title="[친구하자] JPA @Modifying(clearAutomatically = true)의 함정" /><published>2026-04-16T00:00:00+00:00</published><updated>2026-06-05T06:13:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-16-diary/"><![CDATA[<blockquote>
   <p>정기 예약 취소 API에서 <code class="language-plaintext highlighter-rouge">CallReservation</code>은 정상적으로 취소되는데 <code class="language-plaintext highlighter-rouge">RecurringReservation</code> 상태만 <code class="language-plaintext highlighter-rouge">ACTIVE</code>로 남는 버그를 겪었다. 원인은 <code class="language-plaintext highlighter-rouge">@Modifying(clearAutomatically = true)</code>로 인해 영속 엔티티가 detached 된 뒤 상태를 변경한 것이었다.</p>
 </blockquote>
 
@@ -1251,7 +1568,7 @@ clearAutomatically (이미 rr 변경은 DB에 완료된 상태)
 
 <h2 id="마치며">마치며</h2>
 
-<p>JPA의 영속성 컨텍스트는 강력하지만, 내부 동작을 정확히 이해하지 않으면 예상 못 한 버그가 생긴다. 특히 벌크 UPDATE와 dirty-check를 같은 트랜잭션에서 함께 사용할 때는 실행 순서와 엔티티 상태(<code class="language-plaintext highlighter-rouge">managed</code>/<code class="language-plaintext highlighter-rouge">detached</code>)를 반드시 의식해야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[@Modifying(clearAutomatically = true) 사용 시 영속성 컨텍스트가 비워지면서 엔티티가 detached 되어, 상태 변경이 DB에 반영되지 않았던 버그 원인과 해결 과정을 정리합니다.]]></summary></entry><entry><title type="html">[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method</title><link href="https://nan0silver.github.io/projectdiary/2026-04-13-diary/" rel="alternate" type="text/html" title="[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method" /><published>2026-04-13T00:00:00+00:00</published><updated>2026-06-05T05:29:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-13-diary/"><![CDATA[<blockquote>
+<p>JPA의 영속성 컨텍스트는 강력하지만, 내부 동작을 정확히 이해하지 않으면 예상 못 한 버그가 생긴다. 특히 벌크 UPDATE와 dirty-check를 같은 트랜잭션에서 함께 사용할 때는 실행 순서와 엔티티 상태(<code class="language-plaintext highlighter-rouge">managed</code>/<code class="language-plaintext highlighter-rouge">detached</code>)를 반드시 의식해야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[@Modifying(clearAutomatically = true) 사용 시 영속성 컨텍스트가 비워지면서 엔티티가 detached 되어, 상태 변경이 DB에 반영되지 않았던 버그 원인과 해결 과정을 정리합니다.]]></summary></entry><entry><title type="html">[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method</title><link href="https://nan0silver.github.io/projectdiary/2026-04-13-diary/" rel="alternate" type="text/html" title="[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method" /><published>2026-04-13T00:00:00+00:00</published><updated>2026-06-05T06:13:54+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-13-diary/"><![CDATA[<blockquote>
   <p>감정 분석 API를 만들면서 “각 항목은 소수점 둘째 자리로 보이게 하되, 합계는 반드시 100.00%”라는 요구를 만났다. 단순 반올림과 흔한 보정 방식의 함정, 최대 잔여 방식(Largest Remainder, Hamilton 방식으로도 알려짐)으로 맞춘 과정과 구현 시 체크 포인트를 정리한다.</p>
 </blockquote>
 
@@ -2222,286 +2539,4 @@ Redis 트랜잭션(MULTI/EXEC)과 Lua 스크립트의 차이, Spring의 <code cl
   <li><strong>운영</strong>: 스케줄러는 기능별 설정으로 나누고, dead code와 이름이 비슷한 상수는 사용처를 한 번씩 검색해 본다.</li>
 </ul>
 
-<p>이렇게 정리해 두면, 비슷한 “실시간 알림 + DB + Redis + 스케줄러” 구조를 다룰 때 다시 참고하기 좋다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Spring" /><category term="Redis" /><category term="WebSocket" /><category term="STOMP" /><category term="트랜잭션" /><category term="분산시스템" /><summary type="html"><![CDATA[Spring Events(@TransactionalEventListener, AFTER_COMMIT), @Async와 LazyInitializationException, Redis ZSET·Lua·TOCTOU, STOMP WebSocket 사용자별 전송, 스케줄러 설계 등 #148·#149 구현에서 정리한 백엔드 포인트입니다.]]></summary></entry><entry><title type="html">[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-03-09-diary/" rel="alternate" type="text/html" title="[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유" /><published>2026-03-09T00:00:00+00:00</published><updated>2026-06-05T05:29:41+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-03-09-diary/"><![CDATA[<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">@Transactional</code> 범위 안에 외부 네트워크 호출을 끼워 넣으면 DB 커넥션 풀이 고갈될 수 있다. 그리고 “메서드만 분리하면 되겠지”라는 생각은 Spring의 프록시 구조(self-invocation)에 막힌다.</p>
-</blockquote>
-
-<ul>
-  <li><a href="#들어가며">들어가며</a></li>
-  <li><a href="#처음-작성한-코드">처음 작성한 코드</a></li>
-  <li><a href="#왜-문제인가">왜 문제인가?</a></li>
-  <li><a href="#1차-시도-메서드를-분리하면-되겠지">1차 시도: 메서드를 분리하면 되겠지?</a></li>
-  <li><a href="#spring-transactional의-작동-원리-프록시">Spring @Transactional의 작동 원리: 프록시</a></li>
-  <li><a href="#2차-시도-transactiontemplate">2차 시도: TransactionTemplate</a></li>
-  <li><a href="#추가로-발견한-것-try-finally의-중요성">추가로 발견한 것: try-finally의 중요성</a></li>
-  <li><a href="#정리">정리</a></li>
-  <li><a href="#참고">참고</a></li>
-</ul>
-
-<hr />
-
-<h2 id="들어가며">들어가며</h2>
-
-<p>AI 통화 기능을 개발하고 있었다. 사용자가 앱에서 AI와 실시간으로 음성 통화를 나누는 기능이다. 기술 스택은 Spring WebSocket(raw) + Google Gemini Live API. 사용자의 목소리는 PCM16 바이너리로 WebSocket을 통해 서버에 전달되고, 서버는 이를 Gemini로 중계한다. Gemini가 답변 음성을 내려주면 다시 사용자에게 스트리밍한다.</p>
-
-<p>통화가 끊길 때 정리해야 할 것이 두 가지였다.</p>
-
-<ol>
-  <li><strong>DB 상태 업데이트</strong> – <code class="language-plaintext highlighter-rouge">AiCall</code>을 COMPLETED/FAILED로 전환, <code class="language-plaintext highlighter-rouge">AiCallSession</code>을 LEFT로 전환</li>
-  <li><strong>Gemini 네트워크 연결 종료</strong> – WebSocket 연결을 닫아 리소스 해제</li>
-</ol>
-
-<p>처음에는 이 두 작업을 하나의 <code class="language-plaintext highlighter-rouge">@Transactional</code> 메서드 안에서 처리했다.</p>
-
-<hr />
-
-<h2 id="처음-작성한-코드">처음 작성한 코드</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">disconnectSession</span><span class="o">(</span><span class="nc">Long</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isNormal</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 1. DB 상태 업데이트</span>
-    <span class="n">aiCallSessionRepository</span><span class="o">.</span><span class="na">findByWebsocketSessionId</span><span class="o">(</span><span class="n">wsSessionId</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">session</span> <span class="o">-&gt;</span> <span class="o">{</span>
-                <span class="n">session</span><span class="o">.</span><span class="na">leaveSession</span><span class="o">();</span>
-                <span class="n">aiCallSessionRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
-            <span class="o">});</span>
-
-    <span class="n">aiCallRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">).</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">aiCall</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">isNormal</span><span class="o">)</span> <span class="n">aiCall</span><span class="o">.</span><span class="na">endCall</span><span class="o">();</span>
-        <span class="k">else</span> <span class="n">aiCall</span><span class="o">.</span><span class="na">failCall</span><span class="o">();</span>
-        <span class="n">aiCallRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">aiCall</span><span class="o">);</span>
-    <span class="o">});</span>
-
-    <span class="c1">// 2. Gemini 네트워크 연결 종료 ← 여기가 문제!</span>
-    <span class="n">geminiLiveApiClient</span><span class="o">.</span><span class="na">disconnect</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">));</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>코드 리뷰에서 이 부분이 지적됐다. <em>“@Transactional 메서드 안에서 외부 네트워크 호출을 하면 안 됩니다.”</em> 처음엔 “DB 저장하고, 네트워크 끊고, 커밋하면 되는 거 아닌가?” 싶었다.</p>
-
-<hr />
-
-<h2 id="왜-문제인가">왜 문제인가?</h2>
-
-<p>아래처럼 <code class="language-plaintext highlighter-rouge">@Transactional</code>이 걸린 메서드 안에 “DB 작업 + 외부 네트워크 호출”이 함께 들어가면, <strong>네트워크 대기 시간 동안 DB 커넥션이 계속 점유</strong>된다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>시간 →
-[트랜잭션 시작] ── [DB 작업] ── [외부 네트워크 호출(최대 수 초)] ── [커밋/롤백] ── [DB 커넥션 반납]
-                         ▲
-                         └─ 이 구간 내내 커넥션을 붙들고 있음
-</code></pre></div></div>
-
-<p>Spring의 <code class="language-plaintext highlighter-rouge">@Transactional</code>은 메서드 시작 시 DB 커넥션을 커넥션 풀에서 가져오고, 메서드가 끝날 때까지 그 커넥션을 <strong>계속 붙들고 있는다</strong>. 커밋이나 롤백은 메서드가 완전히 종료될 때 일어난다.</p>
-
-<p>Gemini Live API WebSocket 연결을 끊는 작업이 얼마나 걸릴지는 모른다. 네트워크 상태에 따라 수백ms에서 수 초까지 늘어날 수 있다. 이 시간 동안 <strong>DB 커넥션은 아무 것도 안 하면서 자리만 차지하고 있다.</strong></p>
-
-<p>커넥션 풀 기본값은 보통 10개 내외다. 동시 통화가 10건 이상 발생해 동시에 종료된다면?</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>커넥션 풀 고갈 → 새 DB 요청 대기 → 타임아웃 → 서비스 장애
-</code></pre></div></div>
-
-<p>단순히 비효율의 문제가 아니라, <strong>트래픽이 몰리면 서비스 전체가 멈출 수 있는</strong> 문제였다.</p>
-
-<p>간단히 커넥션 풀을 10개라고 가정하면, 통화 종료가 몰리는 순간은 이런 모양이 된다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>커넥션 풀(10)
-[1][2][3][4][5][6][7][8][9][10]
- W  W  W  W  W  W  W  W  W   W    (W = 네트워크 대기 중, 커넥션 점유)
-
-새 요청:  ───────────────▶  (획득 실패) 대기/타임아웃
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="1차-시도-메서드를-분리하면-되겠지">1차 시도: 메서드를 분리하면 되겠지?</h2>
-
-<p>“그러면 DB 작업 메서드와 네트워크 호출 메서드를 분리하면 되지 않나?”라고 생각했다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 트랜잭션은 여기서만</span>
-<span class="nd">@Transactional</span>
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">updateDbState</span><span class="o">(</span><span class="nc">Long</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isNormal</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// DB 작업만...</span>
-<span class="o">}</span>
-
-<span class="c1">// 네트워크는 트랜잭션 밖에서</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">disconnectSession</span><span class="o">(</span><span class="nc">Long</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isNormal</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">updateDbState</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">,</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="n">isNormal</span><span class="o">);</span> <span class="c1">// @Transactional 메서드 호출</span>
-    <span class="n">geminiLiveApiClient</span><span class="o">.</span><span class="na">disconnect</span><span class="o">(...);</span>             <span class="c1">// 트랜잭션 밖</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>실행해봤다. DB가 업데이트되지 않았다. <code class="language-plaintext highlighter-rouge">@Transactional</code>이 아무 효과가 없었다.</p>
-
-<hr />
-
-<h2 id="spring-transactional의-작동-원리-프록시">Spring @Transactional의 작동 원리: 프록시</h2>
-
-<p>핵심은 <strong>프록시를 거쳐야 트랜잭션이 열린다</strong>는 점이다. 같은 클래스 내부에서 <code class="language-plaintext highlighter-rouge">this</code>로 호출하면 프록시를 우회한다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>외부 호출
-Controller ──▶ [프록시] ──▶ (실제 빈).updateDbState()   ✅ 트랜잭션 적용
-
-내부 호출(self-invocation)
-(실제 빈).disconnectSession()
-        └── this.updateDbState()                         ❌ 프록시 우회
-</code></pre></div></div>
-
-<p>Spring <code class="language-plaintext highlighter-rouge">@Transactional</code>은 AOP(Aspect Oriented Programming) 기반이다. Spring이 빈(Bean)을 등록할 때 <code class="language-plaintext highlighter-rouge">@Transactional</code>이 붙은 메서드가 있으면, 그 빈을 <strong>프록시 객체로 감싼다</strong>. 외부에서 해당 메서드를 호출하면 프록시가 가로채서 트랜잭션을 열고, 실제 메서드를 실행하고, 커밋/롤백을 처리한다.</p>
-
-<p>문제는 <strong>같은 클래스 내부에서 <code class="language-plaintext highlighter-rouge">this.메서드()</code>를 호출하면 프록시를 거치지 않는다</strong>는 점이다. <code class="language-plaintext highlighter-rouge">this</code>는 프록시가 아닌 실제 객체를 가리키기 때문에, <code class="language-plaintext highlighter-rouge">@Transactional</code>이 붙어 있어도 트랜잭션이 시작되지 않는다. 이것이 Spring의 유명한 <strong>self-invocation 문제</strong>다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>외부 호출: Controller → [프록시] → disconnectSession()  ✅ 트랜잭션 적용
-내부 호출: disconnectSession() → this.updateDbState()   ❌ 프록시 우회, 트랜잭션 없음
-</code></pre></div></div>
-
-<p>단순히 <code class="language-plaintext highlighter-rouge">private</code>를 <code class="language-plaintext highlighter-rouge">public</code>으로 바꿔도 소용없다. 같은 클래스 안에서 <code class="language-plaintext highlighter-rouge">this</code>로 호출하는 이상, 항상 프록시를 우회한다.</p>
-
-<hr />
-
-<h2 id="2차-시도-transactiontemplate">2차 시도: TransactionTemplate</h2>
-
-<p>Self-invocation 문제를 피하는 방법은 여러 가지가 있다:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>방법</th>
-      <th>설명</th>
-      <th>단점</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>메서드를 다른 클래스로 분리</td>
-      <td>새 빈으로 분리하면 프록시 적용됨</td>
-      <td>억지로 클래스를 쪼개야 함, 응집도 저하</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">ApplicationContext</code>로 자기 자신 주입</td>
-      <td><code class="language-plaintext highlighter-rouge">self.updateDbState()</code> 형태로 프록시 통해 호출</td>
-      <td>코드가 지저분, 순환 의존성 느낌</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">TransactionTemplate</code> 직접 사용</td>
-      <td>프로그래밍 방식으로 트랜잭션 경계 명시</td>
-      <td>약간 verbose하지만 명확함</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>이 상황에서는 <code class="language-plaintext highlighter-rouge">TransactionTemplate</code>이 가장 깔끔했다. DB 작업의 범위를 코드로 직접 명시할 수 있고, 트랜잭션이 끝나는 시점을 정확하게 제어할 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// PlatformTransactionManager 주입</span>
-<span class="kd">private</span> <span class="kd">final</span> <span class="nc">PlatformTransactionManager</span> <span class="n">transactionManager</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">disconnectSession</span><span class="o">(</span><span class="nc">Long</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isNormal</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="c1">// ① 트랜잭션 범위를 람다로 명시적으로 감싼다</span>
-        <span class="k">new</span> <span class="nf">TransactionTemplate</span><span class="o">(</span><span class="n">transactionManager</span><span class="o">).</span><span class="na">executeWithoutResult</span><span class="o">(</span><span class="n">txStatus</span> <span class="o">-&gt;</span>
-            <span class="n">updateDbStateOnDisconnect</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">,</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="n">isNormal</span><span class="o">)</span>
-        <span class="o">);</span>
-
-        <span class="c1">// ② 트랜잭션 커밋 완료 후, 커넥션 반납 후 네트워크 호출</span>
-        <span class="n">geminiLiveApiClient</span><span class="o">.</span><span class="na">disconnect</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">));</span>
-
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"[릴레이] 세션 정리 중 오류: aiCallId={}"</span><span class="o">,</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-        <span class="c1">// ③ DB/네트워크 오류와 관계없이 인메모리 리소스는 반드시 정리</span>
-        <span class="n">sessionManager</span><span class="o">.</span><span class="na">cancelRelay</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">));</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">// @Transactional 없이 그냥 private 메서드</span>
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">updateDbStateOnDisconnect</span><span class="o">(</span><span class="nc">Long</span> <span class="n">aiCallId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">wsSessionId</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isNormal</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// DB 작업만</span>
-    <span class="n">aiCallSessionRepository</span><span class="o">.</span><span class="na">findByWebsocketSessionId</span><span class="o">(</span><span class="n">wsSessionId</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">session</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="n">session</span><span class="o">.</span><span class="na">leaveSession</span><span class="o">();</span> <span class="n">aiCallSessionRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">session</span><span class="o">);</span> <span class="o">});</span>
-
-    <span class="n">aiCallRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">aiCallId</span><span class="o">).</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">aiCall</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">isNormal</span><span class="o">)</span> <span class="n">aiCall</span><span class="o">.</span><span class="na">endCall</span><span class="o">();</span>
-        <span class="k">else</span> <span class="n">aiCall</span><span class="o">.</span><span class="na">failCall</span><span class="o">();</span>
-        <span class="n">aiCallRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">aiCall</span><span class="o">);</span>
-    <span class="o">});</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>이제 타임라인이 아래처럼 바뀐다. <strong>커밋과 커넥션 반납이 먼저 끝나고</strong>, 그 다음에 네트워크 호출이 시작된다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>시간 →
-[트랜잭션 시작] ── [DB 작업] ── [커밋 &amp; 커넥션 반납] ── [외부 네트워크 호출]
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">TransactionTemplate.executeWithoutResult()</code> 람다가 종료되는 순간 커밋이 일어나고, DB 커넥션이 풀로 반환된다. 그 이후에야 Gemini 네트워크 연결 종료가 시작된다. 아무리 오래 걸려도 커넥션 풀에는 영향을 주지 않는다.</p>
-
-<hr />
-
-<h2 id="추가로-발견한-것-try-finally의-중요성">추가로 발견한 것: try-finally의 중요성</h2>
-
-<p>수정 과정에서 또 다른 패턴을 적용했다. <code class="language-plaintext highlighter-rouge">finally</code> 블록에서 인메모리 리소스를 정리하는 것이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">isOwner</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">sessionManager</span><span class="o">.</span><span class="na">cancelRelay</span><span class="o">(</span><span class="n">callId</span><span class="o">);</span>        <span class="c1">// Reactor 구독 취소</span>
-        <span class="n">sessionManager</span><span class="o">.</span><span class="na">unregisterSession</span><span class="o">(</span><span class="n">callId</span><span class="o">,</span> <span class="n">wsSessionId</span><span class="o">);</span> <span class="c1">// 세션 맵에서 제거</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>DB 업데이트나 Gemini 연결 종료에서 예외가 발생하더라도, <strong>인메모리의 릴레이 구독과 세션 참조는 반드시 해제되어야 한다.</strong> 메모리 누수와 “고아” Reactor 구독을 막기 위해서다.</p>
-
-<hr />
-
-<h2 id="정리">정리</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>수정 전</th>
-      <th>수정 후</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>DB 커넥션 점유 시간</td>
-      <td>DB 작업 + 네트워크 대기</td>
-      <td>DB 작업만</td>
-    </tr>
-    <tr>
-      <td>트랜잭션 경계</td>
-      <td><code class="language-plaintext highlighter-rouge">@Transactional</code> 메서드 전체</td>
-      <td><code class="language-plaintext highlighter-rouge">TransactionTemplate</code> 람다 내부만</td>
-    </tr>
-    <tr>
-      <td>동시 통화 종료 내성</td>
-      <td>커넥션 풀 고갈 위험</td>
-      <td>안전</td>
-    </tr>
-    <tr>
-      <td>코드 명확성</td>
-      <td>트랜잭션 범위 암묵적</td>
-      <td>트랜잭션 범위 코드로 명시</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>핵심 원칙 두 가지:</strong></p>
-
-<ol>
-  <li>
-    <p><strong><code class="language-plaintext highlighter-rouge">@Transactional</code> 메서드 안에는 DB 작업만 넣어라.</strong> 외부 HTTP/WebSocket 호출, 파일 I/O, 긴 계산은 모두 트랜잭션 밖으로 꺼내야 한다.</p>
-  </li>
-  <li>
-    <p><strong>같은 클래스 안에서 트랜잭션 범위를 세밀하게 제어해야 한다면 <code class="language-plaintext highlighter-rouge">TransactionTemplate</code>을 써라.</strong> Self-invocation 문제를 피하면서, 트랜잭션 경계를 코드로 명시적으로 표현할 수 있다.</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="참고">참고</h2>
-
-<ul>
-  <li><a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-decl-explained.html">Spring Docs - Understanding the Spring Framework’s Declarative Transaction Implementation</a></li>
-  <li><a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/programmatic.html">Spring Docs - Programmatic Transaction Management (TransactionTemplate)</a></li>
-</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[@Transactional 범위 안에서 외부 네트워크 호출(Gemini WebSocket)을 처리했다가, DB 커넥션 점유 시간이 길어져 커넥션 풀 고갈 위험이 생긴 문제와 해결(TransactionTemplate)을 정리합니다.]]></summary></entry></feed>
+<p>이렇게 정리해 두면, 비슷한 “실시간 알림 + DB + Redis + 스케줄러” 구조를 다룰 때 다시 참고하기 좋다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Spring" /><category term="Redis" /><category term="WebSocket" /><category term="STOMP" /><category term="트랜잭션" /><category term="분산시스템" /><summary type="html"><![CDATA[Spring Events(@TransactionalEventListener, AFTER_COMMIT), @Async와 LazyInitializationException, Redis ZSET·Lua·TOCTOU, STOMP WebSocket 사용자별 전송, 스케줄러 설계 등 #148·#149 구현에서 정리한 백엔드 포인트입니다.]]></summary></entry></feed>

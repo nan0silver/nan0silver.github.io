@@ -44,7 +44,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-05T05:29:41+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-05T06:13:54+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -184,7 +184,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-06-05T05:30:26+00:00',
+    INDEX_KEY: 'index--2026-06-05T06:14:38+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -467,7 +467,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          TIL (72)
+          TIL (73)
         </a>
       </li>
     
@@ -545,6 +545,70 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
   
+
+  
+
+
+
+
+
+<article id="post-til-once-per-request-filter" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/til/2026-06-04-once-per-request-filter/" class="flip-title">
+        [TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-06-04T00:00:00+00:00">04 Jun 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Spring boot</span>, <span>Filter</span>, <span>Onceperrequestfilter</span>, <span>Servlet</span>, <span>Security</span>
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Spring의 OncePerRequestFilter로 요청당 1회만 실행되는 서블릿 필터를 만드는 방법, shouldNotFilter()로 경로를 선택 적용하고 doFilterInternal()에서 체인을 이어가는 패턴을 정리한 글이다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>Spring에서 커스텀 필터를 만들 때 <code class="language-plaintext highlighter-rouge">Filter</code>를 직접 구현하면 forward/include 시 같은 요청에 필터가 여러 번 돌 수 있다. <code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>를 쓰면 요청당 한 번만 실행되고, <code class="language-plaintext highlighter-rouge">shouldNotFilter()</code>로 특정 경로를 건너뛰며, <code class="language-plaintext highlighter-rouge">doFilterInternal()</code>에서 검증 후 <code class="language-plaintext highlighter-rouge">filterChain.doFilter()</code>로 체인을 이어갈 수 있다.</p>
+</blockquote>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/til/2026-06-04-once-per-request-filter/">[TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴</a>
+
+      </p>
+    </footer>
+  
+</article>
+
 
   
 
@@ -768,7 +832,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 05 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-05T05:29:41+00:00">2026-06-05</time>
+              <time datetime="2026-06-05T06:13:54+00:00">2026-06-05</time>
             </span>
           
         
@@ -840,7 +904,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 05 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-05T05:29:41+00:00">2026-06-05</time>
+              <time datetime="2026-06-05T06:13:54+00:00">2026-06-05</time>
             </span>
           
         
@@ -912,7 +976,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
             <span class="ellipsis" data-tippy-content="Last modified at: 05 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-05T05:29:41+00:00">2026-06-05</time>
+              <time datetime="2026-06-05T06:13:54+00:00">2026-06-05</time>
             </span>
           
         
@@ -1143,78 +1207,6 @@ DB 트랜잭션과 외부 시스템(Redis)이 함께 움직일 때, “원자성
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/til/2026-03-10-til/">[TIL] Spring Events, @Async, Redis, STOMP — #148·#149에서 배운 백엔드 포인트</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-projectdiary-diary" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/projectdiary/2026-03-09-diary/" class="flip-title">
-        [친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2026-03-09T00:00:00+00:00">09 Mar 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 05 Jun 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-06-05T05:29:41+00:00">2026-06-05</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      @Transactional 범위 안에서 외부 네트워크 호출(Gemini WebSocket)을 처리했다가, DB 커넥션 점유 시간이 길어져 커넥션 풀 고갈 위험이 생긴 문제와 해결(TransactionTemplate)을 정리합니다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <blockquote>
-  <p><code class="language-plaintext highlighter-rouge">@Transactional</code> 범위 안에 외부 네트워크 호출을 끼워 넣으면 DB 커넥션 풀이 고갈될 수 있다. 그리고 “메서드만 분리하면 되겠지”라는 생각은 Spring의 프록시 구조(self-invocation)에 막힌다.</p>
-</blockquote>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/projectdiary/2026-03-09-diary/">[친구하자] @Transactional 안에서 외부 네트워크를 호출하면 안 되는 이유</a>
 
       </p>
     </footer>

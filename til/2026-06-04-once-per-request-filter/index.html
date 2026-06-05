@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="Spring의 OncePerRequestFilter로 요청당 1회만 실행되는 서블릿 필터를 만드는 방법, shouldNotFilter()로 경로를 선택 적용하고 doFilterInternal()에서 체인을 이어가는 패턴을 정리한 글이다." />
+<meta property="og:description" content="Spring의 OncePerRequestFilter로 요청당 1회만 실행되는 서블릿 필터를 만드는 방법, shouldNotFilter()로 경로를 선택 적용하고 doFilterInternal()에서 체인을 이어가는 패턴을 정리한 글이다." />
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-06-04-once-per-request-filter/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2026-06-04-once-per-request-filter/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-06-04T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-04T00:00:00+00:00","datePublished":"2026-06-04T00:00:00+00:00","description":"Spring의 OncePerRequestFilter로 요청당 1회만 실행되는 서블릿 필터를 만드는 방법, shouldNotFilter()로 경로를 선택 적용하고 doFilterInternal()에서 체인을 이어가는 패턴을 정리한 글이다.","headline":"[TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2026-06-04-once-per-request-filter/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2026-06-04-once-per-request-filter/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/miscellaneous/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/til/2026-06-04-once-per-request-filter/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-06-05T06:14:38+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴",
+    "description": "Spring의 OncePerRequestFilter로 요청당 1회만 실행되는 서블릿 필터를 만드는 방법, shouldNotFilter()로 경로를 선택 적용하고 doFilterInternal()에서 체인을 이어가는 패턴을 정리한 글이다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-06-04T00:00:00+00:00",
+    "dateModified": "2026-06-04T00:00:00+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/til/2026-06-04-once-per-request-filter/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-06-04-once-per-request-filter/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "til",
+        "item": "https://nan0silver.github.io/til/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴",
+        "item": "https://nan0silver.github.io/til/2026-06-04-once-per-request-filter/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/til/">til</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-06-04-once-per-request-filter</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-til-once-per-request-filter" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-06-04T00:00:00+00:00">04 Jun 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Spring boot</span>, <span>Filter</span>, <span>Onceperrequestfilter</span>, <span>Servlet</span>, <span>Security</span>
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Spring의 OncePerRequestFilter로 요청당 1회만 실행되는 서블릿 필터를 만드는 방법, shouldNotFilter()로 경로를 선택 적용하고 doFilterInternal()에서 체인을 이어가는 패턴을 정리한 글이다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>Spring에서 커스텀 필터를 만들 때 <code class="language-plaintext highlighter-rouge">Filter</code>를 직접 구현하면 forward/include 시 같은 요청에 필터가 여러 번 돌 수 있다. <code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>를 쓰면 요청당 한 번만 실행되고, <code class="language-plaintext highlighter-rouge">shouldNotFilter()</code>로 특정 경로를 건너뛰며, <code class="language-plaintext highlighter-rouge">doFilterInternal()</code>에서 검증 후 <code class="language-plaintext highlighter-rouge">filterChain.doFilter()</code>로 체인을 이어갈 수 있다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-서블릿-필터가-하는-일">1. 서블릿 필터가 하는 일</a></li>
+  <li><a href="#2-왜-onceperrequestfilter인가">2. 왜 OncePerRequestFilter인가</a></li>
+  <li><a href="#3-기본-구조-dofilterinternal과-filterchain">3. 기본 구조: doFilterInternal과 filterChain</a></li>
+  <li><a href="#4-shouldnotfilter로-경로-선택-적용">4. shouldNotFilter()로 경로 선택 적용</a></li>
+  <li><a href="#5-실전-예시-내부-api-키-검증-필터">5. 실전 예시: 내부 API 키 검증 필터</a></li>
+  <li><a href="#6-필터에서-응답을-끊을-때와-이어갈-때">6. 필터에서 응답을 끊을 때와 이어갈 때</a></li>
+  <li><a href="#7-component로-등록할-때-주의할-점">7. @Component로 등록할 때 주의할 점</a></li>
+  <li><a href="#8-흔한-실수와-점검-포인트">8. 흔한 실수와 점검 포인트</a></li>
+  <li><a href="#9-적용-체크리스트">9. 적용 체크리스트</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>컨트롤러에 도달하기 전에 공통 검증을 넣고 싶을 때가 있다.</p>
+
+<ul>
+  <li>내부 API 키 확인</li>
+  <li>허용 IP 검사</li>
+  <li>특정 경로만 추가 인증</li>
+</ul>
+
+<p>이런 로직을 컨트롤러마다 복붙하기보다, <strong>서블릿 필터</strong>로 앞단에 두는 편이 낫다. 요청이 들어오면 필터 → 컨트롤러 순으로 지나가고, 필터에서 막으면 컨트롤러까지 가지 않는다.</p>
+
+<p>Spring에서는 이 패턴을 <code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>로 구현하는 경우가 많다.</p>
+
+<hr />
+
+<h2 id="1-서블릿-필터가-하는-일">1. 서블릿 필터가 하는 일</h2>
+
+<p>서블릿 필터는 HTTP 요청·응답 파이프라인의 <strong>앞단 훅</strong>이다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[클라이언트] → [Filter 1] → [Filter 2] → ... → [DispatcherServlet] → [Controller]
+</code></pre></div></div>
+
+<p>필터의 역할:</p>
+
+<ul>
+  <li>요청을 <strong>검증</strong>하거나 헤더를 읽는다.</li>
+  <li>조건을 만족하지 않으면 <strong>401/403</strong> 등으로 응답을 끝낸다.</li>
+  <li>통과시키면 <code class="language-plaintext highlighter-rouge">filterChain.doFilter()</code>로 <strong>다음 필터·서블릿</strong>으로 넘긴다.</li>
+</ul>
+
+<p>컨트롤러보다 앞에서 공통 정책을 적용할 수 있어, 보안·로깅·트레이싱에 자주 쓰인다.</p>
+
+<hr />
+
+<h2 id="2-왜-onceperrequestfilter인가">2. 왜 OncePerRequestFilter인가</h2>
+
+<p><code class="language-plaintext highlighter-rouge">jakarta.servlet.Filter</code>를 직접 구현해도 필터는 만들 수 있다. 그런데 서블릿 스펙상 <strong>forward</strong>나 <strong>include</strong>가 발생하면, 같은 HTTP 요청 안에서 필터가 <strong>여러 번</strong> 호출될 수 있다.</p>
+
+<p>예:</p>
+
+<ul>
+  <li>에러 페이지로 forward</li>
+  <li>내부 JSP include</li>
+  <li>일부 프레임워크 내부 디스패치</li>
+</ul>
+
+<p>이때 일반 <code class="language-plaintext highlighter-rouge">Filter</code> 구현은 같은 요청에 대해 검증 로직이 두 번 돌 수 있다. API 키 검증, IP 체크처럼 “요청당 한 번”이 전제인 로직에서는 부작용이 생긴다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>는 Spring이 제공하는 추상 클래스로, <strong>요청당 정확히 한 번</strong> <code class="language-plaintext highlighter-rouge">doFilterInternal()</code>이 실행되도록 보장한다.</p>
+
+<p>정리:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>방식</th>
+      <th>요청당 실행 횟수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Filter</code> 직접 구현</td>
+      <td>forward/include 시 중복 가능</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code></td>
+      <td>요청당 1회 보장</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>커스텀 보안·인증 필터를 만들 때는 <code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>를 상속하는 것이 일반적인 선택이다.</p>
+
+<hr />
+
+<h2 id="3-기본-구조-dofilterinternal과-filterchain">3. 기본 구조: doFilterInternal과 filterChain</h2>
+
+<p><code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>를 쓰면 직접 구현할 메서드는 사실상 <code class="language-plaintext highlighter-rouge">doFilterInternal()</code> 하나다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleFilter</span> <span class="kd">extends</span> <span class="nc">OncePerRequestFilter</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doFilterInternal</span><span class="o">(</span>
+            <span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
+            <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+            <span class="nc">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+
+        <span class="c1">// 1. 요청 전처리 (검증, 로깅 등)</span>
+        <span class="kt">boolean</span> <span class="n">allowed</span> <span class="o">=</span> <span class="n">checkSomething</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(!</span><span class="n">allowed</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">response</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="nc">HttpServletResponse</span><span class="o">.</span><span class="na">SC_UNAUTHORIZED</span><span class="o">);</span>
+            <span class="k">return</span><span class="o">;</span> <span class="c1">// 체인을 이어가지 않음 → 컨트롤러까지 가지 않음</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 2. 통과 시 다음 필터·서블릿으로 전달</span>
+        <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>핵심 규칙:</p>
+
+<ul>
+  <li>검증 실패: 응답 상태를 쓰고 <strong><code class="language-plaintext highlighter-rouge">return</code></strong> ( <code class="language-plaintext highlighter-rouge">doFilter</code> 호출 안 함 )</li>
+  <li>검증 통과: 반드시 <strong><code class="language-plaintext highlighter-rouge">filterChain.doFilter(request, response)</code></strong> 호출</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">doFilter</code>를 빼먹으면 요청이 다음 단계로 가지 않아 <strong>응답이 비거나 타임아웃</strong>처럼 보일 수 있다. 필터를 처음 만들 때 가장 흔한 실수 중 하나다.</p>
+
+<hr />
+
+<h2 id="4-shouldnotfilter로-경로-선택-적용">4. shouldNotFilter()로 경로 선택 적용</h2>
+
+<p>모든 요청에 필터를 걸 필요는 없다. 헬스체크, 정적 리소스, 공개 API는 제외하고 싶을 때가 많다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">shouldNotFilter()</code>를 오버라이드하면 된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">shouldNotFilter</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">path</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getRequestURI</span><span class="o">();</span>
+    <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"/actuator/health"</span><span class="o">)</span>
+            <span class="o">||</span> <span class="n">path</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"/public/"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">shouldNotFilter()</code>가 <code class="language-plaintext highlighter-rouge">true</code> → 이 필터는 <strong>건너뜀</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">false</code> → <code class="language-plaintext highlighter-rouge">doFilterInternal()</code> 실행</li>
+</ul>
+
+<p>경로 매칭 시 주의:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">getRequestURI()</code>는 컨텍스트 경로를 포함할 수 있다. (<code class="language-plaintext highlighter-rouge">/my-app/api/...</code>)</li>
+  <li>서블릿 등록 시 <code class="language-plaintext highlighter-rouge">/*</code> 패턴과 조합해 동작을 확인한다.</li>
+  <li>Spring MVC의 <code class="language-plaintext highlighter-rouge">@RequestMapping</code> 경로와 1:1이 아닐 수 있으니, 실제 요청 URI로 테스트한다.</li>
+</ul>
+
+<p>2편에서 다룬 Actuator <code class="language-plaintext highlighter-rouge">health</code>만 외부에 열어두는 설정과 맞물리면, 헬스체크 경로는 필터 대상에서 빼 두는 것이 자연스럽다.</p>
+
+<hr />
+
+<h2 id="5-실전-예시-내부-api-키-검증-필터">5. 실전 예시: 내부 API 키 검증 필터</h2>
+
+<p>2편의 <code class="language-plaintext highlighter-rouge">SecurityProperties</code>를 주입받아, 내부 API 경로만 API 키를 검증하는 필터 예시다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InternalApiKeyFilter</span> <span class="kd">extends</span> <span class="nc">OncePerRequestFilter</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">API_KEY_HEADER</span> <span class="o">=</span> <span class="s">"X-Internal-Api-Key"</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">SecurityProperties</span> <span class="n">securityProperties</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">InternalApiKeyFilter</span><span class="o">(</span><span class="nc">SecurityProperties</span> <span class="n">securityProperties</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">securityProperties</span> <span class="o">=</span> <span class="n">securityProperties</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">shouldNotFilter</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">!</span><span class="n">request</span><span class="o">.</span><span class="na">getRequestURI</span><span class="o">().</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"/internal/"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doFilterInternal</span><span class="o">(</span>
+            <span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
+            <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+            <span class="nc">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+
+        <span class="nc">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getHeader</span><span class="o">(</span><span class="no">API_KEY_HEADER</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">securityProperties</span><span class="o">.</span><span class="na">getInternalApiKey</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">expected</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">apiKey</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="nc">HttpServletResponse</span><span class="o">.</span><span class="na">SC_UNAUTHORIZED</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 예시에서 보이는 패턴:</p>
+
+<ul>
+  <li><strong>경로 분기</strong>: <code class="language-plaintext highlighter-rouge">/internal/**</code>만 검증</li>
+  <li><strong>설정 주입</strong>: 2편에서 검증한 <code class="language-plaintext highlighter-rouge">SecurityProperties</code> 재사용</li>
+  <li><strong>실패 시 조기 종료</strong>: 401 후 <code class="language-plaintext highlighter-rouge">doFilter</code> 미호출</li>
+</ul>
+
+<p>4편에서는 이 필터를 Spring Security <code class="language-plaintext highlighter-rouge">FilterChain</code>의 <strong>어느 위치에</strong> 넣을지(<code class="language-plaintext highlighter-rouge">addFilterBefore</code> 등) 다룰 예정이다. 3편에서는 <strong>필터 자체를 어떻게 작성하는지</strong>에 집중한다.</p>
+
+<hr />
+
+<h2 id="6-필터에서-응답을-끊을-때와-이어갈-때">6. 필터에서 응답을 끊을 때와 이어갈 때</h2>
+
+<p>필터는 “문지기” 역할이다. 통과/차단만 명확히 하면 된다.</p>
+
+<h3 id="차단-응답-종료">차단 (응답 종료)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">response</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="nc">HttpServletResponse</span><span class="o">.</span><span class="na">SC_FORBIDDEN</span><span class="o">);</span>
+<span class="c1">// 필요하면 response.getWriter().write("...");</span>
+<span class="k">return</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="통과-체인-계속">통과 (체인 계속)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>주의할 점:</p>
+
+<ul>
+  <li>차단 후에도 <code class="language-plaintext highlighter-rouge">doFilter</code>를 호출하면 안 된다.</li>
+  <li>통과 후 <code class="language-plaintext highlighter-rouge">return</code> 전에 <code class="language-plaintext highlighter-rouge">doFilter</code>를 <strong>한 번만</strong> 호출한다.</li>
+  <li>응답 본문을 쓴 뒤 <code class="language-plaintext highlighter-rouge">doFilter</code>를 호출하면 응답이 이미 커밋된 상태일 수 있다.</li>
+</ul>
+
+<p>필터는 가능한 한 <strong>가볍게</strong> 유지하는 것이 좋다. DB 조회나 외부 API 호출 같은 무거운 작업은 서비스 레이어로 내리고, 필터에는 헤더·IP·경로 수준 검증만 두는 편이 낫다.</p>
+
+<hr />
+
+<h2 id="7-component로-등록할-때-주의할-점">7. @Component로 등록할 때 주의할 점</h2>
+
+<p><code class="language-plaintext highlighter-rouge">@Component</code>만 붙이면 Spring Boot가 필터를 자동 등록한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">InternalApiKeyFilter</span> <span class="kd">extends</span> <span class="nc">OncePerRequestFilter</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+</code></pre></div></div>
+
+<p>편하지만 부작용이 있다.</p>
+
+<ul>
+  <li><strong>모든 테스트 컨텍스트</strong>에서 필터 빈이 로드될 수 있다.</li>
+  <li>필터가 <code class="language-plaintext highlighter-rouge">SecurityProperties</code> 등 다른 빈에 의존하면, <code class="language-plaintext highlighter-rouge">@WebMvcTest</code>처럼 웹 레이어만 띄운 테스트에서 <code class="language-plaintext highlighter-rouge">NoSuchBeanDefinitionException</code>이 날 수 있다.</li>
+</ul>
+
+<p>그래서 운영 전용 필터는 다음 패턴을 자주 쓴다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Component</code> 대신 <strong>4편에서 볼</strong> <code class="language-plaintext highlighter-rouge">@Bean</code> + <code class="language-plaintext highlighter-rouge">@Profile("prod")</code>로 명시 등록</li>
+  <li>또는 필터 클래스는 순수하게 두고, 등록은 Security 설정 클래스에서 담당</li>
+</ul>
+
+<p>3편에서 필터 <strong>구현</strong>을 익혔다면, 4편에서 <strong>등록 위치와 프로파일 분리</strong>까지 맞추면 운영·테스트 모두 다루기 쉬워진다.</p>
+
+<hr />
+
+<h2 id="8-흔한-실수와-점검-포인트">8. 흔한 실수와 점검 포인트</h2>
+
+<h3 id="실수-1-filterchaindofilter-누락">실수 1: <code class="language-plaintext highlighter-rouge">filterChain.doFilter()</code> 누락</h3>
+
+<p>통과 경로에서 <code class="language-plaintext highlighter-rouge">doFilter</code>를 호출하지 않으면 요청이 멈춘다.</p>
+
+<h3 id="실수-2-차단-후에도-dofilter-호출">실수 2: 차단 후에도 <code class="language-plaintext highlighter-rouge">doFilter</code> 호출</h3>
+
+<p>401/403을 쓴 뒤 체인을 이어가면, 컨트롤러까지 요청이 흘러갈 수 있다.</p>
+
+<h3 id="실수-3-filter를-직접-구현해-forward-시-중복-실행">실수 3: <code class="language-plaintext highlighter-rouge">Filter</code>를 직접 구현해 forward 시 중복 실행</h3>
+
+<p>같은 요청에 검증이 두 번 돌거나, 로그가 중복된다.</p>
+
+<h3 id="실수-4-shouldnotfilter-경로가-실제-uri와-안-맞음">실수 4: <code class="language-plaintext highlighter-rouge">shouldNotFilter()</code> 경로가 실제 URI와 안 맞음</h3>
+
+<p>로컬에서는 되는데 운영에서만 막히는 경우, 컨텍스트 경로·프록시 경로 rewrite를 의심한다.</p>
+
+<h3 id="실수-5-필터에-비즈니스-로직-과다">실수 5: 필터에 비즈니스 로직 과다</h3>
+
+<p>필터는 공통 게이트웨이 역할에 가깝다. 도메인 규칙은 서비스·컨트롤러에 두는 편이 테스트와 유지보수에 유리하다.</p>
+
+<hr />
+
+<h2 id="9-적용-체크리스트">9. 적용 체크리스트</h2>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>를 상속해 요청당 1회 실행을 보장했는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />통과 시 <code class="language-plaintext highlighter-rouge">filterChain.doFilter()</code>를 호출하는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />차단 시 <code class="language-plaintext highlighter-rouge">doFilter</code> 없이 상태 코드만 반환하는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">shouldNotFilter()</code>로 health·공개 경로를 제외했는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />필터가 의존하는 설정 빈(2편)과 경로 정책(1편)이 일치하는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">@Component</code> 자동 등록이 테스트에 미치는 영향을 확인했는가</li>
+</ul>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p><code class="language-plaintext highlighter-rouge">OncePerRequestFilter</code>는 “요청이 컨트롤러에 닿기 전, 한 번만 검사한다”는 패턴을 안전하게 구현하는 도구다.</p>
+
+<p>정리하면 아래 세 가지면 충분하다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">doFilterInternal()</code>에서 검증한다.</li>
+  <li>통과하면 <code class="language-plaintext highlighter-rouge">filterChain.doFilter()</code>로 체인을 이어간다.</li>
+  <li>필요 없는 경로는 <code class="language-plaintext highlighter-rouge">shouldNotFilter()</code>로 건너뛴다.</li>
+</ul>
+
+<p>1편은 노출 범위, 2편은 설정 검증, 3편은 <strong>요청 단위 검증 로직을 필터로 작성</strong>하는 단계다. 4편에서는 이 필터를 Spring Security <code class="language-plaintext highlighter-rouge">FilterChain</code>에 어떻게 끼워 넣을지 이어서 보면 된다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2026-06-02-configuration-properties-validated-fail-fast/" class="flip-title"><span>[TIL] @ConfigurationProperties + @Validated — 설정값 검증과 fail-fast</span></a>  <time class="faded fine" datetime="2026-06-02T00:00:00+00:00">02 Jun 2026</time></li>                        <li class="h4">  <a href="/til/2026-05-28-spring-boot-actuator-exposure-control/" class="flip-title"><span>[TIL] Spring Boot Actuator - 운영 노출 범위 제어</span></a>  <time class="faded fine" datetime="2026-05-28T00:00:00+00:00">28 May 2026</time></li>                        <li class="h4">  <a href="/til/2026-05-04-til/" class="flip-title"><span>[TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법</span></a>  <time class="faded fine" datetime="2026-05-04T00:00:00+00:00">04 May 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="https://github.com/nan0silver">GitHub</a>
+      |
+    
+      
+      <a class="heading flip-title" href="mailto:silvernh1220@gmail.com">Gmail</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Full-stack · 1인 개발 · 창업 준비
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/java/"
+          class="sidebar-nav-item "
+          
+        >
+          Java (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/spring/"
+          class="sidebar-nav-item "
+          
+        >
+          Spring (17)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flask/"
+          class="sidebar-nav-item "
+          
+        >
+          Flask (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          Frontend (9)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/aws/"
+          class="sidebar-nav-item "
+          
+        >
+          AWS (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/git/"
+          class="sidebar-nav-item "
+          
+        >
+          Git (3)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (18)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/ai/"
+          class="sidebar-nav-item "
+          
+        >
+          AI (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          기타 (4)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (36)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (73)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>
