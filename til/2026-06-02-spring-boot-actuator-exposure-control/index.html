@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[CSS] CSS 문법 | NAHYUN BLOG</title>
+<title>[TIL] Spring Boot Actuator - 운영 노출 범위 제어 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[CSS] CSS 문법" />
+<meta property="og:title" content="[TIL] Spring Boot Actuator - 운영 노출 범위 제어" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자." />
-<meta property="og:description" content="웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자." />
-<link rel="canonical" href="https://nan0silver.github.io/javascript/2025-01-18-css/" />
-<meta property="og:url" content="https://nan0silver.github.io/javascript/2025-01-18-css/" />
+<meta name="description" content="Spring Boot Actuator 엔드포인트를 운영 환경에 그대로 노출할 때 발생하는 보안 위험과, health 중심 최소 노출 원칙, 환경별 분리 설정, 네트워크/시큐리티 방어층까지 한 번에 정리한 글이다." />
+<meta property="og:description" content="Spring Boot Actuator 엔드포인트를 운영 환경에 그대로 노출할 때 발생하는 보안 위험과, health 중심 최소 노출 원칙, 환경별 분리 설정, 네트워크/시큐리티 방어층까지 한 번에 정리한 글이다." />
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-06-02-spring-boot-actuator-exposure-control/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2026-06-02-spring-boot-actuator-exposure-control/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-01-18T00:00:00+00:00" />
+<meta property="article:published_time" content="2026-06-02T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[CSS] CSS 문법" />
+<meta property="twitter:title" content="[TIL] Spring Boot Actuator - 운영 노출 범위 제어" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-05T05:03:20+00:00","datePublished":"2025-01-18T00:00:00+00:00","description":"웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.","headline":"[CSS] CSS 문법","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/javascript/2025-01-18-css/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/javascript/2025-01-18-css/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-02T00:00:00+00:00","datePublished":"2026-06-02T00:00:00+00:00","description":"Spring Boot Actuator 엔드포인트를 운영 환경에 그대로 노출할 때 발생하는 보안 위험과, health 중심 최소 노출 원칙, 환경별 분리 설정, 네트워크/시큐리티 방어층까지 한 번에 정리한 글이다.","headline":"[TIL] Spring Boot Actuator - 운영 노출 범위 제어","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2026-06-02-spring-boot-actuator-exposure-control/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2026-06-02-spring-boot-actuator-exposure-control/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/javascript/2025-01-18-css/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/til/2026-06-02-spring-boot-actuator-exposure-control/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[CSS] CSS 문법",
-    "description": "웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.
+    "headline": "[TIL] Spring Boot Actuator - 운영 노출 범위 제어",
+    "description": "Spring Boot Actuator 엔드포인트를 운영 환경에 그대로 노출할 때 발생하는 보안 위험과, health 중심 최소 노출 원칙, 환경별 분리 설정, 네트워크/시큐리티 방어층까지 한 번에 정리한 글이다.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-01-18T00:00:00+00:00",
-    "dateModified": "2026-06-05T05:03:20+00:00",
+    "datePublished": "2026-06-02T00:00:00+00:00",
+    "dateModified": "2026-06-02T00:00:00+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/javascript/2025-01-18-css/"
+      "@id": "https://nan0silver.github.io/til/2026-06-02-spring-boot-actuator-exposure-control/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/javascript/2025-01-18-css/" />
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-06-02-spring-boot-actuator-exposure-control/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "javascript",
-        "item": "https://nan0silver.github.io/javascript/"
+        "name": "til",
+        "item": "https://nan0silver.github.io/til/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[CSS] CSS 문법",
-        "item": "https://nan0silver.github.io/javascript/2025-01-18-css/"
+        "name": "[TIL] Spring Boot Actuator - 운영 노출 범위 제어",
+        "item": "https://nan0silver.github.io/til/2026-06-02-spring-boot-actuator-exposure-control/"
       }
     ]
   }
@@ -358,14 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/javascript/">javascript</a>
+          <a href="/til/">til</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-01-18-css</span>
+          <span>2026-06-02-spring-boot-actuator-exposure-control</span>
         
       </li>
     
@@ -382,31 +382,23 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-javascript-css" class="page post mb6" role="article">
+<article id="post-til-spring-boot-actuator-exposure-control" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [CSS] CSS 문법
+        [TIL] Spring Boot Actuator - 운영 노출 범위 제어
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-01-18T00:00:00+00:00">18 Jan 2025</time> in <a href="/javascript/" class="flip-title">Frontend</a> 
+        <time datetime="2026-06-02T00:00:00+00:00">02 Jun 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Spring boot</span>, <span>Actuator</span>, <span>Security</span>, <span>운영</span>, <span>Least privilege</span>
       </span>
       
         
           
           
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 05 Jun 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-06-05T05:03:20+00:00">2026-06-05</time>
-            </span>
           
         
       
@@ -421,7 +413,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      웹 개발 생산성을 극대화하는 Emmet의 강력한 기능과 활용법을 알아보자.
+      Spring Boot Actuator 엔드포인트를 운영 환경에 그대로 노출할 때 발생하는 보안 위험과, health 중심 최소 노출 원칙, 환경별 분리 설정, 네트워크/시큐리티 방어층까지 한 번에 정리한 글이다.
 
     </p>
   
@@ -430,146 +422,196 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <ul>
-  <li><a href="#css란">CSS란?</a></li>
-  <li><a href="#css-문법-기초">CSS 문법 기초</a></li>
-  <li><a href="#css-적용-방법">CSS 적용 방법</a></li>
-  <li><a href="#css-프로퍼티-값의-단위">CSS 프로퍼티 값의 단위</a></li>
+    <blockquote>
+  <p>Spring Boot Actuator는 운영 관측에 매우 유용하지만, <code class="language-plaintext highlighter-rouge">/actuator/env</code>, <code class="language-plaintext highlighter-rouge">/actuator/heapdump</code>, <code class="language-plaintext highlighter-rouge">/actuator/beans</code> 같은 엔드포인트를 외부에 열어두면 민감 정보 유출로 이어질 수 있다. 운영에서는 필요한 최소 엔드포인트만 노출하고, 애플리케이션/네트워크/인증 계층에서 방어를 겹겹이 두는 것이 안전하다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-왜-actuator-노출이-위험한가">1. 왜 Actuator 노출이 위험한가</a></li>
+  <li><a href="#2-운영에서-최소-노출-원칙-적용하기">2. 운영에서 최소 노출 원칙 적용하기</a></li>
+  <li><a href="#3-권장-기본값-health만-공개">3. 권장 기본값: health만 공개</a></li>
+  <li><a href="#4-환경별로-노출-정책-분리하기">4. 환경별로 노출 정책 분리하기</a></li>
+  <li><a href="#5-보안-필터-체인으로-actuator-추가-보호">5. 보안 필터 체인으로 actuator 추가 보호</a></li>
+  <li><a href="#6-네트워크-레벨에서-한-번-더-제한">6. 네트워크 레벨에서 한 번 더 제한</a></li>
+  <li><a href="#7-흔한-오해와-점검-포인트">7. 흔한 오해와 점검 포인트</a></li>
+  <li><a href="#8-운영-적용-체크리스트">8. 운영 적용 체크리스트</a></li>
+  <li><a href="#마무리">마무리</a></li>
 </ul>
 
 <hr />
 
-<h2 id="css란">CSS란?</h2>
+<h2 id="들어가며">들어가며</h2>
+
+<p>Actuator를 붙이면 헬스체크, 메트릭, 스레드/힙 상태 같은 운영 정보를 빠르게 볼 수 있다.</p>
+
+<p>문제는 “편의성” 때문에 개발 환경 설정이 운영까지 흘러가는 순간이다.</p>
 
 <ul>
-  <li>CSS : Cascading Style Sheets</li>
-  <li>웹 페이지의 시각적 표현을 담당하는 스타일 언어
-    <ul>
-      <li>다양한 디바이스의 화면 크기에 대응하는 반응형 디자인 구현</li>
-      <li>내용과 디자인의 분리로 유지보수성 향상</li>
-    </ul>
-  </li>
-  <li>HTML VS CSS
-    <ul>
-      <li>HTML
-        <ul>
-          <li>웹페이지 구조와 콘텐츠 정의</li>
-        </ul>
-      </li>
-      <li>CSS
-        <ul>
-          <li>HTML 요소의 스타일과 레이아웃 지정</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li>개발 중에는 편한 설정: <code class="language-plaintext highlighter-rouge">management.endpoints.web.exposure.include=*</code></li>
+  <li>운영에서는 위험한 설정: 동일하게 외부 노출</li>
 </ul>
 
-<h2 id="css-문법-기초">CSS 문법 기초</h2>
+<p>운영 환경에서는 관측 가능성(Observability)과 보안(Security)을 같이 가져가야 한다. 핵심은 단순하다.</p>
 
 <ul>
-  <li>
-    <p>선택자 (Selector)</p>
-
-    <ul>
-      <li>스타일을 적용할 HTML 요소 지정</li>
-      <li>
-        <pre><code class="language-CSS">    /* 요소 선택자 */
-    p {
-    color: blue;
-    }
-
-    /* 클래스 선택자 */
-    .highlight {
-    background-color: yellow;
-    }
-
-    /* ID 선택자 */
-    #header {
-    font-size: 24px;
-    }
-
-    /* 전체 선택자 */
-    * {
-    margin: 0;
-    padding: 0;
-    }
-    /* 무조건 뒤에 오는게 이긴다. 뒤로 갈수록 덮어씌우는 개념 */
-    /* 아이디랑 클래스 중 아이디가 이김 */
-
-
-</code></pre>
-      </li>
-    </ul>
-  </li>
-  <li>속성 (Property)
-    <ul>
-      <li>변경하고자 하는 스타일의 종류</li>
-    </ul>
-  </li>
-  <li>값 (Value)
-    <ul>
-      <li>속성에 적용할 구체적인 스타일 값</li>
-    </ul>
-  </li>
-  <li>선언 (Declaration)
-    <ul>
-      <li>속성과 값의 쌍</li>
-    </ul>
-  </li>
-  <li>규칙 (Rule)
-    <ul>
-      <li>선택자와 선언 블록의 조합</li>
-    </ul>
-  </li>
+  <li>“필요한 것만 노출한다.”</li>
 </ul>
 
-<pre><code class="language-CSS">    선택자 {
-        속성: 값;
-        속성: 값;
-    }
+<hr />
 
-    /* 구체적인 예시 */
-    h1 {
-        color: blue;
-        font-size: 18px;
-    }
-</code></pre>
+<h2 id="1-왜-actuator-노출이-위험한가">1. 왜 Actuator 노출이 위험한가</h2>
 
-<h2 id="css-적용-방법">CSS 적용 방법</h2>
-
-<ol>
-  <li>인라인 스타일
-    <ul>
-      <li>HTML 요소 내부에 직접 스타일 적용</li>
-    </ul>
-  </li>
-  <li>내부 스타일시트
-    <ul>
-      <li>head 섹션 내 style 태그에 CSS 작성</li>
-    </ul>
-  </li>
-  <li>외부 스타일시트
-    <ul>
-      <li>별도의 .css파일에 스타일 정의</li>
-      <li>HTML 문서의 head 섹션에서 링크로 연결</li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="css-프로퍼티-값의-단위">CSS 프로퍼티 값의 단위</h2>
+<p>엔드포인트마다 리스크가 다르지만, 대체로 아래 문제가 발생한다.</p>
 
 <ul>
-  <li>크기 단위
-    <ul>
-      <li>px : 픽셀 단위, 절대값</li>
-      <li>% : 백분율 단위, 상대값</li>
-      <li>em : 요소에 지정된 사이즈에 상대적인 배수 단위</li>
-      <li>rem : 최상위 요소(html)의 사이즈 기준 배수 단위</li>
-      <li>Viewport 단위 : vh, vw, vmin, vmax</li>
-    </ul>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">/actuator/env</code>: 환경변수/설정 키 이름 노출</li>
+  <li><code class="language-plaintext highlighter-rouge">/actuator/beans</code>: 내부 빈 구조, 패키지/구성 정보 노출</li>
+  <li><code class="language-plaintext highlighter-rouge">/actuator/heapdump</code>: 메모리 스냅샷 기반 민감 데이터 노출 위험</li>
 </ul>
+
+<p>공격자 입장에서는 이 정보만으로도 시스템 구조를 빠르게 파악하고, 다음 공격 벡터를 찾기 쉬워진다.</p>
+
+<p>즉, Actuator 자체가 위험한 기능이라기보다, <strong>운영 노출 범위를 통제하지 않으면 정보 정찰에 유리한 표면을 제공</strong>하게 된다.</p>
+
+<hr />
+
+<h2 id="2-운영에서-최소-노출-원칙-적용하기">2. 운영에서 최소 노출 원칙 적용하기</h2>
+
+<p>보안에서 자주 쓰는 원칙이 있다.</p>
+
+<ul>
+  <li>최소 권한 원칙(Principle of Least Privilege)</li>
+</ul>
+
+<p>Actuator에도 똑같이 적용하면 된다.</p>
+
+<ul>
+  <li>“운영에서 외부에 꼭 필요한 엔드포인트만 노출”</li>
+  <li>“나머지는 비노출 + 내부망/인증 보호”</li>
+</ul>
+
+<p>이 원칙을 지키면, 장애 대응에 필요한 관측 정보는 유지하면서도 불필요한 공격 표면을 줄일 수 있다.</p>
+
+<hr />
+
+<h2 id="3-권장-기본값-health만-공개">3. 권장 기본값: health만 공개</h2>
+
+<p>외부 로드밸런서/오케스트레이터의 헬스체크 목적이라면, 보통 <code class="language-plaintext highlighter-rouge">health</code>만으로 충분하다.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">management</span><span class="pi">:</span>
+  <span class="na">endpoints</span><span class="pi">:</span>
+    <span class="na">web</span><span class="pi">:</span>
+      <span class="na">exposure</span><span class="pi">:</span>
+        <span class="na">include</span><span class="pi">:</span> <span class="s">health</span>
+  <span class="na">endpoint</span><span class="pi">:</span>
+    <span class="na">health</span><span class="pi">:</span>
+      <span class="na">show-details</span><span class="pi">:</span> <span class="s">never</span>
+</code></pre></div></div>
+
+<p>이 설정의 의미:</p>
+
+<ul>
+  <li>외부 HTTP로는 <code class="language-plaintext highlighter-rouge">health</code>만 노출</li>
+  <li>상세 상태(<code class="language-plaintext highlighter-rouge">db</code>, <code class="language-plaintext highlighter-rouge">diskSpace</code> 등)는 기본 비공개</li>
+</ul>
+
+<p>모니터링 시스템이 내부망에서만 접근한다면, 상세 정보는 내부 채널에서만 보이도록 분리하는 편이 안전하다.</p>
+
+<hr />
+
+<h2 id="4-환경별로-노출-정책-분리하기">4. 환경별로 노출 정책 분리하기</h2>
+
+<p>개발/운영의 요구는 다르므로, 프로파일 기준으로 설정을 분리한다.</p>
+
+<p>예시:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">application-dev.yml</code>: <code class="language-plaintext highlighter-rouge">include: "*"</code> (로컬/사내 개발망 한정)</li>
+  <li><code class="language-plaintext highlighter-rouge">application-prod.yml</code>: <code class="language-plaintext highlighter-rouge">include: health</code></li>
+</ul>
+
+<p>운영 사고는 “코드 버그”보다 “설정 실수”에서 많이 시작된다. 그래서 설정 분리는 선택이 아니라 필수에 가깝다.</p>
+
+<p>또한 CI/CD에서 운영 프로파일이 실제로 적용되는지(환경변수, 배포 매니페스트)까지 함께 검증해야 한다.</p>
+
+<hr />
+
+<h2 id="5-보안-필터-체인으로-actuator-추가-보호">5. 보안 필터 체인으로 actuator 추가 보호</h2>
+
+<p>Actuator 노출 엔드포인트가 적더라도, 인증/인가 레이어를 함께 두면 더 안전하다.</p>
+
+<p>예를 들어:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">/actuator/health</code>는 <code class="language-plaintext highlighter-rouge">permitAll</code> (외부 헬스체크 필요 시)</li>
+  <li>나머지 <code class="language-plaintext highlighter-rouge">/actuator/**</code>는 관리자 권한 또는 내부 인증 토큰 필요</li>
+</ul>
+
+<p>핵심은 “노출 제어 + 접근 제어”를 동시에 적용하는 것이다.</p>
+
+<ul>
+  <li>노출 제어: 어떤 엔드포인트를 웹에 공개할지</li>
+  <li>접근 제어: 공개된 엔드포인트를 누가 호출할 수 있는지</li>
+</ul>
+
+<hr />
+
+<h2 id="6-네트워크-레벨에서-한-번-더-제한">6. 네트워크 레벨에서 한 번 더 제한</h2>
+
+<p>애플리케이션 설정만 믿지 말고, 네트워크 계층에서 한 번 더 막는다.</p>
+
+<ul>
+  <li>보안 그룹/방화벽으로 Actuator 경로 접근 IP 제한</li>
+  <li>Ingress/Nginx에서 경로 기반 접근 제한</li>
+  <li>가능하면 내부 전용 포트/내부 서비스로만 분리</li>
+</ul>
+
+<p>보안은 단일 장치가 아니라 다층 방어(Defense in Depth)로 설계할수록 실패 확률이 낮아진다.</p>
+
+<hr />
+
+<h2 id="7-흔한-오해와-점검-포인트">7. 흔한 오해와 점검 포인트</h2>
+
+<h3 id="오해-1-내-서비스-url은-잘-안-알려졌으니-괜찮다">오해 1: “내 서비스 URL은 잘 안 알려졌으니 괜찮다”</h3>
+
+<p>공개 인터넷 환경에서는 스캐닝이 상시 발생한다. “발견되지 않음”은 보안 전략이 아니다.</p>
+
+<h3 id="오해-2-민감-값은-마스킹되니까-env-열어도-된다">오해 2: “민감 값은 마스킹되니까 env 열어도 된다”</h3>
+
+<p>일부 값이 마스킹되어도 키 이름, 구성 구조, 힌트 정보가 공격에 유의미할 수 있다.</p>
+
+<h3 id="오해-3-운영도-개발처럼-로-열어두고-나중에-닫자">오해 3: “운영도 개발처럼 *로 열어두고 나중에 닫자”</h3>
+
+<p>나중은 대개 오지 않는다. 기본값을 안전하게 두고, 필요한 것만 예외적으로 여는 쪽이 맞다.</p>
+
+<hr />
+
+<h2 id="8-운영-적용-체크리스트">8. 운영 적용 체크리스트</h2>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />운영 프로파일에서 <code class="language-plaintext highlighter-rouge">management.endpoints.web.exposure.include</code>를 최소화했는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />외부 공개가 꼭 필요한 엔드포인트만 남겼는가 (<code class="language-plaintext highlighter-rouge">health</code> 등)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><code class="language-plaintext highlighter-rouge">/actuator/**</code> 접근을 인증/인가 규칙으로 분리했는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Ingress/방화벽에서 경로 또는 소스 IP 제한을 추가했는가</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />배포 후 실제 운영 URL에서 노출 상태를 점검했는가</li>
+</ul>
+
+<p>체크리스트를 배포 파이프라인의 릴리즈 점검 항목으로 넣으면, 설정 회귀를 줄이는 데 도움이 된다.</p>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p>Actuator는 운영 가시성을 크게 올려주는 도구다. 다만 운영 공개 범위를 통제하지 않으면, 관측 도구가 공격 표면으로 바뀔 수 있다.</p>
+
+<p>정리하면 아래 한 줄로 충분하다.</p>
+
+<ul>
+  <li>운영에서는 <code class="language-plaintext highlighter-rouge">health</code> 중심 최소 노출 + 인증/인가 + 네트워크 제한을 함께 적용한다.</li>
+</ul>
+
+<p>처음부터 안전한 기본값을 만들면, 이후 운영 자동화와 온콜 대응도 훨씬 편해진다.</p>
 
   
 </article>
@@ -672,7 +714,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2026-06-02-spring-boot-actuator-exposure-control/" class="flip-title"><span>[TIL] Spring Boot Actuator - 운영 노출 범위 제어</span></a>  <time class="faded fine" datetime="2026-06-02T00:00:00+00:00">02 Jun 2026</time></li>                        <li class="h4">  <a href="/til/2026-05-04-til/" class="flip-title"><span>[TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법</span></a>  <time class="faded fine" datetime="2026-05-04T00:00:00+00:00">04 May 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-04-28-diary/" class="flip-title"><span>[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계</span></a>  <time class="faded fine" datetime="2026-04-28T00:00:00+00:00">28 Apr 2026</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2026-05-04-til/" class="flip-title"><span>[TIL] null과 0은 다르다 — API에서 “데이터 없음”과 “값이 0”을 구분하는 법</span></a>  <time class="faded fine" datetime="2026-05-04T00:00:00+00:00">04 May 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-04-28-diary/" class="flip-title"><span>[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계</span></a>  <time class="faded fine" datetime="2026-04-28T00:00:00+00:00">28 Apr 2026</time></li>                        <li class="h4">  <a href="/projectdiary/2026-04-16-diary/" class="flip-title"><span>[친구하자] JPA @Modifying(clearAutomatically = true)의 함정</span></a>  <time class="faded fine" datetime="2026-04-16T00:00:00+00:00">16 Apr 2026</time></li>            </ul></aside>
 
   
 

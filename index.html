@@ -44,7 +44,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-05-04T08:21:52+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-05T05:03:20+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -184,7 +184,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-05-04T08:22:37+00:00',
+    INDEX_KEY: 'index--2026-06-05T05:04:09+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -467,7 +467,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          TIL (70)
+          TIL (71)
         </a>
       </li>
     
@@ -545,6 +545,70 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
   
+
+  
+
+
+
+
+
+<article id="post-til-spring-boot-actuator-exposure-control" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/til/2026-06-02-spring-boot-actuator-exposure-control/" class="flip-title">
+        [TIL] Spring Boot Actuator - 운영 노출 범위 제어
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-06-02T00:00:00+00:00">02 Jun 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Spring boot</span>, <span>Actuator</span>, <span>Security</span>, <span>운영</span>, <span>Least privilege</span>
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Spring Boot Actuator 엔드포인트를 운영 환경에 그대로 노출할 때 발생하는 보안 위험과, health 중심 최소 노출 원칙, 환경별 분리 설정, 네트워크/시큐리티 방어층까지 한 번에 정리한 글이다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>Spring Boot Actuator는 운영 관측에 매우 유용하지만, <code class="language-plaintext highlighter-rouge">/actuator/env</code>, <code class="language-plaintext highlighter-rouge">/actuator/heapdump</code>, <code class="language-plaintext highlighter-rouge">/actuator/beans</code> 같은 엔드포인트를 외부에 열어두면 민감 정보 유출로 이어질 수 있다. 운영에서는 필요한 최소 엔드포인트만 노출하고, 애플리케이션/네트워크/인증 계층에서 방어를 겹겹이 두는 것이 안전하다.</p>
+</blockquote>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/til/2026-06-02-spring-boot-actuator-exposure-control/">[TIL] Spring Boot Actuator - 운영 노출 범위 제어</a>
+
+      </p>
+    </footer>
+  
+</article>
+
 
   
 
@@ -637,10 +701,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 04 May 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 05 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-05-04T08:21:52+00:00">2026-05-04</time>
+              <time datetime="2026-06-05T05:03:20+00:00">2026-06-05</time>
             </span>
           
         
@@ -709,10 +773,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 04 May 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 05 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-05-04T08:21:52+00:00">2026-05-04</time>
+              <time datetime="2026-06-05T05:03:20+00:00">2026-06-05</time>
             </span>
           
         
@@ -781,10 +845,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 04 May 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 05 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-05-04T08:21:52+00:00">2026-05-04</time>
+              <time datetime="2026-06-05T05:03:20+00:00">2026-06-05</time>
             </span>
           
         
@@ -1048,10 +1112,10 @@ DB 트랜잭션과 외부 시스템(Redis)이 함께 움직일 때, “원자성
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 04 May 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 05 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-05-04T08:21:52+00:00">2026-05-04</time>
+              <time datetime="2026-06-05T05:03:20+00:00">2026-06-05</time>
             </span>
           
         
@@ -1151,71 +1215,6 @@ DB 트랜잭션과 외부 시스템(Redis)이 함께 움직일 때, “원자성
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/til/2026-03-07-til/">[TIL] 멀티스레드 Race Condition과 AtomicBoolean (volatile의 한계)</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-til-til" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/til/2026-03-06-til/" class="flip-title">
-        [TIL] ArrayDeque vs ArrayBlockingQueue — 코드리뷰로 배우는 Java Queue 정리
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2026-03-06T00:00:00+00:00">06 Mar 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Java</span>, <span>Queue</span>, <span>Arraydeque</span>, <span>Arrayblockingqueue</span>, <span>Reactor</span>
-      </span>
-      
-        
-          
-          
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      ArrayDeque와 ArrayBlockingQueue의 차이, 코드리뷰에서 발견한 OOM 위험, 그리고 Reactor Sinks 버퍼로 ArrayBlockingQueue를 선택한 이유를 정리했습니다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-“OOM 방지”라고 주석을 달았는데, 실제로는 OOM이 날 수 있는 코드가 되어 있었습니다. 코드리뷰 한 줄이 Java Queue의 핵심 차이를 알려 준 경험을 정리합니다.</p>
-</blockquote>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/til/2026-03-06-til/">[TIL] ArrayDeque vs ArrayBlockingQueue — 코드리뷰로 배우는 Java Queue 정리</a>
 
       </p>
     </footer>
