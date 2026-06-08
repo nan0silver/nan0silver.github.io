@@ -94,6 +94,8 @@ menu:
     url: /algorithm/
   - title: AI (2)
     url: /ai/
+  - title: Research (1)
+    url: /research/
   # 기타
   - title: 기타 (4)
     url: /miscellaneous/
@@ -214,6 +216,11 @@ defaults:
         type: WebPage
   - scope:
       type: til
+    values:
+      seo:
+        type: WebPage
+  - scope:
+      type: research
     values:
       seo:
         type: WebPage
@@ -388,6 +395,10 @@ collections:
   til:
     output: true
     permalink: /til/:path/
+
+  research:
+    output: true
+    permalink: /research/:path/
 
 # File inclusion/exclusion
 # ----------------------------------------------------------------------------------------
