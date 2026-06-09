@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /spring/2025-03-06-boiler-plate/
 layout: post
 title: Boiler Plate
 description: >

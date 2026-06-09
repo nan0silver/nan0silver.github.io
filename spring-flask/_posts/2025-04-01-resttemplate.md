@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /spring/2025-04-01-resttemplate/
 layout: post
 title: HttpURLConnection, RestTemplate, WebClient
 description: >

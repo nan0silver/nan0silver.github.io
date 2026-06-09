@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /spring/2025-03-17-layered-architecture/
 layout: post
 title: Layered Architecture & MVC pattern
 description: >

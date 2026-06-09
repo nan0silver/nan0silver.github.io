@@ -1,6 +1,7 @@
 ---
+redirect_from:
+  - /spring/2025-04-30-dto-division/
 layout: post
-collection: spring
 title: DTO를 나누는 기준
 description: >
   DTO를 나누는 기준에 대해 알아보자.

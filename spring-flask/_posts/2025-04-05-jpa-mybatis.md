@@ -1,6 +1,7 @@
 ---
+redirect_from:
+  - /spring/2025-04-05-jpa-mybatis/
 layout: post
-collection: spring
 title: JPA vs MyBatis
 description: >
   JPA vs MyBatis에 대 알아보자.

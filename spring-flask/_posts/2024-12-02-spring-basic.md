@@ -1,6 +1,7 @@
 ---
+redirect_from:
+  - /spring/2024-12-02-spring-basic/
 layout: post
-collection: miscellaneous
 title: 스프링 콘셉트
 description: >
   스프링 프레임워크의 주요 개념(IoC, DI, Bean, AOP, PSA)을 간략히 설명한 포스트입니다.

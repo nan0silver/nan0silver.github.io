@@ -1,6 +1,7 @@
 ---
+redirect_from:
+  - /flask/2025-07-20-flask-fastAPI/
 layout: post
-collection: miscellaneous
 description: >
   2025-07-20 FastAPI vs Flask
 categories: ["til"]

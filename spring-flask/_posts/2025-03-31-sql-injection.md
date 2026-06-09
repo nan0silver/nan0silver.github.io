@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /spring/2025-03-31-sql-injection/
 layout: post
 title: SQL Injection
 description: >

@@ -1,6 +1,7 @@
 ---
+redirect_from:
+  - /spring/2025-04-09-non-blocking/
 layout: post
-collection: spring
 title: 논블로킹 vs 비동기
 description: >
   논블로킹과 비동기에 대해 알아보자.

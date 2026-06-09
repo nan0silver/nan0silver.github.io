@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /spring/2026-02-23-filter-interceptor-aop/
 layout: post
 title: Filter vs Interceptor vs AOP - Spring 요청 처리 흐름 정리
 description: >

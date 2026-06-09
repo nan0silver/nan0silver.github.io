@@ -1,6 +1,7 @@
 ---
+redirect_from:
+  - /spring/2025-04-17-query-method/
 layout: post
-collection: spring
 title: JPA Query Method
 description: >
   JPA의 Query Method에 대해 알아보자.

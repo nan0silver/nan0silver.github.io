@@ -1,6 +1,7 @@
 ---
+redirect_from:
+  - /spring/2025-04-09-thymeleaf/
 layout: post
-collection: spring
 title: Thymeleaf
 description: >
   서버 사이드 템플릿 엔진인 Thymeleaf에 대해 알아보자.

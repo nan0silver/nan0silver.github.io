@@ -74,13 +74,11 @@ menu:
   # About
   - title: About
     url: /about/
-  # 백엔드 (Java, Spring, Flask)
+  # 백엔드 (Java, Spring & Flask)
   - title: Java (17)
     url: /java/
-  - title: Spring (17)
-    url: /spring/
-  - title: Flask (3)
-    url: /flask/
+  - title: Spring & Flask (20)
+    url: /spring-flask/
   # 프론트
   - title: Frontend (9)
     url: /javascript/

@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /flask/2023-04-18-about-flask/
 layout: post
 title: flutter 03 - flutter 통신
 description: >

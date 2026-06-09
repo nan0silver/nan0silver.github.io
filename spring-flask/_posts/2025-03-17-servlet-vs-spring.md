@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /spring/2025-03-17-servlet-vs-spring/
 layout: post
 title: Spring VS Servlet
 description: >
