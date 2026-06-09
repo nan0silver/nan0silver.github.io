@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교 | NAHYUN BLOG</title>
+<title>[Spring] DTO vs VO vs Entity | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교" />
+<meta property="og:title" content="[Spring] DTO vs VO vs Entity" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="2025-07-20 FastAPI vs Flask" />
-<meta property="og:description" content="2025-07-20 FastAPI vs Flask" />
-<link rel="canonical" href="https://nan0silver.github.io/flask/til/2025-07-20-flask-fastAPI/" />
-<meta property="og:url" content="https://nan0silver.github.io/flask/til/2025-07-20-flask-fastAPI/" />
+<meta name="description" content="Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자." />
+<meta property="og:description" content="Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자." />
+<link rel="canonical" href="https://nan0silver.github.io/spring-flask/2025-04-02-dto-vo/" />
+<meta property="og:url" content="https://nan0silver.github.io/spring-flask/2025-04-02-dto-vo/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-07-20T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-04-02T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교" />
+<meta property="twitter:title" content="[Spring] DTO vs VO vs Entity" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2025-07-23T16:30:00+00:00","datePublished":"2025-07-20T00:00:00+00:00","description":"2025-07-20 FastAPI vs Flask","headline":"[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/flask/til/2025-07-20-flask-fastAPI/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/flask/til/2025-07-20-flask-fastAPI/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-09T02:43:04+00:00","datePublished":"2025-04-02T00:00:00+00:00","description":"Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.","headline":"[Spring] DTO vs VO vs Entity","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/spring-flask/2025-04-02-dto-vo/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/spring-flask/2025-04-02-dto-vo/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/flask/til/2025-07-20-flask-fastAPI/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/spring-flask/2025-04-02-dto-vo/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -186,7 +186,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-06-08T07:49:12+00:00',
+    INDEX_KEY: 'index--2026-06-09T02:59:04+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교",
-    "description": "2025-07-20 FastAPI vs Flask
+    "headline": "[Spring] DTO vs VO vs Entity",
+    "description": "Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-07-20T00:00:00+00:00",
-    "dateModified": "2025-07-23T16:30:00+00:00",
+    "datePublished": "2025-04-02T00:00:00+00:00",
+    "dateModified": "2026-06-09T02:43:04+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/flask/til/2025-07-20-flask-fastAPI/"
+      "@id": "https://nan0silver.github.io/spring-flask/2025-04-02-dto-vo/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/flask/til/2025-07-20-flask-fastAPI/" />
+<link rel="canonical" href="https://nan0silver.github.io/spring-flask/2025-04-02-dto-vo/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "flask",
-        "item": "https://nan0silver.github.io/flask/"
+        "name": "spring-flask",
+        "item": "https://nan0silver.github.io/spring-flask/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교",
-        "item": "https://nan0silver.github.io/flask/til/2025-07-20-flask-fastAPI/"
+        "name": "[Spring] DTO vs VO vs Entity",
+        "item": "https://nan0silver.github.io/spring-flask/2025-04-02-dto-vo/"
       }
     ]
   }
@@ -358,23 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/flask/">flask</a>
+          <a href="/spring-flask/">spring-flask</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          
-          
-          <a href="/flask/til/">til</a>
-        
-      </li>
-    
-      <li>
-        
-          <span>/</span>
-          <span>2025-07-20-flask-fastAPI</span>
+          <span>2025-04-02-dto-vo</span>
         
       </li>
     
@@ -391,18 +382,18 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-flask-til-flask-fastAPI" class="page post mb6" role="article">
+<article id="post-spring-flask-dto-vo" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [Etc] FastAPI vs Flask: Python 백엔드 프레임워크 비교
+        [Spring] DTO vs VO vs Entity
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-07-20T00:00:00+00:00">20 Jul 2025</time> in <a href="/flask/" class="flip-title">FLASK</a> / <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Fastapi</span>, <span>Flask</span>, <span>Backend</span>
+        <time datetime="2025-04-02T00:00:00+00:00">02 Apr 2025</time> in <a href="/spring-flask/" class="flip-title">Spring & Flask</a> 
       </span>
       
         
@@ -411,10 +402,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 23 Jul 2025">
+            <span class="ellipsis" data-tippy-content="Last modified at: 09 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2025-07-23T16:30:00+00:00">2025-07-23</time>
+              <time datetime="2026-06-09T02:43:04+00:00">2026-06-09</time>
             </span>
           
         
@@ -430,7 +421,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      2025-07-20 FastAPI vs Flask
+      Spring에서 데이터를 다루는 객체인 DTO, VO, Entity의 차이점에 대해 알아보자.
 
     </p>
   
@@ -440,172 +431,332 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <ul>
-  <li><a href="#-새롭게-배운-것">새롭게 배운 것</a></li>
-  <li><a href="#-오늘의-문제-상황--해결-과정">오늘의 문제 상황 &amp; 해결 과정</a></li>
-  <li><a href="#-pydantic이란">Pydantic이란?</a></li>
-  <li><a href="#-spring-boot-dto와-pydantic의-비교">Spring Boot DTO와 Pydantic의 비교</a></li>
-  <li><a href="#-느낀-점">느낀 점</a></li>
+  <li><a href="#dto-vs-vo-vs-entity">DTO vs VO vs Entity</a></li>
+  <li><a href="#-dto-vs-vo">📦 DTO vs VO</a></li>
+  <li><a href="#-entity-vs-vo">📦 Entity vs VO</a></li>
+  <li><a href="#-entity와-dto로-분리해야하는-이유">📦 Entity와 DTO로 분리해야하는 이유</a></li>
+  <li><a href="#코드-예제">코드 예제</a></li>
+  <li><a href="#-면접-시-설명-예시">💬 면접 시 설명 예시</a></li>
+  <li><a href="#-java-17부터는-record로-vo를-만들기-더-쉬워짐">🚀 Java 17부터는 <code class="language-plaintext highlighter-rouge">record</code>로 VO를 만들기 더 쉬워짐!</a></li>
 </ul>
 
 <hr />
 
-<h2 id="-새롭게-배운-것">🍀 새롭게 배운 것</h2>
-
-<ul>
-  <li>Python 백엔드 프레임워크인 <strong>FastAPI</strong>와 <strong>Flask</strong>를 비교해보았다.</li>
-  <li>두 프레임워크 모두 경량 웹 서버를 빠르게 개발할 수 있도록 도와주지만, 철학과 기능 면에서 차이가 존재한다.</li>
-  <li>주요 비교 항목: 비동기 처리, 타입 힌트 지원, 성능, 문서 자동화, 커뮤니티 및 생태계 등</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th><strong>FastAPI</strong></th>
-      <th><strong>Flask</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>출시 연도</strong></td>
-      <td>2018</td>
-      <td>2010</td>
-    </tr>
-    <tr>
-      <td><strong>비동기 지원</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">async/await</code> 기반 비동기 처리 완전 지원</td>
-      <td>기본은 동기, 비동기 처리는 별도 패키지 필요</td>
-    </tr>
-    <tr>
-      <td><strong>타입 힌트</strong></td>
-      <td>필수적으로 사용하며, 자동 문서화 및 검증에 활용</td>
-      <td>선택적 사용, 검증은 외부 라이브러리 의존</td>
-    </tr>
-    <tr>
-      <td><strong>문서 자동화</strong></td>
-      <td>Swagger UI 및 Redoc 자동 생성</td>
-      <td>기본 제공 없음 (Flasgger 등으로 보완)</td>
-    </tr>
-    <tr>
-      <td><strong>성능</strong></td>
-      <td>매우 빠름 (Starlette 기반, Uvicorn 활용)</td>
-      <td>상대적으로 느림</td>
-    </tr>
-    <tr>
-      <td><strong>러닝 커브</strong></td>
-      <td>초기 진입 장벽이 다소 높음 (타입, Pydantic 등)</td>
-      <td>매우 쉬운 진입, 학습 곡선 완만</td>
-    </tr>
-    <tr>
-      <td><strong>커뮤니티</strong></td>
-      <td>빠르게 성장 중</td>
-      <td>매우 크고 안정적인 생태계</td>
-    </tr>
-    <tr>
-      <td><strong>데이터 검증</strong></td>
-      <td>Pydantic 기반의 자동 검증</td>
-      <td>별도 유효성 검사 코드 필요</td>
-    </tr>
-    <tr>
-      <td><strong>REST API 개발</strong></td>
-      <td>RESTful 설계에 최적화</td>
-      <td>자유도가 높음, 규칙이 느슨함</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-오늘의-문제-상황--해결-과정">🍎 오늘의 문제 상황 &amp; 해결 과정</h2>
-
-<ul>
-  <li>지금까지는 Flask의 간결함과 진입 장벽이 낮은 점이 마음에 들어 주로 Flask를 사용해왔다.</li>
-  <li>하지만 이번에는 FastAPI를 직접 적용해보고 싶어 새 프로젝트에 도입해보았다.</li>
-  <li>특히 <code class="language-plaintext highlighter-rouge">Pydantic</code> 모델이 처음엔 어렵게 느껴질까 걱정했지만, 막상 사용해보니 <strong>Spring Boot의 DTO와 매우 유사한 느낌</strong>이 들어 빠르게 익숙해졌다.</li>
-  <li>타입 기반 구조와 자동 검증, 문서화 덕분에 프로젝트가 자연스럽게 구조화되고 개발 속도도 빨랐다.</li>
-</ul>
-
-<hr />
-
-<h2 id="-pydantic이란">📌 Pydantic이란?</h2>
-
-<ul>
-  <li><strong>Pydantic</strong>은 FastAPI에서 입력/출력 데이터의 구조를 정의하고, 유효성을 검사하며, JSON 직렬화를 자동으로 처리하는 핵심 컴포넌트다.</li>
-  <li>Python의 <strong>타입 힌트(type hint)</strong>를 기반으로 동작하며, <code class="language-plaintext highlighter-rouge">BaseModel</code>을 상속하여 필드와 제약 조건을 선언할 수 있다.</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
-
-<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
-</code></pre></div></div>
-
-<ul>
-  <li>위와 같이 작성하면, FastAPI는 요청 데이터가 이 조건을 만족하는지 자동으로 검증하고, Swagger 문서까지 자동 생성해준다.</li>
-</ul>
-
-<hr />
-
-<h2 id="-spring-boot-dto와-pydantic의-비교">🔍 Spring Boot DTO와 Pydantic의 비교</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>Spring Boot DTO</th>
-      <th>FastAPI Pydantic Model</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>역할</strong></td>
-      <td>요청/응답 객체 정의 + 유효성 검사</td>
-      <td>요청/응답 객체 정의 + 유효성 검사</td>
-    </tr>
-    <tr>
-      <td><strong>유효성 검사 도구</strong></td>
-      <td>JSR 380 (e.g., <code class="language-plaintext highlighter-rouge">@NotNull</code>, <code class="language-plaintext highlighter-rouge">@Size</code>)</td>
-      <td>Pydantic (<code class="language-plaintext highlighter-rouge">Field</code>, <code class="language-plaintext highlighter-rouge">validator</code>)</td>
-    </tr>
-    <tr>
-      <td><strong>직렬화/역직렬화</strong></td>
-      <td>Jackson 사용</td>
-      <td>내장 기능으로 자동 처리</td>
-    </tr>
-    <tr>
-      <td><strong>중첩 구조 지원</strong></td>
-      <td>중첩 DTO 클래스</td>
-      <td>중첩 <code class="language-plaintext highlighter-rouge">BaseModel</code>을 통한 자연스러운 처리</td>
-    </tr>
-    <tr>
-      <td><strong>문서화 연동</strong></td>
-      <td>Swagger/OpenAPI 설정 필요</td>
-      <td>FastAPI에 자동 내장</td>
-    </tr>
-    <tr>
-      <td><strong>확장성</strong></td>
-      <td>Bean Validation 위주</td>
-      <td>타입 변환, 커스텀 직렬화 등 더 다양한 기능 내장</td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="dto-vs-vo-vs-entity">DTO vs VO vs Entity</h2>
 
 <blockquote>
-  <p>결론적으로 <strong>Pydantic은 Spring의 DTO와 유사한 사용 경험을 제공하면서도</strong>, 그 이상의 기능(데이터 직렬화, 문서화, 타입 변환 등)을 하나의 모델에서 처리할 수 있다는 점에서 <strong>DTO + Validator + Mapper + Serializer의 통합체</strong>로 볼 수 있다.</p>
+  <p>Entity는 DB와 매핑되는 핵심 객체, DTO는 데이터 전달용 객체, VO는 값 자체에 의미가 있는 불변 객체
+Entity는 저장용, DTO는 전달용, VO는 표현용 객체</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>DTO : Data Transfer Object ➡️ 데이터 전달용 객체 (계층 간, 네트워크 등)</p>
+
+    <ul>
+      <li>🚐 손님에게 배달될 포장된 도시락
+        <ul>
+          <li>음식점 → 배달기사 → 고객까지 전달하는 용도
+            <ul>
+              <li>💡 클라이언트와 데이터 주고받는 운반용 객체! 💡</li>
+            </ul>
+          </li>
+          <li>메뉴명, 수량, 요청사항 등 담겨 있고, 전달 중에 수정될 수도 있음 (상황에 따라 포장을 다르게 담을 수 있다.)</li>
+        </ul>
+      </li>
+      <li>외부에 노출되는 API요청이나 응답은 Entity가 아닌 DTO를 통해 전달함으로써 보안성과 유연성을 확보</li>
+    </ul>
+
+    <blockquote>
+      <p>🔴 DTO는 데이터를 <strong>“옮기는 상자”</strong></p>
+    </blockquote>
+  </li>
+  <li>
+    <p>VO : Value Object ➡️ 값을 표현하는 객체 (의미 있는 불변 값)</p>
+
+    <ul>
+      <li>🍱 도시락 자체
+        <ul>
+          <li>만들어지면 바꿀 수 없음 (불변)</li>
+          <li>메뉴가 같으면 같은 도시락 취급</li>
+          <li>값 자체가 의미 있음 - 예: 좌표, 돈, 날짜, 주소 등</li>
+        </ul>
+      </li>
+    </ul>
+
+    <blockquote>
+      <p>🔴 VO는 의미 있는 값을 담은 <strong>“정체성 있는 객체”</strong></p>
+
+      <blockquote>
+        <p>“무엇을 나타내는 값인지”가 중요한 객체</p>
+      </blockquote>
+    </blockquote>
+  </li>
+  <li>
+    <p>Entity ➡️ 실제 DB 테이블과 연결된 핵심 객체</p>
+
+    <ul>
+      <li>🍱 도시락 안의 구성 요소 (밥, 반찬, 소스 등)
+        <ul>
+          <li>소중하기 때문에 주방 안에서만 써야 함</li>
+        </ul>
+      </li>
+      <li>Entity는 VO를 포함할 수 있음</li>
+      <li>DB와 직접 연결된 객체이기 때문에 식별자가 존재하며 상태가 바뀔 수 있음</li>
+    </ul>
+
+    <blockquote>
+      <p>🔴 Entity는 “누구인지”를 <strong>식별할 수 있는 객체</strong></p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/nan0silver/nan0silver.github.io/7ddb58f4af0e22814e7e85a4f7111495d9cd25eb/assets/img/blog/2025-04-02-dto-vo.png" alter="DTOvsVOvsEntity" /></p>
+
+<h2 id="-dto-vs-vo">📦 DTO vs VO</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>DTO</th>
+      <th>VO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>목적</td>
+      <td><strong>데이터 전달</strong></td>
+      <td><strong>값 표현</strong></td>
+    </tr>
+    <tr>
+      <td>가변성</td>
+      <td><strong>가변(mutable)</strong></td>
+      <td><strong>불변(immutable)</strong></td>
+    </tr>
+    <tr>
+      <td>equals/hashCode 기준</td>
+      <td>주소 (기본)</td>
+      <td><strong>값 기준으로 재정의</strong></td>
+    </tr>
+    <tr>
+      <td>주 사용 위치</td>
+      <td>Controller ↔ Service ↔ API</td>
+      <td>도메인 내부, 로직 내 값 처리</td>
+    </tr>
+    <tr>
+      <td>예시</td>
+      <td>회원 요청 객체, 응답 DTO 등</td>
+      <td>Money, Address, Coordinate 등</td>
+    </tr>
+    <tr>
+      <td>생성 시</td>
+      <td>언제든 생성 가능</td>
+      <td>생성 후에는 값 변경 ❌</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-entity-vs-vo">📦 Entity vs VO</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Entity</th>
+      <th>VO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>의미</td>
+      <td><strong>DB 테이블과 1:1 매핑되는 객체</strong></td>
+      <td><strong>의미 있는 작은 값 단위 객체</strong></td>
+    </tr>
+    <tr>
+      <td>식별자 (ID)</td>
+      <td><strong>있음 (PK, 고유값)</strong></td>
+      <td><strong>없음 (값 자체로 구별)</strong></td>
+    </tr>
+    <tr>
+      <td>불변성</td>
+      <td>보통 가변</td>
+      <td><strong>보통 불변 (<code class="language-plaintext highlighter-rouge">final</code>)</strong></td>
+    </tr>
+    <tr>
+      <td>관리 위치</td>
+      <td>DB와 연결되는 핵심 모델</td>
+      <td>Entity 안의 필드나 계산용 값</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-entity와-dto로-분리해야하는-이유">📦 Entity와 DTO로 분리해야하는 이유</h2>
+
+<blockquote>
+  <p>굳이 클래스를 2개로 나누지 않고 그냥 Entity 하나로 다 처리하면 안 되는 이유!</p>
+</blockquote>
+
+<ul>
+  <li>구체적인 이유 5가지
+    <ol>
+      <li>보안
+        <ul>
+          <li>Entity에는 민감한 필드(비밀번호 등)가 있을 수 있음 ➡️ 그대로 외부에 노출하면 위험</li>
+        </ul>
+      </li>
+      <li>유연성
+        <ul>
+          <li>API 요청/응답마다 필요한 필드가 다름 ➡️ DTO로 맞춤 설계 가능</li>
+        </ul>
+      </li>
+      <li>엔티티 보호
+        <ul>
+          <li>DTO로 외부와 통신 ➡️ Entity는 내부에서만 안전하게 관리</li>
+        </ul>
+      </li>
+      <li>유효성 검사 분리
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">@Valid</code>, <code class="language-plaintext highlighter-rouge">@NotNull</code>등 검증 로직은 DTO에만 적용
+            <blockquote>
+              <p>Entity는 DB와 연결된 순수한 모델이여야 함으로 비즈니스 룰, 요청 유효성 검증 같은 책임이 없어야 한다.</p>
+
+              <blockquote>
+                <p>JPA의 역할은 저장, 조회인데 검증 로직이 섞이면 책임이 뒤엉킴 (SRP(Single Responsibility Principle) 위반)</p>
+              </blockquote>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+      <li>레이어 분리 원칙
+        <ul>
+          <li>Controller ↔ Service ↔ Repository 역할 구분이 명확해짐
+            <blockquote>
+              <p>“Controller” : 클라이언트와 통신 (DTO 입출력)
+“Service” : 비즈니스 로직 (DTO 🔁 Entity 변환, 로직 처리)
+“Repository” : DB 접근 (Entity 전용)</p>
+
+              <blockquote>
+                <p>DTO와 Entity를 나누지 않고 Controller, Service에서 Entity를 직접 다루면</p>
+
+                <ul>
+                  <li>한 객체가 너무 많은 계층을 넘나듬 (의존성 얽힘)</li>
+                  <li>책임이 명확하지 않음 (수정 시 어디를 고쳐야 할지 모름)</li>
+                  <li>보안 이슈 발생 가능 (불필요한 필드 노출)</li>
+                </ul>
+              </blockquote>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="코드-예제">코드 예제</h2>
+
+<h3 id="-dto-값-전달용-가변-객체">✅ DTO (값 전달용, 가변 객체)</h3>
+
+<ul>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemberDTO</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+      <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+      <span class="c1">// 생성자</span>
+      <span class="kd">public</span> <span class="nf">MemberDTO</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+      <span class="o">}</span>
+
+      <span class="c1">// getter &amp; setter (값 변경 가능!)</span>
+      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">name</span><span class="o">;</span> <span class="o">}</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span> <span class="o">}</span>
+
+      <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">age</span><span class="o">;</span> <span class="o">}</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span> <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>setName(), setAge()처럼 값은 변경 가능</li>
+  <li>주로 Controller 🔁 Service 🔁 Client 간 데이터 전달용</li>
+</ul>
+
+<h3 id="-vo-값-표현용-불변-객체">✅ VO (값 표현용, 불변 객체)</h3>
+
+<ul>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Money</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">amount</span><span class="o">;</span>
+
+      <span class="kd">public</span> <span class="nf">Money</span><span class="o">(</span><span class="kt">int</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">amount</span> <span class="o">=</span> <span class="n">amount</span><span class="o">;</span>
+      <span class="o">}</span>
+
+      <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAmount</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">amount</span><span class="o">;</span> <span class="o">}</span>
+
+      <span class="c1">// 값 기반 equals, hashCode</span>
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">o</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+          <span class="k">if</span> <span class="o">(!(</span><span class="n">o</span> <span class="k">instanceof</span> <span class="nc">Money</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+          <span class="nc">Money</span> <span class="n">money</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Money</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span>
+          <span class="k">return</span> <span class="n">amount</span> <span class="o">==</span> <span class="n">money</span><span class="o">.</span><span class="na">amount</span><span class="o">;</span>
+      <span class="o">}</span>
+
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">hashCode</span><span class="o">(</span><span class="n">amount</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>필드가 <code class="language-plaintext highlighter-rouge">final</code>, setter없음 → 불변 객체</li>
+  <li>equals() 재정의 → 값이 같으면 같은 객체로 간주</li>
+  <li>주로 비즈니스 로직 내부에서 의미 있는 값 표현용</li>
+</ul>
+
+<h3 id="-entity">✅ Entity</h3>
+
+<ul>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+    <span class="nd">@Id</span> <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>  <span class="c1">// 노출되면 안 되는 정보</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="-면접-시-설명-예시">💬 면접 시 설명 예시</h2>
+
+<blockquote>
+  <p>“DTO는 계층 간 데이터를 전달할 때 사용하는 객체로, 보통 가변이고 네트워크나 컨트롤러에 노출됩니다. 반면 VO는 불변 객체로, 값 자체가 의미를 가지며 equals와 hashCode를 통해 같은 값을 같다고 간주해 도메인 모델 내에서 활용됩니다. Entity는 DB와 직접 연결된 객체로 식별자가 존재하며 상태가 바뀔 수 있습니다. 외부에 노출되는 API 요청이나 응답은 Entity가 아닌 DTO를 통해 전달함으로써 보안성과 유연성을 확보할 수 있습니다.”</p>
 </blockquote>
 
 <hr />
 
-<h2 id="-느낀-점">🦄 느낀 점</h2>
+<h2 id="-java-17부터는-record로-vo를-만들기-더-쉬워짐">🚀 Java 17부터는 <code class="language-plaintext highlighter-rouge">record</code>로 VO를 만들기 더 쉬워짐!</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">record</span> <span class="nf">Coordinate</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
 
 <ul>
-  <li>Flask는 여전히 빠른 개발과 간단한 구조를 원할 때 유용한 선택지다.</li>
-  <li>반면 FastAPI는 프로젝트 구조를 더 명확히 하고, 자동화된 유효성 검사 및 문서화 기능까지 갖추고 있어 <strong>중·대형 규모 프로젝트나 협업 시에 훨씬 효율적</strong>이라는 점을 느꼈다.</li>
-  <li>개인적으로는 Pydantic이 예상보다 익숙했고, Spring Boot의 DTO를 써본 경험이 FastAPI 적응에 큰 도움이 되었다.</li>
-  <li>앞으로는 프로젝트의 성격에 따라 Flask와 FastAPI를 유연하게 선택하며, 각 도구의 장점을 상황에 맞게 활용할 계획이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">final</code>, 불변성, equals/hashCode 자동 구현!</li>
+  <li><strong>값 객체(VO)</strong>를 표현할 때 <strong>record는 아주 강력한 도구</strong></li>
 </ul>
+
+<hr />
 
   
 </article>
@@ -844,23 +995,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       <li>
         <a
           
-          href="/spring/"
+          href="/spring-flask/"
           class="sidebar-nav-item "
           
         >
-          Spring (17)
-        </a>
-      </li>
-    
-      
-      <li>
-        <a
-          
-          href="/flask/"
-          class="sidebar-nav-item "
-          
-        >
-          Flask (3)
+          Spring & Flask (20)
         </a>
       </li>
     
