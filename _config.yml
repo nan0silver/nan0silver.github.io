@@ -74,19 +74,15 @@ menu:
   # About
   - title: About
     url: /about/
-  # 백엔드 (Java, Spring & Flask)
-  - title: Java (17)
-    url: /java/
-  - title: Spring & Flask (20)
-    url: /spring-flask/
+  # 백엔드 (Java · Spring · Flask)
+  - title: Backend (Java · Spring · Flask) (37)
+    url: /backend/
   # 프론트
   - title: Frontend (9)
     url: /javascript/
-  # 인프라 (AWS, Git)
-  - title: AWS (2)
-    url: /aws/
-  - title: Git (3)
-    url: /git/
+  # 인프라 (AWS · Git)
+  - title: Infra (AWS · Git) (5)
+    url: /infra/
   # 알고리즘 · AI
   - title: Algorithm (18)
     url: /algorithm/

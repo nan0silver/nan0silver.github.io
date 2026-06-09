@@ -1,6 +1,6 @@
 ---
 layout: redirect
-redirect_to: /spring-flask/
+redirect_to: /backend/
 title: SPRING
 slug: spring
 sitemap: false
