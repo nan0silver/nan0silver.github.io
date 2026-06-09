@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /miscellaneous/2023-04-06-start-flutter/
 layout: post
 title: flutter 01 - start flutter 
 description: >

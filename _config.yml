@@ -83,14 +83,15 @@ menu:
   # 인프라 (AWS · Git)
   - title: Infra (AWS · Git) (5)
     url: /infra/
-  # 알고리즘 · AI
+  # 모바일
+  - title: Flutter (2)
+    url: /flutter/
+  # 알고리즘 · 연구
   - title: Algorithm (18)
     url: /algorithm/
-  - title: AI (2)
-    url: /ai/
   - title: Research (1)
     url: /research/
-  # 기타
+  # 기타 (AI 포함)
   - title: 기타 (4)
     url: /miscellaneous/
   # 일상 (프로젝트 일기, TIL)

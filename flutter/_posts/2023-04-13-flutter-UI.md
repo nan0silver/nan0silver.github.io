@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /miscellaneous/2023-04-13-flutter-UI/
 layout: post
 title: flutter 02 - flutter UI
 description: >
