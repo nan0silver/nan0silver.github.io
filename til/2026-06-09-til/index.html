@@ -28,25 +28,25 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   
     
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>[친구하자] HTTPS/HTTP Mixed Content 에러 해결하기 | NAHYUN BLOG</title>
+<title>[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식 | NAHYUN BLOG</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="[친구하자] HTTPS/HTTP Mixed Content 에러 해결하기" />
+<meta property="og:title" content="[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식" />
 <meta name="author" content="Nahyun Eun 은나현" />
 <meta property="og:locale" content="ko_KR, en_US" />
-<meta name="description" content="배포 후 HTTPS 프론트엔드에서 HTTP 백엔드로 요청이 차단되는 Mixed Content 에러를 Nginx와 Certbot으로 해결한 과정을 정리했습니다." />
-<meta property="og:description" content="배포 후 HTTPS 프론트엔드에서 HTTP 백엔드로 요청이 차단되는 Mixed Content 에러를 Nginx와 Certbot으로 해결한 과정을 정리했습니다." />
-<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-10-13-diary/" />
-<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2025-10-13-diary/" />
+<meta name="description" content="FastAPI BackgroundTasks의 한계를 경험하고 Celery + Redis 태스크 큐로 전환한 배경, Producer-Broker-Worker 구조, BackgroundTasks와의 비교, 운영 시 고려할 설정을 정리한 글이다." />
+<meta property="og:description" content="FastAPI BackgroundTasks의 한계를 경험하고 Celery + Redis 태스크 큐로 전환한 배경, Producer-Broker-Worker 구조, BackgroundTasks와의 비교, 운영 시 고려할 설정을 정리한 글이다." />
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-06-09-til/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2026-06-09-til/" />
 <meta property="og:site_name" content="NAHYUN BLOG" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-10-13T00:00:00+00:00" />
+<meta property="article:published_time" content="2026-06-09T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="[친구하자] HTTPS/HTTP Mixed Content 에러 해결하기" />
+<meta property="twitter:title" content="[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식" />
 <meta name="twitter:site" content="@nan0silver" />
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-10T05:00:45+00:00","datePublished":"2025-10-13T00:00:00+00:00","description":"배포 후 HTTPS 프론트엔드에서 HTTP 백엔드로 요청이 차단되는 Mixed Content 에러를 Nginx와 Certbot으로 해결한 과정을 정리했습니다.","headline":"[친구하자] HTTPS/HTTP Mixed Content 에러 해결하기","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2025-10-13-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2025-10-13-diary/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-09T00:00:00+00:00","datePublished":"2026-06-09T00:00:00+00:00","description":"FastAPI BackgroundTasks의 한계를 경험하고 Celery + Redis 태스크 큐로 전환한 배경, Producer-Broker-Worker 구조, BackgroundTasks와의 비교, 운영 시 고려할 설정을 정리한 글이다.","headline":"[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2026-06-09-til/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2026-06-09-til/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -147,7 +147,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="msapplication-TileColor" content="#742980" />
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
  
-<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2025-10-13-diary/" hreflang="ko-kr, en-us">
+<link rel="alternate" href="https://nan0silver.github.io/til/2026-06-09-til/" hreflang="ko-kr, en-us">
  <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
 
 
@@ -219,8 +219,8 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "[친구하자] HTTPS/HTTP Mixed Content 에러 해결하기",
-    "description": "배포 후 HTTPS 프론트엔드에서 HTTP 백엔드로 요청이 차단되는 Mixed Content 에러를 Nginx와 Certbot으로 해결한 과정을 정리했습니다.
+    "headline": "[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식",
+    "description": "FastAPI BackgroundTasks의 한계를 경험하고 Celery + Redis 태스크 큐로 전환한 배경, Producer-Broker-Worker 구조, BackgroundTasks와의 비교, 운영 시 고려할 설정을 정리한 글이다.
 ",
     "author": {
       "@type": "Person",
@@ -235,11 +235,11 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
         "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
       }
     },
-    "datePublished": "2025-10-13T00:00:00+00:00",
-    "dateModified": "2026-06-10T05:00:45+00:00",
+    "datePublished": "2026-06-09T00:00:00+00:00",
+    "dateModified": "2026-06-09T00:00:00+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nan0silver.github.io/projectdiary/2025-10-13-diary/"
+      "@id": "https://nan0silver.github.io/til/2026-06-09-til/"
     },
     "image": {
       "@type": "ImageObject",
@@ -252,7 +252,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
  
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2025-10-13-diary/" />
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-06-09-til/" />
 
 <!-- Language alternates for multilingual content -->
 
@@ -281,14 +281,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "projectdiary",
-        "item": "https://nan0silver.github.io/projectdiary/"
+        "name": "til",
+        "item": "https://nan0silver.github.io/til/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "[친구하자] HTTPS/HTTP Mixed Content 에러 해결하기",
-        "item": "https://nan0silver.github.io/projectdiary/2025-10-13-diary/"
+        "name": "[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식",
+        "item": "https://nan0silver.github.io/til/2026-06-09-til/"
       }
     ]
   }
@@ -358,14 +358,14 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           <span>/</span>
           
           
-          <a href="/projectdiary/">projectdiary</a>
+          <a href="/til/">til</a>
         
       </li>
     
       <li>
         
           <span>/</span>
-          <span>2025-10-13-diary</span>
+          <span>2026-06-09-til</span>
         
       </li>
     
@@ -382,31 +382,23 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
-<article id="post-projectdiary-diary" class="page post mb6" role="article">
+<article id="post-til-til" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
       
-        [친구하자] HTTPS/HTTP Mixed Content 에러 해결하기
+        [TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식
       
     </h1>
 
     <div class="post-date">
       
       <span class="ellipsis mr1">
-        <time datetime="2025-10-13T00:00:00+00:00">13 Oct 2025</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+        <time datetime="2026-06-09T00:00:00+00:00">09 Jun 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Celery</span>, <span>Redis</span>, <span>Fastapi</span>, <span>Task queue</span>, <span>운영</span>
       </span>
       
         
           
           
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
-            </span>
           
         
       
@@ -421,7 +413,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
   
     <p class="note-sm" >
-      배포 후 HTTPS 프론트엔드에서 HTTP 백엔드로 요청이 차단되는 Mixed Content 에러를 Nginx와 Certbot으로 해결한 과정을 정리했습니다.
+      FastAPI BackgroundTasks의 한계를 경험하고 Celery + Redis 태스크 큐로 전환한 배경, Producer-Broker-Worker 구조, BackgroundTasks와의 비교, 운영 시 고려할 설정을 정리한 글이다.
 
     </p>
   
@@ -430,230 +422,211 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
   </header>
 
   
-    <ul>
-  <li><a href="#1-문제-발견">1. 문제 발견</a></li>
-  <li><a href="#2-mixed-content란">2. Mixed Content란?</a></li>
-  <li><a href="#3-해결-방법-선택">3. 해결 방법 선택</a></li>
-  <li><a href="#4-nginx--certbot-설정">4. Nginx + Certbot 설정</a></li>
-  <li><a href="#5-해결-결과">5. 해결 결과</a></li>
-</ul>
-
-<h2 id="배포-후-첫-번째-난관-mixed-content-에러">배포 후 첫 번째 난관: Mixed Content 에러</h2>
-
-<blockquote>
-  <p>개발 환경에서는 문제없이 동작하던 API 통신이 배포 후 갑자기 차단되기 시작했다. 브라우저 콘솔에 찍힌 에러 메시지는 ‘Mixed Content’… 대체 뭐가 문제일까?</p>
+    <blockquote>
+  <p>무거운 비동기 작업을 FastAPI <code class="language-plaintext highlighter-rouge">BackgroundTasks</code>로 처리하다 보면, 서버 재시작 시 작업이 유실되고 재시도도 어렵다. Celery + Redis로 워커를 분리하면 태스크를 큐에 보관하고, 실패 시 재시도·수평 확장까지 운영 요구에 맞게 대응할 수 있다.</p>
 </blockquote>
 
-<h2 id="1-문제-발견">1. 문제 발견</h2>
-
-<h3 id="상황">상황</h3>
-
-<p>로컬 환경에서는 완벽하게 동작하던 프론트엔드와 백엔드 통신이 배포 후 전혀 동작하지 않았다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발 환경 (정상 동작 ✅):
-- Frontend: http://localhost:3000
-- Backend:  http://localhost:8080
-- 통신: HTTP ↔ HTTP
-
-배포 환경 (통신 차단 ❌):
-- Frontend: https://front-domain-url (Vercel)
-- Backend:  http://43.xxx.xxx.xxx:8080 (EC2)
-- 통신: HTTPS ↔ HTTP
-</code></pre></div></div>
-
-<h3 id="발견한-에러">발견한 에러</h3>
-
-<p>브라우저 콘솔에 다음과 같은 에러가 발생했다:</p>
-
 <ul>
-  <li><img src="https://github.com/nan0silver/nan0silver.github.io/blob/main/assets/img/blog/2025-10-13-pic2.png?raw=true" alt="에러 이미지" /></li>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-backgroundtasks의-한계">1. BackgroundTasks의 한계</a></li>
+  <li><a href="#2-celery란">2. Celery란</a></li>
+  <li><a href="#3-전환-후-동작-흐름">3. 전환 후 동작 흐름</a></li>
+  <li><a href="#4-backgroundtasks와-비교">4. BackgroundTasks와 비교</a></li>
+  <li><a href="#5-운영-시-고려할-설정">5. 운영 시 고려할 설정</a></li>
+  <li><a href="#마무리">마무리</a></li>
 </ul>
 
-<p><strong>API 요청 자체가 브라우저에서 차단</strong>되어 백엔드까지 도달조차 하지 못하는 상황이었다.</p>
+<hr />
 
-<h2 id="2-mixed-content란">2. Mixed Content란?</h2>
+<h2 id="들어가며">들어가며</h2>
 
-<h3 id="정의">정의</h3>
+<p>API 서버에서 분석·변환처럼 시간이 오래 걸리는 작업을 처리할 때, 처음에는 FastAPI의 <code class="language-plaintext highlighter-rouge">BackgroundTasks</code>로 충분해 보인다. 요청을 받고 바로 응답을 돌려준 뒤, 같은 프로세스 안에서 나머지를 비동기로 돌리면 되니까.</p>
 
-<p><strong>Mixed Content</strong>는 HTTPS 페이지에서 HTTP 리소스(이미지, 스크립트, API 등)를 요청할 때 발생하는 보안 문제다.</p>
+<p>하지만 트래픽이 늘고 작업이 무거워질수록 이 방식의 한계가 드러난다. 서버가 재시작되면 진행 중이던 작업이 사라지고, 실패한 작업을 다시 돌릴 방법도 없다. 이번에는 그 문제를 Celery + Redis 태스크 큐로 어떻게 풀었는지 정리한다.</p>
 
-<h3 id="왜-차단될까">왜 차단될까?</h3>
+<hr />
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP vs HTTPS의 차이:
+<h2 id="1-backgroundtasks의-한계">1. BackgroundTasks의 한계</h2>
 
-HTTP (Port 80):
-- 평문 통신
-- 데이터 암호화 없음
-- 중간자 공격(MITM) 취약
+<p><code class="language-plaintext highlighter-rouge">BackgroundTasks</code>는 FastAPI 프로세스 내부에서 태스크를 실행한다.</p>
 
-HTTPS (Port 443):
-- SSL/TLS 암호화 통신
-- 데이터 무결성 보장
-- 인증서 기반 신뢰
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클라이언트 → API 서버
+              └─ BackgroundTasks.add_task(...)
+                 └─ 같은 프로세스 안에서 비동기 실행
 </code></pre></div></div>
 
-<p>HTTPS로 암호화된 페이지에서 HTTP 리소스를 불러오면:</p>
+<p>이 구조에는 세 가지 문제가 있다.</p>
 
-<ol>
-  <li><strong>암호화된 통신의 의미가 사라짐</strong> - 일부 데이터가 평문으로 전송</li>
-  <li><strong>중간자 공격 위험</strong> - HTTP 부분에서 데이터 가로채기/조작 가능</li>
-  <li><strong>사용자 신뢰 훼손</strong> - 브라우저 보안 경고 표시</li>
-</ol>
+<table>
+  <thead>
+    <tr>
+      <th>문제</th>
+      <th>결과</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>서버 재시작 시 진행 중이던 태스크 유실</td>
+      <td>작업이 끝나지 않아도 호출한 쪽은 알 방법이 없음</td>
+    </tr>
+    <tr>
+      <td>대기 중이던 태스크도 함께 사라짐</td>
+      <td>트래픽 증가 시 태스크 드롭</td>
+    </tr>
+    <tr>
+      <td>실패 시 재시도 불가</td>
+      <td>오류가 나면 한 번에 끝</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>따라서 <strong>모던 브라우저들은 기본적으로 Mixed Content를 차단</strong>한다.</p>
+<p>무거운 AI 파이프라인처럼 실행 시간이 길고 실패 가능성도 있는 작업에는, API 프로세스와 완전히 분리된 태스크 큐가 더 적합하다.</p>
 
-<h3 id="왜-개발-환경에서는-문제없었나">왜 개발 환경에서는 문제없었나?</h3>
+<hr />
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발 환경: http://localhost:3000 → http://localhost:8080
-→ 둘 다 HTTP, 프로토콜 일치 ✅
+<h2 id="2-celery란">2. Celery란</h2>
 
-배포 환경: https://vercel.app → http://ec2-server
-→ HTTPS와 HTTP, 프로토콜 불일치 ❌
+<p><strong>Celery</strong>는 Python 분산 태스크 큐 라이브러리다. 핵심 개념은 세 가지다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Producer]      [Broker]      [Consumer]
+  API 서버   →   Redis 큐   →   Celery Worker
+  (태스크 등록)  (메시지 저장)   (태스크 실행)
 </code></pre></div></div>
-
-<p>Vercel은 자동으로 HTTPS를 제공하지만, EC2에 직접 배포한 백엔드는 기본적으로 HTTP로 동작한다. 이 프로토콜 불일치가 문제의 원인이었다.</p>
-
-<h2 id="3-해결-방법-선택">3. 해결 방법 선택</h2>
-
-<p>Mixed Content 문제를 해결하려면 백엔드도 HTTPS로 제공해야 한다. 찾아본 방법은 크게 2가지였다:</p>
-
-<h3 id="방법-1-aws-application-load-balancer-alb">방법 1: AWS Application Load Balancer (ALB)</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>장점:
-✅ AWS 콘솔에서 간단하게 설정
-✅ SSL 인증서 관리 자동화 (ACM)
-✅ 로드 밸런싱, 헬스 체크 등 추가 기능
-
-단점:
-❌ 시간당 과금 (약 $0.025/시간 ≈ $18/월)
-❌ 데이터 전송량 추가 과금
-❌ 토이 프로젝트에는 과한 비용
-</code></pre></div></div>
-
-<h3 id="방법-2-nginx--certbot-선택">방법 2: Nginx + Certbot (선택!)</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>장점:
-✅ 완전 무료
-✅ Let's Encrypt 무료 SSL 인증서
-✅ 가볍고 성능 우수
-✅ 리버스 프록시로 추가 활용 가능
-
-단점:
-❌ 직접 설정 필요
-❌ 인증서 갱신 관리 필요 (자동화 가능)
-</code></pre></div></div>
-
-<p><strong>비용을 고려해 Nginx + Certbot을 선택했다.</strong> 많은 개발자들의 과금 사례를 보고 ALB는 부담스러웠고, Nginx로 충분히 해결 가능한 문제였기 때문이다.</p>
-
-<h2 id="4-nginx--certbot-설정">4. Nginx + Certbot 설정</h2>
-
-<h3 id="41-사전-준비">4.1. 사전 준비</h3>
-
-<p>다음이 갖춰져 있어야 한다.</p>
 
 <ul>
-  <li><strong>EC2 인스턴스</strong>: 백엔드가 배포된 서버 (Ubuntu 또는 Amazon Linux 권장)</li>
-  <li><strong>도메인</strong>: 백엔드용 도메인 또는 서브도메인 (예: <code class="language-plaintext highlighter-rouge">api.mydomain.com</code>)</li>
-  <li><strong>도메인 DNS 설정</strong>: EC2 퍼블릭 IP를 가리키는 A 레코드 등록</li>
-  <li><strong>방화벽</strong>: 인스턴스 보안 그룹에서 80, 443 포트 허용</li>
+  <li><strong>Producer</strong>: 태스크를 큐에 넣는 쪽. 여기서는 FastAPI 라우터.</li>
+  <li><strong>Broker</strong>: 태스크 메시지를 보관하는 중간 저장소. 여기서는 Redis.</li>
+  <li><strong>Worker</strong>: 브로커에서 태스크를 꺼내 실제로 실행하는 별도 프로세스.</li>
 </ul>
 
-<p>도메인이 EC2를 바라보고, 80/443 포트가 열려 있어야 Certbot 인증서 발급이 가능하다.</p>
+<p>API가 <code class="language-plaintext highlighter-rouge">task.delay(...)</code>를 호출하면 태스크 정보가 Redis에 저장된다. Worker가 이를 꺼내 파이프라인을 실행하고, 결과는 웹훅 등 별도 경로로 전달한다.</p>
 
-<h3 id="42-nginx-설치">4.2. Nginx 설치</h3>
+<hr />
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ubuntu</span>
-<span class="nb">sudo </span>apt update
-<span class="nb">sudo </span>apt <span class="nb">install </span>nginx <span class="nt">-y</span>
+<h2 id="3-전환-후-동작-흐름">3. 전환 후 동작 흐름</h2>
 
-<span class="c"># 서비스 시작 및 부팅 시 자동 시작</span>
-<span class="nb">sudo </span>systemctl start nginx
-<span class="nb">sudo </span>systemctl <span class="nb">enable </span>nginx
+<p>Celery 도입 후 흐름은 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클라이언트
+    │
+    │  분석 요청
+    ▼
+API 서버
+    │
+    │  task.delay(...) → Redis에 태스크 등록
+    │  즉시 202 Accepted 반환
+    ▼
+Redis (브로커)
+    │  태스크 메시지 보관
+    ▼
+Celery Worker
+    │
+    │  태스크 실행 (다운로드 → 분석 → 결과 전달)
+    │  실패 시 재시도
+    ▼
+결과 수신 서버 (DB 저장 등)
 </code></pre></div></div>
 
-<h3 id="43-nginx-리버스-프록시-설정-http">4.3. Nginx 리버스 프록시 설정 (HTTP)</h3>
+<p>API는 태스크 등록만 담당하고, 실제 무거운 작업은 Worker가 처리한다. 호출한 쪽은 빠른 응답을 받고, Worker는 독립적으로 스케일할 수 있다.</p>
 
-<p>먼저 HTTP로 Nginx가 백엔드로 프록시되도록 설정한다. Certbot은 80 포트를 사용해 인증을 진행한다.</p>
+<hr />
 
-<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /etc/nginx/sites-available/backend (예시)</span>
-<span class="k">server</span> <span class="p">{</span>
-    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
-    <span class="kn">server_name</span> <span class="s">api.your-domain.com</span><span class="p">;</span>  <span class="c1"># 본인 도메인으로 변경</span>
+<h2 id="4-backgroundtasks와-비교">4. BackgroundTasks와 비교</h2>
 
-    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
-        <span class="kn">proxy_pass</span> <span class="s">http://127.0.0.1:8080</span><span class="p">;</span>  <span class="c1"># Spring Boot 기본 포트</span>
-        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
-        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
-        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-Proto</span> <span class="nv">$scheme</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>FastAPI BackgroundTasks</th>
+      <th>Celery + Redis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>실행 위치</td>
+      <td>API 프로세스 내부</td>
+      <td>별도 Worker 프로세스</td>
+    </tr>
+    <tr>
+      <td>서버 재시작 시</td>
+      <td>태스크 유실</td>
+      <td>브로커에 남아 재처리 가능</td>
+    </tr>
+    <tr>
+      <td>재시도</td>
+      <td>없음</td>
+      <td><code class="language-plaintext highlighter-rouge">max_retries</code> 설정 가능</td>
+    </tr>
+    <tr>
+      <td>수평 확장</td>
+      <td>불가</td>
+      <td>Worker 프로세스 추가로 확장</td>
+    </tr>
+    <tr>
+      <td>API 응답 영향</td>
+      <td>무거운 태스크가 쌓이면 영향 있음</td>
+      <td>완전 분리</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>설정 활성화 후 문법 검사:</p>
+<hr />
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo ln</span> <span class="nt">-s</span> /etc/nginx/sites-available/backend /etc/nginx/sites-enabled/
-<span class="nb">sudo </span>nginx <span class="nt">-t</span>
-<span class="nb">sudo </span>systemctl reload nginx
-</code></pre></div></div>
+<h2 id="5-운영-시-고려할-설정">5. 운영 시 고려할 설정</h2>
 
-<p>이제 <code class="language-plaintext highlighter-rouge">http://api.your-domain.com</code>으로 접속하면 백엔드(8080)로 프록시되는지 확인할 수 있다.</p>
+<p>Celery를 운영에 쓸 때 자주 조정하는 설정이다.</p>
 
-<h3 id="44-certbot으로-ssl-인증서-발급">4.4. Certbot으로 SSL 인증서 발급</h3>
+<table>
+  <thead>
+    <tr>
+      <th>설정</th>
+      <th>권장 방향</th>
+      <th>이유</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">task_acks_late</code></td>
+      <td><code class="language-plaintext highlighter-rouge">True</code></td>
+      <td>Worker가 태스크를 완료한 뒤 ack. 처리 중 크래시 시 재처리 가능</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">worker_prefetch_multiplier</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td>AI 모델처럼 무거운 작업은 한 번에 하나만 수신</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">max_retries</code></td>
+      <td>작업 성격에 맞게</td>
+      <td>일시적 오류(네트워크, 외부 API)에 대비</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">result_expires</code></td>
+      <td>짧게 유지</td>
+      <td>결과를 웹훅 등으로 전달한다면 브로커에 오래 보관할 필요 없음</td>
+    </tr>
+  </tbody>
+</table>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ubuntu</span>
-<span class="nb">sudo </span>apt <span class="nb">install </span>certbot python3-certbot-nginx <span class="nt">-y</span>
+<p>Redis를 브로커로 쓸 때는 비밀번호 인증과 AOF 영속화를 함께 두면, 컨테이너 재시작 후에도 아직 처리되지 않은 태스크가 사라지지 않는다.</p>
 
-<span class="c"># Nginx용 자동 설정으로 인증서 발급</span>
-<span class="nb">sudo </span>certbot <span class="nt">--nginx</span> <span class="nt">-d</span> api.your-domain.com
-</code></pre></div></div>
+<p>태스크 인자는 JSON으로 직렬화되므로, <code class="language-plaintext highlighter-rouge">date</code> 같은 객체는 문자열로 변환해 전달하고 Worker 쪽에서 복원하는 패턴이 일반적이다.</p>
 
-<p>이메일 입력, 약관 동의, 리다이렉트 선택(HTTPS로 리다이렉트 권장)까지 진행하면 Certbot이 Nginx 설정에 SSL 블록을 자동으로 추가해 준다.</p>
+<hr />
 
-<h3 id="45-인증서-갱신-자동화">4.5. 인증서 갱신 (자동화)</h3>
+<h2 id="마무리">마무리</h2>
 
-<p>Let’s Encrypt 인증서는 90일마다 갱신해야 한다. cron으로 자동 갱신하는 방법이다.</p>
+<p><code class="language-plaintext highlighter-rouge">BackgroundTasks</code>는 가벼운 후처리에는 충분하지만, 무거운 비동기 작업에는 한계가 분명하다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 갱신 테스트</span>
-<span class="nb">sudo </span>certbot renew <span class="nt">--dry-run</span>
-
-<span class="c"># cron 등록 (매일 새벽 3시 확인 후 필요 시 갱신)</span>
-<span class="nb">sudo </span>crontab <span class="nt">-e</span>
-<span class="c"># 다음 한 줄 추가</span>
-0 3 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> certbot renew <span class="nt">--quiet</span> <span class="nt">--post-hook</span> <span class="s2">"systemctl reload nginx"</span>
-</code></pre></div></div>
-
-<p>이렇게 하면 Nginx + Certbot 설정과 갱신까지 한 번에 갖춰진다.</p>
-
-<h2 id="5-해결-결과">5. 해결 결과</h2>
-
-<h3 id="적용-후-구조">적용 후 구조</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>배포 환경 (해결 후 ✅):
-- Frontend: https://front-domain (Vercel)
-- Backend:  https://api.your-domain.com (Nginx + Certbot on EC2)
-- 통신: HTTPS ↔ HTTPS
-</code></pre></div></div>
-
-<p>프론트엔드는 그대로 Vercel의 HTTPS URL을 쓰고, 백엔드만 <code class="language-plaintext highlighter-rouge">https://api.your-domain.com</code>으로 노출되도록 바꿨다.</p>
-
-<h3 id="확인한-점">확인한 점</h3>
-
-<ol>
-  <li><strong>Mixed Content 에러 제거</strong>: 브라우저 콘솔에 더 이상 Mixed Content 경고/차단이 뜨지 않았다.</li>
-  <li><strong>API 통신 정상</strong>: 로그인, API 호출 등이 배포 환경에서도 정상 동작했다.</li>
-  <li><strong>비용</strong>: ALB 없이 Nginx + Let’s Encrypt만 사용해 추가 비용 없이 해결했다.</li>
-</ol>
-
-<h3 id="정리">정리</h3>
+<p>정리하면 아래 세 가지면 충분하다.</p>
 
 <ul>
-  <li><strong>원인</strong>: HTTPS 프론트엔드에서 HTTP 백엔드로 요청을 보내면서 브라우저가 Mixed Content로 차단함.</li>
-  <li><strong>해결</strong>: EC2에 Nginx를 두고, Certbot으로 HTTPS를 붙여 백엔드를 HTTPS로 제공.</li>
-  <li><strong>부가 효과</strong>: 리버스 프록시로 인해 실제 앱은 8080 등 내부 포트만 쓰고, 80/443과 SSL 종료는 Nginx가 담당하게 되어 구조가 더 단순해졌다.</li>
+  <li>API는 태스크를 큐에 넣고 빠르게 응답한다.</li>
+  <li>Worker는 별도 프로세스로 분리해 실행·재시도·확장을 담당한다.</li>
+  <li>브로커(Redis)에 영속화와 ack 정책을 맞춰, 재시작과 실패에도 태스크가 유실되지 않게 한다.</li>
 </ul>
 
-<p>토이 프로젝트 수준에서는 Nginx + Certbot 조합만으로도 HTTPS 전환과 Mixed Content 해결을 무리 없이 할 수 있었다.</p>
+<p>이 구조로 API 응답 지연과 작업 유실 문제를 분리해 해결할 수 있다.</p>
 
   
 </article>
@@ -756,7 +729,7 @@ HTTPS (Port 443):
     
 
 
-  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2026-06-09-til/" class="flip-title"><span>[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식</span></a>  <time class="faded fine" datetime="2026-06-09T00:00:00+00:00">09 Jun 2026</time></li>                        <li class="h4">  <a href="/research/2026-06-08-paper-review-template/" class="flip-title"><span>[Research] 논문 제목</span></a>  <time class="faded fine" datetime="2026-06-08T00:00:00+00:00">08 Jun 2026</time></li>                        <li class="h4">  <a href="/til/2026-06-07-spring-security-filter-chain-add-filter-before/" class="flip-title"><span>[TIL] Spring Security Filter Chain 구성 — addFilterBefore</span></a>  <time class="faded fine" datetime="2026-06-07T00:00:00+00:00">07 Jun 2026</time></li>            </ul></aside>
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/research/2026-06-08-paper-review-template/" class="flip-title"><span>[Research] 논문 제목</span></a>  <time class="faded fine" datetime="2026-06-08T00:00:00+00:00">08 Jun 2026</time></li>                        <li class="h4">  <a href="/til/2026-06-07-spring-security-filter-chain-add-filter-before/" class="flip-title"><span>[TIL] Spring Security Filter Chain 구성 — addFilterBefore</span></a>  <time class="faded fine" datetime="2026-06-07T00:00:00+00:00">07 Jun 2026</time></li>                        <li class="h4">  <a href="/til/2026-06-04-once-per-request-filter/" class="flip-title"><span>[TIL] OncePerRequestFilter — 서블릿 필터 구현 패턴</span></a>  <time class="faded fine" datetime="2026-06-04T00:00:00+00:00">04 Jun 2026</time></li>            </ul></aside>
 
   
 

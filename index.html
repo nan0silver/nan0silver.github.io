@@ -44,7 +44,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-09T07:30:05+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-10T05:00:45+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","name":"Nahyun Eun","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"sameAs":["https://github.com/nan0silver"],"url":"https://nan0silver.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -184,7 +184,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-06-09T07:30:50+00:00',
+    INDEX_KEY: 'index--2026-06-10T05:01:33+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -431,7 +431,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          TIL (74)
+          TIL (75)
         </a>
       </li>
     
@@ -521,6 +521,70 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
   
+
+  
+
+
+
+
+
+<article id="post-til-til" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/til/2026-06-09-til/" class="flip-title">
+        [TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-06-09T00:00:00+00:00">09 Jun 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Celery</span>, <span>Redis</span>, <span>Fastapi</span>, <span>Task queue</span>, <span>운영</span>
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      FastAPI BackgroundTasks의 한계를 경험하고 Celery + Redis 태스크 큐로 전환한 배경, Producer-Broker-Worker 구조, BackgroundTasks와의 비교, 운영 시 고려할 설정을 정리한 글이다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>무거운 비동기 작업을 FastAPI <code class="language-plaintext highlighter-rouge">BackgroundTasks</code>로 처리하다 보면, 서버 재시작 시 작업이 유실되고 재시도도 어렵다. Celery + Redis로 워커를 분리하면 태스크를 큐에 보관하고, 실패 시 재시도·수평 확장까지 운영 요구에 맞게 대응할 수 있다.</p>
+</blockquote>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/til/2026-06-09-til/">[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식</a>
+
+      </p>
+    </footer>
+  
+</article>
+
 
   
 
@@ -933,10 +997,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-09T07:30:05+00:00">2026-06-09</time>
+              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
             </span>
           
         
@@ -1005,10 +1069,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-09T07:30:05+00:00">2026-06-09</time>
+              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
             </span>
           
         
@@ -1077,10 +1141,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 09 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-09T07:30:05+00:00">2026-06-09</time>
+              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
             </span>
           
         
@@ -1116,71 +1180,6 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/projectdiary/2026-04-13-diary/">[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-til-til" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/til/2026-03-29-til/" class="flip-title">
-        [TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2026-03-29T00:00:00+00:00">29 Mar 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Spring</span>, <span>트랜잭션</span>, <span>이벤트</span>, <span>Async</span>
-      </span>
-      
-        
-          
-          
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      트랜잭션 커밋 전 <code class="language-plaintext highlighter-rouge">publishEvent()</code>를 호출했을 때 발생한 타이밍 문제와 <code class="language-plaintext highlighter-rouge">@TransactionalEventListener(AFTER_COMMIT)</code> 및 <code class="language-plaintext highlighter-rouge">afterCommit()</code> 해결 방식을 정리한 글이다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-<code class="language-plaintext highlighter-rouge">@Transactional</code> 안에서 <code class="language-plaintext highlighter-rouge">publishEvent()</code>를 호출하면 <code class="language-plaintext highlighter-rouge">@Async</code> 리스너가 커밋 전 데이터를 읽으려다 실패할 수 있다. 이 문제는 <code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager.afterCommit()</code> 또는 <code class="language-plaintext highlighter-rouge">@TransactionalEventListener(AFTER_COMMIT)</code>로 해결한다.</p>
-</blockquote>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/til/2026-03-29-til/">[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)</a>
 
       </p>
     </footer>

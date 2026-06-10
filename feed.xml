@@ -1,5 +1,209 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-06-09T07:30:50+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun Eun (은나현). Full-stack developer building products solo, preparing for startup. Java, Spring Boot, Python, AI. Project diaries, backend/infra notes, and TIL.
-</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[Research] 논문 제목</title><link href="https://nan0silver.github.io/research/2026-06-08-paper-review-template/" rel="alternate" type="text/html" title="[Research] 논문 제목" /><published>2026-06-08T00:00:00+00:00</published><updated>2026-06-08T00:00:00+00:00</updated><id>https://nan0silver.github.io/research/paper-review-template</id><content type="html" xml:base="https://nan0silver.github.io/research/2026-06-08-paper-review-template/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-06-10T05:01:33+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun Eun (은나현). Full-stack developer building products solo, preparing for startup. Java, Spring Boot, Python, AI. Project diaries, backend/infra notes, and TIL.
+</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식</title><link href="https://nan0silver.github.io/til/2026-06-09-til/" rel="alternate" type="text/html" title="[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식" /><published>2026-06-09T00:00:00+00:00</published><updated>2026-06-09T00:00:00+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2026-06-09-til/"><![CDATA[<blockquote>
+  <p>무거운 비동기 작업을 FastAPI <code class="language-plaintext highlighter-rouge">BackgroundTasks</code>로 처리하다 보면, 서버 재시작 시 작업이 유실되고 재시도도 어렵다. Celery + Redis로 워커를 분리하면 태스크를 큐에 보관하고, 실패 시 재시도·수평 확장까지 운영 요구에 맞게 대응할 수 있다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-backgroundtasks의-한계">1. BackgroundTasks의 한계</a></li>
+  <li><a href="#2-celery란">2. Celery란</a></li>
+  <li><a href="#3-전환-후-동작-흐름">3. 전환 후 동작 흐름</a></li>
+  <li><a href="#4-backgroundtasks와-비교">4. BackgroundTasks와 비교</a></li>
+  <li><a href="#5-운영-시-고려할-설정">5. 운영 시 고려할 설정</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>API 서버에서 분석·변환처럼 시간이 오래 걸리는 작업을 처리할 때, 처음에는 FastAPI의 <code class="language-plaintext highlighter-rouge">BackgroundTasks</code>로 충분해 보인다. 요청을 받고 바로 응답을 돌려준 뒤, 같은 프로세스 안에서 나머지를 비동기로 돌리면 되니까.</p>
+
+<p>하지만 트래픽이 늘고 작업이 무거워질수록 이 방식의 한계가 드러난다. 서버가 재시작되면 진행 중이던 작업이 사라지고, 실패한 작업을 다시 돌릴 방법도 없다. 이번에는 그 문제를 Celery + Redis 태스크 큐로 어떻게 풀었는지 정리한다.</p>
+
+<hr />
+
+<h2 id="1-backgroundtasks의-한계">1. BackgroundTasks의 한계</h2>
+
+<p><code class="language-plaintext highlighter-rouge">BackgroundTasks</code>는 FastAPI 프로세스 내부에서 태스크를 실행한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클라이언트 → API 서버
+              └─ BackgroundTasks.add_task(...)
+                 └─ 같은 프로세스 안에서 비동기 실행
+</code></pre></div></div>
+
+<p>이 구조에는 세 가지 문제가 있다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>문제</th>
+      <th>결과</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>서버 재시작 시 진행 중이던 태스크 유실</td>
+      <td>작업이 끝나지 않아도 호출한 쪽은 알 방법이 없음</td>
+    </tr>
+    <tr>
+      <td>대기 중이던 태스크도 함께 사라짐</td>
+      <td>트래픽 증가 시 태스크 드롭</td>
+    </tr>
+    <tr>
+      <td>실패 시 재시도 불가</td>
+      <td>오류가 나면 한 번에 끝</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>무거운 AI 파이프라인처럼 실행 시간이 길고 실패 가능성도 있는 작업에는, API 프로세스와 완전히 분리된 태스크 큐가 더 적합하다.</p>
+
+<hr />
+
+<h2 id="2-celery란">2. Celery란</h2>
+
+<p><strong>Celery</strong>는 Python 분산 태스크 큐 라이브러리다. 핵심 개념은 세 가지다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Producer]      [Broker]      [Consumer]
+  API 서버   →   Redis 큐   →   Celery Worker
+  (태스크 등록)  (메시지 저장)   (태스크 실행)
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Producer</strong>: 태스크를 큐에 넣는 쪽. 여기서는 FastAPI 라우터.</li>
+  <li><strong>Broker</strong>: 태스크 메시지를 보관하는 중간 저장소. 여기서는 Redis.</li>
+  <li><strong>Worker</strong>: 브로커에서 태스크를 꺼내 실제로 실행하는 별도 프로세스.</li>
+</ul>
+
+<p>API가 <code class="language-plaintext highlighter-rouge">task.delay(...)</code>를 호출하면 태스크 정보가 Redis에 저장된다. Worker가 이를 꺼내 파이프라인을 실행하고, 결과는 웹훅 등 별도 경로로 전달한다.</p>
+
+<hr />
+
+<h2 id="3-전환-후-동작-흐름">3. 전환 후 동작 흐름</h2>
+
+<p>Celery 도입 후 흐름은 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클라이언트
+    │
+    │  분석 요청
+    ▼
+API 서버
+    │
+    │  task.delay(...) → Redis에 태스크 등록
+    │  즉시 202 Accepted 반환
+    ▼
+Redis (브로커)
+    │  태스크 메시지 보관
+    ▼
+Celery Worker
+    │
+    │  태스크 실행 (다운로드 → 분석 → 결과 전달)
+    │  실패 시 재시도
+    ▼
+결과 수신 서버 (DB 저장 등)
+</code></pre></div></div>
+
+<p>API는 태스크 등록만 담당하고, 실제 무거운 작업은 Worker가 처리한다. 호출한 쪽은 빠른 응답을 받고, Worker는 독립적으로 스케일할 수 있다.</p>
+
+<hr />
+
+<h2 id="4-backgroundtasks와-비교">4. BackgroundTasks와 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>FastAPI BackgroundTasks</th>
+      <th>Celery + Redis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>실행 위치</td>
+      <td>API 프로세스 내부</td>
+      <td>별도 Worker 프로세스</td>
+    </tr>
+    <tr>
+      <td>서버 재시작 시</td>
+      <td>태스크 유실</td>
+      <td>브로커에 남아 재처리 가능</td>
+    </tr>
+    <tr>
+      <td>재시도</td>
+      <td>없음</td>
+      <td><code class="language-plaintext highlighter-rouge">max_retries</code> 설정 가능</td>
+    </tr>
+    <tr>
+      <td>수평 확장</td>
+      <td>불가</td>
+      <td>Worker 프로세스 추가로 확장</td>
+    </tr>
+    <tr>
+      <td>API 응답 영향</td>
+      <td>무거운 태스크가 쌓이면 영향 있음</td>
+      <td>완전 분리</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="5-운영-시-고려할-설정">5. 운영 시 고려할 설정</h2>
+
+<p>Celery를 운영에 쓸 때 자주 조정하는 설정이다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>설정</th>
+      <th>권장 방향</th>
+      <th>이유</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">task_acks_late</code></td>
+      <td><code class="language-plaintext highlighter-rouge">True</code></td>
+      <td>Worker가 태스크를 완료한 뒤 ack. 처리 중 크래시 시 재처리 가능</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">worker_prefetch_multiplier</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td>AI 모델처럼 무거운 작업은 한 번에 하나만 수신</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">max_retries</code></td>
+      <td>작업 성격에 맞게</td>
+      <td>일시적 오류(네트워크, 외부 API)에 대비</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">result_expires</code></td>
+      <td>짧게 유지</td>
+      <td>결과를 웹훅 등으로 전달한다면 브로커에 오래 보관할 필요 없음</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Redis를 브로커로 쓸 때는 비밀번호 인증과 AOF 영속화를 함께 두면, 컨테이너 재시작 후에도 아직 처리되지 않은 태스크가 사라지지 않는다.</p>
+
+<p>태스크 인자는 JSON으로 직렬화되므로, <code class="language-plaintext highlighter-rouge">date</code> 같은 객체는 문자열로 변환해 전달하고 Worker 쪽에서 복원하는 패턴이 일반적이다.</p>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p><code class="language-plaintext highlighter-rouge">BackgroundTasks</code>는 가벼운 후처리에는 충분하지만, 무거운 비동기 작업에는 한계가 분명하다.</p>
+
+<p>정리하면 아래 세 가지면 충분하다.</p>
+
+<ul>
+  <li>API는 태스크를 큐에 넣고 빠르게 응답한다.</li>
+  <li>Worker는 별도 프로세스로 분리해 실행·재시도·확장을 담당한다.</li>
+  <li>브로커(Redis)에 영속화와 ack 정책을 맞춰, 재시작과 실패에도 태스크가 유실되지 않게 한다.</li>
+</ul>
+
+<p>이 구조로 API 응답 지연과 작업 유실 문제를 분리해 해결할 수 있다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Celery" /><category term="Redis" /><category term="FastAPI" /><category term="Task Queue" /><category term="운영" /><summary type="html"><![CDATA[FastAPI BackgroundTasks의 한계를 경험하고 Celery + Redis 태스크 큐로 전환한 배경, Producer-Broker-Worker 구조, BackgroundTasks와의 비교, 운영 시 고려할 설정을 정리한 글이다.]]></summary></entry><entry><title type="html">[Research] 논문 제목</title><link href="https://nan0silver.github.io/research/2026-06-08-paper-review-template/" rel="alternate" type="text/html" title="[Research] 논문 제목" /><published>2026-06-08T00:00:00+00:00</published><updated>2026-06-08T00:00:00+00:00</updated><id>https://nan0silver.github.io/research/paper-review-template</id><content type="html" xml:base="https://nan0silver.github.io/research/2026-06-08-paper-review-template/"><![CDATA[<blockquote>
   <p>논문의 핵심 아이디어를 2~3문장으로 요약합니다.</p>
 </blockquote>
 
@@ -1487,7 +1691,7 @@
 
 <p><code class="language-plaintext highlighter-rouge">null</code>과 빈 값·0을 한 덩어리로 처리하고 싶은 유혹은 자주 생긴다. 당장 코드가 짧아지기 때문이다. 하지만 이 구분이 무너지면 집계 왜곡·UI 오해처럼 <strong>디버깅이 어려운 문제</strong>가 쌓인다.</p>
 
-<p>변환 앞에 유효성 검증을 두는 작은 습관만으로도 예방할 수 있다는 점만 기억해도 충분하다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="API" /><category term="null" /><category term="JSON" /><category term="검증" /><category term="Jackson" /><summary type="html"><![CDATA[API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.]]></summary></entry><entry><title type="html">[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계</title><link href="https://nan0silver.github.io/projectdiary/2026-04-28-diary/" rel="alternate" type="text/html" title="[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계" /><published>2026-04-28T00:00:00+00:00</published><updated>2026-06-09T07:30:05+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-28-diary/"><![CDATA[<blockquote>
+<p>변환 앞에 유효성 검증을 두는 작은 습관만으로도 예방할 수 있다는 점만 기억해도 충분하다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="API" /><category term="null" /><category term="JSON" /><category term="검증" /><category term="Jackson" /><summary type="html"><![CDATA[API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.]]></summary></entry><entry><title type="html">[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계</title><link href="https://nan0silver.github.io/projectdiary/2026-04-28-diary/" rel="alternate" type="text/html" title="[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계" /><published>2026-04-28T00:00:00+00:00</published><updated>2026-06-10T05:00:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-28-diary/"><![CDATA[<blockquote>
   <p><code class="language-plaintext highlighter-rouge">Call</code>과 <code class="language-plaintext highlighter-rouge">CallEmotionResult</code>를 SQL처럼 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>하고 싶은데, <strong>표준 JPQL</strong>은 연관 경로가 없으면 객체 그래프 기반 조인을 쓰기 어렵다. Hibernate HQL은 버전에 따라 엔티티 <code class="language-plaintext highlighter-rouge">JOIN … ON</code>이 열리기도 하지만 포터빌리티와 트레이드오프가 있다. SQL·JPQL의 차이와, 우리가 택한 두 쿼리 + 병합, 구현 시 주의점까지 정리한다.</p>
 </blockquote>
 
@@ -1775,7 +1979,7 @@
 
 <p>JPQL의 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>은 <strong>연관관계가 엔티티에 열려 있을 때</strong> 가장 자연스럽다. 설계상 연관을 두지 않았다면, <strong>Hibernate 버전에 맞는 HQL 확장</strong>을 쓸지, <strong>네이티브</strong>로 감수할지, <strong>조회를 쪼개고 서비스에서 병합</strong>할지를 트레이드오프로 선택하면 된다.</p>
 
-<p>“SQL로는 되는데 JPQL로는 왜 안 되지?”라는 순간에, <strong>표준 JPQL은 객체 그래프 탐색용</strong>에 가깝고, SQL과 1:1 대응이 안 되는 구간이 있다는 점을 떠올리면 원인 정리와 다음 설계 결정이 빨라진다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Call과 CallEmotionResult를 SQL처럼 LEFT JOIN하고 싶지만 표준 JPQL은 연관관계 기반 JOIN이 기본이라 막히는 문제, Hibernate HQL 확장과의 차이, 네이티브 쿼리·두 쿼리 분리 후 Java 병합, 구현 시 주의점까지 정리합니다.]]></summary></entry><entry><title type="html">[친구하자] JPA @Modifying(clearAutomatically = true)의 함정</title><link href="https://nan0silver.github.io/projectdiary/2026-04-16-diary/" rel="alternate" type="text/html" title="[친구하자] JPA @Modifying(clearAutomatically = true)의 함정" /><published>2026-04-16T00:00:00+00:00</published><updated>2026-06-09T07:30:05+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-16-diary/"><![CDATA[<blockquote>
+<p>“SQL로는 되는데 JPQL로는 왜 안 되지?”라는 순간에, <strong>표준 JPQL은 객체 그래프 탐색용</strong>에 가깝고, SQL과 1:1 대응이 안 되는 구간이 있다는 점을 떠올리면 원인 정리와 다음 설계 결정이 빨라진다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Call과 CallEmotionResult를 SQL처럼 LEFT JOIN하고 싶지만 표준 JPQL은 연관관계 기반 JOIN이 기본이라 막히는 문제, Hibernate HQL 확장과의 차이, 네이티브 쿼리·두 쿼리 분리 후 Java 병합, 구현 시 주의점까지 정리합니다.]]></summary></entry><entry><title type="html">[친구하자] JPA @Modifying(clearAutomatically = true)의 함정</title><link href="https://nan0silver.github.io/projectdiary/2026-04-16-diary/" rel="alternate" type="text/html" title="[친구하자] JPA @Modifying(clearAutomatically = true)의 함정" /><published>2026-04-16T00:00:00+00:00</published><updated>2026-06-10T05:00:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-16-diary/"><![CDATA[<blockquote>
   <p>정기 예약 취소 API에서 <code class="language-plaintext highlighter-rouge">CallReservation</code>은 정상적으로 취소되는데 <code class="language-plaintext highlighter-rouge">RecurringReservation</code> 상태만 <code class="language-plaintext highlighter-rouge">ACTIVE</code>로 남는 버그를 겪었다. 원인은 <code class="language-plaintext highlighter-rouge">@Modifying(clearAutomatically = true)</code>로 인해 영속 엔티티가 detached 된 뒤 상태를 변경한 것이었다.</p>
 </blockquote>
 
@@ -1940,7 +2144,7 @@ clearAutomatically (이미 rr 변경은 DB에 완료된 상태)
 
 <h2 id="마치며">마치며</h2>
 
-<p>JPA의 영속성 컨텍스트는 강력하지만, 내부 동작을 정확히 이해하지 않으면 예상 못 한 버그가 생긴다. 특히 벌크 UPDATE와 dirty-check를 같은 트랜잭션에서 함께 사용할 때는 실행 순서와 엔티티 상태(<code class="language-plaintext highlighter-rouge">managed</code>/<code class="language-plaintext highlighter-rouge">detached</code>)를 반드시 의식해야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[@Modifying(clearAutomatically = true) 사용 시 영속성 컨텍스트가 비워지면서 엔티티가 detached 되어, 상태 변경이 DB에 반영되지 않았던 버그 원인과 해결 과정을 정리합니다.]]></summary></entry><entry><title type="html">[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method</title><link href="https://nan0silver.github.io/projectdiary/2026-04-13-diary/" rel="alternate" type="text/html" title="[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method" /><published>2026-04-13T00:00:00+00:00</published><updated>2026-06-09T07:30:05+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-13-diary/"><![CDATA[<blockquote>
+<p>JPA의 영속성 컨텍스트는 강력하지만, 내부 동작을 정확히 이해하지 않으면 예상 못 한 버그가 생긴다. 특히 벌크 UPDATE와 dirty-check를 같은 트랜잭션에서 함께 사용할 때는 실행 순서와 엔티티 상태(<code class="language-plaintext highlighter-rouge">managed</code>/<code class="language-plaintext highlighter-rouge">detached</code>)를 반드시 의식해야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[@Modifying(clearAutomatically = true) 사용 시 영속성 컨텍스트가 비워지면서 엔티티가 detached 되어, 상태 변경이 DB에 반영되지 않았던 버그 원인과 해결 과정을 정리합니다.]]></summary></entry><entry><title type="html">[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method</title><link href="https://nan0silver.github.io/projectdiary/2026-04-13-diary/" rel="alternate" type="text/html" title="[친구하자] 백분율을 정확히 100%로 만드는 방법 — Largest Remainder Method" /><published>2026-04-13T00:00:00+00:00</published><updated>2026-06-10T05:00:45+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-13-diary/"><![CDATA[<blockquote>
   <p>감정 분석 API를 만들면서 “각 항목은 소수점 둘째 자리로 보이게 하되, 합계는 반드시 100.00%”라는 요구를 만났다. 단순 반올림과 흔한 보정 방식의 함정, 최대 잔여 방식(Largest Remainder, Hamilton 방식으로도 알려짐)으로 맞춘 과정과 구현 시 체크 포인트를 정리한다.</p>
 </blockquote>
 
@@ -2237,250 +2441,4 @@ clearAutomatically (이미 rr 변경은 DB에 완료된 상태)
   <li>구현 부담도 크지 않다. 대신 <code class="language-plaintext highlighter-rouge">double</code> 정밀도·동점 정렬·표시 vs 의사결정 데이터 분리는 따로 챙기면 된다.</li>
 </ul>
 
-<p>한 번 흐름을 익혀 두면, 백분율·비율을 다루는 다른 기능에서도 같은 패턴을 적용하기 쉽다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[감정 분석 API에서 7가지 감정 점수를 소수점 둘째 자리 백분율로 보여주되 합계는 반드시 100.00%가 되게 하는 문제, 반올림 함정과 Largest Remainder Method(최대 잔여 방식) 해법, 구현 시 부동소수점·동점 처리 등을 정리합니다.]]></summary></entry><entry><title type="html">[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)</title><link href="https://nan0silver.github.io/til/2026-03-29-til/" rel="alternate" type="text/html" title="[TIL] 트랜잭션 이벤트 발행 타이밍 문제 — @TransactionalEventListener vs publishEvent() (#196)" /><published>2026-03-29T00:00:00+00:00</published><updated>2026-03-29T00:00:00+00:00</updated><id>https://nan0silver.github.io/til/til</id><content type="html" xml:base="https://nan0silver.github.io/til/2026-03-29-til/"><![CDATA[<blockquote>
-  <p>📝 <strong>TIL (Today I Learned)</strong><br />
-<code class="language-plaintext highlighter-rouge">@Transactional</code> 안에서 <code class="language-plaintext highlighter-rouge">publishEvent()</code>를 호출하면 <code class="language-plaintext highlighter-rouge">@Async</code> 리스너가 커밋 전 데이터를 읽으려다 실패할 수 있다. 이 문제는 <code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager.afterCommit()</code> 또는 <code class="language-plaintext highlighter-rouge">@TransactionalEventListener(AFTER_COMMIT)</code>로 해결한다.</p>
-</blockquote>
-
-<ul>
-  <li><a href="#들어가며">들어가며</a></li>
-  <li><a href="#1-문제-상황">1. 문제 상황</a></li>
-  <li><a href="#2-왜-이런-일이-생기는가">2. 왜 이런 일이 생기는가</a></li>
-  <li><a href="#3-해결책-1-transactionsynchronizationmanageraftercommit">3. 해결책 1: TransactionSynchronizationManager.afterCommit()</a></li>
-  <li><a href="#4-해결책-2-transactionaleventlistenerafter_commit">4. 해결책 2: @TransactionalEventListener(AFTER_COMMIT)</a></li>
-  <li><a href="#5-선택-가이드">5. 선택 가이드</a></li>
-  <li><a href="#정리">정리</a></li>
-</ul>
-
-<hr />
-
-<h2 id="들어가며">들어가며</h2>
-
-<p>Spring 애플리케이션에서는 비즈니스 로직이 끝난 뒤 이벤트를 발행하는 패턴을 자주 사용한다. 하지만 트랜잭션과 비동기가 함께 얽히면 타이밍 문제가 쉽게 발생한다.</p>
-
-<p>실제로 친구 1:1 통화 기능을 구현하면서 다음 버그를 겪었다.</p>
-
-<ul>
-  <li>친구 통화 수락 시 Agora 녹음 시작이 실패한다.</li>
-  <li>Call 레코드를 찾을 수 없다는 에러가 발생한다.</li>
-</ul>
-
-<p>흐름 자체는 단순하다. 통화 정보를 DB에 저장하고 <code class="language-plaintext highlighter-rouge">CallStartedEvent</code>를 발행한 뒤, 리스너에서 녹음을 시작한다. 겉보기에는 정상처럼 보이지만 이벤트 발행 시점에 함정이 있다.</p>
-
-<h2 id="1-문제-상황">1. 문제 상황</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// FriendCallService.java (버그가 있던 코드)</span>
-<span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="nc">CallTokenResponse</span> <span class="nf">acceptOffer</span><span class="o">(</span><span class="nc">Long</span> <span class="n">offerId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">calleeId</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// ... Call 엔티티 생성 및 저장</span>
-    <span class="n">call</span><span class="o">.</span><span class="na">startCall</span><span class="o">();</span>
-
-    <span class="c1">// 트랜잭션이 아직 커밋되지 않은 상태에서 이벤트 발행</span>
-    <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">channelName</span><span class="o">));</span>
-    <span class="k">return</span> <span class="n">response</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="c1">// CallEventListener.java</span>
-<span class="nd">@Async</span><span class="o">(</span><span class="s">"recordingTaskExecutor"</span><span class="o">)</span>
-<span class="nd">@EventListener</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleCallStarted</span><span class="o">(</span><span class="nc">CallStartedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 이 시점에 DB에 Call이 없을 수 있음</span>
-    <span class="nc">RecordingRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">RecordingRequest</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getCallId</span><span class="o">(),</span> <span class="n">event</span><span class="o">.</span><span class="na">getChannelName</span><span class="o">());</span>
-    <span class="n">agoraRecordingService</span><span class="o">.</span><span class="na">startRecording</span><span class="o">(</span><span class="n">request</span><span class="o">);</span> <span class="c1">// Call 조회 실패</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="2-왜-이런-일이-생기는가">2. 왜 이런 일이 생기는가</h2>
-
-<p>핵심은 <code class="language-plaintext highlighter-rouge">@Async</code> 리스너가 별도 스레드에서 실행된다는 점이다. 이벤트를 발행하는 메서드는 트랜잭션 내부에서 동작하고 있지만, 리스너는 그 트랜잭션 바깥에서 DB를 조회한다.</p>
-
-<p><code class="language-plaintext highlighter-rouge">READ COMMITTED</code> 격리 수준에서는 커밋되지 않은 데이터를 읽을 수 없으므로, 리스너에서 Call 레코드를 찾지 못하는 현상이 발생한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// @Async 없이 동기 리스너로 처리한 경우</span>
-<span class="nd">@EventListener</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleCallStarted</span><span class="o">(</span><span class="nc">CallStartedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">agoraRecordingService</span><span class="o">.</span><span class="na">startRecording</span><span class="o">(...);</span> <span class="c1">// 같은 스레드, 같은 트랜잭션</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>동기 <code class="language-plaintext highlighter-rouge">@EventListener</code>는 같은 스레드/같은 트랜잭션 컨텍스트이므로 커밋 전 데이터 접근이 가능하다. 하지만 다른 문제가 생긴다.</p>
-
-<ul>
-  <li>리스너 예외가 원래 트랜잭션까지 롤백시킨다.</li>
-  <li>외부 I/O(Agora API) 실패가 통화 수락 자체 실패로 번진다.</li>
-</ul>
-
-<p>즉, 사이드 이펙트를 핵심 트랜잭션과 분리하려고 <code class="language-plaintext highlighter-rouge">@Async</code>를 쓰면, 이번에는 타이밍 문제가 드러난다.</p>
-
-<hr />
-
-<h2 id="3-해결책-1-transactionsynchronizationmanageraftercommit">3. 해결책 1: TransactionSynchronizationManager.afterCommit()</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// FriendCallService.java (수정된 코드)</span>
-<span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="nc">CallTokenResponse</span> <span class="nf">acceptOffer</span><span class="o">(</span><span class="nc">Long</span> <span class="n">offerId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">calleeId</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// ... Call 엔티티 생성 및 저장</span>
-    <span class="n">call</span><span class="o">.</span><span class="na">startCall</span><span class="o">();</span>
-
-    <span class="kd">final</span> <span class="nc">Long</span> <span class="n">callId</span> <span class="o">=</span> <span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
-    <span class="kd">final</span> <span class="nc">String</span> <span class="n">finalChannelName</span> <span class="o">=</span> <span class="n">channelName</span><span class="o">;</span>
-
-    <span class="c1">// 트랜잭션 커밋 이후에 이벤트 발행</span>
-    <span class="nc">TransactionSynchronizationManager</span><span class="o">.</span><span class="na">registerSynchronization</span><span class="o">(</span><span class="k">new</span> <span class="nc">TransactionSynchronization</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterCommit</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">callId</span><span class="o">,</span> <span class="n">finalChannelName</span><span class="o">));</span>
-        <span class="o">}</span>
-    <span class="o">});</span>
-
-    <span class="k">return</span> <span class="n">response</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager</code>는 현재 트랜잭션에 콜백을 등록하는 저수준 API이다. <code class="language-plaintext highlighter-rouge">afterCommit()</code>에 등록한 코드는 커밋 직후 실행된다.</p>
-
-<p>수정 후에는 다음 흐름이 된다.</p>
-
-<ul>
-  <li>트랜잭션 내부에서 <code class="language-plaintext highlighter-rouge">afterCommit()</code> 콜백만 등록한다.</li>
-  <li>실제 이벤트 발행은 커밋이 끝난 뒤 실행된다.</li>
-  <li><code class="language-plaintext highlighter-rouge">@Async</code> 리스너가 조회할 때는 이미 DB 반영이 완료된 상태이다.</li>
-</ul>
-
-<p>주의할 점도 있다. <code class="language-plaintext highlighter-rouge">afterCommit()</code> 안에서 엔티티를 직접 건드리지 말고, 필요한 값을 미리 뽑아둬야 한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ❌ 위험: afterCommit 안에서 엔티티 접근</span>
-<span class="n">afterCommit</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="o">...));</span>
-<span class="o">}</span>
-
-<span class="c1">// ✅ 안전: 미리 값을 추출</span>
-<span class="kd">final</span> <span class="nc">Long</span> <span class="n">callId</span> <span class="o">=</span> <span class="n">call</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
-<span class="n">afterCommit</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">CallStartedEvent</span><span class="o">(</span><span class="n">callId</span><span class="o">,</span> <span class="o">...));</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="4-해결책-2-transactionaleventlistenerafter_commit">4. 해결책 2: @TransactionalEventListener(AFTER_COMMIT)</h2>
-
-<p>Spring은 이 문제를 위한 전용 어노테이션을 제공한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Async</span><span class="o">(</span><span class="s">"taskExecutor"</span><span class="o">)</span>
-<span class="nd">@TransactionalEventListener</span><span class="o">(</span><span class="n">phase</span> <span class="o">=</span> <span class="nc">TransactionPhase</span><span class="o">.</span><span class="na">AFTER_COMMIT</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleFriendCallOfferCreated</span><span class="o">(</span><span class="nc">FriendCallOfferCreatedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">fcmNotificationService</span><span class="o">.</span><span class="na">sendFriendCallOfferNotification</span><span class="o">(...);</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"FCM 알림 전송 실패"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">webSocketEventService</span><span class="o">.</span><span class="na">sendFriendCallOfferNotification</span><span class="o">(...);</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"WS 알림 전송 실패"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">@TransactionalEventListener(phase = AFTER_COMMIT)</code>을 사용하면 리스너가 커밋 이후에만 실행된다. 이벤트 발행 측 코드를 바꾸지 않고 수신 측에서 처리 타이밍을 제어할 수 있다.</p>
-
-<hr />
-
-<h2 id="5-선택-가이드">5. 선택 가이드</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th><code class="language-plaintext highlighter-rouge">TransactionSynchronizationManager</code></th>
-      <th><code class="language-plaintext highlighter-rouge">@TransactionalEventListener</code></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>수정 위치</td>
-      <td>이벤트 발행 측</td>
-      <td>이벤트 수신 측</td>
-    </tr>
-    <tr>
-      <td>적용 범위</td>
-      <td>특정 발행 지점</td>
-      <td>해당 리스너 전체</td>
-    </tr>
-    <tr>
-      <td>트랜잭션 없이 호출 시</td>
-      <td>등록 자체가 실패할 수 있음</td>
-      <td>기본적으로 이벤트를 무시함</td>
-    </tr>
-    <tr>
-      <td>유연성</td>
-      <td><code class="language-plaintext highlighter-rouge">beforeCommit</code>, <code class="language-plaintext highlighter-rouge">afterCompletion</code> 등 세밀한 훅 제공</td>
-      <td><code class="language-plaintext highlighter-rouge">phase</code> 기반 제어</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>트랜잭션 없는 컨텍스트에서도 이벤트가 발행될 수 있다면 <code class="language-plaintext highlighter-rouge">@TransactionalEventListener</code>의 기본 동작(AFTER_COMMIT + no tx 시 무시)을 반드시 고려해야 한다. 필요하면 <code class="language-plaintext highlighter-rouge">fallbackExecution = true</code>를 사용한다.</p>
-
-<hr />
-
-<h2 id="정리">정리</h2>
-
-<p>문제의 본질은 트랜잭션 커밋 시점과 이벤트 소비 시점이 어긋난다는 점이다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>동기 <code class="language-plaintext highlighter-rouge">@EventListener</code></th>
-      <th><code class="language-plaintext highlighter-rouge">@Async @EventListener</code></th>
-      <th><code class="language-plaintext highlighter-rouge">@Async @TransactionalEventListener(AFTER_COMMIT)</code></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>실행 스레드</td>
-      <td>동일</td>
-      <td>별도</td>
-      <td>별도</td>
-    </tr>
-    <tr>
-      <td>트랜잭션 컨텍스트</td>
-      <td>공유</td>
-      <td>없음</td>
-      <td>없음</td>
-    </tr>
-    <tr>
-      <td>커밋 전 데이터 접근</td>
-      <td>가능</td>
-      <td>불가</td>
-      <td>커밋 후 실행으로 안전</td>
-    </tr>
-    <tr>
-      <td>리스너 예외 영향</td>
-      <td>원 트랜잭션 롤백 가능</td>
-      <td>독립</td>
-      <td>독립</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Spring 이벤트를 사용할 때는 다음 규칙을 기억하면 된다.</p>
-
-<ol>
-  <li>리스너가 @Async라면, 커밋 전 데이터를 읽을 수 없다.</li>
-  <li>이벤트 발행 측을 수정할 수 있다면,
-TransactionSynchronizationManager.registerSynchronization().afterCommit()을 사용한다.</li>
-  <li>리스너 측에서만 처리하고 싶다면, @TransactionalEventListener(phase =
-AFTER_COMMIT)을 사용한다.</li>
-  <li>어떤 방식이든 afterCommit() 콜백 안에서는 엔티티를 직접 참조하지 않고, 미리 추출한
-원시 값(Long id 등)을 사용한다.</li>
-</ol>
-
-<hr />
-
-<p>결론적으로 <code class="language-plaintext highlighter-rouge">@Async</code> + <code class="language-plaintext highlighter-rouge">publishEvent()</code> 조합에서는 “커밋 이후에 소비되도록 보장하는 장치”를 반드시 넣어야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Spring" /><category term="트랜잭션" /><category term="이벤트" /><category term="Async" /><summary type="html"><![CDATA[트랜잭션 커밋 전 `publishEvent()`를 호출했을 때 발생한 타이밍 문제와 `@TransactionalEventListener(AFTER_COMMIT)` 및 `afterCommit()` 해결 방식을 정리한 글이다.]]></summary></entry></feed>
+<p>한 번 흐름을 익혀 두면, 백분율·비율을 다루는 다른 기능에서도 같은 패턴을 적용하기 쉽다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[감정 분석 API에서 7가지 감정 점수를 소수점 둘째 자리 백분율로 보여주되 합계는 반드시 100.00%가 되게 하는 문제, 반올림 함정과 Largest Remainder Method(최대 잔여 방식) 해법, 구현 시 부동소수점·동점 처리 등을 정리합니다.]]></summary></entry></feed>
