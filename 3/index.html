@@ -45,7 +45,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
 <meta name="twitter:creator" content="@Nahyun Eun 은나현" />
 <meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-10T05:00:45+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/3/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-06-12T08:52:09+00:00","description":"Nahyun의 개발 블로그입니다. Java 백엔드 개발 학습 과정과 알고리즘, Spring, 웹 개발 등 다양한 프로그래밍 지식을 공유합니다.","headline":"Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/3/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -185,7 +185,7 @@ Powered by Hydejack v9.1.6 <https://hydejack.com/>
   w._search = {
     DATA_URL: '/assets/sitedata.json?no-cache',
     STORAGE_KEY: 'mini-search/',
-    INDEX_KEY: 'index--2026-06-10T05:01:33+00:00',
+    INDEX_KEY: 'index--2026-06-12T08:52:59+00:00',
   };
   w._clapButton = true;
 }(window);</script>
@@ -360,7 +360,7 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           class="sidebar-nav-item "
           
         >
-          Infra (AWS · Git) (5)
+          Infra (AWS · Git) (6)
         </a>
       </li>
     
@@ -539,6 +539,85 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
 
 
 
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      <a href="/projectdiary/2026-02-24-diary/" class="flip-title">
+        [친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기
+      </a>
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-02-24T00:00:00+00:00">24 Feb 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 12 Jun 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-06-12T08:52:09+00:00">2026-06-12</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      친구하자 프로젝트 출시를 준비하며 CI/CD를 도입하고, Docker, EC2, ECS, ECR 등 AWS 인프라를 활용한 배포 흐름을 정리했다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <ul>
+  <li><a href="#시작하기-전에">시작하기 전에</a></li>
+  <li><a href="#1-cicd란-무엇인가요">1. CI/CD란 무엇인가요?</a></li>
+  <li><a href="#2-docker가-왜-필요한가요">2. Docker가 왜 필요한가요?</a></li>
+  <li><a href="#3-aws-ec2란-무엇인가요">3. AWS EC2란 무엇인가요?</a></li>
+  <li><a href="#4-aws-ecs란-무엇인가요">4. AWS ECS란 무엇인가요?</a></li>
+  <li><a href="#5-ecr이란-무엇인가요">5. ECR이란 무엇인가요?</a></li>
+  <li><a href="#6-지금-내-프로젝트의-전체-흐름">6. 지금 내 프로젝트의 전체 흐름</a></li>
+  <li><a href="#7-정리">7. 정리</a></li>
+</ul>
+
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/projectdiary/2026-02-24-diary/">[친구하자] Android 앱을 만들며 배운 CI/CD와 AWS EC2·ECS 이야기</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+
+
+
 <article id="post-infra-ecs-deployment-developer-guide" class="page post mb6" role="article">
   <header>
     <h1 class="post-title flip-project-title">
@@ -559,10 +638,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 12 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
+              <time datetime="2026-06-12T08:52:09+00:00">2026-06-12</time>
             </span>
           
         
@@ -630,10 +709,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 12 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
+              <time datetime="2026-06-12T08:52:09+00:00">2026-06-12</time>
             </span>
           
         
@@ -703,10 +782,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 12 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
+              <time datetime="2026-06-12T08:52:09+00:00">2026-06-12</time>
             </span>
           
         
@@ -775,10 +854,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 12 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
+              <time datetime="2026-06-12T08:52:09+00:00">2026-06-12</time>
             </span>
           
         
@@ -845,10 +924,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 12 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
+              <time datetime="2026-06-12T08:52:09+00:00">2026-06-12</time>
             </span>
           
         
@@ -924,10 +1003,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 12 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
+              <time datetime="2026-06-12T08:52:09+00:00">2026-06-12</time>
             </span>
           
         
@@ -997,10 +1076,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 12 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
+              <time datetime="2026-06-12T08:52:09+00:00">2026-06-12</time>
             </span>
           
         
@@ -1069,10 +1148,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 12 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
+              <time datetime="2026-06-12T08:52:09+00:00">2026-06-12</time>
             </span>
           
         
@@ -1142,10 +1221,10 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
           
             
             
-            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
+            <span class="ellipsis" data-tippy-content="Last modified at: 12 Jun 2026">
               <span class="sr-only">Last modified at:</span>
               <span class="icon-history"></span>
-              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
+              <time datetime="2026-06-12T08:52:09+00:00">2026-06-12</time>
             </span>
           
         
@@ -1184,77 +1263,6 @@ html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/projectdiary/2026-01-12-diary/">[친구하자] SSL 인증서 자동 갱신 설정하기 (Amazon Linux + Let’s Encrypt)</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-
-
-
-<article id="post-algorithm-summary" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title flip-project-title">
-      <a href="/algorithm/2026-01-09-summary/" class="flip-title">
-        [Algorithm] 코딩테스트 알고리즘 선택방법 요약
-      </a>
-    </h1>
-
-    <div class="post-date">
-      
-      <span class="ellipsis mr1">
-        <time datetime="2026-01-09T00:00:00+00:00">09 Jan 2026</time> in <a href="/algorithm/" class="flip-title">Algorithm</a> 
-      </span>
-      
-        
-          
-          
-          
-            
-            
-            <span class="ellipsis" data-tippy-content="Last modified at: 10 Jun 2026">
-              <span class="sr-only">Last modified at:</span>
-              <span class="icon-history"></span>
-              <time datetime="2026-06-10T05:00:45+00:00">2026-06-10</time>
-            </span>
-          
-        
-      
-    </div>
-
-    
-    
-
-    
-
-
-
-  
-    <p class="note-sm" >
-      코딩테스트 알고리즘 선택 방법에 대해 정리해보았습니다.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>코딩테스트에서 어떤 알고리즘을 선택해야 할지 고민될 때가 많다.
-이 글에서는 <strong>코테 기준으로 딱 필요한 만큼만</strong> 정리한다.</p>
-
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/algorithm/2026-01-09-summary/">[Algorithm] 코딩테스트 알고리즘 선택방법 요약</a>
 
       </p>
     </footer>
