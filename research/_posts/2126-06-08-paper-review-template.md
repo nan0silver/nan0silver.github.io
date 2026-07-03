@@ -5,13 +5,9 @@ title: "[논문 리뷰] 논문 제목 (저자, 연도)"
 description: >
   논문 한 줄 요약. 검색 엔진·SNS 미리보기용으로 160자 내외로 작성합니다.
 categories: [research]
-tags:
-  [
-    "논문리뷰",
-    "Paper Review",
-  ]
-date: 2026-06-08 00:00:00
-last_modified_at: 2026-06-08 00:00:00
+tags: ["논문리뷰", "Paper Review"]
+date: 2126-06-08 00:00:00
+last_modified_at: 2126-06-08 00:00:00
 sitemap: false
 ---
 
@@ -32,13 +28,13 @@ sitemap: false
 
 ## 논문 정보
 
-| 항목 | 내용 |
-| ---- | ---- |
-| 제목 | |
-| 저자 | |
-| 학회/저널 | |
-| 연도 | |
-| 링크 | [arXiv](https://arxiv.org/) / [PDF]() |
+| 항목      | 내용                                  |
+| --------- | ------------------------------------- |
+| 제목      |                                       |
+| 저자      |                                       |
+| 학회/저널 |                                       |
+| 연도      |                                       |
+| 링크      | [arXiv](https://arxiv.org/) / [PDF]() |
 
 ## 배경 및 동기
 
