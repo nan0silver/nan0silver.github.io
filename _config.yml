@@ -89,7 +89,7 @@ menu:
   # 알고리즘 · 연구
   - title: Algorithm (18)
     url: /algorithm/
-  - title: Research (1)
+  - title: Research
     url: /research/
   # 일상 (프로젝트 일기, TIL)
   - title: 프로젝트 일기 (36)
