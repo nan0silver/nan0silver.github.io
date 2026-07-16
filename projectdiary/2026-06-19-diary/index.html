@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유 | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="Supabase(관리형 PostgreSQL)와 SQLAlchemy(ORM)는 경쟁 관계가 아니라 인프라 레이어와 접근 레이어를 각각 담당한다. supabase-py 클라이언트만 쓸 때의 한계, 레이어 분리의 이점, 교체 가능한 구조까지 정리합니다." />
+<meta property="og:description" content="Supabase(관리형 PostgreSQL)와 SQLAlchemy(ORM)는 경쟁 관계가 아니라 인프라 레이어와 접근 레이어를 각각 담당한다. supabase-py 클라이언트만 쓸 때의 한계, 레이어 분리의 이점, 교체 가능한 구조까지 정리합니다." />
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-06-19-diary/" />
+<meta property="og:url" content="https://nan0silver.github.io/projectdiary/2026-06-19-diary/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-06-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-07-16T01:32:31+00:00","datePublished":"2026-06-19T00:00:00+00:00","description":"Supabase(관리형 PostgreSQL)와 SQLAlchemy(ORM)는 경쟁 관계가 아니라 인프라 레이어와 접근 레이어를 각각 담당한다. supabase-py 클라이언트만 쓸 때의 한계, 레이어 분리의 이점, 교체 가능한 구조까지 정리합니다.","headline":"[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/projectdiary/2026-06-19-diary/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/projectdiary/2026-06-19-diary/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/flutter/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/flutter/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/projectdiary/2026-06-19-diary/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-07-16T01:33:16+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유",
+    "description": "Supabase(관리형 PostgreSQL)와 SQLAlchemy(ORM)는 경쟁 관계가 아니라 인프라 레이어와 접근 레이어를 각각 담당한다. supabase-py 클라이언트만 쓸 때의 한계, 레이어 분리의 이점, 교체 가능한 구조까지 정리합니다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-06-19T00:00:00+00:00",
+    "dateModified": "2026-07-16T01:32:31+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/projectdiary/2026-06-19-diary/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/projectdiary/2026-06-19-diary/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "projectdiary",
+        "item": "https://nan0silver.github.io/projectdiary/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유",
+        "item": "https://nan0silver.github.io/projectdiary/2026-06-19-diary/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/projectdiary/">projectdiary</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-06-19-diary</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-projectdiary-diary" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-06-19T00:00:00+00:00">19 Jun 2026</time> in <a href="/projectdiary/" class="flip-title">ProjectDiary</a> 
+      </span>
+      
+        
+          
+          
+          
+            
+            
+            <span class="ellipsis" data-tippy-content="Last modified at: 16 Jul 2026">
+              <span class="sr-only">Last modified at:</span>
+              <span class="icon-history"></span>
+              <time datetime="2026-07-16T01:32:31+00:00">2026-07-16</time>
+            </span>
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Supabase(관리형 PostgreSQL)와 SQLAlchemy(ORM)는 경쟁 관계가 아니라 인프라 레이어와 접근 레이어를 각각 담당한다. supabase-py 클라이언트만 쓸 때의 한계, 레이어 분리의 이점, 교체 가능한 구조까지 정리합니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p>데이터베이스를 선택할 때 “어떤 DB를 쓸까”에만 집중하기 쉽지만, 실제로는 <strong>어디에 둘 것인가(인프라)</strong> 와 <strong>코드에서 어떻게 접근할 것인가(접근 방식)</strong> 를 따로 결정해야 한다. Supabase와 SQLAlchemy는 각각 다른 레이어를 담당하며, 둘을 함께 쓰면 한쪽을 교체할 때 다른 쪽에 영향을 주지 않는 구조를 만들 수 있다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-supabase는-어디에를-해결한다">1. Supabase는 “어디에”를 해결한다</a></li>
+  <li><a href="#2-sqlalchemy는-어떻게를-해결한다">2. SQLAlchemy는 “어떻게”를 해결한다</a></li>
+  <li><a href="#3-supabase-클라이언트만-쓰면-안-될까">3. Supabase 클라이언트만 쓰면 안 될까</a></li>
+  <li><a href="#4-레이어를-분리하면-생기는-이점">4. 레이어를 분리하면 생기는 이점</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>데이터베이스를 선택할 때 흔히 “어떤 DB를 쓸까”에만 집중합니다. 하지만 실제 개발에서는 두 가지를 따로 결정해야 합니다.</p>
+
+<ul>
+  <li><strong>어디에</strong> 데이터베이스를 둘 것인가 (인프라)</li>
+  <li><strong>어떻게</strong> 코드에서 접근할 것인가 (접근 방식)</li>
+</ul>
+
+<p>이 두 레이어를 구분하지 않으면, 나중에 둘 중 하나를 바꾸고 싶을 때 전체를 다 뜯어내야 하는 상황이 생깁니다.</p>
+
+<hr />
+
+<h2 id="1-supabase는-어디에를-해결한다">1. Supabase는 “어디에”를 해결한다</h2>
+
+<p>Supabase는 PostgreSQL을 호스팅해 주는 플랫폼입니다. 서버 설정, SSL 인증서, 백업, 모니터링 같은 인프라 관리를 대신 해 줍니다. 부가적으로 Auth, Storage, Realtime 같은 기능도 제공하지만, 핵심은 <strong>관리형 Postgres 서버</strong>입니다.</p>
+
+<p>즉, Supabase를 쓴다는 것은 “PostgreSQL을 직접 운영하지 않겠다”는 결정입니다.</p>
+
+<hr />
+
+<h2 id="2-sqlalchemy는-어떻게를-해결한다">2. SQLAlchemy는 “어떻게”를 해결한다</h2>
+
+<p>SQLAlchemy는 Python 코드에서 데이터베이스에 접근하는 방법을 제공하는 ORM(Object-Relational Mapper)입니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- SQL을 직접 쓰는 대신</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">github_id</span> <span class="o">=</span> <span class="s1">'abc123'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Python 문법으로
+</span><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select</span><span class="p">(</span><span class="n">User</span><span class="p">).</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">github_id</span> <span class="o">==</span> <span class="n">github_id</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>ORM이 해주는 일은 단순히 “SQL을 Python처럼 쓰게 해주는 것” 이상입니다.</p>
+
+<ul>
+  <li><strong>타입 안전성</strong> — 컬럼 타입이 Python 타입으로 매핑되어 IDE 자동완성과 정적 분석이 가능</li>
+  <li><strong>트랜잭션 관리</strong> — <code class="language-plaintext highlighter-rouge">commit</code>, <code class="language-plaintext highlighter-rouge">rollback</code>을 명시적으로 제어</li>
+  <li><strong>커넥션 풀링</strong> — DB 연결을 재사용해서 성능 최적화</li>
+  <li><strong>마이그레이션 연동</strong> — Alembic 같은 도구가 모델 정의를 읽어 스키마 변경 이력을 관리</li>
+</ul>
+
+<hr />
+
+<h2 id="3-supabase-클라이언트만-쓰면-안-될까">3. Supabase 클라이언트만 쓰면 안 될까</h2>
+
+<p>Supabase는 자체 Python 클라이언트(<code class="language-plaintext highlighter-rouge">supabase-py</code>)를 제공합니다. 이걸로도 데이터를 읽고 쓸 수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># supabase-py 방식
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">supabase</span><span class="p">.</span><span class="n">table</span><span class="p">(</span><span class="s">"users"</span><span class="p">).</span><span class="n">select</span><span class="p">(</span><span class="s">"*"</span><span class="p">).</span><span class="n">eq</span><span class="p">(</span><span class="s">"github_id"</span><span class="p">,</span> <span class="s">"abc123"</span><span class="p">).</span><span class="n">execute</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>하지만 이 방식은 내부적으로 REST API(PostgREST)를 통해 데이터베이스에 접근합니다. 이는 몇 가지 제약을 만듭니다.</p>
+
+<ul>
+  <li>복잡한 JOIN이나 서브쿼리 표현에 한계가 있음</li>
+  <li>HTTP 오버헤드 존재</li>
+  <li>세밀한 트랜잭션 제어가 어려움</li>
+  <li>스키마 마이그레이션 도구와 연동이 자연스럽지 않음</li>
+</ul>
+
+<p>간단한 CRUD에는 충분하지만, 서비스가 커질수록 한계가 드러납니다.</p>
+
+<hr />
+
+<h2 id="4-레이어를-분리하면-생기는-이점">4. 레이어를 분리하면 생기는 이점</h2>
+
+<p>인프라 레이어와 접근 레이어를 분리해서 설계하면 한 가지 중요한 유연성이 생깁니다.</p>
+
+<p><strong>인프라를 바꿔도 애플리케이션 코드가 바뀌지 않는다.</strong></p>
+
+<p>Supabase에서 AWS RDS로, 혹은 로컬 Docker Postgres로 옮기더라도 SQLAlchemy 코드는 그대로입니다. <code class="language-plaintext highlighter-rouge">DATABASE_URL</code> 환경변수 하나만 바꾸면 됩니다. 반대로, SQLAlchemy를 다른 ORM으로 교체해도 Supabase 연결 설정은 영향을 받지 않습니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>애플리케이션 코드
+        ↓
+SQLAlchemy  ← 이 레이어만 알면 DB 벤더에 종속되지 않음
+        ↓
+PostgreSQL (Supabase / RDS / 로컬 / 무엇이든)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Supabase</th>
+      <th>SQLAlchemy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>역할</td>
+      <td>인프라 (어디에)</td>
+      <td>접근 방식 (어떻게)</td>
+    </tr>
+    <tr>
+      <td>담당</td>
+      <td>DB 호스팅, 운영, 부가 기능</td>
+      <td>ORM, 트랜잭션, 커넥션 풀, 마이그레이션</td>
+    </tr>
+    <tr>
+      <td>교체 가능성</td>
+      <td>RDS, 로컬 Postgres 등으로</td>
+      <td>다른 ORM, 순수 SQL 등으로</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>둘은 경쟁 관계가 아니라 다른 문제를 각각 해결합니다. “Supabase를 쓰면 ORM이 필요 없다”는 생각은, “AWS를 쓰면 코드를 짤 필요가 없다”는 말과 같습니다.</p>
+
+<p>인프라와 접근 레이어를 분리해 두면, 나중에 한쪽을 교체할 때 다른 쪽에 영향을 주지 않는 유연한 구조를 가져갈 수 있습니다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/til/2026-07-07-spring-boot-gradle-maven/" class="flip-title"><span>[TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven</span></a>  <time class="faded fine" datetime="2026-07-07T00:00:00+00:00">07 Jul 2026</time></li>                        <li class="h4">  <a href="/infra/2026-06-10-nginx-reverse-proxy/" class="flip-title"><span>[Infra] 리버스 프록시와 Nginx — 왜 많이 쓸까?</span></a>  <time class="faded fine" datetime="2026-06-10T00:00:00+00:00">10 Jun 2026</time></li>                        <li class="h4">  <a href="/til/2026-06-09-til/" class="flip-title"><span>[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식</span></a>  <time class="faded fine" datetime="2026-06-09T00:00:00+00:00">09 Jun 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="https://github.com/nan0silver">GitHub</a>
+      |
+    
+      
+      <a class="heading flip-title" href="mailto:silvernh1220@gmail.com">Gmail</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Full-stack · 1인 개발 · 창업 준비
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          Frontend (9)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/infra/"
+          class="sidebar-nav-item "
+          
+        >
+          Infra (AWS · Git) (6)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/backend/"
+          class="sidebar-nav-item "
+          
+        >
+          Backend (Java · Spring · Flask) (37)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flutter/"
+          class="sidebar-nav-item "
+          
+        >
+          Flutter (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (18)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/research/"
+          class="sidebar-nav-item "
+          
+        >
+          Research (1)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (37)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (77)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          기타 (4)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

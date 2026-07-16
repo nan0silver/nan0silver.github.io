@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+     
+  <meta name="robots" content="noindex">
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven | NAHYUN BLOG</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="[TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven" />
+<meta name="author" content="Nahyun Eun 은나현" />
+<meta property="og:locale" content="ko_KR, en_US" />
+<meta name="description" content="Spring Initializr에서 선택하는 Gradle(Groovy), Gradle(Kotlin DSL), Maven 빌드 도구의 차이, Groovy/Kotlin DSL의 타입·IDE 체감 차이, 선택 기준을 정리한 글이다." />
+<meta property="og:description" content="Spring Initializr에서 선택하는 Gradle(Groovy), Gradle(Kotlin DSL), Maven 빌드 도구의 차이, Groovy/Kotlin DSL의 타입·IDE 체감 차이, 선택 기준을 정리한 글이다." />
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/" />
+<meta property="og:url" content="https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/" />
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-07-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven" />
+<meta name="twitter:site" content="@nan0silver" />
+<meta name="twitter:creator" content="@Nahyun Eun 은나현" />
+<meta name="google-site-verification" content="5RKA7omt3e6EOGwA4bqRKJZ4lMp_rTYZWZxsrsb8-3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nahyun Eun 은나현"},"dateModified":"2026-07-07T00:00:00+00:00","datePublished":"2026-07-07T00:00:00+00:00","description":"Spring Initializr에서 선택하는 Gradle(Groovy), Gradle(Kotlin DSL), Maven 빌드 도구의 차이, Groovy/Kotlin DSL의 타입·IDE 체감 차이, 선택 기준을 정리한 글이다.","headline":"[TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"},"name":"Nahyun Eun 은나현"},"url":"https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습">
+  
+
+
+
+  <meta name="theme-color" content="rgb(116, 41, 128)">
+
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="NAHYUN BLOG" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<meta name="application-name" content="NAHYUN BLOG" />
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="article"
+/>
+<meta property="og:url" content="https://nan0silver.github.io/flutter/2023-04-06-start-flutter/" />
+<meta
+  property="og:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="og:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="og:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+<meta property="og:site_name" content="NAHYUN BLOG" />
+<meta property="og:locale" content="ko_KR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://nan0silver.github.io/flutter/2023-04-06-start-flutter/" />
+<meta
+  property="twitter:title"
+  content="[Flutter] Start Flutter"
+/>
+<meta
+  property="twitter:description"
+  content="Flutter와 Dart언어에 대한 기본 정보를 설명한다.
+"
+/>
+<meta
+  property="twitter:image"
+  content="https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+/>
+
+<meta property="twitter:creator" content="@nan0silver" />
+
+
+<!-- Enhanced Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/favicon/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/favicon/favicon-32x32.png"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="mask-icon"
+  href="/assets/favicon/safari-pinned-tab.svg"
+  color="#742980"
+/>
+<meta name="msapplication-TileColor" content="#742980" />
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+ 
+<link rel="alternate" href="https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/" hreflang="ko-kr, en-us">
+ <link type="application/atom+xml" rel="alternate" href="https://nan0silver.github.io/feed.xml" title="NAHYUN BLOG" />
+
+
+<link
+  rel="shortcut icon"
+  href="/assets/favicon/favicon.ico"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/assets/favicon/apple-touch-icon.png"
+/>
+
+<link rel="manifest" href="/assets/site.webmanifest" />
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" /><link rel="dns-prefetch" href="https://fonts.gstatic.com" /> 
+
+<link
+  rel="preload"
+  href="/assets/img/swipe.svg"
+  as="image"
+  id="_hrefSwipeSVG"
+/>
+
+  
+ <script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2026-07-16T01:33:16+00:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+ <!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(166, 76, 181);--accent-color-faded: rgba(166,76,181,0.5);--accent-color-highlight: rgba(166,76,181,0.1);--accent-color-darkened: #8e409b;--theme-color: rgb(116, 41, 128)}
+
+</style>
+
+
+<!--<![endif]-->
+  
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven",
+    "description": "Spring Initializr에서 선택하는 Gradle(Groovy), Gradle(Kotlin DSL), Maven 빌드 도구의 차이, Groovy/Kotlin DSL의 타입·IDE 체감 차이, 선택 기준을 정리한 글이다.
+",
+    "author": {
+      "@type": "Person",
+      "name": "Nahyun Eun 은나현",
+      "url": "https://nan0silver.github.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NAHYUN BLOG",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+      }
+    },
+    "datePublished": "2026-07-07T00:00:00+00:00",
+    "dateModified": "2026-07-07T00:00:00+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/"
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://nan0silver.github.io/assets/img/blog/nh_duck_logo.webp"
+    },
+    "keywords": "풀스택,1인개발,창업,AI,개발,프로그래밍,Java,Spring,알고리즘,백엔드,웹개발,기술블로그,코딩,학습"
+  }
+</script>
+  
+ 
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/" />
+
+<!-- Language alternates for multilingual content -->
+
+
+<!-- RSS Feed -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="NAHYUN BLOG RSS Feed"
+  href="https://nan0silver.github.io/feed.xml"
+/>
+
+<!-- JSON-LD for breadcrumbs -->
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://nan0silver.github.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "til",
+        "item": "https://nan0silver.github.io/til/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven",
+        "item": "https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/"
+      }
+    ]
+  }
+</script>
+
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/til/">til</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2026-07-07-spring-boot-gradle-maven</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-til-spring-boot-gradle-maven" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        [TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2026-07-07T00:00:00+00:00">07 Jul 2026</time> in <a href="/til/" class="flip-title">TIL</a> on <span>Til</span>, <span>Spring boot</span>, <span>Gradle</span>, <span>Maven</span>, <span>빌드 도구</span>, <span>Spring initializr</span>, <span>Kotlin dsl</span>
+      </span>
+      
+        
+          
+          
+          
+        
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      Spring Initializr에서 선택하는 Gradle(Groovy), Gradle(Kotlin DSL), Maven 빌드 도구의 차이, Groovy/Kotlin DSL의 타입·IDE 체감 차이, 선택 기준을 정리한 글이다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <blockquote>
+  <p><a href="https://start.spring.io/">Spring Initializr</a>에서 프로젝트를 만들 때 가장 먼저 고르는 항목 중 하나가 빌드 도구다. 세 가지 선택지는 이름만 다르지 않다. 각각 설정 파일 형식, 문법, 생태계가 달라서 팀 컨벤션과 취향에 따라 고르게 된다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-세-가지-선택지-한눈에-보기">1. 세 가지 선택지 한눈에 보기</a></li>
+  <li><a href="#2-maven">2. Maven</a></li>
+  <li><a href="#3-gradle--groovy-dsl과-kotlin-dsl">3. Gradle — Groovy DSL과 Kotlin DSL</a></li>
+  <li><a href="#4-근본적인-차이-동적-타입-vs-정적-타입">4. 근본적인 차이: 동적 타입 vs 정적 타입</a></li>
+  <li><a href="#5-자동완성과-타입-안정성">5. 자동완성과 타입 안정성</a></li>
+  <li><a href="#6-kotlin-dsl의-트레이드오프">6. Kotlin DSL의 트레이드오프</a></li>
+  <li><a href="#7-비교표">7. 비교표</a></li>
+  <li><a href="#8-어떤-걸-고를까">8. 어떤 걸 고를까</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>Spring Boot 프로젝트를 생성하면 의존성 관리, 컴파일, 테스트, 패키징을 담당하는 <strong>빌드 도구</strong>가 함께 들어온다.</p>
+
+<p>Spring Initializr에서는 아래 세 가지 중 하나를 고른다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>선택지</th>
+      <th>설정 파일</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Gradle - Groovy</td>
+      <td><code class="language-plaintext highlighter-rouge">build.gradle</code>, <code class="language-plaintext highlighter-rouge">settings.gradle</code></td>
+    </tr>
+    <tr>
+      <td>Gradle - Kotlin</td>
+      <td><code class="language-plaintext highlighter-rouge">build.gradle.kts</code>, <code class="language-plaintext highlighter-rouge">settings.gradle.kts</code></td>
+    </tr>
+    <tr>
+      <td>Maven</td>
+      <td><code class="language-plaintext highlighter-rouge">pom.xml</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>애플리케이션 코드(Spring Boot 자체)는 동일하다. 달라지는 것은 <strong>빌드 스크립트를 어떤 형식으로 쓰느냐</strong>뿐이다.</p>
+
+<hr />
+
+<h2 id="1-세-가지-선택지-한눈에-보기">1. 세 가지 선택지 한눈에 보기</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Spring Boot 앱
+    ├── Maven          → pom.xml (XML)
+    ├── Gradle Groovy  → build.gradle (Groovy)
+    └── Gradle Kotlin  → build.gradle.kts (Kotlin)
+</code></pre></div></div>
+
+<p>Gradle Groovy와 Gradle Kotlin은 <strong>같은 Gradle 엔진</strong>을 쓰고, DSL(도메인 특화 언어) 문법만 다르다. Maven은 별도의 빌드 시스템이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">build.gradle</code>을 쓰면 Groovy DSL, <code class="language-plaintext highlighter-rouge">build.gradle.kts</code>를 쓰면 Kotlin DSL이다. 둘 다 같은 Gradle을 구동하고 빌드 결과물도 동일하다. 차이는 빌드 스크립트를 <strong>어떤 언어로 기술하느냐</strong>에 있다.</p>
+
+<hr />
+
+<h2 id="2-maven">2. Maven</h2>
+
+<p>가장 오래 쓰인 Java 빌드 도구 중 하나다. <code class="language-plaintext highlighter-rouge">pom.xml</code> 하나에 프로젝트 정보와 의존성을 선언한다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project&gt;</span>
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>3.4.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
+
+    <span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>demo<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p><strong>특징</strong></p>
+
+<ul>
+  <li>XML 기반이라 구조가 명확하고, 레퍼런스·예제가 많다.</li>
+  <li>기업 레거시 프로젝트에서 여전히 흔하다.</li>
+  <li>설정이 길어지면 XML 보일러플레이트가 늘어난다.</li>
+  <li>멀티 모듈, 커스텀 빌드 로직이 복잡해지면 Gradle보다 유연성이 떨어지는 편이다.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-gradle--groovy-dsl과-kotlin-dsl">3. Gradle — Groovy DSL과 Kotlin DSL</h2>
+
+<p>Spring Boot 공식 문서와 많은 튜토리얼이 Groovy DSL(<code class="language-plaintext highlighter-rouge">build.gradle</code>)을 기준으로 한다. Kotlin DSL은 Gradle 5.x 이후 본격적으로 쓰이기 시작했고, 파일 확장자가 <code class="language-plaintext highlighter-rouge">.kts</code>다.</p>
+
+<p><strong>Groovy DSL</strong></p>
+
+<ul>
+  <li>Maven보다 설정이 짧고, 스크립트형이라 커스텀 빌드 로직을 쓰기 쉽다.</li>
+  <li>Gradle에서 가장 오래 쓰인 형식이라 자료와 플러그인 예제가 풍부하다.</li>
+  <li>Spring Initializr 기본값에 가깝고, 입문·학습 자료와의 호환성이 좋다.</li>
+</ul>
+
+<p><strong>Kotlin DSL</strong></p>
+
+<ul>
+  <li>Groovy DSL과 <strong>동일한 Gradle 기능</strong>을 제공한다.</li>
+  <li>Spring Boot + Kotlin 앱을 만들 때 빌드 스크립트와 애플리케이션 언어를 맞출 수 있다.</li>
+  <li>예제·블로그 글이 Groovy DSL보다 적은 편이라, 처음엔 문법 차이를 익히는 비용이 조금 있다.</li>
+</ul>
+
+<p>공통으로 Gradle은 <strong>증분 빌드·빌드 캐시</strong> 덕분에 대형 프로젝트에서 빌드 속도가 빠른 경우가 많다.</p>
+
+<hr />
+
+<h2 id="4-근본적인-차이-동적-타입-vs-정적-타입">4. 근본적인 차이: 동적 타입 vs 정적 타입</h2>
+
+<p>Groovy와 Kotlin DSL의 실무적 차이는 대부분 여기서 출발한다.</p>
+
+<p><strong>Groovy — 동적 타입</strong></p>
+
+<p>Groovy는 동적 타입 언어다. 스크립트를 실행하기 전까지 IDE가 <code class="language-plaintext highlighter-rouge">implementation</code>이 무엇인지, 어떤 인자를 받는지 완전히는 모른다. Groovy 특유의 메타프로그래밍(<code class="language-plaintext highlighter-rouge">methodMissing</code>, 동적 프로퍼티) 덕분에 Gradle DSL이 간결하게 표현되는데, 그 대가로 IDE가 정적으로 검증할 수 있는 정보가 제한된다.</p>
+
+<p><strong>Kotlin — 정적 타입</strong></p>
+
+<p>Kotlin은 정적 타입 언어다. <code class="language-plaintext highlighter-rouge">build.gradle.kts</code>는 컴파일되는 코드이고, Gradle API가 전부 타입으로 노출된다. IDE가 실제 타입 정보를 갖고 동작하기 때문에, 자동완성·오류 검출 같은 체감 차이가 여기서 파생된다.</p>
+
+<hr />
+
+<h2 id="5-자동완성과-타입-안정성">5. 자동완성과 타입 안정성</h2>
+
+<p>Gradle DSL을 고를 때 가장 크게 느껴지는 차이다.</p>
+
+<p><strong>Kotlin DSL</strong></p>
+
+<p>IntelliJ에서 자동완성이 정확하게 뜬다. <code class="language-plaintext highlighter-rouge">tasks.</code>를 치면 실제 존재하는 태스크·메서드가 나오고, 인자 타입이 틀리면 빨간 줄이 표시된다. 오타를 커밋 전에 잡을 수 있다.</p>
+
+<p><strong>Groovy DSL</strong></p>
+
+<p>자동완성이 부분적이다. IntelliJ가 Gradle 모델을 추론해서 일부는 제공하지만, 동적으로 생성되는 부분은 놓친다. 오타를 내면 IDE는 조용하고, <code class="language-plaintext highlighter-rouge">./gradlew build</code>를 돌려야 런타임에 <code class="language-plaintext highlighter-rouge">no such property</code> 같은 에러로 발견되는 경우가 있다.</p>
+
+<p>문법 차이 자체는 사소하다. Kotlin은 문자열에 큰따옴표를 쓰고, 프로퍼티 할당에 <code class="language-plaintext highlighter-rouge">=</code>가 필요하다는 정도다.</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// build.gradle (Groovy)</span>
+<span class="n">plugins</span> <span class="o">{</span>
+    <span class="n">id</span> <span class="s1">'org.springframework.boot'</span> <span class="n">version</span> <span class="s1">'3.4.0'</span>
+<span class="o">}</span>
+<span class="n">group</span> <span class="o">=</span> <span class="s1">'com.example'</span>
+<span class="n">sourceCompatibility</span> <span class="o">=</span> <span class="s1">'21'</span>
+<span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">implementation</span> <span class="s1">'org.springframework.boot:spring-boot-starter-web'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// build.gradle.kts (Kotlin)</span>
+<span class="nf">plugins</span> <span class="p">{</span>
+    <span class="nf">id</span><span class="p">(</span><span class="s">"org.springframework.boot"</span><span class="p">)</span> <span class="n">version</span> <span class="s">"3.4.0"</span>
+<span class="p">}</span>
+<span class="n">group</span> <span class="p">=</span> <span class="s">"com.example"</span>
+<span class="nf">java</span> <span class="p">{</span>
+    <span class="n">sourceCompatibility</span> <span class="p">=</span> <span class="nc">JavaVersion</span><span class="p">.</span><span class="nc">VERSION_21</span>
+<span class="p">}</span>
+<span class="nf">dependencies</span> <span class="p">{</span>
+    <span class="nf">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Groovy는 작은따옴표·괄호 생략이 가능해 조금 더 짧고, Kotlin은 괄호와 큰따옴표를 요구해 살짝 더 명시적이다. <code class="language-plaintext highlighter-rouge">implementation '...'</code> ↔ <code class="language-plaintext highlighter-rouge">implementation("...")</code>처럼 따옴표·괄호 규칙만 다르고 의미는 같다. 이 정도 차이는 하루면 적응할 수 있다.</p>
+
+<hr />
+
+<h2 id="6-kotlin-dsl의-트레이드오프">6. Kotlin DSL의 트레이드오프</h2>
+
+<p>Kotlin DSL의 장점만 보면 항상 Kotlin이 이기는 것처럼 보이지만, 단점도 있다.</p>
+
+<p><strong>첫 빌드 시 스크립트 컴파일 오버헤드</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">.kts</code>는 컴파일되는 코드이므로 초기 구성이나 스크립트 변경 후 첫 실행이 Groovy보다 느릴 수 있다. 다만 이후엔 캐시되어 반복 빌드 성능은 차이가 없고, IntelliJ가 Kotlin Script를 무겁게 인덱싱하던 초기 버전 이슈도 지금은 대부분 개선됐다.</p>
+
+<p><strong>예제 생태계는 여전히 Groovy 중심</strong></p>
+
+<p>인터넷에 굴러다니는 Gradle 예제·Stack Overflow 답변은 여전히 Groovy가 다수다. Kotlin으로 쓰다 보면 Groovy 스니펫을 변환해야 하는 상황이 종종 생긴다. 변환 자체는 어렵지 않지만, 복사-붙여넣기가 바로 안 되는 마찰은 있다.</p>
+
+<hr />
+
+<h2 id="7-비교표">7. 비교표</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Maven</th>
+      <th>Gradle (Groovy)</th>
+      <th>Gradle (Kotlin)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>설정 파일</td>
+      <td><code class="language-plaintext highlighter-rouge">pom.xml</code></td>
+      <td><code class="language-plaintext highlighter-rouge">build.gradle</code></td>
+      <td><code class="language-plaintext highlighter-rouge">build.gradle.kts</code></td>
+    </tr>
+    <tr>
+      <td>문법</td>
+      <td>XML</td>
+      <td>Groovy (동적 타입)</td>
+      <td>Kotlin (정적 타입)</td>
+    </tr>
+    <tr>
+      <td>빌드 엔진</td>
+      <td>Maven</td>
+      <td>Gradle</td>
+      <td>Gradle</td>
+    </tr>
+    <tr>
+      <td>학습 자료</td>
+      <td>매우 많음</td>
+      <td>많음 (Spring 기준)</td>
+      <td>점점 늘어나는 중</td>
+    </tr>
+    <tr>
+      <td>IDE 자동완성</td>
+      <td>양호</td>
+      <td>부분적</td>
+      <td>정확 (타입 기반)</td>
+    </tr>
+    <tr>
+      <td>오타 검출 시점</td>
+      <td>XML 스키마·빌드 시</td>
+      <td>주로 빌드 시</td>
+      <td>IDE + 빌드 시</td>
+    </tr>
+    <tr>
+      <td>빌드 속도</td>
+      <td>보통</td>
+      <td>빠른 편</td>
+      <td>빠른 편 (첫 실행만 약간 느릴 수 있음)</td>
+    </tr>
+    <tr>
+      <td>커스텀 빌드</td>
+      <td>제한적</td>
+      <td>유연</td>
+      <td>유연</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="8-어떤-걸-고를까">8. 어떤 걸 고를까</h2>
+
+<p>정답은 하나가 아니다. 아래는 실무에서 자주 쓰는 기준이다.</p>
+
+<p><strong>Maven을 고르는 경우</strong></p>
+
+<ul>
+  <li>팀이 Maven에 익숙하거나, 회사 표준이 Maven일 때</li>
+  <li>단순한 단일 모듈 프로젝트이고 XML 선언형 설정이 편할 때</li>
+</ul>
+
+<p><strong>Gradle (Groovy)를 고르는 경우</strong></p>
+
+<ul>
+  <li>Spring Boot 입문·학습, 튜토리얼을 그대로 따라 하고 싶을 때</li>
+  <li>이미 <code class="language-plaintext highlighter-rouge">build.gradle</code>에 익숙하고, 익숙한 문법으로 빠르게 셋업하고 싶을 때</li>
+  <li>인터넷 예제를 그대로 복사-붙여넣기하며 작업할 때</li>
+</ul>
+
+<p>이미 Groovy DSL에 익숙하다면, 그 자산을 그대로 쓰는 것도 합리적이다. Gradle 기능은 Kotlin DSL과 100% 동일하고, 신규 프로젝트에서 Groovy를 택해도 손해 볼 것은 없다.</p>
+
+<p><strong>Gradle (Kotlin)을 고르는 경우</strong></p>
+
+<ul>
+  <li>애플리케이션도 Kotlin으로 작성할 때</li>
+  <li>IntelliJ 자동완성·타입 검증으로 빌드 스크립트 오타를 IDE 단계에서 잡고 싶을 때</li>
+  <li>AI 코딩 도구처럼 스크립트를 읽고 수정하는 도구와 협업할 때 — 타입 정보가 있는 <code class="language-plaintext highlighter-rouge">.kts</code>를 더 정확히 다루는 편이다</li>
+  <li>신규 프로젝트를 오래 유지보수할 계획이고, 초기 적응 비용을 감수할 수 있을 때</li>
+</ul>
+
+<p>한 줄로 정리하면 이렇다.</p>
+
+<ul>
+  <li><strong>익숙함·빠른 시작</strong> → Groovy</li>
+  <li><strong>타입 안정성·IDE/에이전트 협업·장기 유지보수</strong> → Kotlin</li>
+</ul>
+
+<p>한번 고른 뒤에 Spring Boot 앱 자체를 바꿀 필요는 없다. 빌드 도구만 다를 뿐 <code class="language-plaintext highlighter-rouge">@RestController</code>, <code class="language-plaintext highlighter-rouge">@Service</code>, <code class="language-plaintext highlighter-rouge">application.yml</code> 같은 코드는 동일하게 동작한다. 나중에 Groovy ↔ Kotlin DSL로 서로 변환하는 것도 가능하다(수작업이지만 규모가 크지 않다).</p>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p>Spring Initializr의 빌드 도구 선택은 <strong>애플리케이션 아키텍처가 아니라 빌드 스크립트 형식</strong>을 정하는 일이다.</p>
+
+<ul>
+  <li><strong>Maven</strong> — XML, 익숙함과 안정성</li>
+  <li><strong>Gradle Groovy</strong> — Spring 생태계에서 가장 흔한 Gradle 형식, 예제 호환성</li>
+  <li><strong>Gradle Kotlin</strong> — 같은 Gradle이지만 정적 타입 DSL, IDE·장기 유지보수에 유리</li>
+</ul>
+
+<p>팀 컨벤션이 없다면 Spring Boot 학습 단계에서는 <strong>Gradle Groovy</strong>, Kotlin으로 앱을 짤 계획이거나 빌드 스크립트의 타입 안정성을 중시한다면 <strong>Gradle Kotlin</strong>을 고르는 경우가 많다. 이미 Maven에 익숙하다면 Maven으로 시작해도 전혀 문제없다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/blog/nahyun_gitblog.jpeg"
+    
+    
+  
+  alt="Nahyun Eun"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <h2> Nahyun Eun </h2>
+<p><br />
+🥳Welcome to Nahyun Eun’s Development Blog!🥳<br /><br /></p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/projectdiary/2026-06-19-diary/" class="flip-title"><span>[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유</span></a>  <time class="faded fine" datetime="2026-06-19T00:00:00+00:00">19 Jun 2026</time></li>                        <li class="h4">  <a href="/infra/2026-06-10-nginx-reverse-proxy/" class="flip-title"><span>[Infra] 리버스 프록시와 Nginx — 왜 많이 쓸까?</span></a>  <time class="faded fine" datetime="2026-06-10T00:00:00+00:00">10 Jun 2026</time></li>                        <li class="h4">  <a href="/til/2026-06-09-til/" class="flip-title"><span>[TIL] Celery + Redis 태스크 큐 — 도입 배경과 동작 방식</span></a>  <time class="faded fine" datetime="2026-06-09T00:00:00+00:00">09 Jun 2026</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+<aside class="comments related" role="complementary">
+  <h2 class="hr-bottom">Comments</h2>
+  <!-- 
+ -->
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="nan0silver/nan0silver.github.io"
+  data-repo-id="R_kgDOJUjjDQ"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOJUjjDc4CmX05"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light_high_contrast"
+  data-lang="ko"
+  crossorigin="anonymous"
+  async
+></script>
+
+</aside>
+
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2021–2026. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="https://github.com/nan0silver">GitHub</a>
+      |
+    
+      
+      <a class="heading flip-title" href="mailto:silvernh1220@gmail.com">Gmail</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(116, 41, 128);background-image:url(/assets/img/blog/pink_sky_4.webp)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <source srcset="/assets/img/blog/nh_duck_logo.webp" type="image/webp">
+        <img src="/assets/img/blog/nh_duck_logo.webp" class="avatar" alt="NAHYUN BLOG" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">NAHYUN BLOG</h2></a>
+    
+    
+      <p class="">
+        Full-stack · 1인 개발 · 창업 준비
+
+      </p>
+    
+  </div>
+
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      <li>
+        <a
+          id="_drawer--opened"
+          href="/about/"
+          class="sidebar-nav-item "
+          
+        >
+          About
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/javascript/"
+          class="sidebar-nav-item "
+          
+        >
+          Frontend (9)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/infra/"
+          class="sidebar-nav-item "
+          
+        >
+          Infra (AWS · Git) (6)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/backend/"
+          class="sidebar-nav-item "
+          
+        >
+          Backend (Java · Spring · Flask) (37)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/flutter/"
+          class="sidebar-nav-item "
+          
+        >
+          Flutter (2)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/algorithm/"
+          class="sidebar-nav-item "
+          
+        >
+          Algorithm (18)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/research/"
+          class="sidebar-nav-item "
+          
+        >
+          Research (1)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/projectdiary/"
+          class="sidebar-nav-item "
+          
+        >
+          프로젝트 일기 (37)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/til/"
+          class="sidebar-nav-item "
+          
+        >
+          TIL (77)
+        </a>
+      </li>
+    
+      
+      <li>
+        <a
+          
+          href="/miscellaneous/"
+          class="sidebar-nav-item "
+          
+        >
+          기타 (4)
+        </a>
+      </li>
+    
+  
+</ul>
+
+  </nav>
+
+  <div style="text-align: center;">
+    <a href="https://myhits.vercel.app"><img src="https://myhits.vercel.app/api/hit/https%3A%2F%2Fnan0silver.github.io%2F?color=purple&label=hits&size=small&base_count=500" alt="hits" /></a>  </div>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/nan0silver" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

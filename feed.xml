@@ -1,5 +1,445 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-06-12T08:52:59+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun Eun (은나현). Full-stack developer building products solo, preparing for startup. Java, Spring Boot, Python, AI. Project diaries, backend/infra notes, and TIL.
-</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[Infra] 리버스 프록시와 Nginx — 왜 많이 쓸까?</title><link href="https://nan0silver.github.io/infra/2026-06-10-nginx-reverse-proxy/" rel="alternate" type="text/html" title="[Infra] 리버스 프록시와 Nginx — 왜 많이 쓸까?" /><published>2026-06-10T00:00:00+00:00</published><updated>2026-06-12T08:52:09+00:00</updated><id>https://nan0silver.github.io/infra/nginx-reverse-proxy</id><content type="html" xml:base="https://nan0silver.github.io/infra/2026-06-10-nginx-reverse-proxy/"><![CDATA[<p>백엔드를 EC2에 배포할 때 Nginx를 앞단에 두고 Spring Boot로 요청을 넘기는 구성을 자주 본다.<br />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-07-16T01:33:16+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun Eun (은나현). Full-stack developer building products solo, preparing for startup. Java, Spring Boot, Python, AI. Project diaries, backend/infra notes, and TIL.
+</subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven</title><link href="https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/" rel="alternate" type="text/html" title="[TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven" /><published>2026-07-07T00:00:00+00:00</published><updated>2026-07-07T00:00:00+00:00</updated><id>https://nan0silver.github.io/til/spring-boot-gradle-maven</id><content type="html" xml:base="https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/"><![CDATA[<blockquote>
+  <p><a href="https://start.spring.io/">Spring Initializr</a>에서 프로젝트를 만들 때 가장 먼저 고르는 항목 중 하나가 빌드 도구다. 세 가지 선택지는 이름만 다르지 않다. 각각 설정 파일 형식, 문법, 생태계가 달라서 팀 컨벤션과 취향에 따라 고르게 된다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-세-가지-선택지-한눈에-보기">1. 세 가지 선택지 한눈에 보기</a></li>
+  <li><a href="#2-maven">2. Maven</a></li>
+  <li><a href="#3-gradle--groovy-dsl과-kotlin-dsl">3. Gradle — Groovy DSL과 Kotlin DSL</a></li>
+  <li><a href="#4-근본적인-차이-동적-타입-vs-정적-타입">4. 근본적인 차이: 동적 타입 vs 정적 타입</a></li>
+  <li><a href="#5-자동완성과-타입-안정성">5. 자동완성과 타입 안정성</a></li>
+  <li><a href="#6-kotlin-dsl의-트레이드오프">6. Kotlin DSL의 트레이드오프</a></li>
+  <li><a href="#7-비교표">7. 비교표</a></li>
+  <li><a href="#8-어떤-걸-고를까">8. 어떤 걸 고를까</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>Spring Boot 프로젝트를 생성하면 의존성 관리, 컴파일, 테스트, 패키징을 담당하는 <strong>빌드 도구</strong>가 함께 들어온다.</p>
+
+<p>Spring Initializr에서는 아래 세 가지 중 하나를 고른다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>선택지</th>
+      <th>설정 파일</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Gradle - Groovy</td>
+      <td><code class="language-plaintext highlighter-rouge">build.gradle</code>, <code class="language-plaintext highlighter-rouge">settings.gradle</code></td>
+    </tr>
+    <tr>
+      <td>Gradle - Kotlin</td>
+      <td><code class="language-plaintext highlighter-rouge">build.gradle.kts</code>, <code class="language-plaintext highlighter-rouge">settings.gradle.kts</code></td>
+    </tr>
+    <tr>
+      <td>Maven</td>
+      <td><code class="language-plaintext highlighter-rouge">pom.xml</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>애플리케이션 코드(Spring Boot 자체)는 동일하다. 달라지는 것은 <strong>빌드 스크립트를 어떤 형식으로 쓰느냐</strong>뿐이다.</p>
+
+<hr />
+
+<h2 id="1-세-가지-선택지-한눈에-보기">1. 세 가지 선택지 한눈에 보기</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Spring Boot 앱
+    ├── Maven          → pom.xml (XML)
+    ├── Gradle Groovy  → build.gradle (Groovy)
+    └── Gradle Kotlin  → build.gradle.kts (Kotlin)
+</code></pre></div></div>
+
+<p>Gradle Groovy와 Gradle Kotlin은 <strong>같은 Gradle 엔진</strong>을 쓰고, DSL(도메인 특화 언어) 문법만 다르다. Maven은 별도의 빌드 시스템이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">build.gradle</code>을 쓰면 Groovy DSL, <code class="language-plaintext highlighter-rouge">build.gradle.kts</code>를 쓰면 Kotlin DSL이다. 둘 다 같은 Gradle을 구동하고 빌드 결과물도 동일하다. 차이는 빌드 스크립트를 <strong>어떤 언어로 기술하느냐</strong>에 있다.</p>
+
+<hr />
+
+<h2 id="2-maven">2. Maven</h2>
+
+<p>가장 오래 쓰인 Java 빌드 도구 중 하나다. <code class="language-plaintext highlighter-rouge">pom.xml</code> 하나에 프로젝트 정보와 의존성을 선언한다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project&gt;</span>
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>3.4.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
+
+    <span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>demo<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p><strong>특징</strong></p>
+
+<ul>
+  <li>XML 기반이라 구조가 명확하고, 레퍼런스·예제가 많다.</li>
+  <li>기업 레거시 프로젝트에서 여전히 흔하다.</li>
+  <li>설정이 길어지면 XML 보일러플레이트가 늘어난다.</li>
+  <li>멀티 모듈, 커스텀 빌드 로직이 복잡해지면 Gradle보다 유연성이 떨어지는 편이다.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-gradle--groovy-dsl과-kotlin-dsl">3. Gradle — Groovy DSL과 Kotlin DSL</h2>
+
+<p>Spring Boot 공식 문서와 많은 튜토리얼이 Groovy DSL(<code class="language-plaintext highlighter-rouge">build.gradle</code>)을 기준으로 한다. Kotlin DSL은 Gradle 5.x 이후 본격적으로 쓰이기 시작했고, 파일 확장자가 <code class="language-plaintext highlighter-rouge">.kts</code>다.</p>
+
+<p><strong>Groovy DSL</strong></p>
+
+<ul>
+  <li>Maven보다 설정이 짧고, 스크립트형이라 커스텀 빌드 로직을 쓰기 쉽다.</li>
+  <li>Gradle에서 가장 오래 쓰인 형식이라 자료와 플러그인 예제가 풍부하다.</li>
+  <li>Spring Initializr 기본값에 가깝고, 입문·학습 자료와의 호환성이 좋다.</li>
+</ul>
+
+<p><strong>Kotlin DSL</strong></p>
+
+<ul>
+  <li>Groovy DSL과 <strong>동일한 Gradle 기능</strong>을 제공한다.</li>
+  <li>Spring Boot + Kotlin 앱을 만들 때 빌드 스크립트와 애플리케이션 언어를 맞출 수 있다.</li>
+  <li>예제·블로그 글이 Groovy DSL보다 적은 편이라, 처음엔 문법 차이를 익히는 비용이 조금 있다.</li>
+</ul>
+
+<p>공통으로 Gradle은 <strong>증분 빌드·빌드 캐시</strong> 덕분에 대형 프로젝트에서 빌드 속도가 빠른 경우가 많다.</p>
+
+<hr />
+
+<h2 id="4-근본적인-차이-동적-타입-vs-정적-타입">4. 근본적인 차이: 동적 타입 vs 정적 타입</h2>
+
+<p>Groovy와 Kotlin DSL의 실무적 차이는 대부분 여기서 출발한다.</p>
+
+<p><strong>Groovy — 동적 타입</strong></p>
+
+<p>Groovy는 동적 타입 언어다. 스크립트를 실행하기 전까지 IDE가 <code class="language-plaintext highlighter-rouge">implementation</code>이 무엇인지, 어떤 인자를 받는지 완전히는 모른다. Groovy 특유의 메타프로그래밍(<code class="language-plaintext highlighter-rouge">methodMissing</code>, 동적 프로퍼티) 덕분에 Gradle DSL이 간결하게 표현되는데, 그 대가로 IDE가 정적으로 검증할 수 있는 정보가 제한된다.</p>
+
+<p><strong>Kotlin — 정적 타입</strong></p>
+
+<p>Kotlin은 정적 타입 언어다. <code class="language-plaintext highlighter-rouge">build.gradle.kts</code>는 컴파일되는 코드이고, Gradle API가 전부 타입으로 노출된다. IDE가 실제 타입 정보를 갖고 동작하기 때문에, 자동완성·오류 검출 같은 체감 차이가 여기서 파생된다.</p>
+
+<hr />
+
+<h2 id="5-자동완성과-타입-안정성">5. 자동완성과 타입 안정성</h2>
+
+<p>Gradle DSL을 고를 때 가장 크게 느껴지는 차이다.</p>
+
+<p><strong>Kotlin DSL</strong></p>
+
+<p>IntelliJ에서 자동완성이 정확하게 뜬다. <code class="language-plaintext highlighter-rouge">tasks.</code>를 치면 실제 존재하는 태스크·메서드가 나오고, 인자 타입이 틀리면 빨간 줄이 표시된다. 오타를 커밋 전에 잡을 수 있다.</p>
+
+<p><strong>Groovy DSL</strong></p>
+
+<p>자동완성이 부분적이다. IntelliJ가 Gradle 모델을 추론해서 일부는 제공하지만, 동적으로 생성되는 부분은 놓친다. 오타를 내면 IDE는 조용하고, <code class="language-plaintext highlighter-rouge">./gradlew build</code>를 돌려야 런타임에 <code class="language-plaintext highlighter-rouge">no such property</code> 같은 에러로 발견되는 경우가 있다.</p>
+
+<p>문법 차이 자체는 사소하다. Kotlin은 문자열에 큰따옴표를 쓰고, 프로퍼티 할당에 <code class="language-plaintext highlighter-rouge">=</code>가 필요하다는 정도다.</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// build.gradle (Groovy)</span>
+<span class="n">plugins</span> <span class="o">{</span>
+    <span class="n">id</span> <span class="s1">'org.springframework.boot'</span> <span class="n">version</span> <span class="s1">'3.4.0'</span>
+<span class="o">}</span>
+<span class="n">group</span> <span class="o">=</span> <span class="s1">'com.example'</span>
+<span class="n">sourceCompatibility</span> <span class="o">=</span> <span class="s1">'21'</span>
+<span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">implementation</span> <span class="s1">'org.springframework.boot:spring-boot-starter-web'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// build.gradle.kts (Kotlin)</span>
+<span class="nf">plugins</span> <span class="p">{</span>
+    <span class="nf">id</span><span class="p">(</span><span class="s">"org.springframework.boot"</span><span class="p">)</span> <span class="n">version</span> <span class="s">"3.4.0"</span>
+<span class="p">}</span>
+<span class="n">group</span> <span class="p">=</span> <span class="s">"com.example"</span>
+<span class="nf">java</span> <span class="p">{</span>
+    <span class="n">sourceCompatibility</span> <span class="p">=</span> <span class="nc">JavaVersion</span><span class="p">.</span><span class="nc">VERSION_21</span>
+<span class="p">}</span>
+<span class="nf">dependencies</span> <span class="p">{</span>
+    <span class="nf">implementation</span><span class="p">(</span><span class="s">"org.springframework.boot:spring-boot-starter-web"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Groovy는 작은따옴표·괄호 생략이 가능해 조금 더 짧고, Kotlin은 괄호와 큰따옴표를 요구해 살짝 더 명시적이다. <code class="language-plaintext highlighter-rouge">implementation '...'</code> ↔ <code class="language-plaintext highlighter-rouge">implementation("...")</code>처럼 따옴표·괄호 규칙만 다르고 의미는 같다. 이 정도 차이는 하루면 적응할 수 있다.</p>
+
+<hr />
+
+<h2 id="6-kotlin-dsl의-트레이드오프">6. Kotlin DSL의 트레이드오프</h2>
+
+<p>Kotlin DSL의 장점만 보면 항상 Kotlin이 이기는 것처럼 보이지만, 단점도 있다.</p>
+
+<p><strong>첫 빌드 시 스크립트 컴파일 오버헤드</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">.kts</code>는 컴파일되는 코드이므로 초기 구성이나 스크립트 변경 후 첫 실행이 Groovy보다 느릴 수 있다. 다만 이후엔 캐시되어 반복 빌드 성능은 차이가 없고, IntelliJ가 Kotlin Script를 무겁게 인덱싱하던 초기 버전 이슈도 지금은 대부분 개선됐다.</p>
+
+<p><strong>예제 생태계는 여전히 Groovy 중심</strong></p>
+
+<p>인터넷에 굴러다니는 Gradle 예제·Stack Overflow 답변은 여전히 Groovy가 다수다. Kotlin으로 쓰다 보면 Groovy 스니펫을 변환해야 하는 상황이 종종 생긴다. 변환 자체는 어렵지 않지만, 복사-붙여넣기가 바로 안 되는 마찰은 있다.</p>
+
+<hr />
+
+<h2 id="7-비교표">7. 비교표</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Maven</th>
+      <th>Gradle (Groovy)</th>
+      <th>Gradle (Kotlin)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>설정 파일</td>
+      <td><code class="language-plaintext highlighter-rouge">pom.xml</code></td>
+      <td><code class="language-plaintext highlighter-rouge">build.gradle</code></td>
+      <td><code class="language-plaintext highlighter-rouge">build.gradle.kts</code></td>
+    </tr>
+    <tr>
+      <td>문법</td>
+      <td>XML</td>
+      <td>Groovy (동적 타입)</td>
+      <td>Kotlin (정적 타입)</td>
+    </tr>
+    <tr>
+      <td>빌드 엔진</td>
+      <td>Maven</td>
+      <td>Gradle</td>
+      <td>Gradle</td>
+    </tr>
+    <tr>
+      <td>학습 자료</td>
+      <td>매우 많음</td>
+      <td>많음 (Spring 기준)</td>
+      <td>점점 늘어나는 중</td>
+    </tr>
+    <tr>
+      <td>IDE 자동완성</td>
+      <td>양호</td>
+      <td>부분적</td>
+      <td>정확 (타입 기반)</td>
+    </tr>
+    <tr>
+      <td>오타 검출 시점</td>
+      <td>XML 스키마·빌드 시</td>
+      <td>주로 빌드 시</td>
+      <td>IDE + 빌드 시</td>
+    </tr>
+    <tr>
+      <td>빌드 속도</td>
+      <td>보통</td>
+      <td>빠른 편</td>
+      <td>빠른 편 (첫 실행만 약간 느릴 수 있음)</td>
+    </tr>
+    <tr>
+      <td>커스텀 빌드</td>
+      <td>제한적</td>
+      <td>유연</td>
+      <td>유연</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="8-어떤-걸-고를까">8. 어떤 걸 고를까</h2>
+
+<p>정답은 하나가 아니다. 아래는 실무에서 자주 쓰는 기준이다.</p>
+
+<p><strong>Maven을 고르는 경우</strong></p>
+
+<ul>
+  <li>팀이 Maven에 익숙하거나, 회사 표준이 Maven일 때</li>
+  <li>단순한 단일 모듈 프로젝트이고 XML 선언형 설정이 편할 때</li>
+</ul>
+
+<p><strong>Gradle (Groovy)를 고르는 경우</strong></p>
+
+<ul>
+  <li>Spring Boot 입문·학습, 튜토리얼을 그대로 따라 하고 싶을 때</li>
+  <li>이미 <code class="language-plaintext highlighter-rouge">build.gradle</code>에 익숙하고, 익숙한 문법으로 빠르게 셋업하고 싶을 때</li>
+  <li>인터넷 예제를 그대로 복사-붙여넣기하며 작업할 때</li>
+</ul>
+
+<p>이미 Groovy DSL에 익숙하다면, 그 자산을 그대로 쓰는 것도 합리적이다. Gradle 기능은 Kotlin DSL과 100% 동일하고, 신규 프로젝트에서 Groovy를 택해도 손해 볼 것은 없다.</p>
+
+<p><strong>Gradle (Kotlin)을 고르는 경우</strong></p>
+
+<ul>
+  <li>애플리케이션도 Kotlin으로 작성할 때</li>
+  <li>IntelliJ 자동완성·타입 검증으로 빌드 스크립트 오타를 IDE 단계에서 잡고 싶을 때</li>
+  <li>AI 코딩 도구처럼 스크립트를 읽고 수정하는 도구와 협업할 때 — 타입 정보가 있는 <code class="language-plaintext highlighter-rouge">.kts</code>를 더 정확히 다루는 편이다</li>
+  <li>신규 프로젝트를 오래 유지보수할 계획이고, 초기 적응 비용을 감수할 수 있을 때</li>
+</ul>
+
+<p>한 줄로 정리하면 이렇다.</p>
+
+<ul>
+  <li><strong>익숙함·빠른 시작</strong> → Groovy</li>
+  <li><strong>타입 안정성·IDE/에이전트 협업·장기 유지보수</strong> → Kotlin</li>
+</ul>
+
+<p>한번 고른 뒤에 Spring Boot 앱 자체를 바꿀 필요는 없다. 빌드 도구만 다를 뿐 <code class="language-plaintext highlighter-rouge">@RestController</code>, <code class="language-plaintext highlighter-rouge">@Service</code>, <code class="language-plaintext highlighter-rouge">application.yml</code> 같은 코드는 동일하게 동작한다. 나중에 Groovy ↔ Kotlin DSL로 서로 변환하는 것도 가능하다(수작업이지만 규모가 크지 않다).</p>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<p>Spring Initializr의 빌드 도구 선택은 <strong>애플리케이션 아키텍처가 아니라 빌드 스크립트 형식</strong>을 정하는 일이다.</p>
+
+<ul>
+  <li><strong>Maven</strong> — XML, 익숙함과 안정성</li>
+  <li><strong>Gradle Groovy</strong> — Spring 생태계에서 가장 흔한 Gradle 형식, 예제 호환성</li>
+  <li><strong>Gradle Kotlin</strong> — 같은 Gradle이지만 정적 타입 DSL, IDE·장기 유지보수에 유리</li>
+</ul>
+
+<p>팀 컨벤션이 없다면 Spring Boot 학습 단계에서는 <strong>Gradle Groovy</strong>, Kotlin으로 앱을 짤 계획이거나 빌드 스크립트의 타입 안정성을 중시한다면 <strong>Gradle Kotlin</strong>을 고르는 경우가 많다. 이미 Maven에 익숙하다면 Maven으로 시작해도 전혀 문제없다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Spring Boot" /><category term="Gradle" /><category term="Maven" /><category term="빌드 도구" /><category term="Spring Initializr" /><category term="Kotlin DSL" /><summary type="html"><![CDATA[Spring Initializr에서 선택하는 Gradle(Groovy), Gradle(Kotlin DSL), Maven 빌드 도구의 차이, Groovy/Kotlin DSL의 타입·IDE 체감 차이, 선택 기준을 정리한 글이다.]]></summary></entry><entry><title type="html">[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-06-19-diary/" rel="alternate" type="text/html" title="[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-07-16T01:32:31+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-06-19-diary/"><![CDATA[<blockquote>
+  <p>데이터베이스를 선택할 때 “어떤 DB를 쓸까”에만 집중하기 쉽지만, 실제로는 <strong>어디에 둘 것인가(인프라)</strong> 와 <strong>코드에서 어떻게 접근할 것인가(접근 방식)</strong> 를 따로 결정해야 한다. Supabase와 SQLAlchemy는 각각 다른 레이어를 담당하며, 둘을 함께 쓰면 한쪽을 교체할 때 다른 쪽에 영향을 주지 않는 구조를 만들 수 있다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-supabase는-어디에를-해결한다">1. Supabase는 “어디에”를 해결한다</a></li>
+  <li><a href="#2-sqlalchemy는-어떻게를-해결한다">2. SQLAlchemy는 “어떻게”를 해결한다</a></li>
+  <li><a href="#3-supabase-클라이언트만-쓰면-안-될까">3. Supabase 클라이언트만 쓰면 안 될까</a></li>
+  <li><a href="#4-레이어를-분리하면-생기는-이점">4. 레이어를 분리하면 생기는 이점</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>데이터베이스를 선택할 때 흔히 “어떤 DB를 쓸까”에만 집중합니다. 하지만 실제 개발에서는 두 가지를 따로 결정해야 합니다.</p>
+
+<ul>
+  <li><strong>어디에</strong> 데이터베이스를 둘 것인가 (인프라)</li>
+  <li><strong>어떻게</strong> 코드에서 접근할 것인가 (접근 방식)</li>
+</ul>
+
+<p>이 두 레이어를 구분하지 않으면, 나중에 둘 중 하나를 바꾸고 싶을 때 전체를 다 뜯어내야 하는 상황이 생깁니다.</p>
+
+<hr />
+
+<h2 id="1-supabase는-어디에를-해결한다">1. Supabase는 “어디에”를 해결한다</h2>
+
+<p>Supabase는 PostgreSQL을 호스팅해 주는 플랫폼입니다. 서버 설정, SSL 인증서, 백업, 모니터링 같은 인프라 관리를 대신 해 줍니다. 부가적으로 Auth, Storage, Realtime 같은 기능도 제공하지만, 핵심은 <strong>관리형 Postgres 서버</strong>입니다.</p>
+
+<p>즉, Supabase를 쓴다는 것은 “PostgreSQL을 직접 운영하지 않겠다”는 결정입니다.</p>
+
+<hr />
+
+<h2 id="2-sqlalchemy는-어떻게를-해결한다">2. SQLAlchemy는 “어떻게”를 해결한다</h2>
+
+<p>SQLAlchemy는 Python 코드에서 데이터베이스에 접근하는 방법을 제공하는 ORM(Object-Relational Mapper)입니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- SQL을 직접 쓰는 대신</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">github_id</span> <span class="o">=</span> <span class="s1">'abc123'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Python 문법으로
+</span><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select</span><span class="p">(</span><span class="n">User</span><span class="p">).</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="n">github_id</span> <span class="o">==</span> <span class="n">github_id</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>ORM이 해주는 일은 단순히 “SQL을 Python처럼 쓰게 해주는 것” 이상입니다.</p>
+
+<ul>
+  <li><strong>타입 안전성</strong> — 컬럼 타입이 Python 타입으로 매핑되어 IDE 자동완성과 정적 분석이 가능</li>
+  <li><strong>트랜잭션 관리</strong> — <code class="language-plaintext highlighter-rouge">commit</code>, <code class="language-plaintext highlighter-rouge">rollback</code>을 명시적으로 제어</li>
+  <li><strong>커넥션 풀링</strong> — DB 연결을 재사용해서 성능 최적화</li>
+  <li><strong>마이그레이션 연동</strong> — Alembic 같은 도구가 모델 정의를 읽어 스키마 변경 이력을 관리</li>
+</ul>
+
+<hr />
+
+<h2 id="3-supabase-클라이언트만-쓰면-안-될까">3. Supabase 클라이언트만 쓰면 안 될까</h2>
+
+<p>Supabase는 자체 Python 클라이언트(<code class="language-plaintext highlighter-rouge">supabase-py</code>)를 제공합니다. 이걸로도 데이터를 읽고 쓸 수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># supabase-py 방식
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">supabase</span><span class="p">.</span><span class="n">table</span><span class="p">(</span><span class="s">"users"</span><span class="p">).</span><span class="n">select</span><span class="p">(</span><span class="s">"*"</span><span class="p">).</span><span class="n">eq</span><span class="p">(</span><span class="s">"github_id"</span><span class="p">,</span> <span class="s">"abc123"</span><span class="p">).</span><span class="n">execute</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>하지만 이 방식은 내부적으로 REST API(PostgREST)를 통해 데이터베이스에 접근합니다. 이는 몇 가지 제약을 만듭니다.</p>
+
+<ul>
+  <li>복잡한 JOIN이나 서브쿼리 표현에 한계가 있음</li>
+  <li>HTTP 오버헤드 존재</li>
+  <li>세밀한 트랜잭션 제어가 어려움</li>
+  <li>스키마 마이그레이션 도구와 연동이 자연스럽지 않음</li>
+</ul>
+
+<p>간단한 CRUD에는 충분하지만, 서비스가 커질수록 한계가 드러납니다.</p>
+
+<hr />
+
+<h2 id="4-레이어를-분리하면-생기는-이점">4. 레이어를 분리하면 생기는 이점</h2>
+
+<p>인프라 레이어와 접근 레이어를 분리해서 설계하면 한 가지 중요한 유연성이 생깁니다.</p>
+
+<p><strong>인프라를 바꿔도 애플리케이션 코드가 바뀌지 않는다.</strong></p>
+
+<p>Supabase에서 AWS RDS로, 혹은 로컬 Docker Postgres로 옮기더라도 SQLAlchemy 코드는 그대로입니다. <code class="language-plaintext highlighter-rouge">DATABASE_URL</code> 환경변수 하나만 바꾸면 됩니다. 반대로, SQLAlchemy를 다른 ORM으로 교체해도 Supabase 연결 설정은 영향을 받지 않습니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>애플리케이션 코드
+        ↓
+SQLAlchemy  ← 이 레이어만 알면 DB 벤더에 종속되지 않음
+        ↓
+PostgreSQL (Supabase / RDS / 로컬 / 무엇이든)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Supabase</th>
+      <th>SQLAlchemy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>역할</td>
+      <td>인프라 (어디에)</td>
+      <td>접근 방식 (어떻게)</td>
+    </tr>
+    <tr>
+      <td>담당</td>
+      <td>DB 호스팅, 운영, 부가 기능</td>
+      <td>ORM, 트랜잭션, 커넥션 풀, 마이그레이션</td>
+    </tr>
+    <tr>
+      <td>교체 가능성</td>
+      <td>RDS, 로컬 Postgres 등으로</td>
+      <td>다른 ORM, 순수 SQL 등으로</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>둘은 경쟁 관계가 아니라 다른 문제를 각각 해결합니다. “Supabase를 쓰면 ORM이 필요 없다”는 생각은, “AWS를 쓰면 코드를 짤 필요가 없다”는 말과 같습니다.</p>
+
+<p>인프라와 접근 레이어를 분리해 두면, 나중에 한쪽을 교체할 때 다른 쪽에 영향을 주지 않는 유연한 구조를 가져갈 수 있습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Supabase(관리형 PostgreSQL)와 SQLAlchemy(ORM)는 경쟁 관계가 아니라 인프라 레이어와 접근 레이어를 각각 담당한다. supabase-py 클라이언트만 쓸 때의 한계, 레이어 분리의 이점, 교체 가능한 구조까지 정리합니다.]]></summary></entry><entry><title type="html">[Infra] 리버스 프록시와 Nginx — 왜 많이 쓸까?</title><link href="https://nan0silver.github.io/infra/2026-06-10-nginx-reverse-proxy/" rel="alternate" type="text/html" title="[Infra] 리버스 프록시와 Nginx — 왜 많이 쓸까?" /><published>2026-06-10T00:00:00+00:00</published><updated>2026-07-16T01:32:31+00:00</updated><id>https://nan0silver.github.io/infra/nginx-reverse-proxy</id><content type="html" xml:base="https://nan0silver.github.io/infra/2026-06-10-nginx-reverse-proxy/"><![CDATA[<p>백엔드를 EC2에 배포할 때 Nginx를 앞단에 두고 Spring Boot로 요청을 넘기는 구성을 자주 본다.<br />
 클라이언트는 <code class="language-plaintext highlighter-rouge">https://api.example.com</code>에만 접속하고, 실제 애플리케이션은 <code class="language-plaintext highlighter-rouge">127.0.0.1:8080</code>에서 돌아간다.<br />
 이때 Nginx가 하는 일이 바로 <strong>리버스 프록시(Reverse Proxy)</strong>다.</p>
 
@@ -2113,457 +2553,4 @@ Celery Worker
 
 <p><code class="language-plaintext highlighter-rouge">null</code>과 빈 값·0을 한 덩어리로 처리하고 싶은 유혹은 자주 생긴다. 당장 코드가 짧아지기 때문이다. 하지만 이 구분이 무너지면 집계 왜곡·UI 오해처럼 <strong>디버깅이 어려운 문제</strong>가 쌓인다.</p>
 
-<p>변환 앞에 유효성 검증을 두는 작은 습관만으로도 예방할 수 있다는 점만 기억해도 충분하다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="API" /><category term="null" /><category term="JSON" /><category term="검증" /><category term="Jackson" /><summary type="html"><![CDATA[API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.]]></summary></entry><entry><title type="html">[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계</title><link href="https://nan0silver.github.io/projectdiary/2026-04-28-diary/" rel="alternate" type="text/html" title="[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계" /><published>2026-04-28T00:00:00+00:00</published><updated>2026-06-12T08:52:09+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-28-diary/"><![CDATA[<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">Call</code>과 <code class="language-plaintext highlighter-rouge">CallEmotionResult</code>를 SQL처럼 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>하고 싶은데, <strong>표준 JPQL</strong>은 연관 경로가 없으면 객체 그래프 기반 조인을 쓰기 어렵다. Hibernate HQL은 버전에 따라 엔티티 <code class="language-plaintext highlighter-rouge">JOIN … ON</code>이 열리기도 하지만 포터빌리티와 트레이드오프가 있다. SQL·JPQL의 차이와, 우리가 택한 두 쿼리 + 병합, 구현 시 주의점까지 정리한다.</p>
-</blockquote>
-
-<ul>
-  <li><a href="#들어가며">들어가며</a></li>
-  <li><a href="#1-jpql-left-join의-제약">1. JPQL LEFT JOIN의 제약</a></li>
-  <li><a href="#2-연관관계를-선언하지-않은-이유">2. 연관관계를 선언하지 않은 이유</a></li>
-  <li><a href="#3-임의-조건-join을-jpql로-옮기려-할-때">3. 임의 조건 JOIN을 JPQL로 옮기려 할 때</a></li>
-  <li><a href="#4-해결-방법-1-네이티브-쿼리">4. 해결 방법 1: 네이티브 쿼리</a></li>
-  <li><a href="#5-해결-방법-2-두-쿼리-분리-후-java에서-병합">5. 해결 방법 2: 두 쿼리 분리 후 Java에서 병합</a></li>
-  <li><a href="#6-두-접근-방식-비교">6. 두 접근 방식 비교</a></li>
-  <li><a href="#7-어떤-경우에-어떤-방식을-선택할까">7. 어떤 경우에 어떤 방식을 선택할까</a></li>
-  <li><a href="#8-실무에서-비슷한-패턴">8. 실무에서 비슷한 패턴</a></li>
-  <li><a href="#9-구현-시-알아두면-좋은-것">9. 구현 시 알아두면 좋은 것</a></li>
-  <li><a href="#마무리">마무리</a></li>
-</ul>
-
-<hr />
-
-<h2 id="들어가며">들어가며</h2>
-
-<p>JPA를 쓰다 보면 이런 요구를 만난다.</p>
-
-<ul>
-  <li>“메인 테이블과 부가 기록 테이블을 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>해서, 부가 행이 <strong>없는</strong> 메인 행도 목록에 넣고 싶다.”</li>
-</ul>
-
-<p>SQL로는 대략 다음처럼 쓸 수 있다.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">p</span><span class="p">.</span><span class="o">*</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="o">*</span>
-<span class="k">FROM</span> <span class="n">parent_records</span> <span class="n">p</span>
-<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">extension_records</span> <span class="n">e</span>
-  <span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">parent_id</span> <span class="k">AND</span> <span class="n">e</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="o">?</span>
-<span class="k">WHERE</span> <span class="n">p</span><span class="p">.</span><span class="n">participant_a_id</span> <span class="o">=</span> <span class="o">?</span> <span class="k">OR</span> <span class="n">p</span><span class="p">.</span><span class="n">participant_b_id</span> <span class="o">=</span> <span class="o">?</span>
-</code></pre></div></div>
-
-<p>(위 SQL의 테이블·컬럼명은 실제 스키마와 무관한 <strong>예시용 익명</strong>이다.)</p>
-
-<p>그런데 이걸 JPQL로 그대로 옮기려 하면, 포터블한 JPQL만으로는 예상과 다른 벽에 부딪히는 경우가 많다.</p>
-
-<hr />
-
-<h2 id="1-jpql-left-join의-제약">1. JPQL LEFT JOIN의 제약</h2>
-
-<p>표준 JPQL에서 <code class="language-plaintext highlighter-rouge">JOIN</code>은 보통 <strong>엔티티에 선언된 연관관계</strong>(<code class="language-plaintext highlighter-rouge">@OneToMany</code>, <code class="language-plaintext highlighter-rouge">@ManyToOne</code> 등)를 따라간다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 연관관계가 있으면 JPQL LEFT JOIN 가능</span>
-<span class="nd">@Entity</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Call</span> <span class="o">{</span>
-    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"call"</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CallEmotionResult</span><span class="o">&gt;</span> <span class="n">emotionResults</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"""
-    SELECT c FROM Call c
-    LEFT JOIN c.emotionResults cer
-    WHERE (c.user1.id = :userId OR c.user2.id = :userId)
-    """</span><span class="o">)</span>
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Call</span><span class="o">&gt;</span> <span class="nf">findWithEmotionResults</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"userId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>연관관계가 <strong>없으면</strong> <code class="language-plaintext highlighter-rouge">c.emotionResults</code> 같은 경로 자체가 없어서, 위와 같은 객체 그래프 기반 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>을 쓸 수 없다.</p>
-
-<hr />
-
-<h2 id="2-연관관계를-선언하지-않은-이유">2. 연관관계를 선언하지 않은 이유</h2>
-
-<p><code class="language-plaintext highlighter-rouge">Call</code>에 <code class="language-plaintext highlighter-rouge">@OneToMany List&lt;CallEmotionResult&gt;</code>를 붙이지 않은 데는 실무적인 이유가 있다.</p>
-
-<ol>
-  <li><strong>결합도</strong> — 통화 엔티티가 분석 결과 컬렉션을 직접 들고 있으면, 통화 흐름만 다룰 때도 분석 도메인이 끼어들 여지가 커진다.</li>
-  <li><strong>N+1·실수 여지</strong> — <code class="language-plaintext highlighter-rouge">@OneToMany</code>는 기본이 <code class="language-plaintext highlighter-rouge">LAZY</code>지만, <code class="language-plaintext highlighter-rouge">fetch</code> 없이 접근하면 N+1이 나기 쉽다.</li>
-  <li><strong>방향성</strong> — “분석 결과 조회”는 분석 쪽 책임으로 두고, <code class="language-plaintext highlighter-rouge">Call</code>이 <code class="language-plaintext highlighter-rouge">CallEmotionResult</code>를 알 필요가 없다고 본다.</li>
-</ol>
-
-<p>의도적으로 JPA 연관을 끊어 두는 선택은 흔하다. 대신 그만큼 <strong>JPQL 한 줄로 SQL식 LEFT JOIN</strong>을 재현하기 어려워진다.</p>
-
-<hr />
-
-<h2 id="3-임의-조건-join을-jpql로-옮기려-할-때">3. 임의 조건 JOIN을 JPQL로 옮기려 할 때</h2>
-
-<p>연관관계 없이 SQL처럼 <code class="language-plaintext highlighter-rouge">ON</code> 절만으로 붙이려는 시도 예시는 다음과 같다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 표준 JPQL(Jakarta Persistence)만 놓고 보면: 이 형태를 그대로 보장하지 않는다.</span>
-<span class="c1">// Hibernate를 쓴다면: 버전에 따라 HQL에서 "엔티티 조인 + ON"이 지원되기도 한다.</span>
-<span class="nd">@Query</span><span class="o">(</span><span class="s">"""
-    SELECT c FROM Call c
-    LEFT JOIN CallEmotionResult cer ON c.id = cer.callId AND cer.userId = :userId
-    WHERE c.user1.id = :userId OR c.user2.id = :userId
-    """</span><span class="o">)</span>
-</code></pre></div></div>
-
-<p><strong>표준 JPQL</strong>은 조인 대상을 <strong><code class="language-plaintext highlighter-rouge">FROM</code> 엔티티에서 출발한 연관 경로</strong>로 잡는 경우가 대부분이다. 매핑이 없으면 <code class="language-plaintext highlighter-rouge">c.emotionResults</code> 같은 탐색 경로 자체가 없어서, SQL에서 당연한 “두 테이블을 FK만으로 LEFT JOIN”을 <strong>이식한 JPQL 한 줄</strong>로 끝내기 어렵다.</p>
-
-<p><strong>Hibernate HQL</strong>은 구현체 확장이라 버전마다 다르다. Hibernate 6 계열에서는 HQL에 <strong>연관관계 없이 두 엔티티를 <code class="language-plaintext highlighter-rouge">JOIN … ON</code>으로 묶는</strong> 문법이 강화된 편이라, 위와 비슷한 쿼리가 <strong>동작할 수도</strong> 있다. 다만 그 순간 쿼리는 “표준 JPQL”이라기보다 <strong>Hibernate에 묶인 HQL</strong>이 되고, 다른 구현체로 바꾸거나 스펙만 맞춰야 할 때는 다시 막힐 수 있다.</p>
-
-<p>그래서 팀에서 <strong>포터빌리티</strong>를 중시하면 여전히 “연관 추가 / 네이티브 / 두 번 조회 + 병합” 쪽으로 가는 경우가 많다.</p>
-
-<hr />
-
-<h2 id="4-해결-방법-1-네이티브-쿼리">4. 해결 방법 1: 네이티브 쿼리</h2>
-
-<p>가장 직접적인 방법은 <code class="language-plaintext highlighter-rouge">@Query(nativeQuery = true)</code>로 SQL을 그대로 쓰는 것이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"""
-    SELECT p.id, p.started_at, p.ended_at, p.duration_seconds,
-           e.detail_payload, e.summary_label
-    FROM parent_records p
-    LEFT JOIN extension_records e
-      ON p.id = e.parent_id AND e.user_id = :userId
-    WHERE (p.participant_a_id = :userId OR p.participant_b_id = :userId)
-      AND p.lifecycle_state = 'COMPLETED'
-    """</span><span class="o">,</span> <span class="n">nativeQuery</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">[]&gt;</span> <span class="nf">findMonthlyRaw</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"userId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p><strong>단점·주의 요약</strong></p>
-
-<ul>
-  <li>기본적으로는 <code class="language-plaintext highlighter-rouge">List&lt;Object[]&gt;</code>처럼 <strong>행 단위 튜플</strong>에 가깝게 받게 되기 쉽다. Spring Data JPA에서는 컬럼 별칭·매핑을 맞추면 인터페이스/클래스 <strong>프로젝션</strong>으로 감쌀 수도 있지만, JPQL 생성자 표현식만큼 단순하진 않다.</li>
-  <li>DB 방언·테이블/컬럼 이름에 직접 의존한다.</li>
-  <li>리팩터링 시 컴파일러가 SQL 문자열 오류를 잡아주지 못한다.</li>
-  <li>JSON 컬럼 등은 타입 변환·역직렬화를 애플리케이션에서 책임져야 할 수 있다.</li>
-</ul>
-
-<hr />
-
-<h2 id="5-해결-방법-2-두-쿼리-분리-후-java에서-병합">5. 해결 방법 2: 두 쿼리 분리 후 Java에서 병합</h2>
-
-<p>이 프로젝트에서 택한 방식이다. 레포지토리에서 각각 조회한 뒤 서비스에서 합친다.</p>
-
-<p><strong>Step 1 — 완료 통화만 JPQL로 조회</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"""
-    SELECT c FROM Call c
-    WHERE (c.user1.id = :userId OR c.user2.id = :userId)
-      AND c.callStatus = 'COMPLETED'
-      AND c.endAt &gt;= :startDate AND c.endAt &lt; :endDate
-    ORDER BY c.endAt, c.id
-    """</span><span class="o">)</span>
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Call</span><span class="o">&gt;</span> <span class="nf">findCompletedCallsByUserInDateRange</span><span class="o">(</span>
-        <span class="nd">@Param</span><span class="o">(</span><span class="s">"userId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span>
-        <span class="nd">@Param</span><span class="o">(</span><span class="s">"startDate"</span><span class="o">)</span> <span class="nc">LocalDateTime</span> <span class="n">startDate</span><span class="o">,</span>
-        <span class="nd">@Param</span><span class="o">(</span><span class="s">"endDate"</span><span class="o">)</span> <span class="nc">LocalDateTime</span> <span class="n">endDate</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p><strong>Step 2 — 감정 결과만 별도 조회</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">CallEmotionResult</span><span class="o">&gt;</span> <span class="nf">findByCallIdInAndUserId</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">callIds</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p><strong>Step 3 — 서비스에서 Map으로 매칭 (LEFT JOIN과 같은 효과)</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">DailyEmotionSummaryResponse</span><span class="o">&gt;</span> <span class="nf">getMonthlyEmotionResults</span><span class="o">(</span>
-        <span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span> <span class="kt">int</span> <span class="n">year</span><span class="o">,</span> <span class="kt">int</span> <span class="n">month</span><span class="o">)</span> <span class="o">{</span>
-
-    <span class="nc">LocalDateTime</span> <span class="n">startDate</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">year</span><span class="o">,</span> <span class="n">month</span><span class="o">,</span> <span class="mi">1</span><span class="o">).</span><span class="na">atStartOfDay</span><span class="o">();</span>
-    <span class="nc">LocalDateTime</span> <span class="n">endDate</span> <span class="o">=</span> <span class="n">startDate</span><span class="o">.</span><span class="na">plusMonths</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-
-    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Call</span><span class="o">&gt;</span> <span class="n">calls</span> <span class="o">=</span> <span class="n">callRepository</span><span class="o">.</span><span class="na">findCompletedCallsByUserInDateRange</span><span class="o">(</span>
-            <span class="n">userId</span><span class="o">,</span> <span class="n">startDate</span><span class="o">,</span> <span class="n">endDate</span><span class="o">);</span>
-    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">callIds</span> <span class="o">=</span> <span class="n">calls</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="nl">Call:</span><span class="o">:</span><span class="n">getId</span><span class="o">).</span><span class="na">toList</span><span class="o">();</span>
-
-    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">,</span> <span class="nc">CallEmotionResult</span><span class="o">&gt;</span> <span class="n">resultByCallId</span> <span class="o">=</span> <span class="n">callIds</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span>
-            <span class="o">?</span> <span class="nc">Map</span><span class="o">.</span><span class="na">of</span><span class="o">()</span>
-            <span class="o">:</span> <span class="n">callEmotionResultRepository</span><span class="o">.</span><span class="na">findByCallIdInAndUserId</span><span class="o">(</span><span class="n">callIds</span><span class="o">,</span> <span class="n">userId</span><span class="o">).</span><span class="na">stream</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toMap</span><span class="o">(</span>
-                            <span class="nl">CallEmotionResult:</span><span class="o">:</span><span class="n">getCallId</span><span class="o">,</span>
-                            <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">r</span><span class="o">,</span>
-                            <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">));</span> <span class="c1">// 동일 callId·userId에 행이 둘 이상이면 정책 필요</span>
-
-    <span class="k">return</span> <span class="nf">buildDailySummaries</span><span class="o">(</span><span class="n">calls</span><span class="o">,</span> <span class="n">resultByCallId</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>분석이 없는 통화는 <code class="language-plaintext highlighter-rouge">resultByCallId.get(callId)</code>가 <code class="language-plaintext highlighter-rouge">null</code>이 되어, SQL <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>과 같은 “한쪽만 있어도 행이 살아 있는” 형태를 애플리케이션에서 재현한다. (위 예시는 <code class="language-plaintext highlighter-rouge">callIds</code>가 비었을 때 두 번째 쿼리를 생략하고 빈 맵을 쓰는 형태다.)</p>
-
-<hr />
-
-<h2 id="6-두-접근-방식-비교">6. 두 접근 방식 비교</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>DB JOIN (네이티브)</th>
-      <th>두 쿼리 + Java 병합</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>쿼리 횟수</td>
-      <td>1회</td>
-      <td>2회</td>
-    </tr>
-    <tr>
-      <td>반환 타입</td>
-      <td><code class="language-plaintext highlighter-rouge">Object[]</code> 등</td>
-      <td>엔티티(타입 안전)</td>
-    </tr>
-    <tr>
-      <td>DB 방언 의존</td>
-      <td>큼</td>
-      <td>JPQL 쪽은 상대적으로 작음</td>
-    </tr>
-    <tr>
-      <td>스키마 변경</td>
-      <td>SQL 수정</td>
-      <td>엔티티·쿼리 조정</td>
-    </tr>
-    <tr>
-      <td>데이터 규모</td>
-      <td>DB가 조인 최적화</td>
-      <td><code class="language-plaintext highlighter-rouge">callIds</code> 많으면 메모리 부담</td>
-    </tr>
-    <tr>
-      <td>테스트</td>
-      <td>통합 비중 큼</td>
-      <td>단위·통합 모두 구성하기 쉬움</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="7-어떤-경우에-어떤-방식을-선택할까">7. 어떤 경우에 어떤 방식을 선택할까</h2>
-
-<p><strong>두 쿼리 + Java 병합이 나은 경우</strong></p>
-
-<ul>
-  <li>한 유저·한 기간 등으로 <strong>건수가 수백~수천</strong> 수준이고, 각 쿼리가 인덱스를 잘 탄다.</li>
-  <li>도메인을 느슨하게 유지하고 싶다.</li>
-  <li>엔티티 매핑·타입 안전성을 유지하고 싶다.</li>
-</ul>
-
-<p><strong>네이티브 쿼리 또는 연관관계 추가가 나은 경우</strong></p>
-
-<ul>
-  <li>조인·집계가 커서 <strong>DB 한 번에</strong> 처리하는 편이 확실히 유리하다.</li>
-  <li>두 테이블이 항상 함께 쓰이고, 분리 조회 이점이 크지 않다.</li>
-</ul>
-
-<hr />
-
-<h2 id="8-실무에서-비슷한-패턴">8. 실무에서 비슷한 패턴</h2>
-
-<p>“한쪽은 없어도 다른 쪽은 나와야 한다(LEFT JOIN 의미)”인데, “JPA로 두 도메인을 굳이 묶고 싶지 않다”가 겹칠 때 자주 나온다.</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Order</code> ↔ <code class="language-plaintext highlighter-rouge">Review</code>: 리뷰 없는 주문도 목록에 넣을 때</li>
-  <li><code class="language-plaintext highlighter-rouge">User</code> ↔ <code class="language-plaintext highlighter-rouge">PushNotificationToken</code>: 토큰이 없을 수 있을 때</li>
-  <li><code class="language-plaintext highlighter-rouge">Post</code> ↔ <code class="language-plaintext highlighter-rouge">ReadHistory</code>: 읽음을 별도 테이블로 둘 때</li>
-</ul>
-
-<p>이때 <strong>두 쿼리 + <code class="language-plaintext highlighter-rouge">Map</code> 매칭</strong>은 단순하면서 타입 안전성을 지키기 쉬운 실용적인 선택이다.</p>
-
-<hr />
-
-<h2 id="9-구현-시-알아두면-좋은-것">9. 구현 시 알아두면 좋은 것</h2>
-
-<h3 id="collectorstomap과-중복-키"><code class="language-plaintext highlighter-rouge">Collectors.toMap</code>과 중복 키</h3>
-
-<p><code class="language-plaintext highlighter-rouge">(callId, userId)</code> 조합당 결과가 <strong>한 행</strong>이라는 전제가 깨지면 <code class="language-plaintext highlighter-rouge">toMap</code>은 런타임 예외를 낸다. DB에 유니크가 없거나 버그로 중복이 생길 수 있다면 <code class="language-plaintext highlighter-rouge">merge</code> 함수를 두거나, 조회 직후 검증·로그를 두는 편이 안전하다.</p>
-
-<h3 id="빈-in--리스트">빈 <code class="language-plaintext highlighter-rouge">IN (...)</code> 리스트</h3>
-
-<p><code class="language-plaintext highlighter-rouge">callIds</code>가 비어 있는데도 <code class="language-plaintext highlighter-rouge">IN :ids</code>만 던지면 구현체·DB에 따라 이상한 SQL이 나가거나 비용만 드는 경우가 있다. 위 예시처럼 <strong>비었으면 두 번째 쿼리를 호출하지 않기</strong>가 흔한 패턴이다.</p>
-
-<h3 id="in-크기-한도"><code class="language-plaintext highlighter-rouge">IN</code> 크기 한도</h3>
-
-<p><code class="language-plaintext highlighter-rouge">callIds</code>가 매우 클 때(수만 건) DB나 드라이버에서 <code class="language-plaintext highlighter-rouge">IN</code> 리스트 크기 제한에 걸릴 수 있다. 필요하면 <strong>배치(예: 500~1000건씩)</strong>로 나눠 조회한 뒤 맵에 합친다.</p>
-
-<h3 id="연관관계를-읽기-전용으로만-두는-타협">연관관계를 “읽기 전용”으로만 두는 타협</h3>
-
-<p>조회 한정으로 <code class="language-plaintext highlighter-rouge">@ManyToOne(fetch = LAZY)</code>만 <code class="language-plaintext highlighter-rouge">CallEmotionResult</code> 쪽에 두고, <code class="language-plaintext highlighter-rouge">Call</code>에는 컬렉션을 노출하지 않는 식으로 <strong>단방향만</strong> 두면 JPQL <code class="language-plaintext highlighter-rouge">JOIN</code> 경로는 생기면서도 <code class="language-plaintext highlighter-rouge">Call</code> 애그리게이트가 컬렉션을 들고 다니지 않게 할 수 있다. 다만 팀 규칙·경계 설계와 맞는지 함께 본다.</p>
-
-<h3 id="left-join-fetch는-연관이-있을-때"><code class="language-plaintext highlighter-rouge">LEFT JOIN FETCH</code>는 연관이 있을 때</h3>
-
-<p><code class="language-plaintext highlighter-rouge">LEFT JOIN FETCH c.emotionResults</code>처럼 한 번에 끌어오려면 결국 엔티티 그래프에 <strong>연관이 있어야</strong> 한다. “매핑 없이 fetch join”은 불가에 가깝다.</p>
-
-<hr />
-
-<h2 id="마무리">마무리</h2>
-
-<p>JPQL의 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>은 <strong>연관관계가 엔티티에 열려 있을 때</strong> 가장 자연스럽다. 설계상 연관을 두지 않았다면, <strong>Hibernate 버전에 맞는 HQL 확장</strong>을 쓸지, <strong>네이티브</strong>로 감수할지, <strong>조회를 쪼개고 서비스에서 병합</strong>할지를 트레이드오프로 선택하면 된다.</p>
-
-<p>“SQL로는 되는데 JPQL로는 왜 안 되지?”라는 순간에, <strong>표준 JPQL은 객체 그래프 탐색용</strong>에 가깝고, SQL과 1:1 대응이 안 되는 구간이 있다는 점을 떠올리면 원인 정리와 다음 설계 결정이 빨라진다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Call과 CallEmotionResult를 SQL처럼 LEFT JOIN하고 싶지만 표준 JPQL은 연관관계 기반 JOIN이 기본이라 막히는 문제, Hibernate HQL 확장과의 차이, 네이티브 쿼리·두 쿼리 분리 후 Java 병합, 구현 시 주의점까지 정리합니다.]]></summary></entry><entry><title type="html">[친구하자] JPA @Modifying(clearAutomatically = true)의 함정</title><link href="https://nan0silver.github.io/projectdiary/2026-04-16-diary/" rel="alternate" type="text/html" title="[친구하자] JPA @Modifying(clearAutomatically = true)의 함정" /><published>2026-04-16T00:00:00+00:00</published><updated>2026-06-12T08:52:09+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-16-diary/"><![CDATA[<blockquote>
-  <p>정기 예약 취소 API에서 <code class="language-plaintext highlighter-rouge">CallReservation</code>은 정상적으로 취소되는데 <code class="language-plaintext highlighter-rouge">RecurringReservation</code> 상태만 <code class="language-plaintext highlighter-rouge">ACTIVE</code>로 남는 버그를 겪었다. 원인은 <code class="language-plaintext highlighter-rouge">@Modifying(clearAutomatically = true)</code>로 인해 영속 엔티티가 detached 된 뒤 상태를 변경한 것이었다.</p>
-</blockquote>
-
-<ul>
-  <li><a href="#들어가며">들어가며</a></li>
-  <li><a href="#1-배경-지식">1. 배경 지식</a></li>
-  <li><a href="#2-버그-발생-과정">2. 버그 발생 과정</a></li>
-  <li><a href="#3-수정-방법">3. 수정 방법</a></li>
-  <li><a href="#4-교훈">4. 교훈</a></li>
-  <li><a href="#마치며">마치며</a></li>
-</ul>
-
-<hr />
-
-<h2 id="들어가며">들어가며</h2>
-
-<p>정기 예약 취소 API를 개발한 뒤 테스트 코드는 모두 통과했지만, 실제 DB를 조회해보니 <code class="language-plaintext highlighter-rouge">recurring_reservations.status</code>가 여전히 <code class="language-plaintext highlighter-rouge">ACTIVE</code>로 남아 있었다. <code class="language-plaintext highlighter-rouge">CallReservation</code> 데이터는 정상적으로 <code class="language-plaintext highlighter-rouge">CANCELLED</code>가 되었는데, 정작 정기 예약 상태는 바뀌지 않은 것이다.</p>
-
-<p>원인을 추적해보니 JPA의 영속성 컨텍스트(Persistence Context), <code class="language-plaintext highlighter-rouge">AUTO</code> flush 모드, 그리고 <code class="language-plaintext highlighter-rouge">@Modifying(clearAutomatically = true)</code>가 맞물려 발생한 문제였다. 이 글에서는 왜 이런 현상이 생겼는지와 실제 해결 방법을 정리한다.</p>
-
-<hr />
-
-<h2 id="1-배경-지식">1. 배경 지식</h2>
-
-<h3 id="영속성-컨텍스트persistence-context">영속성 컨텍스트(Persistence Context)</h3>
-
-<p>JPA에서 엔티티는 단순한 Java 객체가 아니라, <code class="language-plaintext highlighter-rouge">EntityManager</code>가 관리하는 1차 캐시(영속성 컨텍스트) 안에서 상태가 추적된다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[트랜잭션 시작]
-    ↓
-EntityManager 생성
-    ↓
-영속성 컨텍스트 활성화
-    ↓
-findById(id) → 엔티티 로드 (managed 상태)
-    ↓
-entity.setXxx(...) → dirty-check 대상 등록
-    ↓
-[트랜잭션 커밋] → flush 시점에 UPDATE SQL 반영
-</code></pre></div></div>
-
-<ul>
-  <li>영속 컨텍스트에 있는 엔티티는 <code class="language-plaintext highlighter-rouge">managed</code> 상태이며, 변경사항이 자동 추적된다.</li>
-  <li>컨텍스트에서 분리되면 <code class="language-plaintext highlighter-rouge">detached</code> 상태가 되고, 필드를 바꿔도 DB 반영 대상이 아니다.</li>
-</ul>
-
-<h3 id="flush와-auto-모드">Flush와 AUTO 모드</h3>
-
-<p><code class="language-plaintext highlighter-rouge">flush</code>는 영속성 컨텍스트의 변경사항을 DB에 동기화하는 동작이다. Spring Data JPA 기본 flush 모드는 <code class="language-plaintext highlighter-rouge">AUTO</code>이며, 다음 시점에 자동으로 동작한다.</p>
-
-<ol>
-  <li>트랜잭션 커밋 시점</li>
-  <li>JPQL 쿼리 실행 직전</li>
-</ol>
-
-<p>이 버그에서는 2번이 핵심이었다.</p>
-
-<h3 id="modifyingclearautomatically--true">@Modifying(clearAutomatically = true)</h3>
-
-<p>벌크 UPDATE/DELETE JPQL은 영속성 컨텍스트를 거치지 않고 DB에 직접 반영된다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Modifying</span><span class="o">(</span><span class="n">clearAutomatically</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
-<span class="nd">@Query</span><span class="o">(</span><span class="s">"UPDATE CallReservation r SET r.status = :cancelStatus ..."</span><span class="o">)</span>
-<span class="kt">int</span> <span class="nf">cancelFuturePendingByRecurringId</span><span class="o">(...);</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">clearAutomatically = true</code>를 쓰면 벌크 쿼리 실행 후 영속성 컨텍스트를 비운다. 이때 기존 <code class="language-plaintext highlighter-rouge">managed</code> 엔티티들이 전부 <code class="language-plaintext highlighter-rouge">detached</code> 상태가 된다.</p>
-
-<hr />
-
-<h2 id="2-버그-발생-과정">2. 버그 발생 과정</h2>
-
-<p>문제가 발생한 코드를 요약하면 다음과 같다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">cancelRecurringReservation</span><span class="o">(</span><span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">recurringReservationId</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 1) rr 로드 (managed)</span>
-    <span class="nc">RecurringReservation</span> <span class="n">rr</span> <span class="o">=</span> <span class="n">recurringReservationRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">recurringReservationId</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(...);</span>
-
-    <span class="c1">// 2) 미래 ENQUEUED 예약 취소</span>
-    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CallReservation</span><span class="o">&gt;</span> <span class="n">futureEnqueued</span> <span class="o">=</span> <span class="n">callReservationRepository</span><span class="o">.</span><span class="na">findFutureEnqueuedByRecurringId</span><span class="o">(...);</span>
-    <span class="k">for</span> <span class="o">(</span><span class="nc">CallReservation</span> <span class="n">reservation</span> <span class="o">:</span> <span class="n">futureEnqueued</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">reservation</span><span class="o">.</span><span class="na">cancel</span><span class="o">();</span> <span class="c1">// managed라 dirty-check 대상</span>
-        <span class="n">eventPublisher</span><span class="o">.</span><span class="na">publishEvent</span><span class="o">(...);</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 3) 벌크 UPDATE + clearAutomatically</span>
-    <span class="n">callReservationRepository</span><span class="o">.</span><span class="na">cancelFuturePendingByRecurringId</span><span class="o">(...);</span>
-
-    <span class="c1">// 4) 이미 detached 된 rr 변경</span>
-    <span class="n">rr</span><span class="o">.</span><span class="na">cancel</span><span class="o">();</span> <span class="c1">// DB에 반영되지 않음</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>실제 실행 흐름은 다음과 같았다.</p>
-
-<ol>
-  <li>rr는 처음엔 managed 상태</li>
-  <li>벌크 쿼리 실행 직전 AUTO flush가 동작하지만, CallReservation 타입의 변경사항만 flush 대상이 된다. rr은 RecurringReservation 타입이므로 flush되지 않는다.</li>
-  <li>벌크 쿼리 후 clearAutomatically로 영속성 컨텍스트 초기화</li>
-  <li>rr가 detached 상태가 된 뒤 rr.cancel() 호출</li>
-  <li>메모리 값은 바뀌지만 DB에는 UPDATE가 발생하지 않음</li>
-</ol>
-
-<p>AUTO flush가 동일 타입만 대상으로 하는 이유</p>
-
-<ul>
-  <li>Hibernate는 JPQL 실행 전에 해당 쿼리가 접근하는 테이블과 dirty 상태 엔티티의 테이블이 겹칠 때만 flush를 발동한다. CallReservation UPDATE 쿼리는 call_reservations 테이블만 건드리므로, recurring_reservations를 dirty 상태로 갖고 있는 rr의 변경은 flush 대상이 되지 않는다.</li>
-</ul>
-
-<hr />
-
-<h2 id="3-수정-방법--saveandflush로-교체">3. 수정 방법 — saveAndFlush로 교체:</h2>
-
-<p>단순히 호출 순서를 바꾸는 것만으로는 해결되지 않는다. rr.cancel() 이후 saveAndFlush()를 호출해 clearAutomatically가 컨텍스트를 비우기 전에 명시적으로 DB에 반영해야 한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">cancelRecurringReservation</span><span class="o">(</span><span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">recurringReservationId</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">RecurringReservation</span> <span class="n">rr</span> <span class="o">=</span> <span class="n">recurringReservationRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">recurringReservationId</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(...);</span>
-
-    <span class="c1">// ... 기타 로직</span>
-
-    <span class="c1">// managed 상태일 때 먼저 상태 변경</span>
-    <span class="n">rr</span><span class="o">.</span><span class="na">cancel</span><span class="o">();</span>
-    <span class="n">recurringReservationRepository</span><span class="o">.</span><span class="na">saveAndFlush</span><span class="o">(</span><span class="n">rr</span><span class="o">);</span>
-
-    <span class="c1">// 이후 벌크 UPDATE 실행 (clearAutomatically로 컨텍스트가 비워지더라도 이미 반영 완료)</span>
-    <span class="n">callReservationRepository</span><span class="o">.</span><span class="na">cancelFuturePendingByRecurringId</span><span class="o">(...);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>수정 후 흐름:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rr.cancel() 호출 (managed)
-      ↓
-saveAndFlush(rr) → entityManager.flush() 명시적 호출
-      → rr.status = CANCELLED UPDATE SQL 즉시 발행
-      ↓
-벌크 UPDATE 실행 (CallReservation → CANCELLED)
-      ↓
-clearAutomatically (이미 rr 변경은 DB에 완료된 상태)
-</code></pre></div></div>
-
-<p>이제 <code class="language-plaintext highlighter-rouge">RecurringReservation</code> 상태도 정상적으로 <code class="language-plaintext highlighter-rouge">CANCELLED</code>로 저장된다.</p>
-
-<hr />
-
-<h2 id="4-교훈">4. 교훈</h2>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">clearAutomatically = true</code>는 기존 엔티티를 모두 detached 상태로 만든다.</li>
-  <li>벌크 UPDATE 이후에는 기존 엔티티를 상태 변경 대상으로 가정하면 안 된다.</li>
-  <li>AUTO flush는 JPQL 실행 전 동일 엔티티 타입의 변경만 flush한다. 다른 타입의 엔티티 변경은 자동으로 flush되지 않으므로 saveAndFlush()로 명시적으로 반영해야 한다.</li>
-  <li>Mockito 기반 단위 테스트만으로는 이런 문제를 놓치기 쉽다.</li>
-  <li><code class="language-plaintext highlighter-rouge">@DataJpaTest</code>, <code class="language-plaintext highlighter-rouge">@SpringBootTest</code> 같은 통합 테스트가 필요하다.</li>
-  <li>벌크 UPDATE(@Modifying)와 함께 다른 엔티티 타입의 상태도 변경해야 한다면, 벌크 쿼리 전에 saveAndFlush()로 명시적으로 flush하는 것이 안전하다.</li>
-</ol>
-
-<hr />
-
-<h2 id="마치며">마치며</h2>
-
-<p>JPA의 영속성 컨텍스트는 강력하지만, 내부 동작을 정확히 이해하지 않으면 예상 못 한 버그가 생긴다. 특히 벌크 UPDATE와 dirty-check를 같은 트랜잭션에서 함께 사용할 때는 실행 순서와 엔티티 상태(<code class="language-plaintext highlighter-rouge">managed</code>/<code class="language-plaintext highlighter-rouge">detached</code>)를 반드시 의식해야 한다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[@Modifying(clearAutomatically = true) 사용 시 영속성 컨텍스트가 비워지면서 엔티티가 detached 되어, 상태 변경이 DB에 반영되지 않았던 버그 원인과 해결 과정을 정리합니다.]]></summary></entry></feed>
+<p>변환 앞에 유효성 검증을 두는 작은 습관만으로도 예방할 수 있다는 점만 기억해도 충분하다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="API" /><category term="null" /><category term="JSON" /><category term="검증" /><category term="Jackson" /><summary type="html"><![CDATA[API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.]]></summary></entry></feed>
