@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-07-16T01:38:13+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun Eun (은나현). Full-stack developer building products solo, preparing for startup. Java, Spring Boot, Python, AI. Project diaries, backend/infra notes, and TIL.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR, en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nan0silver.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nan0silver.github.io/" rel="alternate" type="text/html" hreflang="ko-KR, en-US" /><updated>2026-07-16T01:42:28+00:00</updated><id>https://nan0silver.github.io/feed.xml</id><title type="html">NAHYUN BLOG</title><subtitle>Nahyun Eun (은나현). Full-stack developer building products solo, preparing for startup. Java, Spring Boot, Python, AI. Project diaries, backend/infra notes, and TIL.
 </subtitle><author><name>Nahyun Eun 은나현</name></author><entry><title type="html">[TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven</title><link href="https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/" rel="alternate" type="text/html" title="[TIL] Spring Boot 빌드 도구 — Gradle(Groovy) vs Gradle(Kotlin) vs Maven" /><published>2026-07-07T00:00:00+00:00</published><updated>2026-07-07T00:00:00+00:00</updated><id>https://nan0silver.github.io/til/spring-boot-gradle-maven</id><content type="html" xml:base="https://nan0silver.github.io/til/2026-07-07-spring-boot-gradle-maven/"><![CDATA[<blockquote>
   <p><a href="https://start.spring.io/">Spring Initializr</a>에서 프로젝트를 만들 때 가장 먼저 고르는 항목 중 하나가 빌드 도구다. 세 가지 선택지는 이름만 다르지 않다. 각각 설정 파일 형식, 문법, 생태계가 달라서 팀 컨벤션과 취향에 따라 고르게 된다.</p>
 </blockquote>
@@ -311,7 +311,200 @@
   <li><strong>Gradle Kotlin</strong> — 같은 Gradle이지만 정적 타입 DSL, IDE·장기 유지보수에 유리</li>
 </ul>
 
-<p>팀 컨벤션이 없다면 Spring Boot 학습 단계에서는 <strong>Gradle Groovy</strong>, Kotlin으로 앱을 짤 계획이거나 빌드 스크립트의 타입 안정성을 중시한다면 <strong>Gradle Kotlin</strong>을 고르는 경우가 많다. 이미 Maven에 익숙하다면 Maven으로 시작해도 전혀 문제없다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Spring Boot" /><category term="Gradle" /><category term="Maven" /><category term="빌드 도구" /><category term="Spring Initializr" /><category term="Kotlin DSL" /><summary type="html"><![CDATA[Spring Initializr에서 선택하는 Gradle(Groovy), Gradle(Kotlin DSL), Maven 빌드 도구의 차이, Groovy/Kotlin DSL의 타입·IDE 체감 차이, 선택 기준을 정리한 글이다.]]></summary></entry><entry><title type="html">[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-06-19-diary/" rel="alternate" type="text/html" title="[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-07-16T01:37:34+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-06-19-diary/"><![CDATA[<blockquote>
+<p>팀 컨벤션이 없다면 Spring Boot 학습 단계에서는 <strong>Gradle Groovy</strong>, Kotlin으로 앱을 짤 계획이거나 빌드 스크립트의 타입 안정성을 중시한다면 <strong>Gradle Kotlin</strong>을 고르는 경우가 많다. 이미 Maven에 익숙하다면 Maven으로 시작해도 전혀 문제없다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="Spring Boot" /><category term="Gradle" /><category term="Maven" /><category term="빌드 도구" /><category term="Spring Initializr" /><category term="Kotlin DSL" /><summary type="html"><![CDATA[Spring Initializr에서 선택하는 Gradle(Groovy), Gradle(Kotlin DSL), Maven 빌드 도구의 차이, Groovy/Kotlin DSL의 타입·IDE 체감 차이, 선택 기준을 정리한 글이다.]]></summary></entry><entry><title type="html">[친구하자] 한국 스타트업이 Stripe 대신 Paddle을 고른 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-06-22-diary/" rel="alternate" type="text/html" title="[친구하자] 한국 스타트업이 Stripe 대신 Paddle을 고른 이유" /><published>2026-06-22T00:00:00+00:00</published><updated>2026-07-16T01:41:43+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-06-22-diary/"><![CDATA[<blockquote>
+  <p>글로벌 결제를 붙이려다 보니, 개발자들이 가장 먼저 떠올리는 Stripe는 <strong>한국 법인으로 계정 생성이 불가능</strong>했다. 대안을 찾다 MoR(Merchant of Record) 개념을 알게 됐고, 그중 <strong>Paddle</strong>을 선택했다. 왜 Stripe가 안 되는지, MoR이 무엇인지, 왜 Paddle인지 정리한다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#1-왜-stripe를-쓰지-못했나">1. 왜 Stripe를 쓰지 못했나</a></li>
+  <li><a href="#2-mor이란-무엇인가">2. MoR이란 무엇인가</a></li>
+  <li><a href="#3-왜-paddle을-선택했나">3. 왜 Paddle을 선택했나</a></li>
+  <li><a href="#마무리">마무리</a></li>
+  <li><a href="#참고문헌">참고문헌</a></li>
+</ul>
+
+<hr />
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>서비스를 만들다 보면 언젠가 “돈은 어떻게 받지?”라는 벽에 부딪힌다. 국내만 보면 토스페이먼츠나 포트원 같은 선택지가 있지만, 해외 고객까지 받겠다고 하면 이야기가 달라진다.</p>
+
+<p>처음엔 당연히 Stripe를 생각했다. SaaS 결제하면 거의 표준처럼 언급되고, API·문서·구독 기능도 잘 갖춰져 있으니까. 그런데 막상 한국 법인으로 계정을 만들려고 하니, 그게 안 됐다.</p>
+
+<p>이 글은 그 과정에서 알게 된 것들 — Stripe가 한국에서 막히는 이유, MoR이라는 대안, 그리고 그중 Paddle을 고른 이유 — 를 정리한 기록이다.</p>
+
+<hr />
+
+<h2 id="1-왜-stripe를-쓰지-못했나">1. 왜 Stripe를 쓰지 못했나</h2>
+
+<p>Stripe가 “한국을 지원한다”는 말과 “한국 법인이 Stripe를 쓸 수 있다”는 말은 다르다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>가능 여부</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>한국 법인이 Stripe 계정 개설</td>
+      <td>❌ 불가능</td>
+    </tr>
+    <tr>
+      <td>한국 사업자 등록증으로 Merchant Country 등록</td>
+      <td>❌ 한국은 지원 국가 목록에 없음</td>
+    </tr>
+    <tr>
+      <td>이미 해외 Stripe 계정이 있는 사업자가 한국 고객에게 원화·간편결제 받기</td>
+      <td>✅ 가능 (2024년 말부터)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>핵심은 이것이다. <strong>Stripe는 법인(또는 사업자)이 설립된 국가 기준으로 계정을 연다.</strong> 한국은 아직 그 Merchant Country에 들어가지 않았다. 그래서 한국 법인 명의로는 계정 생성 자체가 불가능하고, 결제·정산도 그 경로로는 열리지 않는다.</p>
+
+<p>해외 법인(미국 델라웨어 C-Corp, 싱가포르 법인 등)을 따로 세우면 Stripe를 쓸 수는 있다. 다만 법인 설립·유지 비용, 세무·신고 부담, 이중과세 이슈까지 한꺼번에 따라온다. 초기 스타트업이 “일단 결제만 붙이자”고 쓰기엔 비용과 복잡도가 너무 크다.</p>
+
+<p>결국 선택지는 명확해졌다.</p>
+
+<ul>
+  <li>해외 법인을 만들고 Stripe를 가거나</li>
+  <li>한국 법인 그대로 쓸 수 있는 다른 결제 구조로 가거나</li>
+</ul>
+
+<p>우리는 후자를 택했고, 그 과정에서 MoR을 만나게 됐다.</p>
+
+<hr />
+
+<h2 id="2-mor이란-무엇인가">2. MoR이란 무엇인가</h2>
+
+<p>결제 모듈을 고르기 전에 <strong>PG</strong>와 <strong>MoR</strong>을 구분해야 한다.</p>
+
+<h3 id="pg-payment-gateway">PG (Payment Gateway)</h3>
+
+<p>Stripe, 토스페이먼츠 같은 서비스가 여기에 해당한다.</p>
+
+<ul>
+  <li>역할: 결제가 오가는 <strong>통로</strong>를 제공한다.</li>
+  <li>법적 판매자: 여전히 <strong>우리 회사</strong>다.</li>
+  <li>세금·환불·컴플라이언스: 판매자 책임이다.</li>
+</ul>
+
+<p>즉 PG는 “돈은 내가 받아줄게. 세금은 네가 알아서 해”에 가깝다. 수수료는 상대적으로 낮지만, 국가마다 다른 VAT·GST·Sales Tax를 직접 계산하고 신고·납부해야 한다.</p>
+
+<h3 id="mor-merchant-of-record">MoR (Merchant of Record)</h3>
+
+<p>Paddle, Lemon Squeezy 같은 서비스가 여기에 해당한다.</p>
+
+<ul>
+  <li>역할: 단순 결제 대행을 넘어, 법적으로 <strong>판매자</strong>가 되어 준다.</li>
+  <li>고객 영수증에 찍히는 판매자: MoR 사업자(예: Paddle)</li>
+  <li>세금·환불·사기 대응: MoR이 처리한다.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[일반 PG]
+구매자 → PG → 판매자(우리)
+세금·인보이스·환불 = 우리 책임
+
+[MoR]
+구매자 → MoR(법적 판매자) → 판매자(우리)에게 정산
+세금·인보이스·환불 = MoR 책임
+</code></pre></div></div>
+
+<p>한 줄로 말하면 이렇다.</p>
+
+<blockquote>
+  <p>PG는 결제 파이프를 빌려준다. MoR은 판매 자체를 대신해 주고, 그 대가로 수수료를 더 받는다.</p>
+</blockquote>
+
+<p>초기 스타트업 입장에서는 수수료가 조금 높더라도, 글로벌 세금·컴플라이언스를 외주화할 수 있다는 점이 훨씬 크다. 제품 만드는 시간에 각국 세법을 공부할 수는 없으니까.</p>
+
+<hr />
+
+<h2 id="3-왜-paddle을-선택했나">3. 왜 Paddle을 선택했나</h2>
+
+<p>MoR 안에도 Paddle, Lemon Squeezy, Polar 등 선택지가 있다. 그중 Paddle을 고른 이유는 대략 네 가지다.</p>
+
+<h3 id="1-한국-법인으로-시작할-수-있다">1) 한국 법인으로 시작할 수 있다</h3>
+
+<p>Stripe처럼 해외 법인부터 세울 필요가 없다. 한국 사업자로 가입·정산이 가능한 구조라, “지금 당장 결제를 붙인다”는 목표에 맞았다.</p>
+
+<h3 id="2-세금컴플라이언스를-우리가-안-진다">2) 세금·컴플라이언스를 우리가 안 진다</h3>
+
+<p>글로벌 SaaS에서 진짜 골치 아픈 부분은 결제 UI가 아니라 <strong>세금</strong>이다. 미국 주별 Sales Tax, EU VAT, 캐나다 GST/HST 같은 걸 초기 팀이 직접 감당하기는 어렵다. Paddle은 MoR로서 세금 계산·징수·납부와 인보이스까지 가져가 준다. 우리는 정산금에 집중하면 된다.</p>
+
+<h3 id="3-saas-구독에-필요한-기능이-기본으로-들어-있다">3) SaaS 구독에 필요한 기능이 기본으로 들어 있다</h3>
+
+<p>업/다운그레이드, 일할 계산(proration), 결제 실패 후 재시도(dunning), pause/resume 같은 기능은 직접 구현하면 엣지 케이스가 끝없이 생긴다. Paddle Billing은 이런 구독 인프라를 기본으로 제공한다. 결제만 받는 수준이 아니라, 구독 서비스 운영까지 같이 맡길 수 있다는 점이 컸다.</p>
+
+<h3 id="4-초기-단계에서-성숙한-mor을-쓰고-싶었다">4) 초기 단계에서 “성숙한 MoR”을 쓰고 싶었다</h3>
+
+<p>Lemon Squeezy는 Stripe에 인수된 뒤 신규 기능 속도가 줄어들었다는 이야기가 있고, Polar 같은 신흥 MoR은 수수료가 매력적이지만 아직 상대적으로 젊다. 우리는 수수료를 조금 더 내더라도, <strong>오래 운영된 MoR</strong>의 안정성과 문서·운영 성숙도를 우선했다. Paddle의 수수료(대략 5% + $0.50/건)는 Stripe보다 높지만, 그 안에 세금·환불·컴플라이언스 비용이 포함돼 있다고 보면 초기에는 납득이 된다.</p>
+
+<p>정리하면 선택의 기준은 단순했다.</p>
+
+<blockquote>
+  <p>한국 법인으로 빠르게 시작하고, 세금 리스크를 줄이고, 구독 운영까지 맡길 수 있는가?</p>
+</blockquote>
+
+<p>그 조건에 가장 잘 맞는 답이 Paddle이었다.</p>
+
+<hr />
+
+<h2 id="마무리">마무리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>Stripe (PG)</th>
+      <th>Paddle (MoR)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>한국 법인 계정</td>
+      <td>❌ 불가</td>
+      <td>✅ 가능</td>
+    </tr>
+    <tr>
+      <td>법적 판매자</td>
+      <td>우리</td>
+      <td>Paddle</td>
+    </tr>
+    <tr>
+      <td>글로벌 세금 처리</td>
+      <td>우리 책임</td>
+      <td>Paddle이 대행</td>
+    </tr>
+    <tr>
+      <td>수수료</td>
+      <td>상대적으로 낮음</td>
+      <td>상대적으로 높음 (세금·운영 포함)</td>
+    </tr>
+    <tr>
+      <td>초기 적합도</td>
+      <td>해외 법인 필요</td>
+      <td>한국 법인으로 시작 가능</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Stripe를 쓰지 못한 건 “기술적으로 못 붙여서”가 아니라, <strong>한국 법인이라는 출발선에서 계정이 열리지 않아서</strong>였다. 그래서 PG 대신 MoR을 봤고, 그중에서도 한국 법인 온보딩·세금 대행·구독 인프라·운영 성숙도를 기준으로 Paddle을 선택했다.</p>
+
+<p>나중에 매출이 커지고 해외 법인·세무 체계가 갖춰지면 Stripe로 옮기는 선택지도 생길 수 있다. 지금은 그 단계가 아니다. 지금은 제품을 만들고, 결제를 안정적으로 받는 게 먼저다.</p>
+
+<hr />
+
+<h2 id="참고문헌">참고문헌</h2>
+
+<ul>
+  <li><a href="https://inblog.ai/ko/blog/stripe-in-korea">한국에서도 Stripe 사용 가능? 해외 결제 솔루션 완전 정복! (2026년 버전)</a></li>
+  <li><a href="https://blog.choonzang.com/%EB%AF%B8-%EB%B6%84%EB%A5%98/4358/">한국 사업자가 꼭 알아야 할 해외 결제 모듈 총정리 (Paddle vs Stripe vs PayPal)</a></li>
+  <li><a href="https://agentic30.app/blog/paddle-guide">Paddle 실전 가이드: 1인 개발자를 위한 글로벌 SaaS 결제의 정석</a></li>
+</ul>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[한국 법인으로는 Stripe 계정을 만들 수 없어 결제 모듈을 다시 찾아본 과정, PG와 MoR의 차이, 그리고 그중에서 Paddle을 선택한 이유를 정리합니다.]]></summary></entry><entry><title type="html">[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유</title><link href="https://nan0silver.github.io/projectdiary/2026-06-19-diary/" rel="alternate" type="text/html" title="[친구하자] PostgreSQL 호스팅과 ORM, 함께 써야 하는 이유" /><published>2026-06-19T00:00:00+00:00</published><updated>2026-07-16T01:41:43+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-06-19-diary/"><![CDATA[<blockquote>
   <p>데이터베이스를 선택할 때 “어떤 DB를 쓸까”에만 집중하기 쉽지만, 실제로는 <strong>어디에 둘 것인가(인프라)</strong> 와 <strong>코드에서 어떻게 접근할 것인가(접근 방식)</strong> 를 따로 결정해야 한다. Supabase와 SQLAlchemy는 각각 다른 레이어를 담당하며, 둘을 함께 쓰면 한쪽을 교체할 때 다른 쪽에 영향을 주지 않는 구조를 만들 수 있다.</p>
 </blockquote>
 
@@ -439,7 +632,7 @@ PostgreSQL (Supabase / RDS / 로컬 / 무엇이든)
 
 <p>둘은 경쟁 관계가 아니라 다른 문제를 각각 해결합니다. “Supabase를 쓰면 ORM이 필요 없다”는 생각은, “AWS를 쓰면 코드를 짤 필요가 없다”는 말과 같습니다.</p>
 
-<p>인프라와 접근 레이어를 분리해 두면, 나중에 한쪽을 교체할 때 다른 쪽에 영향을 주지 않는 유연한 구조를 가져갈 수 있습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Supabase(관리형 PostgreSQL)와 SQLAlchemy(ORM)는 경쟁 관계가 아니라 인프라 레이어와 접근 레이어를 각각 담당한다. supabase-py 클라이언트만 쓸 때의 한계, 레이어 분리의 이점, 교체 가능한 구조까지 정리합니다.]]></summary></entry><entry><title type="html">[Infra] 리버스 프록시와 Nginx — 왜 많이 쓸까?</title><link href="https://nan0silver.github.io/infra/2026-06-10-nginx-reverse-proxy/" rel="alternate" type="text/html" title="[Infra] 리버스 프록시와 Nginx — 왜 많이 쓸까?" /><published>2026-06-10T00:00:00+00:00</published><updated>2026-07-16T01:37:34+00:00</updated><id>https://nan0silver.github.io/infra/nginx-reverse-proxy</id><content type="html" xml:base="https://nan0silver.github.io/infra/2026-06-10-nginx-reverse-proxy/"><![CDATA[<p>백엔드를 EC2에 배포할 때 Nginx를 앞단에 두고 Spring Boot로 요청을 넘기는 구성을 자주 본다.<br />
+<p>인프라와 접근 레이어를 분리해 두면, 나중에 한쪽을 교체할 때 다른 쪽에 영향을 주지 않는 유연한 구조를 가져갈 수 있습니다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Supabase(관리형 PostgreSQL)와 SQLAlchemy(ORM)는 경쟁 관계가 아니라 인프라 레이어와 접근 레이어를 각각 담당한다. supabase-py 클라이언트만 쓸 때의 한계, 레이어 분리의 이점, 교체 가능한 구조까지 정리합니다.]]></summary></entry><entry><title type="html">[Infra] 리버스 프록시와 Nginx — 왜 많이 쓸까?</title><link href="https://nan0silver.github.io/infra/2026-06-10-nginx-reverse-proxy/" rel="alternate" type="text/html" title="[Infra] 리버스 프록시와 Nginx — 왜 많이 쓸까?" /><published>2026-06-10T00:00:00+00:00</published><updated>2026-07-16T01:41:43+00:00</updated><id>https://nan0silver.github.io/infra/nginx-reverse-proxy</id><content type="html" xml:base="https://nan0silver.github.io/infra/2026-06-10-nginx-reverse-proxy/"><![CDATA[<p>백엔드를 EC2에 배포할 때 Nginx를 앞단에 두고 Spring Boot로 요청을 넘기는 구성을 자주 본다.<br />
 클라이언트는 <code class="language-plaintext highlighter-rouge">https://api.example.com</code>에만 접속하고, 실제 애플리케이션은 <code class="language-plaintext highlighter-rouge">127.0.0.1:8080</code>에서 돌아간다.<br />
 이때 Nginx가 하는 일이 바로 <strong>리버스 프록시(Reverse Proxy)</strong>다.</p>
 
@@ -2461,292 +2654,4 @@ Celery Worker
 
 <p><code class="language-plaintext highlighter-rouge">null</code>과 빈 값·0을 한 덩어리로 처리하고 싶은 유혹은 자주 생긴다. 당장 코드가 짧아지기 때문이다. 하지만 이 구분이 무너지면 집계 왜곡·UI 오해처럼 <strong>디버깅이 어려운 문제</strong>가 쌓인다.</p>
 
-<p>변환 앞에 유효성 검증을 두는 작은 습관만으로도 예방할 수 있다는 점만 기억해도 충분하다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="API" /><category term="null" /><category term="JSON" /><category term="검증" /><category term="Jackson" /><summary type="html"><![CDATA[API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.]]></summary></entry><entry><title type="html">[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계</title><link href="https://nan0silver.github.io/projectdiary/2026-04-28-diary/" rel="alternate" type="text/html" title="[친구하자] JPQL에서 매핑되지 않은 관계의 LEFT JOIN 한계" /><published>2026-04-28T00:00:00+00:00</published><updated>2026-07-16T01:37:34+00:00</updated><id>https://nan0silver.github.io/projectdiary/diary</id><content type="html" xml:base="https://nan0silver.github.io/projectdiary/2026-04-28-diary/"><![CDATA[<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">Call</code>과 <code class="language-plaintext highlighter-rouge">CallEmotionResult</code>를 SQL처럼 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>하고 싶은데, <strong>표준 JPQL</strong>은 연관 경로가 없으면 객체 그래프 기반 조인을 쓰기 어렵다. Hibernate HQL은 버전에 따라 엔티티 <code class="language-plaintext highlighter-rouge">JOIN … ON</code>이 열리기도 하지만 포터빌리티와 트레이드오프가 있다. SQL·JPQL의 차이와, 우리가 택한 두 쿼리 + 병합, 구현 시 주의점까지 정리한다.</p>
-</blockquote>
-
-<ul>
-  <li><a href="#들어가며">들어가며</a></li>
-  <li><a href="#1-jpql-left-join의-제약">1. JPQL LEFT JOIN의 제약</a></li>
-  <li><a href="#2-연관관계를-선언하지-않은-이유">2. 연관관계를 선언하지 않은 이유</a></li>
-  <li><a href="#3-임의-조건-join을-jpql로-옮기려-할-때">3. 임의 조건 JOIN을 JPQL로 옮기려 할 때</a></li>
-  <li><a href="#4-해결-방법-1-네이티브-쿼리">4. 해결 방법 1: 네이티브 쿼리</a></li>
-  <li><a href="#5-해결-방법-2-두-쿼리-분리-후-java에서-병합">5. 해결 방법 2: 두 쿼리 분리 후 Java에서 병합</a></li>
-  <li><a href="#6-두-접근-방식-비교">6. 두 접근 방식 비교</a></li>
-  <li><a href="#7-어떤-경우에-어떤-방식을-선택할까">7. 어떤 경우에 어떤 방식을 선택할까</a></li>
-  <li><a href="#8-실무에서-비슷한-패턴">8. 실무에서 비슷한 패턴</a></li>
-  <li><a href="#9-구현-시-알아두면-좋은-것">9. 구현 시 알아두면 좋은 것</a></li>
-  <li><a href="#마무리">마무리</a></li>
-</ul>
-
-<hr />
-
-<h2 id="들어가며">들어가며</h2>
-
-<p>JPA를 쓰다 보면 이런 요구를 만난다.</p>
-
-<ul>
-  <li>“메인 테이블과 부가 기록 테이블을 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>해서, 부가 행이 <strong>없는</strong> 메인 행도 목록에 넣고 싶다.”</li>
-</ul>
-
-<p>SQL로는 대략 다음처럼 쓸 수 있다.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">p</span><span class="p">.</span><span class="o">*</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="o">*</span>
-<span class="k">FROM</span> <span class="n">parent_records</span> <span class="n">p</span>
-<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">extension_records</span> <span class="n">e</span>
-  <span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">parent_id</span> <span class="k">AND</span> <span class="n">e</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="o">?</span>
-<span class="k">WHERE</span> <span class="n">p</span><span class="p">.</span><span class="n">participant_a_id</span> <span class="o">=</span> <span class="o">?</span> <span class="k">OR</span> <span class="n">p</span><span class="p">.</span><span class="n">participant_b_id</span> <span class="o">=</span> <span class="o">?</span>
-</code></pre></div></div>
-
-<p>(위 SQL의 테이블·컬럼명은 실제 스키마와 무관한 <strong>예시용 익명</strong>이다.)</p>
-
-<p>그런데 이걸 JPQL로 그대로 옮기려 하면, 포터블한 JPQL만으로는 예상과 다른 벽에 부딪히는 경우가 많다.</p>
-
-<hr />
-
-<h2 id="1-jpql-left-join의-제약">1. JPQL LEFT JOIN의 제약</h2>
-
-<p>표준 JPQL에서 <code class="language-plaintext highlighter-rouge">JOIN</code>은 보통 <strong>엔티티에 선언된 연관관계</strong>(<code class="language-plaintext highlighter-rouge">@OneToMany</code>, <code class="language-plaintext highlighter-rouge">@ManyToOne</code> 등)를 따라간다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ✅ 연관관계가 있으면 JPQL LEFT JOIN 가능</span>
-<span class="nd">@Entity</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Call</span> <span class="o">{</span>
-    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"call"</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CallEmotionResult</span><span class="o">&gt;</span> <span class="n">emotionResults</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"""
-    SELECT c FROM Call c
-    LEFT JOIN c.emotionResults cer
-    WHERE (c.user1.id = :userId OR c.user2.id = :userId)
-    """</span><span class="o">)</span>
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Call</span><span class="o">&gt;</span> <span class="nf">findWithEmotionResults</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"userId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>연관관계가 <strong>없으면</strong> <code class="language-plaintext highlighter-rouge">c.emotionResults</code> 같은 경로 자체가 없어서, 위와 같은 객체 그래프 기반 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>을 쓸 수 없다.</p>
-
-<hr />
-
-<h2 id="2-연관관계를-선언하지-않은-이유">2. 연관관계를 선언하지 않은 이유</h2>
-
-<p><code class="language-plaintext highlighter-rouge">Call</code>에 <code class="language-plaintext highlighter-rouge">@OneToMany List&lt;CallEmotionResult&gt;</code>를 붙이지 않은 데는 실무적인 이유가 있다.</p>
-
-<ol>
-  <li><strong>결합도</strong> — 통화 엔티티가 분석 결과 컬렉션을 직접 들고 있으면, 통화 흐름만 다룰 때도 분석 도메인이 끼어들 여지가 커진다.</li>
-  <li><strong>N+1·실수 여지</strong> — <code class="language-plaintext highlighter-rouge">@OneToMany</code>는 기본이 <code class="language-plaintext highlighter-rouge">LAZY</code>지만, <code class="language-plaintext highlighter-rouge">fetch</code> 없이 접근하면 N+1이 나기 쉽다.</li>
-  <li><strong>방향성</strong> — “분석 결과 조회”는 분석 쪽 책임으로 두고, <code class="language-plaintext highlighter-rouge">Call</code>이 <code class="language-plaintext highlighter-rouge">CallEmotionResult</code>를 알 필요가 없다고 본다.</li>
-</ol>
-
-<p>의도적으로 JPA 연관을 끊어 두는 선택은 흔하다. 대신 그만큼 <strong>JPQL 한 줄로 SQL식 LEFT JOIN</strong>을 재현하기 어려워진다.</p>
-
-<hr />
-
-<h2 id="3-임의-조건-join을-jpql로-옮기려-할-때">3. 임의 조건 JOIN을 JPQL로 옮기려 할 때</h2>
-
-<p>연관관계 없이 SQL처럼 <code class="language-plaintext highlighter-rouge">ON</code> 절만으로 붙이려는 시도 예시는 다음과 같다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 표준 JPQL(Jakarta Persistence)만 놓고 보면: 이 형태를 그대로 보장하지 않는다.</span>
-<span class="c1">// Hibernate를 쓴다면: 버전에 따라 HQL에서 "엔티티 조인 + ON"이 지원되기도 한다.</span>
-<span class="nd">@Query</span><span class="o">(</span><span class="s">"""
-    SELECT c FROM Call c
-    LEFT JOIN CallEmotionResult cer ON c.id = cer.callId AND cer.userId = :userId
-    WHERE c.user1.id = :userId OR c.user2.id = :userId
-    """</span><span class="o">)</span>
-</code></pre></div></div>
-
-<p><strong>표준 JPQL</strong>은 조인 대상을 <strong><code class="language-plaintext highlighter-rouge">FROM</code> 엔티티에서 출발한 연관 경로</strong>로 잡는 경우가 대부분이다. 매핑이 없으면 <code class="language-plaintext highlighter-rouge">c.emotionResults</code> 같은 탐색 경로 자체가 없어서, SQL에서 당연한 “두 테이블을 FK만으로 LEFT JOIN”을 <strong>이식한 JPQL 한 줄</strong>로 끝내기 어렵다.</p>
-
-<p><strong>Hibernate HQL</strong>은 구현체 확장이라 버전마다 다르다. Hibernate 6 계열에서는 HQL에 <strong>연관관계 없이 두 엔티티를 <code class="language-plaintext highlighter-rouge">JOIN … ON</code>으로 묶는</strong> 문법이 강화된 편이라, 위와 비슷한 쿼리가 <strong>동작할 수도</strong> 있다. 다만 그 순간 쿼리는 “표준 JPQL”이라기보다 <strong>Hibernate에 묶인 HQL</strong>이 되고, 다른 구현체로 바꾸거나 스펙만 맞춰야 할 때는 다시 막힐 수 있다.</p>
-
-<p>그래서 팀에서 <strong>포터빌리티</strong>를 중시하면 여전히 “연관 추가 / 네이티브 / 두 번 조회 + 병합” 쪽으로 가는 경우가 많다.</p>
-
-<hr />
-
-<h2 id="4-해결-방법-1-네이티브-쿼리">4. 해결 방법 1: 네이티브 쿼리</h2>
-
-<p>가장 직접적인 방법은 <code class="language-plaintext highlighter-rouge">@Query(nativeQuery = true)</code>로 SQL을 그대로 쓰는 것이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"""
-    SELECT p.id, p.started_at, p.ended_at, p.duration_seconds,
-           e.detail_payload, e.summary_label
-    FROM parent_records p
-    LEFT JOIN extension_records e
-      ON p.id = e.parent_id AND e.user_id = :userId
-    WHERE (p.participant_a_id = :userId OR p.participant_b_id = :userId)
-      AND p.lifecycle_state = 'COMPLETED'
-    """</span><span class="o">,</span> <span class="n">nativeQuery</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">[]&gt;</span> <span class="nf">findMonthlyRaw</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"userId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p><strong>단점·주의 요약</strong></p>
-
-<ul>
-  <li>기본적으로는 <code class="language-plaintext highlighter-rouge">List&lt;Object[]&gt;</code>처럼 <strong>행 단위 튜플</strong>에 가깝게 받게 되기 쉽다. Spring Data JPA에서는 컬럼 별칭·매핑을 맞추면 인터페이스/클래스 <strong>프로젝션</strong>으로 감쌀 수도 있지만, JPQL 생성자 표현식만큼 단순하진 않다.</li>
-  <li>DB 방언·테이블/컬럼 이름에 직접 의존한다.</li>
-  <li>리팩터링 시 컴파일러가 SQL 문자열 오류를 잡아주지 못한다.</li>
-  <li>JSON 컬럼 등은 타입 변환·역직렬화를 애플리케이션에서 책임져야 할 수 있다.</li>
-</ul>
-
-<hr />
-
-<h2 id="5-해결-방법-2-두-쿼리-분리-후-java에서-병합">5. 해결 방법 2: 두 쿼리 분리 후 Java에서 병합</h2>
-
-<p>이 프로젝트에서 택한 방식이다. 레포지토리에서 각각 조회한 뒤 서비스에서 합친다.</p>
-
-<p><strong>Step 1 — 완료 통화만 JPQL로 조회</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"""
-    SELECT c FROM Call c
-    WHERE (c.user1.id = :userId OR c.user2.id = :userId)
-      AND c.callStatus = 'COMPLETED'
-      AND c.endAt &gt;= :startDate AND c.endAt &lt; :endDate
-    ORDER BY c.endAt, c.id
-    """</span><span class="o">)</span>
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Call</span><span class="o">&gt;</span> <span class="nf">findCompletedCallsByUserInDateRange</span><span class="o">(</span>
-        <span class="nd">@Param</span><span class="o">(</span><span class="s">"userId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span>
-        <span class="nd">@Param</span><span class="o">(</span><span class="s">"startDate"</span><span class="o">)</span> <span class="nc">LocalDateTime</span> <span class="n">startDate</span><span class="o">,</span>
-        <span class="nd">@Param</span><span class="o">(</span><span class="s">"endDate"</span><span class="o">)</span> <span class="nc">LocalDateTime</span> <span class="n">endDate</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p><strong>Step 2 — 감정 결과만 별도 조회</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">CallEmotionResult</span><span class="o">&gt;</span> <span class="nf">findByCallIdInAndUserId</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">callIds</span><span class="o">,</span> <span class="nc">Long</span> <span class="n">userId</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p><strong>Step 3 — 서비스에서 Map으로 매칭 (LEFT JOIN과 같은 효과)</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">DailyEmotionSummaryResponse</span><span class="o">&gt;</span> <span class="nf">getMonthlyEmotionResults</span><span class="o">(</span>
-        <span class="nc">Long</span> <span class="n">userId</span><span class="o">,</span> <span class="kt">int</span> <span class="n">year</span><span class="o">,</span> <span class="kt">int</span> <span class="n">month</span><span class="o">)</span> <span class="o">{</span>
-
-    <span class="nc">LocalDateTime</span> <span class="n">startDate</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">year</span><span class="o">,</span> <span class="n">month</span><span class="o">,</span> <span class="mi">1</span><span class="o">).</span><span class="na">atStartOfDay</span><span class="o">();</span>
-    <span class="nc">LocalDateTime</span> <span class="n">endDate</span> <span class="o">=</span> <span class="n">startDate</span><span class="o">.</span><span class="na">plusMonths</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-
-    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Call</span><span class="o">&gt;</span> <span class="n">calls</span> <span class="o">=</span> <span class="n">callRepository</span><span class="o">.</span><span class="na">findCompletedCallsByUserInDateRange</span><span class="o">(</span>
-            <span class="n">userId</span><span class="o">,</span> <span class="n">startDate</span><span class="o">,</span> <span class="n">endDate</span><span class="o">);</span>
-    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">callIds</span> <span class="o">=</span> <span class="n">calls</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="nl">Call:</span><span class="o">:</span><span class="n">getId</span><span class="o">).</span><span class="na">toList</span><span class="o">();</span>
-
-    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">,</span> <span class="nc">CallEmotionResult</span><span class="o">&gt;</span> <span class="n">resultByCallId</span> <span class="o">=</span> <span class="n">callIds</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span>
-            <span class="o">?</span> <span class="nc">Map</span><span class="o">.</span><span class="na">of</span><span class="o">()</span>
-            <span class="o">:</span> <span class="n">callEmotionResultRepository</span><span class="o">.</span><span class="na">findByCallIdInAndUserId</span><span class="o">(</span><span class="n">callIds</span><span class="o">,</span> <span class="n">userId</span><span class="o">).</span><span class="na">stream</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toMap</span><span class="o">(</span>
-                            <span class="nl">CallEmotionResult:</span><span class="o">:</span><span class="n">getCallId</span><span class="o">,</span>
-                            <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">r</span><span class="o">,</span>
-                            <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">));</span> <span class="c1">// 동일 callId·userId에 행이 둘 이상이면 정책 필요</span>
-
-    <span class="k">return</span> <span class="nf">buildDailySummaries</span><span class="o">(</span><span class="n">calls</span><span class="o">,</span> <span class="n">resultByCallId</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>분석이 없는 통화는 <code class="language-plaintext highlighter-rouge">resultByCallId.get(callId)</code>가 <code class="language-plaintext highlighter-rouge">null</code>이 되어, SQL <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>과 같은 “한쪽만 있어도 행이 살아 있는” 형태를 애플리케이션에서 재현한다. (위 예시는 <code class="language-plaintext highlighter-rouge">callIds</code>가 비었을 때 두 번째 쿼리를 생략하고 빈 맵을 쓰는 형태다.)</p>
-
-<hr />
-
-<h2 id="6-두-접근-방식-비교">6. 두 접근 방식 비교</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>DB JOIN (네이티브)</th>
-      <th>두 쿼리 + Java 병합</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>쿼리 횟수</td>
-      <td>1회</td>
-      <td>2회</td>
-    </tr>
-    <tr>
-      <td>반환 타입</td>
-      <td><code class="language-plaintext highlighter-rouge">Object[]</code> 등</td>
-      <td>엔티티(타입 안전)</td>
-    </tr>
-    <tr>
-      <td>DB 방언 의존</td>
-      <td>큼</td>
-      <td>JPQL 쪽은 상대적으로 작음</td>
-    </tr>
-    <tr>
-      <td>스키마 변경</td>
-      <td>SQL 수정</td>
-      <td>엔티티·쿼리 조정</td>
-    </tr>
-    <tr>
-      <td>데이터 규모</td>
-      <td>DB가 조인 최적화</td>
-      <td><code class="language-plaintext highlighter-rouge">callIds</code> 많으면 메모리 부담</td>
-    </tr>
-    <tr>
-      <td>테스트</td>
-      <td>통합 비중 큼</td>
-      <td>단위·통합 모두 구성하기 쉬움</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="7-어떤-경우에-어떤-방식을-선택할까">7. 어떤 경우에 어떤 방식을 선택할까</h2>
-
-<p><strong>두 쿼리 + Java 병합이 나은 경우</strong></p>
-
-<ul>
-  <li>한 유저·한 기간 등으로 <strong>건수가 수백~수천</strong> 수준이고, 각 쿼리가 인덱스를 잘 탄다.</li>
-  <li>도메인을 느슨하게 유지하고 싶다.</li>
-  <li>엔티티 매핑·타입 안전성을 유지하고 싶다.</li>
-</ul>
-
-<p><strong>네이티브 쿼리 또는 연관관계 추가가 나은 경우</strong></p>
-
-<ul>
-  <li>조인·집계가 커서 <strong>DB 한 번에</strong> 처리하는 편이 확실히 유리하다.</li>
-  <li>두 테이블이 항상 함께 쓰이고, 분리 조회 이점이 크지 않다.</li>
-</ul>
-
-<hr />
-
-<h2 id="8-실무에서-비슷한-패턴">8. 실무에서 비슷한 패턴</h2>
-
-<p>“한쪽은 없어도 다른 쪽은 나와야 한다(LEFT JOIN 의미)”인데, “JPA로 두 도메인을 굳이 묶고 싶지 않다”가 겹칠 때 자주 나온다.</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Order</code> ↔ <code class="language-plaintext highlighter-rouge">Review</code>: 리뷰 없는 주문도 목록에 넣을 때</li>
-  <li><code class="language-plaintext highlighter-rouge">User</code> ↔ <code class="language-plaintext highlighter-rouge">PushNotificationToken</code>: 토큰이 없을 수 있을 때</li>
-  <li><code class="language-plaintext highlighter-rouge">Post</code> ↔ <code class="language-plaintext highlighter-rouge">ReadHistory</code>: 읽음을 별도 테이블로 둘 때</li>
-</ul>
-
-<p>이때 <strong>두 쿼리 + <code class="language-plaintext highlighter-rouge">Map</code> 매칭</strong>은 단순하면서 타입 안전성을 지키기 쉬운 실용적인 선택이다.</p>
-
-<hr />
-
-<h2 id="9-구현-시-알아두면-좋은-것">9. 구현 시 알아두면 좋은 것</h2>
-
-<h3 id="collectorstomap과-중복-키"><code class="language-plaintext highlighter-rouge">Collectors.toMap</code>과 중복 키</h3>
-
-<p><code class="language-plaintext highlighter-rouge">(callId, userId)</code> 조합당 결과가 <strong>한 행</strong>이라는 전제가 깨지면 <code class="language-plaintext highlighter-rouge">toMap</code>은 런타임 예외를 낸다. DB에 유니크가 없거나 버그로 중복이 생길 수 있다면 <code class="language-plaintext highlighter-rouge">merge</code> 함수를 두거나, 조회 직후 검증·로그를 두는 편이 안전하다.</p>
-
-<h3 id="빈-in--리스트">빈 <code class="language-plaintext highlighter-rouge">IN (...)</code> 리스트</h3>
-
-<p><code class="language-plaintext highlighter-rouge">callIds</code>가 비어 있는데도 <code class="language-plaintext highlighter-rouge">IN :ids</code>만 던지면 구현체·DB에 따라 이상한 SQL이 나가거나 비용만 드는 경우가 있다. 위 예시처럼 <strong>비었으면 두 번째 쿼리를 호출하지 않기</strong>가 흔한 패턴이다.</p>
-
-<h3 id="in-크기-한도"><code class="language-plaintext highlighter-rouge">IN</code> 크기 한도</h3>
-
-<p><code class="language-plaintext highlighter-rouge">callIds</code>가 매우 클 때(수만 건) DB나 드라이버에서 <code class="language-plaintext highlighter-rouge">IN</code> 리스트 크기 제한에 걸릴 수 있다. 필요하면 <strong>배치(예: 500~1000건씩)</strong>로 나눠 조회한 뒤 맵에 합친다.</p>
-
-<h3 id="연관관계를-읽기-전용으로만-두는-타협">연관관계를 “읽기 전용”으로만 두는 타협</h3>
-
-<p>조회 한정으로 <code class="language-plaintext highlighter-rouge">@ManyToOne(fetch = LAZY)</code>만 <code class="language-plaintext highlighter-rouge">CallEmotionResult</code> 쪽에 두고, <code class="language-plaintext highlighter-rouge">Call</code>에는 컬렉션을 노출하지 않는 식으로 <strong>단방향만</strong> 두면 JPQL <code class="language-plaintext highlighter-rouge">JOIN</code> 경로는 생기면서도 <code class="language-plaintext highlighter-rouge">Call</code> 애그리게이트가 컬렉션을 들고 다니지 않게 할 수 있다. 다만 팀 규칙·경계 설계와 맞는지 함께 본다.</p>
-
-<h3 id="left-join-fetch는-연관이-있을-때"><code class="language-plaintext highlighter-rouge">LEFT JOIN FETCH</code>는 연관이 있을 때</h3>
-
-<p><code class="language-plaintext highlighter-rouge">LEFT JOIN FETCH c.emotionResults</code>처럼 한 번에 끌어오려면 결국 엔티티 그래프에 <strong>연관이 있어야</strong> 한다. “매핑 없이 fetch join”은 불가에 가깝다.</p>
-
-<hr />
-
-<h2 id="마무리">마무리</h2>
-
-<p>JPQL의 <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>은 <strong>연관관계가 엔티티에 열려 있을 때</strong> 가장 자연스럽다. 설계상 연관을 두지 않았다면, <strong>Hibernate 버전에 맞는 HQL 확장</strong>을 쓸지, <strong>네이티브</strong>로 감수할지, <strong>조회를 쪼개고 서비스에서 병합</strong>할지를 트레이드오프로 선택하면 된다.</p>
-
-<p>“SQL로는 되는데 JPQL로는 왜 안 되지?”라는 순간에, <strong>표준 JPQL은 객체 그래프 탐색용</strong>에 가깝고, SQL과 1:1 대응이 안 되는 구간이 있다는 점을 떠올리면 원인 정리와 다음 설계 결정이 빨라진다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="projectdiary" /><summary type="html"><![CDATA[Call과 CallEmotionResult를 SQL처럼 LEFT JOIN하고 싶지만 표준 JPQL은 연관관계 기반 JOIN이 기본이라 막히는 문제, Hibernate HQL 확장과의 차이, 네이티브 쿼리·두 쿼리 분리 후 Java 병합, 구현 시 주의점까지 정리합니다.]]></summary></entry></feed>
+<p>변환 앞에 유효성 검증을 두는 작은 습관만으로도 예방할 수 있다는 점만 기억해도 충분하다.</p>]]></content><author><name>Nahyun Eun 은나현</name></author><category term="til" /><category term="TIL" /><category term="API" /><category term="null" /><category term="JSON" /><category term="검증" /><category term="Jackson" /><summary type="html"><![CDATA[API에서 미분석(null·무효 입력)과 분석 완료 후 점수 0을 구분하지 못해 생기는 조용한 버그, 변환 전 유효성 검증·JSON 직렬화·집계 분모 처리까지 정리한 글이다.]]></summary></entry></feed>
